@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<site>
+   <description url="siteInfo.html"/>
+
+   <feature url="features/com.mentor.nucleus.bp.pkg_1.0.0.jar">
+      <category name="UML Tools"/>
+   </feature>
+
+   <category-def label="UML Tools" name="xtUML Editor">
+      <description>
+	This category contains features for xtUML Editor.
+      </description>
+   </category-def>
+
+
+</site>     
