@@ -46,7 +46,6 @@
       <import plugin="com.mentor.nucleus.bp.compare"/>
       <import plugin="org.antlr"/>
       <import plugin="com.mentor.nucleus.bp.als.oal"/>
-      <import plugin="com.mentor.nucleus.bp.docgen"/>
       <import plugin="com.mentor.nucleus.bp.ui.graphics"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
