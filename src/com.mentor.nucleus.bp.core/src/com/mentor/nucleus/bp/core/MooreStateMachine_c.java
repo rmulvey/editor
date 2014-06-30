@@ -148,7 +148,7 @@ p_m_sm_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_sm_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((MooreStateMachine_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((MooreStateMachine_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((MooreStateMachine_c)elem).getSm_id())) return false;
@@ -602,29 +602,29 @@ public static MooreStateMachine_c getOneSM_MOOREOnR511(StateMachineState_c targe
         ModelRoot baseRoot = modelRoot;
 
       // R510
-      StateMachine_c relInst38542 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      StateMachine_c relInst39124 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38542 == null) {
-      			relInst38542 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      		if (relInst39124 == null) {
+      			relInst39124 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
       		}
-			if (relInst38542 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39124 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38542 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
-					if (relInst38542 != null)
+					relInst39124 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+					if (relInst39124 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38542 != null )
+      if ( relInst39124 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38542) && !isProxy())) {
-	      relInst38542.relateAcrossR510To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39124) && !isProxy())) {
+	      relInst39124.relateAcrossR510To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -874,56 +874,56 @@ private static MooreStateMachine_c findMooreStateMachineInstance(ModelRoot model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class MooreStateMachine_c_test38544_c implements ClassQueryInterface_c
+    class MooreStateMachine_c_test39126_c implements ClassQueryInterface_c
     {
-	  MooreStateMachine_c_test38544_c( java.util.UUID            p38545 ) {
-	  m_p38545 = p38545;
+	  MooreStateMachine_c_test39126_c( java.util.UUID            p39127 ) {
+	  m_p39127 = p39127;
 	  }
-	  private java.util.UUID             m_p38545; 
+	  private java.util.UUID             m_p39127; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MooreStateMachine_c selected = (MooreStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38545));
+	      retval = (selected.getSm_id().equals(m_p39127));
 	      return retval;
 	  }
     }
 
-    MooreStateMachine_c [] objs38543 = 
-    MooreStateMachine_c.MooreStateMachineInstances(modelRoot, new MooreStateMachine_c_test38544_c(getSm_id())) ;
+    MooreStateMachine_c [] objs39125 = 
+    MooreStateMachine_c.MooreStateMachineInstances(modelRoot, new MooreStateMachine_c_test39126_c(getSm_id())) ;
 
-    if ( (  (objs38543.length) == 0) )
+    if ( (  (objs39125.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Moore State Machine", //$NON-NLS-1$
            "Consistency: Object: Moore State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38543.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39125.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Moore State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38543.length )  , e); 
+          + Integer.toString( objs39125.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38543.length) > 1) )
+    if ( (  (objs39125.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Moore State Machine", //$NON-NLS-1$
            "Consistency: Object: Moore State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38543.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39125.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Moore State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38543.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39125.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -931,37 +931,37 @@ private static MooreStateMachine_c findMooreStateMachineInstance(ModelRoot model
 
           // Moore State Machine is a subtype in association: rel.Numb = 510
           // The supertype class is: State Machine
-    class StateMachine_c_test38549_c implements ClassQueryInterface_c
+    class StateMachine_c_test39131_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test38549_c( java.util.UUID            p38550 ) {
-	  m_p38550 = p38550;
+	  StateMachine_c_test39131_c( java.util.UUID            p39132 ) {
+	  m_p39132 = p39132;
 	  }
-	  private java.util.UUID             m_p38550; 
+	  private java.util.UUID             m_p39132; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38550));
+	      retval = (selected.getSm_id().equals(m_p39132));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs38548 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38549_c(getSm_id())) ;
+    StateMachine_c [] objs39130 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test39131_c(getSm_id())) ;
 
-    if ( (  (objs38548.length) != 1) )
+    if ( (  (objs39130.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Moore State Machine", //$NON-NLS-1$
            "Consistency: Object: Moore State Machine: Association: 510: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38548.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39130.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Moore State Machine: Association: 510: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38548.length )  , e); 
+          + Integer.toString( objs39130.length )  , e); 
       }
       retval = false;
 
@@ -983,9 +983,9 @@ Action_c [] v_actions = Action_c.getManySM_ACTsOnR514(ActionHome_c.getManySM_AHs
 
 
 Action_c  v_action = null;
-for ( int i36631 = 0; i36631 < v_actions.length; i36631++)
+for ( int i37213 = 0; i37213 < v_actions.length; i37213++)
 {
-  v_action = v_actions[i36631] ;
+  v_action = v_actions[i37213] ;
 
 if (v_action != null) {
 v_action.Dispose() ;

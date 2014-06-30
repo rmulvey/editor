@@ -147,7 +147,8 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,10 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
-				.equals(((ExecutablePropertyArgument_c) elem).getArg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
+						.equals(((ExecutablePropertyArgument_c) elem)
+								.getArg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getArg_id().equals(
@@ -697,51 +699,51 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1013
-		MessageArgument_c relInst39620 = (MessageArgument_c) baseRoot
+		MessageArgument_c relInst40202 = (MessageArgument_c) baseRoot
 				.getInstanceList(MessageArgument_c.class).get(
 						new Object[]{m_arg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39620 == null) {
-			relInst39620 = (MessageArgument_c) Ooaofooa.getDefaultInstance()
+		if (relInst40202 == null) {
+			relInst40202 = (MessageArgument_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(MessageArgument_c.class)
 					.get(new Object[]{m_arg_id});
 		}
-		if (relInst39620 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40202 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39620 = (MessageArgument_c) roots[i].getInstanceList(
+				relInst40202 = (MessageArgument_c) roots[i].getInstanceList(
 						MessageArgument_c.class).get(new Object[]{m_arg_id});
-				if (relInst39620 != null)
+				if (relInst40202 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39620 != null) {
+		if (relInst40202 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39620) && !isProxy())) {
-				relInst39620.relateAcrossR1013To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40202) && !isProxy())) {
+				relInst40202.relateAcrossR1013To(this, notifyChanges);
 			}
 		}
 
 		if (IsRepresentedByPropertyParameter == null) {
 			// R1023
-			PropertyParameter_c relInst39621 = (PropertyParameter_c) baseRoot
+			PropertyParameter_c relInst40203 = (PropertyParameter_c) baseRoot
 					.getInstanceList(PropertyParameter_c.class).get(
 							new Object[]{m_pp_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39621 == null) {
-				relInst39621 = (PropertyParameter_c) Ooaofooa
+			if (relInst40203 == null) {
+				relInst40203 = (PropertyParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(PropertyParameter_c.class)
 						.get(new Object[]{m_pp_id});
 			}
-			if (relInst39621 == null && searchAllRoots
+			if (relInst40203 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -749,18 +751,18 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39621 = (PropertyParameter_c) roots[i]
+					relInst40203 = (PropertyParameter_c) roots[i]
 							.getInstanceList(PropertyParameter_c.class).get(
 									new Object[]{m_pp_id});
-					if (relInst39621 != null)
+					if (relInst40203 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39621 != null) {
+			if (relInst40203 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39621) && !isProxy())) {
-					relInst39621.relateAcrossR1023To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40203) && !isProxy())) {
+					relInst40203.relateAcrossR1023To(this, notifyChanges);
 				}
 			}
 		}
@@ -1067,27 +1069,27 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ExecutablePropertyArgument_c_test39623_c
+		class ExecutablePropertyArgument_c_test40205_c
 				implements
 					ClassQueryInterface_c {
-			ExecutablePropertyArgument_c_test39623_c(java.util.UUID p39624) {
-				m_p39624 = p39624;
+			ExecutablePropertyArgument_c_test40205_c(java.util.UUID p40206) {
+				m_p40206 = p40206;
 			}
-			private java.util.UUID m_p39624;
+			private java.util.UUID m_p40206;
 			public boolean evaluate(Object candidate) {
 				ExecutablePropertyArgument_c selected = (ExecutablePropertyArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39624));
+				retval = (selected.getArg_id().equals(m_p40206));
 				return retval;
 			}
 		}
 
-		ExecutablePropertyArgument_c[] objs39622 = ExecutablePropertyArgument_c
+		ExecutablePropertyArgument_c[] objs40204 = ExecutablePropertyArgument_c
 				.ExecutablePropertyArgumentInstances(modelRoot,
-						new ExecutablePropertyArgument_c_test39623_c(
+						new ExecutablePropertyArgument_c_test40205_c(
 								getArg_id()));
 
-		if (((objs39622.length) == 0)) {
+		if (((objs40204.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1095,20 +1097,20 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Executable Property Argument", //$NON-NLS-1$
 								"Consistency: Object: Executable Property Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39622.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40204.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Executable Property Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39622.length), e);
+										+ Integer.toString(objs40204.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39622.length) > 1)) {
+		if (((objs40204.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1117,7 +1119,7 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 								"Executable Property Argument", //$NON-NLS-1$
 								"Consistency: Object: Executable Property Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39622.length)
+										+ Integer.toString(objs40204.length)
 										+ " Arg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1125,7 +1127,7 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Executable Property Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39622.length)
+										+ Integer.toString(objs40204.length)
 										+ " Arg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1134,24 +1136,24 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 
 		// Executable Property Argument is a subtype in association: rel.Numb = 1013
 		// The supertype class is: Message Argument
-		class MessageArgument_c_test39628_c implements ClassQueryInterface_c {
-			MessageArgument_c_test39628_c(java.util.UUID p39629) {
-				m_p39629 = p39629;
+		class MessageArgument_c_test40210_c implements ClassQueryInterface_c {
+			MessageArgument_c_test40210_c(java.util.UUID p40211) {
+				m_p40211 = p40211;
 			}
-			private java.util.UUID m_p39629;
+			private java.util.UUID m_p40211;
 			public boolean evaluate(Object candidate) {
 				MessageArgument_c selected = (MessageArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39629));
+				retval = (selected.getArg_id().equals(m_p40211));
 				return retval;
 			}
 		}
 
-		MessageArgument_c[] objs39627 = MessageArgument_c
+		MessageArgument_c[] objs40209 = MessageArgument_c
 				.MessageArgumentInstances(modelRoot,
-						new MessageArgument_c_test39628_c(getArg_id()));
+						new MessageArgument_c_test40210_c(getArg_id()));
 
-		if (((objs39627.length) != 1)) {
+		if (((objs40209.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1159,14 +1161,14 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Executable Property Argument", //$NON-NLS-1$
 								"Consistency: Object: Executable Property Argument: Association: 1013: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39627.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40209.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Executable Property Argument: Association: 1013: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39627.length), e);
+										+ Integer.toString(objs40209.length), e);
 			}
 			retval = false;
 
@@ -1174,24 +1176,24 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 
 		// Executable Property Argument is a referring class in association: rel.Numb = 1023
 		// The participating class is: Property Parameter
-		class PropertyParameter_c_test39631_c implements ClassQueryInterface_c {
-			PropertyParameter_c_test39631_c(java.util.UUID p39632) {
-				m_p39632 = p39632;
+		class PropertyParameter_c_test40213_c implements ClassQueryInterface_c {
+			PropertyParameter_c_test40213_c(java.util.UUID p40214) {
+				m_p40214 = p40214;
 			}
-			private java.util.UUID m_p39632;
+			private java.util.UUID m_p40214;
 			public boolean evaluate(Object candidate) {
 				PropertyParameter_c selected = (PropertyParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPp_id().equals(m_p39632));
+				retval = (selected.getPp_id().equals(m_p40214));
 				return retval;
 			}
 		}
 
-		PropertyParameter_c[] objs39630 = PropertyParameter_c
+		PropertyParameter_c[] objs40212 = PropertyParameter_c
 				.PropertyParameterInstances(modelRoot,
-						new PropertyParameter_c_test39631_c(getPp_id()));
+						new PropertyParameter_c_test40213_c(getPp_id()));
 
-		if (((objs39630.length) > 1)) {
+		if (((objs40212.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1200,7 +1202,7 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 								"Executable Property Argument", //$NON-NLS-1$
 								"Consistency: Object: Executable Property Argument: Association: 1023: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39630.length)
+										+ Integer.toString(objs40212.length)
 										+ " PP_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1208,7 +1210,7 @@ public class ExecutablePropertyArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Executable Property Argument: Association: 1023: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39630.length)
+										+ Integer.toString(objs40212.length)
 										+ " PP_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

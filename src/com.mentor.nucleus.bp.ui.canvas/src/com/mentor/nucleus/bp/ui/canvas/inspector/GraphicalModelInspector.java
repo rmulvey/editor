@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import com.mentor.nucleus.bp.core.ClassStateMachine_c;
 import com.mentor.nucleus.bp.core.InstanceStateMachine_c;
 import com.mentor.nucleus.bp.core.StateMachine_c;
+import com.mentor.nucleus.bp.core.common.NonRootModelElement;
 import com.mentor.nucleus.bp.core.inspector.*;
 import com.mentor.nucleus.bp.core.sorter.MetadataSortingManager;
 
@@ -41,6 +42,10 @@ public class GraphicalModelInspector implements IModelClassInspector, IModelInsp
 	*/	
 	public IModelClassInspector getInspector(Class modelClass) {
 		return ((IModelClassInspector)adaptersMap.get(modelClass.getName()));
+	}
+	
+	public MetadataSortingManager getSortingManager() {
+		return sortingManager;
 	}
 	
 	/*
@@ -131,5 +136,18 @@ public class GraphicalModelInspector implements IModelClassInspector, IModelInsp
 	public Image getImage(Object arg) {
 		return getInspector(arg.getClass()).getImage(arg);
 	}
+	
+	@Override
+	public int getTreeDifferenceSlot(Object element) {
+        if (element instanceof NonRootModelElement) {
+            // use the parent to determine the slot
+            // location for the given child          
+            Object parent = getInspector(element.getClass()).getParent(element);
+            if (parent != null) {
+	            return getInspector(parent.getClass()).getTreeDifferenceSlot(element);
+	        }
+        }
+		return 0;
+	}	
 }
 

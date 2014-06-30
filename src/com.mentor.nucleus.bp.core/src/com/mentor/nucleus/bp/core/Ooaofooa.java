@@ -1204,7 +1204,7 @@ return "ORPH";
   static public boolean      Canstateignoreorsayeventcanthappen(ModelRoot modelRoot, final boolean      p_Considercanthappen, final java.util.UUID         p_Eventid, final java.util.UUID         p_Eventstatemachineid, final java.util.UUID         p_Stateid, final java.util.UUID         p_Statestatemachineid)
   {
       Ooaofooa.log.println(ILogger.FUNCTION, "canStateIgnoreOrSayEventCantHappen", " Function entered: Canstateignoreorsayeventcanthappen") ;  
-  class StateMachineState_test54039_c implements ClassQueryInterface_c
+  class StateMachineState_test55575_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1212,7 +1212,7 @@ return "ORPH";
 		return selected.getSmstt_id().equals(p_Stateid) && selected.getSm_id().equals(p_Statestatemachineid) ;
 	}
   }
-StateMachineState_c v_state = StateMachineState_c.StateMachineStateInstance(modelRoot, new StateMachineState_test54039_c()) ;
+StateMachineState_c v_state = StateMachineState_c.StateMachineStateInstance(modelRoot, new StateMachineState_test55575_c()) ;
 
 
 return v_state.Canignoreorsayeventcanthappen(			    
@@ -1285,9 +1285,9 @@ NonLocalEvent_c [] v_nlevts = NonLocalEvent_c.NonLocalEventInstances(modelRoot) 
 
 
 NonLocalEvent_c  v_nlevt = null;
-for ( int i53930 = 0; i53930 < v_nlevts.length; i53930++)
+for ( int i55460 = 0; i55460 < v_nlevts.length; i55460++)
 {
-  v_nlevt = v_nlevts[i53930] ;
+  v_nlevt = v_nlevts[i55460] ;
 
 PolymorphicEvent_c v_poly = PolymorphicEvent_c.getOneSM_PEVTOnR527(v_nlevt);
 
@@ -1342,9 +1342,9 @@ NonLocalEvent_c [] v_otherNLEs = NonLocalEvent_c.getManySM_NLEVTsOnR527(v_poly);
 
 
 NonLocalEvent_c  v_otherNLE = null;
-for ( int i53931 = 0; i53931 < v_otherNLEs.length; i53931++)
+for ( int i55461 = 0; i55461 < v_otherNLEs.length; i55461++)
 {
-  v_otherNLE = v_otherNLEs[i53931] ;
+  v_otherNLE = v_otherNLEs[i55461] ;
 
 StateMachineEvent_c v_nleEvt = StateMachineEvent_c.getOneSM_EVTOnR525(SemEvent_c.getOneSM_SEVTOnR526(v_otherNLE));
 
@@ -1411,9 +1411,9 @@ ModelClass_c [] v_clazzes = ModelClass_c.ModelClassInstances(modelRoot) ;
 
 
 ModelClass_c  v_clazz = null;
-for ( int i53932 = 0; i53932 < v_clazzes.length; i53932++)
+for ( int i55462 = 0; i55462 < v_clazzes.length; i55462++)
 {
-  v_clazz = v_clazzes[i53932] ;
+  v_clazz = v_clazzes[i55462] ;
 
 if (v_clazz != null) {
 v_clazz.Removeinconsistentsubtypeignores() ;

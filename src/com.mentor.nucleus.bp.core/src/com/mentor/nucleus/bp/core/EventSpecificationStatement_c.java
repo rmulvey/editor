@@ -244,7 +244,7 @@ p_m_currentlatereventdataitemnamecolumn
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -260,7 +260,7 @@ p_m_currentlatereventdataitemnamecolumn
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((EventSpecificationStatement_c)elem).getStatement_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((EventSpecificationStatement_c)elem).getStatement_id())) && this != elem)) {
       	return false;
       }
       if (!getStatement_id().equals(((EventSpecificationStatement_c)elem).getStatement_id())) return false;
@@ -1044,29 +1044,29 @@ public static EventSpecificationStatement_c [] getManyE_ESSsOnR700(ActualParamet
         ModelRoot baseRoot = modelRoot;
 
       // R603
-      Statement_c relInst54548 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      Statement_c relInst56097 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54548 == null) {
-      			relInst54548 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      		if (relInst56097 == null) {
+      			relInst56097 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
       		}
-			if (relInst54548 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56097 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54548 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
-					if (relInst54548 != null)
+					relInst56097 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+					if (relInst56097 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54548 != null )
+      if ( relInst56097 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54548) && !isProxy())) {
-	      relInst54548.relateAcrossR603To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56097) && !isProxy())) {
+	      relInst56097.relateAcrossR603To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1400,56 +1400,56 @@ private static EventSpecificationStatement_c findEventSpecificationStatementInst
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class EventSpecificationStatement_c_test54550_c implements ClassQueryInterface_c
+    class EventSpecificationStatement_c_test56099_c implements ClassQueryInterface_c
     {
-	  EventSpecificationStatement_c_test54550_c( java.util.UUID            p54551 ) {
-	  m_p54551 = p54551;
+	  EventSpecificationStatement_c_test56099_c( java.util.UUID            p56100 ) {
+	  m_p56100 = p56100;
 	  }
-	  private java.util.UUID             m_p54551; 
+	  private java.util.UUID             m_p56100; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EventSpecificationStatement_c selected = (EventSpecificationStatement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p54551));
+	      retval = (selected.getStatement_id().equals(m_p56100));
 	      return retval;
 	  }
     }
 
-    EventSpecificationStatement_c [] objs54549 = 
-    EventSpecificationStatement_c.EventSpecificationStatementInstances(modelRoot, new EventSpecificationStatement_c_test54550_c(getStatement_id())) ;
+    EventSpecificationStatement_c [] objs56098 = 
+    EventSpecificationStatement_c.EventSpecificationStatementInstances(modelRoot, new EventSpecificationStatement_c_test56099_c(getStatement_id())) ;
 
-    if ( (  (objs54549.length) == 0) )
+    if ( (  (objs56098.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Specification Statement", //$NON-NLS-1$
            "Consistency: Object: Event Specification Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54549.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56098.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Specification Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54549.length )  , e); 
+          + Integer.toString( objs56098.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54549.length) > 1) )
+    if ( (  (objs56098.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Specification Statement", //$NON-NLS-1$
            "Consistency: Object: Event Specification Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54549.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56098.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Specification Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54549.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56098.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1457,97 +1457,97 @@ private static EventSpecificationStatement_c findEventSpecificationStatementInst
 
           // Event Specification Statement is a subtype in association: rel.Numb = 603
           // The supertype class is: Statement
-    class Statement_c_test54555_c implements ClassQueryInterface_c
+    class Statement_c_test56104_c implements ClassQueryInterface_c
     {
-	  Statement_c_test54555_c( java.util.UUID            p54556 ) {
-	  m_p54556 = p54556;
+	  Statement_c_test56104_c( java.util.UUID            p56105 ) {
+	  m_p56105 = p56105;
 	  }
-	  private java.util.UUID             m_p54556; 
+	  private java.util.UUID             m_p56105; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Statement_c selected = (Statement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p54556));
+	      retval = (selected.getStatement_id().equals(m_p56105));
 	      return retval;
 	  }
     }
 
-    Statement_c [] objs54554 = 
-    Statement_c.StatementInstances(modelRoot, new Statement_c_test54555_c(getStatement_id())) ;
+    Statement_c [] objs56103 = 
+    Statement_c.StatementInstances(modelRoot, new Statement_c_test56104_c(getStatement_id())) ;
 
-    if ( (  (objs54554.length) != 1) )
+    if ( (  (objs56103.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Specification Statement", //$NON-NLS-1$
            "Consistency: Object: Event Specification Statement: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54554.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56103.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Specification Statement: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54554.length )  , e); 
+          + Integer.toString( objs56103.length )  , e); 
       }
       retval = false;
 
     }
 
           // Supertype: rel.Numb = 701
-    int objs54557 = 0;
+    int objs56106 = 0;
             // Subtype Object: Generate Event Statement
-    class GenerateEventStatement_c_test54558_c implements ClassQueryInterface_c
+    class GenerateEventStatement_c_test56107_c implements ClassQueryInterface_c
     {
-	  GenerateEventStatement_c_test54558_c( java.util.UUID            p54559 ) {
-	  m_p54559 = p54559;
+	  GenerateEventStatement_c_test56107_c( java.util.UUID            p56108 ) {
+	  m_p56108 = p56108;
 	  }
-	  private java.util.UUID             m_p54559; 
+	  private java.util.UUID             m_p56108; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      GenerateEventStatement_c selected = (GenerateEventStatement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p54559));
+	      retval = (selected.getStatement_id().equals(m_p56108));
 	      return retval;
 	  }
     }
 
-    GenerateEventStatement_c [] objs54560 = 
-    GenerateEventStatement_c.GenerateEventStatementInstances(modelRoot, new GenerateEventStatement_c_test54558_c(getStatement_id())) ;
+    GenerateEventStatement_c [] objs56109 = 
+    GenerateEventStatement_c.GenerateEventStatementInstances(modelRoot, new GenerateEventStatement_c_test56107_c(getStatement_id())) ;
  
-    objs54557 = objs54557 + objs54560.length;
+    objs56106 = objs56106 + objs56109.length;
             // Subtype Object: Create Event Statement
-    class CreateEventStatement_c_test54561_c implements ClassQueryInterface_c
+    class CreateEventStatement_c_test56110_c implements ClassQueryInterface_c
     {
-	  CreateEventStatement_c_test54561_c( java.util.UUID            p54562 ) {
-	  m_p54562 = p54562;
+	  CreateEventStatement_c_test56110_c( java.util.UUID            p56111 ) {
+	  m_p56111 = p56111;
 	  }
-	  private java.util.UUID             m_p54562; 
+	  private java.util.UUID             m_p56111; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      CreateEventStatement_c selected = (CreateEventStatement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p54562));
+	      retval = (selected.getStatement_id().equals(m_p56111));
 	      return retval;
 	  }
     }
 
-    CreateEventStatement_c [] objs54563 = 
-    CreateEventStatement_c.CreateEventStatementInstances(modelRoot, new CreateEventStatement_c_test54561_c(getStatement_id())) ;
+    CreateEventStatement_c [] objs56112 = 
+    CreateEventStatement_c.CreateEventStatementInstances(modelRoot, new CreateEventStatement_c_test56110_c(getStatement_id())) ;
  
-    objs54557 = objs54557 + objs54563.length;
-    if ( objs54557 != 1 )
+    objs56106 = objs56106 + objs56112.length;
+    if ( objs56106 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Specification Statement", //$NON-NLS-1$
            "Consistency: Object: Event Specification Statement: Association: 701: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54557 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56106 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Specification Statement: Association: 701: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54557 )  , e); 
+          + Integer.toString( objs56106 )  , e); 
       }
       retval = false;
 
@@ -1612,9 +1612,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR700(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i53384 = 0; i53384 < v_parm_set.length; i53384++)
+for ( int i54831 = 0; i54831 < v_parm_set.length; i54831++)
 {
-  v_parm = v_parm_set[i53384] ;
+  v_parm = v_parm_set[i54831] ;
 
 this.unrelateAcrossR700From(v_parm);
 
@@ -1693,7 +1693,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Event Specification Statement", " Operation entered: EventSpecificationStatement::Hookupeventdata") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

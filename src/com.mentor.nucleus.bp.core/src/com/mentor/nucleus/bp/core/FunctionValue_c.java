@@ -168,7 +168,7 @@ p_m_parmlistok
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -184,7 +184,7 @@ p_m_parmlistok
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((FunctionValue_c)elem).getValue_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((FunctionValue_c)elem).getValue_id())) && this != elem)) {
       	return false;
       }
       if (!getValue_id().equals(((FunctionValue_c)elem).getValue_id())) return false;
@@ -826,58 +826,58 @@ public static FunctionValue_c [] getManyV_FNVsOnR817(ActualParameter_c target, b
         ModelRoot baseRoot = modelRoot;
 
       // R801
-      Value_c relInst37646 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst38228 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37646 == null) {
-      			relInst37646 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst38228 == null) {
+      			relInst38228 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst37646 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38228 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37646 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst37646 != null)
+					relInst38228 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst38228 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37646 != null )
+      if ( relInst38228 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37646) && !isProxy())) {
-	      relInst37646.relateAcrossR801To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38228) && !isProxy())) {
+	      relInst38228.relateAcrossR801To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (Function == null) {          
       // R827
-      Function_c relInst37647 = (Function_c) baseRoot.getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+      Function_c relInst38229 = (Function_c) baseRoot.getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37647 == null) {
-      			relInst37647 = (Function_c) Ooaofooa.getDefaultInstance().getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+      		if (relInst38229 == null) {
+      			relInst38229 = (Function_c) Ooaofooa.getDefaultInstance().getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
       		}
-			if (relInst37647 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38229 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37647 = (Function_c) roots[i].getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
-					if (relInst37647 != null)
+					relInst38229 = (Function_c) roots[i].getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+					if (relInst38229 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37647 != null )
+      if ( relInst38229 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37647) && !isProxy())) {
-	      relInst37647.relateAcrossR827To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38229) && !isProxy())) {
+	      relInst38229.relateAcrossR827To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1135,56 +1135,56 @@ private static FunctionValue_c findFunctionValueInstance(ModelRoot modelRoot, Cl
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class FunctionValue_c_test37649_c implements ClassQueryInterface_c
+    class FunctionValue_c_test38231_c implements ClassQueryInterface_c
     {
-	  FunctionValue_c_test37649_c( java.util.UUID            p37650 ) {
-	  m_p37650 = p37650;
+	  FunctionValue_c_test38231_c( java.util.UUID            p38232 ) {
+	  m_p38232 = p38232;
 	  }
-	  private java.util.UUID             m_p37650; 
+	  private java.util.UUID             m_p38232; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionValue_c selected = (FunctionValue_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37650));
+	      retval = (selected.getValue_id().equals(m_p38232));
 	      return retval;
 	  }
     }
 
-    FunctionValue_c [] objs37648 = 
-    FunctionValue_c.FunctionValueInstances(modelRoot, new FunctionValue_c_test37649_c(getValue_id())) ;
+    FunctionValue_c [] objs38230 = 
+    FunctionValue_c.FunctionValueInstances(modelRoot, new FunctionValue_c_test38231_c(getValue_id())) ;
 
-    if ( (  (objs37648.length) == 0) )
+    if ( (  (objs38230.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Value", //$NON-NLS-1$
            "Consistency: Object: Function Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37648.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38230.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37648.length )  , e); 
+          + Integer.toString( objs38230.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37648.length) > 1) )
+    if ( (  (objs38230.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Value", //$NON-NLS-1$
            "Consistency: Object: Function Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37648.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38230.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37648.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38230.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1192,37 +1192,37 @@ private static FunctionValue_c findFunctionValueInstance(ModelRoot modelRoot, Cl
 
           // Function Value is a subtype in association: rel.Numb = 801
           // The supertype class is: Value
-    class Value_c_test37654_c implements ClassQueryInterface_c
+    class Value_c_test38236_c implements ClassQueryInterface_c
     {
-	  Value_c_test37654_c( java.util.UUID            p37655 ) {
-	  m_p37655 = p37655;
+	  Value_c_test38236_c( java.util.UUID            p38237 ) {
+	  m_p38237 = p38237;
 	  }
-	  private java.util.UUID             m_p37655; 
+	  private java.util.UUID             m_p38237; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37655));
+	      retval = (selected.getValue_id().equals(m_p38237));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37653 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37654_c(getValue_id())) ;
+    Value_c [] objs38235 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38236_c(getValue_id())) ;
 
-    if ( (  (objs37653.length) != 1) )
+    if ( (  (objs38235.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Value", //$NON-NLS-1$
            "Consistency: Object: Function Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37653.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38235.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37653.length )  , e); 
+          + Integer.toString( objs38235.length )  , e); 
       }
       retval = false;
 
@@ -1230,40 +1230,40 @@ private static FunctionValue_c findFunctionValueInstance(ModelRoot modelRoot, Cl
 
           // Function Value is a referring class in association: rel.Numb = 827
           // The participating class is: Function
-    class Function_c_test37657_c implements ClassQueryInterface_c
+    class Function_c_test38239_c implements ClassQueryInterface_c
     {
-	  Function_c_test37657_c( java.util.UUID            p37658 ) {
-	  m_p37658 = p37658;
+	  Function_c_test38239_c( java.util.UUID            p38240 ) {
+	  m_p38240 = p38240;
 	  }
-	  private java.util.UUID             m_p37658; 
+	  private java.util.UUID             m_p38240; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Function_c selected = (Function_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSync_id().equals(m_p37658));
+	      retval = (selected.getSync_id().equals(m_p38240));
 	      return retval;
 	  }
     }
 
-    Function_c [] objs37656 = 
-    Function_c.FunctionInstances(modelRoot, new Function_c_test37657_c(getSync_id())) ;
+    Function_c [] objs38238 = 
+    Function_c.FunctionInstances(modelRoot, new Function_c_test38239_c(getSync_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37656.length) != 1) )
+    if ( (  (objs38238.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Value", //$NON-NLS-1$
            "Consistency: Object: Function Value: Association: 827: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37656.length )  + " Sync_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38238.length )  + " Sync_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Value: Association: 827: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37656.length )  + " Sync_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38238.length )  + " Sync_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1296,9 +1296,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR817(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36500 = 0; i36500 < v_parm_set.length; i36500++)
+for ( int i37048 = 0; i37048 < v_parm_set.length; i37048++)
 {
-  v_parm = v_parm_set[i36500] ;
+  v_parm = v_parm_set[i37048] ;
 
 this.unrelateAcrossR817From(v_parm);
 
@@ -1331,7 +1331,7 @@ delete() ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Function Value", " Operation entered: FunctionValue::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

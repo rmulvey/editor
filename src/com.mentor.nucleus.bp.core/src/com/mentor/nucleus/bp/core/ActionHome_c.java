@@ -143,7 +143,8 @@ public class ActionHome_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -159,8 +160,9 @@ public class ActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
-				.equals(((ActionHome_c) elem).getAct_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
+						.equals(((ActionHome_c) elem).getAct_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAct_id().equals(((ActionHome_c) elem).getAct_id()))
@@ -168,8 +170,9 @@ public class ActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((ActionHome_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((ActionHome_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((ActionHome_c) elem).getSm_id()))
@@ -929,16 +932,16 @@ public class ActionHome_c extends NonRootModelElement
 
 		if (HousesAction == null) {
 			// R514
-			Action_c relInst38709 = (Action_c) baseRoot.getInstanceList(
+			Action_c relInst39291 = (Action_c) baseRoot.getInstanceList(
 					Action_c.class).get(new Object[]{m_sm_id, m_act_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38709 == null) {
-				relInst38709 = (Action_c) Ooaofooa.getDefaultInstance()
+			if (relInst39291 == null) {
+				relInst39291 = (Action_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Action_c.class)
 						.get(new Object[]{m_sm_id, m_act_id});
 			}
-			if (relInst38709 == null && searchAllRoots
+			if (relInst39291 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -946,18 +949,18 @@ public class ActionHome_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38709 = (Action_c) roots[i].getInstanceList(
+					relInst39291 = (Action_c) roots[i].getInstanceList(
 							Action_c.class)
 							.get(new Object[]{m_sm_id, m_act_id});
-					if (relInst38709 != null)
+					if (relInst39291 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38709 != null) {
+			if (relInst39291 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38709) && !isProxy())) {
-					relInst38709.relateAcrossR514To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39291) && !isProxy())) {
+					relInst39291.relateAcrossR514To(this, notifyChanges);
 				}
 			}
 		}
@@ -1257,46 +1260,46 @@ public class ActionHome_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActionHome_c_test38711_c implements ClassQueryInterface_c {
-			ActionHome_c_test38711_c(java.util.UUID p38712,
-					java.util.UUID p38713) {
-				m_p38712 = p38712;
-				m_p38713 = p38713;
+		class ActionHome_c_test39293_c implements ClassQueryInterface_c {
+			ActionHome_c_test39293_c(java.util.UUID p39294,
+					java.util.UUID p39295) {
+				m_p39294 = p39294;
+				m_p39295 = p39295;
 			}
-			private java.util.UUID m_p38712;
-			private java.util.UUID m_p38713;
+			private java.util.UUID m_p39294;
+			private java.util.UUID m_p39295;
 			public boolean evaluate(Object candidate) {
 				ActionHome_c selected = (ActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38712))
-						& (selected.getSm_id().equals(m_p38713));
+				retval = (selected.getAct_id().equals(m_p39294))
+						& (selected.getSm_id().equals(m_p39295));
 				return retval;
 			}
 		}
 
-		ActionHome_c[] objs38710 = ActionHome_c.ActionHomeInstances(modelRoot,
-				new ActionHome_c_test38711_c(getAct_id(), getSm_id()));
+		ActionHome_c[] objs39292 = ActionHome_c.ActionHomeInstances(modelRoot,
+				new ActionHome_c_test39293_c(getAct_id(), getSm_id()));
 
-		if (((objs38710.length) == 0)) {
+		if (((objs39292.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Home", //$NON-NLS-1$
 								"Consistency: Object: Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38710.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39292.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38710.length), e);
+								+ Integer.toString(objs39292.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38710.length) > 1)) {
+		if (((objs39292.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1304,7 +1307,7 @@ public class ActionHome_c extends NonRootModelElement
 								"Action Home", //$NON-NLS-1$
 								"Consistency: Object: Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38710.length)
+										+ Integer.toString(objs39292.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1312,7 +1315,7 @@ public class ActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38710.length)
+										+ Integer.toString(objs39292.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1321,28 +1324,28 @@ public class ActionHome_c extends NonRootModelElement
 
 		// Action Home is a referring class in association: rel.Numb = 514
 		// The participating class is: Action
-		class Action_c_test38717_c implements ClassQueryInterface_c {
-			Action_c_test38717_c(java.util.UUID p38718, java.util.UUID p38719) {
-				m_p38718 = p38718;
-				m_p38719 = p38719;
+		class Action_c_test39299_c implements ClassQueryInterface_c {
+			Action_c_test39299_c(java.util.UUID p39300, java.util.UUID p39301) {
+				m_p39300 = p39300;
+				m_p39301 = p39301;
 			}
-			private java.util.UUID m_p38718;
-			private java.util.UUID m_p38719;
+			private java.util.UUID m_p39300;
+			private java.util.UUID m_p39301;
 			public boolean evaluate(Object candidate) {
 				Action_c selected = (Action_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38718))
-						& (selected.getSm_id().equals(m_p38719));
+				retval = (selected.getAct_id().equals(m_p39300))
+						& (selected.getSm_id().equals(m_p39301));
 				return retval;
 			}
 		}
 
-		Action_c[] objs38716 = Action_c.ActionInstances(modelRoot,
-				new Action_c_test38717_c(getAct_id(), getSm_id()));
+		Action_c[] objs39298 = Action_c.ActionInstances(modelRoot,
+				new Action_c_test39299_c(getAct_id(), getSm_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38716.length) != 1)) {
+		if (((objs39298.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1350,7 +1353,7 @@ public class ActionHome_c extends NonRootModelElement
 								"Action Home", //$NON-NLS-1$
 								"Consistency: Object: Action Home: Association: 514: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38716.length)
+										+ Integer.toString(objs39298.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1358,7 +1361,7 @@ public class ActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action Home: Association: 514: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38716.length)
+										+ Integer.toString(objs39298.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1366,96 +1369,96 @@ public class ActionHome_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 513
-		int objs38720 = 0;
+		int objs39302 = 0;
 		// Subtype Object: Transition Action Home
-		class TransitionActionHome_c_test38721_c
+		class TransitionActionHome_c_test39303_c
 				implements
 					ClassQueryInterface_c {
-			TransitionActionHome_c_test38721_c(java.util.UUID p38722,
-					java.util.UUID p38723) {
-				m_p38722 = p38722;
-				m_p38723 = p38723;
+			TransitionActionHome_c_test39303_c(java.util.UUID p39304,
+					java.util.UUID p39305) {
+				m_p39304 = p39304;
+				m_p39305 = p39305;
 			}
-			private java.util.UUID m_p38722;
-			private java.util.UUID m_p38723;
+			private java.util.UUID m_p39304;
+			private java.util.UUID m_p39305;
 			public boolean evaluate(Object candidate) {
 				TransitionActionHome_c selected = (TransitionActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38722))
-						& (selected.getSm_id().equals(m_p38723));
+				retval = (selected.getAct_id().equals(m_p39304))
+						& (selected.getSm_id().equals(m_p39305));
 				return retval;
 			}
 		}
 
-		TransitionActionHome_c[] objs38724 = TransitionActionHome_c
+		TransitionActionHome_c[] objs39306 = TransitionActionHome_c
 				.TransitionActionHomeInstances(modelRoot,
-						new TransitionActionHome_c_test38721_c(getAct_id(),
+						new TransitionActionHome_c_test39303_c(getAct_id(),
 								getSm_id()));
 
-		objs38720 = objs38720 + objs38724.length;
+		objs39302 = objs39302 + objs39306.length;
 		// Subtype Object: Moore Action Home
-		class MooreActionHome_c_test38725_c implements ClassQueryInterface_c {
-			MooreActionHome_c_test38725_c(java.util.UUID p38726,
-					java.util.UUID p38727) {
-				m_p38726 = p38726;
-				m_p38727 = p38727;
+		class MooreActionHome_c_test39307_c implements ClassQueryInterface_c {
+			MooreActionHome_c_test39307_c(java.util.UUID p39308,
+					java.util.UUID p39309) {
+				m_p39308 = p39308;
+				m_p39309 = p39309;
 			}
-			private java.util.UUID m_p38726;
-			private java.util.UUID m_p38727;
+			private java.util.UUID m_p39308;
+			private java.util.UUID m_p39309;
 			public boolean evaluate(Object candidate) {
 				MooreActionHome_c selected = (MooreActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38726))
-						& (selected.getSm_id().equals(m_p38727));
+				retval = (selected.getAct_id().equals(m_p39308))
+						& (selected.getSm_id().equals(m_p39309));
 				return retval;
 			}
 		}
 
-		MooreActionHome_c[] objs38728 = MooreActionHome_c
+		MooreActionHome_c[] objs39310 = MooreActionHome_c
 				.MooreActionHomeInstances(modelRoot,
-						new MooreActionHome_c_test38725_c(getAct_id(),
+						new MooreActionHome_c_test39307_c(getAct_id(),
 								getSm_id()));
 
-		objs38720 = objs38720 + objs38728.length;
+		objs39302 = objs39302 + objs39310.length;
 		// Subtype Object: Mealy Action Home
-		class MealyActionHome_c_test38729_c implements ClassQueryInterface_c {
-			MealyActionHome_c_test38729_c(java.util.UUID p38730,
-					java.util.UUID p38731) {
-				m_p38730 = p38730;
-				m_p38731 = p38731;
+		class MealyActionHome_c_test39311_c implements ClassQueryInterface_c {
+			MealyActionHome_c_test39311_c(java.util.UUID p39312,
+					java.util.UUID p39313) {
+				m_p39312 = p39312;
+				m_p39313 = p39313;
 			}
-			private java.util.UUID m_p38730;
-			private java.util.UUID m_p38731;
+			private java.util.UUID m_p39312;
+			private java.util.UUID m_p39313;
 			public boolean evaluate(Object candidate) {
 				MealyActionHome_c selected = (MealyActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38730))
-						& (selected.getSm_id().equals(m_p38731));
+				retval = (selected.getAct_id().equals(m_p39312))
+						& (selected.getSm_id().equals(m_p39313));
 				return retval;
 			}
 		}
 
-		MealyActionHome_c[] objs38732 = MealyActionHome_c
+		MealyActionHome_c[] objs39314 = MealyActionHome_c
 				.MealyActionHomeInstances(modelRoot,
-						new MealyActionHome_c_test38729_c(getAct_id(),
+						new MealyActionHome_c_test39311_c(getAct_id(),
 								getSm_id()));
 
-		objs38720 = objs38720 + objs38732.length;
-		if (objs38720 != 1) {
+		objs39302 = objs39302 + objs39314.length;
+		if (objs39302 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Home", //$NON-NLS-1$
 								"Consistency: Object: Action Home: Association: 513: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38720)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39302)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Home: Association: 513: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38720), e);
+										+ Integer.toString(objs39302), e);
 			}
 			retval = false;
 

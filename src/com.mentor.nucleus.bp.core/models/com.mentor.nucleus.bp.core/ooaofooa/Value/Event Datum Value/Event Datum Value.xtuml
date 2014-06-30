@@ -40,7 +40,7 @@ INSERT INTO O_TFR
 	"bc3722c8-5188-4529-8519-cf9eb9816b17",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_INSTANCE();',
+return GD::NULL_INSTANCE(); ',
 	1,
 	'',
 	"4d25ba1e-25e5-40c3-8c28-b0d8aed88765");
@@ -59,7 +59,7 @@ INSERT INTO O_TFR
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_UNIQUE_ID();',
+return GD::NULL_UNIQUE_ID(); ',
 	1,
 	'',
 	"a383f6fb-bed9-4707-ad92-bd1e5d7fa531");

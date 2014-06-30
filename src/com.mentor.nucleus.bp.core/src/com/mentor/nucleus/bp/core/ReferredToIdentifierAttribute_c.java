@@ -200,7 +200,7 @@ p_m_oir_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -216,14 +216,14 @@ p_m_oir_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getAttr_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getAttr_id())) && this != elem)) {
       	return false;
       }
       if (!getAttr_id().equals(((ReferredToIdentifierAttribute_c)elem).getAttr_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getOir_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getOir_id())) && this != elem)) {
       	return false;
       }
       if (!getOir_id().equals(((ReferredToIdentifierAttribute_c)elem).getOir_id())) return false;
@@ -231,14 +231,14 @@ p_m_oir_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getObj_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getObj_id())) && this != elem)) {
       	return false;
       }
       if (!getObj_id().equals(((ReferredToIdentifierAttribute_c)elem).getObj_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getRel_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((ReferredToIdentifierAttribute_c)elem).getRel_id())) && this != elem)) {
       	return false;
       }
       if (!getRel_id().equals(((ReferredToIdentifierAttribute_c)elem).getRel_id())) return false;
@@ -1103,7 +1103,7 @@ public static ReferredToIdentifierAttribute_c [] getManyO_RTIDAsOnR111(Referring
 
       // R110
 	  instances = baseRoot.getInstanceList(ReferredToClassInAssoc_c.class);
-      ReferredToClassInAssoc_c relInst37994 = null;
+      ReferredToClassInAssoc_c relInst38576 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -1113,42 +1113,42 @@ public static ReferredToIdentifierAttribute_c [] getManyO_RTIDAsOnR111(Referring
      source.getOir_idCachedValue().equals(m_oir_id) && 
      source.getObj_idCachedValue().equals(m_obj_id) && 
      source.getRel_idCachedValue().equals(m_rel_id) 		){
-  		relInst37994 = source;
+  		relInst38576 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst37994 != null )
+      if ( relInst38576 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37994) && !isProxy())) {
-	      relInst37994.relateAcrossR110To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38576) && !isProxy())) {
+	      relInst38576.relateAcrossR110To(this, notifyChanges);
 	  }
 	  }
 	          
-      ClassIdentifierAttribute_c relInst37995 = (ClassIdentifierAttribute_c) baseRoot.getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
+      ClassIdentifierAttribute_c relInst38577 = (ClassIdentifierAttribute_c) baseRoot.getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37995 == null) {
-      			relInst37995 = (ClassIdentifierAttribute_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
+      		if (relInst38577 == null) {
+      			relInst38577 = (ClassIdentifierAttribute_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
       		}
-			if (relInst37995 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38577 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37995 = (ClassIdentifierAttribute_c) roots[i].getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
-					if (relInst37995 != null)
+					relInst38577 = (ClassIdentifierAttribute_c) roots[i].getInstanceList(ClassIdentifierAttribute_c.class).get(new Object[] {m_attr_id,new UUID(0, new Long(m_oid_id)),m_obj_id});
+					if (relInst38577 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37995 != null )
+      if ( relInst38577 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37995) && !isProxy())) {
-	      relInst37995.relateAcrossR110To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38577) && !isProxy())) {
+	      relInst38577.relateAcrossR110To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1579,60 +1579,60 @@ private static ReferredToIdentifierAttribute_c findReferredToIdentifierAttribute
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ReferredToIdentifierAttribute_c_test37997_c implements ClassQueryInterface_c
+    class ReferredToIdentifierAttribute_c_test38579_c implements ClassQueryInterface_c
     {
-	  ReferredToIdentifierAttribute_c_test37997_c( java.util.UUID            p37998, java.util.UUID            p37999, int             p38000, java.util.UUID            p38001, java.util.UUID            p38002 ) {
-	                      m_p37998 = p37998; 
-m_p37999 = p37999; 
-m_p38000 = p38000; 
-m_p38001 = p38001; 
-m_p38002 = p38002;
+	  ReferredToIdentifierAttribute_c_test38579_c( java.util.UUID            p38580, java.util.UUID            p38581, int             p38582, java.util.UUID            p38583, java.util.UUID            p38584 ) {
+	                      m_p38580 = p38580; 
+m_p38581 = p38581; 
+m_p38582 = p38582; 
+m_p38583 = p38583; 
+m_p38584 = p38584;
 	  }
-	  private java.util.UUID             m_p37998; private java.util.UUID             m_p37999; private int              m_p38000; private java.util.UUID             m_p38001; private java.util.UUID             m_p38002; 
+	  private java.util.UUID             m_p38580; private java.util.UUID             m_p38581; private int              m_p38582; private java.util.UUID             m_p38583; private java.util.UUID             m_p38584; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ReferredToIdentifierAttribute_c selected = (ReferredToIdentifierAttribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p37998)) & (selected.getOir_id().equals(m_p37999)) & (selected.getOid_id() == (m_p38000)) & (selected.getObj_id().equals(m_p38001)) & (selected.getRel_id().equals(m_p38002));
+	      retval = (selected.getAttr_id().equals(m_p38580)) & (selected.getOir_id().equals(m_p38581)) & (selected.getOid_id() == (m_p38582)) & (selected.getObj_id().equals(m_p38583)) & (selected.getRel_id().equals(m_p38584));
 	      return retval;
 	  }
     }
 
-    ReferredToIdentifierAttribute_c [] objs37996 = 
-    ReferredToIdentifierAttribute_c.ReferredToIdentifierAttributeInstances(modelRoot, new ReferredToIdentifierAttribute_c_test37997_c(getAttr_id(), getOir_id(), getOid_id(), getObj_id(), getRel_id())) ;
+    ReferredToIdentifierAttribute_c [] objs38578 = 
+    ReferredToIdentifierAttribute_c.ReferredToIdentifierAttributeInstances(modelRoot, new ReferredToIdentifierAttribute_c_test38579_c(getAttr_id(), getOir_id(), getOid_id(), getObj_id(), getRel_id())) ;
 
-    if ( (  (objs37996.length) == 0) )
+    if ( (  (objs38578.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Identifier Attribute", //$NON-NLS-1$
            "Consistency: Object: Referred To Identifier Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37996.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38578.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Identifier Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37996.length )  , e); 
+          + Integer.toString( objs38578.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37996.length) > 1) )
+    if ( (  (objs38578.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Identifier Attribute", //$NON-NLS-1$
            "Consistency: Object: Referred To Identifier Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37996.length )  + " Attr_ID: " + "Not Printable"  + " OIR_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38578.length )  + " Attr_ID: " + "Not Printable"  + " OIR_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Identifier Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37996.length )  + " Attr_ID: " + "Not Printable"  + " OIR_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38578.length )  + " Attr_ID: " + "Not Printable"  + " OIR_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1641,40 +1641,40 @@ m_p38002 = p38002;
           // Referred To Identifier Attribute is a link class in association: rel.Numb = 110
             // Other side
           // The other side class in the association is: Class Identifier Attribute
-    class ClassIdentifierAttribute_c_test38006_c implements ClassQueryInterface_c
+    class ClassIdentifierAttribute_c_test38588_c implements ClassQueryInterface_c
     {
-	  ClassIdentifierAttribute_c_test38006_c( java.util.UUID            p38007, int             p38008, java.util.UUID            p38009 ) {
-	            m_p38007 = p38007; 
-m_p38008 = p38008; 
-m_p38009 = p38009;
+	  ClassIdentifierAttribute_c_test38588_c( java.util.UUID            p38589, int             p38590, java.util.UUID            p38591 ) {
+	            m_p38589 = p38589; 
+m_p38590 = p38590; 
+m_p38591 = p38591;
 	  }
-	  private java.util.UUID             m_p38007; private int              m_p38008; private java.util.UUID             m_p38009; 
+	  private java.util.UUID             m_p38589; private int              m_p38590; private java.util.UUID             m_p38591; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassIdentifierAttribute_c selected = (ClassIdentifierAttribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p38007)) & (selected.getOid_id() == (m_p38008)) & (selected.getObj_id().equals(m_p38009));
+	      retval = (selected.getAttr_id().equals(m_p38589)) & (selected.getOid_id() == (m_p38590)) & (selected.getObj_id().equals(m_p38591));
 	      return retval;
 	  }
     }
 
-    ClassIdentifierAttribute_c [] objs38005 = 
-    ClassIdentifierAttribute_c.ClassIdentifierAttributeInstances(modelRoot, new ClassIdentifierAttribute_c_test38006_c(getAttr_id(), getOid_id(), getObj_id())) ;
+    ClassIdentifierAttribute_c [] objs38587 = 
+    ClassIdentifierAttribute_c.ClassIdentifierAttributeInstances(modelRoot, new ClassIdentifierAttribute_c_test38588_c(getAttr_id(), getOid_id(), getObj_id())) ;
 
           // The other side class is unconditional
-    if ( (  (objs38005.length) == 0) )
+    if ( (  (objs38587.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Identifier Attribute", //$NON-NLS-1$
            "Consistency: Object: Referred To Identifier Attribute: Association: 110: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38005.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38587.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Identifier Attribute: Association: 110: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38005.length )  , e); 
+          + Integer.toString( objs38587.length )  , e); 
       }
       retval = false;
 
@@ -1695,9 +1695,9 @@ AttributeReferenceInClass_c [] v_refs = AttributeReferenceInClass_c.getManyO_REF
 
 
 AttributeReferenceInClass_c  v_ref = null;
-for ( int i36509 = 0; i36509 < v_refs.length; i36509++)
+for ( int i37057 = 0; i37057 < v_refs.length; i37057++)
 {
-  v_ref = v_refs[i36509] ;
+  v_ref = v_refs[i37057] ;
 
 if (v_ref != null) {
 v_ref.Migraterefattrordispose() ;

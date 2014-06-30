@@ -136,7 +136,8 @@ public class LinkedAssociation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,9 +153,9 @@ public class LinkedAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((LinkedAssociation_c) elem).getRel_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((LinkedAssociation_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id().equals(((LinkedAssociation_c) elem).getRel_id()))
@@ -926,33 +927,33 @@ public class LinkedAssociation_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R206
-		Association_c relInst56658 = (Association_c) baseRoot.getInstanceList(
+		Association_c relInst58207 = (Association_c) baseRoot.getInstanceList(
 				Association_c.class).get(new Object[]{m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56658 == null) {
-			relInst56658 = (Association_c) Ooaofooa.getDefaultInstance()
+		if (relInst58207 == null) {
+			relInst58207 = (Association_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Association_c.class)
 					.get(new Object[]{m_rel_id});
 		}
-		if (relInst56658 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58207 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56658 = (Association_c) roots[i].getInstanceList(
+				relInst58207 = (Association_c) roots[i].getInstanceList(
 						Association_c.class).get(new Object[]{m_rel_id});
-				if (relInst56658 != null)
+				if (relInst58207 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56658 != null) {
+		if (relInst58207 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56658) && !isProxy())) {
-				relInst56658.relateAcrossR206To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58207) && !isProxy())) {
+				relInst58207.relateAcrossR206To(this, notifyChanges);
 			}
 		}
 
@@ -1221,44 +1222,44 @@ public class LinkedAssociation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class LinkedAssociation_c_test56660_c implements ClassQueryInterface_c {
-			LinkedAssociation_c_test56660_c(java.util.UUID p56661) {
-				m_p56661 = p56661;
+		class LinkedAssociation_c_test58209_c implements ClassQueryInterface_c {
+			LinkedAssociation_c_test58209_c(java.util.UUID p58210) {
+				m_p58210 = p58210;
 			}
-			private java.util.UUID m_p56661;
+			private java.util.UUID m_p58210;
 			public boolean evaluate(Object candidate) {
 				LinkedAssociation_c selected = (LinkedAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56661));
+				retval = (selected.getRel_id().equals(m_p58210));
 				return retval;
 			}
 		}
 
-		LinkedAssociation_c[] objs56659 = LinkedAssociation_c
+		LinkedAssociation_c[] objs58208 = LinkedAssociation_c
 				.LinkedAssociationInstances(modelRoot,
-						new LinkedAssociation_c_test56660_c(getRel_id()));
+						new LinkedAssociation_c_test58209_c(getRel_id()));
 
-		if (((objs56659.length) == 0)) {
+		if (((objs58208.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56659.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58208.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Linked Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56659.length), e);
+										+ Integer.toString(objs58208.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56659.length) > 1)) {
+		if (((objs58208.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1266,7 +1267,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56659.length)
+										+ Integer.toString(objs58208.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1274,7 +1275,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Linked Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56659.length)
+										+ Integer.toString(objs58208.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1283,37 +1284,37 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 		// Linked Association is a subtype in association: rel.Numb = 206
 		// The supertype class is: Association
-		class Association_c_test56665_c implements ClassQueryInterface_c {
-			Association_c_test56665_c(java.util.UUID p56666) {
-				m_p56666 = p56666;
+		class Association_c_test58214_c implements ClassQueryInterface_c {
+			Association_c_test58214_c(java.util.UUID p58215) {
+				m_p58215 = p58215;
 			}
-			private java.util.UUID m_p56666;
+			private java.util.UUID m_p58215;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56666));
+				retval = (selected.getRel_id().equals(m_p58215));
 				return retval;
 			}
 		}
 
-		Association_c[] objs56664 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test56665_c(getRel_id()));
+		Association_c[] objs58213 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test58214_c(getRel_id()));
 
-		if (((objs56664.length) != 1)) {
+		if (((objs58213.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56664.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58213.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Linked Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56664.length), e);
+										+ Integer.toString(objs58213.length), e);
 			}
 			retval = false;
 
@@ -1321,40 +1322,40 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 		// Linked Association is a participating class in association: rel.Numb = 209
 		// Object: Class As Associated One Side
-		class ClassAsAssociatedOneSide_c_test56668_c
+		class ClassAsAssociatedOneSide_c_test58217_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsAssociatedOneSide_c_test56668_c(java.util.UUID p56669) {
-				m_p56669 = p56669;
+			ClassAsAssociatedOneSide_c_test58217_c(java.util.UUID p58218) {
+				m_p58218 = p58218;
 			}
-			private java.util.UUID m_p56669;
+			private java.util.UUID m_p58218;
 			public boolean evaluate(Object candidate) {
 				ClassAsAssociatedOneSide_c selected = (ClassAsAssociatedOneSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56669));
+				retval = (selected.getRel_id().equals(m_p58218));
 				return retval;
 			}
 		}
 
-		ClassAsAssociatedOneSide_c[] objs56667 = ClassAsAssociatedOneSide_c
+		ClassAsAssociatedOneSide_c[] objs58216 = ClassAsAssociatedOneSide_c
 				.ClassAsAssociatedOneSideInstances(modelRoot,
-						new ClassAsAssociatedOneSide_c_test56668_c(getRel_id()));
+						new ClassAsAssociatedOneSide_c_test58217_c(getRel_id()));
 
-		if (((objs56667.length) != 1)) {
+		if (((objs58216.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Association: 209: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56667.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58216.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Linked Association: Association: 209: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56667.length), e);
+										+ Integer.toString(objs58216.length), e);
 			}
 			retval = false;
 
@@ -1362,41 +1363,41 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 		// Linked Association is a participating class in association: rel.Numb = 210
 		// Object: Class As Associated Other Side
-		class ClassAsAssociatedOtherSide_c_test56671_c
+		class ClassAsAssociatedOtherSide_c_test58220_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsAssociatedOtherSide_c_test56671_c(java.util.UUID p56672) {
-				m_p56672 = p56672;
+			ClassAsAssociatedOtherSide_c_test58220_c(java.util.UUID p58221) {
+				m_p58221 = p58221;
 			}
-			private java.util.UUID m_p56672;
+			private java.util.UUID m_p58221;
 			public boolean evaluate(Object candidate) {
 				ClassAsAssociatedOtherSide_c selected = (ClassAsAssociatedOtherSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56672));
+				retval = (selected.getRel_id().equals(m_p58221));
 				return retval;
 			}
 		}
 
-		ClassAsAssociatedOtherSide_c[] objs56670 = ClassAsAssociatedOtherSide_c
+		ClassAsAssociatedOtherSide_c[] objs58219 = ClassAsAssociatedOtherSide_c
 				.ClassAsAssociatedOtherSideInstances(modelRoot,
-						new ClassAsAssociatedOtherSide_c_test56671_c(
+						new ClassAsAssociatedOtherSide_c_test58220_c(
 								getRel_id()));
 
-		if (((objs56670.length) != 1)) {
+		if (((objs58219.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Association: 210: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56670.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58219.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Linked Association: Association: 210: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56670.length), e);
+										+ Integer.toString(objs58219.length), e);
 			}
 			retval = false;
 
@@ -1404,37 +1405,37 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 		// Linked Association is a participating class in association: rel.Numb = 211
 		// Object: Class As Link
-		class ClassAsLink_c_test56674_c implements ClassQueryInterface_c {
-			ClassAsLink_c_test56674_c(java.util.UUID p56675) {
-				m_p56675 = p56675;
+		class ClassAsLink_c_test58223_c implements ClassQueryInterface_c {
+			ClassAsLink_c_test58223_c(java.util.UUID p58224) {
+				m_p58224 = p58224;
 			}
-			private java.util.UUID m_p56675;
+			private java.util.UUID m_p58224;
 			public boolean evaluate(Object candidate) {
 				ClassAsLink_c selected = (ClassAsLink_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56675));
+				retval = (selected.getRel_id().equals(m_p58224));
 				return retval;
 			}
 		}
 
-		ClassAsLink_c[] objs56673 = ClassAsLink_c.ClassAsLinkInstances(
-				modelRoot, new ClassAsLink_c_test56674_c(getRel_id()));
+		ClassAsLink_c[] objs58222 = ClassAsLink_c.ClassAsLinkInstances(
+				modelRoot, new ClassAsLink_c_test58223_c(getRel_id()));
 
-		if (((objs56673.length) != 1)) {
+		if (((objs58222.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Linked Association", //$NON-NLS-1$
 								"Consistency: Object: Linked Association: Association: 211: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56673.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58222.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Linked Association: Association: 211: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56673.length), e);
+										+ Integer.toString(objs58222.length), e);
 			}
 			retval = false;
 
@@ -1493,7 +1494,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 		else {
 
-			class ClassAsAssociatedOneSide_test54441_c
+			class ClassAsAssociatedOneSide_test55990_c
 					implements
 						ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
@@ -1503,7 +1504,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 			}
 			ClassAsAssociatedOneSide_c v_oneside = ClassAsAssociatedOneSide_c
 					.getOneR_AONEOnR209(this,
-							new ClassAsAssociatedOneSide_test54441_c());
+							new ClassAsAssociatedOneSide_test55990_c());
 
 			if (((v_oneside != null))) {
 
@@ -1513,7 +1514,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 
 			else {
 
-				class ClassAsAssociatedOtherSide_test54442_c
+				class ClassAsAssociatedOtherSide_test55991_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -1523,7 +1524,7 @@ public class LinkedAssociation_c extends NonRootModelElement
 				}
 				ClassAsAssociatedOtherSide_c v_other = ClassAsAssociatedOtherSide_c
 						.getOneR_AOTHOnR210(this,
-								new ClassAsAssociatedOtherSide_test54442_c());
+								new ClassAsAssociatedOtherSide_test55991_c());
 
 				if (((v_other != null))) {
 
@@ -1810,14 +1811,14 @@ public class LinkedAssociation_c extends NonRootModelElement
 				.getOneO_OBJOnR201(ClassInAssociation_c
 						.getOneR_OIROnR203(v_aone_rto));
 
-		class ClassIdentifier_test54443_c implements ClassQueryInterface_c {
+		class ClassIdentifier_test55992_c implements ClassQueryInterface_c {
 			public boolean evaluate(Object candidate) {
 				ClassIdentifier_c selected = (ClassIdentifier_c) candidate;
 				return selected.getOid_id() == p_One_id;
 			}
 		}
 		ClassIdentifier_c v_aone_oid = ClassIdentifier_c.getOneO_IDOnR104(
-				v_aone_obj, new ClassIdentifier_test54443_c());
+				v_aone_obj, new ClassIdentifier_test55992_c());
 
 		if (v_aone_oid != null) {
 			v_aone_oid.relateAcrossR109To(v_aone_rto);
@@ -1836,14 +1837,14 @@ public class LinkedAssociation_c extends NonRootModelElement
 				.getOneO_OBJOnR201(ClassInAssociation_c
 						.getOneR_OIROnR203(v_aoth_rto));
 
-		class ClassIdentifier_test54444_c implements ClassQueryInterface_c {
+		class ClassIdentifier_test55993_c implements ClassQueryInterface_c {
 			public boolean evaluate(Object candidate) {
 				ClassIdentifier_c selected = (ClassIdentifier_c) candidate;
 				return selected.getOid_id() == p_Oth_id;
 			}
 		}
 		ClassIdentifier_c v_aoth_oid = ClassIdentifier_c.getOneO_IDOnR104(
-				v_aoth_obj, new ClassIdentifier_test54444_c());
+				v_aoth_obj, new ClassIdentifier_test55993_c());
 
 		if (v_aoth_oid != null) {
 			v_aoth_oid.relateAcrossR109To(v_aoth_rto);
@@ -1867,8 +1868,8 @@ public class LinkedAssociation_c extends NonRootModelElement
 				.getManyO_OIDAsOnR105(v_aone_oid);
 
 		ClassIdentifierAttribute_c v_oida = null;
-		for (int i53902 = 0; i53902 < v_aone_oida_set.length; i53902++) {
-			v_oida = v_aone_oida_set[i53902];
+		for (int i55432 = 0; i55432 < v_aone_oida_set.length; i55432++) {
+			v_oida = v_aone_oida_set[i55432];
 
 			java.util.UUID v_newAttr_id = v_oida.Addreference(v_unused_oid,
 					getRel_id(), v_assr_rgo.getObj_id(),
@@ -1880,8 +1881,8 @@ public class LinkedAssociation_c extends NonRootModelElement
 		ClassIdentifierAttribute_c[] v_aoth_oida_set = ClassIdentifierAttribute_c
 				.getManyO_OIDAsOnR105(v_aoth_oid);
 
-		for (int i53903 = 0; i53903 < v_aoth_oida_set.length; i53903++) {
-			v_oida = v_aoth_oida_set[i53903];
+		for (int i55433 = 0; i55433 < v_aoth_oida_set.length; i55433++) {
+			v_oida = v_aoth_oida_set[i55433];
 
 			java.util.UUID v_newAttr_id = v_oida.Addreference(v_unused_oid,
 					getRel_id(), v_assr_rgo.getObj_id(),

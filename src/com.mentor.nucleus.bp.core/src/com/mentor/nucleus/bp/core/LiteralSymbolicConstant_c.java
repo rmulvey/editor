@@ -152,7 +152,8 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -168,9 +169,10 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID
-				.equals(((LiteralSymbolicConstant_c) elem).getConst_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID
+						.equals(((LiteralSymbolicConstant_c) elem)
+								.getConst_id())) && this != elem)) {
 			return false;
 		}
 		if (!getConst_id().equals(
@@ -179,9 +181,9 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((LiteralSymbolicConstant_c) elem).getDt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((LiteralSymbolicConstant_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((LiteralSymbolicConstant_c) elem).getDt_id()))
@@ -451,36 +453,36 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1503
-		LeafSymbolicConstant_c relInst55297 = (LeafSymbolicConstant_c) baseRoot
+		LeafSymbolicConstant_c relInst56846 = (LeafSymbolicConstant_c) baseRoot
 				.getInstanceList(LeafSymbolicConstant_c.class).get(
 						new Object[]{m_const_id, m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55297 == null) {
-			relInst55297 = (LeafSymbolicConstant_c) Ooaofooa
+		if (relInst56846 == null) {
+			relInst56846 = (LeafSymbolicConstant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(LeafSymbolicConstant_c.class)
 					.get(new Object[]{m_const_id, m_dt_id});
 		}
-		if (relInst55297 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56846 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55297 = (LeafSymbolicConstant_c) roots[i]
+				relInst56846 = (LeafSymbolicConstant_c) roots[i]
 						.getInstanceList(LeafSymbolicConstant_c.class).get(
 								new Object[]{m_const_id, m_dt_id});
-				if (relInst55297 != null)
+				if (relInst56846 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55297 != null) {
+		if (relInst56846 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55297) && !isProxy())) {
-				relInst55297.relateAcrossR1503To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56846) && !isProxy())) {
+				relInst56846.relateAcrossR1503To(this, notifyChanges);
 			}
 		}
 
@@ -800,31 +802,31 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class LiteralSymbolicConstant_c_test55299_c
+		class LiteralSymbolicConstant_c_test56848_c
 				implements
 					ClassQueryInterface_c {
-			LiteralSymbolicConstant_c_test55299_c(java.util.UUID p55300,
-					java.util.UUID p55301) {
-				m_p55300 = p55300;
-				m_p55301 = p55301;
+			LiteralSymbolicConstant_c_test56848_c(java.util.UUID p56849,
+					java.util.UUID p56850) {
+				m_p56849 = p56849;
+				m_p56850 = p56850;
 			}
-			private java.util.UUID m_p55300;
-			private java.util.UUID m_p55301;
+			private java.util.UUID m_p56849;
+			private java.util.UUID m_p56850;
 			public boolean evaluate(Object candidate) {
 				LiteralSymbolicConstant_c selected = (LiteralSymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p55300))
-						& (selected.getDt_id().equals(m_p55301));
+				retval = (selected.getConst_id().equals(m_p56849))
+						& (selected.getDt_id().equals(m_p56850));
 				return retval;
 			}
 		}
 
-		LiteralSymbolicConstant_c[] objs55298 = LiteralSymbolicConstant_c
+		LiteralSymbolicConstant_c[] objs56847 = LiteralSymbolicConstant_c
 				.LiteralSymbolicConstantInstances(modelRoot,
-						new LiteralSymbolicConstant_c_test55299_c(
+						new LiteralSymbolicConstant_c_test56848_c(
 								getConst_id(), getDt_id()));
 
-		if (((objs55298.length) == 0)) {
+		if (((objs56847.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -832,20 +834,20 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Literal Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Literal Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55298.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56847.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Literal Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55298.length), e);
+										+ Integer.toString(objs56847.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55298.length) > 1)) {
+		if (((objs56847.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -854,7 +856,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 								"Literal Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Literal Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55298.length)
+										+ Integer.toString(objs56847.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -862,7 +864,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Literal Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55298.length)
+										+ Integer.toString(objs56847.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -871,31 +873,31 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 
 		// Literal Symbolic Constant is a subtype in association: rel.Numb = 1503
 		// The supertype class is: Leaf Symbolic Constant
-		class LeafSymbolicConstant_c_test55305_c
+		class LeafSymbolicConstant_c_test56854_c
 				implements
 					ClassQueryInterface_c {
-			LeafSymbolicConstant_c_test55305_c(java.util.UUID p55306,
-					java.util.UUID p55307) {
-				m_p55306 = p55306;
-				m_p55307 = p55307;
+			LeafSymbolicConstant_c_test56854_c(java.util.UUID p56855,
+					java.util.UUID p56856) {
+				m_p56855 = p56855;
+				m_p56856 = p56856;
 			}
-			private java.util.UUID m_p55306;
-			private java.util.UUID m_p55307;
+			private java.util.UUID m_p56855;
+			private java.util.UUID m_p56856;
 			public boolean evaluate(Object candidate) {
 				LeafSymbolicConstant_c selected = (LeafSymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p55306))
-						& (selected.getDt_id().equals(m_p55307));
+				retval = (selected.getConst_id().equals(m_p56855))
+						& (selected.getDt_id().equals(m_p56856));
 				return retval;
 			}
 		}
 
-		LeafSymbolicConstant_c[] objs55304 = LeafSymbolicConstant_c
+		LeafSymbolicConstant_c[] objs56853 = LeafSymbolicConstant_c
 				.LeafSymbolicConstantInstances(modelRoot,
-						new LeafSymbolicConstant_c_test55305_c(getConst_id(),
+						new LeafSymbolicConstant_c_test56854_c(getConst_id(),
 								getDt_id()));
 
-		if (((objs55304.length) != 1)) {
+		if (((objs56853.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -903,14 +905,14 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Literal Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Literal Symbolic Constant: Association: 1503: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55304.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56853.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Literal Symbolic Constant: Association: 1503: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55304.length), e);
+										+ Integer.toString(objs56853.length), e);
 			}
 			retval = false;
 
@@ -956,7 +958,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 
 		if (v_isInGenericPackage) {
 
-			class SearchResultSet_test54260_c implements ClassQueryInterface_c {
+			class SearchResultSet_test55809_c implements ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
 					SearchResultSet_c selected = (SearchResultSet_c) candidate;
 					return selected.getName().equals("")
@@ -965,9 +967,9 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 			}
 			SearchResultSet_c v_resultSet = SearchResultSet_c
 					.getOnePE_SRSOnR8005(v_package,
-							new SearchResultSet_test54260_c());
+							new SearchResultSet_test55809_c());
 
-			class DataType_test54261_c implements ClassQueryInterface_c {
+			class DataType_test55810_c implements ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
 					DataType_c selected = (DataType_c) candidate;
 					return selected.getDt_id().equals(p_Id);
@@ -976,11 +978,11 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 			DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 					.getManyPE_PEsOnR8002(ElementVisibility_c
 							.getManyPE_VISsOnR8006(v_resultSet)),
-					new DataType_test54261_c());
+					new DataType_test55810_c());
 
 			if ((v_component != null)) {
 
-				class ComponentResultSet_test54262_c
+				class ComponentResultSet_test55811_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -991,9 +993,9 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 				}
 				ComponentResultSet_c v_compResultSet = ComponentResultSet_c
 						.getOnePE_CRSOnR8007(v_component,
-								new ComponentResultSet_test54262_c());
+								new ComponentResultSet_test55811_c());
 
-				class DataType_test54263_c implements ClassQueryInterface_c {
+				class DataType_test55812_c implements ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
 						DataType_c selected = (DataType_c) candidate;
 						return selected.getDt_id().equals(p_Id);
@@ -1002,7 +1004,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 				v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 						.getManyPE_PEsOnR8004(ComponentVisibility_c
 								.getManyPE_CVSsOnR8008(v_compResultSet)),
-						new DataType_test54263_c());
+						new DataType_test55812_c());
 
 			}
 
@@ -1031,7 +1033,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 							.getManyCNST_CIPsOnR1506(ConstantSpecification_c
 									.getManyCNST_CSPsOnR1504(v_symConst)))));
 
-			class DataType_test54264_c implements ClassQueryInterface_c {
+			class DataType_test55813_c implements ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
 					DataType_c selected = (DataType_c) candidate;
 					return (selected.getDt_id().equals(p_Id));
@@ -1040,12 +1042,12 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 			DataType_c v_dt = DataType_c.getOneS_DTOnR4401(
 					SystemDatatypeInPackage_c
 							.getManySLD_SDINPsOnR4402(v_system),
-					new DataType_test54264_c());
+					new DataType_test55813_c());
 
 			if ((v_dt == null) && (v_system != null)
 					&& v_system.getUseglobals()) {
 
-				class PackageableElement_test54265_c
+				class PackageableElement_test55814_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -1056,7 +1058,7 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 				PackageableElement_c v_pe = PackageableElement_c
 						.getOnePE_PEOnR9100(GlobalElementInSystem_c
 								.getManyG_EISsOnR9100(v_system),
-								new PackageableElement_test54265_c());
+								new PackageableElement_test55814_c());
 
 				v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 
@@ -1072,14 +1074,14 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 				Domain_c v_domain = (Domain_c) modelRoot.getInstanceList(
 						Domain_c.class).getGlobal(null, v_dtPkg.Getdomainid());
 
-				class DataType_test54266_c implements ClassQueryInterface_c {
+				class DataType_test55815_c implements ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
 						DataType_c selected = (DataType_c) candidate;
 						return (selected.getDt_id().equals(p_Id));
 					}
 				}
 				v_dt = DataType_c.getOneS_DTOnR14(v_domain,
-						new DataType_test54266_c());
+						new DataType_test55815_c());
 
 			}
 
@@ -1265,14 +1267,14 @@ public class LiteralSymbolicConstant_c extends NonRootModelElement
 		Ooaofooa.log.println(ILogger.OPERATION, "Literal Symbolic Constant",
 				" Operation entered: LiteralSymbolicConstant::Changetype");
 		final ModelRoot modelRoot = getModelRoot();
-		class DataType_test53998_c implements ClassQueryInterface_c {
+		class DataType_test55534_c implements ClassQueryInterface_c {
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				return selected.getName().equals(p_Newtypename);
 			}
 		}
 		DataType_c v_selectedDT = DataType_c.DataTypeInstance(modelRoot,
-				new DataType_test53998_c());
+				new DataType_test55534_c());
 
 		if (((v_selectedDT != null))) {
 

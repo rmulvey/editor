@@ -173,7 +173,8 @@ public class TimeSpan_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -189,8 +190,9 @@ public class TimeSpan_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSpan_id()) || IdAssigner.NULL_UUID
-				.equals(((TimeSpan_c) elem).getSpan_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSpan_id()) || IdAssigner.NULL_UUID
+						.equals(((TimeSpan_c) elem).getSpan_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSpan_id().equals(((TimeSpan_c) elem).getSpan_id()))
@@ -697,17 +699,17 @@ public class TimeSpan_c extends NonRootModelElement
 
 		if (SpanBeginsAtTimingMark == null) {
 			// R941
-			TimingMark_c relInst39862 = (TimingMark_c) baseRoot
+			TimingMark_c relInst40444 = (TimingMark_c) baseRoot
 					.getInstanceList(TimingMark_c.class).get(
 							new Object[]{m_prev_mark_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39862 == null) {
-				relInst39862 = (TimingMark_c) Ooaofooa.getDefaultInstance()
+			if (relInst40444 == null) {
+				relInst40444 = (TimingMark_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(TimingMark_c.class)
 						.get(new Object[]{m_prev_mark_id});
 			}
-			if (relInst39862 == null && searchAllRoots
+			if (relInst40444 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -715,35 +717,35 @@ public class TimeSpan_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39862 = (TimingMark_c) roots[i].getInstanceList(
+					relInst40444 = (TimingMark_c) roots[i].getInstanceList(
 							TimingMark_c.class).get(
 							new Object[]{m_prev_mark_id});
-					if (relInst39862 != null)
+					if (relInst40444 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39862 != null) {
+			if (relInst40444 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39862) && !isProxy())) {
-					relInst39862.relateAcrossR941To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40444) && !isProxy())) {
+					relInst40444.relateAcrossR941To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpanEndsAtTimingMark == null) {
 			// R942
-			TimingMark_c relInst39863 = (TimingMark_c) baseRoot
+			TimingMark_c relInst40445 = (TimingMark_c) baseRoot
 					.getInstanceList(TimingMark_c.class).get(
 							new Object[]{m_mark_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39863 == null) {
-				relInst39863 = (TimingMark_c) Ooaofooa.getDefaultInstance()
+			if (relInst40445 == null) {
+				relInst40445 = (TimingMark_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(TimingMark_c.class)
 						.get(new Object[]{m_mark_id});
 			}
-			if (relInst39863 == null && searchAllRoots
+			if (relInst40445 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -751,17 +753,17 @@ public class TimeSpan_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39863 = (TimingMark_c) roots[i].getInstanceList(
+					relInst40445 = (TimingMark_c) roots[i].getInstanceList(
 							TimingMark_c.class).get(new Object[]{m_mark_id});
-					if (relInst39863 != null)
+					if (relInst40445 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39863 != null) {
+			if (relInst40445 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39863) && !isProxy())) {
-					relInst39863.relateAcrossR942To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40445) && !isProxy())) {
+					relInst40445.relateAcrossR942To(this, notifyChanges);
 				}
 			}
 		}
@@ -1122,42 +1124,42 @@ public class TimeSpan_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class TimeSpan_c_test39865_c implements ClassQueryInterface_c {
-			TimeSpan_c_test39865_c(java.util.UUID p39866) {
-				m_p39866 = p39866;
+		class TimeSpan_c_test40447_c implements ClassQueryInterface_c {
+			TimeSpan_c_test40447_c(java.util.UUID p40448) {
+				m_p40448 = p40448;
 			}
-			private java.util.UUID m_p39866;
+			private java.util.UUID m_p40448;
 			public boolean evaluate(Object candidate) {
 				TimeSpan_c selected = (TimeSpan_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSpan_id().equals(m_p39866));
+				retval = (selected.getSpan_id().equals(m_p40448));
 				return retval;
 			}
 		}
 
-		TimeSpan_c[] objs39864 = TimeSpan_c.TimeSpanInstances(modelRoot,
-				new TimeSpan_c_test39865_c(getSpan_id()));
+		TimeSpan_c[] objs40446 = TimeSpan_c.TimeSpanInstances(modelRoot,
+				new TimeSpan_c_test40447_c(getSpan_id()));
 
-		if (((objs39864.length) == 0)) {
+		if (((objs40446.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Time Span", //$NON-NLS-1$
 								"Consistency: Object: Time Span: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39864.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40446.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Time Span: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39864.length), e);
+								+ Integer.toString(objs40446.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39864.length) > 1)) {
+		if (((objs40446.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1165,7 +1167,7 @@ public class TimeSpan_c extends NonRootModelElement
 								"Time Span", //$NON-NLS-1$
 								"Consistency: Object: Time Span: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39864.length)
+										+ Integer.toString(objs40446.length)
 										+ " Span_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1173,7 +1175,7 @@ public class TimeSpan_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Time Span: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39864.length)
+										+ Integer.toString(objs40446.length)
 										+ " Span_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1182,25 +1184,25 @@ public class TimeSpan_c extends NonRootModelElement
 
 		// Time Span is a referring class in association: rel.Numb = 941
 		// The participating class is: Timing Mark
-		class TimingMark_c_test39870_c implements ClassQueryInterface_c {
-			TimingMark_c_test39870_c(java.util.UUID p39871) {
-				m_p39871 = p39871;
+		class TimingMark_c_test40452_c implements ClassQueryInterface_c {
+			TimingMark_c_test40452_c(java.util.UUID p40453) {
+				m_p40453 = p40453;
 			}
-			private java.util.UUID m_p39871;
+			private java.util.UUID m_p40453;
 			public boolean evaluate(Object candidate) {
 				TimingMark_c selected = (TimingMark_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMark_id().equals(m_p39871));
+				retval = (selected.getMark_id().equals(m_p40453));
 				return retval;
 			}
 		}
 
-		TimingMark_c[] objs39869 = TimingMark_c.TimingMarkInstances(modelRoot,
-				new TimingMark_c_test39870_c(getPrev_mark_id()));
+		TimingMark_c[] objs40451 = TimingMark_c.TimingMarkInstances(modelRoot,
+				new TimingMark_c_test40452_c(getPrev_mark_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39869.length) != 1)) {
+		if (((objs40451.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1208,7 +1210,7 @@ public class TimeSpan_c extends NonRootModelElement
 								"Time Span", //$NON-NLS-1$
 								"Consistency: Object: Time Span: Association: 941: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39869.length)
+										+ Integer.toString(objs40451.length)
 										+ " Prev_Mark_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1216,7 +1218,7 @@ public class TimeSpan_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Time Span: Association: 941: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39869.length)
+										+ Integer.toString(objs40451.length)
 										+ " Prev_Mark_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1225,25 +1227,25 @@ public class TimeSpan_c extends NonRootModelElement
 
 		// Time Span is a referring class in association: rel.Numb = 942
 		// The participating class is: Timing Mark
-		class TimingMark_c_test39873_c implements ClassQueryInterface_c {
-			TimingMark_c_test39873_c(java.util.UUID p39874) {
-				m_p39874 = p39874;
+		class TimingMark_c_test40455_c implements ClassQueryInterface_c {
+			TimingMark_c_test40455_c(java.util.UUID p40456) {
+				m_p40456 = p40456;
 			}
-			private java.util.UUID m_p39874;
+			private java.util.UUID m_p40456;
 			public boolean evaluate(Object candidate) {
 				TimingMark_c selected = (TimingMark_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMark_id().equals(m_p39874));
+				retval = (selected.getMark_id().equals(m_p40456));
 				return retval;
 			}
 		}
 
-		TimingMark_c[] objs39872 = TimingMark_c.TimingMarkInstances(modelRoot,
-				new TimingMark_c_test39873_c(getMark_id()));
+		TimingMark_c[] objs40454 = TimingMark_c.TimingMarkInstances(modelRoot,
+				new TimingMark_c_test40455_c(getMark_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39872.length) != 1)) {
+		if (((objs40454.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1251,7 +1253,7 @@ public class TimeSpan_c extends NonRootModelElement
 								"Time Span", //$NON-NLS-1$
 								"Consistency: Object: Time Span: Association: 942: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39872.length)
+										+ Integer.toString(objs40454.length)
 										+ " Mark_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1259,7 +1261,7 @@ public class TimeSpan_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Time Span: Association: 942: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39872.length)
+										+ Integer.toString(objs40454.length)
 										+ " Mark_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

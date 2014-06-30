@@ -145,7 +145,8 @@ public class EventMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class EventMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((EventMessage_c) elem).getMsg_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((EventMessage_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((EventMessage_c) elem).getMsg_id()))
@@ -693,18 +695,18 @@ public class EventMessage_c extends NonRootModelElement
 
 		if (GeneratesStateMachineEvent == null) {
 			// R1009
-			StateMachineEvent_c relInst39633 = (StateMachineEvent_c) baseRoot
+			StateMachineEvent_c relInst40215 = (StateMachineEvent_c) baseRoot
 					.getInstanceList(StateMachineEvent_c.class).get(
 							new Object[]{m_smevt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39633 == null) {
-				relInst39633 = (StateMachineEvent_c) Ooaofooa
+			if (relInst40215 == null) {
+				relInst40215 = (StateMachineEvent_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEvent_c.class)
 						.get(new Object[]{m_smevt_id});
 			}
-			if (relInst39633 == null && searchAllRoots
+			if (relInst40215 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -712,53 +714,53 @@ public class EventMessage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39633 = (StateMachineEvent_c) roots[i]
+					relInst40215 = (StateMachineEvent_c) roots[i]
 							.getInstanceList(StateMachineEvent_c.class).get(
 									new Object[]{m_smevt_id});
-					if (relInst39633 != null)
+					if (relInst40215 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39633 != null) {
+			if (relInst40215 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39633) && !isProxy())) {
-					relInst39633.relateAcrossR1009To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40215) && !isProxy())) {
+					relInst40215.relateAcrossR1009To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R1019
-		AsynchronousMessage_c relInst39634 = (AsynchronousMessage_c) baseRoot
+		AsynchronousMessage_c relInst40216 = (AsynchronousMessage_c) baseRoot
 				.getInstanceList(AsynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39634 == null) {
-			relInst39634 = (AsynchronousMessage_c) Ooaofooa
+		if (relInst40216 == null) {
+			relInst40216 = (AsynchronousMessage_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(AsynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39634 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40216 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39634 = (AsynchronousMessage_c) roots[i]
+				relInst40216 = (AsynchronousMessage_c) roots[i]
 						.getInstanceList(AsynchronousMessage_c.class).get(
 								new Object[]{m_msg_id});
-				if (relInst39634 != null)
+				if (relInst40216 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39634 != null) {
+		if (relInst40216 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39634) && !isProxy())) {
-				relInst39634.relateAcrossR1019To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40216) && !isProxy())) {
+				relInst40216.relateAcrossR1019To(this, notifyChanges);
 			}
 		}
 
@@ -1053,42 +1055,42 @@ public class EventMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class EventMessage_c_test39636_c implements ClassQueryInterface_c {
-			EventMessage_c_test39636_c(java.util.UUID p39637) {
-				m_p39637 = p39637;
+		class EventMessage_c_test40218_c implements ClassQueryInterface_c {
+			EventMessage_c_test40218_c(java.util.UUID p40219) {
+				m_p40219 = p40219;
 			}
-			private java.util.UUID m_p39637;
+			private java.util.UUID m_p40219;
 			public boolean evaluate(Object candidate) {
 				EventMessage_c selected = (EventMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39637));
+				retval = (selected.getMsg_id().equals(m_p40219));
 				return retval;
 			}
 		}
 
-		EventMessage_c[] objs39635 = EventMessage_c.EventMessageInstances(
-				modelRoot, new EventMessage_c_test39636_c(getMsg_id()));
+		EventMessage_c[] objs40217 = EventMessage_c.EventMessageInstances(
+				modelRoot, new EventMessage_c_test40218_c(getMsg_id()));
 
-		if (((objs39635.length) == 0)) {
+		if (((objs40217.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Event Message", //$NON-NLS-1$
 								"Consistency: Object: Event Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39635.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40217.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Event Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39635.length), e);
+								+ Integer.toString(objs40217.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39635.length) > 1)) {
+		if (((objs40217.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1096,7 +1098,7 @@ public class EventMessage_c extends NonRootModelElement
 								"Event Message", //$NON-NLS-1$
 								"Consistency: Object: Event Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39635.length)
+										+ Integer.toString(objs40217.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1104,7 +1106,7 @@ public class EventMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39635.length)
+										+ Integer.toString(objs40217.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1113,24 +1115,24 @@ public class EventMessage_c extends NonRootModelElement
 
 		// Event Message is a referring class in association: rel.Numb = 1009
 		// The participating class is: State Machine Event
-		class StateMachineEvent_c_test39641_c implements ClassQueryInterface_c {
-			StateMachineEvent_c_test39641_c(java.util.UUID p39642) {
-				m_p39642 = p39642;
+		class StateMachineEvent_c_test40223_c implements ClassQueryInterface_c {
+			StateMachineEvent_c_test40223_c(java.util.UUID p40224) {
+				m_p40224 = p40224;
 			}
-			private java.util.UUID m_p39642;
+			private java.util.UUID m_p40224;
 			public boolean evaluate(Object candidate) {
 				StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p39642));
+				retval = (selected.getSmevt_id().equals(m_p40224));
 				return retval;
 			}
 		}
 
-		StateMachineEvent_c[] objs39640 = StateMachineEvent_c
+		StateMachineEvent_c[] objs40222 = StateMachineEvent_c
 				.StateMachineEventInstances(modelRoot,
-						new StateMachineEvent_c_test39641_c(getSmevt_id()));
+						new StateMachineEvent_c_test40223_c(getSmevt_id()));
 
-		if (((objs39640.length) > 1)) {
+		if (((objs40222.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1138,7 +1140,7 @@ public class EventMessage_c extends NonRootModelElement
 								"Event Message", //$NON-NLS-1$
 								"Consistency: Object: Event Message: Association: 1009: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39640.length)
+										+ Integer.toString(objs40222.length)
 										+ " SMevt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1146,7 +1148,7 @@ public class EventMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Message: Association: 1009: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39640.length)
+										+ Integer.toString(objs40222.length)
 										+ " SMevt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1155,40 +1157,40 @@ public class EventMessage_c extends NonRootModelElement
 
 		// Event Message is a subtype in association: rel.Numb = 1019
 		// The supertype class is: Asynchronous Message
-		class AsynchronousMessage_c_test39644_c
+		class AsynchronousMessage_c_test40226_c
 				implements
 					ClassQueryInterface_c {
-			AsynchronousMessage_c_test39644_c(java.util.UUID p39645) {
-				m_p39645 = p39645;
+			AsynchronousMessage_c_test40226_c(java.util.UUID p40227) {
+				m_p40227 = p40227;
 			}
-			private java.util.UUID m_p39645;
+			private java.util.UUID m_p40227;
 			public boolean evaluate(Object candidate) {
 				AsynchronousMessage_c selected = (AsynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39645));
+				retval = (selected.getMsg_id().equals(m_p40227));
 				return retval;
 			}
 		}
 
-		AsynchronousMessage_c[] objs39643 = AsynchronousMessage_c
+		AsynchronousMessage_c[] objs40225 = AsynchronousMessage_c
 				.AsynchronousMessageInstances(modelRoot,
-						new AsynchronousMessage_c_test39644_c(getMsg_id()));
+						new AsynchronousMessage_c_test40226_c(getMsg_id()));
 
-		if (((objs39643.length) != 1)) {
+		if (((objs40225.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Event Message", //$NON-NLS-1$
 								"Consistency: Object: Event Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39643.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40225.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Event Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39643.length), e);
+										+ Integer.toString(objs40225.length), e);
 			}
 			retval = false;
 
@@ -1226,8 +1228,8 @@ public class EventMessage_c extends NonRootModelElement
 								.getManyMSG_AMsOnR1019(this)));
 
 		MessageArgument_c v_argument = null;
-		for (int i36677 = 0; i36677 < v_arguments.length; i36677++) {
-			v_argument = v_arguments[i36677];
+		for (int i37259 = 0; i37259 < v_arguments.length; i37259++) {
+			v_argument = v_arguments[i37259];
 
 			if (v_argument != null) {
 				v_argument.Dispose();

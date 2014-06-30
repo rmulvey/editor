@@ -67,8 +67,7 @@ public class CheatSheetAction extends Action implements ICheatSheetAction {
 		else if (action.equalsIgnoreCase("Open Diagram")){
 			OpenDiagramAction act = new OpenDiagramAction();
 			act.run(actionParameters, manager);
-		}
-		else if (action.equalsIgnoreCase("Create Project")){
+		}else if (action.equalsIgnoreCase("Create Project")){
 			OpenNewProjectWizardAction newProject = new OpenNewProjectWizardAction();
 			newProject.run();
 		}else if (action.equalsIgnoreCase("Change Type")){

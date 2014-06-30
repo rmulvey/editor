@@ -265,7 +265,7 @@ p_m_label
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -281,7 +281,7 @@ p_m_label
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getEvent_id()) || IdAssigner.NULL_UUID.equals(((PendingEvent_c)elem).getEvent_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getEvent_id()) || IdAssigner.NULL_UUID.equals(((PendingEvent_c)elem).getEvent_id())) && this != elem)) {
       	return false;
       }
       if (!getEvent_id().equals(((PendingEvent_c)elem).getEvent_id())) return false;
@@ -2805,29 +2805,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (IsInstanceOfStateMachineEvent == null) {          
       // R2906
-      StateMachineEvent_c relInst40172 = (StateMachineEvent_c) baseRoot.getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+      StateMachineEvent_c relInst40754 = (StateMachineEvent_c) baseRoot.getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40172 == null) {
-      			relInst40172 = (StateMachineEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+      		if (relInst40754 == null) {
+      			relInst40754 = (StateMachineEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
       		}
-			if (relInst40172 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40754 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40172 = (StateMachineEvent_c) roots[i].getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
-					if (relInst40172 != null)
+					relInst40754 = (StateMachineEvent_c) roots[i].getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+					if (relInst40754 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40172 != null )
+      if ( relInst40754 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40172) && !isProxy())) {
-	      relInst40172.relateAcrossR2906To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40754) && !isProxy())) {
+	      relInst40754.relateAcrossR2906To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2835,29 +2835,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (WillBeProcessedAfterPendingEvent == null) {          
       // R2908
-      PendingEvent_c relInst40173 = (PendingEvent_c) baseRoot.getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
+      PendingEvent_c relInst40755 = (PendingEvent_c) baseRoot.getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40173 == null) {
-      			relInst40173 = (PendingEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
+      		if (relInst40755 == null) {
+      			relInst40755 = (PendingEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
       		}
-			if (relInst40173 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40755 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40173 = (PendingEvent_c) roots[i].getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
-					if (relInst40173 != null)
+					relInst40755 = (PendingEvent_c) roots[i].getInstanceList(PendingEvent_c.class).get(new Object[] {m_nextevent_id});
+					if (relInst40755 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40173 != null )
+      if ( relInst40755 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40173) && !isProxy())) {
-	      relInst40173.relateAcrossR2908ToWillBeProcessedBefore(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40755) && !isProxy())) {
+	      relInst40755.relateAcrossR2908ToWillBeProcessedBefore(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2865,29 +2865,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (IsPendingForInstance == null) {          
       // R2907
-      Instance_c relInst40174 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+      Instance_c relInst40756 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40174 == null) {
-      			relInst40174 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+      		if (relInst40756 == null) {
+      			relInst40756 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
       		}
-			if (relInst40174 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40756 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40174 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
-					if (relInst40174 != null)
+					relInst40756 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+					if (relInst40756 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40174 != null )
+      if ( relInst40756 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40174) && !isProxy())) {
-	      relInst40174.relateAcrossR2907To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40756) && !isProxy())) {
+	      relInst40756.relateAcrossR2907To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2895,29 +2895,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (TargetsInstance == null) {          
       // R2935
-      Instance_c relInst40175 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+      Instance_c relInst40757 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40175 == null) {
-      			relInst40175 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+      		if (relInst40757 == null) {
+      			relInst40757 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
       		}
-			if (relInst40175 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40757 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40175 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
-					if (relInst40175 != null)
+					relInst40757 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_target_inst_id});
+					if (relInst40757 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40175 != null )
+      if ( relInst40757 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40175) && !isProxy())) {
-	      relInst40175.relateAcrossR2935To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40757) && !isProxy())) {
+	      relInst40757.relateAcrossR2935To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2925,29 +2925,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (WasSentFromInstance == null) {          
       // R2937
-      Instance_c relInst40176 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
+      Instance_c relInst40758 = (Instance_c) baseRoot.getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40176 == null) {
-      			relInst40176 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
+      		if (relInst40758 == null) {
+      			relInst40758 = (Instance_c) Ooaofooa.getDefaultInstance().getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
       		}
-			if (relInst40176 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40758 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40176 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
-					if (relInst40176 != null)
+					relInst40758 = (Instance_c) roots[i].getInstanceList(Instance_c.class).get(new Object[] {m_sent_by_inst_id});
+					if (relInst40758 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40176 != null )
+      if ( relInst40758 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40176) && !isProxy())) {
-	      relInst40176.relateAcrossR2937To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40758) && !isProxy())) {
+	      relInst40758.relateAcrossR2937To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2955,29 +2955,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (WillBeProcessedBeforePendingEvent == null) {          
       // R2939
-      PendingEvent_c relInst40177 = (PendingEvent_c) baseRoot.getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
+      PendingEvent_c relInst40759 = (PendingEvent_c) baseRoot.getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40177 == null) {
-      			relInst40177 = (PendingEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
+      		if (relInst40759 == null) {
+      			relInst40759 = (PendingEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
       		}
-			if (relInst40177 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40759 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40177 = (PendingEvent_c) roots[i].getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
-					if (relInst40177 != null)
+					relInst40759 = (PendingEvent_c) roots[i].getInstanceList(PendingEvent_c.class).get(new Object[] {m_next_self_event_id});
+					if (relInst40759 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40177 != null )
+      if ( relInst40759 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40177) && !isProxy())) {
-	      relInst40177.relateAcrossR2939ToWillBeProcessedAfter(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40759) && !isProxy())) {
+	      relInst40759.relateAcrossR2939ToWillBeProcessedAfter(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2985,29 +2985,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (IsPendingInComponentInstance == null) {          
       // R2964
-      ComponentInstance_c relInst40178 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+      ComponentInstance_c relInst40760 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40178 == null) {
-      			relInst40178 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+      		if (relInst40760 == null) {
+      			relInst40760 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
       		}
-			if (relInst40178 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40760 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40178 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
-					if (relInst40178 != null)
+					relInst40760 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+					if (relInst40760 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40178 != null )
+      if ( relInst40760 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40178) && !isProxy())) {
-	      relInst40178.relateAcrossR2964To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40760) && !isProxy())) {
+	      relInst40760.relateAcrossR2964To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3015,29 +3015,29 @@ public static PendingEvent_c [] getManyI_EVIsOnR2939WillBeProcessedBefore(Pendin
 
 	if (OriginatesFromComponentInstance == null) {          
       // R2976
-      ComponentInstance_c relInst40179 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
+      ComponentInstance_c relInst40761 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40179 == null) {
-      			relInst40179 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
+      		if (relInst40761 == null) {
+      			relInst40761 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
       		}
-			if (relInst40179 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40761 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40179 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
-					if (relInst40179 != null)
+					relInst40761 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_originating_execution_engine_id});
+					if (relInst40761 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40179 != null )
+      if ( relInst40761 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40179) && !isProxy())) {
-	      relInst40179.relateAcrossR2976To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40761) && !isProxy())) {
+	      relInst40761.relateAcrossR2976To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3755,56 +3755,56 @@ return v_result;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class PendingEvent_c_test40181_c implements ClassQueryInterface_c
+    class PendingEvent_c_test40763_c implements ClassQueryInterface_c
     {
-	  PendingEvent_c_test40181_c( java.util.UUID            p40182 ) {
-	  m_p40182 = p40182;
+	  PendingEvent_c_test40763_c( java.util.UUID            p40764 ) {
+	  m_p40764 = p40764;
 	  }
-	  private java.util.UUID             m_p40182; 
+	  private java.util.UUID             m_p40764; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PendingEvent_c selected = (PendingEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEvent_id().equals(m_p40182));
+	      retval = (selected.getEvent_id().equals(m_p40764));
 	      return retval;
 	  }
     }
 
-    PendingEvent_c [] objs40180 = 
-    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40181_c(getEvent_id())) ;
+    PendingEvent_c [] objs40762 = 
+    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40763_c(getEvent_id())) ;
 
-    if ( (  (objs40180.length) == 0) )
+    if ( (  (objs40762.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs40180.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40762.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40180.length )  , e); 
+          + Integer.toString( objs40762.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs40180.length) > 1) )
+    if ( (  (objs40762.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40180.length )  + " Event_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40762.length )  + " Event_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40180.length )  + " Event_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40762.length )  + " Event_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3812,40 +3812,40 @@ return v_result;
 
           // Pending Event is a referring class in association: rel.Numb = 2906
           // The participating class is: State Machine Event
-    class StateMachineEvent_c_test40186_c implements ClassQueryInterface_c
+    class StateMachineEvent_c_test40768_c implements ClassQueryInterface_c
     {
-	  StateMachineEvent_c_test40186_c( java.util.UUID            p40187 ) {
-	  m_p40187 = p40187;
+	  StateMachineEvent_c_test40768_c( java.util.UUID            p40769 ) {
+	  m_p40769 = p40769;
 	  }
-	  private java.util.UUID             m_p40187; 
+	  private java.util.UUID             m_p40769; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p40187));
+	      retval = (selected.getSmevt_id().equals(m_p40769));
 	      return retval;
 	  }
     }
 
-    StateMachineEvent_c [] objs40185 = 
-    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test40186_c(getSmevt_id())) ;
+    StateMachineEvent_c [] objs40767 = 
+    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test40768_c(getSmevt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs40185.length) != 1) )
+    if ( (  (objs40767.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2906: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40185.length )  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40767.length )  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2906: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40185.length )  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40767.length )  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3853,38 +3853,38 @@ return v_result;
 
           // Pending Event is a referring class in association: rel.Numb = 2907
           // The participating class is: Instance
-    class Instance_c_test40189_c implements ClassQueryInterface_c
+    class Instance_c_test40771_c implements ClassQueryInterface_c
     {
-	  Instance_c_test40189_c( java.util.UUID            p40190 ) {
-	  m_p40190 = p40190;
+	  Instance_c_test40771_c( java.util.UUID            p40772 ) {
+	  m_p40772 = p40772;
 	  }
-	  private java.util.UUID             m_p40190; 
+	  private java.util.UUID             m_p40772; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Instance_c selected = (Instance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getInst_id().equals(m_p40190));
+	      retval = (selected.getInst_id().equals(m_p40772));
 	      return retval;
 	  }
     }
 
-    Instance_c [] objs40188 = 
-    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40189_c(getTarget_inst_id())) ;
+    Instance_c [] objs40770 = 
+    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40771_c(getTarget_inst_id())) ;
 
-    if ( (  (objs40188.length) > 1) )
+    if ( (  (objs40770.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2907: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40188.length )  + " Target_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40770.length )  + " Target_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2907: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40188.length )  + " Target_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40770.length )  + " Target_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3892,38 +3892,38 @@ return v_result;
                 
           // Pending Event is a referring class in association: rel.Numb = 2935
           // The participating class is: Instance
-    class Instance_c_test40192_c implements ClassQueryInterface_c
+    class Instance_c_test40774_c implements ClassQueryInterface_c
     {
-	  Instance_c_test40192_c( java.util.UUID            p40193 ) {
-	  m_p40193 = p40193;
+	  Instance_c_test40774_c( java.util.UUID            p40775 ) {
+	  m_p40775 = p40775;
 	  }
-	  private java.util.UUID             m_p40193; 
+	  private java.util.UUID             m_p40775; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Instance_c selected = (Instance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getInst_id().equals(m_p40193));
+	      retval = (selected.getInst_id().equals(m_p40775));
 	      return retval;
 	  }
     }
 
-    Instance_c [] objs40191 = 
-    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40192_c(getTarget_inst_id())) ;
+    Instance_c [] objs40773 = 
+    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40774_c(getTarget_inst_id())) ;
 
-    if ( (  (objs40191.length) > 1) )
+    if ( (  (objs40773.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2935: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40191.length )  + " Target_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40773.length )  + " Target_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2935: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40191.length )  + " Target_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40773.length )  + " Target_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3931,38 +3931,38 @@ return v_result;
                 
           // Pending Event is a referring class in association: rel.Numb = 2908
           // The participating class is: Pending Event
-    class PendingEvent_c_test40195_c implements ClassQueryInterface_c
+    class PendingEvent_c_test40777_c implements ClassQueryInterface_c
     {
-	  PendingEvent_c_test40195_c( java.util.UUID            p40196 ) {
-	  m_p40196 = p40196;
+	  PendingEvent_c_test40777_c( java.util.UUID            p40778 ) {
+	  m_p40778 = p40778;
 	  }
-	  private java.util.UUID             m_p40196; 
+	  private java.util.UUID             m_p40778; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PendingEvent_c selected = (PendingEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEvent_id().equals(m_p40196));
+	      retval = (selected.getEvent_id().equals(m_p40778));
 	      return retval;
 	  }
     }
 
-    PendingEvent_c [] objs40194 = 
-    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40195_c(getNextevent_id())) ;
+    PendingEvent_c [] objs40776 = 
+    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40777_c(getNextevent_id())) ;
 
-    if ( (  (objs40194.length) > 1) )
+    if ( (  (objs40776.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2908: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40194.length )  + " nextEvent_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40776.length )  + " nextEvent_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2908: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40194.length )  + " nextEvent_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40776.length )  + " nextEvent_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3970,38 +3970,38 @@ return v_result;
                 
           // Pending Event is a referring class in association: rel.Numb = 2937
           // The participating class is: Instance
-    class Instance_c_test40198_c implements ClassQueryInterface_c
+    class Instance_c_test40780_c implements ClassQueryInterface_c
     {
-	  Instance_c_test40198_c( java.util.UUID            p40199 ) {
-	  m_p40199 = p40199;
+	  Instance_c_test40780_c( java.util.UUID            p40781 ) {
+	  m_p40781 = p40781;
 	  }
-	  private java.util.UUID             m_p40199; 
+	  private java.util.UUID             m_p40781; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Instance_c selected = (Instance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getInst_id().equals(m_p40199));
+	      retval = (selected.getInst_id().equals(m_p40781));
 	      return retval;
 	  }
     }
 
-    Instance_c [] objs40197 = 
-    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40198_c(getSent_by_inst_id())) ;
+    Instance_c [] objs40779 = 
+    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40780_c(getSent_by_inst_id())) ;
 
-    if ( (  (objs40197.length) > 1) )
+    if ( (  (objs40779.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2937: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40197.length )  + " Sent_By_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40779.length )  + " Sent_By_Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2937: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40197.length )  + " Sent_By_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40779.length )  + " Sent_By_Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4009,38 +4009,38 @@ return v_result;
                 
           // Pending Event is a referring class in association: rel.Numb = 2939
           // The participating class is: Pending Event
-    class PendingEvent_c_test40201_c implements ClassQueryInterface_c
+    class PendingEvent_c_test40783_c implements ClassQueryInterface_c
     {
-	  PendingEvent_c_test40201_c( java.util.UUID            p40202 ) {
-	  m_p40202 = p40202;
+	  PendingEvent_c_test40783_c( java.util.UUID            p40784 ) {
+	  m_p40784 = p40784;
 	  }
-	  private java.util.UUID             m_p40202; 
+	  private java.util.UUID             m_p40784; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PendingEvent_c selected = (PendingEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEvent_id().equals(m_p40202));
+	      retval = (selected.getEvent_id().equals(m_p40784));
 	      return retval;
 	  }
     }
 
-    PendingEvent_c [] objs40200 = 
-    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40201_c(getNext_self_event_id())) ;
+    PendingEvent_c [] objs40782 = 
+    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40783_c(getNext_self_event_id())) ;
 
-    if ( (  (objs40200.length) > 1) )
+    if ( (  (objs40782.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2939: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40200.length )  + " next_self_Event_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40782.length )  + " next_self_Event_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2939: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40200.length )  + " next_self_Event_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40782.length )  + " next_self_Event_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4048,40 +4048,40 @@ return v_result;
                 
           // Pending Event is a referring class in association: rel.Numb = 2964
           // The participating class is: Component Instance
-    class ComponentInstance_c_test40204_c implements ClassQueryInterface_c
+    class ComponentInstance_c_test40786_c implements ClassQueryInterface_c
     {
-	  ComponentInstance_c_test40204_c( java.util.UUID            p40205 ) {
-	  m_p40205 = p40205;
+	  ComponentInstance_c_test40786_c( java.util.UUID            p40787 ) {
+	  m_p40787 = p40787;
 	  }
-	  private java.util.UUID             m_p40205; 
+	  private java.util.UUID             m_p40787; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInstance_c selected = (ComponentInstance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getExecution_engine_id().equals(m_p40205));
+	      retval = (selected.getExecution_engine_id().equals(m_p40787));
 	      return retval;
 	  }
     }
 
-    ComponentInstance_c [] objs40203 = 
-    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40204_c(getExecution_engine_id())) ;
+    ComponentInstance_c [] objs40785 = 
+    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40786_c(getExecution_engine_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs40203.length) != 1) )
+    if ( (  (objs40785.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2964: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40203.length )  + " Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40785.length )  + " Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2964: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40203.length )  + " Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40785.length )  + " Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4089,38 +4089,38 @@ return v_result;
 
           // Pending Event is a referring class in association: rel.Numb = 2976
           // The participating class is: Component Instance
-    class ComponentInstance_c_test40207_c implements ClassQueryInterface_c
+    class ComponentInstance_c_test40789_c implements ClassQueryInterface_c
     {
-	  ComponentInstance_c_test40207_c( java.util.UUID            p40208 ) {
-	  m_p40208 = p40208;
+	  ComponentInstance_c_test40789_c( java.util.UUID            p40790 ) {
+	  m_p40790 = p40790;
 	  }
-	  private java.util.UUID             m_p40208; 
+	  private java.util.UUID             m_p40790; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInstance_c selected = (ComponentInstance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getExecution_engine_id().equals(m_p40208));
+	      retval = (selected.getExecution_engine_id().equals(m_p40790));
 	      return retval;
 	  }
     }
 
-    ComponentInstance_c [] objs40206 = 
-    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40207_c(getOriginating_execution_engine_id())) ;
+    ComponentInstance_c [] objs40788 = 
+    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40789_c(getOriginating_execution_engine_id())) ;
 
-    if ( (  (objs40206.length) > 1) )
+    if ( (  (objs40788.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2976: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40206.length )  + " Originating_Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40788.length )  + " Originating_Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2976: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40206.length )  + " Originating_Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40788.length )  + " Originating_Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4128,37 +4128,37 @@ return v_result;
                 
           // Pending Event is a participating class in association: rel.Numb = 2940
              // Object: Timer
-    class Timer_c_test40210_c implements ClassQueryInterface_c
+    class Timer_c_test40792_c implements ClassQueryInterface_c
     {
-	  Timer_c_test40210_c( java.util.UUID            p40211 ) {
-	  m_p40211 = p40211;
+	  Timer_c_test40792_c( java.util.UUID            p40793 ) {
+	  m_p40793 = p40793;
 	  }
-	  private java.util.UUID             m_p40211; 
+	  private java.util.UUID             m_p40793; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Timer_c selected = (Timer_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEvent_id().equals(m_p40211));
+	      retval = (selected.getEvent_id().equals(m_p40793));
 	      return retval;
 	  }
     }
 
-    Timer_c [] objs40209 = 
-    Timer_c.TimerInstances(modelRoot, new Timer_c_test40210_c(getEvent_id())) ;
+    Timer_c [] objs40791 = 
+    Timer_c.TimerInstances(modelRoot, new Timer_c_test40792_c(getEvent_id())) ;
 
-    if ( (  (objs40209.length) > 1) )
+    if ( (  (objs40791.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2940: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs40209.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40791.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2940: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40209.length )  , e); 
+          + Integer.toString( objs40791.length )  , e); 
       }
       retval = false;
 
@@ -4166,37 +4166,37 @@ return v_result;
 
           // Pending Event is a participating class in association: rel.Numb = 2908
              // Object: Pending Event
-    class PendingEvent_c_test40213_c implements ClassQueryInterface_c
+    class PendingEvent_c_test40795_c implements ClassQueryInterface_c
     {
-	  PendingEvent_c_test40213_c( java.util.UUID            p40214 ) {
-	  m_p40214 = p40214;
+	  PendingEvent_c_test40795_c( java.util.UUID            p40796 ) {
+	  m_p40796 = p40796;
 	  }
-	  private java.util.UUID             m_p40214; 
+	  private java.util.UUID             m_p40796; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PendingEvent_c selected = (PendingEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getNextevent_id().equals(m_p40214));
+	      retval = (selected.getNextevent_id().equals(m_p40796));
 	      return retval;
 	  }
     }
 
-    PendingEvent_c [] objs40212 = 
-    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40213_c(getEvent_id())) ;
+    PendingEvent_c [] objs40794 = 
+    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40795_c(getEvent_id())) ;
 
-    if ( (  (objs40212.length) > 1) )
+    if ( (  (objs40794.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2908: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs40212.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40794.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2908: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40212.length )  , e); 
+          + Integer.toString( objs40794.length )  , e); 
       }
       retval = false;
 
@@ -4204,37 +4204,37 @@ return v_result;
 
           // Pending Event is a participating class in association: rel.Numb = 2939
              // Object: Pending Event
-    class PendingEvent_c_test40216_c implements ClassQueryInterface_c
+    class PendingEvent_c_test40798_c implements ClassQueryInterface_c
     {
-	  PendingEvent_c_test40216_c( java.util.UUID            p40217 ) {
-	  m_p40217 = p40217;
+	  PendingEvent_c_test40798_c( java.util.UUID            p40799 ) {
+	  m_p40799 = p40799;
 	  }
-	  private java.util.UUID             m_p40217; 
+	  private java.util.UUID             m_p40799; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PendingEvent_c selected = (PendingEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getNext_self_event_id().equals(m_p40217));
+	      retval = (selected.getNext_self_event_id().equals(m_p40799));
 	      return retval;
 	  }
     }
 
-    PendingEvent_c [] objs40215 = 
-    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40216_c(getEvent_id())) ;
+    PendingEvent_c [] objs40797 = 
+    PendingEvent_c.PendingEventInstances(modelRoot, new PendingEvent_c_test40798_c(getEvent_id())) ;
 
-    if ( (  (objs40215.length) > 1) )
+    if ( (  (objs40797.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Pending Event", //$NON-NLS-1$
            "Consistency: Object: Pending Event: Association: 2939: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs40215.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40797.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Pending Event: Association: 2939: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40215.length )  , e); 
+          + Integer.toString( objs40797.length )  , e); 
       }
       retval = false;
 

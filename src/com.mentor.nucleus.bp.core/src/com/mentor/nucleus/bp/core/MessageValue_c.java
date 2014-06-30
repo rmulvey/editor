@@ -208,7 +208,7 @@ p_m_target_value_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -224,7 +224,7 @@ p_m_target_value_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((MessageValue_c)elem).getValue_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((MessageValue_c)elem).getValue_id())) && this != elem)) {
       	return false;
       }
       if (!getValue_id().equals(((MessageValue_c)elem).getValue_id())) return false;
@@ -1294,58 +1294,58 @@ public static MessageValue_c [] getManyV_MSVsOnR842(ActualParameter_c target, bo
         ModelRoot baseRoot = modelRoot;
 
       // R801
-      Value_c relInst37506 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst38088 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37506 == null) {
-      			relInst37506 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst38088 == null) {
+      			relInst38088 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst37506 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38088 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37506 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst37506 != null)
+					relInst38088 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst38088 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37506 != null )
+      if ( relInst38088 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37506) && !isProxy())) {
-	      relInst37506.relateAcrossR801To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38088) && !isProxy())) {
+	      relInst38088.relateAcrossR801To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (HasTargetValue == null) {          
       // R851
-      Value_c relInst37507 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
+      Value_c relInst38089 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37507 == null) {
-      			relInst37507 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
+      		if (relInst38089 == null) {
+      			relInst38089 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
       		}
-			if (relInst37507 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38089 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37507 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
-					if (relInst37507 != null)
+					relInst38089 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_target_value_id});
+					if (relInst38089 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37507 != null )
+      if ( relInst38089 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37507) && !isProxy())) {
-	      relInst37507.relateAcrossR851To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38089) && !isProxy())) {
+	      relInst38089.relateAcrossR851To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1353,29 +1353,29 @@ public static MessageValue_c [] getManyV_MSVsOnR842(ActualParameter_c target, bo
 
 	if (ProvidedExecutableProperty == null) {          
       // R841
-      ProvidedExecutableProperty_c relInst37508 = (ProvidedExecutableProperty_c) baseRoot.getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
+      ProvidedExecutableProperty_c relInst38090 = (ProvidedExecutableProperty_c) baseRoot.getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37508 == null) {
-      			relInst37508 = (ProvidedExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
+      		if (relInst38090 == null) {
+      			relInst38090 = (ProvidedExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
       		}
-			if (relInst37508 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38090 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37508 = (ProvidedExecutableProperty_c) roots[i].getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
-					if (relInst37508 != null)
+					relInst38090 = (ProvidedExecutableProperty_c) roots[i].getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_pep_id});
+					if (relInst38090 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37508 != null )
+      if ( relInst38090 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37508) && !isProxy())) {
-	      relInst37508.relateAcrossR841To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38090) && !isProxy())) {
+	      relInst38090.relateAcrossR841To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1383,29 +1383,29 @@ public static MessageValue_c [] getManyV_MSVsOnR842(ActualParameter_c target, bo
 
 	if (RequiredExecutableProperty == null) {          
       // R845
-      RequiredExecutableProperty_c relInst37509 = (RequiredExecutableProperty_c) baseRoot.getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
+      RequiredExecutableProperty_c relInst38091 = (RequiredExecutableProperty_c) baseRoot.getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37509 == null) {
-      			relInst37509 = (RequiredExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
+      		if (relInst38091 == null) {
+      			relInst38091 = (RequiredExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
       		}
-			if (relInst37509 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38091 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37509 = (RequiredExecutableProperty_c) roots[i].getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
-					if (relInst37509 != null)
+					relInst38091 = (RequiredExecutableProperty_c) roots[i].getInstanceList(RequiredExecutableProperty_c.class).get(new Object[] {m_rep_id});
+					if (relInst38091 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37509 != null )
+      if ( relInst38091 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37509) && !isProxy())) {
-	      relInst37509.relateAcrossR845To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38091) && !isProxy())) {
+	      relInst38091.relateAcrossR845To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1777,56 +1777,56 @@ private static MessageValue_c findMessageValueInstance(ModelRoot modelRoot, Clas
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class MessageValue_c_test37511_c implements ClassQueryInterface_c
+    class MessageValue_c_test38093_c implements ClassQueryInterface_c
     {
-	  MessageValue_c_test37511_c( java.util.UUID            p37512 ) {
-	  m_p37512 = p37512;
+	  MessageValue_c_test38093_c( java.util.UUID            p38094 ) {
+	  m_p38094 = p38094;
 	  }
-	  private java.util.UUID             m_p37512; 
+	  private java.util.UUID             m_p38094; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MessageValue_c selected = (MessageValue_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37512));
+	      retval = (selected.getValue_id().equals(m_p38094));
 	      return retval;
 	  }
     }
 
-    MessageValue_c [] objs37510 = 
-    MessageValue_c.MessageValueInstances(modelRoot, new MessageValue_c_test37511_c(getValue_id())) ;
+    MessageValue_c [] objs38092 = 
+    MessageValue_c.MessageValueInstances(modelRoot, new MessageValue_c_test38093_c(getValue_id())) ;
 
-    if ( (  (objs37510.length) == 0) )
+    if ( (  (objs38092.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37510.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38092.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37510.length )  , e); 
+          + Integer.toString( objs38092.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37510.length) > 1) )
+    if ( (  (objs38092.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37510.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38092.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37510.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38092.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1834,37 +1834,37 @@ private static MessageValue_c findMessageValueInstance(ModelRoot modelRoot, Clas
 
           // Message Value is a subtype in association: rel.Numb = 801
           // The supertype class is: Value
-    class Value_c_test37516_c implements ClassQueryInterface_c
+    class Value_c_test38098_c implements ClassQueryInterface_c
     {
-	  Value_c_test37516_c( java.util.UUID            p37517 ) {
-	  m_p37517 = p37517;
+	  Value_c_test38098_c( java.util.UUID            p38099 ) {
+	  m_p38099 = p38099;
 	  }
-	  private java.util.UUID             m_p37517; 
+	  private java.util.UUID             m_p38099; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37517));
+	      retval = (selected.getValue_id().equals(m_p38099));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37515 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37516_c(getValue_id())) ;
+    Value_c [] objs38097 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38098_c(getValue_id())) ;
 
-    if ( (  (objs37515.length) != 1) )
+    if ( (  (objs38097.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37515.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38097.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37515.length )  , e); 
+          + Integer.toString( objs38097.length )  , e); 
       }
       retval = false;
 
@@ -1872,38 +1872,38 @@ private static MessageValue_c findMessageValueInstance(ModelRoot modelRoot, Clas
 
           // Message Value is a referring class in association: rel.Numb = 845
           // The participating class is: Required Executable Property
-    class RequiredExecutableProperty_c_test37519_c implements ClassQueryInterface_c
+    class RequiredExecutableProperty_c_test38101_c implements ClassQueryInterface_c
     {
-	  RequiredExecutableProperty_c_test37519_c( java.util.UUID            p37520 ) {
-	  m_p37520 = p37520;
+	  RequiredExecutableProperty_c_test38101_c( java.util.UUID            p38102 ) {
+	  m_p38102 = p38102;
 	  }
-	  private java.util.UUID             m_p37520; 
+	  private java.util.UUID             m_p38102; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredExecutableProperty_c selected = (RequiredExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p37520));
+	      retval = (selected.getId().equals(m_p38102));
 	      return retval;
 	  }
     }
 
-    RequiredExecutableProperty_c [] objs37518 = 
-    RequiredExecutableProperty_c.RequiredExecutablePropertyInstances(modelRoot, new RequiredExecutableProperty_c_test37519_c(getRep_id())) ;
+    RequiredExecutableProperty_c [] objs38100 = 
+    RequiredExecutableProperty_c.RequiredExecutablePropertyInstances(modelRoot, new RequiredExecutableProperty_c_test38101_c(getRep_id())) ;
 
-    if ( (  (objs37518.length) > 1) )
+    if ( (  (objs38100.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Association: 845: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37518.length )  + " REP_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38100.length )  + " REP_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Association: 845: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37518.length )  + " REP_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38100.length )  + " REP_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1911,38 +1911,38 @@ private static MessageValue_c findMessageValueInstance(ModelRoot modelRoot, Clas
                 
           // Message Value is a referring class in association: rel.Numb = 841
           // The participating class is: Provided Executable Property
-    class ProvidedExecutableProperty_c_test37522_c implements ClassQueryInterface_c
+    class ProvidedExecutableProperty_c_test38104_c implements ClassQueryInterface_c
     {
-	  ProvidedExecutableProperty_c_test37522_c( java.util.UUID            p37523 ) {
-	  m_p37523 = p37523;
+	  ProvidedExecutableProperty_c_test38104_c( java.util.UUID            p38105 ) {
+	  m_p38105 = p38105;
 	  }
-	  private java.util.UUID             m_p37523; 
+	  private java.util.UUID             m_p38105; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p37523));
+	      retval = (selected.getId().equals(m_p38105));
 	      return retval;
 	  }
     }
 
-    ProvidedExecutableProperty_c [] objs37521 = 
-    ProvidedExecutableProperty_c.ProvidedExecutablePropertyInstances(modelRoot, new ProvidedExecutableProperty_c_test37522_c(getPep_id())) ;
+    ProvidedExecutableProperty_c [] objs38103 = 
+    ProvidedExecutableProperty_c.ProvidedExecutablePropertyInstances(modelRoot, new ProvidedExecutableProperty_c_test38104_c(getPep_id())) ;
 
-    if ( (  (objs37521.length) > 1) )
+    if ( (  (objs38103.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Association: 841: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37521.length )  + " PEP_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38103.length )  + " PEP_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Association: 841: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37521.length )  + " PEP_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38103.length )  + " PEP_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1950,38 +1950,38 @@ private static MessageValue_c findMessageValueInstance(ModelRoot modelRoot, Clas
                 
           // Message Value is a referring class in association: rel.Numb = 851
           // The participating class is: Value
-    class Value_c_test37525_c implements ClassQueryInterface_c
+    class Value_c_test38107_c implements ClassQueryInterface_c
     {
-	  Value_c_test37525_c( java.util.UUID            p37526 ) {
-	  m_p37526 = p37526;
+	  Value_c_test38107_c( java.util.UUID            p38108 ) {
+	  m_p38108 = p38108;
 	  }
-	  private java.util.UUID             m_p37526; 
+	  private java.util.UUID             m_p38108; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37526));
+	      retval = (selected.getValue_id().equals(m_p38108));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37524 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37525_c(getTarget_value_id())) ;
+    Value_c [] objs38106 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38107_c(getTarget_value_id())) ;
 
-    if ( (  (objs37524.length) > 1) )
+    if ( (  (objs38106.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Message Value", //$NON-NLS-1$
            "Consistency: Object: Message Value: Association: 851: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37524.length )  + " Target_Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38106.length )  + " Target_Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Message Value: Association: 851: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37524.length )  + " Target_Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38106.length )  + " Target_Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2026,9 +2026,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR842(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36499 = 0; i36499 < v_parm_set.length; i36499++)
+for ( int i37047 = 0; i37047 < v_parm_set.length; i37047++)
 {
-  v_parm = v_parm_set[i36499] ;
+  v_parm = v_parm_set[i37047] ;
 
 this.unrelateAcrossR842From(v_parm);
 
@@ -2083,7 +2083,7 @@ delete() ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Message Value", " Operation entered: MessageValue::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

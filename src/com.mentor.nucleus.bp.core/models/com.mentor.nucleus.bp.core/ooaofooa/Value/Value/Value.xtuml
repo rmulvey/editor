@@ -452,10 +452,9 @@ INSERT INTO O_TFR
 	'',
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
-	'// Value.getRuntimeValue()
-// Mentor Graphics Verifier-specific Implementation
-runtimeVal = GD::NULL_UNIQUE_ID();
-return runtimeVal;',
+	'// Mentor Graphics Verifier-specific Implementation
+return GD::NULL_UNIQUE_ID();
+',
 	1,
 	'',
 	"cc92274a-3094-47ec-b09b-0b2509ea7a23");

@@ -169,7 +169,7 @@ p_m_descrip
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -185,7 +185,7 @@ p_m_descrip
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID.equals(((ConstantSpecification_c)elem).getConstant_spec_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID.equals(((ConstantSpecification_c)elem).getConstant_spec_id())) && this != elem)) {
       	return false;
       }
       if (!getConstant_spec_id().equals(((ConstantSpecification_c)elem).getConstant_spec_id())) return false;
@@ -1051,29 +1051,29 @@ public static ConstantSpecification_c [] getManyCNST_CSPsOnR1504(SymbolicConstan
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst55324 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
+      PackageableElement_c relInst56873 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55324 == null) {
-      			relInst55324 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
+      		if (relInst56873 == null) {
+      			relInst56873 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
       		}
-			if (relInst55324 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56873 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55324 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
-					if (relInst55324 != null)
+					relInst56873 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_constant_spec_id});
+					if (relInst56873 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55324 != null )
+      if ( relInst56873 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55324) && !isProxy())) {
-	      relInst55324.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56873) && !isProxy())) {
+	      relInst56873.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1384,56 +1384,56 @@ private static ConstantSpecification_c findConstantSpecificationInstance(ModelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ConstantSpecification_c_test55326_c implements ClassQueryInterface_c
+    class ConstantSpecification_c_test56875_c implements ClassQueryInterface_c
     {
-	  ConstantSpecification_c_test55326_c( java.util.UUID            p55327 ) {
-	  m_p55327 = p55327;
+	  ConstantSpecification_c_test56875_c( java.util.UUID            p56876 ) {
+	  m_p56876 = p56876;
 	  }
-	  private java.util.UUID             m_p55327; 
+	  private java.util.UUID             m_p56876; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ConstantSpecification_c selected = (ConstantSpecification_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConstant_spec_id().equals(m_p55327));
+	      retval = (selected.getConstant_spec_id().equals(m_p56876));
 	      return retval;
 	  }
     }
 
-    ConstantSpecification_c [] objs55325 = 
-    ConstantSpecification_c.ConstantSpecificationInstances(modelRoot, new ConstantSpecification_c_test55326_c(getConstant_spec_id())) ;
+    ConstantSpecification_c [] objs56874 = 
+    ConstantSpecification_c.ConstantSpecificationInstances(modelRoot, new ConstantSpecification_c_test56875_c(getConstant_spec_id())) ;
 
-    if ( (  (objs55325.length) == 0) )
+    if ( (  (objs56874.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Constant Specification", //$NON-NLS-1$
            "Consistency: Object: Constant Specification: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55325.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56874.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Constant Specification: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55325.length )  , e); 
+          + Integer.toString( objs56874.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55325.length) > 1) )
+    if ( (  (objs56874.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Constant Specification", //$NON-NLS-1$
            "Consistency: Object: Constant Specification: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55325.length )  + " Constant_Spec_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56874.length )  + " Constant_Spec_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Constant Specification: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55325.length )  + " Constant_Spec_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56874.length )  + " Constant_Spec_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1450,56 +1450,56 @@ private static ConstantSpecification_c findConstantSpecificationInstance(ModelRo
           // Associated One Side: rel.Numb = 1506
             // Link Object: Constant in Package
             // Other Side Class: Data Type Package
-    class ConstantInPackage_c_test55335_c implements ClassQueryInterface_c
+    class ConstantInPackage_c_test56884_c implements ClassQueryInterface_c
     {
-	  ConstantInPackage_c_test55335_c( java.util.UUID            p55336 ) {
-	  m_p55336 = p55336;
+	  ConstantInPackage_c_test56884_c( java.util.UUID            p56885 ) {
+	  m_p56885 = p56885;
 	  }
-	  private java.util.UUID             m_p55336; 
+	  private java.util.UUID             m_p56885; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ConstantInPackage_c selected = (ConstantInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConstant_spec_id().equals(m_p55336));
+	      retval = (selected.getConstant_spec_id().equals(m_p56885));
 	      return retval;
 	  }
     }
 
-    ConstantInPackage_c [] objs55337 = 
-    ConstantInPackage_c.ConstantInPackageInstances(modelRoot, new ConstantInPackage_c_test55335_c(getConstant_spec_id())) ;
+    ConstantInPackage_c [] objs56886 = 
+    ConstantInPackage_c.ConstantInPackageInstances(modelRoot, new ConstantInPackage_c_test56884_c(getConstant_spec_id())) ;
 
-    if ( (  (objs55337.length) == 0) )
+    if ( (  (objs56886.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Constant Specification", //$NON-NLS-1$
            "Consistency: Object: Constant Specification: Association: 1506: Cardinality of a link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55337.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56886.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Constant Specification: Association: 1506: Cardinality of a link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55337.length )  , e); 
+          + Integer.toString( objs56886.length )  , e); 
       }
       retval = false;
 
     }
 
 
-    if ( (  (objs55337.length) != 1) )
+    if ( (  (objs56886.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Constant Specification", //$NON-NLS-1$
            "Consistency: Object: Constant Specification: Association: 1506: Cardinality of a link is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55337.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56886.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Constant Specification: Association: 1506: Cardinality of a link is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55337.length )  , e); 
+          + Integer.toString( objs56886.length )  , e); 
       }
       retval = false;
 
@@ -1659,9 +1659,9 @@ SymbolicConstant_c [] v_sycs = SymbolicConstant_c.getManyCNST_SYCsOnR1504(this);
 
 
 SymbolicConstant_c  v_syc = null;
-for ( int i53636 = 0; i53636 < v_sycs.length; i53636++)
+for ( int i55159 = 0; i55159 < v_sycs.length; i55159++)
 {
-  v_syc = v_sycs[i53636] ;
+  v_syc = v_sycs[i55159] ;
 
 if (v_syc != null) {
 v_syc.Dispose() ;
@@ -1680,9 +1680,9 @@ SystemConstantInPackage_c [] v_scips = SystemConstantInPackage_c.getManySLD_SCIN
 
 
 SystemConstantInPackage_c  v_scip = null;
-for ( int i53637 = 0; i53637 < v_scips.length; i53637++)
+for ( int i55160 = 0; i55160 < v_scips.length; i55160++)
 {
-  v_scip = v_scips[i53637] ;
+  v_scip = v_scips[i55160] ;
 
 DataTypePackage_c v_dtp = DataTypePackage_c.getOneS_DPKOnR4403(v_scip);
 
@@ -1786,7 +1786,7 @@ else
 if ( (p_At == Justification_c.Left) )
 {
 
-  class SymbolicConstant_test54267_c implements ClassQueryInterface_c
+  class SymbolicConstant_test55816_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1794,7 +1794,7 @@ if ( (p_At == Justification_c.Left) )
 		return (selected.getPrevious_const_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-SymbolicConstant_c v_symConst = SymbolicConstant_c.getOneCNST_SYCOnR1504(this, new SymbolicConstant_test54267_c());
+SymbolicConstant_c v_symConst = SymbolicConstant_c.getOneCNST_SYCOnR1504(this, new SymbolicConstant_test55816_c());
 
 
 int          v_cursor = p_Ent_num ;
@@ -2095,7 +2095,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Constant Specification", " Operation entered: ConstantSpecification::Pasteliteralsymbolicconstant") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class LiteralSymbolicConstant_test53999_c implements ClassQueryInterface_c
+  class LiteralSymbolicConstant_test55535_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2103,7 +2103,7 @@ return false;
 		return (selected.getConst_id().equals(p_Id)) ;
 	}
   }
-LiteralSymbolicConstant_c v_lsc = LiteralSymbolicConstant_c.LiteralSymbolicConstantInstance(modelRoot, new LiteralSymbolicConstant_test53999_c()) ;
+LiteralSymbolicConstant_c v_lsc = LiteralSymbolicConstant_c.LiteralSymbolicConstantInstance(modelRoot, new LiteralSymbolicConstant_test55535_c()) ;
 
 
 if ( (  (v_lsc != null)) )
@@ -2154,7 +2154,7 @@ v_syc.getConst_id() ) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Constant Specification", " Operation entered: ConstantSpecification::Addliteralsymbolicconstanttoordering") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class SymbolicConstant_test54000_c implements ClassQueryInterface_c
+  class SymbolicConstant_test55536_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2162,7 +2162,7 @@ v_syc.getConst_id() ) ;
 		return (selected.getConst_id().equals(p_Id)) ;
 	}
   }
-SymbolicConstant_c v_syc = SymbolicConstant_c.SymbolicConstantInstance(modelRoot, new SymbolicConstant_test54000_c()) ;
+SymbolicConstant_c v_syc = SymbolicConstant_c.SymbolicConstantInstance(modelRoot, new SymbolicConstant_test55536_c()) ;
 
 
 if ( (  (v_syc != null)) )
@@ -2176,9 +2176,9 @@ Ooaofooa.Changenotificationenablement(modelRoot
 
 
 SymbolicConstant_c  v_peer = null;
-for ( int i53638 = 0; i53638 < v_peers.length; i53638++)
+for ( int i55161 = 0; i55161 < v_peers.length; i55161++)
 {
-  v_peer = v_peers[i53638] ;
+  v_peer = v_peers[i55161] ;
 
 if ( (v_peer != v_syc) )
 {

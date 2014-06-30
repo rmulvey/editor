@@ -136,7 +136,8 @@ public class InformalArgument_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,9 +153,9 @@ public class InformalArgument_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
-				.equals(((InformalArgument_c) elem).getArg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
+						.equals(((InformalArgument_c) elem).getArg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getArg_id().equals(((InformalArgument_c) elem).getArg_id()))
@@ -399,34 +400,34 @@ public class InformalArgument_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1013
-		MessageArgument_c relInst39585 = (MessageArgument_c) baseRoot
+		MessageArgument_c relInst40167 = (MessageArgument_c) baseRoot
 				.getInstanceList(MessageArgument_c.class).get(
 						new Object[]{m_arg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39585 == null) {
-			relInst39585 = (MessageArgument_c) Ooaofooa.getDefaultInstance()
+		if (relInst40167 == null) {
+			relInst40167 = (MessageArgument_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(MessageArgument_c.class)
 					.get(new Object[]{m_arg_id});
 		}
-		if (relInst39585 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40167 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39585 = (MessageArgument_c) roots[i].getInstanceList(
+				relInst40167 = (MessageArgument_c) roots[i].getInstanceList(
 						MessageArgument_c.class).get(new Object[]{m_arg_id});
-				if (relInst39585 != null)
+				if (relInst40167 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39585 != null) {
+		if (relInst40167 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39585) && !isProxy())) {
-				relInst39585.relateAcrossR1013To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40167) && !isProxy())) {
+				relInst40167.relateAcrossR1013To(this, notifyChanges);
 			}
 		}
 
@@ -673,44 +674,44 @@ public class InformalArgument_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InformalArgument_c_test39587_c implements ClassQueryInterface_c {
-			InformalArgument_c_test39587_c(java.util.UUID p39588) {
-				m_p39588 = p39588;
+		class InformalArgument_c_test40169_c implements ClassQueryInterface_c {
+			InformalArgument_c_test40169_c(java.util.UUID p40170) {
+				m_p40170 = p40170;
 			}
-			private java.util.UUID m_p39588;
+			private java.util.UUID m_p40170;
 			public boolean evaluate(Object candidate) {
 				InformalArgument_c selected = (InformalArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39588));
+				retval = (selected.getArg_id().equals(m_p40170));
 				return retval;
 			}
 		}
 
-		InformalArgument_c[] objs39586 = InformalArgument_c
+		InformalArgument_c[] objs40168 = InformalArgument_c
 				.InformalArgumentInstances(modelRoot,
-						new InformalArgument_c_test39587_c(getArg_id()));
+						new InformalArgument_c_test40169_c(getArg_id()));
 
-		if (((objs39586.length) == 0)) {
+		if (((objs40168.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Informal Argument", //$NON-NLS-1$
 								"Consistency: Object: Informal Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39586.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40168.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39586.length), e);
+										+ Integer.toString(objs40168.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39586.length) > 1)) {
+		if (((objs40168.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -718,7 +719,7 @@ public class InformalArgument_c extends NonRootModelElement
 								"Informal Argument", //$NON-NLS-1$
 								"Consistency: Object: Informal Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39586.length)
+										+ Integer.toString(objs40168.length)
 										+ " Arg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -726,7 +727,7 @@ public class InformalArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Informal Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39586.length)
+										+ Integer.toString(objs40168.length)
 										+ " Arg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -735,38 +736,38 @@ public class InformalArgument_c extends NonRootModelElement
 
 		// Informal Argument is a subtype in association: rel.Numb = 1013
 		// The supertype class is: Message Argument
-		class MessageArgument_c_test39592_c implements ClassQueryInterface_c {
-			MessageArgument_c_test39592_c(java.util.UUID p39593) {
-				m_p39593 = p39593;
+		class MessageArgument_c_test40174_c implements ClassQueryInterface_c {
+			MessageArgument_c_test40174_c(java.util.UUID p40175) {
+				m_p40175 = p40175;
 			}
-			private java.util.UUID m_p39593;
+			private java.util.UUID m_p40175;
 			public boolean evaluate(Object candidate) {
 				MessageArgument_c selected = (MessageArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39593));
+				retval = (selected.getArg_id().equals(m_p40175));
 				return retval;
 			}
 		}
 
-		MessageArgument_c[] objs39591 = MessageArgument_c
+		MessageArgument_c[] objs40173 = MessageArgument_c
 				.MessageArgumentInstances(modelRoot,
-						new MessageArgument_c_test39592_c(getArg_id()));
+						new MessageArgument_c_test40174_c(getArg_id()));
 
-		if (((objs39591.length) != 1)) {
+		if (((objs40173.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Informal Argument", //$NON-NLS-1$
 								"Consistency: Object: Informal Argument: Association: 1013: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39591.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40173.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Argument: Association: 1013: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39591.length), e);
+										+ Integer.toString(objs40173.length), e);
 			}
 			retval = false;
 

@@ -192,7 +192,7 @@ p_m_label
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -208,7 +208,7 @@ p_m_label
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Satisfaction_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Satisfaction_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((Satisfaction_c)elem).getId())) return false;
@@ -1828,83 +1828,83 @@ public static Satisfaction_c [] getManyC_SFsOnR4706(ImportedRequirement_c target
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst55349 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      PackageableElement_c relInst56898 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55349 == null) {
-      			relInst55349 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      		if (relInst56898 == null) {
+      			relInst56898 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55349 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56898 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55349 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
-					if (relInst55349 != null)
+					relInst56898 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+					if (relInst56898 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55349 != null )
+      if ( relInst56898 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55349) && !isProxy())) {
-	      relInst55349.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56898) && !isProxy())) {
+	      relInst56898.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
       // R4002
-      Requirement_c relInst55350 = (Requirement_c) baseRoot.getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+      Requirement_c relInst56899 = (Requirement_c) baseRoot.getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55350 == null) {
-      			relInst55350 = (Requirement_c) Ooaofooa.getDefaultInstance().getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+      		if (relInst56899 == null) {
+      			relInst56899 = (Requirement_c) Ooaofooa.getDefaultInstance().getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
       		}
-			if (relInst55350 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56899 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55350 = (Requirement_c) roots[i].getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
-					if (relInst55350 != null)
+					relInst56899 = (Requirement_c) roots[i].getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+					if (relInst56899 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55350 != null )
+      if ( relInst56899 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55350) && !isProxy())) {
-	      relInst55350.relateAcrossR4002To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56899) && !isProxy())) {
+	      relInst56899.relateAcrossR4002To(this, notifyChanges);
 	  }
 	  }
 	          
-      Provision_c relInst55351 = (Provision_c) baseRoot.getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
+      Provision_c relInst56900 = (Provision_c) baseRoot.getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55351 == null) {
-      			relInst55351 = (Provision_c) Ooaofooa.getDefaultInstance().getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
+      		if (relInst56900 == null) {
+      			relInst56900 = (Provision_c) Ooaofooa.getDefaultInstance().getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
       		}
-			if (relInst55351 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56900 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55351 = (Provision_c) roots[i].getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
-					if (relInst55351 != null)
+					relInst56900 = (Provision_c) roots[i].getInstanceList(Provision_c.class).get(new Object[] {m_provision_id});
+					if (relInst56900 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55351 != null )
+      if ( relInst56900 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55351) && !isProxy())) {
-	      relInst55351.relateAcrossR4002To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56900) && !isProxy())) {
+	      relInst56900.relateAcrossR4002To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -2359,112 +2359,112 @@ return v_provision_path + " -o)- " + v_requirement_path;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Satisfaction_c_test55353_c implements ClassQueryInterface_c
+    class Satisfaction_c_test56902_c implements ClassQueryInterface_c
     {
-	  Satisfaction_c_test55353_c( java.util.UUID            p55354 ) {
-	  m_p55354 = p55354;
+	  Satisfaction_c_test56902_c( java.util.UUID            p56903 ) {
+	  m_p56903 = p56903;
 	  }
-	  private java.util.UUID             m_p55354; 
+	  private java.util.UUID             m_p56903; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Satisfaction_c selected = (Satisfaction_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55354));
+	      retval = (selected.getId().equals(m_p56903));
 	      return retval;
 	  }
     }
 
-    Satisfaction_c [] objs55352 = 
-    Satisfaction_c.SatisfactionInstances(modelRoot, new Satisfaction_c_test55353_c(getId())) ;
+    Satisfaction_c [] objs56901 = 
+    Satisfaction_c.SatisfactionInstances(modelRoot, new Satisfaction_c_test56902_c(getId())) ;
 
-    if ( (  (objs55352.length) == 0) )
+    if ( (  (objs56901.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Satisfaction", //$NON-NLS-1$
            "Consistency: Object: Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55352.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56901.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55352.length )  , e); 
+          + Integer.toString( objs56901.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55352.length) > 1) )
+    if ( (  (objs56901.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Satisfaction", //$NON-NLS-1$
            "Consistency: Object: Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55352.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56901.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55352.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56901.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
 
-    class Satisfaction_c_test55356_c implements ClassQueryInterface_c
+    class Satisfaction_c_test56905_c implements ClassQueryInterface_c
     {
-	  Satisfaction_c_test55356_c( java.util.UUID            p55357, java.util.UUID            p55358 ) {
-	       m_p55357 = p55357; 
-m_p55358 = p55358;
+	  Satisfaction_c_test56905_c( java.util.UUID            p56906, java.util.UUID            p56907 ) {
+	       m_p56906 = p56906; 
+m_p56907 = p56907;
 	  }
-	  private java.util.UUID             m_p55357; private java.util.UUID             m_p55358; 
+	  private java.util.UUID             m_p56906; private java.util.UUID             m_p56907; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Satisfaction_c selected = (Satisfaction_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRequirement_id().equals(m_p55357)) & (selected.getProvision_id().equals(m_p55358));
+	      retval = (selected.getRequirement_id().equals(m_p56906)) & (selected.getProvision_id().equals(m_p56907));
 	      return retval;
 	  }
     }
 
-    Satisfaction_c [] objs55355 = 
-    Satisfaction_c.SatisfactionInstances(modelRoot, new Satisfaction_c_test55356_c(getRequirement_id(), getProvision_id())) ;
+    Satisfaction_c [] objs56904 = 
+    Satisfaction_c.SatisfactionInstances(modelRoot, new Satisfaction_c_test56905_c(getRequirement_id(), getProvision_id())) ;
 
-    if ( (  (objs55355.length) == 0) )
+    if ( (  (objs56904.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Satisfaction", //$NON-NLS-1$
            "Consistency: Object: Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55355.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56904.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55355.length )  , e); 
+          + Integer.toString( objs56904.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55355.length) > 1) )
+    if ( (  (objs56904.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Satisfaction", //$NON-NLS-1$
            "Consistency: Object: Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55355.length )  + " Requirement_Id: " + "Not Printable"  + " Provision_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56904.length )  + " Requirement_Id: " + "Not Printable"  + " Provision_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55355.length )  + " Requirement_Id: " + "Not Printable"  + " Provision_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56904.length )  + " Requirement_Id: " + "Not Printable"  + " Provision_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2486,37 +2486,37 @@ m_p55358 = p55358;
             // Other Side Class: Imported Provision
           // Satisfaction is a participating class in association: rel.Numb = 4706
              // Object: Imported Requirement
-    class ImportedRequirement_c_test55364_c implements ClassQueryInterface_c
+    class ImportedRequirement_c_test56913_c implements ClassQueryInterface_c
     {
-	  ImportedRequirement_c_test55364_c( java.util.UUID            p55365 ) {
-	  m_p55365 = p55365;
+	  ImportedRequirement_c_test56913_c( java.util.UUID            p56914 ) {
+	  m_p56914 = p56914;
 	  }
-	  private java.util.UUID             m_p55365; 
+	  private java.util.UUID             m_p56914; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedRequirement_c selected = (ImportedRequirement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSatisfaction_element_id().equals(m_p55365));
+	      retval = (selected.getSatisfaction_element_id().equals(m_p56914));
 	      return retval;
 	  }
     }
 
-    ImportedRequirement_c [] objs55363 = 
-    ImportedRequirement_c.ImportedRequirementInstances(modelRoot, new ImportedRequirement_c_test55364_c(getId())) ;
+    ImportedRequirement_c [] objs56912 = 
+    ImportedRequirement_c.ImportedRequirementInstances(modelRoot, new ImportedRequirement_c_test56913_c(getId())) ;
 
-    if ( (  (objs55363.length) > 1) )
+    if ( (  (objs56912.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Satisfaction", //$NON-NLS-1$
            "Consistency: Object: Satisfaction: Association: 4706: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55363.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56912.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Satisfaction: Association: 4706: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55363.length )  , e); 
+          + Integer.toString( objs56912.length )  , e); 
       }
       retval = false;
 
@@ -2540,6 +2540,177 @@ return Satisfieswithimportedpro() || Satisfieswithimportedreq();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Satisfaction", " Operation entered: Satisfaction::Dispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR8001(this);
+
+
+boolean      v_isInGenericPackage =   (v_pe != null) ;
+
+
+if ( v_isInGenericPackage )
+{
+
+if (v_pe != null) {
+v_pe.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+return ;
+
+
+
+}
+
+else
+{
+
+Provision_c v_pro = Provision_c.getOneC_POnR4002(this);
+
+
+Requirement_c v_req = Requirement_c.getOneC_ROnR4002(this);
+
+
+if ( (  (v_pro != null)) && (  (v_req != null)) )
+{
+
+unrelateAcrossR4002From( v_req ) ; unrelateAcrossR4002From( v_pro ) ;
+
+
+
+}
+
+ImportedProvision_c v_importedPro = ImportedProvision_c.getOneCL_IPOnR4705(ImportedProvisionInSatisfaction_c.getOneCL_IPINSOnR4705(this));
+
+
+if ( (  (v_importedPro != null)) )
+{
+
+ImportedProvisionInSatisfaction_c v_ipins = ImportedProvisionInSatisfaction_c.getOneCL_IPINSOnR4705(this);
+
+
+if (v_ipins != null) {
+v_ipins.unrelateAcrossR4705From( this ) ; v_ipins.unrelateAcrossR4705From( v_importedPro ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_ipins != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_ipins.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_ipins));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+ImportedRequirement_c v_importedReq = ImportedRequirement_c.getOneCL_IROnR4706(this);
+
+
+if ( (  (v_importedReq != null)) )
+{
+
+this.unrelateAcrossR4706From(v_importedReq);
+
+
+
+}
+
+SatisfactionInComponentPackage_c v_sicp = SatisfactionInComponentPackage_c.getOnePA_SICPOnR9001(this);
+
+
+ComponentPackage_c v_comppkg = ComponentPackage_c.getOneCP_CPOnR9001(v_sicp);
+
+
+if ( (  (v_sicp != null)) )
+{
+
+if (v_sicp != null) {
+v_sicp.unrelateAcrossR9001From( this ) ; v_sicp.unrelateAcrossR9001From( v_comppkg ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_sicp != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_sicp.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_sicp));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+SatisfactionInComponent_c v_sic = SatisfactionInComponent_c.getOnePA_SICOnR9000(this);
+
+
+if ( (  (v_sic != null)) )
+{
+
+Component_c v_comp = Component_c.getOneC_COnR9000(v_sic);
+
+
+if (v_sic != null) {
+v_sic.unrelateAcrossR9000From( this ) ; v_sic.unrelateAcrossR9000From( v_comp ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_sic != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_sic.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_sic));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End dispose
   public  boolean      Satisfieswithimportedreq()

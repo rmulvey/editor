@@ -162,7 +162,8 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -178,9 +179,9 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
-				.equals(((DerivedBaseAttribute_c) elem).getAttr_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
+						.equals(((DerivedBaseAttribute_c) elem).getAttr_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAttr_id().equals(((DerivedBaseAttribute_c) elem).getAttr_id()))
@@ -188,9 +189,9 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((DerivedBaseAttribute_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((DerivedBaseAttribute_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id().equals(((DerivedBaseAttribute_c) elem).getObj_id()))
@@ -631,35 +632,35 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R107
-		BaseAttribute_c relInst38129 = (BaseAttribute_c) baseRoot
+		BaseAttribute_c relInst38711 = (BaseAttribute_c) baseRoot
 				.getInstanceList(BaseAttribute_c.class).get(
 						new Object[]{m_attr_id, m_obj_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38129 == null) {
-			relInst38129 = (BaseAttribute_c) Ooaofooa.getDefaultInstance()
+		if (relInst38711 == null) {
+			relInst38711 = (BaseAttribute_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(BaseAttribute_c.class)
 					.get(new Object[]{m_attr_id, m_obj_id});
 		}
-		if (relInst38129 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38711 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38129 = (BaseAttribute_c) roots[i].getInstanceList(
+				relInst38711 = (BaseAttribute_c) roots[i].getInstanceList(
 						BaseAttribute_c.class).get(
 						new Object[]{m_attr_id, m_obj_id});
-				if (relInst38129 != null)
+				if (relInst38711 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38129 != null) {
+		if (relInst38711 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38129) && !isProxy())) {
-				relInst38129.relateAcrossR107To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38711) && !isProxy())) {
+				relInst38711.relateAcrossR107To(this, notifyChanges);
 			}
 		}
 
@@ -1009,51 +1010,51 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DerivedBaseAttribute_c_test38131_c
+		class DerivedBaseAttribute_c_test38713_c
 				implements
 					ClassQueryInterface_c {
-			DerivedBaseAttribute_c_test38131_c(java.util.UUID p38132,
-					java.util.UUID p38133) {
-				m_p38132 = p38132;
-				m_p38133 = p38133;
+			DerivedBaseAttribute_c_test38713_c(java.util.UUID p38714,
+					java.util.UUID p38715) {
+				m_p38714 = p38714;
+				m_p38715 = p38715;
 			}
-			private java.util.UUID m_p38132;
-			private java.util.UUID m_p38133;
+			private java.util.UUID m_p38714;
+			private java.util.UUID m_p38715;
 			public boolean evaluate(Object candidate) {
 				DerivedBaseAttribute_c selected = (DerivedBaseAttribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p38132))
-						& (selected.getObj_id().equals(m_p38133));
+				retval = (selected.getAttr_id().equals(m_p38714))
+						& (selected.getObj_id().equals(m_p38715));
 				return retval;
 			}
 		}
 
-		DerivedBaseAttribute_c[] objs38130 = DerivedBaseAttribute_c
+		DerivedBaseAttribute_c[] objs38712 = DerivedBaseAttribute_c
 				.DerivedBaseAttributeInstances(modelRoot,
-						new DerivedBaseAttribute_c_test38131_c(getAttr_id(),
+						new DerivedBaseAttribute_c_test38713_c(getAttr_id(),
 								getObj_id()));
 
-		if (((objs38130.length) == 0)) {
+		if (((objs38712.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: Derived Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38130.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38712.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38130.length), e);
+										+ Integer.toString(objs38712.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38130.length) > 1)) {
+		if (((objs38712.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1061,7 +1062,7 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 								"Derived Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: Derived Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38130.length)
+										+ Integer.toString(objs38712.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1069,7 +1070,7 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Derived Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38130.length)
+										+ Integer.toString(objs38712.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1078,42 +1079,42 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 
 		// Derived Base Attribute is a subtype in association: rel.Numb = 107
 		// The supertype class is: Base Attribute
-		class BaseAttribute_c_test38137_c implements ClassQueryInterface_c {
-			BaseAttribute_c_test38137_c(java.util.UUID p38138,
-					java.util.UUID p38139) {
-				m_p38138 = p38138;
-				m_p38139 = p38139;
+		class BaseAttribute_c_test38719_c implements ClassQueryInterface_c {
+			BaseAttribute_c_test38719_c(java.util.UUID p38720,
+					java.util.UUID p38721) {
+				m_p38720 = p38720;
+				m_p38721 = p38721;
 			}
-			private java.util.UUID m_p38138;
-			private java.util.UUID m_p38139;
+			private java.util.UUID m_p38720;
+			private java.util.UUID m_p38721;
 			public boolean evaluate(Object candidate) {
 				BaseAttribute_c selected = (BaseAttribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p38138))
-						& (selected.getObj_id().equals(m_p38139));
+				retval = (selected.getAttr_id().equals(m_p38720))
+						& (selected.getObj_id().equals(m_p38721));
 				return retval;
 			}
 		}
 
-		BaseAttribute_c[] objs38136 = BaseAttribute_c.BaseAttributeInstances(
-				modelRoot, new BaseAttribute_c_test38137_c(getAttr_id(),
+		BaseAttribute_c[] objs38718 = BaseAttribute_c.BaseAttributeInstances(
+				modelRoot, new BaseAttribute_c_test38719_c(getAttr_id(),
 						getObj_id()));
 
-		if (((objs38136.length) != 1)) {
+		if (((objs38718.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: Derived Base Attribute: Association: 107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38136.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38718.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Base Attribute: Association: 107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38136.length), e);
+										+ Integer.toString(objs38718.length), e);
 			}
 			retval = false;
 
@@ -1121,45 +1122,45 @@ public class DerivedBaseAttribute_c extends NonRootModelElement
 
 		// Derived Base Attribute is a participating class in association: rel.Numb = 693
 		// Object: Derived Attribute Body
-		class DerivedAttributeBody_c_test38141_c
+		class DerivedAttributeBody_c_test38723_c
 				implements
 					ClassQueryInterface_c {
-			DerivedAttributeBody_c_test38141_c(java.util.UUID p38142,
-					java.util.UUID p38143) {
-				m_p38142 = p38142;
-				m_p38143 = p38143;
+			DerivedAttributeBody_c_test38723_c(java.util.UUID p38724,
+					java.util.UUID p38725) {
+				m_p38724 = p38724;
+				m_p38725 = p38725;
 			}
-			private java.util.UUID m_p38142;
-			private java.util.UUID m_p38143;
+			private java.util.UUID m_p38724;
+			private java.util.UUID m_p38725;
 			public boolean evaluate(Object candidate) {
 				DerivedAttributeBody_c selected = (DerivedAttributeBody_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p38142))
-						& (selected.getObj_id().equals(m_p38143));
+				retval = (selected.getAttr_id().equals(m_p38724))
+						& (selected.getObj_id().equals(m_p38725));
 				return retval;
 			}
 		}
 
-		DerivedAttributeBody_c[] objs38140 = DerivedAttributeBody_c
+		DerivedAttributeBody_c[] objs38722 = DerivedAttributeBody_c
 				.DerivedAttributeBodyInstances(modelRoot,
-						new DerivedAttributeBody_c_test38141_c(getAttr_id(),
+						new DerivedAttributeBody_c_test38723_c(getAttr_id(),
 								getObj_id()));
 
-		if (((objs38140.length) > 1)) {
+		if (((objs38722.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: Derived Base Attribute: Association: 693: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38140.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38722.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Base Attribute: Association: 693: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38140.length), e);
+										+ Integer.toString(objs38722.length), e);
 			}
 			retval = false;
 

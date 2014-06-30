@@ -233,7 +233,8 @@ public class ChainLink_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -249,8 +250,9 @@ public class ChainLink_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
-				.equals(((ChainLink_c) elem).getLink_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
+						.equals(((ChainLink_c) elem).getLink_id())) && this != elem)) {
 			return false;
 		}
 		if (!getLink_id().equals(((ChainLink_c) elem).getLink_id()))
@@ -1302,17 +1304,17 @@ public class ChainLink_c extends NonRootModelElement
 
 		if (SpecifiesInstancesOfModelClass == null) {
 			// R678
-			ModelClass_c relInst38901 = (ModelClass_c) baseRoot
+			ModelClass_c relInst39483 = (ModelClass_c) baseRoot
 					.getInstanceList(ModelClass_c.class).get(
 							new Object[]{m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38901 == null) {
-				relInst38901 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst39483 == null) {
+				relInst39483 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ModelClass_c.class)
 						.get(new Object[]{m_obj_id});
 			}
-			if (relInst38901 == null && searchAllRoots
+			if (relInst39483 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1320,33 +1322,33 @@ public class ChainLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38901 = (ModelClass_c) roots[i].getInstanceList(
+					relInst39483 = (ModelClass_c) roots[i].getInstanceList(
 							ModelClass_c.class).get(new Object[]{m_obj_id});
-					if (relInst38901 != null)
+					if (relInst39483 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38901 != null) {
+			if (relInst39483 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38901) && !isProxy())) {
-					relInst38901.relateAcrossR678To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39483) && !isProxy())) {
+					relInst39483.relateAcrossR678To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (Select == null) {
 			// R637
-			Select_c relInst38902 = (Select_c) baseRoot.getInstanceList(
+			Select_c relInst39484 = (Select_c) baseRoot.getInstanceList(
 					Select_c.class).get(new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38902 == null) {
-				relInst38902 = (Select_c) Ooaofooa.getDefaultInstance()
+			if (relInst39484 == null) {
+				relInst39484 = (Select_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Select_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst38902 == null && searchAllRoots
+			if (relInst39484 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1354,33 +1356,33 @@ public class ChainLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38902 = (Select_c) roots[i].getInstanceList(
+					relInst39484 = (Select_c) roots[i].getInstanceList(
 							Select_c.class).get(new Object[]{m_statement_id});
-					if (relInst38902 != null)
+					if (relInst39484 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38902 != null) {
+			if (relInst39484 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38902) && !isProxy())) {
-					relInst38902.relateAcrossR637To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39484) && !isProxy())) {
+					relInst39484.relateAcrossR637To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (PrecedesChainLink == null) {
 			// R604
-			ChainLink_c relInst38903 = (ChainLink_c) baseRoot.getInstanceList(
+			ChainLink_c relInst39485 = (ChainLink_c) baseRoot.getInstanceList(
 					ChainLink_c.class).get(new Object[]{m_next_link_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38903 == null) {
-				relInst38903 = (ChainLink_c) Ooaofooa.getDefaultInstance()
+			if (relInst39485 == null) {
+				relInst39485 = (ChainLink_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ChainLink_c.class)
 						.get(new Object[]{m_next_link_id});
 			}
-			if (relInst38903 == null && searchAllRoots
+			if (relInst39485 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1388,18 +1390,18 @@ public class ChainLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38903 = (ChainLink_c) roots[i].getInstanceList(
+					relInst39485 = (ChainLink_c) roots[i].getInstanceList(
 							ChainLink_c.class)
 							.get(new Object[]{m_next_link_id});
-					if (relInst38903 != null)
+					if (relInst39485 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38903 != null) {
+			if (relInst39485 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38903) && !isProxy())) {
-					relInst38903
+						|| (inSameComponent(this, relInst39485) && !isProxy())) {
+					relInst39485
 							.relateAcrossR604ToSucceeds(this, notifyChanges);
 				}
 			}
@@ -1407,17 +1409,17 @@ public class ChainLink_c extends NonRootModelElement
 
 		if (SpecifiesTraversalOfAssociation == null) {
 			// R681
-			Association_c relInst38904 = (Association_c) baseRoot
+			Association_c relInst39486 = (Association_c) baseRoot
 					.getInstanceList(Association_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38904 == null) {
-				relInst38904 = (Association_c) Ooaofooa.getDefaultInstance()
+			if (relInst39486 == null) {
+				relInst39486 = (Association_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Association_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst38904 == null && searchAllRoots
+			if (relInst39486 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1425,17 +1427,17 @@ public class ChainLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38904 = (Association_c) roots[i].getInstanceList(
+					relInst39486 = (Association_c) roots[i].getInstanceList(
 							Association_c.class).get(new Object[]{m_rel_id});
-					if (relInst38904 != null)
+					if (relInst39486 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38904 != null) {
+			if (relInst39486 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38904) && !isProxy())) {
-					relInst38904.relateAcrossR681To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39486) && !isProxy())) {
+					relInst39486.relateAcrossR681To(this, notifyChanges);
 				}
 			}
 		}
@@ -1826,42 +1828,42 @@ public class ChainLink_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ChainLink_c_test38906_c implements ClassQueryInterface_c {
-			ChainLink_c_test38906_c(java.util.UUID p38907) {
-				m_p38907 = p38907;
+		class ChainLink_c_test39488_c implements ClassQueryInterface_c {
+			ChainLink_c_test39488_c(java.util.UUID p39489) {
+				m_p39489 = p39489;
 			}
-			private java.util.UUID m_p38907;
+			private java.util.UUID m_p39489;
 			public boolean evaluate(Object candidate) {
 				ChainLink_c selected = (ChainLink_c) candidate;
 				boolean retval = false;
-				retval = (selected.getLink_id().equals(m_p38907));
+				retval = (selected.getLink_id().equals(m_p39489));
 				return retval;
 			}
 		}
 
-		ChainLink_c[] objs38905 = ChainLink_c.ChainLinkInstances(modelRoot,
-				new ChainLink_c_test38906_c(getLink_id()));
+		ChainLink_c[] objs39487 = ChainLink_c.ChainLinkInstances(modelRoot,
+				new ChainLink_c_test39488_c(getLink_id()));
 
-		if (((objs38905.length) == 0)) {
+		if (((objs39487.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38905.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39487.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Chain Link: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38905.length), e);
+								+ Integer.toString(objs39487.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38905.length) > 1)) {
+		if (((objs39487.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1869,7 +1871,7 @@ public class ChainLink_c extends NonRootModelElement
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38905.length)
+										+ Integer.toString(objs39487.length)
 										+ " Link_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1877,7 +1879,7 @@ public class ChainLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Chain Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38905.length)
+										+ Integer.toString(objs39487.length)
 										+ " Link_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1886,23 +1888,23 @@ public class ChainLink_c extends NonRootModelElement
 
 		// Chain Link is a referring class in association: rel.Numb = 637
 		// The participating class is: Select
-		class Select_c_test38911_c implements ClassQueryInterface_c {
-			Select_c_test38911_c(java.util.UUID p38912) {
-				m_p38912 = p38912;
+		class Select_c_test39493_c implements ClassQueryInterface_c {
+			Select_c_test39493_c(java.util.UUID p39494) {
+				m_p39494 = p39494;
 			}
-			private java.util.UUID m_p38912;
+			private java.util.UUID m_p39494;
 			public boolean evaluate(Object candidate) {
 				Select_c selected = (Select_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p38912));
+				retval = (selected.getStatement_id().equals(m_p39494));
 				return retval;
 			}
 		}
 
-		Select_c[] objs38910 = Select_c.SelectInstances(modelRoot,
-				new Select_c_test38911_c(getStatement_id()));
+		Select_c[] objs39492 = Select_c.SelectInstances(modelRoot,
+				new Select_c_test39493_c(getStatement_id()));
 
-		if (((objs38910.length) > 1)) {
+		if (((objs39492.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1910,7 +1912,7 @@ public class ChainLink_c extends NonRootModelElement
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Association: 637: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38910.length)
+										+ Integer.toString(objs39492.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1918,7 +1920,7 @@ public class ChainLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Chain Link: Association: 637: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38910.length)
+										+ Integer.toString(objs39492.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1927,23 +1929,23 @@ public class ChainLink_c extends NonRootModelElement
 
 		// Chain Link is a referring class in association: rel.Numb = 604
 		// The participating class is: Chain Link
-		class ChainLink_c_test38914_c implements ClassQueryInterface_c {
-			ChainLink_c_test38914_c(java.util.UUID p38915) {
-				m_p38915 = p38915;
+		class ChainLink_c_test39496_c implements ClassQueryInterface_c {
+			ChainLink_c_test39496_c(java.util.UUID p39497) {
+				m_p39497 = p39497;
 			}
-			private java.util.UUID m_p38915;
+			private java.util.UUID m_p39497;
 			public boolean evaluate(Object candidate) {
 				ChainLink_c selected = (ChainLink_c) candidate;
 				boolean retval = false;
-				retval = (selected.getLink_id().equals(m_p38915));
+				retval = (selected.getLink_id().equals(m_p39497));
 				return retval;
 			}
 		}
 
-		ChainLink_c[] objs38913 = ChainLink_c.ChainLinkInstances(modelRoot,
-				new ChainLink_c_test38914_c(getNext_link_id()));
+		ChainLink_c[] objs39495 = ChainLink_c.ChainLinkInstances(modelRoot,
+				new ChainLink_c_test39496_c(getNext_link_id()));
 
-		if (((objs38913.length) > 1)) {
+		if (((objs39495.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1951,7 +1953,7 @@ public class ChainLink_c extends NonRootModelElement
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Association: 604: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38913.length)
+										+ Integer.toString(objs39495.length)
 										+ " Next_Link_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1959,7 +1961,7 @@ public class ChainLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Chain Link: Association: 604: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38913.length)
+										+ Integer.toString(objs39495.length)
 										+ " Next_Link_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1968,25 +1970,25 @@ public class ChainLink_c extends NonRootModelElement
 
 		// Chain Link is a referring class in association: rel.Numb = 678
 		// The participating class is: Model Class
-		class ModelClass_c_test38917_c implements ClassQueryInterface_c {
-			ModelClass_c_test38917_c(java.util.UUID p38918) {
-				m_p38918 = p38918;
+		class ModelClass_c_test39499_c implements ClassQueryInterface_c {
+			ModelClass_c_test39499_c(java.util.UUID p39500) {
+				m_p39500 = p39500;
 			}
-			private java.util.UUID m_p38918;
+			private java.util.UUID m_p39500;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p38918));
+				retval = (selected.getObj_id().equals(m_p39500));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs38916 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test38917_c(getObj_id()));
+		ModelClass_c[] objs39498 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test39499_c(getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38916.length) != 1)) {
+		if (((objs39498.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1994,7 +1996,7 @@ public class ChainLink_c extends NonRootModelElement
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Association: 678: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38916.length)
+										+ Integer.toString(objs39498.length)
 										+ " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2002,7 +2004,7 @@ public class ChainLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Chain Link: Association: 678: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38916.length)
+										+ Integer.toString(objs39498.length)
 										+ " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2011,25 +2013,25 @@ public class ChainLink_c extends NonRootModelElement
 
 		// Chain Link is a referring class in association: rel.Numb = 681
 		// The participating class is: Association
-		class Association_c_test38920_c implements ClassQueryInterface_c {
-			Association_c_test38920_c(java.util.UUID p38921) {
-				m_p38921 = p38921;
+		class Association_c_test39502_c implements ClassQueryInterface_c {
+			Association_c_test39502_c(java.util.UUID p39503) {
+				m_p39503 = p39503;
 			}
-			private java.util.UUID m_p38921;
+			private java.util.UUID m_p39503;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p38921));
+				retval = (selected.getRel_id().equals(m_p39503));
 				return retval;
 			}
 		}
 
-		Association_c[] objs38919 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test38920_c(getRel_id()));
+		Association_c[] objs39501 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test39502_c(getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38919.length) != 1)) {
+		if (((objs39501.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2037,7 +2039,7 @@ public class ChainLink_c extends NonRootModelElement
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Association: 681: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38919.length)
+										+ Integer.toString(objs39501.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2045,7 +2047,7 @@ public class ChainLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Chain Link: Association: 681: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38919.length)
+										+ Integer.toString(objs39501.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2054,37 +2056,37 @@ public class ChainLink_c extends NonRootModelElement
 
 		// Chain Link is a participating class in association: rel.Numb = 604
 		// Object: Chain Link
-		class ChainLink_c_test38923_c implements ClassQueryInterface_c {
-			ChainLink_c_test38923_c(java.util.UUID p38924) {
-				m_p38924 = p38924;
+		class ChainLink_c_test39505_c implements ClassQueryInterface_c {
+			ChainLink_c_test39505_c(java.util.UUID p39506) {
+				m_p39506 = p39506;
 			}
-			private java.util.UUID m_p38924;
+			private java.util.UUID m_p39506;
 			public boolean evaluate(Object candidate) {
 				ChainLink_c selected = (ChainLink_c) candidate;
 				boolean retval = false;
-				retval = (selected.getNext_link_id().equals(m_p38924));
+				retval = (selected.getNext_link_id().equals(m_p39506));
 				return retval;
 			}
 		}
 
-		ChainLink_c[] objs38922 = ChainLink_c.ChainLinkInstances(modelRoot,
-				new ChainLink_c_test38923_c(getLink_id()));
+		ChainLink_c[] objs39504 = ChainLink_c.ChainLinkInstances(modelRoot,
+				new ChainLink_c_test39505_c(getLink_id()));
 
-		if (((objs38922.length) > 1)) {
+		if (((objs39504.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Chain Link", //$NON-NLS-1$
 								"Consistency: Object: Chain Link: Association: 604: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38922.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39504.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Chain Link: Association: 604: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38922.length), e);
+										+ Integer.toString(objs39504.length), e);
 			}
 			retval = false;
 

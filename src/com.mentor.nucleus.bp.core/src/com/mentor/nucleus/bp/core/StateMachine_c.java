@@ -172,7 +172,7 @@ p_m_config_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -188,7 +188,7 @@ p_m_config_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((StateMachine_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((StateMachine_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((StateMachine_c)elem).getSm_id())) return false;
@@ -3361,56 +3361,56 @@ private static StateMachine_c findStateMachineInstance(ModelRoot modelRoot, Clas
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class StateMachine_c_test38376_c implements ClassQueryInterface_c
+    class StateMachine_c_test38958_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test38376_c( java.util.UUID            p38377 ) {
-	  m_p38377 = p38377;
+	  StateMachine_c_test38958_c( java.util.UUID            p38959 ) {
+	  m_p38959 = p38959;
 	  }
-	  private java.util.UUID             m_p38377; 
+	  private java.util.UUID             m_p38959; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38377));
+	      retval = (selected.getSm_id().equals(m_p38959));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs38375 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38376_c(getSm_id())) ;
+    StateMachine_c [] objs38957 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38958_c(getSm_id())) ;
 
-    if ( (  (objs38375.length) == 0) )
+    if ( (  (objs38957.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine", //$NON-NLS-1$
            "Consistency: Object: State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38375.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38957.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38375.length )  , e); 
+          + Integer.toString( objs38957.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38375.length) > 1) )
+    if ( (  (objs38957.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine", //$NON-NLS-1$
            "Consistency: Object: State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38375.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38957.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38375.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38957.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3425,60 +3425,60 @@ private static StateMachine_c findStateMachineInstance(ModelRoot modelRoot, Clas
           // State Machine is a participating class in association: rel.Numb = 502
              // Object: State Machine Event
           // Supertype: rel.Numb = 510
-    int objs38380 = 0;
+    int objs38962 = 0;
             // Subtype Object: Mealy State Machine
-    class MealyStateMachine_c_test38381_c implements ClassQueryInterface_c
+    class MealyStateMachine_c_test38963_c implements ClassQueryInterface_c
     {
-	  MealyStateMachine_c_test38381_c( java.util.UUID            p38382 ) {
-	  m_p38382 = p38382;
+	  MealyStateMachine_c_test38963_c( java.util.UUID            p38964 ) {
+	  m_p38964 = p38964;
 	  }
-	  private java.util.UUID             m_p38382; 
+	  private java.util.UUID             m_p38964; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MealyStateMachine_c selected = (MealyStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38382));
+	      retval = (selected.getSm_id().equals(m_p38964));
 	      return retval;
 	  }
     }
 
-    MealyStateMachine_c [] objs38383 = 
-    MealyStateMachine_c.MealyStateMachineInstances(modelRoot, new MealyStateMachine_c_test38381_c(getSm_id())) ;
+    MealyStateMachine_c [] objs38965 = 
+    MealyStateMachine_c.MealyStateMachineInstances(modelRoot, new MealyStateMachine_c_test38963_c(getSm_id())) ;
  
-    objs38380 = objs38380 + objs38383.length;
+    objs38962 = objs38962 + objs38965.length;
             // Subtype Object: Moore State Machine
-    class MooreStateMachine_c_test38384_c implements ClassQueryInterface_c
+    class MooreStateMachine_c_test38966_c implements ClassQueryInterface_c
     {
-	  MooreStateMachine_c_test38384_c( java.util.UUID            p38385 ) {
-	  m_p38385 = p38385;
+	  MooreStateMachine_c_test38966_c( java.util.UUID            p38967 ) {
+	  m_p38967 = p38967;
 	  }
-	  private java.util.UUID             m_p38385; 
+	  private java.util.UUID             m_p38967; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MooreStateMachine_c selected = (MooreStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38385));
+	      retval = (selected.getSm_id().equals(m_p38967));
 	      return retval;
 	  }
     }
 
-    MooreStateMachine_c [] objs38386 = 
-    MooreStateMachine_c.MooreStateMachineInstances(modelRoot, new MooreStateMachine_c_test38384_c(getSm_id())) ;
+    MooreStateMachine_c [] objs38968 = 
+    MooreStateMachine_c.MooreStateMachineInstances(modelRoot, new MooreStateMachine_c_test38966_c(getSm_id())) ;
  
-    objs38380 = objs38380 + objs38386.length;
-    if ( objs38380 != 1 )
+    objs38962 = objs38962 + objs38968.length;
+    if ( objs38962 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine", //$NON-NLS-1$
            "Consistency: Object: State Machine: Association: 510: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38380 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38962 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine: Association: 510: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38380 )  , e); 
+          + Integer.toString( objs38962 )  , e); 
       }
       retval = false;
 
@@ -3487,60 +3487,60 @@ private static StateMachine_c findStateMachineInstance(ModelRoot modelRoot, Clas
           // State Machine is a participating class in association: rel.Numb = 515
              // Object: Action
           // Supertype: rel.Numb = 517
-    int objs38387 = 0;
+    int objs38969 = 0;
             // Subtype Object: Instance State Machine
-    class InstanceStateMachine_c_test38388_c implements ClassQueryInterface_c
+    class InstanceStateMachine_c_test38970_c implements ClassQueryInterface_c
     {
-	  InstanceStateMachine_c_test38388_c( java.util.UUID            p38389 ) {
-	  m_p38389 = p38389;
+	  InstanceStateMachine_c_test38970_c( java.util.UUID            p38971 ) {
+	  m_p38971 = p38971;
 	  }
-	  private java.util.UUID             m_p38389; 
+	  private java.util.UUID             m_p38971; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InstanceStateMachine_c selected = (InstanceStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38389));
+	      retval = (selected.getSm_id().equals(m_p38971));
 	      return retval;
 	  }
     }
 
-    InstanceStateMachine_c [] objs38390 = 
-    InstanceStateMachine_c.InstanceStateMachineInstances(modelRoot, new InstanceStateMachine_c_test38388_c(getSm_id())) ;
+    InstanceStateMachine_c [] objs38972 = 
+    InstanceStateMachine_c.InstanceStateMachineInstances(modelRoot, new InstanceStateMachine_c_test38970_c(getSm_id())) ;
  
-    objs38387 = objs38387 + objs38390.length;
+    objs38969 = objs38969 + objs38972.length;
             // Subtype Object: Class State Machine
-    class ClassStateMachine_c_test38391_c implements ClassQueryInterface_c
+    class ClassStateMachine_c_test38973_c implements ClassQueryInterface_c
     {
-	  ClassStateMachine_c_test38391_c( java.util.UUID            p38392 ) {
-	  m_p38392 = p38392;
+	  ClassStateMachine_c_test38973_c( java.util.UUID            p38974 ) {
+	  m_p38974 = p38974;
 	  }
-	  private java.util.UUID             m_p38392; 
+	  private java.util.UUID             m_p38974; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassStateMachine_c selected = (ClassStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38392));
+	      retval = (selected.getSm_id().equals(m_p38974));
 	      return retval;
 	  }
     }
 
-    ClassStateMachine_c [] objs38393 = 
-    ClassStateMachine_c.ClassStateMachineInstances(modelRoot, new ClassStateMachine_c_test38391_c(getSm_id())) ;
+    ClassStateMachine_c [] objs38975 = 
+    ClassStateMachine_c.ClassStateMachineInstances(modelRoot, new ClassStateMachine_c_test38973_c(getSm_id())) ;
  
-    objs38387 = objs38387 + objs38393.length;
-    if ( objs38387 != 1 )
+    objs38969 = objs38969 + objs38975.length;
+    if ( objs38969 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine", //$NON-NLS-1$
            "Consistency: Object: State Machine: Association: 517: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38387 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38969 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine: Association: 517: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38387 )  , e); 
+          + Integer.toString( objs38969 )  , e); 
       }
       retval = false;
 
@@ -3644,7 +3644,7 @@ if ( (  (v_ism != null)) )
 ModelClass_c v_ismclass = ModelClass_c.getOneO_OBJOnR518(v_ism);
 
 
-  class Attribute_test37086_c implements ClassQueryInterface_c
+  class Attribute_test37668_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3652,7 +3652,7 @@ ModelClass_c v_ismclass = ModelClass_c.getOneO_OBJOnR518(v_ism);
 		return selected.getName().equals("current_state") ;
 	}
   }
-Attribute_c v_attr = Attribute_c.getOneO_ATTROnR102(v_ismclass, new Attribute_test37086_c());
+Attribute_c v_attr = Attribute_c.getOneO_ATTROnR102(v_ismclass, new Attribute_test37668_c());
 
 
 if ( (  (v_attr != null)) )
@@ -3744,9 +3744,9 @@ StateMachineEvent_c [] v_evts = StateMachineEvent_c.getManySM_EVTsOnR502(this);
 
 
 StateMachineEvent_c  v_evt = null;
-for ( int i36606 = 0; i36606 < v_evts.length; i36606++)
+for ( int i37188 = 0; i37188 < v_evts.length; i37188++)
 {
-  v_evt = v_evts[i36606] ;
+  v_evt = v_evts[i37188] ;
 
 if (v_evt != null) {
 v_evt.Dispose() ;
@@ -3765,9 +3765,9 @@ StateMachineEventDataItem_c [] v_evtdis = StateMachineEventDataItem_c.getManySM_
 
 
 StateMachineEventDataItem_c  v_evtdi = null;
-for ( int i36607 = 0; i36607 < v_evtdis.length; i36607++)
+for ( int i37189 = 0; i37189 < v_evtdis.length; i37189++)
 {
-  v_evtdi = v_evtdis[i36607] ;
+  v_evtdi = v_evtdis[i37189] ;
 
 if (v_evtdi != null) {
 v_evtdi.Dispose() ;
@@ -3786,9 +3786,9 @@ EventSupplementalData_c [] v_supdts = EventSupplementalData_c.getManySM_SUPDTsOn
 
 
 EventSupplementalData_c  v_supdt = null;
-for ( int i36608 = 0; i36608 < v_supdts.length; i36608++)
+for ( int i37190 = 0; i37190 < v_supdts.length; i37190++)
 {
-  v_supdt = v_supdts[i36608] ;
+  v_supdt = v_supdts[i37190] ;
 
 if (v_supdt != null) {
 v_supdt.Dispose() ;
@@ -3807,9 +3807,9 @@ StateMachineState_c [] v_states = StateMachineState_c.getManySM_STATEsOnR501(thi
 
 
 StateMachineState_c  v_state = null;
-for ( int i36609 = 0; i36609 < v_states.length; i36609++)
+for ( int i37191 = 0; i37191 < v_states.length; i37191++)
 {
-  v_state = v_states[i36609] ;
+  v_state = v_states[i37191] ;
 
 if (v_state != null) {
 v_state.Dispose() ;
@@ -3828,9 +3828,9 @@ Transition_c [] v_trans = Transition_c.getManySM_TXNsOnR505(this);
 
 
 Transition_c  v_tran = null;
-for ( int i36610 = 0; i36610 < v_trans.length; i36610++)
+for ( int i37192 = 0; i37192 < v_trans.length; i37192++)
 {
-  v_tran = v_trans[i36610] ;
+  v_tran = v_trans[i37192] ;
 
 if (v_tran != null) {
 v_tran.Dispose() ;
@@ -3868,9 +3868,9 @@ AccessPath_c [] v_aps = AccessPath_c.getManyCA_ACCsOnR416(this);
 
 
 AccessPath_c  v_ap = null;
-for ( int i36611 = 0; i36611 < v_aps.length; i36611++)
+for ( int i37193 = 0; i37193 < v_aps.length; i37193++)
 {
-  v_ap = v_aps[i36611] ;
+  v_ap = v_aps[i37193] ;
 
 if (v_ap != null) {
 v_ap.Dispose() ;
@@ -3889,9 +3889,9 @@ CommunicationPath_c [] v_ecps = CommunicationPath_c.getManyCA_COMMsOnR401(EeToSm
 
 
 CommunicationPath_c  v_ecp = null;
-for ( int i36612 = 0; i36612 < v_ecps.length; i36612++)
+for ( int i37194 = 0; i37194 < v_ecps.length; i37194++)
 {
-  v_ecp = v_ecps[i36612] ;
+  v_ecp = v_ecps[i37194] ;
 
 if (v_ecp != null) {
 v_ecp.Dispose() ;
@@ -3910,9 +3910,9 @@ CommunicationPath_c [] v_scps = CommunicationPath_c.getManyCA_COMMsOnR401(SmToSm
 
 
 CommunicationPath_c  v_scp = null;
-for ( int i36613 = 0; i36613 < v_scps.length; i36613++)
+for ( int i37195 = 0; i37195 < v_scps.length; i37195++)
 {
-  v_scp = v_scps[i36613] ;
+  v_scp = v_scps[i37195] ;
 
 if (v_scp != null) {
 v_scp.Dispose() ;
@@ -3931,9 +3931,9 @@ CommunicationPath_c [] v_ocps = CommunicationPath_c.getManyCA_COMMsOnR401(SmToSm
 
 
 CommunicationPath_c  v_ocp = null;
-for ( int i36614 = 0; i36614 < v_ocps.length; i36614++)
+for ( int i37196 = 0; i37196 < v_ocps.length; i37196++)
 {
-  v_ocp = v_ocps[i36614] ;
+  v_ocp = v_ocps[i37196] ;
 
 if (v_ocp != null) {
 v_ocp.Dispose() ;
@@ -3952,9 +3952,9 @@ CommunicationPath_c [] v_secps = CommunicationPath_c.getManyCA_COMMsOnR401(SmToE
 
 
 CommunicationPath_c  v_secp = null;
-for ( int i36615 = 0; i36615 < v_secps.length; i36615++)
+for ( int i37197 = 0; i37197 < v_secps.length; i37197++)
 {
-  v_secp = v_secps[i36615] ;
+  v_secp = v_secps[i37197] ;
 
 if (v_secp != null) {
 v_secp.Dispose() ;
@@ -4003,7 +4003,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Newtransition") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StateMachineState_test37087_c implements ClassQueryInterface_c
+  class StateMachineState_test37669_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4011,10 +4011,10 @@ else {
 		return (selected.getSmstt_id().equals(p_From)) ;
 	}
   }
-StateMachineState_c v_fromState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37087_c());
+StateMachineState_c v_fromState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37669_c());
 
 
-  class StateMachineState_test37088_c implements ClassQueryInterface_c
+  class StateMachineState_test37670_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4022,7 +4022,7 @@ StateMachineState_c v_fromState = StateMachineState_c.getOneSM_STATEOnR501(this,
 		return (selected.getSmstt_id().equals(p_To)) ;
 	}
   }
-StateMachineState_c v_toState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37088_c());
+StateMachineState_c v_toState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37670_c());
 
 
 if ( (  (v_fromState != null) &&   (v_toState != null)) )
@@ -4100,7 +4100,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Newcreationtransition") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StateMachineState_test37089_c implements ClassQueryInterface_c
+  class StateMachineState_test37671_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4108,7 +4108,7 @@ return false;
 		return (selected.getSmstt_id().equals(p_From)) ;
 	}
   }
-StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37089_c());
+StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37671_c());
 
 
 if ( (  (v_state != null)) )
@@ -4176,7 +4176,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Canassignevent") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StateMachineEvent_test36808_c implements ClassQueryInterface_c
+  class StateMachineEvent_test37390_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4184,7 +4184,7 @@ return false;
 		return selected.getSmevt_id().equals(p_Eventid) && selected.getSm_id().equals(p_Eventstatemachineid) ;
 	}
   }
-StateMachineEvent_c v_event = StateMachineEvent_c.StateMachineEventInstance(modelRoot, new StateMachineEvent_test36808_c()) ;
+StateMachineEvent_c v_event = StateMachineEvent_c.StateMachineEventInstance(modelRoot, new StateMachineEvent_test37390_c()) ;
 
 
 if ( (  (v_event != null)) )
@@ -4216,7 +4216,7 @@ return getSm_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Pastetransition") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Transition_test36809_c implements ClassQueryInterface_c
+  class Transition_test37391_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4224,7 +4224,7 @@ return getSm_id();
 		return selected.getTrans_id().equals(p_Id) ;
 	}
   }
-Transition_c v_transition = Transition_c.TransitionInstance(modelRoot, new Transition_test36809_c()) ;
+Transition_c v_transition = Transition_c.TransitionInstance(modelRoot, new Transition_test37391_c()) ;
 
 
 if ( (  (v_transition != null)) )
@@ -4316,7 +4316,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Pastestatemachinestate") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StateMachineState_test36810_c implements ClassQueryInterface_c
+  class StateMachineState_test37392_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4324,7 +4324,7 @@ else {
 		return (selected.getSmstt_id().equals(p_Id)) ;
 	}
   }
-StateMachineState_c v_state = StateMachineState_c.StateMachineStateInstance(modelRoot, new StateMachineState_test36810_c()) ;
+StateMachineState_c v_state = StateMachineState_c.StateMachineStateInstance(modelRoot, new StateMachineState_test37392_c()) ;
 
 
 if ( (  (v_state != null)) )
@@ -4334,9 +4334,9 @@ StateEventMatrixEntry_c [] v_semes = StateEventMatrixEntry_c.getManySM_SEMEsOnR5
 
 
 StateEventMatrixEntry_c  v_seme = null;
-for ( int i36616 = 0; i36616 < v_semes.length; i36616++)
+for ( int i37198 = 0; i37198 < v_semes.length; i37198++)
 {
-  v_seme = v_semes[i36616] ;
+  v_seme = v_semes[i37198] ;
 
 SemEvent_c v_semEvt = SemEvent_c.getOneSM_SEVTOnR503(v_seme);
 
@@ -4474,19 +4474,19 @@ else {
 StateMachineState_c [] v_existingStates = StateMachineState_c.getManySM_STATEsOnR501(this);
 
 
-  class StateMachineState_test37090_c implements ClassQueryInterface_c
+  class StateMachineState_test37672_c implements ClassQueryInterface_c
   {
-	StateMachineState_test37090_c( int          p37091 ) {
-		m_p37091 = p37091;
+	StateMachineState_test37672_c( int          p37673 ) {
+		m_p37673 = p37673;
 	}
-	private int          m_p37091;
+	private int          m_p37673;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineState_c selected = (StateMachineState_c)candidate;
-		return (selected.getNumb() == m_p37091) ;
+		return (selected.getNumb() == m_p37673) ;
 	}
   }
-StateMachineState_c v_sameNumberState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37090_c(v_state.getNumb()));
+StateMachineState_c v_sameNumberState = StateMachineState_c.getOneSM_STATEOnR501(this, new StateMachineState_test37672_c(v_state.getNumb()));
 
 
 if ( (  (v_sameNumberState != null)) )
@@ -4496,9 +4496,9 @@ int          v_greatestNumb = 1 ;
 
 
 StateMachineState_c  v_existingState = null;
-for ( int i36617 = 0; i36617 < v_existingStates.length; i36617++)
+for ( int i37199 = 0; i37199 < v_existingStates.length; i37199++)
 {
-  v_existingState = v_existingStates[i36617] ;
+  v_existingState = v_existingStates[i37199] ;
 
 if ( (v_existingState.getNumb() > v_greatestNumb) )
 {
@@ -4529,9 +4529,9 @@ SemEvent_c [] v_event_set = SemEvent_c.getManySM_SEVTsOnR525(StateMachineEvent_c
 
 
 SemEvent_c  v_event = null;
-for ( int i36618 = 0; i36618 < v_event_set.length; i36618++)
+for ( int i37200 = 0; i37200 < v_event_set.length; i37200++)
 {
-  v_event = v_event_set[i36618] ;
+  v_event = v_event_set[i37200] ;
 
 StateEventMatrixEntry_c v_sem = new StateEventMatrixEntry_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_sem));
@@ -4587,9 +4587,9 @@ StateMachineEvent_c [] v_evts = StateMachineEvent_c.getManySM_EVTsOnR502(this);
 
 
 StateMachineEvent_c  v_evt = null;
-for ( int i36619 = 0; i36619 < v_evts.length; i36619++)
+for ( int i37201 = 0; i37201 < v_evts.length; i37201++)
 {
-  v_evt = v_evts[i36619] ;
+  v_evt = v_evts[i37201] ;
 
 NonLocalEvent_c v_nlevt = NonLocalEvent_c.getOneSM_NLEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(v_evt));
 
@@ -4620,9 +4620,9 @@ Transition_c [] v_transitions = Transition_c.getManySM_TXNsOnR507(NewStateTransi
 
 
 Transition_c  v_transition = null;
-for ( int i36620 = 0; i36620 < v_transitions.length; i36620++)
+for ( int i37202 = 0; i37202 < v_transitions.length; i37202++)
 {
-  v_transition = v_transitions[i36620] ;
+  v_transition = v_transitions[i37202] ;
 
 if (v_transition != null) {
 v_transition.Updateassignedsignal() ;
@@ -4686,9 +4686,9 @@ StateMachineEvent_c [] v_events = StateMachineEvent_c.getManySM_EVTsOnR502(this)
 
 
 StateMachineEvent_c  v_existingEvent = null;
-for ( int i36621 = 0; i36621 < v_events.length; i36621++)
+for ( int i37203 = 0; i37203 < v_events.length; i37203++)
 {
-  v_existingEvent = v_events[i36621] ;
+  v_existingEvent = v_events[i37203] ;
 
 if ( (p_Iscreation) )
 {
@@ -4708,19 +4708,19 @@ continue;
 else
 {
 
-  class StateMachineEvent_test37092_c implements ClassQueryInterface_c
+  class StateMachineEvent_test37674_c implements ClassQueryInterface_c
   {
-	StateMachineEvent_test37092_c( String       p37093 ) {
-		m_p37093 = p37093;
+	StateMachineEvent_test37674_c( String       p37675 ) {
+		m_p37675 = p37675;
 	}
-	private String       m_p37093;
+	private String       m_p37675;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineEvent_c selected = (StateMachineEvent_c)candidate;
-		return selected.getMning().equals(m_p37093) ;
+		return selected.getMning().equals(m_p37675) ;
 	}
   }
-StateMachineEvent_c v_otherEvt = StateMachineEvent_c.getOneSM_EVTOnR502(this, new StateMachineEvent_test37092_c(v_name));
+StateMachineEvent_c v_otherEvt = StateMachineEvent_c.getOneSM_EVTOnR502(this, new StateMachineEvent_test37674_c(v_name));
 
 
 CreationTransition_c v_existingCreationTrans = CreationTransition_c.getOneSM_CRTXNOnR509(LocalEvent_c.getOneSM_LEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(v_otherEvt)));
@@ -4810,7 +4810,7 @@ return Gd_c.Null_unique_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Canassignsignal") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ExecutableProperty_test37094_c implements ClassQueryInterface_c
+  class ExecutableProperty_test37676_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4818,7 +4818,7 @@ return Gd_c.Null_unique_id();
 		return (selected.getId().equals(p_Signal_id)) ;
 	}
   }
-ExecutableProperty_c v_interfaceSignal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(this))))))))), new ExecutableProperty_test37094_c());
+ExecutableProperty_c v_interfaceSignal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(this))))))))), new ExecutableProperty_test37676_c());
 
 
 PackageableElement_c v_packageableElem = PackageableElement_c.getOnePE_PEOnR8001(ModelClass_c.getOneO_OBJOnR519(ClassStateMachine_c.getOneSM_ASMOnR517(this)));
@@ -4848,7 +4848,7 @@ v_containingComponent = (Component_c) modelRoot.getInstanceList(Component_c.clas
 
 }
 
-  class ExecutableProperty_test37095_c implements ClassQueryInterface_c
+  class ExecutableProperty_test37677_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4856,13 +4856,13 @@ v_containingComponent = (Component_c) modelRoot.getInstanceList(Component_c.clas
 		return (selected.getId().equals(p_Signal_id)) ;
 	}
   }
-v_interfaceSignal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(v_containingComponent))), new ExecutableProperty_test37095_c());
+v_interfaceSignal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(v_containingComponent))), new ExecutableProperty_test37677_c());
 
 
 
 }
 
-  class RequiredExecutableProperty_test37096_c implements ClassQueryInterface_c
+  class RequiredExecutableProperty_test37678_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4870,7 +4870,7 @@ v_interfaceSignal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_
 		return selected.getExecutableproperty_id().equals(p_Signal_id) && selected.getRequirement_id().equals(p_Interface_id) ;
 	}
   }
-RequiredExecutableProperty_c v_reqEP = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_interfaceSignal, new RequiredExecutableProperty_test37096_c());
+RequiredExecutableProperty_c v_reqEP = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_interfaceSignal, new RequiredExecutableProperty_test37678_c());
 
 
 if (   (v_reqEP != null) )
@@ -4889,7 +4889,7 @@ p_Transition_id);
 else
 {
 
-  class ProvidedExecutableProperty_test37097_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test37679_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4897,7 +4897,7 @@ else
 		return selected.getExecutableproperty_id().equals(p_Signal_id) && selected.getProvision_id().equals(p_Interface_id) ;
 	}
   }
-ProvidedExecutableProperty_c v_provEP = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_interfaceSignal, new ProvidedExecutableProperty_test37097_c());
+ProvidedExecutableProperty_c v_provEP = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_interfaceSignal, new ProvidedExecutableProperty_test37679_c());
 
 
 if (   (v_provEP != null) )
@@ -4925,7 +4925,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "State Machine", " Operation entered: StateMachine::Hasvalidsignals") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class InterfaceReference_test37098_c implements ClassQueryInterface_c
+  class InterfaceReference_test37680_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4933,7 +4933,7 @@ return false;
 		return selected.getId().equals(p_Interface_id) ;
 	}
   }
-InterfaceReference_c v_ifRef = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(this))))))), new InterfaceReference_test37098_c());
+InterfaceReference_c v_ifRef = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(this))))))), new InterfaceReference_test37680_c());
 
 
 PackageableElement_c v_packageableElem = PackageableElement_c.getOnePE_PEOnR8001(ModelClass_c.getOneO_OBJOnR519(ClassStateMachine_c.getOneSM_ASMOnR517(this)));
@@ -4954,7 +4954,7 @@ java.util.UUID         v_containingComponentId = v_package.Getcontainingcomponen
 Component_c v_containingComponent = (Component_c) modelRoot.getInstanceList(Component_c.class).getGlobal(null, v_containingComponentId);
 
 
-  class InterfaceReference_test37099_c implements ClassQueryInterface_c
+  class InterfaceReference_test37681_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4962,7 +4962,7 @@ Component_c v_containingComponent = (Component_c) modelRoot.getInstanceList(Comp
 		return selected.getId().equals(p_Interface_id) ;
 	}
   }
-v_ifRef = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(v_containingComponent), new InterfaceReference_test37099_c());
+v_ifRef = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(v_containingComponent), new InterfaceReference_test37681_c());
 
 
 
@@ -4972,9 +4972,9 @@ InterfaceSignal_c [] v_signals = InterfaceSignal_c.getManyC_ASsOnR4004(Executabl
 
 
 InterfaceSignal_c  v_sig = null;
-for ( int i36622 = 0; i36622 < v_signals.length; i36622++)
+for ( int i37204 = 0; i37204 < v_signals.length; i37204++)
 {
-  v_sig = v_signals[i36622] ;
+  v_sig = v_signals[i37204] ;
 
 if ( Canassignsignal(			    
 v_ifRef.getId()			    
@@ -5142,9 +5142,9 @@ StateMachineEventDataItem_c [] v_items = StateMachineEventDataItem_c.getManySM_E
 
 
 StateMachineEventDataItem_c  v_item = null;
-for ( int i36623 = 0; i36623 < v_items.length; i36623++)
+for ( int i37205 = 0; i37205 < v_items.length; i37205++)
 {
-  v_item = v_items[i36623] ;
+  v_item = v_items[i37205] ;
 
 StateMachine_c v_existingSm = StateMachine_c.getOneSM_SMOnR516(v_item);
 
@@ -5242,9 +5242,9 @@ StateMachineEvent_c [] v_evts = StateMachineEvent_c.getManySM_EVTsOnR502(this);
 
 
 StateMachineEvent_c  v_evt = null;
-for ( int i36624 = 0; i36624 < v_evts.length; i36624++)
+for ( int i37206 = 0; i37206 < v_evts.length; i37206++)
 {
-  v_evt = v_evts[i36624] ;
+  v_evt = v_evts[i37206] ;
 
 SignalEvent_c v_sigEvt = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(v_evt));
 
@@ -5256,9 +5256,9 @@ Transition_c [] v_transitions = Transition_c.getManySM_TXNsOnR507(NewStateTransi
 
 
 Transition_c  v_transition = null;
-for ( int i36625 = 0; i36625 < v_transitions.length; i36625++)
+for ( int i37207 = 0; i37207 < v_transitions.length; i37207++)
 {
-  v_transition = v_transitions[i36625] ;
+  v_transition = v_transitions[i37207] ;
 
 if (v_transition != null) {
 v_transition.Updateassignedsignal() ;

@@ -171,7 +171,8 @@ public class AccessPath_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -187,8 +188,9 @@ public class AccessPath_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
-				.equals(((AccessPath_c) elem).getApath_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
+						.equals(((AccessPath_c) elem).getApath_id())) && this != elem)) {
 			return false;
 		}
 		if (!getApath_id().equals(((AccessPath_c) elem).getApath_id()))
@@ -1282,16 +1284,16 @@ public class AccessPath_c extends NonRootModelElement
 
 		if (AbstractsSynchronousDataAccessBetweenClassesInSubsystem == null) {
 			// R6
-			Subsystem_c relInst55966 = (Subsystem_c) baseRoot.getInstanceList(
+			Subsystem_c relInst57515 = (Subsystem_c) baseRoot.getInstanceList(
 					Subsystem_c.class).get(new Object[]{m_ss_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55966 == null) {
-				relInst55966 = (Subsystem_c) Ooaofooa.getDefaultInstance()
+			if (relInst57515 == null) {
+				relInst57515 = (Subsystem_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Subsystem_c.class)
 						.get(new Object[]{m_ss_id});
 			}
-			if (relInst55966 == null && searchAllRoots
+			if (relInst57515 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1299,34 +1301,34 @@ public class AccessPath_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55966 = (Subsystem_c) roots[i].getInstanceList(
+					relInst57515 = (Subsystem_c) roots[i].getInstanceList(
 							Subsystem_c.class).get(new Object[]{m_ss_id});
-					if (relInst55966 != null)
+					if (relInst57515 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55966 != null) {
+			if (relInst57515 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55966) && !isProxy())) {
-					relInst55966.relateAcrossR6To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57515) && !isProxy())) {
+					relInst57515.relateAcrossR6To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OriginationObjCanBeRepresentedByImportedClass == null) {
 			// R425
-			ImportedClass_c relInst55967 = (ImportedClass_c) baseRoot
+			ImportedClass_c relInst57516 = (ImportedClass_c) baseRoot
 					.getInstanceList(ImportedClass_c.class).get(
 							new Object[]{m_iobj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55967 == null) {
-				relInst55967 = (ImportedClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst57516 == null) {
+				relInst57516 = (ImportedClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ImportedClass_c.class)
 						.get(new Object[]{m_iobj_id});
 			}
-			if (relInst55967 == null && searchAllRoots
+			if (relInst57516 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1334,34 +1336,34 @@ public class AccessPath_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55967 = (ImportedClass_c) roots[i].getInstanceList(
+					relInst57516 = (ImportedClass_c) roots[i].getInstanceList(
 							ImportedClass_c.class).get(new Object[]{m_iobj_id});
-					if (relInst55967 != null)
+					if (relInst57516 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55967 != null) {
+			if (relInst57516 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55967) && !isProxy())) {
-					relInst55967.relateAcrossR425To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57516) && !isProxy())) {
+					relInst57516.relateAcrossR425To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OriginatesFromStateMachine == null) {
 			// R416
-			StateMachine_c relInst55968 = (StateMachine_c) baseRoot
+			StateMachine_c relInst57517 = (StateMachine_c) baseRoot
 					.getInstanceList(StateMachine_c.class).get(
 							new Object[]{m_sm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55968 == null) {
-				relInst55968 = (StateMachine_c) Ooaofooa.getDefaultInstance()
+			if (relInst57517 == null) {
+				relInst57517 = (StateMachine_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(StateMachine_c.class)
 						.get(new Object[]{m_sm_id});
 			}
-			if (relInst55968 == null && searchAllRoots
+			if (relInst57517 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1369,17 +1371,17 @@ public class AccessPath_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55968 = (StateMachine_c) roots[i].getInstanceList(
+					relInst57517 = (StateMachine_c) roots[i].getInstanceList(
 							StateMachine_c.class).get(new Object[]{m_sm_id});
-					if (relInst55968 != null)
+					if (relInst57517 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55968 != null) {
+			if (relInst57517 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55968) && !isProxy())) {
-					relInst55968.relateAcrossR416To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57517) && !isProxy())) {
+					relInst57517.relateAcrossR416To(this, notifyChanges);
 				}
 			}
 		}
@@ -1774,42 +1776,42 @@ public class AccessPath_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class AccessPath_c_test55970_c implements ClassQueryInterface_c {
-			AccessPath_c_test55970_c(java.util.UUID p55971) {
-				m_p55971 = p55971;
+		class AccessPath_c_test57519_c implements ClassQueryInterface_c {
+			AccessPath_c_test57519_c(java.util.UUID p57520) {
+				m_p57520 = p57520;
 			}
-			private java.util.UUID m_p55971;
+			private java.util.UUID m_p57520;
 			public boolean evaluate(Object candidate) {
 				AccessPath_c selected = (AccessPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getApath_id().equals(m_p55971));
+				retval = (selected.getApath_id().equals(m_p57520));
 				return retval;
 			}
 		}
 
-		AccessPath_c[] objs55969 = AccessPath_c.AccessPathInstances(modelRoot,
-				new AccessPath_c_test55970_c(getApath_id()));
+		AccessPath_c[] objs57518 = AccessPath_c.AccessPathInstances(modelRoot,
+				new AccessPath_c_test57519_c(getApath_id()));
 
-		if (((objs55969.length) == 0)) {
+		if (((objs57518.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55969.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57518.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs55969.length), e);
+								+ Integer.toString(objs57518.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55969.length) > 1)) {
+		if (((objs57518.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1817,7 +1819,7 @@ public class AccessPath_c extends NonRootModelElement
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55969.length)
+										+ Integer.toString(objs57518.length)
 										+ " APath_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1825,7 +1827,7 @@ public class AccessPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55969.length)
+										+ Integer.toString(objs57518.length)
 										+ " APath_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1834,25 +1836,25 @@ public class AccessPath_c extends NonRootModelElement
 
 		// Access Path is a referring class in association: rel.Numb = 6
 		// The participating class is: Subsystem
-		class Subsystem_c_test55975_c implements ClassQueryInterface_c {
-			Subsystem_c_test55975_c(java.util.UUID p55976) {
-				m_p55976 = p55976;
+		class Subsystem_c_test57524_c implements ClassQueryInterface_c {
+			Subsystem_c_test57524_c(java.util.UUID p57525) {
+				m_p57525 = p57525;
 			}
-			private java.util.UUID m_p55976;
+			private java.util.UUID m_p57525;
 			public boolean evaluate(Object candidate) {
 				Subsystem_c selected = (Subsystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSs_id().equals(m_p55976));
+				retval = (selected.getSs_id().equals(m_p57525));
 				return retval;
 			}
 		}
 
-		Subsystem_c[] objs55974 = Subsystem_c.SubsystemInstances(modelRoot,
-				new Subsystem_c_test55975_c(getSs_id()));
+		Subsystem_c[] objs57523 = Subsystem_c.SubsystemInstances(modelRoot,
+				new Subsystem_c_test57524_c(getSs_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55974.length) != 1)) {
+		if (((objs57523.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1860,7 +1862,7 @@ public class AccessPath_c extends NonRootModelElement
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Association: 6: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55974.length)
+										+ Integer.toString(objs57523.length)
 										+ " SS_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1868,7 +1870,7 @@ public class AccessPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Access Path: Association: 6: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55974.length)
+										+ Integer.toString(objs57523.length)
 										+ " SS_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1877,25 +1879,25 @@ public class AccessPath_c extends NonRootModelElement
 
 		// Access Path is a referring class in association: rel.Numb = 416
 		// The participating class is: State Machine
-		class StateMachine_c_test55978_c implements ClassQueryInterface_c {
-			StateMachine_c_test55978_c(java.util.UUID p55979) {
-				m_p55979 = p55979;
+		class StateMachine_c_test57527_c implements ClassQueryInterface_c {
+			StateMachine_c_test57527_c(java.util.UUID p57528) {
+				m_p57528 = p57528;
 			}
-			private java.util.UUID m_p55979;
+			private java.util.UUID m_p57528;
 			public boolean evaluate(Object candidate) {
 				StateMachine_c selected = (StateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p55979));
+				retval = (selected.getSm_id().equals(m_p57528));
 				return retval;
 			}
 		}
 
-		StateMachine_c[] objs55977 = StateMachine_c.StateMachineInstances(
-				modelRoot, new StateMachine_c_test55978_c(getSm_id()));
+		StateMachine_c[] objs57526 = StateMachine_c.StateMachineInstances(
+				modelRoot, new StateMachine_c_test57527_c(getSm_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55977.length) != 1)) {
+		if (((objs57526.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1903,7 +1905,7 @@ public class AccessPath_c extends NonRootModelElement
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Association: 416: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55977.length)
+										+ Integer.toString(objs57526.length)
 										+ " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1911,7 +1913,7 @@ public class AccessPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Access Path: Association: 416: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55977.length)
+										+ Integer.toString(objs57526.length)
 										+ " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1920,23 +1922,23 @@ public class AccessPath_c extends NonRootModelElement
 
 		// Access Path is a referring class in association: rel.Numb = 425
 		// The participating class is: Imported Class
-		class ImportedClass_c_test55981_c implements ClassQueryInterface_c {
-			ImportedClass_c_test55981_c(java.util.UUID p55982) {
-				m_p55982 = p55982;
+		class ImportedClass_c_test57530_c implements ClassQueryInterface_c {
+			ImportedClass_c_test57530_c(java.util.UUID p57531) {
+				m_p57531 = p57531;
 			}
-			private java.util.UUID m_p55982;
+			private java.util.UUID m_p57531;
 			public boolean evaluate(Object candidate) {
 				ImportedClass_c selected = (ImportedClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getIobj_id().equals(m_p55982));
+				retval = (selected.getIobj_id().equals(m_p57531));
 				return retval;
 			}
 		}
 
-		ImportedClass_c[] objs55980 = ImportedClass_c.ImportedClassInstances(
-				modelRoot, new ImportedClass_c_test55981_c(getIobj_id()));
+		ImportedClass_c[] objs57529 = ImportedClass_c.ImportedClassInstances(
+				modelRoot, new ImportedClass_c_test57530_c(getIobj_id()));
 
-		if (((objs55980.length) > 1)) {
+		if (((objs57529.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1944,7 +1946,7 @@ public class AccessPath_c extends NonRootModelElement
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Association: 425: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55980.length)
+										+ Integer.toString(objs57529.length)
 										+ " IObj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1952,7 +1954,7 @@ public class AccessPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Access Path: Association: 425: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55980.length)
+										+ Integer.toString(objs57529.length)
 										+ " IObj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1960,60 +1962,60 @@ public class AccessPath_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 415
-		int objs55983 = 0;
+		int objs57532 = 0;
 		// Subtype Object: SM to OBJ Access Path
-		class SmToObjAccessPath_c_test55984_c implements ClassQueryInterface_c {
-			SmToObjAccessPath_c_test55984_c(java.util.UUID p55985) {
-				m_p55985 = p55985;
+		class SmToObjAccessPath_c_test57533_c implements ClassQueryInterface_c {
+			SmToObjAccessPath_c_test57533_c(java.util.UUID p57534) {
+				m_p57534 = p57534;
 			}
-			private java.util.UUID m_p55985;
+			private java.util.UUID m_p57534;
 			public boolean evaluate(Object candidate) {
 				SmToObjAccessPath_c selected = (SmToObjAccessPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getApath_id().equals(m_p55985));
+				retval = (selected.getApath_id().equals(m_p57534));
 				return retval;
 			}
 		}
 
-		SmToObjAccessPath_c[] objs55986 = SmToObjAccessPath_c
+		SmToObjAccessPath_c[] objs57535 = SmToObjAccessPath_c
 				.SmToObjAccessPathInstances(modelRoot,
-						new SmToObjAccessPath_c_test55984_c(getApath_id()));
+						new SmToObjAccessPath_c_test57533_c(getApath_id()));
 
-		objs55983 = objs55983 + objs55986.length;
+		objs57532 = objs57532 + objs57535.length;
 		// Subtype Object: SM to EE Access Path
-		class SmToEeAccessPath_c_test55987_c implements ClassQueryInterface_c {
-			SmToEeAccessPath_c_test55987_c(java.util.UUID p55988) {
-				m_p55988 = p55988;
+		class SmToEeAccessPath_c_test57536_c implements ClassQueryInterface_c {
+			SmToEeAccessPath_c_test57536_c(java.util.UUID p57537) {
+				m_p57537 = p57537;
 			}
-			private java.util.UUID m_p55988;
+			private java.util.UUID m_p57537;
 			public boolean evaluate(Object candidate) {
 				SmToEeAccessPath_c selected = (SmToEeAccessPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getApath_id().equals(m_p55988));
+				retval = (selected.getApath_id().equals(m_p57537));
 				return retval;
 			}
 		}
 
-		SmToEeAccessPath_c[] objs55989 = SmToEeAccessPath_c
+		SmToEeAccessPath_c[] objs57538 = SmToEeAccessPath_c
 				.SmToEeAccessPathInstances(modelRoot,
-						new SmToEeAccessPath_c_test55987_c(getApath_id()));
+						new SmToEeAccessPath_c_test57536_c(getApath_id()));
 
-		objs55983 = objs55983 + objs55989.length;
-		if (objs55983 != 1) {
+		objs57532 = objs57532 + objs57538.length;
+		if (objs57532 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Access Path", //$NON-NLS-1$
 								"Consistency: Object: Access Path: Association: 415: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55983)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57532)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Access Path: Association: 415: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55983), e);
+										+ Integer.toString(objs57532), e);
 			}
 			retval = false;
 

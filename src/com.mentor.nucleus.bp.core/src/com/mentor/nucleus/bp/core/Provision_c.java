@@ -185,7 +185,7 @@ p_m_pathfromcomponent
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -201,7 +201,7 @@ p_m_pathfromcomponent
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getProvision_id()) || IdAssigner.NULL_UUID.equals(((Provision_c)elem).getProvision_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getProvision_id()) || IdAssigner.NULL_UUID.equals(((Provision_c)elem).getProvision_id())) && this != elem)) {
       	return false;
       }
       if (!getProvision_id().equals(((Provision_c)elem).getProvision_id())) return false;
@@ -894,29 +894,29 @@ public static Provision_c [] getManyC_PsOnR4501(ExecutableProperty_c target, boo
         ModelRoot baseRoot = modelRoot;
 
       // R4009
-      InterfaceReference_c relInst55375 = (InterfaceReference_c) baseRoot.getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
+      InterfaceReference_c relInst56924 = (InterfaceReference_c) baseRoot.getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55375 == null) {
-      			relInst55375 = (InterfaceReference_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
+      		if (relInst56924 == null) {
+      			relInst56924 = (InterfaceReference_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
       		}
-			if (relInst55375 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56924 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55375 = (InterfaceReference_c) roots[i].getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
-					if (relInst55375 != null)
+					relInst56924 = (InterfaceReference_c) roots[i].getInstanceList(InterfaceReference_c.class).get(new Object[] {m_provision_id});
+					if (relInst56924 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55375 != null )
+      if ( relInst56924 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55375) && !isProxy())) {
-	      relInst55375.relateAcrossR4009To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56924) && !isProxy())) {
+	      relInst56924.relateAcrossR4009To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1310,56 +1310,56 @@ return v_result;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Provision_c_test55377_c implements ClassQueryInterface_c
+    class Provision_c_test56926_c implements ClassQueryInterface_c
     {
-	  Provision_c_test55377_c( java.util.UUID            p55378 ) {
-	  m_p55378 = p55378;
+	  Provision_c_test56926_c( java.util.UUID            p56927 ) {
+	  m_p56927 = p56927;
 	  }
-	  private java.util.UUID             m_p55378; 
+	  private java.util.UUID             m_p56927; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Provision_c selected = (Provision_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getProvision_id().equals(m_p55378));
+	      retval = (selected.getProvision_id().equals(m_p56927));
 	      return retval;
 	  }
     }
 
-    Provision_c [] objs55376 = 
-    Provision_c.ProvisionInstances(modelRoot, new Provision_c_test55377_c(getProvision_id())) ;
+    Provision_c [] objs56925 = 
+    Provision_c.ProvisionInstances(modelRoot, new Provision_c_test56926_c(getProvision_id())) ;
 
-    if ( (  (objs55376.length) == 0) )
+    if ( (  (objs56925.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provision", //$NON-NLS-1$
            "Consistency: Object: Provision: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55376.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56925.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provision: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55376.length )  , e); 
+          + Integer.toString( objs56925.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55376.length) > 1) )
+    if ( (  (objs56925.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provision", //$NON-NLS-1$
            "Consistency: Object: Provision: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55376.length )  + " Provision_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56925.length )  + " Provision_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provision: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55376.length )  + " Provision_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56925.length )  + " Provision_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1367,37 +1367,37 @@ return v_result;
 
           // Provision is a subtype in association: rel.Numb = 4009
           // The supertype class is: Interface Reference
-    class InterfaceReference_c_test55382_c implements ClassQueryInterface_c
+    class InterfaceReference_c_test56931_c implements ClassQueryInterface_c
     {
-	  InterfaceReference_c_test55382_c( java.util.UUID            p55383 ) {
-	  m_p55383 = p55383;
+	  InterfaceReference_c_test56931_c( java.util.UUID            p56932 ) {
+	  m_p56932 = p56932;
 	  }
-	  private java.util.UUID             m_p55383; 
+	  private java.util.UUID             m_p56932; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceReference_c selected = (InterfaceReference_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55383));
+	      retval = (selected.getId().equals(m_p56932));
 	      return retval;
 	  }
     }
 
-    InterfaceReference_c [] objs55381 = 
-    InterfaceReference_c.InterfaceReferenceInstances(modelRoot, new InterfaceReference_c_test55382_c(getProvision_id())) ;
+    InterfaceReference_c [] objs56930 = 
+    InterfaceReference_c.InterfaceReferenceInstances(modelRoot, new InterfaceReference_c_test56931_c(getProvision_id())) ;
 
-    if ( (  (objs55381.length) != 1) )
+    if ( (  (objs56930.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provision", //$NON-NLS-1$
            "Consistency: Object: Provision: Association: 4009: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55381.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56930.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provision: Association: 4009: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55381.length )  , e); 
+          + Integer.toString( objs56930.length )  , e); 
       }
       retval = false;
 
@@ -1573,9 +1573,9 @@ ProvidedExecutableProperty_c [] v_peps = ProvidedExecutableProperty_c.getManySPR
 
 
 ProvidedExecutableProperty_c  v_pep = null;
-for ( int i53648 = 0; i53648 < v_peps.length; i53648++)
+for ( int i55171 = 0; i55171 < v_peps.length; i55171++)
 {
-  v_pep = v_peps[i53648] ;
+  v_pep = v_peps[i55171] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4501(v_pep);
 
@@ -1624,9 +1624,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4002(this);
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53649 = 0; i53649 < v_satisfactions.length; i53649++)
+for ( int i55172 = 0; i55172 < v_satisfactions.length; i55172++)
 {
-  v_satisfaction = v_satisfactions[i53649] ;
+  v_satisfaction = v_satisfactions[i55172] ;
 
 if ( (  !v_satisfaction.Satisfieswithimportedpro()) )
 {
@@ -1863,9 +1863,9 @@ ProvidedSignal_c [] v_signals = ProvidedSignal_c.getManySPR_PSsOnR4503(ProvidedE
 
 
 ProvidedSignal_c  v_signal = null;
-for ( int i53650 = 0; i53650 < v_signals.length; i53650++)
+for ( int i55173 = 0; i55173 < v_signals.length; i55173++)
 {
-  v_signal = v_signals[i53650] ;
+  v_signal = v_signals[i55173] ;
 
 if ( v_signal.Isavailableforallocationto(			    
 p_Transition_id) )
@@ -1972,9 +1972,9 @@ Satisfaction_c [] v_sats = Satisfaction_c.getManyC_SFsOnR4002(this);
 
 
 Satisfaction_c  v_sat = null;
-for ( int i53651 = 0; i53651 < v_sats.length; i53651++)
+for ( int i55174 = 0; i55174 < v_sats.length; i55174++)
 {
-  v_sat = v_sats[i53651] ;
+  v_sat = v_sats[i55174] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4002(v_sat);
 
@@ -2155,9 +2155,9 @@ ProvidedOperation_c [] v_pos = ProvidedOperation_c.getManySPR_POsOnR4503(Provide
 
 
 ProvidedOperation_c  v_po = null;
-for ( int i53652 = 0; i53652 < v_pos.length; i53652++)
+for ( int i55175 = 0; i55175 < v_pos.length; i55175++)
 {
-  v_po = v_pos[i53652] ;
+  v_po = v_pos[i55175] ;
 
 Util_c.Addelementtolist(			    
 v_po.Converttoinstance()			    
@@ -2171,9 +2171,9 @@ ProvidedSignal_c [] v_pss = ProvidedSignal_c.getManySPR_PSsOnR4503(ProvidedExecu
 
 
 ProvidedSignal_c  v_ps = null;
-for ( int i53653 = 0; i53653 < v_pss.length; i53653++)
+for ( int i55176 = 0; i55176 < v_pss.length; i55176++)
 {
-  v_ps = v_pss[i53653] ;
+  v_ps = v_pss[i55176] ;
 
 Util_c.Addelementtolist(			    
 v_ps.Converttoinstance()			    
@@ -2265,23 +2265,23 @@ ExecutableProperty_c [] v_eps = ExecutableProperty_c.getManyC_EPsOnR4003(v_inter
 
 
 ExecutableProperty_c  v_ep = null;
-for ( int i53654 = 0; i53654 < v_eps.length; i53654++)
+for ( int i55177 = 0; i55177 < v_eps.length; i55177++)
 {
-  v_ep = v_eps[i53654] ;
+  v_ep = v_eps[i55177] ;
 
-  class ProvidedExecutableProperty_test54272_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test55821_c implements ClassQueryInterface_c
   {
-	ProvidedExecutableProperty_test54272_c( java.util.UUID         p54273 ) {
-		m_p54273 = p54273;
+	ProvidedExecutableProperty_test55821_c( java.util.UUID         p55822 ) {
+		m_p55822 = p55822;
 	}
-	private java.util.UUID         m_p54273;
+	private java.util.UUID         m_p55822;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c)candidate;
-		return (selected.getExecutableproperty_id().equals(m_p54273)) ;
+		return (selected.getExecutableproperty_id().equals(m_p55822)) ;
 	}
   }
-ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(this, new ProvidedExecutableProperty_test54272_c(v_ep.getId()));
+ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(this, new ProvidedExecutableProperty_test55821_c(v_ep.getId()));
 
 
 if ( (  (v_pep == null)) )

@@ -148,7 +148,7 @@ p_m_rel_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_rel_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((SubtypeSupertypeAssociation_c)elem).getRel_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((SubtypeSupertypeAssociation_c)elem).getRel_id())) && this != elem)) {
       	return false;
       }
       if (!getRel_id().equals(((SubtypeSupertypeAssociation_c)elem).getRel_id())) return false;
@@ -785,29 +785,29 @@ public static SubtypeSupertypeAssociation_c [] getManyR_SUBSUPsOnR213(ClassAsSub
         ModelRoot baseRoot = modelRoot;
 
       // R206
-      Association_c relInst56558 = (Association_c) baseRoot.getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+      Association_c relInst58107 = (Association_c) baseRoot.getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56558 == null) {
-      			relInst56558 = (Association_c) Ooaofooa.getDefaultInstance().getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+      		if (relInst58107 == null) {
+      			relInst58107 = (Association_c) Ooaofooa.getDefaultInstance().getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
       		}
-			if (relInst56558 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58107 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56558 = (Association_c) roots[i].getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
-					if (relInst56558 != null)
+					relInst58107 = (Association_c) roots[i].getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+					if (relInst58107 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56558 != null )
+      if ( relInst58107 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56558) && !isProxy())) {
-	      relInst56558.relateAcrossR206To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58107) && !isProxy())) {
+	      relInst58107.relateAcrossR206To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1064,56 +1064,56 @@ private static SubtypeSupertypeAssociation_c findSubtypeSupertypeAssociationInst
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SubtypeSupertypeAssociation_c_test56560_c implements ClassQueryInterface_c
+    class SubtypeSupertypeAssociation_c_test58109_c implements ClassQueryInterface_c
     {
-	  SubtypeSupertypeAssociation_c_test56560_c( java.util.UUID            p56561 ) {
-	  m_p56561 = p56561;
+	  SubtypeSupertypeAssociation_c_test58109_c( java.util.UUID            p58110 ) {
+	  m_p58110 = p58110;
 	  }
-	  private java.util.UUID             m_p56561; 
+	  private java.util.UUID             m_p58110; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SubtypeSupertypeAssociation_c selected = (SubtypeSupertypeAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56561));
+	      retval = (selected.getRel_id().equals(m_p58110));
 	      return retval;
 	  }
     }
 
-    SubtypeSupertypeAssociation_c [] objs56559 = 
-    SubtypeSupertypeAssociation_c.SubtypeSupertypeAssociationInstances(modelRoot, new SubtypeSupertypeAssociation_c_test56560_c(getRel_id())) ;
+    SubtypeSupertypeAssociation_c [] objs58108 = 
+    SubtypeSupertypeAssociation_c.SubtypeSupertypeAssociationInstances(modelRoot, new SubtypeSupertypeAssociation_c_test58109_c(getRel_id())) ;
 
-    if ( (  (objs56559.length) == 0) )
+    if ( (  (objs58108.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Subtype Supertype Association", //$NON-NLS-1$
            "Consistency: Object: Subtype Supertype Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56559.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58108.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Subtype Supertype Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56559.length )  , e); 
+          + Integer.toString( objs58108.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56559.length) > 1) )
+    if ( (  (objs58108.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Subtype Supertype Association", //$NON-NLS-1$
            "Consistency: Object: Subtype Supertype Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56559.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58108.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Subtype Supertype Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56559.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58108.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1121,37 +1121,37 @@ private static SubtypeSupertypeAssociation_c findSubtypeSupertypeAssociationInst
 
           // Subtype Supertype Association is a subtype in association: rel.Numb = 206
           // The supertype class is: Association
-    class Association_c_test56565_c implements ClassQueryInterface_c
+    class Association_c_test58114_c implements ClassQueryInterface_c
     {
-	  Association_c_test56565_c( java.util.UUID            p56566 ) {
-	  m_p56566 = p56566;
+	  Association_c_test58114_c( java.util.UUID            p58115 ) {
+	  m_p58115 = p58115;
 	  }
-	  private java.util.UUID             m_p56566; 
+	  private java.util.UUID             m_p58115; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Association_c selected = (Association_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56566));
+	      retval = (selected.getRel_id().equals(m_p58115));
 	      return retval;
 	  }
     }
 
-    Association_c [] objs56564 = 
-    Association_c.AssociationInstances(modelRoot, new Association_c_test56565_c(getRel_id())) ;
+    Association_c [] objs58113 = 
+    Association_c.AssociationInstances(modelRoot, new Association_c_test58114_c(getRel_id())) ;
 
-    if ( (  (objs56564.length) != 1) )
+    if ( (  (objs58113.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Subtype Supertype Association", //$NON-NLS-1$
            "Consistency: Object: Subtype Supertype Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56564.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58113.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Subtype Supertype Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56564.length )  , e); 
+          + Integer.toString( objs58113.length )  , e); 
       }
       retval = false;
 
@@ -1159,37 +1159,37 @@ private static SubtypeSupertypeAssociation_c findSubtypeSupertypeAssociationInst
 
           // Subtype Supertype Association is a participating class in association: rel.Numb = 212
              // Object: Class As Supertype
-    class ClassAsSupertype_c_test56568_c implements ClassQueryInterface_c
+    class ClassAsSupertype_c_test58117_c implements ClassQueryInterface_c
     {
-	  ClassAsSupertype_c_test56568_c( java.util.UUID            p56569 ) {
-	  m_p56569 = p56569;
+	  ClassAsSupertype_c_test58117_c( java.util.UUID            p58118 ) {
+	  m_p58118 = p58118;
 	  }
-	  private java.util.UUID             m_p56569; 
+	  private java.util.UUID             m_p58118; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsSupertype_c selected = (ClassAsSupertype_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56569));
+	      retval = (selected.getRel_id().equals(m_p58118));
 	      return retval;
 	  }
     }
 
-    ClassAsSupertype_c [] objs56567 = 
-    ClassAsSupertype_c.ClassAsSupertypeInstances(modelRoot, new ClassAsSupertype_c_test56568_c(getRel_id())) ;
+    ClassAsSupertype_c [] objs58116 = 
+    ClassAsSupertype_c.ClassAsSupertypeInstances(modelRoot, new ClassAsSupertype_c_test58117_c(getRel_id())) ;
 
-    if ( (  (objs56567.length) != 1) )
+    if ( (  (objs58116.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Subtype Supertype Association", //$NON-NLS-1$
            "Consistency: Object: Subtype Supertype Association: Association: 212: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56567.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58116.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Subtype Supertype Association: Association: 212: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56567.length )  , e); 
+          + Integer.toString( objs58116.length )  , e); 
       }
       retval = false;
 
@@ -1253,7 +1253,7 @@ ReferredToClassInAssoc_c v_sup_rto = ReferredToClassInAssoc_c.getOneR_RTOOnR204(
 ModelClass_c v_sup_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.getOneR_OIROnR203(v_sup_rto));
 
 
-  class ClassIdentifier_test54423_c implements ClassQueryInterface_c
+  class ClassIdentifier_test55972_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1261,7 +1261,7 @@ ModelClass_c v_sup_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.get
 		return selected.getOid_id() == p_Id ;
 	}
   }
-ClassIdentifier_c v_oid = ClassIdentifier_c.getOneO_IDOnR104(v_sup_obj, new ClassIdentifier_test54423_c());
+ClassIdentifier_c v_oid = ClassIdentifier_c.getOneO_IDOnR104(v_sup_obj, new ClassIdentifier_test55972_c());
 
 
 if (v_oid != null) {
@@ -1281,9 +1281,9 @@ ReferringClassInAssoc_c [] v_sub_rgo_set = ReferringClassInAssoc_c.getManyR_RGOs
 
 
 ClassIdentifierAttribute_c  v_oida = null;
-for ( int i53890 = 0; i53890 < v_oida_set.length; i53890++)
+for ( int i55420 = 0; i55420 < v_oida_set.length; i55420++)
 {
-  v_oida = v_oida_set[i53890] ;
+  v_oida = v_oida_set[i55420] ;
 
 ReferredToIdentifierAttribute_c v_rtida = new ReferredToIdentifierAttribute_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_rtida));
@@ -1303,9 +1303,9 @@ else {
 }
 
 ReferringClassInAssoc_c  v_sub_rgo = null;
-for ( int i53891 = 0; i53891 < v_sub_rgo_set.length; i53891++)
+for ( int i55421 = 0; i55421 < v_sub_rgo_set.length; i55421++)
 {
-  v_sub_rgo = v_sub_rgo_set[i53891] ;
+  v_sub_rgo = v_sub_rgo_set[i55421] ;
 
 ModelClass_c v_sub_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.getOneR_OIROnR203(v_sub_rgo));
 
@@ -1313,9 +1313,9 @@ ModelClass_c v_sub_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.get
 int          v_unused_oid = v_sub_obj.Findunusedidentifier() ;
 
 
-for ( int i53892 = 0; i53892 < v_oida_set.length; i53892++)
+for ( int i55422 = 0; i55422 < v_oida_set.length; i55422++)
 {
-  v_oida = v_oida_set[i53892] ;
+  v_oida = v_oida_set[i55422] ;
 
 java.util.UUID         v_newAttr_id = v_oida.Addreference(			    
 v_unused_oid			    

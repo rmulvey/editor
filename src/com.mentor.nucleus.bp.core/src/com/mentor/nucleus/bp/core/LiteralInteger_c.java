@@ -142,7 +142,8 @@ public class LiteralInteger_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -158,9 +159,9 @@ public class LiteralInteger_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((LiteralInteger_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((LiteralInteger_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(((LiteralInteger_c) elem).getValue_id()))
@@ -382,34 +383,34 @@ public class LiteralInteger_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R801
-		Value_c relInst37563 = (Value_c) baseRoot
+		Value_c relInst38145 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37563 == null) {
-			relInst37563 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst38145 == null) {
+			relInst38145 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37563 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38145 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37563 = (Value_c) roots[i]
+				relInst38145 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37563 != null)
+				if (relInst38145 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37563 != null) {
+		if (relInst38145 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37563) && !isProxy())) {
-				relInst37563.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38145) && !isProxy())) {
+				relInst38145.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
@@ -603,43 +604,43 @@ public class LiteralInteger_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class LiteralInteger_c_test37565_c implements ClassQueryInterface_c {
-			LiteralInteger_c_test37565_c(java.util.UUID p37566) {
-				m_p37566 = p37566;
+		class LiteralInteger_c_test38147_c implements ClassQueryInterface_c {
+			LiteralInteger_c_test38147_c(java.util.UUID p38148) {
+				m_p38148 = p38148;
 			}
-			private java.util.UUID m_p37566;
+			private java.util.UUID m_p38148;
 			public boolean evaluate(Object candidate) {
 				LiteralInteger_c selected = (LiteralInteger_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37566));
+				retval = (selected.getValue_id().equals(m_p38148));
 				return retval;
 			}
 		}
 
-		LiteralInteger_c[] objs37564 = LiteralInteger_c
+		LiteralInteger_c[] objs38146 = LiteralInteger_c
 				.LiteralIntegerInstances(modelRoot,
-						new LiteralInteger_c_test37565_c(getValue_id()));
+						new LiteralInteger_c_test38147_c(getValue_id()));
 
-		if (((objs37564.length) == 0)) {
+		if (((objs38146.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Literal Integer", //$NON-NLS-1$
 								"Consistency: Object: Literal Integer: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37564.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38146.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Literal Integer: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37564.length), e);
+								+ Integer.toString(objs38146.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37564.length) > 1)) {
+		if (((objs38146.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -647,7 +648,7 @@ public class LiteralInteger_c extends NonRootModelElement
 								"Literal Integer", //$NON-NLS-1$
 								"Consistency: Object: Literal Integer: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37564.length)
+										+ Integer.toString(objs38146.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -655,7 +656,7 @@ public class LiteralInteger_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Literal Integer: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37564.length)
+										+ Integer.toString(objs38146.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -664,37 +665,37 @@ public class LiteralInteger_c extends NonRootModelElement
 
 		// Literal Integer is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37570_c implements ClassQueryInterface_c {
-			Value_c_test37570_c(java.util.UUID p37571) {
-				m_p37571 = p37571;
+		class Value_c_test38152_c implements ClassQueryInterface_c {
+			Value_c_test38152_c(java.util.UUID p38153) {
+				m_p38153 = p38153;
 			}
-			private java.util.UUID m_p37571;
+			private java.util.UUID m_p38153;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37571));
+				retval = (selected.getValue_id().equals(m_p38153));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37569 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37570_c(getValue_id()));
+		Value_c[] objs38151 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38152_c(getValue_id()));
 
-		if (((objs37569.length) != 1)) {
+		if (((objs38151.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Literal Integer", //$NON-NLS-1$
 								"Consistency: Object: Literal Integer: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37569.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38151.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Literal Integer: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37569.length), e);
+										+ Integer.toString(objs38151.length), e);
 			}
 			retval = false;
 

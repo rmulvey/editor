@@ -149,7 +149,8 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -165,9 +166,10 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((GeneratePreexistingEvent_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((GeneratePreexistingEvent_c) elem)
+								.getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -588,16 +590,16 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 
 		if (GeneratesEventHeldByValue == null) {
 			// R714
-			Value_c relInst54506 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst56055 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54506 == null) {
-				relInst54506 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst56055 == null) {
+				relInst56055 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_value_id});
 			}
-			if (relInst54506 == null && searchAllRoots
+			if (relInst56055 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -605,49 +607,49 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54506 = (Value_c) roots[i].getInstanceList(
+					relInst56055 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_value_id});
-					if (relInst54506 != null)
+					if (relInst56055 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54506 != null) {
+			if (relInst56055 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54506) && !isProxy())) {
-					relInst54506.relateAcrossR714To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56055) && !isProxy())) {
+					relInst56055.relateAcrossR714To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst54507 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst56056 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54507 == null) {
-			relInst54507 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst56056 == null) {
+			relInst56056 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst54507 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56056 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54507 = (Statement_c) roots[i].getInstanceList(
+				relInst56056 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst54507 != null)
+				if (relInst56056 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54507 != null) {
+		if (relInst56056 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54507) && !isProxy())) {
-				relInst54507.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56056) && !isProxy())) {
+				relInst56056.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -881,27 +883,27 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class GeneratePreexistingEvent_c_test54509_c
+		class GeneratePreexistingEvent_c_test56058_c
 				implements
 					ClassQueryInterface_c {
-			GeneratePreexistingEvent_c_test54509_c(java.util.UUID p54510) {
-				m_p54510 = p54510;
+			GeneratePreexistingEvent_c_test56058_c(java.util.UUID p56059) {
+				m_p56059 = p56059;
 			}
-			private java.util.UUID m_p54510;
+			private java.util.UUID m_p56059;
 			public boolean evaluate(Object candidate) {
 				GeneratePreexistingEvent_c selected = (GeneratePreexistingEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54510));
+				retval = (selected.getStatement_id().equals(m_p56059));
 				return retval;
 			}
 		}
 
-		GeneratePreexistingEvent_c[] objs54508 = GeneratePreexistingEvent_c
+		GeneratePreexistingEvent_c[] objs56057 = GeneratePreexistingEvent_c
 				.GeneratePreexistingEventInstances(modelRoot,
-						new GeneratePreexistingEvent_c_test54509_c(
+						new GeneratePreexistingEvent_c_test56058_c(
 								getStatement_id()));
 
-		if (((objs54508.length) == 0)) {
+		if (((objs56057.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -909,20 +911,20 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Generate Preexisting Event", //$NON-NLS-1$
 								"Consistency: Object: Generate Preexisting Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54508.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56057.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generate Preexisting Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54508.length), e);
+										+ Integer.toString(objs56057.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54508.length) > 1)) {
+		if (((objs56057.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -931,7 +933,7 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 								"Generate Preexisting Event", //$NON-NLS-1$
 								"Consistency: Object: Generate Preexisting Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54508.length)
+										+ Integer.toString(objs56057.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -939,7 +941,7 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate Preexisting Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54508.length)
+										+ Integer.toString(objs56057.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -948,23 +950,23 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 
 		// Generate Preexisting Event is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test54514_c implements ClassQueryInterface_c {
-			Statement_c_test54514_c(java.util.UUID p54515) {
-				m_p54515 = p54515;
+		class Statement_c_test56063_c implements ClassQueryInterface_c {
+			Statement_c_test56063_c(java.util.UUID p56064) {
+				m_p56064 = p56064;
 			}
-			private java.util.UUID m_p54515;
+			private java.util.UUID m_p56064;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54515));
+				retval = (selected.getStatement_id().equals(m_p56064));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs54513 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test54514_c(getStatement_id()));
+		Statement_c[] objs56062 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test56063_c(getStatement_id()));
 
-		if (((objs54513.length) != 1)) {
+		if (((objs56062.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -972,14 +974,14 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Generate Preexisting Event", //$NON-NLS-1$
 								"Consistency: Object: Generate Preexisting Event: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54513.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56062.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generate Preexisting Event: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54513.length), e);
+										+ Integer.toString(objs56062.length), e);
 			}
 			retval = false;
 
@@ -987,23 +989,23 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 
 		// Generate Preexisting Event is a referring class in association: rel.Numb = 714
 		// The participating class is: Value
-		class Value_c_test54517_c implements ClassQueryInterface_c {
-			Value_c_test54517_c(java.util.UUID p54518) {
-				m_p54518 = p54518;
+		class Value_c_test56066_c implements ClassQueryInterface_c {
+			Value_c_test56066_c(java.util.UUID p56067) {
+				m_p56067 = p56067;
 			}
-			private java.util.UUID m_p54518;
+			private java.util.UUID m_p56067;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p54518));
+				retval = (selected.getValue_id().equals(m_p56067));
 				return retval;
 			}
 		}
 
-		Value_c[] objs54516 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test54517_c(getValue_id()));
+		Value_c[] objs56065 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test56066_c(getValue_id()));
 
-		if (((objs54516.length) > 1)) {
+		if (((objs56065.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1012,7 +1014,7 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 								"Generate Preexisting Event", //$NON-NLS-1$
 								"Consistency: Object: Generate Preexisting Event: Association: 714: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54516.length)
+										+ Integer.toString(objs56065.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1020,7 +1022,7 @@ public class GeneratePreexistingEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate Preexisting Event: Association: 714: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54516.length)
+										+ Integer.toString(objs56065.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

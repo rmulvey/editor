@@ -146,7 +146,8 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID
-				.equals(((LeafSymbolicConstant_c) elem).getConst_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID
+						.equals(((LeafSymbolicConstant_c) elem).getConst_id())) && this != elem)) {
 			return false;
 		}
 		if (!getConst_id()
@@ -173,9 +174,9 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((LeafSymbolicConstant_c) elem).getDt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((LeafSymbolicConstant_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((LeafSymbolicConstant_c) elem).getDt_id()))
@@ -611,35 +612,35 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1502
-		SymbolicConstant_c relInst55308 = (SymbolicConstant_c) baseRoot
+		SymbolicConstant_c relInst56857 = (SymbolicConstant_c) baseRoot
 				.getInstanceList(SymbolicConstant_c.class).get(
 						new Object[]{m_const_id, m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55308 == null) {
-			relInst55308 = (SymbolicConstant_c) Ooaofooa.getDefaultInstance()
+		if (relInst56857 == null) {
+			relInst56857 = (SymbolicConstant_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SymbolicConstant_c.class)
 					.get(new Object[]{m_const_id, m_dt_id});
 		}
-		if (relInst55308 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56857 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55308 = (SymbolicConstant_c) roots[i].getInstanceList(
+				relInst56857 = (SymbolicConstant_c) roots[i].getInstanceList(
 						SymbolicConstant_c.class).get(
 						new Object[]{m_const_id, m_dt_id});
-				if (relInst55308 != null)
+				if (relInst56857 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55308 != null) {
+		if (relInst56857 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55308) && !isProxy())) {
-				relInst55308.relateAcrossR1502To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56857) && !isProxy())) {
+				relInst56857.relateAcrossR1502To(this, notifyChanges);
 			}
 		}
 
@@ -943,51 +944,51 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class LeafSymbolicConstant_c_test55310_c
+		class LeafSymbolicConstant_c_test56859_c
 				implements
 					ClassQueryInterface_c {
-			LeafSymbolicConstant_c_test55310_c(java.util.UUID p55311,
-					java.util.UUID p55312) {
-				m_p55311 = p55311;
-				m_p55312 = p55312;
+			LeafSymbolicConstant_c_test56859_c(java.util.UUID p56860,
+					java.util.UUID p56861) {
+				m_p56860 = p56860;
+				m_p56861 = p56861;
 			}
-			private java.util.UUID m_p55311;
-			private java.util.UUID m_p55312;
+			private java.util.UUID m_p56860;
+			private java.util.UUID m_p56861;
 			public boolean evaluate(Object candidate) {
 				LeafSymbolicConstant_c selected = (LeafSymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p55311))
-						& (selected.getDt_id().equals(m_p55312));
+				retval = (selected.getConst_id().equals(m_p56860))
+						& (selected.getDt_id().equals(m_p56861));
 				return retval;
 			}
 		}
 
-		LeafSymbolicConstant_c[] objs55309 = LeafSymbolicConstant_c
+		LeafSymbolicConstant_c[] objs56858 = LeafSymbolicConstant_c
 				.LeafSymbolicConstantInstances(modelRoot,
-						new LeafSymbolicConstant_c_test55310_c(getConst_id(),
+						new LeafSymbolicConstant_c_test56859_c(getConst_id(),
 								getDt_id()));
 
-		if (((objs55309.length) == 0)) {
+		if (((objs56858.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Leaf Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Leaf Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55309.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56858.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Leaf Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55309.length), e);
+										+ Integer.toString(objs56858.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55309.length) > 1)) {
+		if (((objs56858.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -995,7 +996,7 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 								"Leaf Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Leaf Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55309.length)
+										+ Integer.toString(objs56858.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1003,7 +1004,7 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Leaf Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55309.length)
+										+ Integer.toString(objs56858.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1012,91 +1013,91 @@ public class LeafSymbolicConstant_c extends NonRootModelElement
 
 		// Leaf Symbolic Constant is a subtype in association: rel.Numb = 1502
 		// The supertype class is: Symbolic Constant
-		class SymbolicConstant_c_test55316_c implements ClassQueryInterface_c {
-			SymbolicConstant_c_test55316_c(java.util.UUID p55317,
-					java.util.UUID p55318) {
-				m_p55317 = p55317;
-				m_p55318 = p55318;
+		class SymbolicConstant_c_test56865_c implements ClassQueryInterface_c {
+			SymbolicConstant_c_test56865_c(java.util.UUID p56866,
+					java.util.UUID p56867) {
+				m_p56866 = p56866;
+				m_p56867 = p56867;
 			}
-			private java.util.UUID m_p55317;
-			private java.util.UUID m_p55318;
+			private java.util.UUID m_p56866;
+			private java.util.UUID m_p56867;
 			public boolean evaluate(Object candidate) {
 				SymbolicConstant_c selected = (SymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p55317))
-						& (selected.getDt_id().equals(m_p55318));
+				retval = (selected.getConst_id().equals(m_p56866))
+						& (selected.getDt_id().equals(m_p56867));
 				return retval;
 			}
 		}
 
-		SymbolicConstant_c[] objs55315 = SymbolicConstant_c
+		SymbolicConstant_c[] objs56864 = SymbolicConstant_c
 				.SymbolicConstantInstances(modelRoot,
-						new SymbolicConstant_c_test55316_c(getConst_id(),
+						new SymbolicConstant_c_test56865_c(getConst_id(),
 								getDt_id()));
 
-		if (((objs55315.length) != 1)) {
+		if (((objs56864.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Leaf Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Leaf Symbolic Constant: Association: 1502: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55315.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56864.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Leaf Symbolic Constant: Association: 1502: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55315.length), e);
+										+ Integer.toString(objs56864.length), e);
 			}
 			retval = false;
 
 		}
 
 		// Supertype: rel.Numb = 1503
-		int objs55319 = 0;
+		int objs56868 = 0;
 		// Subtype Object: Literal Symbolic Constant
-		class LiteralSymbolicConstant_c_test55320_c
+		class LiteralSymbolicConstant_c_test56869_c
 				implements
 					ClassQueryInterface_c {
-			LiteralSymbolicConstant_c_test55320_c(java.util.UUID p55321,
-					java.util.UUID p55322) {
-				m_p55321 = p55321;
-				m_p55322 = p55322;
+			LiteralSymbolicConstant_c_test56869_c(java.util.UUID p56870,
+					java.util.UUID p56871) {
+				m_p56870 = p56870;
+				m_p56871 = p56871;
 			}
-			private java.util.UUID m_p55321;
-			private java.util.UUID m_p55322;
+			private java.util.UUID m_p56870;
+			private java.util.UUID m_p56871;
 			public boolean evaluate(Object candidate) {
 				LiteralSymbolicConstant_c selected = (LiteralSymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p55321))
-						& (selected.getDt_id().equals(m_p55322));
+				retval = (selected.getConst_id().equals(m_p56870))
+						& (selected.getDt_id().equals(m_p56871));
 				return retval;
 			}
 		}
 
-		LiteralSymbolicConstant_c[] objs55323 = LiteralSymbolicConstant_c
+		LiteralSymbolicConstant_c[] objs56872 = LiteralSymbolicConstant_c
 				.LiteralSymbolicConstantInstances(modelRoot,
-						new LiteralSymbolicConstant_c_test55320_c(
+						new LiteralSymbolicConstant_c_test56869_c(
 								getConst_id(), getDt_id()));
 
-		objs55319 = objs55319 + objs55323.length;
-		if (objs55319 != 1) {
+		objs56868 = objs56868 + objs56872.length;
+		if (objs56868 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Leaf Symbolic Constant", //$NON-NLS-1$
 								"Consistency: Object: Leaf Symbolic Constant: Association: 1503: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55319)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56868)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Leaf Symbolic Constant: Association: 1503: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55319), e);
+										+ Integer.toString(objs56868), e);
 			}
 			retval = false;
 

@@ -136,7 +136,8 @@ public class Break_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,8 +153,9 @@ public class Break_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Break_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Break_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Break_c) elem).getStatement_id()))
@@ -374,33 +376,33 @@ public class Break_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R603
-		Statement_c relInst56442 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst57991 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56442 == null) {
-			relInst56442 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst57991 == null) {
+			relInst57991 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst56442 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57991 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56442 = (Statement_c) roots[i].getInstanceList(
+				relInst57991 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst56442 != null)
+				if (relInst57991 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56442 != null) {
+		if (relInst57991 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56442) && !isProxy())) {
-				relInst56442.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57991) && !isProxy())) {
+				relInst57991.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -579,55 +581,55 @@ public class Break_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Break_c_test56444_c implements ClassQueryInterface_c {
-			Break_c_test56444_c(java.util.UUID p56445) {
-				m_p56445 = p56445;
+		class Break_c_test57993_c implements ClassQueryInterface_c {
+			Break_c_test57993_c(java.util.UUID p57994) {
+				m_p57994 = p57994;
 			}
-			private java.util.UUID m_p56445;
+			private java.util.UUID m_p57994;
 			public boolean evaluate(Object candidate) {
 				Break_c selected = (Break_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56445));
+				retval = (selected.getStatement_id().equals(m_p57994));
 				return retval;
 			}
 		}
 
-		Break_c[] objs56443 = Break_c.BreakInstances(modelRoot,
-				new Break_c_test56444_c(getStatement_id()));
+		Break_c[] objs57992 = Break_c.BreakInstances(modelRoot,
+				new Break_c_test57993_c(getStatement_id()));
 
-		if (((objs56443.length) == 0)) {
+		if (((objs57992.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Break", //$NON-NLS-1$
 								"Consistency: Object: Break: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56443.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57992.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Break: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56443.length), e);
+								+ Integer.toString(objs57992.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56443.length) > 1)) {
+		if (((objs57992.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Break", //$NON-NLS-1$
 						"Consistency: Object: Break: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs56443.length)
+								+ Integer.toString(objs57992.length)
 								+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Break: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56443.length)
+								+ Integer.toString(objs57992.length)
 								+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -636,37 +638,37 @@ public class Break_c extends NonRootModelElement
 
 		// Break is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test56449_c implements ClassQueryInterface_c {
-			Statement_c_test56449_c(java.util.UUID p56450) {
-				m_p56450 = p56450;
+		class Statement_c_test57998_c implements ClassQueryInterface_c {
+			Statement_c_test57998_c(java.util.UUID p57999) {
+				m_p57999 = p57999;
 			}
-			private java.util.UUID m_p56450;
+			private java.util.UUID m_p57999;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56450));
+				retval = (selected.getStatement_id().equals(m_p57999));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56448 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56449_c(getStatement_id()));
+		Statement_c[] objs57997 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57998_c(getStatement_id()));
 
-		if (((objs56448.length) != 1)) {
+		if (((objs57997.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Break", //$NON-NLS-1$
 								"Consistency: Object: Break: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56448.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57997.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Break: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56448.length), e);
+										+ Integer.toString(objs57997.length), e);
 			}
 			retval = false;
 

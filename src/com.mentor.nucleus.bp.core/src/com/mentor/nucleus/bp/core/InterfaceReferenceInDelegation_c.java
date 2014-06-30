@@ -152,7 +152,8 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -168,10 +169,10 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getReference_id()) || IdAssigner.NULL_UUID
-				.equals(((InterfaceReferenceInDelegation_c) elem)
-						.getReference_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getReference_id()) || IdAssigner.NULL_UUID
+						.equals(((InterfaceReferenceInDelegation_c) elem)
+								.getReference_id())) && this != elem)) {
 			return false;
 		}
 		if (!getReference_id().equals(
@@ -180,10 +181,10 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDelegation_id()) || IdAssigner.NULL_UUID
-				.equals(((InterfaceReferenceInDelegation_c) elem)
-						.getDelegation_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDelegation_id()) || IdAssigner.NULL_UUID
+						.equals(((InterfaceReferenceInDelegation_c) elem)
+								.getDelegation_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDelegation_id().equals(
@@ -723,65 +724,65 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R4013
-		Delegation_c relInst55429 = (Delegation_c) baseRoot.getInstanceList(
+		Delegation_c relInst56978 = (Delegation_c) baseRoot.getInstanceList(
 				Delegation_c.class).get(new Object[]{m_delegation_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55429 == null) {
-			relInst55429 = (Delegation_c) Ooaofooa.getDefaultInstance()
+		if (relInst56978 == null) {
+			relInst56978 = (Delegation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Delegation_c.class)
 					.get(new Object[]{m_delegation_id});
 		}
-		if (relInst55429 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56978 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55429 = (Delegation_c) roots[i].getInstanceList(
+				relInst56978 = (Delegation_c) roots[i].getInstanceList(
 						Delegation_c.class).get(new Object[]{m_delegation_id});
-				if (relInst55429 != null)
+				if (relInst56978 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55429 != null) {
+		if (relInst56978 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55429) && !isProxy())) {
-				relInst55429.relateAcrossR4013To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56978) && !isProxy())) {
+				relInst56978.relateAcrossR4013To(this, notifyChanges);
 			}
 		}
 
-		InterfaceReference_c relInst55430 = (InterfaceReference_c) baseRoot
+		InterfaceReference_c relInst56979 = (InterfaceReference_c) baseRoot
 				.getInstanceList(InterfaceReference_c.class).get(
 						new Object[]{m_reference_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55430 == null) {
-			relInst55430 = (InterfaceReference_c) Ooaofooa.getDefaultInstance()
+		if (relInst56979 == null) {
+			relInst56979 = (InterfaceReference_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(InterfaceReference_c.class)
 					.get(new Object[]{m_reference_id});
 		}
-		if (relInst55430 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56979 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55430 = (InterfaceReference_c) roots[i].getInstanceList(
+				relInst56979 = (InterfaceReference_c) roots[i].getInstanceList(
 						InterfaceReference_c.class).get(
 						new Object[]{m_reference_id});
-				if (relInst55430 != null)
+				if (relInst56979 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55430 != null) {
+		if (relInst56979 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55430) && !isProxy())) {
-				relInst55430.relateAcrossR4013To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56979) && !isProxy())) {
+				relInst56979.relateAcrossR4013To(this, notifyChanges);
 			}
 		}
 
@@ -1091,31 +1092,31 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InterfaceReferenceInDelegation_c_test55432_c
+		class InterfaceReferenceInDelegation_c_test56981_c
 				implements
 					ClassQueryInterface_c {
-			InterfaceReferenceInDelegation_c_test55432_c(java.util.UUID p55433,
-					java.util.UUID p55434) {
-				m_p55433 = p55433;
-				m_p55434 = p55434;
+			InterfaceReferenceInDelegation_c_test56981_c(java.util.UUID p56982,
+					java.util.UUID p56983) {
+				m_p56982 = p56982;
+				m_p56983 = p56983;
 			}
-			private java.util.UUID m_p55433;
-			private java.util.UUID m_p55434;
+			private java.util.UUID m_p56982;
+			private java.util.UUID m_p56983;
 			public boolean evaluate(Object candidate) {
 				InterfaceReferenceInDelegation_c selected = (InterfaceReferenceInDelegation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getReference_id().equals(m_p55433))
-						& (selected.getDelegation_id().equals(m_p55434));
+				retval = (selected.getReference_id().equals(m_p56982))
+						& (selected.getDelegation_id().equals(m_p56983));
 				return retval;
 			}
 		}
 
-		InterfaceReferenceInDelegation_c[] objs55431 = InterfaceReferenceInDelegation_c
+		InterfaceReferenceInDelegation_c[] objs56980 = InterfaceReferenceInDelegation_c
 				.InterfaceReferenceInDelegationInstances(modelRoot,
-						new InterfaceReferenceInDelegation_c_test55432_c(
+						new InterfaceReferenceInDelegation_c_test56981_c(
 								getReference_id(), getDelegation_id()));
 
-		if (((objs55431.length) == 0)) {
+		if (((objs56980.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1123,20 +1124,20 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Interface Reference In Delegation", //$NON-NLS-1$
 								"Consistency: Object: Interface Reference In Delegation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55431.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56980.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Interface Reference In Delegation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55431.length), e);
+										+ Integer.toString(objs56980.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55431.length) > 1)) {
+		if (((objs56980.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1145,7 +1146,7 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 								"Interface Reference In Delegation", //$NON-NLS-1$
 								"Consistency: Object: Interface Reference In Delegation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55431.length)
+										+ Integer.toString(objs56980.length)
 										+ " Reference_Id: " + "Not Printable" + " Delegation_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1153,7 +1154,7 @@ public class InterfaceReferenceInDelegation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Interface Reference In Delegation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55431.length)
+										+ Integer.toString(objs56980.length)
 										+ " Reference_Id: " + "Not Printable" + " Delegation_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

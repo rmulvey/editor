@@ -1017,9 +1017,9 @@ public class PropertyDependsOn {
 				return true;
 			else if (b instanceof ConstantSpecification_c)
 				return true;
-			else if (b instanceof Satisfaction_c)
-				return true;
 			else if (b instanceof Package_c)
+				return true;
+			else if (b instanceof Satisfaction_c)
 				return true;
 		} else if (a instanceof LinkParticipation_c) {
 			if (b instanceof LinkParticipation_c)

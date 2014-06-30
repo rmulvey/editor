@@ -169,7 +169,8 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -185,9 +186,9 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsAssociatedOneSide_c) elem).getOir_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsAssociatedOneSide_c) elem).getOir_id())) && this != elem)) {
 			return false;
 		}
 		if (!getOir_id()
@@ -196,9 +197,9 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsAssociatedOneSide_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsAssociatedOneSide_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id()
@@ -207,9 +208,9 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsAssociatedOneSide_c) elem).getRel_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsAssociatedOneSide_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id()
@@ -718,53 +719,53 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R204
-		ReferredToClassInAssoc_c relInst56864 = (ReferredToClassInAssoc_c) baseRoot
+		ReferredToClassInAssoc_c relInst58413 = (ReferredToClassInAssoc_c) baseRoot
 				.getInstanceList(ReferredToClassInAssoc_c.class).get(
 						new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56864 == null) {
-			relInst56864 = (ReferredToClassInAssoc_c) Ooaofooa
+		if (relInst58413 == null) {
+			relInst58413 = (ReferredToClassInAssoc_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ReferredToClassInAssoc_c.class)
 					.get(new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		}
-		if (relInst56864 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58413 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56864 = (ReferredToClassInAssoc_c) roots[i]
+				relInst58413 = (ReferredToClassInAssoc_c) roots[i]
 						.getInstanceList(ReferredToClassInAssoc_c.class).get(
 								new Object[]{m_oir_id, m_obj_id, m_rel_id});
-				if (relInst56864 != null)
+				if (relInst58413 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56864 != null) {
+		if (relInst58413 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56864) && !isProxy())) {
-				relInst56864.relateAcrossR204To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58413) && !isProxy())) {
+				relInst58413.relateAcrossR204To(this, notifyChanges);
 			}
 		}
 
 		if (IsRelatedToOtherSideViaLinkedAssociation == null) {
 			// R209
-			LinkedAssociation_c relInst56865 = (LinkedAssociation_c) baseRoot
+			LinkedAssociation_c relInst58414 = (LinkedAssociation_c) baseRoot
 					.getInstanceList(LinkedAssociation_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56865 == null) {
-				relInst56865 = (LinkedAssociation_c) Ooaofooa
+			if (relInst58414 == null) {
+				relInst58414 = (LinkedAssociation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(LinkedAssociation_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst56865 == null && searchAllRoots
+			if (relInst58414 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -772,18 +773,18 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56865 = (LinkedAssociation_c) roots[i]
+					relInst58414 = (LinkedAssociation_c) roots[i]
 							.getInstanceList(LinkedAssociation_c.class).get(
 									new Object[]{m_rel_id});
-					if (relInst56865 != null)
+					if (relInst58414 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56865 != null) {
+			if (relInst58414 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56865) && !isProxy())) {
-					relInst56865.relateAcrossR209To(this, notifyChanges);
+						|| (inSameComponent(this, relInst58414) && !isProxy())) {
+					relInst58414.relateAcrossR209To(this, notifyChanges);
 				}
 			}
 		}
@@ -1185,34 +1186,34 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ClassAsAssociatedOneSide_c_test56867_c
+		class ClassAsAssociatedOneSide_c_test58416_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsAssociatedOneSide_c_test56867_c(java.util.UUID p56868,
-					java.util.UUID p56869, java.util.UUID p56870) {
-				m_p56868 = p56868;
-				m_p56869 = p56869;
-				m_p56870 = p56870;
+			ClassAsAssociatedOneSide_c_test58416_c(java.util.UUID p58417,
+					java.util.UUID p58418, java.util.UUID p58419) {
+				m_p58417 = p58417;
+				m_p58418 = p58418;
+				m_p58419 = p58419;
 			}
-			private java.util.UUID m_p56868;
-			private java.util.UUID m_p56869;
-			private java.util.UUID m_p56870;
+			private java.util.UUID m_p58417;
+			private java.util.UUID m_p58418;
+			private java.util.UUID m_p58419;
 			public boolean evaluate(Object candidate) {
 				ClassAsAssociatedOneSide_c selected = (ClassAsAssociatedOneSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56868))
-						& (selected.getObj_id().equals(m_p56869))
-						& (selected.getRel_id().equals(m_p56870));
+				retval = (selected.getOir_id().equals(m_p58417))
+						& (selected.getObj_id().equals(m_p58418))
+						& (selected.getRel_id().equals(m_p58419));
 				return retval;
 			}
 		}
 
-		ClassAsAssociatedOneSide_c[] objs56866 = ClassAsAssociatedOneSide_c
+		ClassAsAssociatedOneSide_c[] objs58415 = ClassAsAssociatedOneSide_c
 				.ClassAsAssociatedOneSideInstances(modelRoot,
-						new ClassAsAssociatedOneSide_c_test56867_c(getOir_id(),
+						new ClassAsAssociatedOneSide_c_test58416_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56866.length) == 0)) {
+		if (((objs58415.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1220,20 +1221,20 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Class As Associated One Side", //$NON-NLS-1$
 								"Consistency: Object: Class As Associated One Side: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56866.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58415.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class As Associated One Side: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56866.length), e);
+										+ Integer.toString(objs58415.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56866.length) > 1)) {
+		if (((objs58415.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1242,7 +1243,7 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 								"Class As Associated One Side", //$NON-NLS-1$
 								"Consistency: Object: Class As Associated One Side: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56866.length)
+										+ Integer.toString(objs58415.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1250,7 +1251,7 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Associated One Side: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56866.length)
+										+ Integer.toString(objs58415.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1259,34 +1260,34 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 
 		// Class As Associated One Side is a subtype in association: rel.Numb = 204
 		// The supertype class is: Referred To Class in Assoc
-		class ReferredToClassInAssoc_c_test56874_c
+		class ReferredToClassInAssoc_c_test58423_c
 				implements
 					ClassQueryInterface_c {
-			ReferredToClassInAssoc_c_test56874_c(java.util.UUID p56875,
-					java.util.UUID p56876, java.util.UUID p56877) {
-				m_p56875 = p56875;
-				m_p56876 = p56876;
-				m_p56877 = p56877;
+			ReferredToClassInAssoc_c_test58423_c(java.util.UUID p58424,
+					java.util.UUID p58425, java.util.UUID p58426) {
+				m_p58424 = p58424;
+				m_p58425 = p58425;
+				m_p58426 = p58426;
 			}
-			private java.util.UUID m_p56875;
-			private java.util.UUID m_p56876;
-			private java.util.UUID m_p56877;
+			private java.util.UUID m_p58424;
+			private java.util.UUID m_p58425;
+			private java.util.UUID m_p58426;
 			public boolean evaluate(Object candidate) {
 				ReferredToClassInAssoc_c selected = (ReferredToClassInAssoc_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56875))
-						& (selected.getObj_id().equals(m_p56876))
-						& (selected.getRel_id().equals(m_p56877));
+				retval = (selected.getOir_id().equals(m_p58424))
+						& (selected.getObj_id().equals(m_p58425))
+						& (selected.getRel_id().equals(m_p58426));
 				return retval;
 			}
 		}
 
-		ReferredToClassInAssoc_c[] objs56873 = ReferredToClassInAssoc_c
+		ReferredToClassInAssoc_c[] objs58422 = ReferredToClassInAssoc_c
 				.ReferredToClassInAssocInstances(modelRoot,
-						new ReferredToClassInAssoc_c_test56874_c(getOir_id(),
+						new ReferredToClassInAssoc_c_test58423_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56873.length) != 1)) {
+		if (((objs58422.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1294,14 +1295,14 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Class As Associated One Side", //$NON-NLS-1$
 								"Consistency: Object: Class As Associated One Side: Association: 204: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56873.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58422.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class As Associated One Side: Association: 204: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56873.length), e);
+										+ Integer.toString(objs58422.length), e);
 			}
 			retval = false;
 
@@ -1309,26 +1310,26 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 
 		// Class As Associated One Side is a referring class in association: rel.Numb = 209
 		// The participating class is: Linked Association
-		class LinkedAssociation_c_test56879_c implements ClassQueryInterface_c {
-			LinkedAssociation_c_test56879_c(java.util.UUID p56880) {
-				m_p56880 = p56880;
+		class LinkedAssociation_c_test58428_c implements ClassQueryInterface_c {
+			LinkedAssociation_c_test58428_c(java.util.UUID p58429) {
+				m_p58429 = p58429;
 			}
-			private java.util.UUID m_p56880;
+			private java.util.UUID m_p58429;
 			public boolean evaluate(Object candidate) {
 				LinkedAssociation_c selected = (LinkedAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56880));
+				retval = (selected.getRel_id().equals(m_p58429));
 				return retval;
 			}
 		}
 
-		LinkedAssociation_c[] objs56878 = LinkedAssociation_c
+		LinkedAssociation_c[] objs58427 = LinkedAssociation_c
 				.LinkedAssociationInstances(modelRoot,
-						new LinkedAssociation_c_test56879_c(getRel_id()));
+						new LinkedAssociation_c_test58428_c(getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56878.length) != 1)) {
+		if (((objs58427.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1337,7 +1338,7 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 								"Class As Associated One Side", //$NON-NLS-1$
 								"Consistency: Object: Class As Associated One Side: Association: 209: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56878.length)
+										+ Integer.toString(objs58427.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1345,7 +1346,7 @@ public class ClassAsAssociatedOneSide_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Associated One Side: Association: 209: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56878.length)
+										+ Integer.toString(objs58427.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

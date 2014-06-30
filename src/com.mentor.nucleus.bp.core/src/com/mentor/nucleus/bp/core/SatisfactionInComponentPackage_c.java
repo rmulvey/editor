@@ -154,7 +154,8 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,10 +171,10 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getComponentpackage_id()) || IdAssigner.NULL_UUID
-				.equals(((SatisfactionInComponentPackage_c) elem)
-						.getComponentpackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getComponentpackage_id()) || IdAssigner.NULL_UUID
+						.equals(((SatisfactionInComponentPackage_c) elem)
+								.getComponentpackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getComponentpackage_id().equals(
@@ -183,10 +184,10 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
-				.equals(((SatisfactionInComponentPackage_c) elem)
-						.getSatisfaction_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
+						.equals(((SatisfactionInComponentPackage_c) elem)
+								.getSatisfaction_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSatisfaction_id().equals(
@@ -714,67 +715,67 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9001
-		ComponentPackage_c relInst39245 = (ComponentPackage_c) baseRoot
+		ComponentPackage_c relInst39827 = (ComponentPackage_c) baseRoot
 				.getInstanceList(ComponentPackage_c.class).get(
 						new Object[]{m_componentpackage_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39245 == null) {
-			relInst39245 = (ComponentPackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst39827 == null) {
+			relInst39827 = (ComponentPackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ComponentPackage_c.class)
 					.get(new Object[]{m_componentpackage_id});
 		}
-		if (relInst39245 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39827 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39245 = (ComponentPackage_c) roots[i].getInstanceList(
+				relInst39827 = (ComponentPackage_c) roots[i].getInstanceList(
 						ComponentPackage_c.class).get(
 						new Object[]{m_componentpackage_id});
-				if (relInst39245 != null)
+				if (relInst39827 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39245 != null) {
+		if (relInst39827 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39245) && !isProxy())) {
-				relInst39245.relateAcrossR9001To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39827) && !isProxy())) {
+				relInst39827.relateAcrossR9001To(this, notifyChanges);
 			}
 		}
 
-		Satisfaction_c relInst39246 = (Satisfaction_c) baseRoot
+		Satisfaction_c relInst39828 = (Satisfaction_c) baseRoot
 				.getInstanceList(Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39246 == null) {
-			relInst39246 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
+		if (relInst39828 == null) {
+			relInst39828 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Satisfaction_c.class)
 					.get(new Object[]{m_satisfaction_id});
 		}
-		if (relInst39246 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39828 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39246 = (Satisfaction_c) roots[i].getInstanceList(
+				relInst39828 = (Satisfaction_c) roots[i].getInstanceList(
 						Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
-				if (relInst39246 != null)
+				if (relInst39828 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39246 != null) {
+		if (relInst39828 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39246) && !isProxy())) {
-				relInst39246.relateAcrossR9001To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39828) && !isProxy())) {
+				relInst39828.relateAcrossR9001To(this, notifyChanges);
 			}
 		}
 
@@ -1036,31 +1037,31 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SatisfactionInComponentPackage_c_test39250_c
+		class SatisfactionInComponentPackage_c_test39832_c
 				implements
 					ClassQueryInterface_c {
-			SatisfactionInComponentPackage_c_test39250_c(java.util.UUID p39251,
-					java.util.UUID p39252) {
-				m_p39251 = p39251;
-				m_p39252 = p39252;
+			SatisfactionInComponentPackage_c_test39832_c(java.util.UUID p39833,
+					java.util.UUID p39834) {
+				m_p39833 = p39833;
+				m_p39834 = p39834;
 			}
-			private java.util.UUID m_p39251;
-			private java.util.UUID m_p39252;
+			private java.util.UUID m_p39833;
+			private java.util.UUID m_p39834;
 			public boolean evaluate(Object candidate) {
 				SatisfactionInComponentPackage_c selected = (SatisfactionInComponentPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getComponentpackage_id().equals(m_p39251))
-						& (selected.getSatisfaction_id().equals(m_p39252));
+				retval = (selected.getComponentpackage_id().equals(m_p39833))
+						& (selected.getSatisfaction_id().equals(m_p39834));
 				return retval;
 			}
 		}
 
-		SatisfactionInComponentPackage_c[] objs39249 = SatisfactionInComponentPackage_c
+		SatisfactionInComponentPackage_c[] objs39831 = SatisfactionInComponentPackage_c
 				.SatisfactionInComponentPackageInstances(modelRoot,
-						new SatisfactionInComponentPackage_c_test39250_c(
+						new SatisfactionInComponentPackage_c_test39832_c(
 								getComponentpackage_id(), getSatisfaction_id()));
 
-		if (((objs39249.length) == 0)) {
+		if (((objs39831.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1068,20 +1069,20 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Satisfaction In Component Package", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39249.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39831.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Satisfaction In Component Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39249.length), e);
+										+ Integer.toString(objs39831.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39249.length) > 1)) {
+		if (((objs39831.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1090,7 +1091,7 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 								"Satisfaction In Component Package", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39249.length)
+										+ Integer.toString(objs39831.length)
 										+ " ComponentPackage_ID: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1098,7 +1099,7 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Satisfaction In Component Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39249.length)
+										+ Integer.toString(objs39831.length)
 										+ " ComponentPackage_ID: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1108,25 +1109,25 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 		// Satisfaction In Component Package is a link class in association: rel.Numb = 9001
 		// Other side
 		// The other side class in the association is: Component Package
-		class ComponentPackage_c_test39254_c implements ClassQueryInterface_c {
-			ComponentPackage_c_test39254_c(java.util.UUID p39255) {
-				m_p39255 = p39255;
+		class ComponentPackage_c_test39836_c implements ClassQueryInterface_c {
+			ComponentPackage_c_test39836_c(java.util.UUID p39837) {
+				m_p39837 = p39837;
 			}
-			private java.util.UUID m_p39255;
+			private java.util.UUID m_p39837;
 			public boolean evaluate(Object candidate) {
 				ComponentPackage_c selected = (ComponentPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p39255));
+				retval = (selected.getPackage_id().equals(m_p39837));
 				return retval;
 			}
 		}
 
-		ComponentPackage_c[] objs39253 = ComponentPackage_c
+		ComponentPackage_c[] objs39835 = ComponentPackage_c
 				.ComponentPackageInstances(modelRoot,
-						new ComponentPackage_c_test39254_c(
+						new ComponentPackage_c_test39836_c(
 								getComponentpackage_id()));
 
-		if (((objs39253.length) > 1)) {
+		if (((objs39835.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1134,14 +1135,14 @@ public class SatisfactionInComponentPackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Satisfaction In Component Package", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component Package: Association: 9001: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39253.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39835.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Satisfaction In Component Package: Association: 9001: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39253.length), e);
+										+ Integer.toString(objs39835.length), e);
 			}
 			retval = false;
 

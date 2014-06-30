@@ -139,7 +139,8 @@ public class Extend_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -155,8 +156,9 @@ public class Extend_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
-				.equals(((Extend_c) elem).getAssoc_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
+						.equals(((Extend_c) elem).getAssoc_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAssoc_id().equals(((Extend_c) elem).getAssoc_id()))
@@ -404,35 +406,35 @@ public class Extend_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1210
-		UseCaseAssociation_c relInst37930 = (UseCaseAssociation_c) baseRoot
+		UseCaseAssociation_c relInst38512 = (UseCaseAssociation_c) baseRoot
 				.getInstanceList(UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37930 == null) {
-			relInst37930 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
+		if (relInst38512 == null) {
+			relInst38512 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(UseCaseAssociation_c.class)
 					.get(new Object[]{m_assoc_id});
 		}
-		if (relInst37930 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38512 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37930 = (UseCaseAssociation_c) roots[i].getInstanceList(
+				relInst38512 = (UseCaseAssociation_c) roots[i].getInstanceList(
 						UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
-				if (relInst37930 != null)
+				if (relInst38512 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37930 != null) {
+		if (relInst38512 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37930) && !isProxy())) {
-				relInst37930.relateAcrossR1210To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38512) && !isProxy())) {
+				relInst38512.relateAcrossR1210To(this, notifyChanges);
 			}
 		}
 
@@ -689,55 +691,55 @@ public class Extend_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Extend_c_test37932_c implements ClassQueryInterface_c {
-			Extend_c_test37932_c(java.util.UUID p37933) {
-				m_p37933 = p37933;
+		class Extend_c_test38514_c implements ClassQueryInterface_c {
+			Extend_c_test38514_c(java.util.UUID p38515) {
+				m_p38515 = p38515;
 			}
-			private java.util.UUID m_p37933;
+			private java.util.UUID m_p38515;
 			public boolean evaluate(Object candidate) {
 				Extend_c selected = (Extend_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37933));
+				retval = (selected.getAssoc_id().equals(m_p38515));
 				return retval;
 			}
 		}
 
-		Extend_c[] objs37931 = Extend_c.ExtendInstances(modelRoot,
-				new Extend_c_test37932_c(getAssoc_id()));
+		Extend_c[] objs38513 = Extend_c.ExtendInstances(modelRoot,
+				new Extend_c_test38514_c(getAssoc_id()));
 
-		if (((objs37931.length) == 0)) {
+		if (((objs38513.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Extend", //$NON-NLS-1$
 								"Consistency: Object: Extend: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37931.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38513.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Extend: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37931.length), e);
+								+ Integer.toString(objs38513.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37931.length) > 1)) {
+		if (((objs38513.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Extend", //$NON-NLS-1$
 						"Consistency: Object: Extend: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs37931.length)
+								+ Integer.toString(objs38513.length)
 								+ " Assoc_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Extend: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37931.length)
+								+ Integer.toString(objs38513.length)
 								+ " Assoc_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -746,38 +748,38 @@ public class Extend_c extends NonRootModelElement
 
 		// Extend is a subtype in association: rel.Numb = 1210
 		// The supertype class is: Use Case Association
-		class UseCaseAssociation_c_test37937_c implements ClassQueryInterface_c {
-			UseCaseAssociation_c_test37937_c(java.util.UUID p37938) {
-				m_p37938 = p37938;
+		class UseCaseAssociation_c_test38519_c implements ClassQueryInterface_c {
+			UseCaseAssociation_c_test38519_c(java.util.UUID p38520) {
+				m_p38520 = p38520;
 			}
-			private java.util.UUID m_p37938;
+			private java.util.UUID m_p38520;
 			public boolean evaluate(Object candidate) {
 				UseCaseAssociation_c selected = (UseCaseAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37938));
+				retval = (selected.getAssoc_id().equals(m_p38520));
 				return retval;
 			}
 		}
 
-		UseCaseAssociation_c[] objs37936 = UseCaseAssociation_c
+		UseCaseAssociation_c[] objs38518 = UseCaseAssociation_c
 				.UseCaseAssociationInstances(modelRoot,
-						new UseCaseAssociation_c_test37937_c(getAssoc_id()));
+						new UseCaseAssociation_c_test38519_c(getAssoc_id()));
 
-		if (((objs37936.length) != 1)) {
+		if (((objs38518.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Extend", //$NON-NLS-1$
 								"Consistency: Object: Extend: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37936.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38518.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Extend: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37936.length), e);
+										+ Integer.toString(objs38518.length), e);
 			}
 			retval = false;
 

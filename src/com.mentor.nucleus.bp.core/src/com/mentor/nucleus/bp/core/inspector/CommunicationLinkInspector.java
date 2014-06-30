@@ -446,5 +446,41 @@ InteractionParticipant_c.getOneSQ_POnR1134(
 		}
 		return CorePlugin.getImageFor("Association.gif");
 	}
-    }       
+
+  /**
+  * Returns a "slot number" to be used when comparing and merging tree elements
+  * that contain multiple children.  All model element inspector's contain this 
+  * function, but it only returns a value for cases where it a parent element
+  * in a tree and the parent has multiple children.
+  * 
+  * @returns 0 if this is not a "parent" in the tree OR if the parent has less 
+  * than 2 children. 
+  */
+	@Override
+	public int getTreeDifferenceSlot(Object element) {
+    	if (element instanceof ClassInstanceParticipant_c) {
+			return 1;
+		}
+    	if (element instanceof ClassParticipant_c) {
+			return 2;
+		}
+    	if (element instanceof ExternalEntityParticipant_c) {
+			return 3;
+		}
+    	if (element instanceof FunctionPackageParticipant_c) {
+			return 4;
+		}
+    	if (element instanceof ActorParticipant_c) {
+			return 5;
+		}
+    	if (element instanceof ComponentParticipant_c) {
+			return 6;
+		}
+    	if (element instanceof PackageParticipant_c) {
+			return 7;
+		}
+		return 0;
+	}
+
+	}       
 

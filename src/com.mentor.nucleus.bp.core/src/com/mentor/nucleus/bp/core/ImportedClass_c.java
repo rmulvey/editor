@@ -201,7 +201,7 @@ p_m_obj_kl
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -217,7 +217,7 @@ p_m_obj_kl
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getIobj_id()) || IdAssigner.NULL_UUID.equals(((ImportedClass_c)elem).getIobj_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getIobj_id()) || IdAssigner.NULL_UUID.equals(((ImportedClass_c)elem).getIobj_id())) && this != elem)) {
       	return false;
       }
       if (!getIobj_id().equals(((ImportedClass_c)elem).getIobj_id())) return false;
@@ -1894,58 +1894,58 @@ public static ImportedClass_c [] getManyO_IOBJsOnR202(ClassInAssociation_c targe
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst38112 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
+      PackageableElement_c relInst38694 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38112 == null) {
-      			relInst38112 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
+      		if (relInst38694 == null) {
+      			relInst38694 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
       		}
-			if (relInst38112 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38694 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38112 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
-					if (relInst38112 != null)
+					relInst38694 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_iobj_id});
+					if (relInst38694 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38112 != null )
+      if ( relInst38694 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38112) && !isProxy())) {
-	      relInst38112.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38694) && !isProxy())) {
+	      relInst38694.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (RepresentsModelClass == null) {          
       // R101
-      ModelClass_c relInst38113 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      ModelClass_c relInst38695 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38113 == null) {
-      			relInst38113 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      		if (relInst38695 == null) {
+      			relInst38695 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
       		}
-			if (relInst38113 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38695 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38113 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
-					if (relInst38113 != null)
+					relInst38695 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+					if (relInst38695 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38113 != null )
+      if ( relInst38695 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38113) && !isProxy())) {
-	      relInst38113.relateAcrossR101To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38695) && !isProxy())) {
+	      relInst38695.relateAcrossR101To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1953,29 +1953,29 @@ public static ImportedClass_c [] getManyO_IOBJsOnR202(ClassInAssociation_c targe
 
 	if (RepresentsAClassFromAnotherSubsystemInSubsystem == null) {          
       // R3
-      Subsystem_c relInst38114 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      Subsystem_c relInst38696 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38114 == null) {
-      			relInst38114 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      		if (relInst38696 == null) {
+      			relInst38696 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
       		}
-			if (relInst38114 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38696 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38114 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
-					if (relInst38114 != null)
+					relInst38696 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+					if (relInst38696 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38114 != null )
+      if ( relInst38696 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38114) && !isProxy())) {
-	      relInst38114.relateAcrossR3To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38696) && !isProxy())) {
+	      relInst38696.relateAcrossR3To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2447,56 +2447,56 @@ return v_model_class.getKey_lett();
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ImportedClass_c_test38116_c implements ClassQueryInterface_c
+    class ImportedClass_c_test38698_c implements ClassQueryInterface_c
     {
-	  ImportedClass_c_test38116_c( java.util.UUID            p38117 ) {
-	  m_p38117 = p38117;
+	  ImportedClass_c_test38698_c( java.util.UUID            p38699 ) {
+	  m_p38699 = p38699;
 	  }
-	  private java.util.UUID             m_p38117; 
+	  private java.util.UUID             m_p38699; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedClass_c selected = (ImportedClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getIobj_id().equals(m_p38117));
+	      retval = (selected.getIobj_id().equals(m_p38699));
 	      return retval;
 	  }
     }
 
-    ImportedClass_c [] objs38115 = 
-    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test38116_c(getIobj_id())) ;
+    ImportedClass_c [] objs38697 = 
+    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test38698_c(getIobj_id())) ;
 
-    if ( (  (objs38115.length) == 0) )
+    if ( (  (objs38697.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Class", //$NON-NLS-1$
            "Consistency: Object: Imported Class: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38115.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38697.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Class: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38115.length )  , e); 
+          + Integer.toString( objs38697.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38115.length) > 1) )
+    if ( (  (objs38697.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Class", //$NON-NLS-1$
            "Consistency: Object: Imported Class: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38115.length )  + " IObj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38697.length )  + " IObj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Class: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38115.length )  + " IObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38697.length )  + " IObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2504,40 +2504,40 @@ return v_model_class.getKey_lett();
 
           // Imported Class is a referring class in association: rel.Numb = 3
           // The participating class is: Subsystem
-    class Subsystem_c_test38121_c implements ClassQueryInterface_c
+    class Subsystem_c_test38703_c implements ClassQueryInterface_c
     {
-	  Subsystem_c_test38121_c( java.util.UUID            p38122 ) {
-	  m_p38122 = p38122;
+	  Subsystem_c_test38703_c( java.util.UUID            p38704 ) {
+	  m_p38704 = p38704;
 	  }
-	  private java.util.UUID             m_p38122; 
+	  private java.util.UUID             m_p38704; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Subsystem_c selected = (Subsystem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSs_id().equals(m_p38122));
+	      retval = (selected.getSs_id().equals(m_p38704));
 	      return retval;
 	  }
     }
 
-    Subsystem_c [] objs38120 = 
-    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test38121_c(getSs_id())) ;
+    Subsystem_c [] objs38702 = 
+    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test38703_c(getSs_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38120.length) != 1) )
+    if ( (  (objs38702.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Class", //$NON-NLS-1$
            "Consistency: Object: Imported Class: Association: 3: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38120.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38702.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Class: Association: 3: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38120.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38702.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2545,38 +2545,38 @@ return v_model_class.getKey_lett();
 
           // Imported Class is a referring class in association: rel.Numb = 101
           // The participating class is: Model Class
-    class ModelClass_c_test38124_c implements ClassQueryInterface_c
+    class ModelClass_c_test38706_c implements ClassQueryInterface_c
     {
-	  ModelClass_c_test38124_c( java.util.UUID            p38125 ) {
-	  m_p38125 = p38125;
+	  ModelClass_c_test38706_c( java.util.UUID            p38707 ) {
+	  m_p38707 = p38707;
 	  }
-	  private java.util.UUID             m_p38125; 
+	  private java.util.UUID             m_p38707; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ModelClass_c selected = (ModelClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getObj_id().equals(m_p38125));
+	      retval = (selected.getObj_id().equals(m_p38707));
 	      return retval;
 	  }
     }
 
-    ModelClass_c [] objs38123 = 
-    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test38124_c(getObj_id())) ;
+    ModelClass_c [] objs38705 = 
+    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test38706_c(getObj_id())) ;
 
-    if ( (  (objs38123.length) > 1) )
+    if ( (  (objs38705.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Class", //$NON-NLS-1$
            "Consistency: Object: Imported Class: Association: 101: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38123.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38705.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Class: Association: 101: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38123.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38705.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2828,9 +2828,9 @@ ClassInAssociation_c [] v_oirs = ClassInAssociation_c.getManyR_OIRsOnR202(this);
 
 
 ClassInAssociation_c  v_oir = null;
-for ( int i36544 = 0; i36544 < v_oirs.length; i36544++)
+for ( int i37113 = 0; i37113 < v_oirs.length; i37113++)
 {
-  v_oir = v_oirs[i36544] ;
+  v_oir = v_oirs[i37113] ;
 
 Association_c v_assoc = Association_c.getOneR_RELOnR201(v_oir);
 
@@ -2909,9 +2909,9 @@ AccessPath_c [] v_oaps = AccessPath_c.getManyCA_ACCsOnR425(this);
 
 
 AccessPath_c  v_oap = null;
-for ( int i36545 = 0; i36545 < v_oaps.length; i36545++)
+for ( int i37114 = 0; i37114 < v_oaps.length; i37114++)
 {
-  v_oap = v_oaps[i36545] ;
+  v_oap = v_oaps[i37114] ;
 
 if (v_oap != null) {
 v_oap.Dispose() ;
@@ -2930,9 +2930,9 @@ AccessPath_c [] v_daps = AccessPath_c.getManyCA_ACCsOnR415(SmToObjAccessPath_c.g
 
 
 AccessPath_c  v_dap = null;
-for ( int i36546 = 0; i36546 < v_daps.length; i36546++)
+for ( int i37115 = 0; i37115 < v_daps.length; i37115++)
 {
-  v_dap = v_daps[i36546] ;
+  v_dap = v_daps[i37115] ;
 
 if (v_dap != null) {
 v_dap.Dispose() ;
@@ -2951,9 +2951,9 @@ CommunicationPath_c [] v_dcps = CommunicationPath_c.getManyCA_COMMsOnR401(SmToSm
 
 
 CommunicationPath_c  v_dcp = null;
-for ( int i36547 = 0; i36547 < v_dcps.length; i36547++)
+for ( int i37116 = 0; i37116 < v_dcps.length; i37116++)
 {
-  v_dcp = v_dcps[i36547] ;
+  v_dcp = v_dcps[i37116] ;
 
 if (v_dcp != null) {
 v_dcp.Dispose() ;
@@ -2972,9 +2972,9 @@ CommunicationPath_c [] v_ocps = CommunicationPath_c.getManyCA_COMMsOnR401(SmToSm
 
 
 CommunicationPath_c  v_ocp = null;
-for ( int i36548 = 0; i36548 < v_ocps.length; i36548++)
+for ( int i37117 = 0; i37117 < v_ocps.length; i37117++)
 {
-  v_ocp = v_ocps[i36548] ;
+  v_ocp = v_ocps[i37117] ;
 
 if (v_ocp != null) {
 v_ocp.Dispose() ;
@@ -3117,7 +3117,7 @@ else {
 }
 
 
-  class SearchResultSet_test36941_c implements ClassQueryInterface_c
+  class SearchResultSet_test37523_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3125,7 +3125,7 @@ else {
 		return (selected.getType() == Elementtypeconstants_c.CLASS) ;
 	}
   }
-SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test36941_c());
+SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test37523_c());
 
 
 PackageableElement_c [] v_pes = PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_srs));
@@ -3219,57 +3219,57 @@ v_package = Package_c.getOneEP_PKGOnR8000(PackageableElement_c.getOnePE_PEOnR800
 
 }
 
-  class ModelClass_test36942_c implements ClassQueryInterface_c
+  class ModelClass_test37524_c implements ClassQueryInterface_c
   {
-	ModelClass_test36942_c( String       p36943, String       p36944 ) {
-		m_p36943 = p36943;
-				m_p36944 = p36944;
+	ModelClass_test37524_c( String       p37525, String       p37526 ) {
+		m_p37525 = p37525;
+				m_p37526 = p37526;
 	}
-	private String       m_p36943;
-		private String       m_p36944;
+	private String       m_p37525;
+		private String       m_p37526;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getKey_lett().equals(m_p36943) && selected.getName().equals(m_p36944)) ;
+		return (selected.getKey_lett().equals(m_p37525) && selected.getName().equals(m_p37526)) ;
 	}
   }
-v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test36942_c(v_proxyClass.getKey_lett(), v_proxyClass.getName()));
+v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test37524_c(v_proxyClass.getKey_lett(), v_proxyClass.getName()));
 
 
 if ( (  (v_clazz == null)) )
 {
 
-  class ModelClass_test36945_c implements ClassQueryInterface_c
+  class ModelClass_test37527_c implements ClassQueryInterface_c
   {
-	ModelClass_test36945_c( String       p36946 ) {
-		m_p36946 = p36946;
+	ModelClass_test37527_c( String       p37528 ) {
+		m_p37528 = p37528;
 	}
-	private String       m_p36946;
+	private String       m_p37528;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getKey_lett().equals(m_p36946)) ;
+		return (selected.getKey_lett().equals(m_p37528)) ;
 	}
   }
-v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test36945_c(v_proxyClass.getKey_lett()));
+v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test37527_c(v_proxyClass.getKey_lett()));
 
 
 if ( (  (v_clazz == null)) )
 {
 
-  class ModelClass_test36947_c implements ClassQueryInterface_c
+  class ModelClass_test37529_c implements ClassQueryInterface_c
   {
-	ModelClass_test36947_c( String       p36948 ) {
-		m_p36948 = p36948;
+	ModelClass_test37529_c( String       p37530 ) {
+		m_p37530 = p37530;
 	}
-	private String       m_p36948;
+	private String       m_p37530;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getName().equals(m_p36948)) ;
+		return (selected.getName().equals(m_p37530)) ;
 	}
   }
-v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test36947_c(v_proxyClass.getName()));
+v_clazz = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(v_package))), new ModelClass_test37529_c(v_proxyClass.getName()));
 
 
 
@@ -3291,9 +3291,9 @@ ClassInAssociation_c [] v_cias = ClassInAssociation_c.getManyR_OIRsOnR202(this);
 
 
 ClassInAssociation_c  v_cia = null;
-for ( int i36549 = 0; i36549 < v_cias.length; i36549++)
+for ( int i37118 = 0; i37118 < v_cias.length; i37118++)
 {
-  v_cia = v_cias[i36549] ;
+  v_cia = v_cias[i37118] ;
 
 ModelClass_c v_existingClass = ModelClass_c.getOneO_OBJOnR201(v_cia);
 
@@ -3334,9 +3334,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR201(ClassInAssociation
 
 
 Association_c  v_assoc = null;
-for ( int i36550 = 0; i36550 < v_assocs.length; i36550++)
+for ( int i37119 = 0; i37119 < v_assocs.length; i37119++)
 {
-  v_assoc = v_assocs[i36550] ;
+  v_assoc = v_assocs[i37119] ;
 
 if ( (v_assoc.Isformalized()) )
 {
@@ -3367,9 +3367,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR201(ClassInAssociation
 
 
 Association_c  v_assoc = null;
-for ( int i36551 = 0; i36551 < v_assocs.length; i36551++)
+for ( int i37120 = 0; i37120 < v_assocs.length; i37120++)
 {
-  v_assoc = v_assocs[i36551] ;
+  v_assoc = v_assocs[i37120] ;
 
 if (v_assoc != null) {
 v_assoc.Dispose() ;
@@ -3415,63 +3415,63 @@ Subsystem_c v_otherSS = Subsystem_c.getOneS_SSOnR3(this);
 Domain_c v_domain = Domain_c.DomainInstance(modelRoot) ;
 
 
-  class ModelClass_test36949_c implements ClassQueryInterface_c
+  class ModelClass_test37531_c implements ClassQueryInterface_c
   {
-	ModelClass_test36949_c( String       p36950, String       p36951, java.util.UUID         p36952 ) {
-		m_p36950 = p36950;
-				m_p36951 = p36951;
-				m_p36952 = p36952;
+	ModelClass_test37531_c( String       p37532, String       p37533, java.util.UUID         p37534 ) {
+		m_p37532 = p37532;
+				m_p37533 = p37533;
+				m_p37534 = p37534;
 	}
-	private String       m_p36950;
-		private String       m_p36951;
-		private java.util.UUID         m_p36952;
+	private String       m_p37532;
+		private String       m_p37533;
+		private java.util.UUID         m_p37534;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getKey_lett().equals(m_p36950) && selected.getName().equals(m_p36951) && ! selected.getSs_id().equals(m_p36952)) ;
+		return (selected.getKey_lett().equals(m_p37532) && selected.getName().equals(m_p37533) && ! selected.getSs_id().equals(m_p37534)) ;
 	}
   }
-ModelClass_c v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test36949_c(v_key_letters, v_name, v_otherSS.getSs_id()));
+ModelClass_c v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test37531_c(v_key_letters, v_name, v_otherSS.getSs_id()));
 
 
 if ( (  (v_clazz == null)) )
 {
 
-  class ModelClass_test36953_c implements ClassQueryInterface_c
+  class ModelClass_test37535_c implements ClassQueryInterface_c
   {
-	ModelClass_test36953_c( String       p36954, java.util.UUID         p36955 ) {
-		m_p36954 = p36954;
-				m_p36955 = p36955;
+	ModelClass_test37535_c( String       p37536, java.util.UUID         p37537 ) {
+		m_p37536 = p37536;
+				m_p37537 = p37537;
 	}
-	private String       m_p36954;
-		private java.util.UUID         m_p36955;
+	private String       m_p37536;
+		private java.util.UUID         m_p37537;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getKey_lett().equals(m_p36954) && ! selected.getSs_id().equals(m_p36955)) ;
+		return (selected.getKey_lett().equals(m_p37536) && ! selected.getSs_id().equals(m_p37537)) ;
 	}
   }
-v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test36953_c(v_key_letters, v_otherSS.getSs_id()));
+v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test37535_c(v_key_letters, v_otherSS.getSs_id()));
 
 
 if ( (  (v_clazz == null)) )
 {
 
-  class ModelClass_test36956_c implements ClassQueryInterface_c
+  class ModelClass_test37538_c implements ClassQueryInterface_c
   {
-	ModelClass_test36956_c( String       p36957, java.util.UUID         p36958 ) {
-		m_p36957 = p36957;
-				m_p36958 = p36958;
+	ModelClass_test37538_c( String       p37539, java.util.UUID         p37540 ) {
+		m_p37539 = p37539;
+				m_p37540 = p37540;
 	}
-	private String       m_p36957;
-		private java.util.UUID         m_p36958;
+	private String       m_p37539;
+		private java.util.UUID         m_p37540;
 	public boolean evaluate (Object candidate)
 	{
 		ModelClass_c selected = (ModelClass_c)candidate;
-		return (selected.getName().equals(m_p36957) && ! selected.getSs_id().equals(m_p36958)) ;
+		return (selected.getName().equals(m_p37539) && ! selected.getSs_id().equals(m_p37540)) ;
 	}
   }
-v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test36956_c(v_name, v_otherSS.getSs_id()));
+v_clazz = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(v_domain), new ModelClass_test37538_c(v_name, v_otherSS.getSs_id()));
 
 
 
@@ -3505,9 +3505,9 @@ ClassInAssociation_c [] v_cias = ClassInAssociation_c.getManyR_OIRsOnR202(this);
 
 
 ClassInAssociation_c  v_cia = null;
-for ( int i36552 = 0; i36552 < v_cias.length; i36552++)
+for ( int i37121 = 0; i37121 < v_cias.length; i37121++)
 {
-  v_cia = v_cias[i36552] ;
+  v_cia = v_cias[i37121] ;
 
 ModelClass_c v_existingClass = ModelClass_c.getOneO_OBJOnR201(v_cia);
 
@@ -3548,9 +3548,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR201(ClassInAssociation
 
 
 Association_c  v_assoc = null;
-for ( int i36553 = 0; i36553 < v_assocs.length; i36553++)
+for ( int i37122 = 0; i37122 < v_assocs.length; i37122++)
 {
-  v_assoc = v_assocs[i36553] ;
+  v_assoc = v_assocs[i37122] ;
 
 if ( (v_assoc.Isformalized()) )
 {
@@ -3589,9 +3589,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR201(ClassInAssociation
 
 
 Association_c  v_assoc = null;
-for ( int i36554 = 0; i36554 < v_assocs.length; i36554++)
+for ( int i37123 = 0; i37123 < v_assocs.length; i37123++)
 {
-  v_assoc = v_assocs[i36554] ;
+  v_assoc = v_assocs[i37123] ;
 
 if (v_assoc != null) {
 v_assoc.Dispose() ;

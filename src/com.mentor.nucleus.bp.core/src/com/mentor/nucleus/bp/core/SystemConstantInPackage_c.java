@@ -159,7 +159,8 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -175,9 +176,10 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((SystemConstantInPackage_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((SystemConstantInPackage_c) elem)
+								.getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -186,10 +188,10 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID
-				.equals(((SystemConstantInPackage_c) elem)
-						.getConstant_spec_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID
+						.equals(((SystemConstantInPackage_c) elem)
+								.getConstant_spec_id())) && this != elem)) {
 			return false;
 		}
 		if (!getConstant_spec_id().equals(
@@ -1029,17 +1031,17 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 			if (baseRoot != modelRoot && modelRoot.isCompareRoot()) {
 				baseRoot = modelRoot;
 			}
-			SystemModel_c relInst37982 = (SystemModel_c) baseRoot
+			SystemModel_c relInst38564 = (SystemModel_c) baseRoot
 					.getInstanceList(SystemModel_c.class).get(
 							new Object[]{m_sys_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37982 == null) {
-				relInst37982 = (SystemModel_c) Ooaofooa.getDefaultInstance()
+			if (relInst38564 == null) {
+				relInst38564 = (SystemModel_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(SystemModel_c.class)
 						.get(new Object[]{m_sys_id});
 			}
-			if (relInst37982 == null && searchAllRoots
+			if (relInst38564 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1047,88 +1049,88 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37982 = (SystemModel_c) roots[i].getInstanceList(
+					relInst38564 = (SystemModel_c) roots[i].getInstanceList(
 							SystemModel_c.class).get(new Object[]{m_sys_id});
-					if (relInst37982 != null)
+					if (relInst38564 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37982 != null) {
+			if (relInst38564 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37982) && !isProxy())) {
-					relInst37982.relateAcrossR4404To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38564) && !isProxy())) {
+					relInst38564.relateAcrossR4404To(this, notifyChanges);
 				}
 				// set the root in the Domain's model root, not the System Model's
 				// modelRoot is the SystemModel's root when we are loading a Domain proxy
-				((Ooaofooa) getModelRoot()).setRoot(relInst37982);
+				((Ooaofooa) getModelRoot()).setRoot(relInst38564);
 			}
 			baseRoot = modelRoot;
 		}
 
 		// R4403
-		DataTypePackage_c relInst37983 = (DataTypePackage_c) baseRoot
+		DataTypePackage_c relInst38565 = (DataTypePackage_c) baseRoot
 				.getInstanceList(DataTypePackage_c.class).get(
 						new Object[]{m_package_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37983 == null) {
-			relInst37983 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst38565 == null) {
+			relInst38565 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataTypePackage_c.class)
 					.get(new Object[]{m_package_id});
 		}
-		if (relInst37983 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38565 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37983 = (DataTypePackage_c) roots[i].getInstanceList(
+				relInst38565 = (DataTypePackage_c) roots[i].getInstanceList(
 						DataTypePackage_c.class)
 						.get(new Object[]{m_package_id});
-				if (relInst37983 != null)
+				if (relInst38565 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37983 != null) {
+		if (relInst38565 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37983) && !isProxy())) {
-				relInst37983.relateAcrossR4403To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38565) && !isProxy())) {
+				relInst38565.relateAcrossR4403To(this, notifyChanges);
 			}
 		}
 
-		ConstantSpecification_c relInst37984 = (ConstantSpecification_c) baseRoot
+		ConstantSpecification_c relInst38566 = (ConstantSpecification_c) baseRoot
 				.getInstanceList(ConstantSpecification_c.class).get(
 						new Object[]{m_constant_spec_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37984 == null) {
-			relInst37984 = (ConstantSpecification_c) Ooaofooa
+		if (relInst38566 == null) {
+			relInst38566 = (ConstantSpecification_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ConstantSpecification_c.class)
 					.get(new Object[]{m_constant_spec_id});
 		}
-		if (relInst37984 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38566 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37984 = (ConstantSpecification_c) roots[i]
+				relInst38566 = (ConstantSpecification_c) roots[i]
 						.getInstanceList(ConstantSpecification_c.class).get(
 								new Object[]{m_constant_spec_id});
-				if (relInst37984 != null)
+				if (relInst38566 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37984 != null) {
+		if (relInst38566 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37984) && !isProxy())) {
-				relInst37984.relateAcrossR4403To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38566) && !isProxy())) {
+				relInst38566.relateAcrossR4403To(this, notifyChanges);
 			}
 		}
 
@@ -1492,31 +1494,31 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SystemConstantInPackage_c_test37986_c
+		class SystemConstantInPackage_c_test38568_c
 				implements
 					ClassQueryInterface_c {
-			SystemConstantInPackage_c_test37986_c(java.util.UUID p37987,
-					java.util.UUID p37988) {
-				m_p37987 = p37987;
-				m_p37988 = p37988;
+			SystemConstantInPackage_c_test38568_c(java.util.UUID p38569,
+					java.util.UUID p38570) {
+				m_p38569 = p38569;
+				m_p38570 = p38570;
 			}
-			private java.util.UUID m_p37987;
-			private java.util.UUID m_p37988;
+			private java.util.UUID m_p38569;
+			private java.util.UUID m_p38570;
 			public boolean evaluate(Object candidate) {
 				SystemConstantInPackage_c selected = (SystemConstantInPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p37987))
-						& (selected.getConstant_spec_id().equals(m_p37988));
+				retval = (selected.getPackage_id().equals(m_p38569))
+						& (selected.getConstant_spec_id().equals(m_p38570));
 				return retval;
 			}
 		}
 
-		SystemConstantInPackage_c[] objs37985 = SystemConstantInPackage_c
+		SystemConstantInPackage_c[] objs38567 = SystemConstantInPackage_c
 				.SystemConstantInPackageInstances(modelRoot,
-						new SystemConstantInPackage_c_test37986_c(
+						new SystemConstantInPackage_c_test38568_c(
 								getPackage_id(), getConstant_spec_id()));
 
-		if (((objs37985.length) == 0)) {
+		if (((objs38567.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1524,20 +1526,20 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"System Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: System Constant in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37985.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38567.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: System Constant in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37985.length), e);
+										+ Integer.toString(objs38567.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37985.length) > 1)) {
+		if (((objs38567.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1546,7 +1548,7 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 								"System Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: System Constant in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37985.length)
+										+ Integer.toString(objs38567.length)
 										+ " Package_ID: " + "Not Printable" + " Constant_Spec_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1554,7 +1556,7 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: System Constant in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37985.length)
+										+ Integer.toString(objs38567.length)
 										+ " Package_ID: " + "Not Printable" + " Constant_Spec_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1563,26 +1565,26 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 
 		// System Constant in Package is a referring class in association: rel.Numb = 4404
 		// The participating class is: System Model
-		class SystemModel_c_test37992_c implements ClassQueryInterface_c {
-			SystemModel_c_test37992_c(java.util.UUID p37993) {
-				m_p37993 = p37993;
+		class SystemModel_c_test38574_c implements ClassQueryInterface_c {
+			SystemModel_c_test38574_c(java.util.UUID p38575) {
+				m_p38575 = p38575;
 			}
-			private java.util.UUID m_p37993;
+			private java.util.UUID m_p38575;
 			public boolean evaluate(Object candidate) {
 				SystemModel_c selected = (SystemModel_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSys_id().equals(m_p37993));
+				retval = (selected.getSys_id().equals(m_p38575));
 				return retval;
 			}
 		}
 
-		SystemModel_c[] objs37991 = SystemModel_c.SystemModelInstances(Ooaofooa
-				.getDefaultInstance(), new SystemModel_c_test37992_c(
+		SystemModel_c[] objs38573 = SystemModel_c.SystemModelInstances(Ooaofooa
+				.getDefaultInstance(), new SystemModel_c_test38574_c(
 				getSys_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37991.length) != 1)) {
+		if (((objs38573.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1591,7 +1593,7 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 								"System Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: System Constant in Package: Association: 4404: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37991.length)
+										+ Integer.toString(objs38573.length)
 										+ " Sys_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1599,7 +1601,7 @@ public class SystemConstantInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: System Constant in Package: Association: 4404: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37991.length)
+										+ Integer.toString(objs38573.length)
 										+ " Sys_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

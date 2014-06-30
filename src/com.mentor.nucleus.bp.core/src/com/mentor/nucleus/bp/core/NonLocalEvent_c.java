@@ -204,7 +204,8 @@ public class NonLocalEvent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -220,9 +221,9 @@ public class NonLocalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((NonLocalEvent_c) elem).getSmspd_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((NonLocalEvent_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(((NonLocalEvent_c) elem).getSmspd_id()))
@@ -230,8 +231,9 @@ public class NonLocalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((NonLocalEvent_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((NonLocalEvent_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((NonLocalEvent_c) elem).getSm_id()))
@@ -239,9 +241,9 @@ public class NonLocalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((NonLocalEvent_c) elem).getSmevt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((NonLocalEvent_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(((NonLocalEvent_c) elem).getSmevt_id()))
@@ -818,52 +820,52 @@ public class NonLocalEvent_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R526
-		SemEvent_c relInst38485 = (SemEvent_c) baseRoot.getInstanceList(
+		SemEvent_c relInst39067 = (SemEvent_c) baseRoot.getInstanceList(
 				SemEvent_c.class).get(
 				new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38485 == null) {
-			relInst38485 = (SemEvent_c) Ooaofooa.getDefaultInstance()
+		if (relInst39067 == null) {
+			relInst39067 = (SemEvent_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SemEvent_c.class)
 					.get(new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		}
-		if (relInst38485 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39067 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38485 = (SemEvent_c) roots[i].getInstanceList(
+				relInst39067 = (SemEvent_c) roots[i].getInstanceList(
 						SemEvent_c.class).get(
 						new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
-				if (relInst38485 != null)
+				if (relInst39067 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38485 != null) {
+		if (relInst39067 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38485) && !isProxy())) {
-				relInst38485.relateAcrossR526To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39067) && !isProxy())) {
+				relInst39067.relateAcrossR526To(this, notifyChanges);
 			}
 		}
 
 		if (IsDefinedByPolymorphicEvent == null) {
 			// R527
-			PolymorphicEvent_c relInst38486 = (PolymorphicEvent_c) baseRoot
+			PolymorphicEvent_c relInst39068 = (PolymorphicEvent_c) baseRoot
 					.getInstanceList(PolymorphicEvent_c.class).get(
 							new Object[]{m_polysm_id, m_polysmevt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38486 == null) {
-				relInst38486 = (PolymorphicEvent_c) Ooaofooa
+			if (relInst39068 == null) {
+				relInst39068 = (PolymorphicEvent_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(PolymorphicEvent_c.class)
 						.get(new Object[]{m_polysm_id, m_polysmevt_id});
 			}
-			if (relInst38486 == null && searchAllRoots
+			if (relInst39068 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -871,18 +873,18 @@ public class NonLocalEvent_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38486 = (PolymorphicEvent_c) roots[i]
+					relInst39068 = (PolymorphicEvent_c) roots[i]
 							.getInstanceList(PolymorphicEvent_c.class).get(
 									new Object[]{m_polysm_id, m_polysmevt_id});
-					if (relInst38486 != null)
+					if (relInst39068 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38486 != null) {
+			if (relInst39068 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38486) && !isProxy())) {
-					relInst38486.relateAcrossR527To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39068) && !isProxy())) {
+					relInst39068.relateAcrossR527To(this, notifyChanges);
 				}
 			}
 		}
@@ -1387,50 +1389,50 @@ public class NonLocalEvent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class NonLocalEvent_c_test38488_c implements ClassQueryInterface_c {
-			NonLocalEvent_c_test38488_c(java.util.UUID p38489,
-					java.util.UUID p38490, java.util.UUID p38491) {
-				m_p38489 = p38489;
-				m_p38490 = p38490;
-				m_p38491 = p38491;
+		class NonLocalEvent_c_test39070_c implements ClassQueryInterface_c {
+			NonLocalEvent_c_test39070_c(java.util.UUID p39071,
+					java.util.UUID p39072, java.util.UUID p39073) {
+				m_p39071 = p39071;
+				m_p39072 = p39072;
+				m_p39073 = p39073;
 			}
-			private java.util.UUID m_p38489;
-			private java.util.UUID m_p38490;
-			private java.util.UUID m_p38491;
+			private java.util.UUID m_p39071;
+			private java.util.UUID m_p39072;
+			private java.util.UUID m_p39073;
 			public boolean evaluate(Object candidate) {
 				NonLocalEvent_c selected = (NonLocalEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmspd_id().equals(m_p38489))
-						& (selected.getSm_id().equals(m_p38490))
-						& (selected.getSmevt_id().equals(m_p38491));
+				retval = (selected.getSmspd_id().equals(m_p39071))
+						& (selected.getSm_id().equals(m_p39072))
+						& (selected.getSmevt_id().equals(m_p39073));
 				return retval;
 			}
 		}
 
-		NonLocalEvent_c[] objs38487 = NonLocalEvent_c.NonLocalEventInstances(
-				modelRoot, new NonLocalEvent_c_test38488_c(getSmspd_id(),
+		NonLocalEvent_c[] objs39069 = NonLocalEvent_c.NonLocalEventInstances(
+				modelRoot, new NonLocalEvent_c_test39070_c(getSmspd_id(),
 						getSm_id(), getSmevt_id()));
 
-		if (((objs38487.length) == 0)) {
+		if (((objs39069.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Non Local Event", //$NON-NLS-1$
 								"Consistency: Object: Non Local Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38487.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39069.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Non Local Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38487.length), e);
+								+ Integer.toString(objs39069.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38487.length) > 1)) {
+		if (((objs39069.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1438,7 +1440,7 @@ public class NonLocalEvent_c extends NonRootModelElement
 								"Non Local Event", //$NON-NLS-1$
 								"Consistency: Object: Non Local Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38487.length)
+										+ Integer.toString(objs39069.length)
 										+ " SMspd_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1446,7 +1448,7 @@ public class NonLocalEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Non Local Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38487.length)
+										+ Integer.toString(objs39069.length)
 										+ " SMspd_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1455,45 +1457,45 @@ public class NonLocalEvent_c extends NonRootModelElement
 
 		// Non Local Event is a subtype in association: rel.Numb = 526
 		// The supertype class is: SEM Event
-		class SemEvent_c_test38495_c implements ClassQueryInterface_c {
-			SemEvent_c_test38495_c(java.util.UUID p38496,
-					java.util.UUID p38497, java.util.UUID p38498) {
-				m_p38496 = p38496;
-				m_p38497 = p38497;
-				m_p38498 = p38498;
+		class SemEvent_c_test39077_c implements ClassQueryInterface_c {
+			SemEvent_c_test39077_c(java.util.UUID p39078,
+					java.util.UUID p39079, java.util.UUID p39080) {
+				m_p39078 = p39078;
+				m_p39079 = p39079;
+				m_p39080 = p39080;
 			}
-			private java.util.UUID m_p38496;
-			private java.util.UUID m_p38497;
-			private java.util.UUID m_p38498;
+			private java.util.UUID m_p39078;
+			private java.util.UUID m_p39079;
+			private java.util.UUID m_p39080;
 			public boolean evaluate(Object candidate) {
 				SemEvent_c selected = (SemEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p38496))
-						& (selected.getSm_id().equals(m_p38497))
-						& (selected.getSmspd_id().equals(m_p38498));
+				retval = (selected.getSmevt_id().equals(m_p39078))
+						& (selected.getSm_id().equals(m_p39079))
+						& (selected.getSmspd_id().equals(m_p39080));
 				return retval;
 			}
 		}
 
-		SemEvent_c[] objs38494 = SemEvent_c.SemEventInstances(modelRoot,
-				new SemEvent_c_test38495_c(getSmevt_id(), getSm_id(),
+		SemEvent_c[] objs39076 = SemEvent_c.SemEventInstances(modelRoot,
+				new SemEvent_c_test39077_c(getSmevt_id(), getSm_id(),
 						getSmspd_id()));
 
-		if (((objs38494.length) != 1)) {
+		if (((objs39076.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Non Local Event", //$NON-NLS-1$
 								"Consistency: Object: Non Local Event: Association: 526: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38494.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39076.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Non Local Event: Association: 526: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38494.length), e);
+										+ Integer.toString(objs39076.length), e);
 			}
 			retval = false;
 
@@ -1501,31 +1503,31 @@ public class NonLocalEvent_c extends NonRootModelElement
 
 		// Non Local Event is a referring class in association: rel.Numb = 527
 		// The participating class is: Polymorphic Event
-		class PolymorphicEvent_c_test38500_c implements ClassQueryInterface_c {
-			PolymorphicEvent_c_test38500_c(java.util.UUID p38501,
-					java.util.UUID p38502) {
-				m_p38501 = p38501;
-				m_p38502 = p38502;
+		class PolymorphicEvent_c_test39082_c implements ClassQueryInterface_c {
+			PolymorphicEvent_c_test39082_c(java.util.UUID p39083,
+					java.util.UUID p39084) {
+				m_p39083 = p39083;
+				m_p39084 = p39084;
 			}
-			private java.util.UUID m_p38501;
-			private java.util.UUID m_p38502;
+			private java.util.UUID m_p39083;
+			private java.util.UUID m_p39084;
 			public boolean evaluate(Object candidate) {
 				PolymorphicEvent_c selected = (PolymorphicEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p38501))
-						& (selected.getSm_id().equals(m_p38502));
+				retval = (selected.getSmevt_id().equals(m_p39083))
+						& (selected.getSm_id().equals(m_p39084));
 				return retval;
 			}
 		}
 
-		PolymorphicEvent_c[] objs38499 = PolymorphicEvent_c
+		PolymorphicEvent_c[] objs39081 = PolymorphicEvent_c
 				.PolymorphicEventInstances(modelRoot,
-						new PolymorphicEvent_c_test38500_c(getPolysmevt_id(),
+						new PolymorphicEvent_c_test39082_c(getPolysmevt_id(),
 								getPolysm_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38499.length) != 1)) {
+		if (((objs39081.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1533,7 +1535,7 @@ public class NonLocalEvent_c extends NonRootModelElement
 								"Non Local Event", //$NON-NLS-1$
 								"Consistency: Object: Non Local Event: Association: 527: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38499.length)
+										+ Integer.toString(objs39081.length)
 										+ " polySMevt_ID: " + "Not Printable" + " polySM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1541,7 +1543,7 @@ public class NonLocalEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Non Local Event: Association: 527: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38499.length)
+										+ Integer.toString(objs39081.length)
 										+ " polySMevt_ID: " + "Not Printable" + " polySM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1806,8 +1808,8 @@ public class NonLocalEvent_c extends NonRootModelElement
 															.getManySM_EVTsOnR502(v_sm)));
 
 									NonLocalEvent_c v_otherNLevt = null;
-									for (int i36630 = 0; i36630 < v_otherNLevts.length; i36630++) {
-										v_otherNLevt = v_otherNLevts[i36630];
+									for (int i37212 = 0; i37212 < v_otherNLevts.length; i37212++) {
+										v_otherNLevt = v_otherNLevts[i37212];
 
 										StateMachine_c v_otherSuperSM = StateMachine_c
 												.getOneSM_SMOnR502(StateMachineEvent_c

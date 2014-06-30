@@ -188,7 +188,7 @@ p_m_previous_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -204,7 +204,7 @@ p_m_previous_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceSignal_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceSignal_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((InterfaceSignal_c)elem).getId())) return false;
@@ -1036,58 +1036,58 @@ public static InterfaceSignal_c [] getManyC_ASsOnR4020Succeeds(InterfaceSignal_c
         ModelRoot baseRoot = modelRoot;
 
       // R4004
-      ExecutableProperty_c relInst55413 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+      ExecutableProperty_c relInst56962 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55413 == null) {
-      			relInst55413 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+      		if (relInst56962 == null) {
+      			relInst56962 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55413 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56962 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55413 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
-					if (relInst55413 != null)
+					relInst56962 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+					if (relInst56962 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55413 != null )
+      if ( relInst56962 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55413) && !isProxy())) {
-	      relInst55413.relateAcrossR4004To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56962) && !isProxy())) {
+	      relInst56962.relateAcrossR4004To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (SucceedsInterfaceSignal == null) {          
       // R4020
-      InterfaceSignal_c relInst55414 = (InterfaceSignal_c) baseRoot.getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
+      InterfaceSignal_c relInst56963 = (InterfaceSignal_c) baseRoot.getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55414 == null) {
-      			relInst55414 = (InterfaceSignal_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
+      		if (relInst56963 == null) {
+      			relInst56963 = (InterfaceSignal_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
       		}
-			if (relInst55414 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56963 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55414 = (InterfaceSignal_c) roots[i].getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
-					if (relInst55414 != null)
+					relInst56963 = (InterfaceSignal_c) roots[i].getInstanceList(InterfaceSignal_c.class).get(new Object[] {m_previous_id});
+					if (relInst56963 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55414 != null )
+      if ( relInst56963 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55414) && !isProxy())) {
-	      relInst55414.relateAcrossR4020ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56963) && !isProxy())) {
+	      relInst56963.relateAcrossR4020ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1467,56 +1467,56 @@ private static InterfaceSignal_c findInterfaceSignalInstance(ModelRoot modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InterfaceSignal_c_test55416_c implements ClassQueryInterface_c
+    class InterfaceSignal_c_test56965_c implements ClassQueryInterface_c
     {
-	  InterfaceSignal_c_test55416_c( java.util.UUID            p55417 ) {
-	  m_p55417 = p55417;
+	  InterfaceSignal_c_test56965_c( java.util.UUID            p56966 ) {
+	  m_p56966 = p56966;
 	  }
-	  private java.util.UUID             m_p55417; 
+	  private java.util.UUID             m_p56966; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceSignal_c selected = (InterfaceSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55417));
+	      retval = (selected.getId().equals(m_p56966));
 	      return retval;
 	  }
     }
 
-    InterfaceSignal_c [] objs55415 = 
-    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test55416_c(getId())) ;
+    InterfaceSignal_c [] objs56964 = 
+    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test56965_c(getId())) ;
 
-    if ( (  (objs55415.length) == 0) )
+    if ( (  (objs56964.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Signal", //$NON-NLS-1$
            "Consistency: Object: Interface Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55415.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56964.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55415.length )  , e); 
+          + Integer.toString( objs56964.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55415.length) > 1) )
+    if ( (  (objs56964.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Signal", //$NON-NLS-1$
            "Consistency: Object: Interface Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55415.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56964.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55415.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56964.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1524,37 +1524,37 @@ private static InterfaceSignal_c findInterfaceSignalInstance(ModelRoot modelRoot
 
           // Interface Signal is a subtype in association: rel.Numb = 4004
           // The supertype class is: Executable Property
-    class ExecutableProperty_c_test55421_c implements ClassQueryInterface_c
+    class ExecutableProperty_c_test56970_c implements ClassQueryInterface_c
     {
-	  ExecutableProperty_c_test55421_c( java.util.UUID            p55422 ) {
-	  m_p55422 = p55422;
+	  ExecutableProperty_c_test56970_c( java.util.UUID            p56971 ) {
+	  m_p56971 = p56971;
 	  }
-	  private java.util.UUID             m_p55422; 
+	  private java.util.UUID             m_p56971; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExecutableProperty_c selected = (ExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55422));
+	      retval = (selected.getId().equals(m_p56971));
 	      return retval;
 	  }
     }
 
-    ExecutableProperty_c [] objs55420 = 
-    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test55421_c(getId())) ;
+    ExecutableProperty_c [] objs56969 = 
+    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test56970_c(getId())) ;
 
-    if ( (  (objs55420.length) != 1) )
+    if ( (  (objs56969.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Signal", //$NON-NLS-1$
            "Consistency: Object: Interface Signal: Association: 4004: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55420.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56969.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Signal: Association: 4004: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55420.length )  , e); 
+          + Integer.toString( objs56969.length )  , e); 
       }
       retval = false;
 
@@ -1562,38 +1562,38 @@ private static InterfaceSignal_c findInterfaceSignalInstance(ModelRoot modelRoot
 
           // Interface Signal is a referring class in association: rel.Numb = 4020
           // The participating class is: Interface Signal
-    class InterfaceSignal_c_test55424_c implements ClassQueryInterface_c
+    class InterfaceSignal_c_test56973_c implements ClassQueryInterface_c
     {
-	  InterfaceSignal_c_test55424_c( java.util.UUID            p55425 ) {
-	  m_p55425 = p55425;
+	  InterfaceSignal_c_test56973_c( java.util.UUID            p56974 ) {
+	  m_p56974 = p56974;
 	  }
-	  private java.util.UUID             m_p55425; 
+	  private java.util.UUID             m_p56974; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceSignal_c selected = (InterfaceSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55425));
+	      retval = (selected.getId().equals(m_p56974));
 	      return retval;
 	  }
     }
 
-    InterfaceSignal_c [] objs55423 = 
-    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test55424_c(getPrevious_id())) ;
+    InterfaceSignal_c [] objs56972 = 
+    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test56973_c(getPrevious_id())) ;
 
-    if ( (  (objs55423.length) > 1) )
+    if ( (  (objs56972.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Signal", //$NON-NLS-1$
            "Consistency: Object: Interface Signal: Association: 4020: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55423.length )  + " Previous_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56972.length )  + " Previous_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Signal: Association: 4020: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55423.length )  + " Previous_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56972.length )  + " Previous_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1601,37 +1601,37 @@ private static InterfaceSignal_c findInterfaceSignalInstance(ModelRoot modelRoot
                 
           // Interface Signal is a participating class in association: rel.Numb = 4020
              // Object: Interface Signal
-    class InterfaceSignal_c_test55427_c implements ClassQueryInterface_c
+    class InterfaceSignal_c_test56976_c implements ClassQueryInterface_c
     {
-	  InterfaceSignal_c_test55427_c( java.util.UUID            p55428 ) {
-	  m_p55428 = p55428;
+	  InterfaceSignal_c_test56976_c( java.util.UUID            p56977 ) {
+	  m_p56977 = p56977;
 	  }
-	  private java.util.UUID             m_p55428; 
+	  private java.util.UUID             m_p56977; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceSignal_c selected = (InterfaceSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPrevious_id().equals(m_p55428));
+	      retval = (selected.getPrevious_id().equals(m_p56977));
 	      return retval;
 	  }
     }
 
-    InterfaceSignal_c [] objs55426 = 
-    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test55427_c(getId())) ;
+    InterfaceSignal_c [] objs56975 = 
+    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test56976_c(getId())) ;
 
-    if ( (  (objs55426.length) > 1) )
+    if ( (  (objs56975.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Signal", //$NON-NLS-1$
            "Consistency: Object: Interface Signal: Association: 4020: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55426.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56975.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Signal: Association: 4020: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55426.length )  , e); 
+          + Integer.toString( objs56975.length )  , e); 
       }
       retval = false;
 
@@ -1824,9 +1824,9 @@ Message_c [] v_msgs = Message_c.getManyMSG_MsOnR1018(AsynchronousMessage_c.getMa
 
 
 Message_c  v_msg = null;
-for ( int i53660 = 0; i53660 < v_msgs.length; i53660++)
+for ( int i55188 = 0; i55188 < v_msgs.length; i55188++)
 {
-  v_msg = v_msgs[i53660] ;
+  v_msg = v_msgs[i55188] ;
 
 if (v_msg != null) {
 v_msg.Dispose() ;
@@ -2189,9 +2189,9 @@ v_sys_id = v_system.getSys_id() ;
 }
 
 InterfaceSignal_c  v_signal = null;
-for ( int i53661 = 0; i53661 < v_signals.length; i53661++)
+for ( int i55189 = 0; i55189 < v_signals.length; i55189++)
 {
-  v_signal = v_signals[i53661] ;
+  v_signal = v_signals[i55189] ;
 
 if ( (v_signal != this && v_signal.Getsignature().equals(Getsignature())) )
 {
@@ -2242,9 +2242,9 @@ v_signature = v_signature + "(" ;
 }
 
 PropertyParameter_c  v_parameter = null;
-for ( int i53662 = 0; i53662 < v_parameters.length; i53662++)
+for ( int i55190 = 0; i55190 < v_parameters.length; i55190++)
 {
-  v_parameter = v_parameters[i53662] ;
+  v_parameter = v_parameters[i55190] ;
 
 DataType_c v_type = DataType_c.getOneS_DTOnR4007(v_parameter);
 

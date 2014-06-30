@@ -147,7 +147,8 @@ public class DecisionMergeNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,8 +164,9 @@ public class DecisionMergeNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((DecisionMergeNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((DecisionMergeNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((DecisionMergeNode_c) elem).getId()))
@@ -415,33 +417,33 @@ public class DecisionMergeNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1106
-		ControlNode_c relInst56957 = (ControlNode_c) baseRoot.getInstanceList(
+		ControlNode_c relInst58506 = (ControlNode_c) baseRoot.getInstanceList(
 				ControlNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56957 == null) {
-			relInst56957 = (ControlNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58506 == null) {
+			relInst58506 = (ControlNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ControlNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56957 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58506 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56957 = (ControlNode_c) roots[i].getInstanceList(
+				relInst58506 = (ControlNode_c) roots[i].getInstanceList(
 						ControlNode_c.class).get(new Object[]{m_id});
-				if (relInst56957 != null)
+				if (relInst58506 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56957 != null) {
+		if (relInst58506 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56957) && !isProxy())) {
-				relInst56957.relateAcrossR1106To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58506) && !isProxy())) {
+				relInst58506.relateAcrossR1106To(this, notifyChanges);
 			}
 		}
 
@@ -733,44 +735,44 @@ public class DecisionMergeNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DecisionMergeNode_c_test56959_c implements ClassQueryInterface_c {
-			DecisionMergeNode_c_test56959_c(java.util.UUID p56960) {
-				m_p56960 = p56960;
+		class DecisionMergeNode_c_test58508_c implements ClassQueryInterface_c {
+			DecisionMergeNode_c_test58508_c(java.util.UUID p58509) {
+				m_p58509 = p58509;
 			}
-			private java.util.UUID m_p56960;
+			private java.util.UUID m_p58509;
 			public boolean evaluate(Object candidate) {
 				DecisionMergeNode_c selected = (DecisionMergeNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56960));
+				retval = (selected.getId().equals(m_p58509));
 				return retval;
 			}
 		}
 
-		DecisionMergeNode_c[] objs56958 = DecisionMergeNode_c
+		DecisionMergeNode_c[] objs58507 = DecisionMergeNode_c
 				.DecisionMergeNodeInstances(modelRoot,
-						new DecisionMergeNode_c_test56959_c(getId()));
+						new DecisionMergeNode_c_test58508_c(getId()));
 
-		if (((objs56958.length) == 0)) {
+		if (((objs58507.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Decision Merge Node", //$NON-NLS-1$
 								"Consistency: Object: Decision Merge Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56958.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58507.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Decision Merge Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56958.length), e);
+										+ Integer.toString(objs58507.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56958.length) > 1)) {
+		if (((objs58507.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -778,7 +780,7 @@ public class DecisionMergeNode_c extends NonRootModelElement
 								"Decision Merge Node", //$NON-NLS-1$
 								"Consistency: Object: Decision Merge Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56958.length)
+										+ Integer.toString(objs58507.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -786,7 +788,7 @@ public class DecisionMergeNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Decision Merge Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56958.length)
+										+ Integer.toString(objs58507.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -795,37 +797,37 @@ public class DecisionMergeNode_c extends NonRootModelElement
 
 		// Decision Merge Node is a subtype in association: rel.Numb = 1106
 		// The supertype class is: Control Node
-		class ControlNode_c_test56964_c implements ClassQueryInterface_c {
-			ControlNode_c_test56964_c(java.util.UUID p56965) {
-				m_p56965 = p56965;
+		class ControlNode_c_test58513_c implements ClassQueryInterface_c {
+			ControlNode_c_test58513_c(java.util.UUID p58514) {
+				m_p58514 = p58514;
 			}
-			private java.util.UUID m_p56965;
+			private java.util.UUID m_p58514;
 			public boolean evaluate(Object candidate) {
 				ControlNode_c selected = (ControlNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56965));
+				retval = (selected.getId().equals(m_p58514));
 				return retval;
 			}
 		}
 
-		ControlNode_c[] objs56963 = ControlNode_c.ControlNodeInstances(
-				modelRoot, new ControlNode_c_test56964_c(getId()));
+		ControlNode_c[] objs58512 = ControlNode_c.ControlNodeInstances(
+				modelRoot, new ControlNode_c_test58513_c(getId()));
 
-		if (((objs56963.length) != 1)) {
+		if (((objs58512.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Decision Merge Node", //$NON-NLS-1$
 								"Consistency: Object: Decision Merge Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56963.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58512.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Decision Merge Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56963.length), e);
+										+ Integer.toString(objs58512.length), e);
 			}
 			retval = false;
 

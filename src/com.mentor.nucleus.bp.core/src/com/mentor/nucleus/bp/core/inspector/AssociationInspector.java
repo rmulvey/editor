@@ -326,5 +326,44 @@ DerivedAssociation_c.getManyR_COMPsOnR206(
 		}
 		return CorePlugin.getImageFor("Association.gif");
 	}
-    }       
+
+  /**
+  * Returns a "slot number" to be used when comparing and merging tree elements
+  * that contain multiple children.  All model element inspector's contain this 
+  * function, but it only returns a value for cases where it a parent element
+  * in a tree and the parent has multiple children.
+  * 
+  * @returns 0 if this is not a "parent" in the tree OR if the parent has less 
+  * than 2 children. 
+  */
+	@Override
+	public int getTreeDifferenceSlot(Object element) {
+    	if (element instanceof ClassAsSimpleParticipant_c) {
+			return 1;
+		}
+    	if (element instanceof ClassAsSimpleFormalizer_c) {
+			return 2;
+		}
+    	if (element instanceof ClassAsAssociatedOneSide_c) {
+			return 3;
+		}
+    	if (element instanceof ClassAsAssociatedOtherSide_c) {
+			return 4;
+		}
+    	if (element instanceof ClassAsLink_c) {
+			return 5;
+		}
+    	if (element instanceof ClassAsSupertype_c) {
+			return 6;
+		}
+    	if (element instanceof ClassAsSubtype_c) {
+			return 7;
+		}
+    	if (element instanceof DerivedAssociation_c) {
+			return 8;
+		}
+		return 0;
+	}
+
+	}       
 

@@ -155,7 +155,8 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,10 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getEeedi_id()) || IdAssigner.NULL_UUID
-				.equals(((ExternalEntityEventData_c) elem).getEeedi_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getEeedi_id()) || IdAssigner.NULL_UUID
+						.equals(((ExternalEntityEventData_c) elem)
+								.getEeedi_id())) && this != elem)) {
 			return false;
 		}
 		if (!getEeedi_id().equals(
@@ -182,9 +184,10 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getEeevt_id()) || IdAssigner.NULL_UUID
-				.equals(((ExternalEntityEventData_c) elem).getEeevt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getEeevt_id()) || IdAssigner.NULL_UUID
+						.equals(((ExternalEntityEventData_c) elem)
+								.getEeevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getEeevt_id().equals(
@@ -193,9 +196,9 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getEe_id()) || IdAssigner.NULL_UUID
-				.equals(((ExternalEntityEventData_c) elem).getEe_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getEe_id()) || IdAssigner.NULL_UUID
+						.equals(((ExternalEntityEventData_c) elem).getEe_id())) && this != elem)) {
 			return false;
 		}
 		if (!getEe_id().equals(((ExternalEntityEventData_c) elem).getEe_id()))
@@ -752,69 +755,69 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R13
-		ExternalEntityEventDataItem_c relInst54965 = (ExternalEntityEventDataItem_c) baseRoot
+		ExternalEntityEventDataItem_c relInst56514 = (ExternalEntityEventDataItem_c) baseRoot
 				.getInstanceList(ExternalEntityEventDataItem_c.class).get(
 						new Object[]{m_eeedi_id, m_ee_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54965 == null) {
-			relInst54965 = (ExternalEntityEventDataItem_c) Ooaofooa
+		if (relInst56514 == null) {
+			relInst56514 = (ExternalEntityEventDataItem_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ExternalEntityEventDataItem_c.class)
 					.get(new Object[]{m_eeedi_id, m_ee_id});
 		}
-		if (relInst54965 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56514 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54965 = (ExternalEntityEventDataItem_c) roots[i]
+				relInst56514 = (ExternalEntityEventDataItem_c) roots[i]
 						.getInstanceList(ExternalEntityEventDataItem_c.class)
 						.get(new Object[]{m_eeedi_id, m_ee_id});
-				if (relInst54965 != null)
+				if (relInst56514 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54965 != null) {
+		if (relInst56514 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54965) && !isProxy())) {
-				relInst54965.relateAcrossR13To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56514) && !isProxy())) {
+				relInst56514.relateAcrossR13To(this, notifyChanges);
 			}
 		}
 
-		ExternalEntityEvent_c relInst54966 = (ExternalEntityEvent_c) baseRoot
+		ExternalEntityEvent_c relInst56515 = (ExternalEntityEvent_c) baseRoot
 				.getInstanceList(ExternalEntityEvent_c.class).get(
 						new Object[]{m_eeevt_id, m_ee_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54966 == null) {
-			relInst54966 = (ExternalEntityEvent_c) Ooaofooa
+		if (relInst56515 == null) {
+			relInst56515 = (ExternalEntityEvent_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ExternalEntityEvent_c.class)
 					.get(new Object[]{m_eeevt_id, m_ee_id});
 		}
-		if (relInst54966 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56515 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54966 = (ExternalEntityEvent_c) roots[i]
+				relInst56515 = (ExternalEntityEvent_c) roots[i]
 						.getInstanceList(ExternalEntityEvent_c.class).get(
 								new Object[]{m_eeevt_id, m_ee_id});
-				if (relInst54966 != null)
+				if (relInst56515 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54966 != null) {
+		if (relInst56515 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54966) && !isProxy())) {
-				relInst54966.relateAcrossR13To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56515) && !isProxy())) {
+				relInst56515.relateAcrossR13To(this, notifyChanges);
 			}
 		}
 
@@ -1157,34 +1160,34 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ExternalEntityEventData_c_test54968_c
+		class ExternalEntityEventData_c_test56517_c
 				implements
 					ClassQueryInterface_c {
-			ExternalEntityEventData_c_test54968_c(java.util.UUID p54969,
-					java.util.UUID p54970, java.util.UUID p54971) {
-				m_p54969 = p54969;
-				m_p54970 = p54970;
-				m_p54971 = p54971;
+			ExternalEntityEventData_c_test56517_c(java.util.UUID p56518,
+					java.util.UUID p56519, java.util.UUID p56520) {
+				m_p56518 = p56518;
+				m_p56519 = p56519;
+				m_p56520 = p56520;
 			}
-			private java.util.UUID m_p54969;
-			private java.util.UUID m_p54970;
-			private java.util.UUID m_p54971;
+			private java.util.UUID m_p56518;
+			private java.util.UUID m_p56519;
+			private java.util.UUID m_p56520;
 			public boolean evaluate(Object candidate) {
 				ExternalEntityEventData_c selected = (ExternalEntityEventData_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEeedi_id().equals(m_p54969))
-						& (selected.getEeevt_id().equals(m_p54970))
-						& (selected.getEe_id().equals(m_p54971));
+				retval = (selected.getEeedi_id().equals(m_p56518))
+						& (selected.getEeevt_id().equals(m_p56519))
+						& (selected.getEe_id().equals(m_p56520));
 				return retval;
 			}
 		}
 
-		ExternalEntityEventData_c[] objs54967 = ExternalEntityEventData_c
+		ExternalEntityEventData_c[] objs56516 = ExternalEntityEventData_c
 				.ExternalEntityEventDataInstances(modelRoot,
-						new ExternalEntityEventData_c_test54968_c(
+						new ExternalEntityEventData_c_test56517_c(
 								getEeedi_id(), getEeevt_id(), getEe_id()));
 
-		if (((objs54967.length) == 0)) {
+		if (((objs56516.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1192,20 +1195,20 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"External Entity Event Data", //$NON-NLS-1$
 								"Consistency: Object: External Entity Event Data: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54967.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56516.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: External Entity Event Data: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54967.length), e);
+										+ Integer.toString(objs56516.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54967.length) > 1)) {
+		if (((objs56516.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1214,7 +1217,7 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 								"External Entity Event Data", //$NON-NLS-1$
 								"Consistency: Object: External Entity Event Data: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54967.length)
+										+ Integer.toString(objs56516.length)
 										+ " EEedi_ID: " + "Not Printable" + " EEevt_ID: " + "Not Printable" + " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1222,7 +1225,7 @@ public class ExternalEntityEventData_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: External Entity Event Data: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54967.length)
+										+ Integer.toString(objs56516.length)
 										+ " EEedi_ID: " + "Not Printable" + " EEevt_ID: " + "Not Printable" + " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

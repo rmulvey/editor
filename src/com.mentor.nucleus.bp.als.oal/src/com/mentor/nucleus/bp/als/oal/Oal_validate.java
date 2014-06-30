@@ -11344,7 +11344,7 @@ public class Oal_validate {
 			if ((v_component != null)) {
 
 				if (v_component != null) {
-					v_component.Collectvisibleelementsforname(false,
+					v_component.Collectvisibleelementsforname(true,
 							Gd_c.Null_unique_id(), p_A1_name,
 							v_component.getId(),
 							Elementtypeconstants_c.CONSTANT);
@@ -11362,7 +11362,7 @@ public class Oal_validate {
 			else {
 
 				if (v_package != null) {
-					v_package.Collectvisibleelementsforname(false,
+					v_package.Collectvisibleelementsforname(true,
 							Gd_c.Null_unique_id(), false, p_A1_name,
 							v_package.getPackage_id(),
 							Elementtypeconstants_c.CONSTANT);

@@ -145,7 +145,8 @@ public class FunctionBody_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,9 +162,9 @@ public class FunctionBody_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionBody_c) elem).getAction_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionBody_c) elem).getAction_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAction_id().equals(((FunctionBody_c) elem).getAction_id()))
@@ -580,16 +581,16 @@ public class FunctionBody_c extends NonRootModelElement
 
 		if (SpecifiesProcessingForFunction == null) {
 			// R695
-			Function_c relInst56315 = (Function_c) baseRoot.getInstanceList(
+			Function_c relInst57864 = (Function_c) baseRoot.getInstanceList(
 					Function_c.class).get(new Object[]{m_sync_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56315 == null) {
-				relInst56315 = (Function_c) Ooaofooa.getDefaultInstance()
+			if (relInst57864 == null) {
+				relInst57864 = (Function_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Function_c.class)
 						.get(new Object[]{m_sync_id});
 			}
-			if (relInst56315 == null && searchAllRoots
+			if (relInst57864 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -597,49 +598,49 @@ public class FunctionBody_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56315 = (Function_c) roots[i].getInstanceList(
+					relInst57864 = (Function_c) roots[i].getInstanceList(
 							Function_c.class).get(new Object[]{m_sync_id});
-					if (relInst56315 != null)
+					if (relInst57864 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56315 != null) {
+			if (relInst57864 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56315) && !isProxy())) {
-					relInst56315.relateAcrossR695To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57864) && !isProxy())) {
+					relInst57864.relateAcrossR695To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R698
-		Body_c relInst56316 = (Body_c) baseRoot.getInstanceList(Body_c.class)
+		Body_c relInst57865 = (Body_c) baseRoot.getInstanceList(Body_c.class)
 				.get(new Object[]{m_action_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56316 == null) {
-			relInst56316 = (Body_c) Ooaofooa.getDefaultInstance()
+		if (relInst57865 == null) {
+			relInst57865 = (Body_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Body_c.class)
 					.get(new Object[]{m_action_id});
 		}
-		if (relInst56316 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57865 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56316 = (Body_c) roots[i].getInstanceList(Body_c.class)
+				relInst57865 = (Body_c) roots[i].getInstanceList(Body_c.class)
 						.get(new Object[]{m_action_id});
-				if (relInst56316 != null)
+				if (relInst57865 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56316 != null) {
+		if (relInst57865 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56316) && !isProxy())) {
-				relInst56316.relateAcrossR698To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57865) && !isProxy())) {
+				relInst57865.relateAcrossR698To(this, notifyChanges);
 			}
 		}
 
@@ -861,42 +862,42 @@ public class FunctionBody_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FunctionBody_c_test56318_c implements ClassQueryInterface_c {
-			FunctionBody_c_test56318_c(java.util.UUID p56319) {
-				m_p56319 = p56319;
+		class FunctionBody_c_test57867_c implements ClassQueryInterface_c {
+			FunctionBody_c_test57867_c(java.util.UUID p57868) {
+				m_p57868 = p57868;
 			}
-			private java.util.UUID m_p56319;
+			private java.util.UUID m_p57868;
 			public boolean evaluate(Object candidate) {
 				FunctionBody_c selected = (FunctionBody_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAction_id().equals(m_p56319));
+				retval = (selected.getAction_id().equals(m_p57868));
 				return retval;
 			}
 		}
 
-		FunctionBody_c[] objs56317 = FunctionBody_c.FunctionBodyInstances(
-				modelRoot, new FunctionBody_c_test56318_c(getAction_id()));
+		FunctionBody_c[] objs57866 = FunctionBody_c.FunctionBodyInstances(
+				modelRoot, new FunctionBody_c_test57867_c(getAction_id()));
 
-		if (((objs56317.length) == 0)) {
+		if (((objs57866.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function Body", //$NON-NLS-1$
 								"Consistency: Object: Function Body: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56317.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57866.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Function Body: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56317.length), e);
+								+ Integer.toString(objs57866.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56317.length) > 1)) {
+		if (((objs57866.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -904,7 +905,7 @@ public class FunctionBody_c extends NonRootModelElement
 								"Function Body", //$NON-NLS-1$
 								"Consistency: Object: Function Body: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56317.length)
+										+ Integer.toString(objs57866.length)
 										+ " Action_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -912,7 +913,7 @@ public class FunctionBody_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Body: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56317.length)
+										+ Integer.toString(objs57866.length)
 										+ " Action_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -921,37 +922,37 @@ public class FunctionBody_c extends NonRootModelElement
 
 		// Function Body is a subtype in association: rel.Numb = 698
 		// The supertype class is: Body
-		class Body_c_test56323_c implements ClassQueryInterface_c {
-			Body_c_test56323_c(java.util.UUID p56324) {
-				m_p56324 = p56324;
+		class Body_c_test57872_c implements ClassQueryInterface_c {
+			Body_c_test57872_c(java.util.UUID p57873) {
+				m_p57873 = p57873;
 			}
-			private java.util.UUID m_p56324;
+			private java.util.UUID m_p57873;
 			public boolean evaluate(Object candidate) {
 				Body_c selected = (Body_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAction_id().equals(m_p56324));
+				retval = (selected.getAction_id().equals(m_p57873));
 				return retval;
 			}
 		}
 
-		Body_c[] objs56322 = Body_c.BodyInstances(modelRoot,
-				new Body_c_test56323_c(getAction_id()));
+		Body_c[] objs57871 = Body_c.BodyInstances(modelRoot,
+				new Body_c_test57872_c(getAction_id()));
 
-		if (((objs56322.length) != 1)) {
+		if (((objs57871.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function Body", //$NON-NLS-1$
 								"Consistency: Object: Function Body: Association: 698: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56322.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57871.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Body: Association: 698: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56322.length), e);
+										+ Integer.toString(objs57871.length), e);
 			}
 			retval = false;
 
@@ -959,25 +960,25 @@ public class FunctionBody_c extends NonRootModelElement
 
 		// Function Body is a referring class in association: rel.Numb = 695
 		// The participating class is: Function
-		class Function_c_test56326_c implements ClassQueryInterface_c {
-			Function_c_test56326_c(java.util.UUID p56327) {
-				m_p56327 = p56327;
+		class Function_c_test57875_c implements ClassQueryInterface_c {
+			Function_c_test57875_c(java.util.UUID p57876) {
+				m_p57876 = p57876;
 			}
-			private java.util.UUID m_p56327;
+			private java.util.UUID m_p57876;
 			public boolean evaluate(Object candidate) {
 				Function_c selected = (Function_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSync_id().equals(m_p56327));
+				retval = (selected.getSync_id().equals(m_p57876));
 				return retval;
 			}
 		}
 
-		Function_c[] objs56325 = Function_c.FunctionInstances(modelRoot,
-				new Function_c_test56326_c(getSync_id()));
+		Function_c[] objs57874 = Function_c.FunctionInstances(modelRoot,
+				new Function_c_test57875_c(getSync_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56325.length) != 1)) {
+		if (((objs57874.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -985,7 +986,7 @@ public class FunctionBody_c extends NonRootModelElement
 								"Function Body", //$NON-NLS-1$
 								"Consistency: Object: Function Body: Association: 695: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56325.length)
+										+ Integer.toString(objs57874.length)
 										+ " Sync_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -993,7 +994,7 @@ public class FunctionBody_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Body: Association: 695: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56325.length)
+										+ Integer.toString(objs57874.length)
 										+ " Sync_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

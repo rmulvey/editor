@@ -155,7 +155,8 @@ public class ComponentInComponent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class ComponentInComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ComponentInComponent_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ComponentInComponent_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ComponentInComponent_c) elem).getId()))
@@ -638,16 +639,16 @@ public class ComponentInComponent_c extends NonRootModelElement
 
 		if (CanBeNestedInComponent == null) {
 			// R4202
-			Component_c relInst55675 = (Component_c) baseRoot.getInstanceList(
+			Component_c relInst57224 = (Component_c) baseRoot.getInstanceList(
 					Component_c.class).get(new Object[]{m_parent_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55675 == null) {
-				relInst55675 = (Component_c) Ooaofooa.getDefaultInstance()
+			if (relInst57224 == null) {
+				relInst57224 = (Component_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Component_c.class)
 						.get(new Object[]{m_parent_id});
 			}
-			if (relInst55675 == null && searchAllRoots
+			if (relInst57224 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -655,17 +656,17 @@ public class ComponentInComponent_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55675 = (Component_c) roots[i].getInstanceList(
+					relInst57224 = (Component_c) roots[i].getInstanceList(
 							Component_c.class).get(new Object[]{m_parent_id});
-					if (relInst55675 != null)
+					if (relInst57224 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55675 != null) {
+			if (relInst57224 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55675) && !isProxy())) {
-					relInst55675.relateAcrossR4202To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57224) && !isProxy())) {
+					relInst57224.relateAcrossR4202To(this, notifyChanges);
 				}
 			}
 		}
@@ -948,46 +949,46 @@ public class ComponentInComponent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ComponentInComponent_c_test55677_c
+		class ComponentInComponent_c_test57226_c
 				implements
 					ClassQueryInterface_c {
-			ComponentInComponent_c_test55677_c(java.util.UUID p55678) {
-				m_p55678 = p55678;
+			ComponentInComponent_c_test57226_c(java.util.UUID p57227) {
+				m_p57227 = p57227;
 			}
-			private java.util.UUID m_p55678;
+			private java.util.UUID m_p57227;
 			public boolean evaluate(Object candidate) {
 				ComponentInComponent_c selected = (ComponentInComponent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55678));
+				retval = (selected.getId().equals(m_p57227));
 				return retval;
 			}
 		}
 
-		ComponentInComponent_c[] objs55676 = ComponentInComponent_c
+		ComponentInComponent_c[] objs57225 = ComponentInComponent_c
 				.ComponentInComponentInstances(modelRoot,
-						new ComponentInComponent_c_test55677_c(getId()));
+						new ComponentInComponent_c_test57226_c(getId()));
 
-		if (((objs55676.length) == 0)) {
+		if (((objs57225.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Component in Component", //$NON-NLS-1$
 								"Consistency: Object: Component in Component: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55676.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57225.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Component in Component: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55676.length), e);
+										+ Integer.toString(objs57225.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55676.length) > 1)) {
+		if (((objs57225.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -995,7 +996,7 @@ public class ComponentInComponent_c extends NonRootModelElement
 								"Component in Component", //$NON-NLS-1$
 								"Consistency: Object: Component in Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55676.length)
+										+ Integer.toString(objs57225.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1003,7 +1004,7 @@ public class ComponentInComponent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component in Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55676.length)
+										+ Integer.toString(objs57225.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1012,25 +1013,25 @@ public class ComponentInComponent_c extends NonRootModelElement
 
 		// Component in Component is a referring class in association: rel.Numb = 4202
 		// The participating class is: Component
-		class Component_c_test55682_c implements ClassQueryInterface_c {
-			Component_c_test55682_c(java.util.UUID p55683) {
-				m_p55683 = p55683;
+		class Component_c_test57231_c implements ClassQueryInterface_c {
+			Component_c_test57231_c(java.util.UUID p57232) {
+				m_p57232 = p57232;
 			}
-			private java.util.UUID m_p55683;
+			private java.util.UUID m_p57232;
 			public boolean evaluate(Object candidate) {
 				Component_c selected = (Component_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55683));
+				retval = (selected.getId().equals(m_p57232));
 				return retval;
 			}
 		}
 
-		Component_c[] objs55681 = Component_c.ComponentInstances(modelRoot,
-				new Component_c_test55682_c(getParent_id()));
+		Component_c[] objs57230 = Component_c.ComponentInstances(modelRoot,
+				new Component_c_test57231_c(getParent_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55681.length) != 1)) {
+		if (((objs57230.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1038,7 +1039,7 @@ public class ComponentInComponent_c extends NonRootModelElement
 								"Component in Component", //$NON-NLS-1$
 								"Consistency: Object: Component in Component: Association: 4202: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55681.length)
+										+ Integer.toString(objs57230.length)
 										+ " Parent_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1046,7 +1047,7 @@ public class ComponentInComponent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component in Component: Association: 4202: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55681.length)
+										+ Integer.toString(objs57230.length)
 										+ " Parent_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1055,37 +1056,37 @@ public class ComponentInComponent_c extends NonRootModelElement
 
 		// Component in Component is a participating class in association: rel.Numb = 4203
 		// Object: Component
-		class Component_c_test55685_c implements ClassQueryInterface_c {
-			Component_c_test55685_c(java.util.UUID p55686) {
-				m_p55686 = p55686;
+		class Component_c_test57234_c implements ClassQueryInterface_c {
+			Component_c_test57234_c(java.util.UUID p57235) {
+				m_p57235 = p57235;
 			}
-			private java.util.UUID m_p55686;
+			private java.util.UUID m_p57235;
 			public boolean evaluate(Object candidate) {
 				Component_c selected = (Component_c) candidate;
 				boolean retval = false;
-				retval = (selected.getNestedcomponent_id().equals(m_p55686));
+				retval = (selected.getNestedcomponent_id().equals(m_p57235));
 				return retval;
 			}
 		}
 
-		Component_c[] objs55684 = Component_c.ComponentInstances(modelRoot,
-				new Component_c_test55685_c(getId()));
+		Component_c[] objs57233 = Component_c.ComponentInstances(modelRoot,
+				new Component_c_test57234_c(getId()));
 
-		if (((objs55684.length) != 1)) {
+		if (((objs57233.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Component in Component", //$NON-NLS-1$
 								"Consistency: Object: Component in Component: Association: 4203: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55684.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57233.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Component in Component: Association: 4203: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55684.length), e);
+										+ Integer.toString(objs57233.length), e);
 			}
 			retval = false;
 

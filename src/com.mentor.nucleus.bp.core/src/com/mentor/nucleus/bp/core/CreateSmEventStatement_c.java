@@ -148,7 +148,8 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -164,9 +165,10 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((CreateSmEventStatement_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((CreateSmEventStatement_c) elem)
+								.getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -1149,53 +1151,53 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R702
-		CreateEventStatement_c relInst54564 = (CreateEventStatement_c) baseRoot
+		CreateEventStatement_c relInst56113 = (CreateEventStatement_c) baseRoot
 				.getInstanceList(CreateEventStatement_c.class).get(
 						new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54564 == null) {
-			relInst54564 = (CreateEventStatement_c) Ooaofooa
+		if (relInst56113 == null) {
+			relInst56113 = (CreateEventStatement_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(CreateEventStatement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst54564 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56113 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54564 = (CreateEventStatement_c) roots[i]
+				relInst56113 = (CreateEventStatement_c) roots[i]
 						.getInstanceList(CreateEventStatement_c.class).get(
 								new Object[]{m_statement_id});
-				if (relInst54564 != null)
+				if (relInst56113 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54564 != null) {
+		if (relInst56113 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54564) && !isProxy())) {
-				relInst54564.relateAcrossR702To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56113) && !isProxy())) {
+				relInst56113.relateAcrossR702To(this, notifyChanges);
 			}
 		}
 
 		if (CreatesStateMachineEvent == null) {
 			// R706
-			StateMachineEvent_c relInst54565 = (StateMachineEvent_c) baseRoot
+			StateMachineEvent_c relInst56114 = (StateMachineEvent_c) baseRoot
 					.getInstanceList(StateMachineEvent_c.class).get(
 							new Object[]{m_smevt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54565 == null) {
-				relInst54565 = (StateMachineEvent_c) Ooaofooa
+			if (relInst56114 == null) {
+				relInst56114 = (StateMachineEvent_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEvent_c.class)
 						.get(new Object[]{m_smevt_id});
 			}
-			if (relInst54565 == null && searchAllRoots
+			if (relInst56114 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1203,18 +1205,18 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54565 = (StateMachineEvent_c) roots[i]
+					relInst56114 = (StateMachineEvent_c) roots[i]
 							.getInstanceList(StateMachineEvent_c.class).get(
 									new Object[]{m_smevt_id});
-					if (relInst54565 != null)
+					if (relInst56114 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54565 != null) {
+			if (relInst56114 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54565) && !isProxy())) {
-					relInst54565.relateAcrossR706To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56114) && !isProxy())) {
+					relInst56114.relateAcrossR706To(this, notifyChanges);
 				}
 			}
 		}
@@ -1471,27 +1473,27 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CreateSmEventStatement_c_test54567_c
+		class CreateSmEventStatement_c_test56116_c
 				implements
 					ClassQueryInterface_c {
-			CreateSmEventStatement_c_test54567_c(java.util.UUID p54568) {
-				m_p54568 = p54568;
+			CreateSmEventStatement_c_test56116_c(java.util.UUID p56117) {
+				m_p56117 = p56117;
 			}
-			private java.util.UUID m_p54568;
+			private java.util.UUID m_p56117;
 			public boolean evaluate(Object candidate) {
 				CreateSmEventStatement_c selected = (CreateSmEventStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54568));
+				retval = (selected.getStatement_id().equals(m_p56117));
 				return retval;
 			}
 		}
 
-		CreateSmEventStatement_c[] objs54566 = CreateSmEventStatement_c
+		CreateSmEventStatement_c[] objs56115 = CreateSmEventStatement_c
 				.CreateSmEventStatementInstances(modelRoot,
-						new CreateSmEventStatement_c_test54567_c(
+						new CreateSmEventStatement_c_test56116_c(
 								getStatement_id()));
 
-		if (((objs54566.length) == 0)) {
+		if (((objs56115.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1499,20 +1501,20 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Create SM Event Statement", //$NON-NLS-1$
 								"Consistency: Object: Create SM Event Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54566.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56115.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create SM Event Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54566.length), e);
+										+ Integer.toString(objs56115.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54566.length) > 1)) {
+		if (((objs56115.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1521,7 +1523,7 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 								"Create SM Event Statement", //$NON-NLS-1$
 								"Consistency: Object: Create SM Event Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54566.length)
+										+ Integer.toString(objs56115.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1529,7 +1531,7 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create SM Event Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54566.length)
+										+ Integer.toString(objs56115.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1538,27 +1540,27 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 
 		// Create SM Event Statement is a subtype in association: rel.Numb = 702
 		// The supertype class is: Create Event Statement
-		class CreateEventStatement_c_test54572_c
+		class CreateEventStatement_c_test56121_c
 				implements
 					ClassQueryInterface_c {
-			CreateEventStatement_c_test54572_c(java.util.UUID p54573) {
-				m_p54573 = p54573;
+			CreateEventStatement_c_test56121_c(java.util.UUID p56122) {
+				m_p56122 = p56122;
 			}
-			private java.util.UUID m_p54573;
+			private java.util.UUID m_p56122;
 			public boolean evaluate(Object candidate) {
 				CreateEventStatement_c selected = (CreateEventStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54573));
+				retval = (selected.getStatement_id().equals(m_p56122));
 				return retval;
 			}
 		}
 
-		CreateEventStatement_c[] objs54571 = CreateEventStatement_c
+		CreateEventStatement_c[] objs56120 = CreateEventStatement_c
 				.CreateEventStatementInstances(modelRoot,
-						new CreateEventStatement_c_test54572_c(
+						new CreateEventStatement_c_test56121_c(
 								getStatement_id()));
 
-		if (((objs54571.length) != 1)) {
+		if (((objs56120.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1566,14 +1568,14 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Create SM Event Statement", //$NON-NLS-1$
 								"Consistency: Object: Create SM Event Statement: Association: 702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54571.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56120.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create SM Event Statement: Association: 702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54571.length), e);
+										+ Integer.toString(objs56120.length), e);
 			}
 			retval = false;
 
@@ -1581,26 +1583,26 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 
 		// Create SM Event Statement is a referring class in association: rel.Numb = 706
 		// The participating class is: State Machine Event
-		class StateMachineEvent_c_test54575_c implements ClassQueryInterface_c {
-			StateMachineEvent_c_test54575_c(java.util.UUID p54576) {
-				m_p54576 = p54576;
+		class StateMachineEvent_c_test56124_c implements ClassQueryInterface_c {
+			StateMachineEvent_c_test56124_c(java.util.UUID p56125) {
+				m_p56125 = p56125;
 			}
-			private java.util.UUID m_p54576;
+			private java.util.UUID m_p56125;
 			public boolean evaluate(Object candidate) {
 				StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p54576));
+				retval = (selected.getSmevt_id().equals(m_p56125));
 				return retval;
 			}
 		}
 
-		StateMachineEvent_c[] objs54574 = StateMachineEvent_c
+		StateMachineEvent_c[] objs56123 = StateMachineEvent_c
 				.StateMachineEventInstances(modelRoot,
-						new StateMachineEvent_c_test54575_c(getSmevt_id()));
+						new StateMachineEvent_c_test56124_c(getSmevt_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54574.length) != 1)) {
+		if (((objs56123.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1609,7 +1611,7 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 								"Create SM Event Statement", //$NON-NLS-1$
 								"Consistency: Object: Create SM Event Statement: Association: 706: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54574.length)
+										+ Integer.toString(objs56123.length)
 										+ " SMevt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1617,7 +1619,7 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create SM Event Statement: Association: 706: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54574.length)
+										+ Integer.toString(objs56123.length)
 										+ " SMevt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1625,71 +1627,71 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 704
-		int objs54577 = 0;
+		int objs56126 = 0;
 		// Subtype Object: Create Event to Instance
-		class CreateEventToInstance_c_test54578_c
+		class CreateEventToInstance_c_test56127_c
 				implements
 					ClassQueryInterface_c {
-			CreateEventToInstance_c_test54578_c(java.util.UUID p54579) {
-				m_p54579 = p54579;
+			CreateEventToInstance_c_test56127_c(java.util.UUID p56128) {
+				m_p56128 = p56128;
 			}
-			private java.util.UUID m_p54579;
+			private java.util.UUID m_p56128;
 			public boolean evaluate(Object candidate) {
 				CreateEventToInstance_c selected = (CreateEventToInstance_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54579));
+				retval = (selected.getStatement_id().equals(m_p56128));
 				return retval;
 			}
 		}
 
-		CreateEventToInstance_c[] objs54580 = CreateEventToInstance_c
+		CreateEventToInstance_c[] objs56129 = CreateEventToInstance_c
 				.CreateEventToInstanceInstances(modelRoot,
-						new CreateEventToInstance_c_test54578_c(
+						new CreateEventToInstance_c_test56127_c(
 								getStatement_id()));
 
-		objs54577 = objs54577 + objs54580.length;
+		objs56126 = objs56126 + objs56129.length;
 		// Subtype Object: Create Event to Class
-		class CreateEventToClass_c_test54581_c implements ClassQueryInterface_c {
-			CreateEventToClass_c_test54581_c(java.util.UUID p54582) {
-				m_p54582 = p54582;
+		class CreateEventToClass_c_test56130_c implements ClassQueryInterface_c {
+			CreateEventToClass_c_test56130_c(java.util.UUID p56131) {
+				m_p56131 = p56131;
 			}
-			private java.util.UUID m_p54582;
+			private java.util.UUID m_p56131;
 			public boolean evaluate(Object candidate) {
 				CreateEventToClass_c selected = (CreateEventToClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54582));
+				retval = (selected.getStatement_id().equals(m_p56131));
 				return retval;
 			}
 		}
 
-		CreateEventToClass_c[] objs54583 = CreateEventToClass_c
+		CreateEventToClass_c[] objs56132 = CreateEventToClass_c
 				.CreateEventToClassInstances(modelRoot,
-						new CreateEventToClass_c_test54581_c(getStatement_id()));
+						new CreateEventToClass_c_test56130_c(getStatement_id()));
 
-		objs54577 = objs54577 + objs54583.length;
+		objs56126 = objs56126 + objs56132.length;
 		// Subtype Object: Create Event to Creator
-		class CreateEventToCreator_c_test54584_c
+		class CreateEventToCreator_c_test56133_c
 				implements
 					ClassQueryInterface_c {
-			CreateEventToCreator_c_test54584_c(java.util.UUID p54585) {
-				m_p54585 = p54585;
+			CreateEventToCreator_c_test56133_c(java.util.UUID p56134) {
+				m_p56134 = p56134;
 			}
-			private java.util.UUID m_p54585;
+			private java.util.UUID m_p56134;
 			public boolean evaluate(Object candidate) {
 				CreateEventToCreator_c selected = (CreateEventToCreator_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54585));
+				retval = (selected.getStatement_id().equals(m_p56134));
 				return retval;
 			}
 		}
 
-		CreateEventToCreator_c[] objs54586 = CreateEventToCreator_c
+		CreateEventToCreator_c[] objs56135 = CreateEventToCreator_c
 				.CreateEventToCreatorInstances(modelRoot,
-						new CreateEventToCreator_c_test54584_c(
+						new CreateEventToCreator_c_test56133_c(
 								getStatement_id()));
 
-		objs54577 = objs54577 + objs54586.length;
-		if (objs54577 != 1) {
+		objs56126 = objs56126 + objs56135.length;
+		if (objs56126 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1697,14 +1699,14 @@ public class CreateSmEventStatement_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Create SM Event Statement", //$NON-NLS-1$
 								"Consistency: Object: Create SM Event Statement: Association: 704: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54577)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56126)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create SM Event Statement: Association: 704: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54577), e);
+										+ Integer.toString(objs56126), e);
 			}
 			retval = false;
 

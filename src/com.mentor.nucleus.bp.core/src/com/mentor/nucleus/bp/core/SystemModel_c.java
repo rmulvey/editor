@@ -185,7 +185,7 @@ p_m_useglobals
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -201,7 +201,7 @@ p_m_useglobals
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID.equals(((SystemModel_c)elem).getSys_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID.equals(((SystemModel_c)elem).getSys_id())) && this != elem)) {
       	return false;
       }
       if (!getSys_id().equals(((SystemModel_c)elem).getSys_id())) return false;
@@ -3745,56 +3745,56 @@ private static SystemModel_c findSystemModelInstance(ModelRoot modelRoot, ClassQ
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SystemModel_c_test54734_c implements ClassQueryInterface_c
+    class SystemModel_c_test56283_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test54734_c( java.util.UUID            p54735 ) {
-	  m_p54735 = p54735;
+	  SystemModel_c_test56283_c( java.util.UUID            p56284 ) {
+	  m_p56284 = p56284;
 	  }
-	  private java.util.UUID             m_p54735; 
+	  private java.util.UUID             m_p56284; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p54735));
+	      retval = (selected.getSys_id().equals(m_p56284));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs54733 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test54734_c(getSys_id())) ;
+    SystemModel_c [] objs56282 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test56283_c(getSys_id())) ;
 
-    if ( (  (objs54733.length) == 0) )
+    if ( (  (objs56282.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "System Model", //$NON-NLS-1$
            "Consistency: Object: System Model: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54733.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56282.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: System Model: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54733.length )  , e); 
+          + Integer.toString( objs56282.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54733.length) > 1) )
+    if ( (  (objs56282.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "System Model", //$NON-NLS-1$
            "Consistency: Object: System Model: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54733.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56282.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: System Model: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54733.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56282.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3817,37 +3817,37 @@ private static SystemModel_c findSystemModelInstance(ModelRoot modelRoot, ClassQ
              // Object: Sequence
           // System Model is a participating class in association: rel.Numb = 1301
              // Object: Integrity Manager
-    class IntegrityManager_c_test54739_c implements ClassQueryInterface_c
+    class IntegrityManager_c_test56288_c implements ClassQueryInterface_c
     {
-	  IntegrityManager_c_test54739_c( java.util.UUID            p54740 ) {
-	  m_p54740 = p54740;
+	  IntegrityManager_c_test56288_c( java.util.UUID            p56289 ) {
+	  m_p56289 = p56289;
 	  }
-	  private java.util.UUID             m_p54740; 
+	  private java.util.UUID             m_p56289; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      IntegrityManager_c selected = (IntegrityManager_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p54740));
+	      retval = (selected.getSys_id().equals(m_p56289));
 	      return retval;
 	  }
     }
 
-    IntegrityManager_c [] objs54738 = 
-    IntegrityManager_c.IntegrityManagerInstances(modelRoot, new IntegrityManager_c_test54739_c(getSys_id())) ;
+    IntegrityManager_c [] objs56287 = 
+    IntegrityManager_c.IntegrityManagerInstances(modelRoot, new IntegrityManager_c_test56288_c(getSys_id())) ;
 
-    if ( (  (objs54738.length) > 1) )
+    if ( (  (objs56287.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "System Model", //$NON-NLS-1$
            "Consistency: Object: System Model: Association: 1301: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54738.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56287.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: System Model: Association: 1301: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54738.length )  , e); 
+          + Integer.toString( objs56287.length )  , e); 
       }
       retval = false;
 
@@ -3882,9 +3882,9 @@ Domain_c [] v_dom_set = Domain_c.getManyS_DOMsOnR28(this);
 
 
 Domain_c  v_dom = null;
-for ( int i53452 = 0; i53452 < v_dom_set.length; i53452++)
+for ( int i54906 = 0; i54906 < v_dom_set.length; i54906++)
 {
-  v_dom = v_dom_set[i53452] ;
+  v_dom = v_dom_set[i54906] ;
 
 if (v_dom != null) {
 v_dom.Dispose() ;
@@ -3903,9 +3903,9 @@ ComponentPackage_c [] v_compDiagrams = ComponentPackage_c.getManyCP_CPsOnR4602(t
 
 
 ComponentPackage_c  v_compDiagram = null;
-for ( int i53453 = 0; i53453 < v_compDiagrams.length; i53453++)
+for ( int i54907 = 0; i54907 < v_compDiagrams.length; i54907++)
 {
-  v_compDiagram = v_compDiagrams[i53453] ;
+  v_compDiagram = v_compDiagrams[i54907] ;
 
 if (v_compDiagram != null) {
 v_compDiagram.Dispose() ;
@@ -3924,9 +3924,9 @@ InterfacePackage_c [] v_interfaces = InterfacePackage_c.getManyIP_IPsOnR4302(thi
 
 
 InterfacePackage_c  v_interface = null;
-for ( int i53454 = 0; i53454 < v_interfaces.length; i53454++)
+for ( int i54908 = 0; i54908 < v_interfaces.length; i54908++)
 {
-  v_interface = v_interfaces[i53454] ;
+  v_interface = v_interfaces[i54908] ;
 
 if (v_interface != null) {
 v_interface.Dispose() ;
@@ -3945,9 +3945,9 @@ DataTypePackage_c [] v_systemDTPkgs = DataTypePackage_c.getManyS_DPKsOnR4400(Sys
 
 
 DataTypePackage_c  v_systemDTPkg = null;
-for ( int i53455 = 0; i53455 < v_systemDTPkgs.length; i53455++)
+for ( int i54909 = 0; i54909 < v_systemDTPkgs.length; i54909++)
 {
-  v_systemDTPkg = v_systemDTPkgs[i53455] ;
+  v_systemDTPkg = v_systemDTPkgs[i54909] ;
 
 if (v_systemDTPkg != null) {
 v_systemDTPkg.Dispose() ;
@@ -3966,9 +3966,9 @@ Sequence_c [] v_sequences = Sequence_c.getManySQ_SsOnR950(this);
 
 
 Sequence_c  v_sequence = null;
-for ( int i53456 = 0; i53456 < v_sequences.length; i53456++)
+for ( int i54910 = 0; i54910 < v_sequences.length; i54910++)
 {
-  v_sequence = v_sequences[i53456] ;
+  v_sequence = v_sequences[i54910] ;
 
 this.unrelateAcrossR950From(v_sequence);
 
@@ -3990,9 +3990,9 @@ UseCaseDiagram_c [] v_ucs = UseCaseDiagram_c.getManyUC_UCCsOnR1211(this);
 
 
 UseCaseDiagram_c  v_uc = null;
-for ( int i53457 = 0; i53457 < v_ucs.length; i53457++)
+for ( int i54911 = 0; i54911 < v_ucs.length; i54911++)
 {
-  v_uc = v_ucs[i53457] ;
+  v_uc = v_ucs[i54911] ;
 
 this.unrelateAcrossR1211From(v_uc);
 
@@ -4014,9 +4014,9 @@ Communication_c [] v_comms = Communication_c.getManyCOMM_COMMsOnR1136(this);
 
 
 Communication_c  v_comm = null;
-for ( int i53458 = 0; i53458 < v_comms.length; i53458++)
+for ( int i54912 = 0; i54912 < v_comms.length; i54912++)
 {
-  v_comm = v_comms[i53458] ;
+  v_comm = v_comms[i54912] ;
 
 this.unrelateAcrossR1136From(v_comm);
 
@@ -4038,9 +4038,9 @@ Activity_c [] v_activities = Activity_c.getManyA_AsOnR1113(this);
 
 
 Activity_c  v_activity = null;
-for ( int i53459 = 0; i53459 < v_activities.length; i53459++)
+for ( int i54913 = 0; i54913 < v_activities.length; i54913++)
 {
-  v_activity = v_activities[i53459] ;
+  v_activity = v_activities[i54913] ;
 
 this.unrelateAcrossR1113From(v_activity);
 
@@ -4062,9 +4062,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR1401(this);
 
 
 Package_c  v_package = null;
-for ( int i53460 = 0; i53460 < v_packages.length; i53460++)
+for ( int i54914 = 0; i54914 < v_packages.length; i54914++)
 {
-  v_package = v_packages[i53460] ;
+  v_package = v_packages[i54914] ;
 
 this.unrelateAcrossR1401From(v_package);
 
@@ -4085,9 +4085,9 @@ else {
 v_packages = Package_c.getManyEP_PKGsOnR1405(this);
 
 
-for ( int i53461 = 0; i53461 < v_packages.length; i53461++)
+for ( int i54915 = 0; i54915 < v_packages.length; i54915++)
 {
-  v_package = v_packages[i53461] ;
+  v_package = v_packages[i54915] ;
 
 this.unrelateAcrossR1405From(v_package);
 
@@ -4109,9 +4109,9 @@ InterfacePackage_c [] v_interfacePackages = InterfacePackage_c.getManyIP_IPsOnR4
 
 
 InterfacePackage_c  v_interfacePackage = null;
-for ( int i53462 = 0; i53462 < v_interfacePackages.length; i53462++)
+for ( int i54916 = 0; i54916 < v_interfacePackages.length; i54916++)
 {
-  v_interfacePackage = v_interfacePackages[i53462] ;
+  v_interfacePackage = v_interfacePackages[i54916] ;
 
 this.unrelateAcrossR4304From(v_interfacePackage);
 
@@ -4133,9 +4133,9 @@ SystemConstantInPackage_c [] v_systemConstantsInPackage = SystemConstantInPackag
 
 
 SystemConstantInPackage_c  v_systemConstantInPackage = null;
-for ( int i53463 = 0; i53463 < v_systemConstantsInPackage.length; i53463++)
+for ( int i54917 = 0; i54917 < v_systemConstantsInPackage.length; i54917++)
 {
-  v_systemConstantInPackage = v_systemConstantsInPackage[i53463] ;
+  v_systemConstantInPackage = v_systemConstantsInPackage[i54917] ;
 
 this.unrelateAcrossR4404From(v_systemConstantInPackage);
 
@@ -4147,9 +4147,9 @@ SystemDatatypeInPackage_c [] v_systemDataTypesInPackage = SystemDatatypeInPackag
 
 
 SystemDatatypeInPackage_c  v_systemDataTypeInPackage = null;
-for ( int i53464 = 0; i53464 < v_systemDataTypesInPackage.length; i53464++)
+for ( int i54918 = 0; i54918 < v_systemDataTypesInPackage.length; i54918++)
 {
-  v_systemDataTypeInPackage = v_systemDataTypesInPackage[i53464] ;
+  v_systemDataTypeInPackage = v_systemDataTypesInPackage[i54918] ;
 
 this.unrelateAcrossR4402From(v_systemDataTypeInPackage);
 
@@ -4161,9 +4161,9 @@ ComponentPackage_c [] v_componentPackages = ComponentPackage_c.getManyCP_CPsOnR4
 
 
 ComponentPackage_c  v_componentPackage = null;
-for ( int i53465 = 0; i53465 < v_componentPackages.length; i53465++)
+for ( int i54919 = 0; i54919 < v_componentPackages.length; i54919++)
 {
-  v_componentPackage = v_componentPackages[i53465] ;
+  v_componentPackage = v_componentPackages[i54919] ;
 
 this.unrelateAcrossR4606From(v_componentPackage);
 
@@ -4185,9 +4185,9 @@ GlobalElementInSystem_c [] v_globalElements = GlobalElementInSystem_c.getManyG_E
 
 
 GlobalElementInSystem_c  v_globalElement = null;
-for ( int i53466 = 0; i53466 < v_globalElements.length; i53466++)
+for ( int i54920 = 0; i54920 < v_globalElements.length; i54920++)
 {
-  v_globalElement = v_globalElements[i53466] ;
+  v_globalElement = v_globalElements[i54920] ;
 
 PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(v_globalElement);
 
@@ -4420,7 +4420,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "System Model", " Operation entered: SystemModel::Cancopydatatypepackage") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class DataTypePackage_test54085_c implements ClassQueryInterface_c
+  class DataTypePackage_test55621_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4428,7 +4428,7 @@ else {
 		return (selected.getPackage_id().equals(p_Id)) ;
 	}
   }
-DataTypePackage_c v_dtPackage = DataTypePackage_c.getOneS_DPKOnR4400(SystemDatatypePackage_c.getManySLD_SDPsOnR4400(this), new DataTypePackage_test54085_c());
+DataTypePackage_c v_dtPackage = DataTypePackage_c.getOneS_DPKOnR4400(SystemDatatypePackage_c.getManySLD_SDPsOnR4400(this), new DataTypePackage_test55621_c());
 
 
 if ( (  (v_dtPackage != null)) )
@@ -5141,9 +5141,9 @@ int          v_count = -1 ;
 
 
 Package_c  v_pckg = null;
-for ( int i53467 = 0; i53467 < v_pckgs.length; i53467++)
+for ( int i54921 = 0; i54921 < v_pckgs.length; i54921++)
 {
-  v_pckg = v_pckgs[i53467] ;
+  v_pckg = v_pckgs[i54921] ;
 
 if ( (  (v_pckg != null)) )
 {
@@ -5197,9 +5197,9 @@ int          v_count = -1 ;
 
 
 DataTypePackage_c  v_sysDTPckg = null;
-for ( int i53468 = 0; i53468 < v_sysDTPckgs.length; i53468++)
+for ( int i54922 = 0; i54922 < v_sysDTPckgs.length; i54922++)
 {
-  v_sysDTPckg = v_sysDTPckgs[i53468] ;
+  v_sysDTPckg = v_sysDTPckgs[i54922] ;
 
 if ( (  (v_sysDTPckg != null)) )
 {
@@ -5253,9 +5253,9 @@ int          v_count = -1 ;
 
 
 InterfacePackage_c  v_interfacePckg = null;
-for ( int i53469 = 0; i53469 < v_interfacePckgs.length; i53469++)
+for ( int i54923 = 0; i54923 < v_interfacePckgs.length; i54923++)
 {
-  v_interfacePckg = v_interfacePckgs[i53469] ;
+  v_interfacePckg = v_interfacePckgs[i54923] ;
 
 if ( (  (v_interfacePckg != null)) )
 {
@@ -5309,9 +5309,9 @@ int          v_count = -1 ;
 
 
 ComponentPackage_c  v_compPckg = null;
-for ( int i53470 = 0; i53470 < v_compPckgs.length; i53470++)
+for ( int i54924 = 0; i54924 < v_compPckgs.length; i54924++)
 {
-  v_compPckg = v_compPckgs[i53470] ;
+  v_compPckg = v_compPckgs[i54924] ;
 
 if ( (  (v_compPckg != null)) )
 {
@@ -5365,9 +5365,9 @@ int          v_count = -1 ;
 
 
 Sequence_c  v_sequence = null;
-for ( int i53471 = 0; i53471 < v_sequences.length; i53471++)
+for ( int i54925 = 0; i54925 < v_sequences.length; i54925++)
 {
-  v_sequence = v_sequences[i53471] ;
+  v_sequence = v_sequences[i54925] ;
 
 if ( (  (v_sequence != null)) )
 {
@@ -5421,9 +5421,9 @@ int          v_count = -1 ;
 
 
 Communication_c  v_communication = null;
-for ( int i53472 = 0; i53472 < v_communications.length; i53472++)
+for ( int i54926 = 0; i54926 < v_communications.length; i54926++)
 {
-  v_communication = v_communications[i53472] ;
+  v_communication = v_communications[i54926] ;
 
 if ( (  (v_communication != null)) )
 {
@@ -5477,9 +5477,9 @@ int          v_count = -1 ;
 
 
 UseCaseDiagram_c  v_usecase = null;
-for ( int i53473 = 0; i53473 < v_usecases.length; i53473++)
+for ( int i54927 = 0; i54927 < v_usecases.length; i54927++)
 {
-  v_usecase = v_usecases[i53473] ;
+  v_usecase = v_usecases[i54927] ;
 
 if ( (  (v_usecase != null)) )
 {
@@ -5533,9 +5533,9 @@ int          v_count = -1 ;
 
 
 Activity_c  v_activity = null;
-for ( int i53474 = 0; i53474 < v_activities.length; i53474++)
+for ( int i54928 = 0; i54928 < v_activities.length; i54928++)
 {
-  v_activity = v_activities[i53474] ;
+  v_activity = v_activities[i54928] ;
 
 if ( (  (v_activity != null)) )
 {
@@ -5580,9 +5580,9 @@ Package_c [] v_pkgs = Package_c.getManyEP_PKGsOnR1401(this);
 
 
 Package_c  v_pkg = null;
-for ( int i53475 = 0; i53475 < v_pkgs.length; i53475++)
+for ( int i54929 = 0; i54929 < v_pkgs.length; i54929++)
 {
-  v_pkg = v_pkgs[i53475] ;
+  v_pkg = v_pkgs[i54929] ;
 
 if ( ! v_pkg.getPackage_id().equals(p_Delegatingcontainerid) )
 {
@@ -5618,7 +5618,7 @@ else {
 
 }
 
-  class SearchResultSet_test54086_c implements ClassQueryInterface_c
+  class SearchResultSet_test55622_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -5626,10 +5626,10 @@ else {
 		return selected.getName().equals(p_Name) && selected.getType() == p_Type ;
 	}
   }
-SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_originatingPackage, new SearchResultSet_test54086_c());
+SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_originatingPackage, new SearchResultSet_test55622_c());
 
 
-  class ComponentResultSet_test54087_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55623_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -5637,7 +5637,7 @@ SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_originat
 		return selected.getName().equals(p_Name) && selected.getType() == p_Type ;
 	}
   }
-ComponentResultSet_c v_compResSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_originatingComp, new ComponentResultSet_test54087_c());
+ComponentResultSet_c v_compResSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_originatingComp, new ComponentResultSet_test55623_c());
 
 
 if (   !p_Descending && getUseglobals() )
@@ -5647,9 +5647,9 @@ PackageableElement_c [] v_globals = PackageableElement_c.getManyPE_PEsOnR9100(Gl
 
 
 PackageableElement_c  v_global = null;
-for ( int i53476 = 0; i53476 < v_globals.length; i53476++)
+for ( int i54930 = 0; i54930 < v_globals.length; i54930++)
 {
-  v_global = v_globals[i53476] ;
+  v_global = v_globals[i54930] ;
 
 if (v_global != null) {
 v_global.Collectvisibleelementsforname(			    
@@ -5680,9 +5680,9 @@ DataType_c [] v_dts = DataType_c.getManyS_DTsOnR4401(SystemDatatypeInPackage_c.g
 
 
 DataType_c  v_dt = null;
-for ( int i53477 = 0; i53477 < v_dts.length; i53477++)
+for ( int i54931 = 0; i54931 < v_dts.length; i54931++)
 {
-  v_dt = v_dts[i53477] ;
+  v_dt = v_dts[i54931] ;
 
 if ( p_Name.equals("") || v_dt.getName().equals(p_Name) )
 {
@@ -5772,17 +5772,17 @@ InterfacePackage_c [] v_interfacePkgs = InterfacePackage_c.getManyIP_IPsOnR4304(
 
 
 InterfacePackage_c  v_interfacePkg = null;
-for ( int i53478 = 0; i53478 < v_interfacePkgs.length; i53478++)
+for ( int i54932 = 0; i54932 < v_interfacePkgs.length; i54932++)
 {
-  v_interfacePkg = v_interfacePkgs[i53478] ;
+  v_interfacePkg = v_interfacePkgs[i54932] ;
 
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(v_interfacePkg);
 
 
 Interface_c  v_interface = null;
-for ( int i53479 = 0; i53479 < v_interfaces.length; i53479++)
+for ( int i54933 = 0; i54933 < v_interfaces.length; i54933++)
 {
-  v_interface = v_interfaces[i53479] ;
+  v_interface = v_interfaces[i54933] ;
 
 if ( p_Name.equals("") || v_interface.getName().equals(p_Name) )
 {
@@ -5875,17 +5875,17 @@ ComponentPackage_c [] v_componentPkgs = ComponentPackage_c.getManyCP_CPsOnR4602(
 
 
 ComponentPackage_c  v_componentPkg = null;
-for ( int i53480 = 0; i53480 < v_componentPkgs.length; i53480++)
+for ( int i54934 = 0; i54934 < v_componentPkgs.length; i54934++)
 {
-  v_componentPkg = v_componentPkgs[i53480] ;
+  v_componentPkg = v_componentPkgs[i54934] ;
 
 Component_c [] v_components = Component_c.getManyC_CsOnR4608(v_componentPkg);
 
 
 Component_c  v_component = null;
-for ( int i53481 = 0; i53481 < v_components.length; i53481++)
+for ( int i54935 = 0; i54935 < v_components.length; i54935++)
 {
-  v_component = v_components[i53481] ;
+  v_component = v_components[i54935] ;
 
 if ( p_Name.equals("") || v_component.getName().equals(p_Name) )
 {
@@ -5978,9 +5978,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR1401(this);
 
 
 Package_c  v_package = null;
-for ( int i53482 = 0; i53482 < v_packages.length; i53482++)
+for ( int i54936 = 0; i54936 < v_packages.length; i54936++)
 {
-  v_package = v_packages[i53482] ;
+  v_package = v_packages[i54936] ;
 
 if ( p_Name.equals("") || v_package.getName().equals(p_Name) )
 {
@@ -6072,9 +6072,9 @@ SystemModel_c [] v_systems = SystemModel_c.SystemModelInstances(Ooaofooa.getDefa
 
 
 SystemModel_c  v_system = null;
-for ( int i53483 = 0; i53483 < v_systems.length; i53483++)
+for ( int i54937 = 0; i54937 < v_systems.length; i54937++)
 {
-  v_system = v_systems[i53483] ;
+  v_system = v_systems[i54937] ;
 
 if ( v_system != this && v_system.getUseglobals() )
 {
@@ -6159,9 +6159,9 @@ int          v_spPkgCount =   (v_doms.length) +   (v_cps.length) +   (v_ifps.len
 
 
 Package_c  v_pkg = null;
-for ( int i53484 = 0; i53484 < v_pkgs.length; i53484++)
+for ( int i54938 = 0; i54938 < v_pkgs.length; i54938++)
 {
-  v_pkg = v_pkgs[i53484] ;
+  v_pkg = v_pkgs[i54938] ;
 
 v_spPkgCount = v_spPkgCount + v_pkg.Getactivitycount() ;
 
@@ -6205,7 +6205,7 @@ return v_result;
 if ( getUseglobals() )
 {
 
-  class DataType_test54088_c implements ClassQueryInterface_c
+  class DataType_test55624_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6213,7 +6213,7 @@ if ( getUseglobals() )
 		return selected.getName().equals(p_Name) ;
 	}
   }
-DataType_c v_coreDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(this)), new DataType_test54088_c());
+DataType_c v_coreDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(this)), new DataType_test55624_c());
 
 
 if (   (v_coreDt != null) )
@@ -6231,7 +6231,7 @@ return v_coreDt.getDt_id();
 else
 {
 
-  class DataType_test54089_c implements ClassQueryInterface_c
+  class DataType_test55625_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6239,7 +6239,7 @@ else
 		return selected.getName().equals(p_Name) ;
 	}
   }
-DataType_c v_coreDt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(this), new DataType_test54089_c());
+DataType_c v_coreDt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(this), new DataType_test55625_c());
 
 
 if (   (v_coreDt != null) )
@@ -6267,9 +6267,9 @@ Package_c [] v_pkgs = Package_c.getManyEP_PKGsOnR1405(this);
 
 
 Package_c  v_pkg = null;
-for ( int i53485 = 0; i53485 < v_pkgs.length; i53485++)
+for ( int i54939 = 0; i54939 < v_pkgs.length; i54939++)
 {
-  v_pkg = v_pkgs[i53485] ;
+  v_pkg = v_pkgs[i54939] ;
 
 if (v_pkg != null) {
 v_pkg.Collectreferencesforsynchronization(			    
@@ -6290,9 +6290,9 @@ ComponentPackage_c [] v_componentPkgs = ComponentPackage_c.getManyCP_CPsOnR4602(
 
 
 ComponentPackage_c  v_componentPkg = null;
-for ( int i53486 = 0; i53486 < v_componentPkgs.length; i53486++)
+for ( int i54940 = 0; i54940 < v_componentPkgs.length; i54940++)
 {
-  v_componentPkg = v_componentPkgs[i53486] ;
+  v_componentPkg = v_componentPkgs[i54940] ;
 
 if (v_componentPkg != null) {
 v_componentPkg.Collectreferencesforsynchronization(			    
@@ -6313,9 +6313,9 @@ InterfacePackage_c [] v_interfacePkgs = InterfacePackage_c.getManyIP_IPsOnR4302(
 
 
 InterfacePackage_c  v_interfacePkg = null;
-for ( int i53487 = 0; i53487 < v_interfacePkgs.length; i53487++)
+for ( int i54941 = 0; i54941 < v_interfacePkgs.length; i54941++)
 {
-  v_interfacePkg = v_interfacePkgs[i53487] ;
+  v_interfacePkg = v_interfacePkgs[i54941] ;
 
 if (v_interfacePkg != null) {
 v_interfacePkg.Collectreferencesforsynchronization(			    

@@ -150,7 +150,8 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -166,9 +167,10 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getChild_ss_id()) || IdAssigner.NULL_UUID
-				.equals(((SubsystemInSubsystem_c) elem).getChild_ss_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getChild_ss_id()) || IdAssigner.NULL_UUID
+						.equals(((SubsystemInSubsystem_c) elem)
+								.getChild_ss_id())) && this != elem)) {
 			return false;
 		}
 		if (!getChild_ss_id().equals(
@@ -177,9 +179,10 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getParent_ss_id()) || IdAssigner.NULL_UUID
-				.equals(((SubsystemInSubsystem_c) elem).getParent_ss_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getParent_ss_id()) || IdAssigner.NULL_UUID
+						.equals(((SubsystemInSubsystem_c) elem)
+								.getParent_ss_id())) && this != elem)) {
 			return false;
 		}
 		if (!getParent_ss_id().equals(
@@ -708,16 +711,16 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 
 		if (ContainsSubsystem == null) {
 			// R42
-			Subsystem_c relInst54741 = (Subsystem_c) baseRoot.getInstanceList(
+			Subsystem_c relInst56290 = (Subsystem_c) baseRoot.getInstanceList(
 					Subsystem_c.class).get(new Object[]{m_child_ss_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54741 == null) {
-				relInst54741 = (Subsystem_c) Ooaofooa.getDefaultInstance()
+			if (relInst56290 == null) {
+				relInst56290 = (Subsystem_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Subsystem_c.class)
 						.get(new Object[]{m_child_ss_id});
 			}
-			if (relInst54741 == null && searchAllRoots
+			if (relInst56290 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -725,33 +728,33 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54741 = (Subsystem_c) roots[i].getInstanceList(
+					relInst56290 = (Subsystem_c) roots[i].getInstanceList(
 							Subsystem_c.class).get(new Object[]{m_child_ss_id});
-					if (relInst54741 != null)
+					if (relInst56290 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54741 != null) {
+			if (relInst56290 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54741) && !isProxy())) {
-					relInst54741.relateAcrossR42To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56290) && !isProxy())) {
+					relInst56290.relateAcrossR42To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (ContainsChildrenOfSubsystem == null) {
 			// R41
-			Subsystem_c relInst54742 = (Subsystem_c) baseRoot.getInstanceList(
+			Subsystem_c relInst56291 = (Subsystem_c) baseRoot.getInstanceList(
 					Subsystem_c.class).get(new Object[]{m_parent_ss_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54742 == null) {
-				relInst54742 = (Subsystem_c) Ooaofooa.getDefaultInstance()
+			if (relInst56291 == null) {
+				relInst56291 = (Subsystem_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Subsystem_c.class)
 						.get(new Object[]{m_parent_ss_id});
 			}
-			if (relInst54742 == null && searchAllRoots
+			if (relInst56291 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -759,18 +762,18 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54742 = (Subsystem_c) roots[i].getInstanceList(
+					relInst56291 = (Subsystem_c) roots[i].getInstanceList(
 							Subsystem_c.class)
 							.get(new Object[]{m_parent_ss_id});
-					if (relInst54742 != null)
+					if (relInst56291 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54742 != null) {
+			if (relInst56291 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54742) && !isProxy())) {
-					relInst54742.relateAcrossR41To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56291) && !isProxy())) {
+					relInst56291.relateAcrossR41To(this, notifyChanges);
 				}
 			}
 		}
@@ -1075,51 +1078,51 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SubsystemInSubsystem_c_test54744_c
+		class SubsystemInSubsystem_c_test56293_c
 				implements
 					ClassQueryInterface_c {
-			SubsystemInSubsystem_c_test54744_c(java.util.UUID p54745,
-					java.util.UUID p54746) {
-				m_p54745 = p54745;
-				m_p54746 = p54746;
+			SubsystemInSubsystem_c_test56293_c(java.util.UUID p56294,
+					java.util.UUID p56295) {
+				m_p56294 = p56294;
+				m_p56295 = p56295;
 			}
-			private java.util.UUID m_p54745;
-			private java.util.UUID m_p54746;
+			private java.util.UUID m_p56294;
+			private java.util.UUID m_p56295;
 			public boolean evaluate(Object candidate) {
 				SubsystemInSubsystem_c selected = (SubsystemInSubsystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getChild_ss_id().equals(m_p54745))
-						& (selected.getParent_ss_id().equals(m_p54746));
+				retval = (selected.getChild_ss_id().equals(m_p56294))
+						& (selected.getParent_ss_id().equals(m_p56295));
 				return retval;
 			}
 		}
 
-		SubsystemInSubsystem_c[] objs54743 = SubsystemInSubsystem_c
+		SubsystemInSubsystem_c[] objs56292 = SubsystemInSubsystem_c
 				.SubsystemInSubsystemInstances(modelRoot,
-						new SubsystemInSubsystem_c_test54744_c(
+						new SubsystemInSubsystem_c_test56293_c(
 								getChild_ss_id(), getParent_ss_id()));
 
-		if (((objs54743.length) == 0)) {
+		if (((objs56292.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Subsystem in Subsystem", //$NON-NLS-1$
 								"Consistency: Object: Subsystem in Subsystem: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54743.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56292.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Subsystem in Subsystem: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54743.length), e);
+										+ Integer.toString(objs56292.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54743.length) > 1)) {
+		if (((objs56292.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1127,7 +1130,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 								"Subsystem in Subsystem", //$NON-NLS-1$
 								"Consistency: Object: Subsystem in Subsystem: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54743.length)
+										+ Integer.toString(objs56292.length)
 										+ " Child_SS_ID: " + "Not Printable" + " Parent_SS_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1135,7 +1138,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Subsystem in Subsystem: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54743.length)
+										+ Integer.toString(objs56292.length)
 										+ " Child_SS_ID: " + "Not Printable" + " Parent_SS_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1144,25 +1147,25 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 
 		// Subsystem in Subsystem is a referring class in association: rel.Numb = 41
 		// The participating class is: Subsystem
-		class Subsystem_c_test54750_c implements ClassQueryInterface_c {
-			Subsystem_c_test54750_c(java.util.UUID p54751) {
-				m_p54751 = p54751;
+		class Subsystem_c_test56299_c implements ClassQueryInterface_c {
+			Subsystem_c_test56299_c(java.util.UUID p56300) {
+				m_p56300 = p56300;
 			}
-			private java.util.UUID m_p54751;
+			private java.util.UUID m_p56300;
 			public boolean evaluate(Object candidate) {
 				Subsystem_c selected = (Subsystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSs_id().equals(m_p54751));
+				retval = (selected.getSs_id().equals(m_p56300));
 				return retval;
 			}
 		}
 
-		Subsystem_c[] objs54749 = Subsystem_c.SubsystemInstances(modelRoot,
-				new Subsystem_c_test54750_c(getParent_ss_id()));
+		Subsystem_c[] objs56298 = Subsystem_c.SubsystemInstances(modelRoot,
+				new Subsystem_c_test56299_c(getParent_ss_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54749.length) != 1)) {
+		if (((objs56298.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1170,7 +1173,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 								"Subsystem in Subsystem", //$NON-NLS-1$
 								"Consistency: Object: Subsystem in Subsystem: Association: 41: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54749.length)
+										+ Integer.toString(objs56298.length)
 										+ " Parent_SS_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1178,7 +1181,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Subsystem in Subsystem: Association: 41: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54749.length)
+										+ Integer.toString(objs56298.length)
 										+ " Parent_SS_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1187,25 +1190,25 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 
 		// Subsystem in Subsystem is a referring class in association: rel.Numb = 42
 		// The participating class is: Subsystem
-		class Subsystem_c_test54753_c implements ClassQueryInterface_c {
-			Subsystem_c_test54753_c(java.util.UUID p54754) {
-				m_p54754 = p54754;
+		class Subsystem_c_test56302_c implements ClassQueryInterface_c {
+			Subsystem_c_test56302_c(java.util.UUID p56303) {
+				m_p56303 = p56303;
 			}
-			private java.util.UUID m_p54754;
+			private java.util.UUID m_p56303;
 			public boolean evaluate(Object candidate) {
 				Subsystem_c selected = (Subsystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSs_id().equals(m_p54754));
+				retval = (selected.getSs_id().equals(m_p56303));
 				return retval;
 			}
 		}
 
-		Subsystem_c[] objs54752 = Subsystem_c.SubsystemInstances(modelRoot,
-				new Subsystem_c_test54753_c(getChild_ss_id()));
+		Subsystem_c[] objs56301 = Subsystem_c.SubsystemInstances(modelRoot,
+				new Subsystem_c_test56302_c(getChild_ss_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54752.length) != 1)) {
+		if (((objs56301.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1213,7 +1216,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 								"Subsystem in Subsystem", //$NON-NLS-1$
 								"Consistency: Object: Subsystem in Subsystem: Association: 42: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54752.length)
+										+ Integer.toString(objs56301.length)
 										+ " Child_SS_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1221,7 +1224,7 @@ public class SubsystemInSubsystem_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Subsystem in Subsystem: Association: 42: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54752.length)
+										+ Integer.toString(objs56301.length)
 										+ " Child_SS_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

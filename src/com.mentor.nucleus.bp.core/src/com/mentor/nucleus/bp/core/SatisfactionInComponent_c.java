@@ -152,7 +152,8 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -168,9 +169,10 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getComponent_id()) || IdAssigner.NULL_UUID
-				.equals(((SatisfactionInComponent_c) elem).getComponent_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getComponent_id()) || IdAssigner.NULL_UUID
+						.equals(((SatisfactionInComponent_c) elem)
+								.getComponent_id())) && this != elem)) {
 			return false;
 		}
 		if (!getComponent_id().equals(
@@ -179,9 +181,10 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
-				.equals(((SatisfactionInComponent_c) elem).getSatisfaction_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
+						.equals(((SatisfactionInComponent_c) elem)
+								.getSatisfaction_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSatisfaction_id().equals(
@@ -705,65 +708,65 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9000
-		Satisfaction_c relInst39256 = (Satisfaction_c) baseRoot
+		Satisfaction_c relInst39838 = (Satisfaction_c) baseRoot
 				.getInstanceList(Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39256 == null) {
-			relInst39256 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
+		if (relInst39838 == null) {
+			relInst39838 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Satisfaction_c.class)
 					.get(new Object[]{m_satisfaction_id});
 		}
-		if (relInst39256 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39838 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39256 = (Satisfaction_c) roots[i].getInstanceList(
+				relInst39838 = (Satisfaction_c) roots[i].getInstanceList(
 						Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
-				if (relInst39256 != null)
+				if (relInst39838 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39256 != null) {
+		if (relInst39838 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39256) && !isProxy())) {
-				relInst39256.relateAcrossR9000To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39838) && !isProxy())) {
+				relInst39838.relateAcrossR9000To(this, notifyChanges);
 			}
 		}
 
-		Component_c relInst39257 = (Component_c) baseRoot.getInstanceList(
+		Component_c relInst39839 = (Component_c) baseRoot.getInstanceList(
 				Component_c.class).get(new Object[]{m_component_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39257 == null) {
-			relInst39257 = (Component_c) Ooaofooa.getDefaultInstance()
+		if (relInst39839 == null) {
+			relInst39839 = (Component_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Component_c.class)
 					.get(new Object[]{m_component_id});
 		}
-		if (relInst39257 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39839 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39257 = (Component_c) roots[i].getInstanceList(
+				relInst39839 = (Component_c) roots[i].getInstanceList(
 						Component_c.class).get(new Object[]{m_component_id});
-				if (relInst39257 != null)
+				if (relInst39839 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39257 != null) {
+		if (relInst39839 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39257) && !isProxy())) {
-				relInst39257.relateAcrossR9000To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39839) && !isProxy())) {
+				relInst39839.relateAcrossR9000To(this, notifyChanges);
 			}
 		}
 
@@ -1022,31 +1025,31 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SatisfactionInComponent_c_test39261_c
+		class SatisfactionInComponent_c_test39843_c
 				implements
 					ClassQueryInterface_c {
-			SatisfactionInComponent_c_test39261_c(java.util.UUID p39262,
-					java.util.UUID p39263) {
-				m_p39262 = p39262;
-				m_p39263 = p39263;
+			SatisfactionInComponent_c_test39843_c(java.util.UUID p39844,
+					java.util.UUID p39845) {
+				m_p39844 = p39844;
+				m_p39845 = p39845;
 			}
-			private java.util.UUID m_p39262;
-			private java.util.UUID m_p39263;
+			private java.util.UUID m_p39844;
+			private java.util.UUID m_p39845;
 			public boolean evaluate(Object candidate) {
 				SatisfactionInComponent_c selected = (SatisfactionInComponent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getComponent_id().equals(m_p39262))
-						& (selected.getSatisfaction_id().equals(m_p39263));
+				retval = (selected.getComponent_id().equals(m_p39844))
+						& (selected.getSatisfaction_id().equals(m_p39845));
 				return retval;
 			}
 		}
 
-		SatisfactionInComponent_c[] objs39260 = SatisfactionInComponent_c
+		SatisfactionInComponent_c[] objs39842 = SatisfactionInComponent_c
 				.SatisfactionInComponentInstances(modelRoot,
-						new SatisfactionInComponent_c_test39261_c(
+						new SatisfactionInComponent_c_test39843_c(
 								getComponent_id(), getSatisfaction_id()));
 
-		if (((objs39260.length) == 0)) {
+		if (((objs39842.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1054,20 +1057,20 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Satisfaction In Component", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39260.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39842.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Satisfaction In Component: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39260.length), e);
+										+ Integer.toString(objs39842.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39260.length) > 1)) {
+		if (((objs39842.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1076,7 +1079,7 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 								"Satisfaction In Component", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39260.length)
+										+ Integer.toString(objs39842.length)
 										+ " Component_Id: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1084,7 +1087,7 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Satisfaction In Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39260.length)
+										+ Integer.toString(objs39842.length)
 										+ " Component_Id: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1093,23 +1096,23 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 
 		// Satisfaction In Component is a link class in association: rel.Numb = 9000
 		// The one side class in the association is: Component
-		class Component_c_test39265_c implements ClassQueryInterface_c {
-			Component_c_test39265_c(java.util.UUID p39266) {
-				m_p39266 = p39266;
+		class Component_c_test39847_c implements ClassQueryInterface_c {
+			Component_c_test39847_c(java.util.UUID p39848) {
+				m_p39848 = p39848;
 			}
-			private java.util.UUID m_p39266;
+			private java.util.UUID m_p39848;
 			public boolean evaluate(Object candidate) {
 				Component_c selected = (Component_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39266));
+				retval = (selected.getId().equals(m_p39848));
 				return retval;
 			}
 		}
 
-		Component_c[] objs39264 = Component_c.ComponentInstances(modelRoot,
-				new Component_c_test39265_c(getComponent_id()));
+		Component_c[] objs39846 = Component_c.ComponentInstances(modelRoot,
+				new Component_c_test39847_c(getComponent_id()));
 
-		if (((objs39264.length) > 1)) {
+		if (((objs39846.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1117,14 +1120,14 @@ public class SatisfactionInComponent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Satisfaction In Component", //$NON-NLS-1$
 								"Consistency: Object: Satisfaction In Component: Association: 9000: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39264.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39846.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Satisfaction In Component: Association: 9000: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39264.length), e);
+										+ Integer.toString(objs39846.length), e);
 			}
 			retval = false;
 

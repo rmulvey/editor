@@ -156,7 +156,8 @@ public class CommunicationPath_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -172,9 +173,9 @@ public class CommunicationPath_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID
-				.equals(((CommunicationPath_c) elem).getCpath_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID
+						.equals(((CommunicationPath_c) elem).getCpath_id())) && this != elem)) {
 			return false;
 		}
 		if (!getCpath_id().equals(((CommunicationPath_c) elem).getCpath_id()))
@@ -974,16 +975,16 @@ public class CommunicationPath_c extends NonRootModelElement
 
 		if (AbstractsAsynchronousCommunicationBetweenClassesInSubsystem == null) {
 			// R5
-			Subsystem_c relInst55947 = (Subsystem_c) baseRoot.getInstanceList(
+			Subsystem_c relInst57496 = (Subsystem_c) baseRoot.getInstanceList(
 					Subsystem_c.class).get(new Object[]{m_ss_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55947 == null) {
-				relInst55947 = (Subsystem_c) Ooaofooa.getDefaultInstance()
+			if (relInst57496 == null) {
+				relInst57496 = (Subsystem_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Subsystem_c.class)
 						.get(new Object[]{m_ss_id});
 			}
-			if (relInst55947 == null && searchAllRoots
+			if (relInst57496 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -991,17 +992,17 @@ public class CommunicationPath_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55947 = (Subsystem_c) roots[i].getInstanceList(
+					relInst57496 = (Subsystem_c) roots[i].getInstanceList(
 							Subsystem_c.class).get(new Object[]{m_ss_id});
-					if (relInst55947 != null)
+					if (relInst57496 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55947 != null) {
+			if (relInst57496 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55947) && !isProxy())) {
-					relInst55947.relateAcrossR5To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57496) && !isProxy())) {
+					relInst57496.relateAcrossR5To(this, notifyChanges);
 				}
 			}
 		}
@@ -1302,44 +1303,44 @@ public class CommunicationPath_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CommunicationPath_c_test55949_c implements ClassQueryInterface_c {
-			CommunicationPath_c_test55949_c(java.util.UUID p55950) {
-				m_p55950 = p55950;
+		class CommunicationPath_c_test57498_c implements ClassQueryInterface_c {
+			CommunicationPath_c_test57498_c(java.util.UUID p57499) {
+				m_p57499 = p57499;
 			}
-			private java.util.UUID m_p55950;
+			private java.util.UUID m_p57499;
 			public boolean evaluate(Object candidate) {
 				CommunicationPath_c selected = (CommunicationPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getCpath_id().equals(m_p55950));
+				retval = (selected.getCpath_id().equals(m_p57499));
 				return retval;
 			}
 		}
 
-		CommunicationPath_c[] objs55948 = CommunicationPath_c
+		CommunicationPath_c[] objs57497 = CommunicationPath_c
 				.CommunicationPathInstances(modelRoot,
-						new CommunicationPath_c_test55949_c(getCpath_id()));
+						new CommunicationPath_c_test57498_c(getCpath_id()));
 
-		if (((objs55948.length) == 0)) {
+		if (((objs57497.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Communication Path", //$NON-NLS-1$
 								"Consistency: Object: Communication Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55948.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57497.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Communication Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55948.length), e);
+										+ Integer.toString(objs57497.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55948.length) > 1)) {
+		if (((objs57497.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1347,7 +1348,7 @@ public class CommunicationPath_c extends NonRootModelElement
 								"Communication Path", //$NON-NLS-1$
 								"Consistency: Object: Communication Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55948.length)
+										+ Integer.toString(objs57497.length)
 										+ " CPath_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1355,7 +1356,7 @@ public class CommunicationPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55948.length)
+										+ Integer.toString(objs57497.length)
 										+ " CPath_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1364,25 +1365,25 @@ public class CommunicationPath_c extends NonRootModelElement
 
 		// Communication Path is a referring class in association: rel.Numb = 5
 		// The participating class is: Subsystem
-		class Subsystem_c_test55954_c implements ClassQueryInterface_c {
-			Subsystem_c_test55954_c(java.util.UUID p55955) {
-				m_p55955 = p55955;
+		class Subsystem_c_test57503_c implements ClassQueryInterface_c {
+			Subsystem_c_test57503_c(java.util.UUID p57504) {
+				m_p57504 = p57504;
 			}
-			private java.util.UUID m_p55955;
+			private java.util.UUID m_p57504;
 			public boolean evaluate(Object candidate) {
 				Subsystem_c selected = (Subsystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSs_id().equals(m_p55955));
+				retval = (selected.getSs_id().equals(m_p57504));
 				return retval;
 			}
 		}
 
-		Subsystem_c[] objs55953 = Subsystem_c.SubsystemInstances(modelRoot,
-				new Subsystem_c_test55954_c(getSs_id()));
+		Subsystem_c[] objs57502 = Subsystem_c.SubsystemInstances(modelRoot,
+				new Subsystem_c_test57503_c(getSs_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55953.length) != 1)) {
+		if (((objs57502.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1390,7 +1391,7 @@ public class CommunicationPath_c extends NonRootModelElement
 								"Communication Path", //$NON-NLS-1$
 								"Consistency: Object: Communication Path: Association: 5: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55953.length)
+										+ Integer.toString(objs57502.length)
 										+ " SS_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1398,7 +1399,7 @@ public class CommunicationPath_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Path: Association: 5: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55953.length)
+										+ Integer.toString(objs57502.length)
 										+ " SS_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1406,79 +1407,79 @@ public class CommunicationPath_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 401
-		int objs55956 = 0;
+		int objs57505 = 0;
 		// Subtype Object: SM to SM Comm Path
-		class SmToSmCommPath_c_test55957_c implements ClassQueryInterface_c {
-			SmToSmCommPath_c_test55957_c(java.util.UUID p55958) {
-				m_p55958 = p55958;
+		class SmToSmCommPath_c_test57506_c implements ClassQueryInterface_c {
+			SmToSmCommPath_c_test57506_c(java.util.UUID p57507) {
+				m_p57507 = p57507;
 			}
-			private java.util.UUID m_p55958;
+			private java.util.UUID m_p57507;
 			public boolean evaluate(Object candidate) {
 				SmToSmCommPath_c selected = (SmToSmCommPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getCpath_id().equals(m_p55958));
+				retval = (selected.getCpath_id().equals(m_p57507));
 				return retval;
 			}
 		}
 
-		SmToSmCommPath_c[] objs55959 = SmToSmCommPath_c
+		SmToSmCommPath_c[] objs57508 = SmToSmCommPath_c
 				.SmToSmCommPathInstances(modelRoot,
-						new SmToSmCommPath_c_test55957_c(getCpath_id()));
+						new SmToSmCommPath_c_test57506_c(getCpath_id()));
 
-		objs55956 = objs55956 + objs55959.length;
+		objs57505 = objs57505 + objs57508.length;
 		// Subtype Object: EE to SM Comm Path
-		class EeToSmCommPath_c_test55960_c implements ClassQueryInterface_c {
-			EeToSmCommPath_c_test55960_c(java.util.UUID p55961) {
-				m_p55961 = p55961;
+		class EeToSmCommPath_c_test57509_c implements ClassQueryInterface_c {
+			EeToSmCommPath_c_test57509_c(java.util.UUID p57510) {
+				m_p57510 = p57510;
 			}
-			private java.util.UUID m_p55961;
+			private java.util.UUID m_p57510;
 			public boolean evaluate(Object candidate) {
 				EeToSmCommPath_c selected = (EeToSmCommPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getCpath_id().equals(m_p55961));
+				retval = (selected.getCpath_id().equals(m_p57510));
 				return retval;
 			}
 		}
 
-		EeToSmCommPath_c[] objs55962 = EeToSmCommPath_c
+		EeToSmCommPath_c[] objs57511 = EeToSmCommPath_c
 				.EeToSmCommPathInstances(modelRoot,
-						new EeToSmCommPath_c_test55960_c(getCpath_id()));
+						new EeToSmCommPath_c_test57509_c(getCpath_id()));
 
-		objs55956 = objs55956 + objs55962.length;
+		objs57505 = objs57505 + objs57511.length;
 		// Subtype Object: SM to EE Comm Path
-		class SmToEeCommPath_c_test55963_c implements ClassQueryInterface_c {
-			SmToEeCommPath_c_test55963_c(java.util.UUID p55964) {
-				m_p55964 = p55964;
+		class SmToEeCommPath_c_test57512_c implements ClassQueryInterface_c {
+			SmToEeCommPath_c_test57512_c(java.util.UUID p57513) {
+				m_p57513 = p57513;
 			}
-			private java.util.UUID m_p55964;
+			private java.util.UUID m_p57513;
 			public boolean evaluate(Object candidate) {
 				SmToEeCommPath_c selected = (SmToEeCommPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getCpath_id().equals(m_p55964));
+				retval = (selected.getCpath_id().equals(m_p57513));
 				return retval;
 			}
 		}
 
-		SmToEeCommPath_c[] objs55965 = SmToEeCommPath_c
+		SmToEeCommPath_c[] objs57514 = SmToEeCommPath_c
 				.SmToEeCommPathInstances(modelRoot,
-						new SmToEeCommPath_c_test55963_c(getCpath_id()));
+						new SmToEeCommPath_c_test57512_c(getCpath_id()));
 
-		objs55956 = objs55956 + objs55965.length;
-		if (objs55956 != 1) {
+		objs57505 = objs57505 + objs57514.length;
+		if (objs57505 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Communication Path", //$NON-NLS-1$
 								"Consistency: Object: Communication Path: Association: 401: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55956)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57505)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Communication Path: Association: 401: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55956), e);
+										+ Integer.toString(objs57505), e);
 			}
 			retval = false;
 

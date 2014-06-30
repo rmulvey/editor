@@ -14,7 +14,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"134c9927-d936-4e50-8a21-8fef13ede32b");
@@ -32,7 +33,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"abe12da5-1530-4881-a18a-482dfc2c89c7");
@@ -43,7 +45,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"e3360ee1-6eba-4980-9c11-1a38e654bbc8");
@@ -54,7 +57,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"a2a8fb70-ddab-4cdb-bc99-af71ae801ddb");
@@ -66,7 +70,8 @@ INSERT INTO O_TFR
 pending event is generated for a creation transition.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"998ddaba-2845-49ad-8351-a2266ab8ecbe");
@@ -127,7 +132,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"c9004271-98a9-497f-be59-6d72495308ec");

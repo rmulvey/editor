@@ -162,7 +162,7 @@ p_m_obj_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -178,14 +178,14 @@ p_m_obj_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID.equals(((BaseAttribute_c)elem).getAttr_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID.equals(((BaseAttribute_c)elem).getAttr_id())) && this != elem)) {
       	return false;
       }
       if (!getAttr_id().equals(((BaseAttribute_c)elem).getAttr_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((BaseAttribute_c)elem).getObj_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((BaseAttribute_c)elem).getObj_id())) && this != elem)) {
       	return false;
       }
       if (!getObj_id().equals(((BaseAttribute_c)elem).getObj_id())) return false;
@@ -1000,29 +1000,29 @@ public static BaseAttribute_c [] getManyO_BATTRsOnR107(DerivedBaseAttribute_c ta
         ModelRoot baseRoot = modelRoot;
 
       // R106
-      Attribute_c relInst38163 = (Attribute_c) baseRoot.getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+      Attribute_c relInst38745 = (Attribute_c) baseRoot.getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38163 == null) {
-      			relInst38163 = (Attribute_c) Ooaofooa.getDefaultInstance().getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+      		if (relInst38745 == null) {
+      			relInst38745 = (Attribute_c) Ooaofooa.getDefaultInstance().getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
       		}
-			if (relInst38163 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38745 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38163 = (Attribute_c) roots[i].getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
-					if (relInst38163 != null)
+					relInst38745 = (Attribute_c) roots[i].getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+					if (relInst38745 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38163 != null )
+      if ( relInst38745 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38163) && !isProxy())) {
-	      relInst38163.relateAcrossR106To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38745) && !isProxy())) {
+	      relInst38745.relateAcrossR106To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1338,57 +1338,57 @@ private static BaseAttribute_c findBaseAttributeInstance(ModelRoot modelRoot, Cl
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class BaseAttribute_c_test38165_c implements ClassQueryInterface_c
+    class BaseAttribute_c_test38747_c implements ClassQueryInterface_c
     {
-	  BaseAttribute_c_test38165_c( java.util.UUID            p38166, java.util.UUID            p38167 ) {
-	       m_p38166 = p38166; 
-m_p38167 = p38167;
+	  BaseAttribute_c_test38747_c( java.util.UUID            p38748, java.util.UUID            p38749 ) {
+	       m_p38748 = p38748; 
+m_p38749 = p38749;
 	  }
-	  private java.util.UUID             m_p38166; private java.util.UUID             m_p38167; 
+	  private java.util.UUID             m_p38748; private java.util.UUID             m_p38749; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      BaseAttribute_c selected = (BaseAttribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p38166)) & (selected.getObj_id().equals(m_p38167));
+	      retval = (selected.getAttr_id().equals(m_p38748)) & (selected.getObj_id().equals(m_p38749));
 	      return retval;
 	  }
     }
 
-    BaseAttribute_c [] objs38164 = 
-    BaseAttribute_c.BaseAttributeInstances(modelRoot, new BaseAttribute_c_test38165_c(getAttr_id(), getObj_id())) ;
+    BaseAttribute_c [] objs38746 = 
+    BaseAttribute_c.BaseAttributeInstances(modelRoot, new BaseAttribute_c_test38747_c(getAttr_id(), getObj_id())) ;
 
-    if ( (  (objs38164.length) == 0) )
+    if ( (  (objs38746.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Base Attribute", //$NON-NLS-1$
            "Consistency: Object: Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38164.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38746.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38164.length )  , e); 
+          + Integer.toString( objs38746.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38164.length) > 1) )
+    if ( (  (objs38746.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Base Attribute", //$NON-NLS-1$
            "Consistency: Object: Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38164.length )  + " Attr_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38746.length )  + " Attr_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38164.length )  + " Attr_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38746.length )  + " Attr_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1396,38 +1396,38 @@ m_p38167 = p38167;
 
           // Base Attribute is a subtype in association: rel.Numb = 106
           // The supertype class is: Attribute
-    class Attribute_c_test38171_c implements ClassQueryInterface_c
+    class Attribute_c_test38753_c implements ClassQueryInterface_c
     {
-	  Attribute_c_test38171_c( java.util.UUID            p38172, java.util.UUID            p38173 ) {
-	       m_p38172 = p38172; 
-m_p38173 = p38173;
+	  Attribute_c_test38753_c( java.util.UUID            p38754, java.util.UUID            p38755 ) {
+	       m_p38754 = p38754; 
+m_p38755 = p38755;
 	  }
-	  private java.util.UUID             m_p38172; private java.util.UUID             m_p38173; 
+	  private java.util.UUID             m_p38754; private java.util.UUID             m_p38755; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Attribute_c selected = (Attribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p38172)) & (selected.getObj_id().equals(m_p38173));
+	      retval = (selected.getAttr_id().equals(m_p38754)) & (selected.getObj_id().equals(m_p38755));
 	      return retval;
 	  }
     }
 
-    Attribute_c [] objs38170 = 
-    Attribute_c.AttributeInstances(modelRoot, new Attribute_c_test38171_c(getAttr_id(), getObj_id())) ;
+    Attribute_c [] objs38752 = 
+    Attribute_c.AttributeInstances(modelRoot, new Attribute_c_test38753_c(getAttr_id(), getObj_id())) ;
 
-    if ( (  (objs38170.length) != 1) )
+    if ( (  (objs38752.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Base Attribute", //$NON-NLS-1$
            "Consistency: Object: Base Attribute: Association: 106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38170.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38752.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Base Attribute: Association: 106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38170.length )  , e); 
+          + Integer.toString( objs38752.length )  , e); 
       }
       retval = false;
 
@@ -1436,62 +1436,62 @@ m_p38173 = p38173;
           // Base Attribute is a participating class in association: rel.Numb = 113
              // Object: Referential Attribute
           // Supertype: rel.Numb = 107
-    int objs38174 = 0;
+    int objs38756 = 0;
             // Subtype Object: New Base Attribute
-    class NewBaseAttribute_c_test38175_c implements ClassQueryInterface_c
+    class NewBaseAttribute_c_test38757_c implements ClassQueryInterface_c
     {
-	  NewBaseAttribute_c_test38175_c( java.util.UUID            p38176, java.util.UUID            p38177 ) {
-	       m_p38176 = p38176; 
-m_p38177 = p38177;
+	  NewBaseAttribute_c_test38757_c( java.util.UUID            p38758, java.util.UUID            p38759 ) {
+	       m_p38758 = p38758; 
+m_p38759 = p38759;
 	  }
-	  private java.util.UUID             m_p38176; private java.util.UUID             m_p38177; 
+	  private java.util.UUID             m_p38758; private java.util.UUID             m_p38759; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      NewBaseAttribute_c selected = (NewBaseAttribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p38176)) & (selected.getObj_id().equals(m_p38177));
+	      retval = (selected.getAttr_id().equals(m_p38758)) & (selected.getObj_id().equals(m_p38759));
 	      return retval;
 	  }
     }
 
-    NewBaseAttribute_c [] objs38178 = 
-    NewBaseAttribute_c.NewBaseAttributeInstances(modelRoot, new NewBaseAttribute_c_test38175_c(getAttr_id(), getObj_id())) ;
+    NewBaseAttribute_c [] objs38760 = 
+    NewBaseAttribute_c.NewBaseAttributeInstances(modelRoot, new NewBaseAttribute_c_test38757_c(getAttr_id(), getObj_id())) ;
  
-    objs38174 = objs38174 + objs38178.length;
+    objs38756 = objs38756 + objs38760.length;
             // Subtype Object: Derived Base Attribute
-    class DerivedBaseAttribute_c_test38179_c implements ClassQueryInterface_c
+    class DerivedBaseAttribute_c_test38761_c implements ClassQueryInterface_c
     {
-	  DerivedBaseAttribute_c_test38179_c( java.util.UUID            p38180, java.util.UUID            p38181 ) {
-	       m_p38180 = p38180; 
-m_p38181 = p38181;
+	  DerivedBaseAttribute_c_test38761_c( java.util.UUID            p38762, java.util.UUID            p38763 ) {
+	       m_p38762 = p38762; 
+m_p38763 = p38763;
 	  }
-	  private java.util.UUID             m_p38180; private java.util.UUID             m_p38181; 
+	  private java.util.UUID             m_p38762; private java.util.UUID             m_p38763; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DerivedBaseAttribute_c selected = (DerivedBaseAttribute_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAttr_id().equals(m_p38180)) & (selected.getObj_id().equals(m_p38181));
+	      retval = (selected.getAttr_id().equals(m_p38762)) & (selected.getObj_id().equals(m_p38763));
 	      return retval;
 	  }
     }
 
-    DerivedBaseAttribute_c [] objs38182 = 
-    DerivedBaseAttribute_c.DerivedBaseAttributeInstances(modelRoot, new DerivedBaseAttribute_c_test38179_c(getAttr_id(), getObj_id())) ;
+    DerivedBaseAttribute_c [] objs38764 = 
+    DerivedBaseAttribute_c.DerivedBaseAttributeInstances(modelRoot, new DerivedBaseAttribute_c_test38761_c(getAttr_id(), getObj_id())) ;
  
-    objs38174 = objs38174 + objs38182.length;
-    if ( objs38174 != 1 )
+    objs38756 = objs38756 + objs38764.length;
+    if ( objs38756 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Base Attribute", //$NON-NLS-1$
            "Consistency: Object: Base Attribute: Association: 107: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38174 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38756 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Base Attribute: Association: 107: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38174 )  , e); 
+          + Integer.toString( objs38756 )  , e); 
       }
       retval = false;
 
@@ -1554,9 +1554,9 @@ ReferentialAttribute_c [] v_rattrs = ReferentialAttribute_c.getManyO_RATTRsOnR11
 
 
 ReferentialAttribute_c  v_rattr = null;
-for ( int i36558 = 0; i36558 < v_rattrs.length; i36558++)
+for ( int i37127 = 0; i37127 < v_rattrs.length; i37127++)
 {
-  v_rattr = v_rattrs[i36558] ;
+  v_rattr = v_rattrs[i37127] ;
 
 this.unrelateAcrossR113From(v_rattr);
 

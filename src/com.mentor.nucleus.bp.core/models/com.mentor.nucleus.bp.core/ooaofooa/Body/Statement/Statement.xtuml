@@ -15,7 +15,8 @@ INSERT INTO O_TFR
 responsible for, from the model.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"1e7cd3e0-a4b7-4029-8cf7-429ef08f6349");
@@ -33,7 +34,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"bbb7c9cf-8f48-4b18-9f26-a7354319d14f");
@@ -61,9 +63,7 @@ INSERT INTO O_TFR
 	"8e519c45-7dcf-400b-9d4e-954869dbb7e8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-result = false;                                    
-return result;
-',
+return false;',
 	1,
 	'',
 	"00000000-0000-0000-0000-000000000000");
@@ -102,7 +102,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"a391a1ac-5388-408b-ba80-73c49999f36b");
@@ -122,7 +123,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"5e6d8def-310f-40f1-848e-99c400e5b9dd");

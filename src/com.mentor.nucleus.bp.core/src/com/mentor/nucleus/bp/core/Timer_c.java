@@ -178,7 +178,8 @@ public class Timer_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -194,8 +195,9 @@ public class Timer_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getTimer_id()) || IdAssigner.NULL_UUID
-				.equals(((Timer_c) elem).getTimer_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getTimer_id()) || IdAssigner.NULL_UUID
+						.equals(((Timer_c) elem).getTimer_id())) && this != elem)) {
 			return false;
 		}
 		if (!getTimer_id().equals(((Timer_c) elem).getTimer_id()))
@@ -439,17 +441,17 @@ public class Timer_c extends NonRootModelElement
 
 		if (ProvidesDelayedDeliveryOfPendingEvent == null) {
 			// R2940
-			PendingEvent_c relInst40163 = (PendingEvent_c) baseRoot
+			PendingEvent_c relInst40745 = (PendingEvent_c) baseRoot
 					.getInstanceList(PendingEvent_c.class).get(
 							new Object[]{m_event_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40163 == null) {
-				relInst40163 = (PendingEvent_c) Ooaofooa.getDefaultInstance()
+			if (relInst40745 == null) {
+				relInst40745 = (PendingEvent_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(PendingEvent_c.class)
 						.get(new Object[]{m_event_id});
 			}
-			if (relInst40163 == null && searchAllRoots
+			if (relInst40745 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -457,17 +459,17 @@ public class Timer_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40163 = (PendingEvent_c) roots[i].getInstanceList(
+					relInst40745 = (PendingEvent_c) roots[i].getInstanceList(
 							PendingEvent_c.class).get(new Object[]{m_event_id});
-					if (relInst40163 != null)
+					if (relInst40745 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40163 != null) {
+			if (relInst40745 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40163) && !isProxy())) {
-					relInst40163.relateAcrossR2940To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40745) && !isProxy())) {
+					relInst40745.relateAcrossR2940To(this, notifyChanges);
 				}
 			}
 		}
@@ -778,55 +780,55 @@ public class Timer_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Timer_c_test40165_c implements ClassQueryInterface_c {
-			Timer_c_test40165_c(java.util.UUID p40166) {
-				m_p40166 = p40166;
+		class Timer_c_test40747_c implements ClassQueryInterface_c {
+			Timer_c_test40747_c(java.util.UUID p40748) {
+				m_p40748 = p40748;
 			}
-			private java.util.UUID m_p40166;
+			private java.util.UUID m_p40748;
 			public boolean evaluate(Object candidate) {
 				Timer_c selected = (Timer_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTimer_id().equals(m_p40166));
+				retval = (selected.getTimer_id().equals(m_p40748));
 				return retval;
 			}
 		}
 
-		Timer_c[] objs40164 = Timer_c.TimerInstances(modelRoot,
-				new Timer_c_test40165_c(getTimer_id()));
+		Timer_c[] objs40746 = Timer_c.TimerInstances(modelRoot,
+				new Timer_c_test40747_c(getTimer_id()));
 
-		if (((objs40164.length) == 0)) {
+		if (((objs40746.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Timer", //$NON-NLS-1$
 								"Consistency: Object: Timer: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40164.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40746.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Timer: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40164.length), e);
+								+ Integer.toString(objs40746.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40164.length) > 1)) {
+		if (((objs40746.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Timer", //$NON-NLS-1$
 						"Consistency: Object: Timer: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs40164.length)
+								+ Integer.toString(objs40746.length)
 								+ " Timer_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Timer: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40164.length)
+								+ Integer.toString(objs40746.length)
 								+ " Timer_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -835,23 +837,23 @@ public class Timer_c extends NonRootModelElement
 
 		// Timer is a referring class in association: rel.Numb = 2940
 		// The participating class is: Pending Event
-		class PendingEvent_c_test40170_c implements ClassQueryInterface_c {
-			PendingEvent_c_test40170_c(java.util.UUID p40171) {
-				m_p40171 = p40171;
+		class PendingEvent_c_test40752_c implements ClassQueryInterface_c {
+			PendingEvent_c_test40752_c(java.util.UUID p40753) {
+				m_p40753 = p40753;
 			}
-			private java.util.UUID m_p40171;
+			private java.util.UUID m_p40753;
 			public boolean evaluate(Object candidate) {
 				PendingEvent_c selected = (PendingEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEvent_id().equals(m_p40171));
+				retval = (selected.getEvent_id().equals(m_p40753));
 				return retval;
 			}
 		}
 
-		PendingEvent_c[] objs40169 = PendingEvent_c.PendingEventInstances(
-				modelRoot, new PendingEvent_c_test40170_c(getEvent_id()));
+		PendingEvent_c[] objs40751 = PendingEvent_c.PendingEventInstances(
+				modelRoot, new PendingEvent_c_test40752_c(getEvent_id()));
 
-		if (((objs40169.length) > 1)) {
+		if (((objs40751.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -859,7 +861,7 @@ public class Timer_c extends NonRootModelElement
 								"Timer", //$NON-NLS-1$
 								"Consistency: Object: Timer: Association: 2940: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40169.length)
+										+ Integer.toString(objs40751.length)
 										+ " Event_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -867,7 +869,7 @@ public class Timer_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Timer: Association: 2940: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40169.length)
+										+ Integer.toString(objs40751.length)
 										+ " Event_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -939,9 +941,7 @@ public class Timer_c extends NonRootModelElement
 		Ooaofooa.log.println(ILogger.OPERATION, "Timer",
 				" Operation entered: Timer::Dispose");
 		final ModelRoot modelRoot = getModelRoot();
-		boolean v_result = false;
-
-		return v_result;
+		return false;
 
 	} // End dispose
 	public void Set(final int p_Delay) {

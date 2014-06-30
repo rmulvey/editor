@@ -188,7 +188,7 @@ p_m_suc_pars
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -204,7 +204,7 @@ p_m_suc_pars
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ProvidedSignal_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ProvidedSignal_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((ProvidedSignal_c)elem).getId())) return false;
@@ -1001,29 +1001,29 @@ public static ProvidedSignal_c [] getManySPR_PSsOnR686(ProvidedSignalBody_c targ
         ModelRoot baseRoot = modelRoot;
 
       // R4503
-      ProvidedExecutableProperty_c relInst55587 = (ProvidedExecutableProperty_c) baseRoot.getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
+      ProvidedExecutableProperty_c relInst57136 = (ProvidedExecutableProperty_c) baseRoot.getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55587 == null) {
-      			relInst55587 = (ProvidedExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
+      		if (relInst57136 == null) {
+      			relInst57136 = (ProvidedExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55587 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57136 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55587 = (ProvidedExecutableProperty_c) roots[i].getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
-					if (relInst55587 != null)
+					relInst57136 = (ProvidedExecutableProperty_c) roots[i].getInstanceList(ProvidedExecutableProperty_c.class).get(new Object[] {m_id});
+					if (relInst57136 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55587 != null )
+      if ( relInst57136 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55587) && !isProxy())) {
-	      relInst55587.relateAcrossR4503To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57136) && !isProxy())) {
+	      relInst57136.relateAcrossR4503To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1437,56 +1437,56 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ProvidedSignal_c_test55589_c implements ClassQueryInterface_c
+    class ProvidedSignal_c_test57138_c implements ClassQueryInterface_c
     {
-	  ProvidedSignal_c_test55589_c( java.util.UUID            p55590 ) {
-	  m_p55590 = p55590;
+	  ProvidedSignal_c_test57138_c( java.util.UUID            p57139 ) {
+	  m_p57139 = p57139;
 	  }
-	  private java.util.UUID             m_p55590; 
+	  private java.util.UUID             m_p57139; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedSignal_c selected = (ProvidedSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55590));
+	      retval = (selected.getId().equals(m_p57139));
 	      return retval;
 	  }
     }
 
-    ProvidedSignal_c [] objs55588 = 
-    ProvidedSignal_c.ProvidedSignalInstances(modelRoot, new ProvidedSignal_c_test55589_c(getId())) ;
+    ProvidedSignal_c [] objs57137 = 
+    ProvidedSignal_c.ProvidedSignalInstances(modelRoot, new ProvidedSignal_c_test57138_c(getId())) ;
 
-    if ( (  (objs55588.length) == 0) )
+    if ( (  (objs57137.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provided Signal", //$NON-NLS-1$
            "Consistency: Object: Provided Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55588.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57137.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provided Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55588.length )  , e); 
+          + Integer.toString( objs57137.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55588.length) > 1) )
+    if ( (  (objs57137.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provided Signal", //$NON-NLS-1$
            "Consistency: Object: Provided Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55588.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57137.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provided Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55588.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57137.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1494,37 +1494,37 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
 
           // Provided Signal is a subtype in association: rel.Numb = 4503
           // The supertype class is: Provided Executable Property
-    class ProvidedExecutableProperty_c_test55594_c implements ClassQueryInterface_c
+    class ProvidedExecutableProperty_c_test57143_c implements ClassQueryInterface_c
     {
-	  ProvidedExecutableProperty_c_test55594_c( java.util.UUID            p55595 ) {
-	  m_p55595 = p55595;
+	  ProvidedExecutableProperty_c_test57143_c( java.util.UUID            p57144 ) {
+	  m_p57144 = p57144;
 	  }
-	  private java.util.UUID             m_p55595; 
+	  private java.util.UUID             m_p57144; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55595));
+	      retval = (selected.getId().equals(m_p57144));
 	      return retval;
 	  }
     }
 
-    ProvidedExecutableProperty_c [] objs55593 = 
-    ProvidedExecutableProperty_c.ProvidedExecutablePropertyInstances(modelRoot, new ProvidedExecutableProperty_c_test55594_c(getId())) ;
+    ProvidedExecutableProperty_c [] objs57142 = 
+    ProvidedExecutableProperty_c.ProvidedExecutablePropertyInstances(modelRoot, new ProvidedExecutableProperty_c_test57143_c(getId())) ;
 
-    if ( (  (objs55593.length) != 1) )
+    if ( (  (objs57142.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provided Signal", //$NON-NLS-1$
            "Consistency: Object: Provided Signal: Association: 4503: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55593.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57142.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provided Signal: Association: 4503: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55593.length )  , e); 
+          + Integer.toString( objs57142.length )  , e); 
       }
       retval = false;
 
@@ -1532,37 +1532,37 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
 
           // Provided Signal is a participating class in association: rel.Numb = 528
              // Object: Signal Event
-    class SignalEvent_c_test55597_c implements ClassQueryInterface_c
+    class SignalEvent_c_test57146_c implements ClassQueryInterface_c
     {
-	  SignalEvent_c_test55597_c( java.util.UUID            p55598 ) {
-	  m_p55598 = p55598;
+	  SignalEvent_c_test57146_c( java.util.UUID            p57147 ) {
+	  m_p57147 = p57147;
 	  }
-	  private java.util.UUID             m_p55598; 
+	  private java.util.UUID             m_p57147; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SignalEvent_c selected = (SignalEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getProvided_signal_id().equals(m_p55598));
+	      retval = (selected.getProvided_signal_id().equals(m_p57147));
 	      return retval;
 	  }
     }
 
-    SignalEvent_c [] objs55596 = 
-    SignalEvent_c.SignalEventInstances(modelRoot, new SignalEvent_c_test55597_c(getId())) ;
+    SignalEvent_c [] objs57145 = 
+    SignalEvent_c.SignalEventInstances(modelRoot, new SignalEvent_c_test57146_c(getId())) ;
 
-    if ( (  (objs55596.length) > 1) )
+    if ( (  (objs57145.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provided Signal", //$NON-NLS-1$
            "Consistency: Object: Provided Signal: Association: 528: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55596.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57145.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provided Signal: Association: 528: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55596.length )  , e); 
+          + Integer.toString( objs57145.length )  , e); 
       }
       retval = false;
 
@@ -1572,37 +1572,37 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
              // Object: Signal Invocation
           // Provided Signal is a participating class in association: rel.Numb = 686
              // Object: Provided Signal Body
-    class ProvidedSignalBody_c_test55600_c implements ClassQueryInterface_c
+    class ProvidedSignalBody_c_test57149_c implements ClassQueryInterface_c
     {
-	  ProvidedSignalBody_c_test55600_c( java.util.UUID            p55601 ) {
-	  m_p55601 = p55601;
+	  ProvidedSignalBody_c_test57149_c( java.util.UUID            p57150 ) {
+	  m_p57150 = p57150;
 	  }
-	  private java.util.UUID             m_p55601; 
+	  private java.util.UUID             m_p57150; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedSignalBody_c selected = (ProvidedSignalBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55601));
+	      retval = (selected.getId().equals(m_p57150));
 	      return retval;
 	  }
     }
 
-    ProvidedSignalBody_c [] objs55599 = 
-    ProvidedSignalBody_c.ProvidedSignalBodyInstances(modelRoot, new ProvidedSignalBody_c_test55600_c(getId())) ;
+    ProvidedSignalBody_c [] objs57148 = 
+    ProvidedSignalBody_c.ProvidedSignalBodyInstances(modelRoot, new ProvidedSignalBody_c_test57149_c(getId())) ;
 
-    if ( (  (objs55599.length) > 1) )
+    if ( (  (objs57148.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Provided Signal", //$NON-NLS-1$
            "Consistency: Object: Provided Signal: Association: 686: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55599.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57148.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Provided Signal: Association: 686: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55599.length )  , e); 
+          + Integer.toString( objs57148.length )  , e); 
       }
       retval = false;
 
@@ -1693,9 +1693,9 @@ SignalInvocation_c [] v_invocations = SignalInvocation_c.getManyACT_SGNsOnR663(t
 
 
 SignalInvocation_c  v_sgn = null;
-for ( int i53794 = 0; i53794 < v_invocations.length; i53794++)
+for ( int i55324 = 0; i55324 < v_invocations.length; i55324++)
 {
-  v_sgn = v_invocations[i53794] ;
+  v_sgn = v_invocations[i55324] ;
 
 this.unrelateAcrossR663From(v_sgn);
 
@@ -1726,7 +1726,7 @@ StateMachine_c v_sm = StateMachine_c.getOneSM_SMOnR502(StateMachineEvent_c.getOn
 if (   (v_sm != null) )
 {
 
-  class Transition_test54028_c implements ClassQueryInterface_c
+  class Transition_test55564_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1734,7 +1734,7 @@ if (   (v_sm != null) )
 		return selected.getTrans_id().equals(p_Transition_id) ;
 	}
   }
-Transition_c v_transition = Transition_c.TransitionInstance(modelRoot, new Transition_test54028_c()) ;
+Transition_c v_transition = Transition_c.TransitionInstance(modelRoot, new Transition_test55564_c()) ;
 
 
 if (   (v_transition != null) )
@@ -1759,9 +1759,9 @@ StateEventMatrixEntry_c [] v_semes = StateEventMatrixEntry_c.getManySM_SEMEsOnR5
 
 
 StateEventMatrixEntry_c  v_seme = null;
-for ( int i53795 = 0; i53795 < v_semes.length; i53795++)
+for ( int i55325 = 0; i55325 < v_semes.length; i55325++)
 {
-  v_seme = v_semes[i53795] ;
+  v_seme = v_semes[i55325] ;
 
 CantHappen_c v_ch = CantHappen_c.getOneSM_CHOnR504(v_seme);
 

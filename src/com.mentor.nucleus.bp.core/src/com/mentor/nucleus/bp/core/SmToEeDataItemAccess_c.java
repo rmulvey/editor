@@ -155,7 +155,8 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getEedi_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToEeDataItemAccess_c) elem).getEedi_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getEedi_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToEeDataItemAccess_c) elem).getEedi_id())) && this != elem)) {
 			return false;
 		}
 		if (!getEedi_id().equals(((SmToEeDataItemAccess_c) elem).getEedi_id()))
@@ -181,9 +182,9 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToEeDataItemAccess_c) elem).getApath_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToEeDataItemAccess_c) elem).getApath_id())) && this != elem)) {
 			return false;
 		}
 		if (!getApath_id()
@@ -192,9 +193,9 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getEe_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToEeDataItemAccess_c) elem).getEe_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getEe_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToEeDataItemAccess_c) elem).getEe_id())) && this != elem)) {
 			return false;
 		}
 		if (!getEe_id().equals(((SmToEeDataItemAccess_c) elem).getEe_id()))
@@ -760,29 +761,29 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 
 	if (RepresentsAccessOfExternalEntityDataItem == null) {          
       // R423
-      ExternalEntityDataItem_c relInst55860 = (ExternalEntityDataItem_c) baseRoot.getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
+      ExternalEntityDataItem_c relInst57409 = (ExternalEntityDataItem_c) baseRoot.getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55860 == null) {
-      			relInst55860 = (ExternalEntityDataItem_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
+      		if (relInst57409 == null) {
+      			relInst57409 = (ExternalEntityDataItem_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
       		}
-			if (relInst55860 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57409 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55860 = (ExternalEntityDataItem_c) roots[i].getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
-					if (relInst55860 != null)
+					relInst57409 = (ExternalEntityDataItem_c) roots[i].getInstanceList(ExternalEntityDataItem_c.class).get(new Object[] {m_eedi_id,m_ee_id});
+					if (relInst57409 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55860 != null )
+      if ( relInst57409 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55860) && !isProxy())) {
-	      relInst55860.relateAcrossR423To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57409) && !isProxy())) {
+	      relInst57409.relateAcrossR423To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -791,7 +792,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 	if (IsCarriedBySmToEeAccessPath == null) {          
       // R422
 	  instances = baseRoot.getInstanceList(SmToEeAccessPath_c.class);
-      SmToEeAccessPath_c relInst55861 = null;
+      SmToEeAccessPath_c relInst57410 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -799,16 +800,16 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
            SmToEeAccessPath_c source = (SmToEeAccessPath_c)cursor.next() ;
            if (     source.getApath_idCachedValue().equals(m_apath_id) && 
      source.getEe_idCachedValue().equals(m_ee_id) 		){
-  		relInst55861 = source;
+  		relInst57410 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst55861 != null )
+      if ( relInst57410 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55861) && !isProxy())) {
-	      relInst55861.relateAcrossR422To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57410) && !isProxy())) {
+	      relInst57410.relateAcrossR422To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1153,34 +1154,34 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SmToEeDataItemAccess_c_test55863_c
+		class SmToEeDataItemAccess_c_test57412_c
 				implements
 					ClassQueryInterface_c {
-			SmToEeDataItemAccess_c_test55863_c(java.util.UUID p55864,
-					java.util.UUID p55865, java.util.UUID p55866) {
-				m_p55864 = p55864;
-				m_p55865 = p55865;
-				m_p55866 = p55866;
+			SmToEeDataItemAccess_c_test57412_c(java.util.UUID p57413,
+					java.util.UUID p57414, java.util.UUID p57415) {
+				m_p57413 = p57413;
+				m_p57414 = p57414;
+				m_p57415 = p57415;
 			}
-			private java.util.UUID m_p55864;
-			private java.util.UUID m_p55865;
-			private java.util.UUID m_p55866;
+			private java.util.UUID m_p57413;
+			private java.util.UUID m_p57414;
+			private java.util.UUID m_p57415;
 			public boolean evaluate(Object candidate) {
 				SmToEeDataItemAccess_c selected = (SmToEeDataItemAccess_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEedi_id().equals(m_p55864))
-						& (selected.getApath_id().equals(m_p55865))
-						& (selected.getEe_id().equals(m_p55866));
+				retval = (selected.getEedi_id().equals(m_p57413))
+						& (selected.getApath_id().equals(m_p57414))
+						& (selected.getEe_id().equals(m_p57415));
 				return retval;
 			}
 		}
 
-		SmToEeDataItemAccess_c[] objs55862 = SmToEeDataItemAccess_c
+		SmToEeDataItemAccess_c[] objs57411 = SmToEeDataItemAccess_c
 				.SmToEeDataItemAccessInstances(modelRoot,
-						new SmToEeDataItemAccess_c_test55863_c(getEedi_id(),
+						new SmToEeDataItemAccess_c_test57412_c(getEedi_id(),
 								getApath_id(), getEe_id()));
 
-		if (((objs55862.length) == 0)) {
+		if (((objs57411.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1188,20 +1189,20 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"SM to EE Data Item Access", //$NON-NLS-1$
 								"Consistency: Object: SM to EE Data Item Access: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55862.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57411.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: SM to EE Data Item Access: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55862.length), e);
+										+ Integer.toString(objs57411.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55862.length) > 1)) {
+		if (((objs57411.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1210,7 +1211,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 								"SM to EE Data Item Access", //$NON-NLS-1$
 								"Consistency: Object: SM to EE Data Item Access: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55862.length)
+										+ Integer.toString(objs57411.length)
 										+ " EEdi_ID: " + "Not Printable" + " APath_ID: " + "Not Printable" + " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1218,7 +1219,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to EE Data Item Access: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55862.length)
+										+ Integer.toString(objs57411.length)
 										+ " EEdi_ID: " + "Not Printable" + " APath_ID: " + "Not Printable" + " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1227,31 +1228,31 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 
 		// SM to EE Data Item Access is a referring class in association: rel.Numb = 422
 		// The participating class is: SM to EE Access Path
-		class SmToEeAccessPath_c_test55870_c implements ClassQueryInterface_c {
-			SmToEeAccessPath_c_test55870_c(java.util.UUID p55871,
-					java.util.UUID p55872) {
-				m_p55871 = p55871;
-				m_p55872 = p55872;
+		class SmToEeAccessPath_c_test57419_c implements ClassQueryInterface_c {
+			SmToEeAccessPath_c_test57419_c(java.util.UUID p57420,
+					java.util.UUID p57421) {
+				m_p57420 = p57420;
+				m_p57421 = p57421;
 			}
-			private java.util.UUID m_p55871;
-			private java.util.UUID m_p55872;
+			private java.util.UUID m_p57420;
+			private java.util.UUID m_p57421;
 			public boolean evaluate(Object candidate) {
 				SmToEeAccessPath_c selected = (SmToEeAccessPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getApath_id().equals(m_p55871))
-						& (selected.getEe_id().equals(m_p55872));
+				retval = (selected.getApath_id().equals(m_p57420))
+						& (selected.getEe_id().equals(m_p57421));
 				return retval;
 			}
 		}
 
-		SmToEeAccessPath_c[] objs55869 = SmToEeAccessPath_c
+		SmToEeAccessPath_c[] objs57418 = SmToEeAccessPath_c
 				.SmToEeAccessPathInstances(modelRoot,
-						new SmToEeAccessPath_c_test55870_c(getApath_id(),
+						new SmToEeAccessPath_c_test57419_c(getApath_id(),
 								getEe_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55869.length) != 1)) {
+		if (((objs57418.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1260,7 +1261,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 								"SM to EE Data Item Access", //$NON-NLS-1$
 								"Consistency: Object: SM to EE Data Item Access: Association: 422: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55869.length)
+										+ Integer.toString(objs57418.length)
 										+ " APath_ID: " + "Not Printable" + " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1268,7 +1269,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to EE Data Item Access: Association: 422: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55869.length)
+										+ Integer.toString(objs57418.length)
 										+ " APath_ID: " + "Not Printable" + " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1277,33 +1278,33 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 
 		// SM to EE Data Item Access is a referring class in association: rel.Numb = 423
 		// The participating class is: External Entity Data Item
-		class ExternalEntityDataItem_c_test55874_c
+		class ExternalEntityDataItem_c_test57423_c
 				implements
 					ClassQueryInterface_c {
-			ExternalEntityDataItem_c_test55874_c(java.util.UUID p55875,
-					java.util.UUID p55876) {
-				m_p55875 = p55875;
-				m_p55876 = p55876;
+			ExternalEntityDataItem_c_test57423_c(java.util.UUID p57424,
+					java.util.UUID p57425) {
+				m_p57424 = p57424;
+				m_p57425 = p57425;
 			}
-			private java.util.UUID m_p55875;
-			private java.util.UUID m_p55876;
+			private java.util.UUID m_p57424;
+			private java.util.UUID m_p57425;
 			public boolean evaluate(Object candidate) {
 				ExternalEntityDataItem_c selected = (ExternalEntityDataItem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEedi_id().equals(m_p55875))
-						& (selected.getEe_id().equals(m_p55876));
+				retval = (selected.getEedi_id().equals(m_p57424))
+						& (selected.getEe_id().equals(m_p57425));
 				return retval;
 			}
 		}
 
-		ExternalEntityDataItem_c[] objs55873 = ExternalEntityDataItem_c
+		ExternalEntityDataItem_c[] objs57422 = ExternalEntityDataItem_c
 				.ExternalEntityDataItemInstances(modelRoot,
-						new ExternalEntityDataItem_c_test55874_c(getEedi_id(),
+						new ExternalEntityDataItem_c_test57423_c(getEedi_id(),
 								getEe_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55873.length) != 1)) {
+		if (((objs57422.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1312,7 +1313,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 								"SM to EE Data Item Access", //$NON-NLS-1$
 								"Consistency: Object: SM to EE Data Item Access: Association: 423: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55873.length)
+										+ Integer.toString(objs57422.length)
 										+ " EEdi_ID: " + "Not Printable" + " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1320,7 +1321,7 @@ public class SmToEeDataItemAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to EE Data Item Access: Association: 423: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55873.length)
+										+ Integer.toString(objs57422.length)
 										+ " EEdi_ID: " + "Not Printable" + " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

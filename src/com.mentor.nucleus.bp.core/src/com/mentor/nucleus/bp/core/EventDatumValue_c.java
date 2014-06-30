@@ -148,7 +148,7 @@ p_m_value_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_value_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((EventDatumValue_c)elem).getValue_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((EventDatumValue_c)elem).getValue_id())) && this != elem)) {
       	return false;
       }
       if (!getValue_id().equals(((EventDatumValue_c)elem).getValue_id())) return false;
@@ -577,29 +577,29 @@ public static EventDatumValue_c [] getManyV_EDVsOnR834(EventParameterReference_c
         ModelRoot baseRoot = modelRoot;
 
       // R801
-      Value_c relInst37680 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst38262 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37680 == null) {
-      			relInst37680 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst38262 == null) {
+      			relInst38262 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst37680 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38262 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37680 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst37680 != null)
+					relInst38262 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst38262 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37680 != null )
+      if ( relInst38262 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37680) && !isProxy())) {
-	      relInst37680.relateAcrossR801To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38262) && !isProxy())) {
+	      relInst38262.relateAcrossR801To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -799,56 +799,56 @@ private static EventDatumValue_c findEventDatumValueInstance(ModelRoot modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class EventDatumValue_c_test37682_c implements ClassQueryInterface_c
+    class EventDatumValue_c_test38264_c implements ClassQueryInterface_c
     {
-	  EventDatumValue_c_test37682_c( java.util.UUID            p37683 ) {
-	  m_p37683 = p37683;
+	  EventDatumValue_c_test38264_c( java.util.UUID            p38265 ) {
+	  m_p38265 = p38265;
 	  }
-	  private java.util.UUID             m_p37683; 
+	  private java.util.UUID             m_p38265; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EventDatumValue_c selected = (EventDatumValue_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37683));
+	      retval = (selected.getValue_id().equals(m_p38265));
 	      return retval;
 	  }
     }
 
-    EventDatumValue_c [] objs37681 = 
-    EventDatumValue_c.EventDatumValueInstances(modelRoot, new EventDatumValue_c_test37682_c(getValue_id())) ;
+    EventDatumValue_c [] objs38263 = 
+    EventDatumValue_c.EventDatumValueInstances(modelRoot, new EventDatumValue_c_test38264_c(getValue_id())) ;
 
-    if ( (  (objs37681.length) == 0) )
+    if ( (  (objs38263.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Datum Value", //$NON-NLS-1$
            "Consistency: Object: Event Datum Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37681.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38263.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Datum Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37681.length )  , e); 
+          + Integer.toString( objs38263.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37681.length) > 1) )
+    if ( (  (objs38263.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Datum Value", //$NON-NLS-1$
            "Consistency: Object: Event Datum Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37681.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38263.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Datum Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37681.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38263.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -856,37 +856,37 @@ private static EventDatumValue_c findEventDatumValueInstance(ModelRoot modelRoot
 
           // Event Datum Value is a subtype in association: rel.Numb = 801
           // The supertype class is: Value
-    class Value_c_test37687_c implements ClassQueryInterface_c
+    class Value_c_test38269_c implements ClassQueryInterface_c
     {
-	  Value_c_test37687_c( java.util.UUID            p37688 ) {
-	  m_p37688 = p37688;
+	  Value_c_test38269_c( java.util.UUID            p38270 ) {
+	  m_p38270 = p38270;
 	  }
-	  private java.util.UUID             m_p37688; 
+	  private java.util.UUID             m_p38270; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37688));
+	      retval = (selected.getValue_id().equals(m_p38270));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37686 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37687_c(getValue_id())) ;
+    Value_c [] objs38268 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38269_c(getValue_id())) ;
 
-    if ( (  (objs37686.length) != 1) )
+    if ( (  (objs38268.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Event Datum Value", //$NON-NLS-1$
            "Consistency: Object: Event Datum Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37686.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38268.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Event Datum Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37686.length )  , e); 
+          + Integer.toString( objs38268.length )  , e); 
       }
       retval = false;
 
@@ -907,9 +907,9 @@ EventParameterReference_c [] v_eprs = EventParameterReference_c.getManyV_EPRsOnR
 
 
 EventParameterReference_c  v_epr = null;
-for ( int i36501 = 0; i36501 < v_eprs.length; i36501++)
+for ( int i37049 = 0; i37049 < v_eprs.length; i37049++)
 {
-  v_epr = v_eprs[i36501] ;
+  v_epr = v_eprs[i37049] ;
 
 if (v_epr != null) {
 v_epr.Dispose() ;

@@ -172,7 +172,7 @@ p_m_iobj_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -188,7 +188,7 @@ p_m_iobj_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID.equals(((SmToObjAccessPath_c)elem).getApath_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID.equals(((SmToObjAccessPath_c)elem).getApath_id())) && this != elem)) {
       	return false;
       }
       if (!getApath_id().equals(((SmToObjAccessPath_c)elem).getApath_id())) return false;
@@ -1086,58 +1086,58 @@ public static SmToObjAccessPath_c [] getManyCA_SMOAsOnR418(SmToObjAttributeAcces
         ModelRoot baseRoot = modelRoot;
 
       // R415
-      AccessPath_c relInst55824 = (AccessPath_c) baseRoot.getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
+      AccessPath_c relInst57373 = (AccessPath_c) baseRoot.getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55824 == null) {
-      			relInst55824 = (AccessPath_c) Ooaofooa.getDefaultInstance().getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
+      		if (relInst57373 == null) {
+      			relInst57373 = (AccessPath_c) Ooaofooa.getDefaultInstance().getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
       		}
-			if (relInst55824 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57373 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55824 = (AccessPath_c) roots[i].getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
-					if (relInst55824 != null)
+					relInst57373 = (AccessPath_c) roots[i].getInstanceList(AccessPath_c.class).get(new Object[] {m_apath_id});
+					if (relInst57373 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55824 != null )
+      if ( relInst57373 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55824) && !isProxy())) {
-	      relInst55824.relateAcrossR415To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57373) && !isProxy())) {
+	      relInst57373.relateAcrossR415To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (ShowsAccessesOfDataFromModelClass == null) {          
       // R417
-      ModelClass_c relInst55825 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      ModelClass_c relInst57374 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55825 == null) {
-      			relInst55825 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      		if (relInst57374 == null) {
+      			relInst57374 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
       		}
-			if (relInst55825 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57374 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55825 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
-					if (relInst55825 != null)
+					relInst57374 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+					if (relInst57374 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55825 != null )
+      if ( relInst57374 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55825) && !isProxy())) {
-	      relInst55825.relateAcrossR417To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57374) && !isProxy())) {
+	      relInst57374.relateAcrossR417To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1145,29 +1145,29 @@ public static SmToObjAccessPath_c [] getManyCA_SMOAsOnR418(SmToObjAttributeAcces
 
 	if (DestinationObjCanBeRepresentedByImportedClass == null) {          
       // R420
-      ImportedClass_c relInst55826 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
+      ImportedClass_c relInst57375 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55826 == null) {
-      			relInst55826 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
+      		if (relInst57375 == null) {
+      			relInst57375 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
       		}
-			if (relInst55826 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57375 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55826 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
-					if (relInst55826 != null)
+					relInst57375 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_iobj_id});
+					if (relInst57375 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55826 != null )
+      if ( relInst57375 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55826) && !isProxy())) {
-	      relInst55826.relateAcrossR420To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57375) && !isProxy())) {
+	      relInst57375.relateAcrossR420To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1538,112 +1538,112 @@ private static SmToObjAccessPath_c findSmToObjAccessPathInstance(ModelRoot model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SmToObjAccessPath_c_test55828_c implements ClassQueryInterface_c
+    class SmToObjAccessPath_c_test57377_c implements ClassQueryInterface_c
     {
-	  SmToObjAccessPath_c_test55828_c( java.util.UUID            p55829, java.util.UUID            p55830 ) {
-	       m_p55829 = p55829; 
-m_p55830 = p55830;
+	  SmToObjAccessPath_c_test57377_c( java.util.UUID            p57378, java.util.UUID            p57379 ) {
+	       m_p57378 = p57378; 
+m_p57379 = p57379;
 	  }
-	  private java.util.UUID             m_p55829; private java.util.UUID             m_p55830; 
+	  private java.util.UUID             m_p57378; private java.util.UUID             m_p57379; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SmToObjAccessPath_c selected = (SmToObjAccessPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getApath_id().equals(m_p55829)) & (selected.getObj_id().equals(m_p55830));
+	      retval = (selected.getApath_id().equals(m_p57378)) & (selected.getObj_id().equals(m_p57379));
 	      return retval;
 	  }
     }
 
-    SmToObjAccessPath_c [] objs55827 = 
-    SmToObjAccessPath_c.SmToObjAccessPathInstances(modelRoot, new SmToObjAccessPath_c_test55828_c(getApath_id(), getObj_id())) ;
+    SmToObjAccessPath_c [] objs57376 = 
+    SmToObjAccessPath_c.SmToObjAccessPathInstances(modelRoot, new SmToObjAccessPath_c_test57377_c(getApath_id(), getObj_id())) ;
 
-    if ( (  (objs55827.length) == 0) )
+    if ( (  (objs57376.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55827.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57376.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55827.length )  , e); 
+          + Integer.toString( objs57376.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55827.length) > 1) )
+    if ( (  (objs57376.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55827.length )  + " APath_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57376.length )  + " APath_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55827.length )  + " APath_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57376.length )  + " APath_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
 
-    class SmToObjAccessPath_c_test55832_c implements ClassQueryInterface_c
+    class SmToObjAccessPath_c_test57381_c implements ClassQueryInterface_c
     {
-	  SmToObjAccessPath_c_test55832_c( java.util.UUID            p55833 ) {
-	  m_p55833 = p55833;
+	  SmToObjAccessPath_c_test57381_c( java.util.UUID            p57382 ) {
+	  m_p57382 = p57382;
 	  }
-	  private java.util.UUID             m_p55833; 
+	  private java.util.UUID             m_p57382; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SmToObjAccessPath_c selected = (SmToObjAccessPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getApath_id().equals(m_p55833));
+	      retval = (selected.getApath_id().equals(m_p57382));
 	      return retval;
 	  }
     }
 
-    SmToObjAccessPath_c [] objs55831 = 
-    SmToObjAccessPath_c.SmToObjAccessPathInstances(modelRoot, new SmToObjAccessPath_c_test55832_c(getApath_id())) ;
+    SmToObjAccessPath_c [] objs57380 = 
+    SmToObjAccessPath_c.SmToObjAccessPathInstances(modelRoot, new SmToObjAccessPath_c_test57381_c(getApath_id())) ;
 
-    if ( (  (objs55831.length) == 0) )
+    if ( (  (objs57380.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55831.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57380.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55831.length )  , e); 
+          + Integer.toString( objs57380.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55831.length) > 1) )
+    if ( (  (objs57380.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55831.length )  + " APath_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57380.length )  + " APath_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55831.length )  + " APath_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57380.length )  + " APath_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1651,37 +1651,37 @@ m_p55830 = p55830;
 
           // SM to OBJ Access Path is a subtype in association: rel.Numb = 415
           // The supertype class is: Access Path
-    class AccessPath_c_test55836_c implements ClassQueryInterface_c
+    class AccessPath_c_test57385_c implements ClassQueryInterface_c
     {
-	  AccessPath_c_test55836_c( java.util.UUID            p55837 ) {
-	  m_p55837 = p55837;
+	  AccessPath_c_test57385_c( java.util.UUID            p57386 ) {
+	  m_p57386 = p57386;
 	  }
-	  private java.util.UUID             m_p55837; 
+	  private java.util.UUID             m_p57386; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      AccessPath_c selected = (AccessPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getApath_id().equals(m_p55837));
+	      retval = (selected.getApath_id().equals(m_p57386));
 	      return retval;
 	  }
     }
 
-    AccessPath_c [] objs55835 = 
-    AccessPath_c.AccessPathInstances(modelRoot, new AccessPath_c_test55836_c(getApath_id())) ;
+    AccessPath_c [] objs57384 = 
+    AccessPath_c.AccessPathInstances(modelRoot, new AccessPath_c_test57385_c(getApath_id())) ;
 
-    if ( (  (objs55835.length) != 1) )
+    if ( (  (objs57384.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Association: 415: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55835.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57384.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Association: 415: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55835.length )  , e); 
+          + Integer.toString( objs57384.length )  , e); 
       }
       retval = false;
 
@@ -1689,40 +1689,40 @@ m_p55830 = p55830;
 
           // SM to OBJ Access Path is a referring class in association: rel.Numb = 417
           // The participating class is: Model Class
-    class ModelClass_c_test55839_c implements ClassQueryInterface_c
+    class ModelClass_c_test57388_c implements ClassQueryInterface_c
     {
-	  ModelClass_c_test55839_c( java.util.UUID            p55840 ) {
-	  m_p55840 = p55840;
+	  ModelClass_c_test57388_c( java.util.UUID            p57389 ) {
+	  m_p57389 = p57389;
 	  }
-	  private java.util.UUID             m_p55840; 
+	  private java.util.UUID             m_p57389; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ModelClass_c selected = (ModelClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getObj_id().equals(m_p55840));
+	      retval = (selected.getObj_id().equals(m_p57389));
 	      return retval;
 	  }
     }
 
-    ModelClass_c [] objs55838 = 
-    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test55839_c(getObj_id())) ;
+    ModelClass_c [] objs57387 = 
+    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test57388_c(getObj_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55838.length) != 1) )
+    if ( (  (objs57387.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Association: 417: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55838.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57387.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Association: 417: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55838.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57387.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1730,38 +1730,38 @@ m_p55830 = p55830;
 
           // SM to OBJ Access Path is a referring class in association: rel.Numb = 420
           // The participating class is: Imported Class
-    class ImportedClass_c_test55842_c implements ClassQueryInterface_c
+    class ImportedClass_c_test57391_c implements ClassQueryInterface_c
     {
-	  ImportedClass_c_test55842_c( java.util.UUID            p55843 ) {
-	  m_p55843 = p55843;
+	  ImportedClass_c_test57391_c( java.util.UUID            p57392 ) {
+	  m_p57392 = p57392;
 	  }
-	  private java.util.UUID             m_p55843; 
+	  private java.util.UUID             m_p57392; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedClass_c selected = (ImportedClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getIobj_id().equals(m_p55843));
+	      retval = (selected.getIobj_id().equals(m_p57392));
 	      return retval;
 	  }
     }
 
-    ImportedClass_c [] objs55841 = 
-    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test55842_c(getIobj_id())) ;
+    ImportedClass_c [] objs57390 = 
+    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test57391_c(getIobj_id())) ;
 
-    if ( (  (objs55841.length) > 1) )
+    if ( (  (objs57390.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to OBJ Access Path", //$NON-NLS-1$
            "Consistency: Object: SM to OBJ Access Path: Association: 420: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55841.length )  + " IObj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57390.length )  + " IObj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to OBJ Access Path: Association: 420: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55841.length )  + " IObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57390.length )  + " IObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1782,9 +1782,9 @@ SmToObjAttributeAccess_c [] v_smoaas = SmToObjAttributeAccess_c.getManyCA_SMOAAs
 
 
 SmToObjAttributeAccess_c  v_smoaa = null;
-for ( int i53865 = 0; i53865 < v_smoaas.length; i53865++)
+for ( int i55395 = 0; i55395 < v_smoaas.length; i55395++)
 {
-  v_smoaa = v_smoaas[i53865] ;
+  v_smoaa = v_smoaas[i55395] ;
 
 Attribute_c v_attr = Attribute_c.getOneO_ATTROnR419(v_smoaa);
 

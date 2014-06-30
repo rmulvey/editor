@@ -150,7 +150,8 @@ public class DelegationInComponent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -166,9 +167,10 @@ public class DelegationInComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getComponent_id()) || IdAssigner.NULL_UUID
-				.equals(((DelegationInComponent_c) elem).getComponent_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getComponent_id()) || IdAssigner.NULL_UUID
+						.equals(((DelegationInComponent_c) elem)
+								.getComponent_id())) && this != elem)) {
 			return false;
 		}
 		if (!getComponent_id().equals(
@@ -177,9 +179,10 @@ public class DelegationInComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDelegation_id()) || IdAssigner.NULL_UUID
-				.equals(((DelegationInComponent_c) elem).getDelegation_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDelegation_id()) || IdAssigner.NULL_UUID
+						.equals(((DelegationInComponent_c) elem)
+								.getDelegation_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDelegation_id().equals(
@@ -698,63 +701,63 @@ public class DelegationInComponent_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9002
-		Delegation_c relInst39267 = (Delegation_c) baseRoot.getInstanceList(
+		Delegation_c relInst39849 = (Delegation_c) baseRoot.getInstanceList(
 				Delegation_c.class).get(new Object[]{m_delegation_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39267 == null) {
-			relInst39267 = (Delegation_c) Ooaofooa.getDefaultInstance()
+		if (relInst39849 == null) {
+			relInst39849 = (Delegation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Delegation_c.class)
 					.get(new Object[]{m_delegation_id});
 		}
-		if (relInst39267 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39849 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39267 = (Delegation_c) roots[i].getInstanceList(
+				relInst39849 = (Delegation_c) roots[i].getInstanceList(
 						Delegation_c.class).get(new Object[]{m_delegation_id});
-				if (relInst39267 != null)
+				if (relInst39849 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39267 != null) {
+		if (relInst39849 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39267) && !isProxy())) {
-				relInst39267.relateAcrossR9002To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39849) && !isProxy())) {
+				relInst39849.relateAcrossR9002To(this, notifyChanges);
 			}
 		}
 
-		Component_c relInst39268 = (Component_c) baseRoot.getInstanceList(
+		Component_c relInst39850 = (Component_c) baseRoot.getInstanceList(
 				Component_c.class).get(new Object[]{m_component_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39268 == null) {
-			relInst39268 = (Component_c) Ooaofooa.getDefaultInstance()
+		if (relInst39850 == null) {
+			relInst39850 = (Component_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Component_c.class)
 					.get(new Object[]{m_component_id});
 		}
-		if (relInst39268 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39850 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39268 = (Component_c) roots[i].getInstanceList(
+				relInst39850 = (Component_c) roots[i].getInstanceList(
 						Component_c.class).get(new Object[]{m_component_id});
-				if (relInst39268 != null)
+				if (relInst39850 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39268 != null) {
+		if (relInst39850 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39268) && !isProxy())) {
-				relInst39268.relateAcrossR9002To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39850) && !isProxy())) {
+				relInst39850.relateAcrossR9002To(this, notifyChanges);
 			}
 		}
 
@@ -1013,31 +1016,31 @@ public class DelegationInComponent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DelegationInComponent_c_test39272_c
+		class DelegationInComponent_c_test39854_c
 				implements
 					ClassQueryInterface_c {
-			DelegationInComponent_c_test39272_c(java.util.UUID p39273,
-					java.util.UUID p39274) {
-				m_p39273 = p39273;
-				m_p39274 = p39274;
+			DelegationInComponent_c_test39854_c(java.util.UUID p39855,
+					java.util.UUID p39856) {
+				m_p39855 = p39855;
+				m_p39856 = p39856;
 			}
-			private java.util.UUID m_p39273;
-			private java.util.UUID m_p39274;
+			private java.util.UUID m_p39855;
+			private java.util.UUID m_p39856;
 			public boolean evaluate(Object candidate) {
 				DelegationInComponent_c selected = (DelegationInComponent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getComponent_id().equals(m_p39273))
-						& (selected.getDelegation_id().equals(m_p39274));
+				retval = (selected.getComponent_id().equals(m_p39855))
+						& (selected.getDelegation_id().equals(m_p39856));
 				return retval;
 			}
 		}
 
-		DelegationInComponent_c[] objs39271 = DelegationInComponent_c
+		DelegationInComponent_c[] objs39853 = DelegationInComponent_c
 				.DelegationInComponentInstances(modelRoot,
-						new DelegationInComponent_c_test39272_c(
+						new DelegationInComponent_c_test39854_c(
 								getComponent_id(), getDelegation_id()));
 
-		if (((objs39271.length) == 0)) {
+		if (((objs39853.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1045,20 +1048,20 @@ public class DelegationInComponent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Delegation In Component", //$NON-NLS-1$
 								"Consistency: Object: Delegation In Component: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39271.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39853.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Delegation In Component: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39271.length), e);
+										+ Integer.toString(objs39853.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39271.length) > 1)) {
+		if (((objs39853.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1067,7 +1070,7 @@ public class DelegationInComponent_c extends NonRootModelElement
 								"Delegation In Component", //$NON-NLS-1$
 								"Consistency: Object: Delegation In Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39271.length)
+										+ Integer.toString(objs39853.length)
 										+ " Component_Id: " + "Not Printable" + " Delegation_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1075,7 +1078,7 @@ public class DelegationInComponent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Delegation In Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39271.length)
+										+ Integer.toString(objs39853.length)
 										+ " Component_Id: " + "Not Printable" + " Delegation_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1084,25 +1087,25 @@ public class DelegationInComponent_c extends NonRootModelElement
 
 		// Delegation In Component is a link class in association: rel.Numb = 9002
 		// The one side class in the association is: Component
-		class Component_c_test39276_c implements ClassQueryInterface_c {
-			Component_c_test39276_c(java.util.UUID p39277) {
-				m_p39277 = p39277;
+		class Component_c_test39858_c implements ClassQueryInterface_c {
+			Component_c_test39858_c(java.util.UUID p39859) {
+				m_p39859 = p39859;
 			}
-			private java.util.UUID m_p39277;
+			private java.util.UUID m_p39859;
 			public boolean evaluate(Object candidate) {
 				Component_c selected = (Component_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39277));
+				retval = (selected.getId().equals(m_p39859));
 				return retval;
 			}
 		}
 
-		Component_c[] objs39275 = Component_c.ComponentInstances(modelRoot,
-				new Component_c_test39276_c(getComponent_id()));
+		Component_c[] objs39857 = Component_c.ComponentInstances(modelRoot,
+				new Component_c_test39858_c(getComponent_id()));
 
 		// The one side class is unconditional
 		// The multiplicity of the one side class is one
-		if (((objs39275.length) != 1)) {
+		if (((objs39857.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1110,14 +1113,14 @@ public class DelegationInComponent_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Delegation In Component", //$NON-NLS-1$
 								"Consistency: Object: Delegation In Component: Association: 9002: Cardinality of one side of link is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39275.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39857.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Delegation In Component: Association: 9002: Cardinality of one side of link is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39275.length), e);
+										+ Integer.toString(objs39857.length), e);
 			}
 			retval = false;
 

@@ -174,7 +174,8 @@ public class Action_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -190,8 +191,9 @@ public class Action_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((Action_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((Action_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((Action_c) elem).getSm_id()))
@@ -199,8 +201,9 @@ public class Action_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
-				.equals(((Action_c) elem).getAct_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
+						.equals(((Action_c) elem).getAct_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAct_id().equals(((Action_c) elem).getAct_id()))
@@ -973,17 +976,17 @@ public class Action_c extends NonRootModelElement
 
 		if (StateMachine == null) {
 			// R515
-			StateMachine_c relInst38733 = (StateMachine_c) baseRoot
+			StateMachine_c relInst39315 = (StateMachine_c) baseRoot
 					.getInstanceList(StateMachine_c.class).get(
 							new Object[]{m_sm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38733 == null) {
-				relInst38733 = (StateMachine_c) Ooaofooa.getDefaultInstance()
+			if (relInst39315 == null) {
+				relInst39315 = (StateMachine_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(StateMachine_c.class)
 						.get(new Object[]{m_sm_id});
 			}
-			if (relInst38733 == null && searchAllRoots
+			if (relInst39315 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -991,17 +994,17 @@ public class Action_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38733 = (StateMachine_c) roots[i].getInstanceList(
+					relInst39315 = (StateMachine_c) roots[i].getInstanceList(
 							StateMachine_c.class).get(new Object[]{m_sm_id});
-					if (relInst38733 != null)
+					if (relInst39315 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38733 != null) {
+			if (relInst39315 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38733) && !isProxy())) {
-					relInst38733.relateAcrossR515To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39315) && !isProxy())) {
+					relInst39315.relateAcrossR515To(this, notifyChanges);
 				}
 			}
 		}
@@ -1358,45 +1361,45 @@ public class Action_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Action_c_test38735_c implements ClassQueryInterface_c {
-			Action_c_test38735_c(java.util.UUID p38736, java.util.UUID p38737) {
-				m_p38736 = p38736;
-				m_p38737 = p38737;
+		class Action_c_test39317_c implements ClassQueryInterface_c {
+			Action_c_test39317_c(java.util.UUID p39318, java.util.UUID p39319) {
+				m_p39318 = p39318;
+				m_p39319 = p39319;
 			}
-			private java.util.UUID m_p38736;
-			private java.util.UUID m_p38737;
+			private java.util.UUID m_p39318;
+			private java.util.UUID m_p39319;
 			public boolean evaluate(Object candidate) {
 				Action_c selected = (Action_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38736))
-						& (selected.getAct_id().equals(m_p38737));
+				retval = (selected.getSm_id().equals(m_p39318))
+						& (selected.getAct_id().equals(m_p39319));
 				return retval;
 			}
 		}
 
-		Action_c[] objs38734 = Action_c.ActionInstances(modelRoot,
-				new Action_c_test38735_c(getSm_id(), getAct_id()));
+		Action_c[] objs39316 = Action_c.ActionInstances(modelRoot,
+				new Action_c_test39317_c(getSm_id(), getAct_id()));
 
-		if (((objs38734.length) == 0)) {
+		if (((objs39316.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38734.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39316.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Action: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38734.length), e);
+								+ Integer.toString(objs39316.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38734.length) > 1)) {
+		if (((objs39316.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1404,7 +1407,7 @@ public class Action_c extends NonRootModelElement
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38734.length)
+										+ Integer.toString(objs39316.length)
 										+ " SM_ID: " + "Not Printable" + " Act_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1412,7 +1415,7 @@ public class Action_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38734.length)
+										+ Integer.toString(objs39316.length)
 										+ " SM_ID: " + "Not Printable" + " Act_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1421,25 +1424,25 @@ public class Action_c extends NonRootModelElement
 
 		// Action is a referring class in association: rel.Numb = 515
 		// The participating class is: State Machine
-		class StateMachine_c_test38741_c implements ClassQueryInterface_c {
-			StateMachine_c_test38741_c(java.util.UUID p38742) {
-				m_p38742 = p38742;
+		class StateMachine_c_test39323_c implements ClassQueryInterface_c {
+			StateMachine_c_test39323_c(java.util.UUID p39324) {
+				m_p39324 = p39324;
 			}
-			private java.util.UUID m_p38742;
+			private java.util.UUID m_p39324;
 			public boolean evaluate(Object candidate) {
 				StateMachine_c selected = (StateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38742));
+				retval = (selected.getSm_id().equals(m_p39324));
 				return retval;
 			}
 		}
 
-		StateMachine_c[] objs38740 = StateMachine_c.StateMachineInstances(
-				modelRoot, new StateMachine_c_test38741_c(getSm_id()));
+		StateMachine_c[] objs39322 = StateMachine_c.StateMachineInstances(
+				modelRoot, new StateMachine_c_test39323_c(getSm_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38740.length) != 1)) {
+		if (((objs39322.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1447,7 +1450,7 @@ public class Action_c extends NonRootModelElement
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Association: 515: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38740.length)
+										+ Integer.toString(objs39322.length)
 										+ " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1455,7 +1458,7 @@ public class Action_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action: Association: 515: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38740.length)
+										+ Integer.toString(objs39322.length)
 										+ " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1464,41 +1467,41 @@ public class Action_c extends NonRootModelElement
 
 		// Action is a participating class in association: rel.Numb = 514
 		// Object: Action Home
-		class ActionHome_c_test38744_c implements ClassQueryInterface_c {
-			ActionHome_c_test38744_c(java.util.UUID p38745,
-					java.util.UUID p38746) {
-				m_p38745 = p38745;
-				m_p38746 = p38746;
+		class ActionHome_c_test39326_c implements ClassQueryInterface_c {
+			ActionHome_c_test39326_c(java.util.UUID p39327,
+					java.util.UUID p39328) {
+				m_p39327 = p39327;
+				m_p39328 = p39328;
 			}
-			private java.util.UUID m_p38745;
-			private java.util.UUID m_p38746;
+			private java.util.UUID m_p39327;
+			private java.util.UUID m_p39328;
 			public boolean evaluate(Object candidate) {
 				ActionHome_c selected = (ActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38745))
-						& (selected.getAct_id().equals(m_p38746));
+				retval = (selected.getSm_id().equals(m_p39327))
+						& (selected.getAct_id().equals(m_p39328));
 				return retval;
 			}
 		}
 
-		ActionHome_c[] objs38743 = ActionHome_c.ActionHomeInstances(modelRoot,
-				new ActionHome_c_test38744_c(getSm_id(), getAct_id()));
+		ActionHome_c[] objs39325 = ActionHome_c.ActionHomeInstances(modelRoot,
+				new ActionHome_c_test39326_c(getSm_id(), getAct_id()));
 
-		if (((objs38743.length) != 1)) {
+		if (((objs39325.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Association: 514: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38743.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39325.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action: Association: 514: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38743.length), e);
+										+ Integer.toString(objs39325.length), e);
 			}
 			retval = false;
 
@@ -1506,43 +1509,43 @@ public class Action_c extends NonRootModelElement
 
 		// Action is a participating class in association: rel.Numb = 691
 		// Object: State Action Body
-		class StateActionBody_c_test38748_c implements ClassQueryInterface_c {
-			StateActionBody_c_test38748_c(java.util.UUID p38749,
-					java.util.UUID p38750) {
-				m_p38749 = p38749;
-				m_p38750 = p38750;
+		class StateActionBody_c_test39330_c implements ClassQueryInterface_c {
+			StateActionBody_c_test39330_c(java.util.UUID p39331,
+					java.util.UUID p39332) {
+				m_p39331 = p39331;
+				m_p39332 = p39332;
 			}
-			private java.util.UUID m_p38749;
-			private java.util.UUID m_p38750;
+			private java.util.UUID m_p39331;
+			private java.util.UUID m_p39332;
 			public boolean evaluate(Object candidate) {
 				StateActionBody_c selected = (StateActionBody_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38749))
-						& (selected.getAct_id().equals(m_p38750));
+				retval = (selected.getSm_id().equals(m_p39331))
+						& (selected.getAct_id().equals(m_p39332));
 				return retval;
 			}
 		}
 
-		StateActionBody_c[] objs38747 = StateActionBody_c
+		StateActionBody_c[] objs39329 = StateActionBody_c
 				.StateActionBodyInstances(modelRoot,
-						new StateActionBody_c_test38748_c(getSm_id(),
+						new StateActionBody_c_test39330_c(getSm_id(),
 								getAct_id()));
 
-		if (((objs38747.length) > 1)) {
+		if (((objs39329.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Association: 691: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38747.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39329.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action: Association: 691: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38747.length), e);
+										+ Integer.toString(objs39329.length), e);
 			}
 			retval = false;
 
@@ -1550,45 +1553,45 @@ public class Action_c extends NonRootModelElement
 
 		// Action is a participating class in association: rel.Numb = 688
 		// Object: Transition Action Body
-		class TransitionActionBody_c_test38752_c
+		class TransitionActionBody_c_test39334_c
 				implements
 					ClassQueryInterface_c {
-			TransitionActionBody_c_test38752_c(java.util.UUID p38753,
-					java.util.UUID p38754) {
-				m_p38753 = p38753;
-				m_p38754 = p38754;
+			TransitionActionBody_c_test39334_c(java.util.UUID p39335,
+					java.util.UUID p39336) {
+				m_p39335 = p39335;
+				m_p39336 = p39336;
 			}
-			private java.util.UUID m_p38753;
-			private java.util.UUID m_p38754;
+			private java.util.UUID m_p39335;
+			private java.util.UUID m_p39336;
 			public boolean evaluate(Object candidate) {
 				TransitionActionBody_c selected = (TransitionActionBody_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38753))
-						& (selected.getAct_id().equals(m_p38754));
+				retval = (selected.getSm_id().equals(m_p39335))
+						& (selected.getAct_id().equals(m_p39336));
 				return retval;
 			}
 		}
 
-		TransitionActionBody_c[] objs38751 = TransitionActionBody_c
+		TransitionActionBody_c[] objs39333 = TransitionActionBody_c
 				.TransitionActionBodyInstances(modelRoot,
-						new TransitionActionBody_c_test38752_c(getSm_id(),
+						new TransitionActionBody_c_test39334_c(getSm_id(),
 								getAct_id()));
 
-		if (((objs38751.length) > 1)) {
+		if (((objs39333.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action", //$NON-NLS-1$
 								"Consistency: Object: Action: Association: 688: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38751.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39333.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action: Association: 688: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38751.length), e);
+										+ Integer.toString(objs39333.length), e);
 			}
 			retval = false;
 

@@ -148,7 +148,7 @@ p_m_rel_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_rel_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((SimpleAssociation_c)elem).getRel_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((SimpleAssociation_c)elem).getRel_id())) && this != elem)) {
       	return false;
       }
       if (!getRel_id().equals(((SimpleAssociation_c)elem).getRel_id())) return false;
@@ -785,29 +785,29 @@ public static SimpleAssociation_c [] getManyR_SIMPsOnR208(ClassAsSimpleFormalize
         ModelRoot baseRoot = modelRoot;
 
       // R206
-      Association_c relInst56570 = (Association_c) baseRoot.getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+      Association_c relInst58119 = (Association_c) baseRoot.getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56570 == null) {
-      			relInst56570 = (Association_c) Ooaofooa.getDefaultInstance().getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+      		if (relInst58119 == null) {
+      			relInst58119 = (Association_c) Ooaofooa.getDefaultInstance().getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
       		}
-			if (relInst56570 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58119 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56570 = (Association_c) roots[i].getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
-					if (relInst56570 != null)
+					relInst58119 = (Association_c) roots[i].getInstanceList(Association_c.class).get(new Object[] {m_rel_id});
+					if (relInst58119 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56570 != null )
+      if ( relInst58119 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56570) && !isProxy())) {
-	      relInst56570.relateAcrossR206To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58119) && !isProxy())) {
+	      relInst58119.relateAcrossR206To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1064,56 +1064,56 @@ private static SimpleAssociation_c findSimpleAssociationInstance(ModelRoot model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SimpleAssociation_c_test56572_c implements ClassQueryInterface_c
+    class SimpleAssociation_c_test58121_c implements ClassQueryInterface_c
     {
-	  SimpleAssociation_c_test56572_c( java.util.UUID            p56573 ) {
-	  m_p56573 = p56573;
+	  SimpleAssociation_c_test58121_c( java.util.UUID            p58122 ) {
+	  m_p58122 = p58122;
 	  }
-	  private java.util.UUID             m_p56573; 
+	  private java.util.UUID             m_p58122; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SimpleAssociation_c selected = (SimpleAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56573));
+	      retval = (selected.getRel_id().equals(m_p58122));
 	      return retval;
 	  }
     }
 
-    SimpleAssociation_c [] objs56571 = 
-    SimpleAssociation_c.SimpleAssociationInstances(modelRoot, new SimpleAssociation_c_test56572_c(getRel_id())) ;
+    SimpleAssociation_c [] objs58120 = 
+    SimpleAssociation_c.SimpleAssociationInstances(modelRoot, new SimpleAssociation_c_test58121_c(getRel_id())) ;
 
-    if ( (  (objs56571.length) == 0) )
+    if ( (  (objs58120.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Simple Association", //$NON-NLS-1$
            "Consistency: Object: Simple Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56571.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58120.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Simple Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56571.length )  , e); 
+          + Integer.toString( objs58120.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56571.length) > 1) )
+    if ( (  (objs58120.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Simple Association", //$NON-NLS-1$
            "Consistency: Object: Simple Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56571.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58120.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Simple Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56571.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58120.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1121,37 +1121,37 @@ private static SimpleAssociation_c findSimpleAssociationInstance(ModelRoot model
 
           // Simple Association is a subtype in association: rel.Numb = 206
           // The supertype class is: Association
-    class Association_c_test56577_c implements ClassQueryInterface_c
+    class Association_c_test58126_c implements ClassQueryInterface_c
     {
-	  Association_c_test56577_c( java.util.UUID            p56578 ) {
-	  m_p56578 = p56578;
+	  Association_c_test58126_c( java.util.UUID            p58127 ) {
+	  m_p58127 = p58127;
 	  }
-	  private java.util.UUID             m_p56578; 
+	  private java.util.UUID             m_p58127; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Association_c selected = (Association_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56578));
+	      retval = (selected.getRel_id().equals(m_p58127));
 	      return retval;
 	  }
     }
 
-    Association_c [] objs56576 = 
-    Association_c.AssociationInstances(modelRoot, new Association_c_test56577_c(getRel_id())) ;
+    Association_c [] objs58125 = 
+    Association_c.AssociationInstances(modelRoot, new Association_c_test58126_c(getRel_id())) ;
 
-    if ( (  (objs56576.length) != 1) )
+    if ( (  (objs58125.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Simple Association", //$NON-NLS-1$
            "Consistency: Object: Simple Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56576.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58125.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Simple Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56576.length )  , e); 
+          + Integer.toString( objs58125.length )  , e); 
       }
       retval = false;
 
@@ -1159,37 +1159,37 @@ private static SimpleAssociation_c findSimpleAssociationInstance(ModelRoot model
 
           // Simple Association is a participating class in association: rel.Numb = 207
              // Object: Class As Simple Participant
-    class ClassAsSimpleParticipant_c_test56580_c implements ClassQueryInterface_c
+    class ClassAsSimpleParticipant_c_test58129_c implements ClassQueryInterface_c
     {
-	  ClassAsSimpleParticipant_c_test56580_c( java.util.UUID            p56581 ) {
-	  m_p56581 = p56581;
+	  ClassAsSimpleParticipant_c_test58129_c( java.util.UUID            p58130 ) {
+	  m_p58130 = p58130;
 	  }
-	  private java.util.UUID             m_p56581; 
+	  private java.util.UUID             m_p58130; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56581));
+	      retval = (selected.getRel_id().equals(m_p58130));
 	      return retval;
 	  }
     }
 
-    ClassAsSimpleParticipant_c [] objs56579 = 
-    ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstances(modelRoot, new ClassAsSimpleParticipant_c_test56580_c(getRel_id())) ;
+    ClassAsSimpleParticipant_c [] objs58128 = 
+    ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstances(modelRoot, new ClassAsSimpleParticipant_c_test58129_c(getRel_id())) ;
 
-    if ( (  (objs56579.length) == 0) )
+    if ( (  (objs58128.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Simple Association", //$NON-NLS-1$
            "Consistency: Object: Simple Association: Association: 207: Cardinality of an unconditional formalizer is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56579.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58128.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Simple Association: Association: 207: Cardinality of an unconditional formalizer is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56579.length )  , e); 
+          + Integer.toString( objs58128.length )  , e); 
       }
       retval = false;
 
@@ -1197,37 +1197,37 @@ private static SimpleAssociation_c findSimpleAssociationInstance(ModelRoot model
                 
           // Simple Association is a participating class in association: rel.Numb = 208
              // Object: Class As Simple Formalizer
-    class ClassAsSimpleFormalizer_c_test56583_c implements ClassQueryInterface_c
+    class ClassAsSimpleFormalizer_c_test58132_c implements ClassQueryInterface_c
     {
-	  ClassAsSimpleFormalizer_c_test56583_c( java.util.UUID            p56584 ) {
-	  m_p56584 = p56584;
+	  ClassAsSimpleFormalizer_c_test58132_c( java.util.UUID            p58133 ) {
+	  m_p58133 = p58133;
 	  }
-	  private java.util.UUID             m_p56584; 
+	  private java.util.UUID             m_p58133; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsSimpleFormalizer_c selected = (ClassAsSimpleFormalizer_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56584));
+	      retval = (selected.getRel_id().equals(m_p58133));
 	      return retval;
 	  }
     }
 
-    ClassAsSimpleFormalizer_c [] objs56582 = 
-    ClassAsSimpleFormalizer_c.ClassAsSimpleFormalizerInstances(modelRoot, new ClassAsSimpleFormalizer_c_test56583_c(getRel_id())) ;
+    ClassAsSimpleFormalizer_c [] objs58131 = 
+    ClassAsSimpleFormalizer_c.ClassAsSimpleFormalizerInstances(modelRoot, new ClassAsSimpleFormalizer_c_test58132_c(getRel_id())) ;
 
-    if ( (  (objs56582.length) > 1) )
+    if ( (  (objs58131.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Simple Association", //$NON-NLS-1$
            "Consistency: Object: Simple Association: Association: 208: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56582.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58131.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Simple Association: Association: 208: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56582.length )  , e); 
+          + Integer.toString( objs58131.length )  , e); 
       }
       retval = false;
 
@@ -1291,19 +1291,19 @@ p_At) ;
 else if ( (p_At == End_c.End || p_At == End_c.End_Fixed) )
 {
 
-  class ClassAsSimpleParticipant_test54424_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55973_c implements ClassQueryInterface_c
   {
-	ClassAsSimpleParticipant_test54424_c( java.util.UUID         p54425 ) {
-		m_p54425 = p54425;
+	ClassAsSimpleParticipant_test55973_c( java.util.UUID         p55974 ) {
+		m_p55974 = p55974;
 	}
-	private java.util.UUID         m_p54425;
+	private java.util.UUID         m_p55974;
 	public boolean evaluate (Object candidate)
 	{
 		ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c)candidate;
-		return ! selected.getOir_id().equals(m_p54425) ;
+		return ! selected.getOir_id().equals(m_p55974) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part2 = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54424_c(v_part1.getOir_id()));
+ClassAsSimpleParticipant_c v_part2 = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55973_c(v_part1.getOir_id()));
 
 
 if ( (  (v_part2 != null)) )
@@ -1325,7 +1325,7 @@ p_At) ;
 else
 {
 
-  class ClassAsSimpleParticipant_test54426_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55975_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1333,7 +1333,7 @@ else
 		return (selected.getObj_id().equals(p_Obj_id)) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54426_c());
+ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55975_c());
 
 
 if ( (  (v_part != null)) )
@@ -1402,7 +1402,7 @@ p_At) ;
 else
 {
 
-  class ClassAsSimpleParticipant_test54427_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55976_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1410,7 +1410,7 @@ else
 		return (selected.getObj_id().equals(p_Obj_id)) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54427_c());
+ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55976_c());
 
 
 if ( (  (v_part != null)) )
@@ -1426,7 +1426,7 @@ p_At) ;
 else
 {
 
-  class ClassAsSimpleFormalizer_test54428_c implements ClassQueryInterface_c
+  class ClassAsSimpleFormalizer_test55977_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1434,7 +1434,7 @@ else
 		return (selected.getObj_id().equals(p_Obj_id)) ;
 	}
   }
-ClassAsSimpleFormalizer_c v_form = ClassAsSimpleFormalizer_c.getOneR_FORMOnR208(this, new ClassAsSimpleFormalizer_test54428_c());
+ClassAsSimpleFormalizer_c v_form = ClassAsSimpleFormalizer_c.getOneR_FORMOnR208(this, new ClassAsSimpleFormalizer_test55977_c());
 
 
 if ( (  (v_form != null)) )
@@ -1475,9 +1475,9 @@ ClassAsSimpleParticipant_c [] v_parts = ClassAsSimpleParticipant_c.getManyR_PART
 
 
 ClassAsSimpleParticipant_c  v_part = null;
-for ( int i53893 = 0; i53893 < v_parts.length; i53893++)
+for ( int i55423 = 0; i55423 < v_parts.length; i55423++)
 {
-  v_part = v_parts[i53893] ;
+  v_part = v_parts[i55423] ;
 
 this.unrelateAcrossR207From(v_part);
 
@@ -1524,7 +1524,7 @@ Unformalize() ;
 Association_c v_toAssoc = Association_c.getOneR_RELOnR206(this);
 
 
-  class ModelClass_test54429_c implements ClassQueryInterface_c
+  class ModelClass_test55978_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1532,13 +1532,13 @@ Association_c v_toAssoc = Association_c.getOneR_RELOnR206(this);
 		return (selected.getObj_id().equals(p_Using)) ;
 	}
   }
-ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR4(Association_c.getManyR_RELsOnR206(this)))), new ModelClass_test54429_c());
+ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR2(Subsystem_c.getManyS_SSsOnR1(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR4(Association_c.getManyR_RELsOnR206(this)))), new ModelClass_test55978_c());
 
 
 if ( (  (v_fromClass == null)) )
 {
 
-  class ModelClass_test54430_c implements ClassQueryInterface_c
+  class ModelClass_test55979_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1546,7 +1546,7 @@ if ( (  (v_fromClass == null)) )
 		return (selected.getObj_id().equals(p_Using)) ;
 	}
   }
-v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(Package_c.getManyEP_PKGsOnR8000(PackageableElement_c.getManyPE_PEsOnR8001(Association_c.getManyR_RELsOnR206(this)))))), new ModelClass_test54430_c());
+v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(SystemModel_c.getManyS_SYSsOnR1405(Package_c.getManyEP_PKGsOnR8000(PackageableElement_c.getManyPE_PEsOnR8001(Association_c.getManyR_RELsOnR206(this)))))), new ModelClass_test55979_c());
 
 
 
@@ -1799,9 +1799,9 @@ boolean      v_doingOneSide = true ;
 
 
 ClassAsSimpleParticipant_c  v_part = null;
-for ( int i53894 = 0; i53894 < v_parts.length; i53894++)
+for ( int i55424 = 0; i55424 < v_parts.length; i55424++)
 {
-  v_part = v_parts[i53894] ;
+  v_part = v_parts[i55424] ;
 
 if ( (v_doingOneSide) )
 {
@@ -2043,7 +2043,7 @@ else {
 if ( (! p_Imported_id.equals(Gd_c.Null_unique_id())) )
 {
 
-  class ImportedClass_test54431_c implements ClassQueryInterface_c
+  class ImportedClass_test55980_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2051,7 +2051,7 @@ if ( (! p_Imported_id.equals(Gd_c.Null_unique_id())) )
 		return selected.getIobj_id().equals(p_Imported_id) ;
 	}
   }
-ImportedClass_c v_imp_class = ImportedClass_c.getOneO_IOBJOnR101(v_fromClass, new ImportedClass_test54431_c());
+ImportedClass_c v_imp_class = ImportedClass_c.getOneO_IOBJOnR101(v_fromClass, new ImportedClass_test55980_c());
 
 
 if (v_imp_class != null) {
@@ -2132,7 +2132,7 @@ Unformalize() ;
 
 }
 
-  class ClassAsSimpleParticipant_test54432_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55981_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2140,22 +2140,22 @@ Unformalize() ;
 		return selected.getOir_id().equals(p_Part_oir_id) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54432_c());
+ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55981_c());
 
 
-  class ClassAsSimpleParticipant_test54433_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55982_c implements ClassQueryInterface_c
   {
-	ClassAsSimpleParticipant_test54433_c( java.util.UUID         p54434 ) {
-		m_p54434 = p54434;
+	ClassAsSimpleParticipant_test55982_c( java.util.UUID         p55983 ) {
+		m_p55983 = p55983;
 	}
-	private java.util.UUID         m_p54434;
+	private java.util.UUID         m_p55983;
 	public boolean evaluate (Object candidate)
 	{
 		ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c)candidate;
-		return ! selected.getOir_id().equals(m_p54434) ;
+		return ! selected.getOir_id().equals(m_p55983) ;
 	}
   }
-ClassAsSimpleParticipant_c v_form_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54433_c(v_part.getOir_id()));
+ClassAsSimpleParticipant_c v_form_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55982_c(v_part.getOir_id()));
 
 
 if (v_form_part != null) {
@@ -2177,7 +2177,7 @@ ReferredToClassInAssoc_c v_part_rto = ReferredToClassInAssoc_c.getOneR_RTOOnR204
 ModelClass_c v_part_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.getOneR_OIROnR203(v_part_rto));
 
 
-  class ClassIdentifier_test54435_c implements ClassQueryInterface_c
+  class ClassIdentifier_test55984_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2185,7 +2185,7 @@ ModelClass_c v_part_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.ge
 		return selected.getOid_id() == p_Id_id ;
 	}
   }
-ClassIdentifier_c v_oid = ClassIdentifier_c.getOneO_IDOnR104(v_part_obj, new ClassIdentifier_test54435_c());
+ClassIdentifier_c v_oid = ClassIdentifier_c.getOneO_IDOnR104(v_part_obj, new ClassIdentifier_test55984_c());
 
 
 if (v_oid != null) {
@@ -2208,9 +2208,9 @@ ModelClass_c v_form_obj = ModelClass_c.getOneO_OBJOnR201(ClassInAssociation_c.ge
 
 
 ClassIdentifierAttribute_c  v_oida = null;
-for ( int i53895 = 0; i53895 < v_oida_set.length; i53895++)
+for ( int i55425 = 0; i55425 < v_oida_set.length; i55425++)
 {
-  v_oida = v_oida_set[i53895] ;
+  v_oida = v_oida_set[i55425] ;
 
 java.util.UUID         v_newAttr_id = v_oida.Addreference(			    
 -1			    
@@ -2262,7 +2262,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Simple Association", " Operation entered: SimpleAssociation::Canparticipate") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ClassAsSimpleParticipant_test54436_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55985_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2270,7 +2270,7 @@ else {
 		return selected.getObj_id().equals(p_Id) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test54436_c());
+ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(this, new ClassAsSimpleParticipant_test55985_c());
 
 
 if ( (  (v_part != null)) )

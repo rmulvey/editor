@@ -146,7 +146,8 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
-				.equals(((DatatypeInSuppression_c) elem).getDom_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
+						.equals(((DatatypeInSuppression_c) elem).getDom_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDom_id().equals(((DatatypeInSuppression_c) elem).getDom_id()))
@@ -172,9 +173,9 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((DatatypeInSuppression_c) elem).getDt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((DatatypeInSuppression_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((DatatypeInSuppression_c) elem).getDt_id()))
@@ -770,63 +771,63 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R47
-		Domain_c relInst55120 = (Domain_c) baseRoot.getInstanceList(
+		Domain_c relInst56669 = (Domain_c) baseRoot.getInstanceList(
 				Domain_c.class).get(new Object[]{m_dom_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55120 == null) {
-			relInst55120 = (Domain_c) Ooaofooa.getDefaultInstance()
+		if (relInst56669 == null) {
+			relInst56669 = (Domain_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Domain_c.class)
 					.get(new Object[]{m_dom_id});
 		}
-		if (relInst55120 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56669 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55120 = (Domain_c) roots[i].getInstanceList(
+				relInst56669 = (Domain_c) roots[i].getInstanceList(
 						Domain_c.class).get(new Object[]{m_dom_id});
-				if (relInst55120 != null)
+				if (relInst56669 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55120 != null) {
+		if (relInst56669 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55120) && !isProxy())) {
-				relInst55120.relateAcrossR47To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56669) && !isProxy())) {
+				relInst56669.relateAcrossR47To(this, notifyChanges);
 			}
 		}
 
-		DataType_c relInst55121 = (DataType_c) baseRoot.getInstanceList(
+		DataType_c relInst56670 = (DataType_c) baseRoot.getInstanceList(
 				DataType_c.class).get(new Object[]{m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55121 == null) {
-			relInst55121 = (DataType_c) Ooaofooa.getDefaultInstance()
+		if (relInst56670 == null) {
+			relInst56670 = (DataType_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataType_c.class)
 					.get(new Object[]{m_dt_id});
 		}
-		if (relInst55121 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56670 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55121 = (DataType_c) roots[i].getInstanceList(
+				relInst56670 = (DataType_c) roots[i].getInstanceList(
 						DataType_c.class).get(new Object[]{m_dt_id});
-				if (relInst55121 != null)
+				if (relInst56670 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55121 != null) {
+		if (relInst56670 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55121) && !isProxy())) {
-				relInst55121.relateAcrossR47To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56670) && !isProxy())) {
+				relInst56670.relateAcrossR47To(this, notifyChanges);
 			}
 		}
 
@@ -1131,31 +1132,31 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DatatypeInSuppression_c_test55123_c
+		class DatatypeInSuppression_c_test56672_c
 				implements
 					ClassQueryInterface_c {
-			DatatypeInSuppression_c_test55123_c(java.util.UUID p55124,
-					java.util.UUID p55125) {
-				m_p55124 = p55124;
-				m_p55125 = p55125;
+			DatatypeInSuppression_c_test56672_c(java.util.UUID p56673,
+					java.util.UUID p56674) {
+				m_p56673 = p56673;
+				m_p56674 = p56674;
 			}
-			private java.util.UUID m_p55124;
-			private java.util.UUID m_p55125;
+			private java.util.UUID m_p56673;
+			private java.util.UUID m_p56674;
 			public boolean evaluate(Object candidate) {
 				DatatypeInSuppression_c selected = (DatatypeInSuppression_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDom_id().equals(m_p55124))
-						& (selected.getDt_id().equals(m_p55125));
+				retval = (selected.getDom_id().equals(m_p56673))
+						& (selected.getDt_id().equals(m_p56674));
 				return retval;
 			}
 		}
 
-		DatatypeInSuppression_c[] objs55122 = DatatypeInSuppression_c
+		DatatypeInSuppression_c[] objs56671 = DatatypeInSuppression_c
 				.DatatypeInSuppressionInstances(modelRoot,
-						new DatatypeInSuppression_c_test55123_c(getDom_id(),
+						new DatatypeInSuppression_c_test56672_c(getDom_id(),
 								getDt_id()));
 
-		if (((objs55122.length) == 0)) {
+		if (((objs56671.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1163,20 +1164,20 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Datatype In Suppression", //$NON-NLS-1$
 								"Consistency: Object: Datatype In Suppression: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55122.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56671.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Datatype In Suppression: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55122.length), e);
+										+ Integer.toString(objs56671.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55122.length) > 1)) {
+		if (((objs56671.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1185,7 +1186,7 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 								"Datatype In Suppression", //$NON-NLS-1$
 								"Consistency: Object: Datatype In Suppression: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55122.length)
+										+ Integer.toString(objs56671.length)
 										+ " Dom_ID: " + "Not Printable" + " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1193,7 +1194,7 @@ public class DatatypeInSuppression_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Datatype In Suppression: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55122.length)
+										+ Integer.toString(objs56671.length)
 										+ " Dom_ID: " + "Not Printable" + " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

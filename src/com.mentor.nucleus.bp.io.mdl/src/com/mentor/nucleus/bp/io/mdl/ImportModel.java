@@ -2522,6 +2522,7 @@ public class ImportModel extends CoreImport
   private void createO_OBJ (Ooaofooa modelRoot, String table, Vector parms, Vector rawParms, int numParms, IProgressMonitor pm) {
     ModelClass_c newInst = null;
     if(table.equalsIgnoreCase("O_OBJ")) { //$NON-NLS-1$
+      parms.setSize(6);
         newInst = new ModelClass_c(modelRoot,
               IdAssigner.createUUIDFromString((String)parms.elementAt(0)), 
            removeTics((String)parms.elementAt(1)).trim(), 

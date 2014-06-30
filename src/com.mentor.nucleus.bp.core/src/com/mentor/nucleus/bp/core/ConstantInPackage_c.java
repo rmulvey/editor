@@ -149,7 +149,8 @@ public class ConstantInPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -165,9 +166,9 @@ public class ConstantInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((ConstantInPackage_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((ConstantInPackage_c) elem).getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -176,9 +177,10 @@ public class ConstantInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID
-				.equals(((ConstantInPackage_c) elem).getConstant_spec_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getConstant_spec_id()) || IdAssigner.NULL_UUID
+						.equals(((ConstantInPackage_c) elem)
+								.getConstant_spec_id())) && this != elem)) {
 			return false;
 		}
 		if (!getConstant_spec_id().equals(
@@ -707,68 +709,68 @@ public class ConstantInPackage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1506
-		DataTypePackage_c relInst55338 = (DataTypePackage_c) baseRoot
+		DataTypePackage_c relInst56887 = (DataTypePackage_c) baseRoot
 				.getInstanceList(DataTypePackage_c.class).get(
 						new Object[]{m_package_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55338 == null) {
-			relInst55338 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst56887 == null) {
+			relInst56887 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataTypePackage_c.class)
 					.get(new Object[]{m_package_id});
 		}
-		if (relInst55338 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56887 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55338 = (DataTypePackage_c) roots[i].getInstanceList(
+				relInst56887 = (DataTypePackage_c) roots[i].getInstanceList(
 						DataTypePackage_c.class)
 						.get(new Object[]{m_package_id});
-				if (relInst55338 != null)
+				if (relInst56887 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55338 != null) {
+		if (relInst56887 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55338) && !isProxy())) {
-				relInst55338.relateAcrossR1506To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56887) && !isProxy())) {
+				relInst56887.relateAcrossR1506To(this, notifyChanges);
 			}
 		}
 
-		ConstantSpecification_c relInst55339 = (ConstantSpecification_c) baseRoot
+		ConstantSpecification_c relInst56888 = (ConstantSpecification_c) baseRoot
 				.getInstanceList(ConstantSpecification_c.class).get(
 						new Object[]{m_constant_spec_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55339 == null) {
-			relInst55339 = (ConstantSpecification_c) Ooaofooa
+		if (relInst56888 == null) {
+			relInst56888 = (ConstantSpecification_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ConstantSpecification_c.class)
 					.get(new Object[]{m_constant_spec_id});
 		}
-		if (relInst55339 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56888 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55339 = (ConstantSpecification_c) roots[i]
+				relInst56888 = (ConstantSpecification_c) roots[i]
 						.getInstanceList(ConstantSpecification_c.class).get(
 								new Object[]{m_constant_spec_id});
-				if (relInst55339 != null)
+				if (relInst56888 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55339 != null) {
+		if (relInst56888 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55339) && !isProxy())) {
-				relInst55339.relateAcrossR1506To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56888) && !isProxy())) {
+				relInst56888.relateAcrossR1506To(this, notifyChanges);
 			}
 		}
 
@@ -1072,49 +1074,49 @@ public class ConstantInPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ConstantInPackage_c_test55341_c implements ClassQueryInterface_c {
-			ConstantInPackage_c_test55341_c(java.util.UUID p55342,
-					java.util.UUID p55343) {
-				m_p55342 = p55342;
-				m_p55343 = p55343;
+		class ConstantInPackage_c_test56890_c implements ClassQueryInterface_c {
+			ConstantInPackage_c_test56890_c(java.util.UUID p56891,
+					java.util.UUID p56892) {
+				m_p56891 = p56891;
+				m_p56892 = p56892;
 			}
-			private java.util.UUID m_p55342;
-			private java.util.UUID m_p55343;
+			private java.util.UUID m_p56891;
+			private java.util.UUID m_p56892;
 			public boolean evaluate(Object candidate) {
 				ConstantInPackage_c selected = (ConstantInPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p55342))
-						& (selected.getConstant_spec_id().equals(m_p55343));
+				retval = (selected.getPackage_id().equals(m_p56891))
+						& (selected.getConstant_spec_id().equals(m_p56892));
 				return retval;
 			}
 		}
 
-		ConstantInPackage_c[] objs55340 = ConstantInPackage_c
+		ConstantInPackage_c[] objs56889 = ConstantInPackage_c
 				.ConstantInPackageInstances(modelRoot,
-						new ConstantInPackage_c_test55341_c(getPackage_id(),
+						new ConstantInPackage_c_test56890_c(getPackage_id(),
 								getConstant_spec_id()));
 
-		if (((objs55340.length) == 0)) {
+		if (((objs56889.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: Constant in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55340.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56889.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Constant in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55340.length), e);
+										+ Integer.toString(objs56889.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55340.length) > 1)) {
+		if (((objs56889.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1122,7 +1124,7 @@ public class ConstantInPackage_c extends NonRootModelElement
 								"Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: Constant in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55340.length)
+										+ Integer.toString(objs56889.length)
 										+ " Package_ID: " + "Not Printable" + " Constant_Spec_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1130,7 +1132,7 @@ public class ConstantInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Constant in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55340.length)
+										+ Integer.toString(objs56889.length)
 										+ " Package_ID: " + "Not Printable" + " Constant_Spec_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1140,40 +1142,40 @@ public class ConstantInPackage_c extends NonRootModelElement
 		// Constant in Package is a link class in association: rel.Numb = 1506
 		// Other side
 		// The other side class in the association is: Data Type Package
-		class DataTypePackage_c_test55347_c implements ClassQueryInterface_c {
-			DataTypePackage_c_test55347_c(java.util.UUID p55348) {
-				m_p55348 = p55348;
+		class DataTypePackage_c_test56896_c implements ClassQueryInterface_c {
+			DataTypePackage_c_test56896_c(java.util.UUID p56897) {
+				m_p56897 = p56897;
 			}
-			private java.util.UUID m_p55348;
+			private java.util.UUID m_p56897;
 			public boolean evaluate(Object candidate) {
 				DataTypePackage_c selected = (DataTypePackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p55348));
+				retval = (selected.getPackage_id().equals(m_p56897));
 				return retval;
 			}
 		}
 
-		DataTypePackage_c[] objs55346 = DataTypePackage_c
+		DataTypePackage_c[] objs56895 = DataTypePackage_c
 				.DataTypePackageInstances(modelRoot,
-						new DataTypePackage_c_test55347_c(getPackage_id()));
+						new DataTypePackage_c_test56896_c(getPackage_id()));
 
 		// The other side class is unconditional
 		// The multiplicity of the other side class is one
-		if (((objs55346.length) != 1)) {
+		if (((objs56895.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Constant in Package", //$NON-NLS-1$
 								"Consistency: Object: Constant in Package: Association: 1506: Cardinality of other side of link is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55346.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56895.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Constant in Package: Association: 1506: Cardinality of other side of link is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55346.length), e);
+										+ Integer.toString(objs56895.length), e);
 			}
 			retval = false;
 

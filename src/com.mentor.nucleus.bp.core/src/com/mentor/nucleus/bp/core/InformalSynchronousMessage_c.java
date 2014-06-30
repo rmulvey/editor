@@ -137,7 +137,8 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -153,9 +154,10 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((InformalSynchronousMessage_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((InformalSynchronousMessage_c) elem)
+								.getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(
@@ -410,34 +412,34 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1020
-		SynchronousMessage_c relInst39567 = (SynchronousMessage_c) baseRoot
+		SynchronousMessage_c relInst40149 = (SynchronousMessage_c) baseRoot
 				.getInstanceList(SynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39567 == null) {
-			relInst39567 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
+		if (relInst40149 == null) {
+			relInst40149 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39567 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40149 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39567 = (SynchronousMessage_c) roots[i].getInstanceList(
+				relInst40149 = (SynchronousMessage_c) roots[i].getInstanceList(
 						SynchronousMessage_c.class).get(new Object[]{m_msg_id});
-				if (relInst39567 != null)
+				if (relInst40149 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39567 != null) {
+		if (relInst40149 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39567) && !isProxy())) {
-				relInst39567.relateAcrossR1020To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40149) && !isProxy())) {
+				relInst40149.relateAcrossR1020To(this, notifyChanges);
 			}
 		}
 
@@ -688,27 +690,27 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InformalSynchronousMessage_c_test39569_c
+		class InformalSynchronousMessage_c_test40151_c
 				implements
 					ClassQueryInterface_c {
-			InformalSynchronousMessage_c_test39569_c(java.util.UUID p39570) {
-				m_p39570 = p39570;
+			InformalSynchronousMessage_c_test40151_c(java.util.UUID p40152) {
+				m_p40152 = p40152;
 			}
-			private java.util.UUID m_p39570;
+			private java.util.UUID m_p40152;
 			public boolean evaluate(Object candidate) {
 				InformalSynchronousMessage_c selected = (InformalSynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39570));
+				retval = (selected.getMsg_id().equals(m_p40152));
 				return retval;
 			}
 		}
 
-		InformalSynchronousMessage_c[] objs39568 = InformalSynchronousMessage_c
+		InformalSynchronousMessage_c[] objs40150 = InformalSynchronousMessage_c
 				.InformalSynchronousMessageInstances(modelRoot,
-						new InformalSynchronousMessage_c_test39569_c(
+						new InformalSynchronousMessage_c_test40151_c(
 								getMsg_id()));
 
-		if (((objs39568.length) == 0)) {
+		if (((objs40150.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -716,20 +718,20 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Informal Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Synchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39568.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40150.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Synchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39568.length), e);
+										+ Integer.toString(objs40150.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39568.length) > 1)) {
+		if (((objs40150.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -738,7 +740,7 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 								"Informal Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Synchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39568.length)
+										+ Integer.toString(objs40150.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -746,7 +748,7 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Informal Synchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39568.length)
+										+ Integer.toString(objs40150.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -755,24 +757,24 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 
 		// Informal Synchronous Message is a subtype in association: rel.Numb = 1020
 		// The supertype class is: Synchronous Message
-		class SynchronousMessage_c_test39574_c implements ClassQueryInterface_c {
-			SynchronousMessage_c_test39574_c(java.util.UUID p39575) {
-				m_p39575 = p39575;
+		class SynchronousMessage_c_test40156_c implements ClassQueryInterface_c {
+			SynchronousMessage_c_test40156_c(java.util.UUID p40157) {
+				m_p40157 = p40157;
 			}
-			private java.util.UUID m_p39575;
+			private java.util.UUID m_p40157;
 			public boolean evaluate(Object candidate) {
 				SynchronousMessage_c selected = (SynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39575));
+				retval = (selected.getMsg_id().equals(m_p40157));
 				return retval;
 			}
 		}
 
-		SynchronousMessage_c[] objs39573 = SynchronousMessage_c
+		SynchronousMessage_c[] objs40155 = SynchronousMessage_c
 				.SynchronousMessageInstances(modelRoot,
-						new SynchronousMessage_c_test39574_c(getMsg_id()));
+						new SynchronousMessage_c_test40156_c(getMsg_id()));
 
-		if (((objs39573.length) != 1)) {
+		if (((objs40155.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -780,14 +782,14 @@ public class InformalSynchronousMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Informal Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Synchronous Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39573.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40155.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Synchronous Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39573.length), e);
+										+ Integer.toString(objs40155.length), e);
 			}
 			retval = false;
 

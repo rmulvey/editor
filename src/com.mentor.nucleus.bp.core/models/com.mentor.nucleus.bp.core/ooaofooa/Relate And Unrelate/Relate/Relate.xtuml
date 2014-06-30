@@ -46,7 +46,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"c382ce11-7f77-4dcf-a6e7-cc621362f1eb");

@@ -236,7 +236,7 @@ p_m_return_dimensions
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -252,7 +252,7 @@ p_m_return_dimensions
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getBrg_id()) || IdAssigner.NULL_UUID.equals(((Bridge_c)elem).getBrg_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getBrg_id()) || IdAssigner.NULL_UUID.equals(((Bridge_c)elem).getBrg_id())) && this != elem)) {
       	return false;
       }
       if (!getBrg_id().equals(((Bridge_c)elem).getBrg_id())) return false;
@@ -2094,29 +2094,29 @@ public static Bridge_c [] getManyS_BRGsOnR697(BridgeBody_c target, boolean loadC
 
 	if (ProvidesAccessToExternalEntity == null) {          
       // R19
-      ExternalEntity_c relInst55228 = (ExternalEntity_c) baseRoot.getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
+      ExternalEntity_c relInst56777 = (ExternalEntity_c) baseRoot.getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55228 == null) {
-      			relInst55228 = (ExternalEntity_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
+      		if (relInst56777 == null) {
+      			relInst56777 = (ExternalEntity_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
       		}
-			if (relInst55228 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56777 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55228 = (ExternalEntity_c) roots[i].getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
-					if (relInst55228 != null)
+					relInst56777 = (ExternalEntity_c) roots[i].getInstanceList(ExternalEntity_c.class).get(new Object[] {m_ee_id});
+					if (relInst56777 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55228 != null )
+      if ( relInst56777 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55228) && !isProxy())) {
-	      relInst55228.relateAcrossR19To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56777) && !isProxy())) {
+	      relInst56777.relateAcrossR19To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2124,29 +2124,29 @@ public static Bridge_c [] getManyS_BRGsOnR697(BridgeBody_c target, boolean loadC
 
 	if (ReturnValueDefinedByDataType == null) {          
       // R20
-      DataType_c relInst55229 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst56778 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55229 == null) {
-      			relInst55229 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst56778 == null) {
+      			relInst56778 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst55229 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56778 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55229 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst55229 != null)
+					relInst56778 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst56778 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55229 != null )
+      if ( relInst56778 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55229) && !isProxy())) {
-	      relInst55229.relateAcrossR20To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56778) && !isProxy())) {
+	      relInst56778.relateAcrossR20To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2662,56 +2662,56 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Bridge_c_test55231_c implements ClassQueryInterface_c
+    class Bridge_c_test56780_c implements ClassQueryInterface_c
     {
-	  Bridge_c_test55231_c( java.util.UUID            p55232 ) {
-	  m_p55232 = p55232;
+	  Bridge_c_test56780_c( java.util.UUID            p56781 ) {
+	  m_p56781 = p56781;
 	  }
-	  private java.util.UUID             m_p55232; 
+	  private java.util.UUID             m_p56781; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Bridge_c selected = (Bridge_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBrg_id().equals(m_p55232));
+	      retval = (selected.getBrg_id().equals(m_p56781));
 	      return retval;
 	  }
     }
 
-    Bridge_c [] objs55230 = 
-    Bridge_c.BridgeInstances(modelRoot, new Bridge_c_test55231_c(getBrg_id())) ;
+    Bridge_c [] objs56779 = 
+    Bridge_c.BridgeInstances(modelRoot, new Bridge_c_test56780_c(getBrg_id())) ;
 
-    if ( (  (objs55230.length) == 0) )
+    if ( (  (objs56779.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55230.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56779.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55230.length )  , e); 
+          + Integer.toString( objs56779.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55230.length) > 1) )
+    if ( (  (objs56779.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55230.length )  + " Brg_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56779.length )  + " Brg_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55230.length )  + " Brg_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56779.length )  + " Brg_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2719,40 +2719,40 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
 
           // Bridge is a referring class in association: rel.Numb = 20
           // The participating class is: Data Type
-    class DataType_c_test55236_c implements ClassQueryInterface_c
+    class DataType_c_test56785_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55236_c( java.util.UUID            p55237 ) {
-	  m_p55237 = p55237;
+	  DataType_c_test56785_c( java.util.UUID            p56786 ) {
+	  m_p56786 = p56786;
 	  }
-	  private java.util.UUID             m_p55237; 
+	  private java.util.UUID             m_p56786; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55237));
+	      retval = (selected.getDt_id().equals(m_p56786));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55235 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55236_c(getDt_id())) ;
+    DataType_c [] objs56784 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56785_c(getDt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55235.length) != 1) )
+    if ( (  (objs56784.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Association: 20: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55235.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56784.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Association: 20: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55235.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56784.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2760,40 +2760,40 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
 
           // Bridge is a referring class in association: rel.Numb = 19
           // The participating class is: External Entity
-    class ExternalEntity_c_test55239_c implements ClassQueryInterface_c
+    class ExternalEntity_c_test56788_c implements ClassQueryInterface_c
     {
-	  ExternalEntity_c_test55239_c( java.util.UUID            p55240 ) {
-	  m_p55240 = p55240;
+	  ExternalEntity_c_test56788_c( java.util.UUID            p56789 ) {
+	  m_p56789 = p56789;
 	  }
-	  private java.util.UUID             m_p55240; 
+	  private java.util.UUID             m_p56789; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExternalEntity_c selected = (ExternalEntity_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEe_id().equals(m_p55240));
+	      retval = (selected.getEe_id().equals(m_p56789));
 	      return retval;
 	  }
     }
 
-    ExternalEntity_c [] objs55238 = 
-    ExternalEntity_c.ExternalEntityInstances(modelRoot, new ExternalEntity_c_test55239_c(getEe_id())) ;
+    ExternalEntity_c [] objs56787 = 
+    ExternalEntity_c.ExternalEntityInstances(modelRoot, new ExternalEntity_c_test56788_c(getEe_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55238.length) != 1) )
+    if ( (  (objs56787.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Association: 19: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55238.length )  + " EE_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56787.length )  + " EE_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Association: 19: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55238.length )  + " EE_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56787.length )  + " EE_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2805,37 +2805,37 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
              // Object: Bridge Parameter
           // Bridge is a participating class in association: rel.Numb = 3200
              // Object: Automatic Wiring
-    class AutomaticWiring_c_test55242_c implements ClassQueryInterface_c
+    class AutomaticWiring_c_test56791_c implements ClassQueryInterface_c
     {
-	  AutomaticWiring_c_test55242_c( java.util.UUID            p55243 ) {
-	  m_p55243 = p55243;
+	  AutomaticWiring_c_test56791_c( java.util.UUID            p56792 ) {
+	  m_p56792 = p56792;
 	  }
-	  private java.util.UUID             m_p55243; 
+	  private java.util.UUID             m_p56792; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      AutomaticWiring_c selected = (AutomaticWiring_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBrg_id().equals(m_p55243));
+	      retval = (selected.getBrg_id().equals(m_p56792));
 	      return retval;
 	  }
     }
 
-    AutomaticWiring_c [] objs55241 = 
-    AutomaticWiring_c.AutomaticWiringInstances(modelRoot, new AutomaticWiring_c_test55242_c(getBrg_id())) ;
+    AutomaticWiring_c [] objs56790 = 
+    AutomaticWiring_c.AutomaticWiringInstances(modelRoot, new AutomaticWiring_c_test56791_c(getBrg_id())) ;
 
-    if ( (  (objs55241.length) > 1) )
+    if ( (  (objs56790.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Association: 3200: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55241.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56790.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Association: 3200: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55241.length )  , e); 
+          + Integer.toString( objs56790.length )  , e); 
       }
       retval = false;
 
@@ -2849,37 +2849,37 @@ return Ooaofooa.Convertrelocatabletags(modelRoot
              // Object: Bridge Invocation
           // Bridge is a participating class in association: rel.Numb = 697
              // Object: Bridge Body
-    class BridgeBody_c_test55245_c implements ClassQueryInterface_c
+    class BridgeBody_c_test56794_c implements ClassQueryInterface_c
     {
-	  BridgeBody_c_test55245_c( java.util.UUID            p55246 ) {
-	  m_p55246 = p55246;
+	  BridgeBody_c_test56794_c( java.util.UUID            p56795 ) {
+	  m_p56795 = p56795;
 	  }
-	  private java.util.UUID             m_p55246; 
+	  private java.util.UUID             m_p56795; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      BridgeBody_c selected = (BridgeBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBrg_id().equals(m_p55246));
+	      retval = (selected.getBrg_id().equals(m_p56795));
 	      return retval;
 	  }
     }
 
-    BridgeBody_c [] objs55244 = 
-    BridgeBody_c.BridgeBodyInstances(modelRoot, new BridgeBody_c_test55245_c(getBrg_id())) ;
+    BridgeBody_c [] objs56793 = 
+    BridgeBody_c.BridgeBodyInstances(modelRoot, new BridgeBody_c_test56794_c(getBrg_id())) ;
 
-    if ( (  (objs55244.length) > 1) )
+    if ( (  (objs56793.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge", //$NON-NLS-1$
            "Consistency: Object: Bridge: Association: 697: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55244.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56793.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge: Association: 697: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55244.length )  , e); 
+          + Integer.toString( objs56793.length )  , e); 
       }
       retval = false;
 
@@ -2904,9 +2904,9 @@ BridgeParameter_c [] v_bparms = BridgeParameter_c.getManyS_BPARMsOnR21(this);
 
 
 BridgeParameter_c  v_bparm = null;
-for ( int i53622 = 0; i53622 < v_bparms.length; i53622++)
+for ( int i55145 = 0; i55145 < v_bparms.length; i55145++)
 {
-  v_bparm = v_bparms[i53622] ;
+  v_bparm = v_bparms[i55145] ;
 
 if (v_bparm != null) {
 v_bparm.Dispose() ;
@@ -2950,9 +2950,9 @@ BridgeInvocation_c [] v_invs = BridgeInvocation_c.getManyACT_BRGsOnR674(this);
 
 
 BridgeInvocation_c  v_inv = null;
-for ( int i53623 = 0; i53623 < v_invs.length; i53623++)
+for ( int i55146 = 0; i55146 < v_invs.length; i55146++)
 {
-  v_inv = v_invs[i53623] ;
+  v_inv = v_invs[i55146] ;
 
 this.unrelateAcrossR674From(v_inv);
 
@@ -2964,9 +2964,9 @@ BridgeValue_c [] v_brgVals = BridgeValue_c.getManyV_BRVsOnR828(this);
 
 
 BridgeValue_c  v_brgVal = null;
-for ( int i53624 = 0; i53624 < v_brgVals.length; i53624++)
+for ( int i55147 = 0; i55147 < v_brgVals.length; i55147++)
 {
-  v_brgVal = v_brgVals[i53624] ;
+  v_brgVal = v_brgVals[i55147] ;
 
 this.unrelateAcrossR828From(v_brgVal);
 
@@ -2978,9 +2978,9 @@ BridgeMessage_c [] v_bms = BridgeMessage_c.getManyMSG_BsOnR1012(this);
 
 
 BridgeMessage_c  v_bm = null;
-for ( int i53625 = 0; i53625 < v_bms.length; i53625++)
+for ( int i55148 = 0; i55148 < v_bms.length; i55148++)
 {
-  v_bm = v_bms[i53625] ;
+  v_bm = v_bms[i55148] ;
 
 Message_c v_message = Message_c.getOneMSG_MOnR1018(SynchronousMessage_c.getOneMSG_SMOnR1020(v_bm));
 
@@ -3031,9 +3031,9 @@ Dimensions_c [] v_dims = Dimensions_c.getManyS_DIMsOnR50(this);
 
 
 Dimensions_c  v_dim = null;
-for ( int i53626 = 0; i53626 < v_dims.length; i53626++)
+for ( int i55149 = 0; i55149 < v_dims.length; i55149++)
 {
-  v_dim = v_dims[i53626] ;
+  v_dim = v_dims[i55149] ;
 
 this.unrelateAcrossR50From(v_dim);
 
@@ -3213,7 +3213,7 @@ if ( (  (v_def_dt != null)) )
 else
 {
 
-  class DataType_test54225_c implements ClassQueryInterface_c
+  class DataType_test55774_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3221,7 +3221,7 @@ else
 		return selected.getName().equals("void") ;
 	}
   }
-DataType_c v_def_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54225_c());
+DataType_c v_def_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55774_c());
 
 
 if ( (  (v_def_dt != null)) )
@@ -3484,37 +3484,37 @@ java.util.UUID         v_id = v_packageableElem.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test54226_c implements ClassQueryInterface_c
+  class DataType_test55775_c implements ClassQueryInterface_c
   {
-	DataType_test54226_c( java.util.UUID         p54227 ) {
-		m_p54227 = p54227;
+	DataType_test55775_c( java.util.UUID         p55776 ) {
+		m_p55776 = p55776;
 	}
-	private java.util.UUID         m_p54227;
+	private java.util.UUID         m_p55776;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54227) ;
+		return selected.getDt_id().equals(m_p55776) ;
 	}
   }
-DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test54226_c(v_id));
+DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test55775_c(v_id));
 
 
 if ( (  (v_resolvedDt == null)) )
 {
 
-  class DataType_test54228_c implements ClassQueryInterface_c
+  class DataType_test55777_c implements ClassQueryInterface_c
   {
-	DataType_test54228_c( java.util.UUID         p54229 ) {
-		m_p54229 = p54229;
+	DataType_test55777_c( java.util.UUID         p55778 ) {
+		m_p55778 = p55778;
 	}
-	private java.util.UUID         m_p54229;
+	private java.util.UUID         m_p55778;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54229) ;
+		return selected.getDt_id().equals(m_p55778) ;
 	}
   }
-v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test54228_c(v_id));
+v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test55777_c(v_id));
 
 
 
@@ -3550,19 +3550,19 @@ java.util.UUID         v_id = v_domain.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test54230_c implements ClassQueryInterface_c
+  class DataType_test55779_c implements ClassQueryInterface_c
   {
-	DataType_test54230_c( java.util.UUID         p54231 ) {
-		m_p54231 = p54231;
+	DataType_test55779_c( java.util.UUID         p55780 ) {
+		m_p55780 = p55780;
 	}
-	private java.util.UUID         m_p54231;
+	private java.util.UUID         m_p55780;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p54231)) ;
+		return (selected.getDt_id().equals(m_p55780)) ;
 	}
   }
-DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test54230_c(v_id));
+DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test55779_c(v_id));
 
 
 if ( (  (v_resolvedDT == null)) )
@@ -3571,37 +3571,37 @@ if ( (  (v_resolvedDT == null)) )
 SystemModel_c v_domSys = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(v_domain))));
 
 
-  class DataType_test54232_c implements ClassQueryInterface_c
+  class DataType_test55781_c implements ClassQueryInterface_c
   {
-	DataType_test54232_c( java.util.UUID         p54233 ) {
-		m_p54233 = p54233;
+	DataType_test55781_c( java.util.UUID         p55782 ) {
+		m_p55782 = p55782;
 	}
-	private java.util.UUID         m_p54233;
+	private java.util.UUID         m_p55782;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p54233)) ;
+		return (selected.getDt_id().equals(m_p55782)) ;
 	}
   }
-v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_domSys), new DataType_test54232_c(v_id));
+v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_domSys), new DataType_test55781_c(v_id));
 
 
 if (   (v_resolvedDT == null) &&   (v_domSys != null) && v_domSys.getUseglobals() )
 {
 
-  class PackageableElement_test54234_c implements ClassQueryInterface_c
+  class PackageableElement_test55783_c implements ClassQueryInterface_c
   {
-	PackageableElement_test54234_c( java.util.UUID         p54235 ) {
-		m_p54235 = p54235;
+	PackageableElement_test55783_c( java.util.UUID         p55784 ) {
+		m_p55784 = p55784;
 	}
-	private java.util.UUID         m_p54235;
+	private java.util.UUID         m_p55784;
 	public boolean evaluate (Object candidate)
 	{
 		PackageableElement_c selected = (PackageableElement_c)candidate;
-		return selected.getElement_id().equals(m_p54235) ;
+		return selected.getElement_id().equals(m_p55784) ;
 	}
   }
-PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_domSys), new PackageableElement_test54234_c(v_id));
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_domSys), new PackageableElement_test55783_c(v_id));
 
 
 v_resolvedDT = DataType_c.getOneS_DTOnR8001(v_pe);
@@ -3701,19 +3701,19 @@ else {
 while ( (p_Numdimensions < Getreturndimensionscnt()) )
 {
 
-  class Dimensions_test54236_c implements ClassQueryInterface_c
+  class Dimensions_test55785_c implements ClassQueryInterface_c
   {
-	Dimensions_test54236_c( int          p54237 ) {
-		m_p54237 = p54237;
+	Dimensions_test55785_c( int          p55786 ) {
+		m_p55786 = p55786;
 	}
-	private int          m_p54237;
+	private int          m_p55786;
 	public boolean evaluate (Object candidate)
 	{
 		Dimensions_c selected = (Dimensions_c)candidate;
-		return (selected.getDimensioncount() == (m_p54237 - 1)) ;
+		return (selected.getDimensioncount() == (m_p55786 - 1)) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR50(this, new Dimensions_test54236_c(Getreturndimensionscnt()));
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR50(this, new Dimensions_test55785_c(Getreturndimensionscnt()));
 
 
 if (v_dim != null) {
@@ -3746,7 +3746,7 @@ else {
 if ( (p_Numdimensions > 0) )
 {
 
-  class Dimensions_test54238_c implements ClassQueryInterface_c
+  class Dimensions_test55787_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3754,7 +3754,7 @@ if ( (p_Numdimensions > 0) )
 		return (selected.getDimensioncount() == p_Dimension) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR50(this, new Dimensions_test54238_c());
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR50(this, new Dimensions_test55787_c());
 
 
 if ( (v_dim.getElementcount() != p_Elementcount) )
@@ -3791,7 +3791,7 @@ if ( (  (v_peers.length) > 1) )
 boolean      v_initialOrderingCheckPerformed = false ;
 
 
-  class BridgeParameter_test54239_c implements ClassQueryInterface_c
+  class BridgeParameter_test55788_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3799,7 +3799,7 @@ boolean      v_initialOrderingCheckPerformed = false ;
 		return (selected.getBrg_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-BridgeParameter_c v_head = BridgeParameter_c.getOneS_BPARMOnR21(this, new BridgeParameter_test54239_c());
+BridgeParameter_c v_head = BridgeParameter_c.getOneS_BPARMOnR21(this, new BridgeParameter_test55788_c());
 
 
 BridgeParameter_c v_endOfList = v_head ;
@@ -3809,9 +3809,9 @@ int          v_loopCnt = 0 ;
 
 
 BridgeParameter_c  v_peer = null;
-for ( int i53627 = 0; i53627 < v_peers.length; i53627++)
+for ( int i55150 = 0; i55150 < v_peers.length; i55150++)
 {
-  v_peer = v_peers[i53627] ;
+  v_peer = v_peers[i55150] ;
 
 if ( (  !v_initialOrderingCheckPerformed) )
 {
@@ -4169,7 +4169,7 @@ boolean      v_isInGenericPackage =   (v_package != null) ||   (v_component != n
 if ( v_isInGenericPackage )
 {
 
-  class SearchResultSet_test54240_c implements ClassQueryInterface_c
+  class SearchResultSet_test55789_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4177,10 +4177,10 @@ if ( v_isInGenericPackage )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test54240_c());
+SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test55789_c());
 
 
-  class DataType_test54241_c implements ClassQueryInterface_c
+  class DataType_test55790_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4188,13 +4188,13 @@ SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package,
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test54241_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test55790_c());
 
 
 if (   (v_component != null) )
 {
 
-  class ComponentResultSet_test54242_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55791_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4202,10 +4202,10 @@ if (   (v_component != null) )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test54242_c());
+ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test55791_c());
 
 
-  class DataType_test54243_c implements ClassQueryInterface_c
+  class DataType_test55792_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4213,7 +4213,7 @@ ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test54243_c());
+v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test55792_c());
 
 
 
@@ -4253,7 +4253,7 @@ if ( (v_domain.Participatesinsystem()) )
 SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(v_domain))));
 
 
-  class DataType_test54244_c implements ClassQueryInterface_c
+  class DataType_test55793_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4261,13 +4261,13 @@ SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.get
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test54244_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test55793_c());
 
 
 if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 {
 
-  class PackageableElement_test54245_c implements ClassQueryInterface_c
+  class PackageableElement_test55794_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4275,7 +4275,7 @@ if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 		return selected.getElement_id().equals(p_Id) ;
 	}
   }
-PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system), new PackageableElement_test54245_c());
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system), new PackageableElement_test55794_c());
 
 
 v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
@@ -4287,7 +4287,7 @@ v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 if ( (  (v_dt == null)) )
 {
 
-  class DataType_test54246_c implements ClassQueryInterface_c
+  class DataType_test55795_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4295,7 +4295,7 @@ if ( (  (v_dt == null)) )
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test54246_c());
+v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test55795_c());
 
 
 
@@ -4323,7 +4323,7 @@ return true;
 else
 {
 
-  class DataType_test54247_c implements ClassQueryInterface_c
+  class DataType_test55796_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4331,7 +4331,7 @@ else
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test54247_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test55796_c());
 
 
 if ( (  (v_dt != null)) )
@@ -4452,9 +4452,9 @@ Message_c [] v_messages = Message_c.getManyMSG_MsOnR1018(SynchronousMessage_c.ge
 
 
 Message_c  v_message = null;
-for ( int i53628 = 0; i53628 < v_messages.length; i53628++)
+for ( int i55151 = 0; i55151 < v_messages.length; i55151++)
 {
-  v_message = v_messages[i53628] ;
+  v_message = v_messages[i55151] ;
 
 MessageArgument_c v_arg = new MessageArgument_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_arg));
@@ -4520,9 +4520,9 @@ BridgeParameter_c [] v_peers = BridgeParameter_c.getManyS_BPARMsOnR21(this);
 
 
 BridgeParameter_c  v_peer = null;
-for ( int i53629 = 0; i53629 < v_peers.length; i53629++)
+for ( int i55152 = 0; i55152 < v_peers.length; i55152++)
 {
-  v_peer = v_peers[i53629] ;
+  v_peer = v_peers[i55152] ;
 
 if ( (v_peer != v_parameter) )
 {
@@ -4587,9 +4587,9 @@ Bridge_c [] v_bridges = Bridge_c.getManyS_BRGsOnR19(v_ee);
 
 
 Bridge_c  v_brg = null;
-for ( int i53630 = 0; i53630 < v_bridges.length; i53630++)
+for ( int i55153 = 0; i55153 < v_bridges.length; i55153++)
 {
-  v_brg = v_bridges[i53630] ;
+  v_brg = v_bridges[i55153] ;
 
 if ( (v_brg != this && v_brg.Getsignature().equals(Getsignature())) )
 {
@@ -4638,9 +4638,9 @@ v_signature = v_signature + "(" ;
 }
 
 BridgeParameter_c  v_parameter = null;
-for ( int i53631 = 0; i53631 < v_parameters.length; i53631++)
+for ( int i55154 = 0; i55154 < v_parameters.length; i55154++)
 {
-  v_parameter = v_parameters[i53631] ;
+  v_parameter = v_parameters[i55154] ;
 
 DataType_c v_type = DataType_c.getOneS_DTOnR22(v_parameter);
 

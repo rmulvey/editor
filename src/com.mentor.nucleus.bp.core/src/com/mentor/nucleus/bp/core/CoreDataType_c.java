@@ -141,7 +141,8 @@ public class CoreDataType_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -157,8 +158,9 @@ public class CoreDataType_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((CoreDataType_c) elem).getDt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((CoreDataType_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((CoreDataType_c) elem).getDt_id()))
@@ -403,33 +405,33 @@ public class CoreDataType_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R17
-		DataType_c relInst55199 = (DataType_c) baseRoot.getInstanceList(
+		DataType_c relInst56748 = (DataType_c) baseRoot.getInstanceList(
 				DataType_c.class).get(new Object[]{m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55199 == null) {
-			relInst55199 = (DataType_c) Ooaofooa.getDefaultInstance()
+		if (relInst56748 == null) {
+			relInst56748 = (DataType_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataType_c.class)
 					.get(new Object[]{m_dt_id});
 		}
-		if (relInst55199 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56748 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55199 = (DataType_c) roots[i].getInstanceList(
+				relInst56748 = (DataType_c) roots[i].getInstanceList(
 						DataType_c.class).get(new Object[]{m_dt_id});
-				if (relInst55199 != null)
+				if (relInst56748 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55199 != null) {
+		if (relInst56748 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55199) && !isProxy())) {
-				relInst55199.relateAcrossR17To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56748) && !isProxy())) {
+				relInst56748.relateAcrossR17To(this, notifyChanges);
 			}
 		}
 
@@ -685,42 +687,42 @@ public class CoreDataType_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CoreDataType_c_test55201_c implements ClassQueryInterface_c {
-			CoreDataType_c_test55201_c(java.util.UUID p55202) {
-				m_p55202 = p55202;
+		class CoreDataType_c_test56750_c implements ClassQueryInterface_c {
+			CoreDataType_c_test56750_c(java.util.UUID p56751) {
+				m_p56751 = p56751;
 			}
-			private java.util.UUID m_p55202;
+			private java.util.UUID m_p56751;
 			public boolean evaluate(Object candidate) {
 				CoreDataType_c selected = (CoreDataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p55202));
+				retval = (selected.getDt_id().equals(m_p56751));
 				return retval;
 			}
 		}
 
-		CoreDataType_c[] objs55200 = CoreDataType_c.CoreDataTypeInstances(
-				modelRoot, new CoreDataType_c_test55201_c(getDt_id()));
+		CoreDataType_c[] objs56749 = CoreDataType_c.CoreDataTypeInstances(
+				modelRoot, new CoreDataType_c_test56750_c(getDt_id()));
 
-		if (((objs55200.length) == 0)) {
+		if (((objs56749.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Core Data Type", //$NON-NLS-1$
 								"Consistency: Object: Core Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55200.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56749.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Core Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs55200.length), e);
+								+ Integer.toString(objs56749.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55200.length) > 1)) {
+		if (((objs56749.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -728,7 +730,7 @@ public class CoreDataType_c extends NonRootModelElement
 								"Core Data Type", //$NON-NLS-1$
 								"Consistency: Object: Core Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55200.length)
+										+ Integer.toString(objs56749.length)
 										+ " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -736,7 +738,7 @@ public class CoreDataType_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Core Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55200.length)
+										+ Integer.toString(objs56749.length)
 										+ " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -745,37 +747,37 @@ public class CoreDataType_c extends NonRootModelElement
 
 		// Core Data Type is a subtype in association: rel.Numb = 17
 		// The supertype class is: Data Type
-		class DataType_c_test55206_c implements ClassQueryInterface_c {
-			DataType_c_test55206_c(java.util.UUID p55207) {
-				m_p55207 = p55207;
+		class DataType_c_test56755_c implements ClassQueryInterface_c {
+			DataType_c_test56755_c(java.util.UUID p56756) {
+				m_p56756 = p56756;
 			}
-			private java.util.UUID m_p55207;
+			private java.util.UUID m_p56756;
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p55207));
+				retval = (selected.getDt_id().equals(m_p56756));
 				return retval;
 			}
 		}
 
-		DataType_c[] objs55205 = DataType_c.DataTypeInstances(modelRoot,
-				new DataType_c_test55206_c(getDt_id()));
+		DataType_c[] objs56754 = DataType_c.DataTypeInstances(modelRoot,
+				new DataType_c_test56755_c(getDt_id()));
 
-		if (((objs55205.length) != 1)) {
+		if (((objs56754.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Core Data Type", //$NON-NLS-1$
 								"Consistency: Object: Core Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55205.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56754.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Core Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55205.length), e);
+										+ Integer.toString(objs56754.length), e);
 			}
 			retval = false;
 

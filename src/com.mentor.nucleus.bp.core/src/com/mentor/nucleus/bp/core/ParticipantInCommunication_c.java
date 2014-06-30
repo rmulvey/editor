@@ -148,7 +148,8 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -164,9 +165,10 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((ParticipantInCommunication_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((ParticipantInCommunication_c) elem)
+								.getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -175,9 +177,10 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
-				.equals(((ParticipantInCommunication_c) elem).getPart_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
+						.equals(((ParticipantInCommunication_c) elem)
+								.getPart_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPart_id().equals(
@@ -706,67 +709,67 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1126
-		Communication_c relInst55990 = (Communication_c) baseRoot
+		Communication_c relInst57539 = (Communication_c) baseRoot
 				.getInstanceList(Communication_c.class).get(
 						new Object[]{m_package_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55990 == null) {
-			relInst55990 = (Communication_c) Ooaofooa.getDefaultInstance()
+		if (relInst57539 == null) {
+			relInst57539 = (Communication_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Communication_c.class)
 					.get(new Object[]{m_package_id});
 		}
-		if (relInst55990 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57539 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55990 = (Communication_c) roots[i].getInstanceList(
+				relInst57539 = (Communication_c) roots[i].getInstanceList(
 						Communication_c.class).get(new Object[]{m_package_id});
-				if (relInst55990 != null)
+				if (relInst57539 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55990 != null) {
+		if (relInst57539 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55990) && !isProxy())) {
-				relInst55990.relateAcrossR1126To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57539) && !isProxy())) {
+				relInst57539.relateAcrossR1126To(this, notifyChanges);
 			}
 		}
 
-		InteractionParticipant_c relInst55991 = (InteractionParticipant_c) baseRoot
+		InteractionParticipant_c relInst57540 = (InteractionParticipant_c) baseRoot
 				.getInstanceList(InteractionParticipant_c.class).get(
 						new Object[]{m_part_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55991 == null) {
-			relInst55991 = (InteractionParticipant_c) Ooaofooa
+		if (relInst57540 == null) {
+			relInst57540 = (InteractionParticipant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(InteractionParticipant_c.class)
 					.get(new Object[]{m_part_id});
 		}
-		if (relInst55991 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57540 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55991 = (InteractionParticipant_c) roots[i]
+				relInst57540 = (InteractionParticipant_c) roots[i]
 						.getInstanceList(InteractionParticipant_c.class).get(
 								new Object[]{m_part_id});
-				if (relInst55991 != null)
+				if (relInst57540 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55991 != null) {
+		if (relInst57540 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55991) && !isProxy())) {
-				relInst55991.relateAcrossR1126To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57540) && !isProxy())) {
+				relInst57540.relateAcrossR1126To(this, notifyChanges);
 			}
 		}
 
@@ -1073,31 +1076,31 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ParticipantInCommunication_c_test55993_c
+		class ParticipantInCommunication_c_test57542_c
 				implements
 					ClassQueryInterface_c {
-			ParticipantInCommunication_c_test55993_c(java.util.UUID p55994,
-					java.util.UUID p55995) {
-				m_p55994 = p55994;
-				m_p55995 = p55995;
+			ParticipantInCommunication_c_test57542_c(java.util.UUID p57543,
+					java.util.UUID p57544) {
+				m_p57543 = p57543;
+				m_p57544 = p57544;
 			}
-			private java.util.UUID m_p55994;
-			private java.util.UUID m_p55995;
+			private java.util.UUID m_p57543;
+			private java.util.UUID m_p57544;
 			public boolean evaluate(Object candidate) {
 				ParticipantInCommunication_c selected = (ParticipantInCommunication_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p55994))
-						& (selected.getPart_id().equals(m_p55995));
+				retval = (selected.getPackage_id().equals(m_p57543))
+						& (selected.getPart_id().equals(m_p57544));
 				return retval;
 			}
 		}
 
-		ParticipantInCommunication_c[] objs55992 = ParticipantInCommunication_c
+		ParticipantInCommunication_c[] objs57541 = ParticipantInCommunication_c
 				.ParticipantInCommunicationInstances(modelRoot,
-						new ParticipantInCommunication_c_test55993_c(
+						new ParticipantInCommunication_c_test57542_c(
 								getPackage_id(), getPart_id()));
 
-		if (((objs55992.length) == 0)) {
+		if (((objs57541.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1105,20 +1108,20 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Participant in Communication", //$NON-NLS-1$
 								"Consistency: Object: Participant in Communication: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55992.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57541.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Participant in Communication: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55992.length), e);
+										+ Integer.toString(objs57541.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55992.length) > 1)) {
+		if (((objs57541.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1127,7 +1130,7 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 								"Participant in Communication", //$NON-NLS-1$
 								"Consistency: Object: Participant in Communication: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55992.length)
+										+ Integer.toString(objs57541.length)
 										+ " Package_ID: " + "Not Printable" + " Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1135,7 +1138,7 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Participant in Communication: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55992.length)
+										+ Integer.toString(objs57541.length)
 										+ " Package_ID: " + "Not Printable" + " Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1144,23 +1147,23 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 
 		// Participant in Communication is a link class in association: rel.Numb = 1126
 		// The one side class in the association is: Communication
-		class Communication_c_test55999_c implements ClassQueryInterface_c {
-			Communication_c_test55999_c(java.util.UUID p56000) {
-				m_p56000 = p56000;
+		class Communication_c_test57548_c implements ClassQueryInterface_c {
+			Communication_c_test57548_c(java.util.UUID p57549) {
+				m_p57549 = p57549;
 			}
-			private java.util.UUID m_p56000;
+			private java.util.UUID m_p57549;
 			public boolean evaluate(Object candidate) {
 				Communication_c selected = (Communication_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p56000));
+				retval = (selected.getPackage_id().equals(m_p57549));
 				return retval;
 			}
 		}
 
-		Communication_c[] objs55998 = Communication_c.CommunicationInstances(
-				modelRoot, new Communication_c_test55999_c(getPackage_id()));
+		Communication_c[] objs57547 = Communication_c.CommunicationInstances(
+				modelRoot, new Communication_c_test57548_c(getPackage_id()));
 
-		if (((objs55998.length) > 1)) {
+		if (((objs57547.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1168,14 +1171,14 @@ public class ParticipantInCommunication_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Participant in Communication", //$NON-NLS-1$
 								"Consistency: Object: Participant in Communication: Association: 1126: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55998.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57547.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Participant in Communication: Association: 1126: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55998.length), e);
+										+ Integer.toString(objs57547.length), e);
 			}
 			retval = false;
 

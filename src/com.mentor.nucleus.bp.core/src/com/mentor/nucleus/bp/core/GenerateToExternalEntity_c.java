@@ -157,7 +157,8 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -173,9 +174,10 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((GenerateToExternalEntity_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((GenerateToExternalEntity_c) elem)
+								.getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -663,18 +665,18 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 
 		if (GeneratesExternalEntityEvent == null) {
 			// R709
-			ExternalEntityEvent_c relInst54451 = (ExternalEntityEvent_c) baseRoot
+			ExternalEntityEvent_c relInst56000 = (ExternalEntityEvent_c) baseRoot
 					.getInstanceList(ExternalEntityEvent_c.class).get(
 							new Object[]{m_eeevt_id, m_ee_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54451 == null) {
-				relInst54451 = (ExternalEntityEvent_c) Ooaofooa
+			if (relInst56000 == null) {
+				relInst56000 = (ExternalEntityEvent_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ExternalEntityEvent_c.class)
 						.get(new Object[]{m_eeevt_id, m_ee_id});
 			}
-			if (relInst54451 == null && searchAllRoots
+			if (relInst56000 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -682,53 +684,53 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54451 = (ExternalEntityEvent_c) roots[i]
+					relInst56000 = (ExternalEntityEvent_c) roots[i]
 							.getInstanceList(ExternalEntityEvent_c.class).get(
 									new Object[]{m_eeevt_id, m_ee_id});
-					if (relInst54451 != null)
+					if (relInst56000 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54451 != null) {
+			if (relInst56000 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54451) && !isProxy())) {
-					relInst54451.relateAcrossR709To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56000) && !isProxy())) {
+					relInst56000.relateAcrossR709To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R703
-		GenerateEventStatement_c relInst54452 = (GenerateEventStatement_c) baseRoot
+		GenerateEventStatement_c relInst56001 = (GenerateEventStatement_c) baseRoot
 				.getInstanceList(GenerateEventStatement_c.class).get(
 						new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54452 == null) {
-			relInst54452 = (GenerateEventStatement_c) Ooaofooa
+		if (relInst56001 == null) {
+			relInst56001 = (GenerateEventStatement_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(GenerateEventStatement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst54452 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56001 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54452 = (GenerateEventStatement_c) roots[i]
+				relInst56001 = (GenerateEventStatement_c) roots[i]
 						.getInstanceList(GenerateEventStatement_c.class).get(
 								new Object[]{m_statement_id});
-				if (relInst54452 != null)
+				if (relInst56001 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54452 != null) {
+		if (relInst56001 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54452) && !isProxy())) {
-				relInst54452.relateAcrossR703To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56001) && !isProxy())) {
+				relInst56001.relateAcrossR703To(this, notifyChanges);
 			}
 		}
 
@@ -989,27 +991,27 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class GenerateToExternalEntity_c_test54454_c
+		class GenerateToExternalEntity_c_test56003_c
 				implements
 					ClassQueryInterface_c {
-			GenerateToExternalEntity_c_test54454_c(java.util.UUID p54455) {
-				m_p54455 = p54455;
+			GenerateToExternalEntity_c_test56003_c(java.util.UUID p56004) {
+				m_p56004 = p56004;
 			}
-			private java.util.UUID m_p54455;
+			private java.util.UUID m_p56004;
 			public boolean evaluate(Object candidate) {
 				GenerateToExternalEntity_c selected = (GenerateToExternalEntity_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54455));
+				retval = (selected.getStatement_id().equals(m_p56004));
 				return retval;
 			}
 		}
 
-		GenerateToExternalEntity_c[] objs54453 = GenerateToExternalEntity_c
+		GenerateToExternalEntity_c[] objs56002 = GenerateToExternalEntity_c
 				.GenerateToExternalEntityInstances(modelRoot,
-						new GenerateToExternalEntity_c_test54454_c(
+						new GenerateToExternalEntity_c_test56003_c(
 								getStatement_id()));
 
-		if (((objs54453.length) == 0)) {
+		if (((objs56002.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1017,20 +1019,20 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Generate to External Entity", //$NON-NLS-1$
 								"Consistency: Object: Generate to External Entity: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54453.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56002.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generate to External Entity: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54453.length), e);
+										+ Integer.toString(objs56002.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54453.length) > 1)) {
+		if (((objs56002.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1039,7 +1041,7 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 								"Generate to External Entity", //$NON-NLS-1$
 								"Consistency: Object: Generate to External Entity: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54453.length)
+										+ Integer.toString(objs56002.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1047,7 +1049,7 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate to External Entity: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54453.length)
+										+ Integer.toString(objs56002.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1056,27 +1058,27 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 
 		// Generate to External Entity is a subtype in association: rel.Numb = 703
 		// The supertype class is: Generate Event Statement
-		class GenerateEventStatement_c_test54459_c
+		class GenerateEventStatement_c_test56008_c
 				implements
 					ClassQueryInterface_c {
-			GenerateEventStatement_c_test54459_c(java.util.UUID p54460) {
-				m_p54460 = p54460;
+			GenerateEventStatement_c_test56008_c(java.util.UUID p56009) {
+				m_p56009 = p56009;
 			}
-			private java.util.UUID m_p54460;
+			private java.util.UUID m_p56009;
 			public boolean evaluate(Object candidate) {
 				GenerateEventStatement_c selected = (GenerateEventStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54460));
+				retval = (selected.getStatement_id().equals(m_p56009));
 				return retval;
 			}
 		}
 
-		GenerateEventStatement_c[] objs54458 = GenerateEventStatement_c
+		GenerateEventStatement_c[] objs56007 = GenerateEventStatement_c
 				.GenerateEventStatementInstances(modelRoot,
-						new GenerateEventStatement_c_test54459_c(
+						new GenerateEventStatement_c_test56008_c(
 								getStatement_id()));
 
-		if (((objs54458.length) != 1)) {
+		if (((objs56007.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1084,14 +1086,14 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Generate to External Entity", //$NON-NLS-1$
 								"Consistency: Object: Generate to External Entity: Association: 703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54458.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56007.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generate to External Entity: Association: 703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54458.length), e);
+										+ Integer.toString(objs56007.length), e);
 			}
 			retval = false;
 
@@ -1099,33 +1101,33 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 
 		// Generate to External Entity is a referring class in association: rel.Numb = 709
 		// The participating class is: External Entity Event
-		class ExternalEntityEvent_c_test54462_c
+		class ExternalEntityEvent_c_test56011_c
 				implements
 					ClassQueryInterface_c {
-			ExternalEntityEvent_c_test54462_c(java.util.UUID p54463,
-					java.util.UUID p54464) {
-				m_p54463 = p54463;
-				m_p54464 = p54464;
+			ExternalEntityEvent_c_test56011_c(java.util.UUID p56012,
+					java.util.UUID p56013) {
+				m_p56012 = p56012;
+				m_p56013 = p56013;
 			}
-			private java.util.UUID m_p54463;
-			private java.util.UUID m_p54464;
+			private java.util.UUID m_p56012;
+			private java.util.UUID m_p56013;
 			public boolean evaluate(Object candidate) {
 				ExternalEntityEvent_c selected = (ExternalEntityEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEeevt_id().equals(m_p54463))
-						& (selected.getEe_id().equals(m_p54464));
+				retval = (selected.getEeevt_id().equals(m_p56012))
+						& (selected.getEe_id().equals(m_p56013));
 				return retval;
 			}
 		}
 
-		ExternalEntityEvent_c[] objs54461 = ExternalEntityEvent_c
+		ExternalEntityEvent_c[] objs56010 = ExternalEntityEvent_c
 				.ExternalEntityEventInstances(modelRoot,
-						new ExternalEntityEvent_c_test54462_c(getEeevt_id(),
+						new ExternalEntityEvent_c_test56011_c(getEeevt_id(),
 								getEe_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54461.length) != 1)) {
+		if (((objs56010.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1134,7 +1136,7 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 								"Generate to External Entity", //$NON-NLS-1$
 								"Consistency: Object: Generate to External Entity: Association: 709: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54461.length)
+										+ Integer.toString(objs56010.length)
 										+ " EEevt_ID: " + "Not Printable" + " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1142,7 +1144,7 @@ public class GenerateToExternalEntity_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate to External Entity: Association: 709: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54461.length)
+										+ Integer.toString(objs56010.length)
 										+ " EEevt_ID: " + "Not Printable" + " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

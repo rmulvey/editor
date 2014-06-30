@@ -146,7 +146,8 @@ public class NewBaseAttribute_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class NewBaseAttribute_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
-				.equals(((NewBaseAttribute_c) elem).getAttr_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
+						.equals(((NewBaseAttribute_c) elem).getAttr_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAttr_id().equals(((NewBaseAttribute_c) elem).getAttr_id()))
@@ -172,9 +173,9 @@ public class NewBaseAttribute_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((NewBaseAttribute_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((NewBaseAttribute_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id().equals(((NewBaseAttribute_c) elem).getObj_id()))
@@ -439,35 +440,35 @@ public class NewBaseAttribute_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R107
-		BaseAttribute_c relInst38082 = (BaseAttribute_c) baseRoot
+		BaseAttribute_c relInst38664 = (BaseAttribute_c) baseRoot
 				.getInstanceList(BaseAttribute_c.class).get(
 						new Object[]{m_attr_id, m_obj_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38082 == null) {
-			relInst38082 = (BaseAttribute_c) Ooaofooa.getDefaultInstance()
+		if (relInst38664 == null) {
+			relInst38664 = (BaseAttribute_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(BaseAttribute_c.class)
 					.get(new Object[]{m_attr_id, m_obj_id});
 		}
-		if (relInst38082 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38664 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38082 = (BaseAttribute_c) roots[i].getInstanceList(
+				relInst38664 = (BaseAttribute_c) roots[i].getInstanceList(
 						BaseAttribute_c.class).get(
 						new Object[]{m_attr_id, m_obj_id});
-				if (relInst38082 != null)
+				if (relInst38664 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38082 != null) {
+		if (relInst38664 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38082) && !isProxy())) {
-				relInst38082.relateAcrossR107To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38664) && !isProxy())) {
+				relInst38664.relateAcrossR107To(this, notifyChanges);
 			}
 		}
 
@@ -762,49 +763,49 @@ public class NewBaseAttribute_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class NewBaseAttribute_c_test38084_c implements ClassQueryInterface_c {
-			NewBaseAttribute_c_test38084_c(java.util.UUID p38085,
-					java.util.UUID p38086) {
-				m_p38085 = p38085;
-				m_p38086 = p38086;
+		class NewBaseAttribute_c_test38666_c implements ClassQueryInterface_c {
+			NewBaseAttribute_c_test38666_c(java.util.UUID p38667,
+					java.util.UUID p38668) {
+				m_p38667 = p38667;
+				m_p38668 = p38668;
 			}
-			private java.util.UUID m_p38085;
-			private java.util.UUID m_p38086;
+			private java.util.UUID m_p38667;
+			private java.util.UUID m_p38668;
 			public boolean evaluate(Object candidate) {
 				NewBaseAttribute_c selected = (NewBaseAttribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p38085))
-						& (selected.getObj_id().equals(m_p38086));
+				retval = (selected.getAttr_id().equals(m_p38667))
+						& (selected.getObj_id().equals(m_p38668));
 				return retval;
 			}
 		}
 
-		NewBaseAttribute_c[] objs38083 = NewBaseAttribute_c
+		NewBaseAttribute_c[] objs38665 = NewBaseAttribute_c
 				.NewBaseAttributeInstances(modelRoot,
-						new NewBaseAttribute_c_test38084_c(getAttr_id(),
+						new NewBaseAttribute_c_test38666_c(getAttr_id(),
 								getObj_id()));
 
-		if (((objs38083.length) == 0)) {
+		if (((objs38665.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"New Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: New Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38083.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38665.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: New Base Attribute: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38083.length), e);
+										+ Integer.toString(objs38665.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38083.length) > 1)) {
+		if (((objs38665.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -812,7 +813,7 @@ public class NewBaseAttribute_c extends NonRootModelElement
 								"New Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: New Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38083.length)
+										+ Integer.toString(objs38665.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -820,7 +821,7 @@ public class NewBaseAttribute_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: New Base Attribute: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38083.length)
+										+ Integer.toString(objs38665.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -829,42 +830,42 @@ public class NewBaseAttribute_c extends NonRootModelElement
 
 		// New Base Attribute is a subtype in association: rel.Numb = 107
 		// The supertype class is: Base Attribute
-		class BaseAttribute_c_test38090_c implements ClassQueryInterface_c {
-			BaseAttribute_c_test38090_c(java.util.UUID p38091,
-					java.util.UUID p38092) {
-				m_p38091 = p38091;
-				m_p38092 = p38092;
+		class BaseAttribute_c_test38672_c implements ClassQueryInterface_c {
+			BaseAttribute_c_test38672_c(java.util.UUID p38673,
+					java.util.UUID p38674) {
+				m_p38673 = p38673;
+				m_p38674 = p38674;
 			}
-			private java.util.UUID m_p38091;
-			private java.util.UUID m_p38092;
+			private java.util.UUID m_p38673;
+			private java.util.UUID m_p38674;
 			public boolean evaluate(Object candidate) {
 				BaseAttribute_c selected = (BaseAttribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p38091))
-						& (selected.getObj_id().equals(m_p38092));
+				retval = (selected.getAttr_id().equals(m_p38673))
+						& (selected.getObj_id().equals(m_p38674));
 				return retval;
 			}
 		}
 
-		BaseAttribute_c[] objs38089 = BaseAttribute_c.BaseAttributeInstances(
-				modelRoot, new BaseAttribute_c_test38090_c(getAttr_id(),
+		BaseAttribute_c[] objs38671 = BaseAttribute_c.BaseAttributeInstances(
+				modelRoot, new BaseAttribute_c_test38672_c(getAttr_id(),
 						getObj_id()));
 
-		if (((objs38089.length) != 1)) {
+		if (((objs38671.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"New Base Attribute", //$NON-NLS-1$
 								"Consistency: Object: New Base Attribute: Association: 107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38089.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38671.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: New Base Attribute: Association: 107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38089.length), e);
+										+ Integer.toString(objs38671.length), e);
 			}
 			retval = false;
 

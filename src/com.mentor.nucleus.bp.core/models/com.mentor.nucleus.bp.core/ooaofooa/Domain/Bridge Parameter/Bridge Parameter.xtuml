@@ -14,7 +14,43 @@ INSERT INTO O_TFR
 	'The dispose operation for this class.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Bridge Parameter.dispose()
+// Value Subsystem
+select many pvs related by self->V_PVL[R831];
+for each pv in pvs
+  unrelate self from pv across R831;
+end for;
+//
+//
+select one brg related by self->S_BRG[R21];
+unrelate self from brg across R21;
+select one successor related by self->S_BPARM[R55.''precedes''];
+select one predecessor related by self->S_BPARM[R55.''succeeds''];
+if (not empty successor)
+  unrelate self from successor across R55.''precedes'';
+end if;
+if (not empty predecessor)
+  unrelate self from predecessor across R55.''succeeds'';
+end if;
+if (not_empty successor and not_empty predecessor)
+  relate successor to predecessor across R55.''succeeds'';
+end if;
+select one dt related by self->S_DT[R22];
+unrelate self from dt across R22;
+// dispose each message argument
+// associated with this parm
+select many args related by self->MSG_BA[R1014];
+for each arg in args
+  arg.dispose();
+end for;
+
+select many dims related by self->S_DIM[R49];
+for each dim in dims
+  unrelate self from dim across R49;
+  delete object instance dim;
+end for;
+
+delete object instance self;',
 	1,
 	'',
 	"c5831637-1430-48fe-b26b-674da6d63d09");
@@ -198,7 +234,7 @@ INSERT INTO O_TFR
 	"bc3722c8-5188-4529-8519-cf9eb9816b17",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_INSTANCE();',
+return GD::NULL_INSTANCE(); ',
 	1,
 	'',
 	"2a656ee1-370c-4e6c-9047-9e48ea659630");

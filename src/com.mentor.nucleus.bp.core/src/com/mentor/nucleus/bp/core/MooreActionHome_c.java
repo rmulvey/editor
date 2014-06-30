@@ -154,7 +154,8 @@ public class MooreActionHome_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,8 +171,9 @@ public class MooreActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((MooreActionHome_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((MooreActionHome_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((MooreActionHome_c) elem).getSm_id()))
@@ -179,9 +181,9 @@ public class MooreActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
-				.equals(((MooreActionHome_c) elem).getSmstt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
+						.equals(((MooreActionHome_c) elem).getSmstt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmstt_id().equals(((MooreActionHome_c) elem).getSmstt_id()))
@@ -924,98 +926,98 @@ public class MooreActionHome_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R513
-		ActionHome_c relInst38551 = (ActionHome_c) baseRoot.getInstanceList(
+		ActionHome_c relInst39133 = (ActionHome_c) baseRoot.getInstanceList(
 				ActionHome_c.class).get(new Object[]{m_act_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38551 == null) {
-			relInst38551 = (ActionHome_c) Ooaofooa.getDefaultInstance()
+		if (relInst39133 == null) {
+			relInst39133 = (ActionHome_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActionHome_c.class)
 					.get(new Object[]{m_act_id, m_sm_id});
 		}
-		if (relInst38551 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39133 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38551 = (ActionHome_c) roots[i].getInstanceList(
+				relInst39133 = (ActionHome_c) roots[i].getInstanceList(
 						ActionHome_c.class)
 						.get(new Object[]{m_act_id, m_sm_id});
-				if (relInst38551 != null)
+				if (relInst39133 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38551 != null) {
+		if (relInst39133 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38551) && !isProxy())) {
-				relInst38551.relateAcrossR513To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39133) && !isProxy())) {
+				relInst39133.relateAcrossR513To(this, notifyChanges);
 			}
 		}
 
 		// R511
-		StateMachineState_c relInst38552 = (StateMachineState_c) baseRoot
+		StateMachineState_c relInst39134 = (StateMachineState_c) baseRoot
 				.getInstanceList(StateMachineState_c.class).get(
 						new Object[]{m_sm_id, m_smstt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38552 == null) {
-			relInst38552 = (StateMachineState_c) Ooaofooa.getDefaultInstance()
+		if (relInst39134 == null) {
+			relInst39134 = (StateMachineState_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(StateMachineState_c.class)
 					.get(new Object[]{m_sm_id, m_smstt_id});
 		}
-		if (relInst38552 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39134 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38552 = (StateMachineState_c) roots[i].getInstanceList(
+				relInst39134 = (StateMachineState_c) roots[i].getInstanceList(
 						StateMachineState_c.class).get(
 						new Object[]{m_sm_id, m_smstt_id});
-				if (relInst38552 != null)
+				if (relInst39134 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38552 != null) {
+		if (relInst39134 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38552) && !isProxy())) {
-				relInst38552.relateAcrossR511To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39134) && !isProxy())) {
+				relInst39134.relateAcrossR511To(this, notifyChanges);
 			}
 		}
 
-		MooreStateMachine_c relInst38553 = (MooreStateMachine_c) baseRoot
+		MooreStateMachine_c relInst39135 = (MooreStateMachine_c) baseRoot
 				.getInstanceList(MooreStateMachine_c.class).get(
 						new Object[]{m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38553 == null) {
-			relInst38553 = (MooreStateMachine_c) Ooaofooa.getDefaultInstance()
+		if (relInst39135 == null) {
+			relInst39135 = (MooreStateMachine_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(MooreStateMachine_c.class)
 					.get(new Object[]{m_sm_id});
 		}
-		if (relInst38553 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39135 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38553 = (MooreStateMachine_c) roots[i].getInstanceList(
+				relInst39135 = (MooreStateMachine_c) roots[i].getInstanceList(
 						MooreStateMachine_c.class).get(new Object[]{m_sm_id});
-				if (relInst38553 != null)
+				if (relInst39135 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38553 != null) {
+		if (relInst39135 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38553) && !isProxy())) {
-				relInst38553.relateAcrossR511To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39135) && !isProxy())) {
+				relInst39135.relateAcrossR511To(this, notifyChanges);
 			}
 		}
 
@@ -1371,49 +1373,49 @@ public class MooreActionHome_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class MooreActionHome_c_test38555_c implements ClassQueryInterface_c {
-			MooreActionHome_c_test38555_c(java.util.UUID p38556,
-					java.util.UUID p38557) {
-				m_p38556 = p38556;
-				m_p38557 = p38557;
+		class MooreActionHome_c_test39137_c implements ClassQueryInterface_c {
+			MooreActionHome_c_test39137_c(java.util.UUID p39138,
+					java.util.UUID p39139) {
+				m_p39138 = p39138;
+				m_p39139 = p39139;
 			}
-			private java.util.UUID m_p38556;
-			private java.util.UUID m_p38557;
+			private java.util.UUID m_p39138;
+			private java.util.UUID m_p39139;
 			public boolean evaluate(Object candidate) {
 				MooreActionHome_c selected = (MooreActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38556))
-						& (selected.getSmstt_id().equals(m_p38557));
+				retval = (selected.getSm_id().equals(m_p39138))
+						& (selected.getSmstt_id().equals(m_p39139));
 				return retval;
 			}
 		}
 
-		MooreActionHome_c[] objs38554 = MooreActionHome_c
+		MooreActionHome_c[] objs39136 = MooreActionHome_c
 				.MooreActionHomeInstances(modelRoot,
-						new MooreActionHome_c_test38555_c(getSm_id(),
+						new MooreActionHome_c_test39137_c(getSm_id(),
 								getSmstt_id()));
 
-		if (((objs38554.length) == 0)) {
+		if (((objs39136.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38554.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39136.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38554.length), e);
+										+ Integer.toString(objs39136.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38554.length) > 1)) {
+		if (((objs39136.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1421,7 +1423,7 @@ public class MooreActionHome_c extends NonRootModelElement
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38554.length)
+										+ Integer.toString(objs39136.length)
 										+ " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1429,56 +1431,56 @@ public class MooreActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38554.length)
+										+ Integer.toString(objs39136.length)
 										+ " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
 
 		}
 
-		class MooreActionHome_c_test38559_c implements ClassQueryInterface_c {
-			MooreActionHome_c_test38559_c(java.util.UUID p38560,
-					java.util.UUID p38561) {
-				m_p38560 = p38560;
-				m_p38561 = p38561;
+		class MooreActionHome_c_test39141_c implements ClassQueryInterface_c {
+			MooreActionHome_c_test39141_c(java.util.UUID p39142,
+					java.util.UUID p39143) {
+				m_p39142 = p39142;
+				m_p39143 = p39143;
 			}
-			private java.util.UUID m_p38560;
-			private java.util.UUID m_p38561;
+			private java.util.UUID m_p39142;
+			private java.util.UUID m_p39143;
 			public boolean evaluate(Object candidate) {
 				MooreActionHome_c selected = (MooreActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38560))
-						& (selected.getSm_id().equals(m_p38561));
+				retval = (selected.getAct_id().equals(m_p39142))
+						& (selected.getSm_id().equals(m_p39143));
 				return retval;
 			}
 		}
 
-		MooreActionHome_c[] objs38558 = MooreActionHome_c
+		MooreActionHome_c[] objs39140 = MooreActionHome_c
 				.MooreActionHomeInstances(modelRoot,
-						new MooreActionHome_c_test38559_c(getAct_id(),
+						new MooreActionHome_c_test39141_c(getAct_id(),
 								getSm_id()));
 
-		if (((objs38558.length) == 0)) {
+		if (((objs39140.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38558.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39140.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38558.length), e);
+										+ Integer.toString(objs39140.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38558.length) > 1)) {
+		if (((objs39140.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1486,7 +1488,7 @@ public class MooreActionHome_c extends NonRootModelElement
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38558.length)
+										+ Integer.toString(objs39140.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1494,7 +1496,7 @@ public class MooreActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Moore Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38558.length)
+										+ Integer.toString(objs39140.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1503,41 +1505,41 @@ public class MooreActionHome_c extends NonRootModelElement
 
 		// Moore Action Home is a subtype in association: rel.Numb = 513
 		// The supertype class is: Action Home
-		class ActionHome_c_test38564_c implements ClassQueryInterface_c {
-			ActionHome_c_test38564_c(java.util.UUID p38565,
-					java.util.UUID p38566) {
-				m_p38565 = p38565;
-				m_p38566 = p38566;
+		class ActionHome_c_test39146_c implements ClassQueryInterface_c {
+			ActionHome_c_test39146_c(java.util.UUID p39147,
+					java.util.UUID p39148) {
+				m_p39147 = p39147;
+				m_p39148 = p39148;
 			}
-			private java.util.UUID m_p38565;
-			private java.util.UUID m_p38566;
+			private java.util.UUID m_p39147;
+			private java.util.UUID m_p39148;
 			public boolean evaluate(Object candidate) {
 				ActionHome_c selected = (ActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38565))
-						& (selected.getSm_id().equals(m_p38566));
+				retval = (selected.getAct_id().equals(m_p39147))
+						& (selected.getSm_id().equals(m_p39148));
 				return retval;
 			}
 		}
 
-		ActionHome_c[] objs38563 = ActionHome_c.ActionHomeInstances(modelRoot,
-				new ActionHome_c_test38564_c(getAct_id(), getSm_id()));
+		ActionHome_c[] objs39145 = ActionHome_c.ActionHomeInstances(modelRoot,
+				new ActionHome_c_test39146_c(getAct_id(), getSm_id()));
 
-		if (((objs38563.length) != 1)) {
+		if (((objs39145.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38563.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39145.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Moore Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38563.length), e);
+										+ Integer.toString(objs39145.length), e);
 			}
 			retval = false;
 
@@ -1545,38 +1547,38 @@ public class MooreActionHome_c extends NonRootModelElement
 
 		// Moore Action Home is a link class in association: rel.Numb = 511
 		// The one side class in the association is: Moore State Machine
-		class MooreStateMachine_c_test38568_c implements ClassQueryInterface_c {
-			MooreStateMachine_c_test38568_c(java.util.UUID p38569) {
-				m_p38569 = p38569;
+		class MooreStateMachine_c_test39150_c implements ClassQueryInterface_c {
+			MooreStateMachine_c_test39150_c(java.util.UUID p39151) {
+				m_p39151 = p39151;
 			}
-			private java.util.UUID m_p38569;
+			private java.util.UUID m_p39151;
 			public boolean evaluate(Object candidate) {
 				MooreStateMachine_c selected = (MooreStateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38569));
+				retval = (selected.getSm_id().equals(m_p39151));
 				return retval;
 			}
 		}
 
-		MooreStateMachine_c[] objs38567 = MooreStateMachine_c
+		MooreStateMachine_c[] objs39149 = MooreStateMachine_c
 				.MooreStateMachineInstances(modelRoot,
-						new MooreStateMachine_c_test38568_c(getSm_id()));
+						new MooreStateMachine_c_test39150_c(getSm_id()));
 
-		if (((objs38567.length) > 1)) {
+		if (((objs39149.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Moore Action Home", //$NON-NLS-1$
 								"Consistency: Object: Moore Action Home: Association: 511: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38567.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39149.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Moore Action Home: Association: 511: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38567.length), e);
+										+ Integer.toString(objs39149.length), e);
 			}
 			retval = false;
 

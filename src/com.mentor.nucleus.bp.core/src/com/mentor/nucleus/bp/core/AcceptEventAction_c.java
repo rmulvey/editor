@@ -147,7 +147,8 @@ public class AcceptEventAction_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,8 +164,9 @@ public class AcceptEventAction_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((AcceptEventAction_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((AcceptEventAction_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((AcceptEventAction_c) elem).getId()))
@@ -416,33 +418,33 @@ public class AcceptEventAction_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1112
-		AcceptEvent_c relInst57139 = (AcceptEvent_c) baseRoot.getInstanceList(
+		AcceptEvent_c relInst58688 = (AcceptEvent_c) baseRoot.getInstanceList(
 				AcceptEvent_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst57139 == null) {
-			relInst57139 = (AcceptEvent_c) Ooaofooa.getDefaultInstance()
+		if (relInst58688 == null) {
+			relInst58688 = (AcceptEvent_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(AcceptEvent_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst57139 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58688 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst57139 = (AcceptEvent_c) roots[i].getInstanceList(
+				relInst58688 = (AcceptEvent_c) roots[i].getInstanceList(
 						AcceptEvent_c.class).get(new Object[]{m_id});
-				if (relInst57139 != null)
+				if (relInst58688 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst57139 != null) {
+		if (relInst58688 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst57139) && !isProxy())) {
-				relInst57139.relateAcrossR1112To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58688) && !isProxy())) {
+				relInst58688.relateAcrossR1112To(this, notifyChanges);
 			}
 		}
 
@@ -734,44 +736,44 @@ public class AcceptEventAction_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class AcceptEventAction_c_test57141_c implements ClassQueryInterface_c {
-			AcceptEventAction_c_test57141_c(java.util.UUID p57142) {
-				m_p57142 = p57142;
+		class AcceptEventAction_c_test58690_c implements ClassQueryInterface_c {
+			AcceptEventAction_c_test58690_c(java.util.UUID p58691) {
+				m_p58691 = p58691;
 			}
-			private java.util.UUID m_p57142;
+			private java.util.UUID m_p58691;
 			public boolean evaluate(Object candidate) {
 				AcceptEventAction_c selected = (AcceptEventAction_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57142));
+				retval = (selected.getId().equals(m_p58691));
 				return retval;
 			}
 		}
 
-		AcceptEventAction_c[] objs57140 = AcceptEventAction_c
+		AcceptEventAction_c[] objs58689 = AcceptEventAction_c
 				.AcceptEventActionInstances(modelRoot,
-						new AcceptEventAction_c_test57141_c(getId()));
+						new AcceptEventAction_c_test58690_c(getId()));
 
-		if (((objs57140.length) == 0)) {
+		if (((objs58689.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Accept Event Action", //$NON-NLS-1$
 								"Consistency: Object: Accept Event Action: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57140.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58689.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Accept Event Action: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57140.length), e);
+										+ Integer.toString(objs58689.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs57140.length) > 1)) {
+		if (((objs58689.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -779,7 +781,7 @@ public class AcceptEventAction_c extends NonRootModelElement
 								"Accept Event Action", //$NON-NLS-1$
 								"Consistency: Object: Accept Event Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs57140.length)
+										+ Integer.toString(objs58689.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -787,7 +789,7 @@ public class AcceptEventAction_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Accept Event Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57140.length)
+										+ Integer.toString(objs58689.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -796,37 +798,37 @@ public class AcceptEventAction_c extends NonRootModelElement
 
 		// Accept Event Action is a subtype in association: rel.Numb = 1112
 		// The supertype class is: Accept Event
-		class AcceptEvent_c_test57146_c implements ClassQueryInterface_c {
-			AcceptEvent_c_test57146_c(java.util.UUID p57147) {
-				m_p57147 = p57147;
+		class AcceptEvent_c_test58695_c implements ClassQueryInterface_c {
+			AcceptEvent_c_test58695_c(java.util.UUID p58696) {
+				m_p58696 = p58696;
 			}
-			private java.util.UUID m_p57147;
+			private java.util.UUID m_p58696;
 			public boolean evaluate(Object candidate) {
 				AcceptEvent_c selected = (AcceptEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57147));
+				retval = (selected.getId().equals(m_p58696));
 				return retval;
 			}
 		}
 
-		AcceptEvent_c[] objs57145 = AcceptEvent_c.AcceptEventInstances(
-				modelRoot, new AcceptEvent_c_test57146_c(getId()));
+		AcceptEvent_c[] objs58694 = AcceptEvent_c.AcceptEventInstances(
+				modelRoot, new AcceptEvent_c_test58695_c(getId()));
 
-		if (((objs57145.length) != 1)) {
+		if (((objs58694.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Accept Event Action", //$NON-NLS-1$
 								"Consistency: Object: Accept Event Action: Association: 1112: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57145.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58694.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Accept Event Action: Association: 1112: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57145.length), e);
+										+ Integer.toString(objs58694.length), e);
 			}
 			retval = false;
 

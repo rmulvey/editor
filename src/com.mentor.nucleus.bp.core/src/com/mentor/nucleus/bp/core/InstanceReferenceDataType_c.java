@@ -151,7 +151,8 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -167,9 +168,9 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((InstanceReferenceDataType_c) elem).getDt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((InstanceReferenceDataType_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((InstanceReferenceDataType_c) elem).getDt_id()))
@@ -713,49 +714,49 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R17
-		DataType_c relInst54810 = (DataType_c) baseRoot.getInstanceList(
+		DataType_c relInst56359 = (DataType_c) baseRoot.getInstanceList(
 				DataType_c.class).get(new Object[]{m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54810 == null) {
-			relInst54810 = (DataType_c) Ooaofooa.getDefaultInstance()
+		if (relInst56359 == null) {
+			relInst56359 = (DataType_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataType_c.class)
 					.get(new Object[]{m_dt_id});
 		}
-		if (relInst54810 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56359 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54810 = (DataType_c) roots[i].getInstanceList(
+				relInst56359 = (DataType_c) roots[i].getInstanceList(
 						DataType_c.class).get(new Object[]{m_dt_id});
-				if (relInst54810 != null)
+				if (relInst56359 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54810 != null) {
+		if (relInst56359 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54810) && !isProxy())) {
-				relInst54810.relateAcrossR17To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56359) && !isProxy())) {
+				relInst56359.relateAcrossR17To(this, notifyChanges);
 			}
 		}
 
 		if (ProvidesReferenceDatatypeForModelClass == null) {
 			// R123
-			ModelClass_c relInst54811 = (ModelClass_c) baseRoot
+			ModelClass_c relInst56360 = (ModelClass_c) baseRoot
 					.getInstanceList(ModelClass_c.class).get(
 							new Object[]{m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54811 == null) {
-				relInst54811 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst56360 == null) {
+				relInst56360 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ModelClass_c.class)
 						.get(new Object[]{m_obj_id});
 			}
-			if (relInst54811 == null && searchAllRoots
+			if (relInst56360 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -763,17 +764,17 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54811 = (ModelClass_c) roots[i].getInstanceList(
+					relInst56360 = (ModelClass_c) roots[i].getInstanceList(
 							ModelClass_c.class).get(new Object[]{m_obj_id});
-					if (relInst54811 != null)
+					if (relInst56360 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54811 != null) {
+			if (relInst56360 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54811) && !isProxy())) {
-					relInst54811.relateAcrossR123To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56360) && !isProxy())) {
+					relInst56360.relateAcrossR123To(this, notifyChanges);
 				}
 			}
 		}
@@ -1094,26 +1095,26 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InstanceReferenceDataType_c_test54813_c
+		class InstanceReferenceDataType_c_test56362_c
 				implements
 					ClassQueryInterface_c {
-			InstanceReferenceDataType_c_test54813_c(java.util.UUID p54814) {
-				m_p54814 = p54814;
+			InstanceReferenceDataType_c_test56362_c(java.util.UUID p56363) {
+				m_p56363 = p56363;
 			}
-			private java.util.UUID m_p54814;
+			private java.util.UUID m_p56363;
 			public boolean evaluate(Object candidate) {
 				InstanceReferenceDataType_c selected = (InstanceReferenceDataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p54814));
+				retval = (selected.getDt_id().equals(m_p56363));
 				return retval;
 			}
 		}
 
-		InstanceReferenceDataType_c[] objs54812 = InstanceReferenceDataType_c
+		InstanceReferenceDataType_c[] objs56361 = InstanceReferenceDataType_c
 				.InstanceReferenceDataTypeInstances(modelRoot,
-						new InstanceReferenceDataType_c_test54813_c(getDt_id()));
+						new InstanceReferenceDataType_c_test56362_c(getDt_id()));
 
-		if (((objs54812.length) == 0)) {
+		if (((objs56361.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1121,20 +1122,20 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Instance Reference Data Type", //$NON-NLS-1$
 								"Consistency: Object: Instance Reference Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54812.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56361.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Reference Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54812.length), e);
+										+ Integer.toString(objs56361.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54812.length) > 1)) {
+		if (((objs56361.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1143,7 +1144,7 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 								"Instance Reference Data Type", //$NON-NLS-1$
 								"Consistency: Object: Instance Reference Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54812.length)
+										+ Integer.toString(objs56361.length)
 										+ " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1151,7 +1152,7 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Reference Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54812.length)
+										+ Integer.toString(objs56361.length)
 										+ " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1160,23 +1161,23 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 
 		// Instance Reference Data Type is a subtype in association: rel.Numb = 17
 		// The supertype class is: Data Type
-		class DataType_c_test54818_c implements ClassQueryInterface_c {
-			DataType_c_test54818_c(java.util.UUID p54819) {
-				m_p54819 = p54819;
+		class DataType_c_test56367_c implements ClassQueryInterface_c {
+			DataType_c_test56367_c(java.util.UUID p56368) {
+				m_p56368 = p56368;
 			}
-			private java.util.UUID m_p54819;
+			private java.util.UUID m_p56368;
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p54819));
+				retval = (selected.getDt_id().equals(m_p56368));
 				return retval;
 			}
 		}
 
-		DataType_c[] objs54817 = DataType_c.DataTypeInstances(modelRoot,
-				new DataType_c_test54818_c(getDt_id()));
+		DataType_c[] objs56366 = DataType_c.DataTypeInstances(modelRoot,
+				new DataType_c_test56367_c(getDt_id()));
 
-		if (((objs54817.length) != 1)) {
+		if (((objs56366.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1184,14 +1185,14 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Instance Reference Data Type", //$NON-NLS-1$
 								"Consistency: Object: Instance Reference Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54817.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56366.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Reference Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54817.length), e);
+										+ Integer.toString(objs56366.length), e);
 			}
 			retval = false;
 
@@ -1199,25 +1200,25 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 
 		// Instance Reference Data Type is a referring class in association: rel.Numb = 123
 		// The participating class is: Model Class
-		class ModelClass_c_test54821_c implements ClassQueryInterface_c {
-			ModelClass_c_test54821_c(java.util.UUID p54822) {
-				m_p54822 = p54822;
+		class ModelClass_c_test56370_c implements ClassQueryInterface_c {
+			ModelClass_c_test56370_c(java.util.UUID p56371) {
+				m_p56371 = p56371;
 			}
-			private java.util.UUID m_p54822;
+			private java.util.UUID m_p56371;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p54822));
+				retval = (selected.getObj_id().equals(m_p56371));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs54820 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test54821_c(getObj_id()));
+		ModelClass_c[] objs56369 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test56370_c(getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54820.length) != 1)) {
+		if (((objs56369.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1226,7 +1227,7 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 								"Instance Reference Data Type", //$NON-NLS-1$
 								"Consistency: Object: Instance Reference Data Type: Association: 123: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54820.length)
+										+ Integer.toString(objs56369.length)
 										+ " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1234,7 +1235,7 @@ public class InstanceReferenceDataType_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Reference Data Type: Association: 123: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54820.length)
+										+ Integer.toString(objs56369.length)
 										+ " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

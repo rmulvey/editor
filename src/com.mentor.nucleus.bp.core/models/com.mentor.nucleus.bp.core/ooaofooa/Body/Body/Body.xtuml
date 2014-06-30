@@ -281,7 +281,7 @@ INSERT INTO O_TFR
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_UNIQUE_ID();',
+return GD::NULL_UNIQUE_ID(); ',
 	1,
 	'',
 	"22a1844d-5679-41a1-99b2-f940b6cb27ba");
@@ -326,7 +326,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"b3eb49b0-86d9-48f0-b50c-4504dcc55721");
@@ -367,7 +368,8 @@ INSERT INTO O_TFR
 	'Called to delete an initial stack frame used for execution of a funtion wired to a bridge in another model.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"02bb7c0b-4888-47dd-958c-fde9bd49b0c0");
@@ -632,7 +634,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"63e6a395-cc2a-4419-a519-51cc0d0f410f");

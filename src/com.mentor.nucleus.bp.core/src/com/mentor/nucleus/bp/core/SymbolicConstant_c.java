@@ -224,7 +224,7 @@ p_m_previous_dt_dt_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -240,14 +240,14 @@ p_m_previous_dt_dt_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID.equals(((SymbolicConstant_c)elem).getConst_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getConst_id()) || IdAssigner.NULL_UUID.equals(((SymbolicConstant_c)elem).getConst_id())) && this != elem)) {
       	return false;
       }
       if (!getConst_id().equals(((SymbolicConstant_c)elem).getConst_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((SymbolicConstant_c)elem).getDt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((SymbolicConstant_c)elem).getDt_id())) && this != elem)) {
       	return false;
       }
       if (!getDt_id().equals(((SymbolicConstant_c)elem).getDt_id())) return false;
@@ -1561,29 +1561,29 @@ public static SymbolicConstant_c [] getManyCNST_SYCsOnR1505Succeeds(SymbolicCons
 
 	if (IsDefinedByDataType == null) {          
       // R1500
-      DataType_c relInst55269 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst56818 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55269 == null) {
-      			relInst55269 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst56818 == null) {
+      			relInst56818 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst55269 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56818 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55269 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst55269 != null)
+					relInst56818 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst56818 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55269 != null )
+      if ( relInst56818 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55269) && !isProxy())) {
-	      relInst55269.relateAcrossR1500To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56818) && !isProxy())) {
+	      relInst56818.relateAcrossR1500To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1591,29 +1591,29 @@ public static SymbolicConstant_c [] getManyCNST_SYCsOnR1505Succeeds(SymbolicCons
 
 	if (IsContainedByConstantSpecification == null) {          
       // R1504
-      ConstantSpecification_c relInst55270 = (ConstantSpecification_c) baseRoot.getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
+      ConstantSpecification_c relInst56819 = (ConstantSpecification_c) baseRoot.getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55270 == null) {
-      			relInst55270 = (ConstantSpecification_c) Ooaofooa.getDefaultInstance().getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
+      		if (relInst56819 == null) {
+      			relInst56819 = (ConstantSpecification_c) Ooaofooa.getDefaultInstance().getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
       		}
-			if (relInst55270 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56819 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55270 = (ConstantSpecification_c) roots[i].getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
-					if (relInst55270 != null)
+					relInst56819 = (ConstantSpecification_c) roots[i].getInstanceList(ConstantSpecification_c.class).get(new Object[] {m_constant_spec_id});
+					if (relInst56819 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55270 != null )
+      if ( relInst56819 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55270) && !isProxy())) {
-	      relInst55270.relateAcrossR1504To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56819) && !isProxy())) {
+	      relInst56819.relateAcrossR1504To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1621,29 +1621,29 @@ public static SymbolicConstant_c [] getManyCNST_SYCsOnR1505Succeeds(SymbolicCons
 
 	if (SucceedsSymbolicConstant == null) {          
       // R1505
-      SymbolicConstant_c relInst55271 = (SymbolicConstant_c) baseRoot.getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
+      SymbolicConstant_c relInst56820 = (SymbolicConstant_c) baseRoot.getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55271 == null) {
-      			relInst55271 = (SymbolicConstant_c) Ooaofooa.getDefaultInstance().getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
+      		if (relInst56820 == null) {
+      			relInst56820 = (SymbolicConstant_c) Ooaofooa.getDefaultInstance().getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
       		}
-			if (relInst55271 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56820 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55271 = (SymbolicConstant_c) roots[i].getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
-					if (relInst55271 != null)
+					relInst56820 = (SymbolicConstant_c) roots[i].getInstanceList(SymbolicConstant_c.class).get(new Object[] {m_previous_const_id,m_previous_dt_dt_id});
+					if (relInst56820 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55271 != null )
+      if ( relInst56820 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55271) && !isProxy())) {
-	      relInst55271.relateAcrossR1505ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56820) && !isProxy())) {
+	      relInst56820.relateAcrossR1505ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2154,57 +2154,57 @@ private static SymbolicConstant_c findSymbolicConstantInstance(ModelRoot modelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SymbolicConstant_c_test55273_c implements ClassQueryInterface_c
+    class SymbolicConstant_c_test56822_c implements ClassQueryInterface_c
     {
-	  SymbolicConstant_c_test55273_c( java.util.UUID            p55274, java.util.UUID            p55275 ) {
-	       m_p55274 = p55274; 
-m_p55275 = p55275;
+	  SymbolicConstant_c_test56822_c( java.util.UUID            p56823, java.util.UUID            p56824 ) {
+	       m_p56823 = p56823; 
+m_p56824 = p56824;
 	  }
-	  private java.util.UUID             m_p55274; private java.util.UUID             m_p55275; 
+	  private java.util.UUID             m_p56823; private java.util.UUID             m_p56824; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SymbolicConstant_c selected = (SymbolicConstant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConst_id().equals(m_p55274)) & (selected.getDt_id().equals(m_p55275));
+	      retval = (selected.getConst_id().equals(m_p56823)) & (selected.getDt_id().equals(m_p56824));
 	      return retval;
 	  }
     }
 
-    SymbolicConstant_c [] objs55272 = 
-    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test55273_c(getConst_id(), getDt_id())) ;
+    SymbolicConstant_c [] objs56821 = 
+    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test56822_c(getConst_id(), getDt_id())) ;
 
-    if ( (  (objs55272.length) == 0) )
+    if ( (  (objs56821.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55272.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56821.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55272.length )  , e); 
+          + Integer.toString( objs56821.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55272.length) > 1) )
+    if ( (  (objs56821.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55272.length )  + " Const_ID: " + "Not Printable"  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56821.length )  + " Const_ID: " + "Not Printable"  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55272.length )  + " Const_ID: " + "Not Printable"  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56821.length )  + " Const_ID: " + "Not Printable"  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2212,39 +2212,39 @@ m_p55275 = p55275;
 
           // Symbolic Constant is a referring class in association: rel.Numb = 1505
           // The participating class is: Symbolic Constant
-    class SymbolicConstant_c_test55279_c implements ClassQueryInterface_c
+    class SymbolicConstant_c_test56828_c implements ClassQueryInterface_c
     {
-	  SymbolicConstant_c_test55279_c( java.util.UUID            p55280, java.util.UUID            p55281 ) {
-	       m_p55280 = p55280; 
-m_p55281 = p55281;
+	  SymbolicConstant_c_test56828_c( java.util.UUID            p56829, java.util.UUID            p56830 ) {
+	       m_p56829 = p56829; 
+m_p56830 = p56830;
 	  }
-	  private java.util.UUID             m_p55280; private java.util.UUID             m_p55281; 
+	  private java.util.UUID             m_p56829; private java.util.UUID             m_p56830; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SymbolicConstant_c selected = (SymbolicConstant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConst_id().equals(m_p55280)) & (selected.getDt_id().equals(m_p55281));
+	      retval = (selected.getConst_id().equals(m_p56829)) & (selected.getDt_id().equals(m_p56830));
 	      return retval;
 	  }
     }
 
-    SymbolicConstant_c [] objs55278 = 
-    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test55279_c(getPrevious_const_id(), getPrevious_dt_dt_id())) ;
+    SymbolicConstant_c [] objs56827 = 
+    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test56828_c(getPrevious_const_id(), getPrevious_dt_dt_id())) ;
 
-    if ( (  (objs55278.length) > 1) )
+    if ( (  (objs56827.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Association: 1505: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55278.length )  + " Previous_Const_ID: " + "Not Printable"  + " Previous_DT_DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56827.length )  + " Previous_Const_ID: " + "Not Printable"  + " Previous_DT_DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Association: 1505: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55278.length )  + " Previous_Const_ID: " + "Not Printable"  + " Previous_DT_DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56827.length )  + " Previous_Const_ID: " + "Not Printable"  + " Previous_DT_DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2252,40 +2252,40 @@ m_p55281 = p55281;
                 
           // Symbolic Constant is a referring class in association: rel.Numb = 1500
           // The participating class is: Data Type
-    class DataType_c_test55283_c implements ClassQueryInterface_c
+    class DataType_c_test56832_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55283_c( java.util.UUID            p55284 ) {
-	  m_p55284 = p55284;
+	  DataType_c_test56832_c( java.util.UUID            p56833 ) {
+	  m_p56833 = p56833;
 	  }
-	  private java.util.UUID             m_p55284; 
+	  private java.util.UUID             m_p56833; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55284));
+	      retval = (selected.getDt_id().equals(m_p56833));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55282 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55283_c(getDt_id())) ;
+    DataType_c [] objs56831 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56832_c(getDt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55282.length) != 1) )
+    if ( (  (objs56831.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Association: 1500: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55282.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56831.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Association: 1500: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55282.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56831.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2293,40 +2293,40 @@ m_p55281 = p55281;
 
           // Symbolic Constant is a referring class in association: rel.Numb = 1504
           // The participating class is: Constant Specification
-    class ConstantSpecification_c_test55286_c implements ClassQueryInterface_c
+    class ConstantSpecification_c_test56835_c implements ClassQueryInterface_c
     {
-	  ConstantSpecification_c_test55286_c( java.util.UUID            p55287 ) {
-	  m_p55287 = p55287;
+	  ConstantSpecification_c_test56835_c( java.util.UUID            p56836 ) {
+	  m_p56836 = p56836;
 	  }
-	  private java.util.UUID             m_p55287; 
+	  private java.util.UUID             m_p56836; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ConstantSpecification_c selected = (ConstantSpecification_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConstant_spec_id().equals(m_p55287));
+	      retval = (selected.getConstant_spec_id().equals(m_p56836));
 	      return retval;
 	  }
     }
 
-    ConstantSpecification_c [] objs55285 = 
-    ConstantSpecification_c.ConstantSpecificationInstances(modelRoot, new ConstantSpecification_c_test55286_c(getConstant_spec_id())) ;
+    ConstantSpecification_c [] objs56834 = 
+    ConstantSpecification_c.ConstantSpecificationInstances(modelRoot, new ConstantSpecification_c_test56835_c(getConstant_spec_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55285.length) != 1) )
+    if ( (  (objs56834.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Association: 1504: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55285.length )  + " Constant_Spec_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56834.length )  + " Constant_Spec_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Association: 1504: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55285.length )  + " Constant_Spec_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56834.length )  + " Constant_Spec_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2334,38 +2334,38 @@ m_p55281 = p55281;
 
           // Symbolic Constant is a participating class in association: rel.Numb = 1505
              // Object: Symbolic Constant
-    class SymbolicConstant_c_test55289_c implements ClassQueryInterface_c
+    class SymbolicConstant_c_test56838_c implements ClassQueryInterface_c
     {
-	  SymbolicConstant_c_test55289_c( java.util.UUID            p55290, java.util.UUID            p55291 ) {
-	       m_p55290 = p55290; 
-m_p55291 = p55291;
+	  SymbolicConstant_c_test56838_c( java.util.UUID            p56839, java.util.UUID            p56840 ) {
+	       m_p56839 = p56839; 
+m_p56840 = p56840;
 	  }
-	  private java.util.UUID             m_p55290; private java.util.UUID             m_p55291; 
+	  private java.util.UUID             m_p56839; private java.util.UUID             m_p56840; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SymbolicConstant_c selected = (SymbolicConstant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPrevious_const_id().equals(m_p55290)) & (selected.getPrevious_dt_dt_id().equals(m_p55291));
+	      retval = (selected.getPrevious_const_id().equals(m_p56839)) & (selected.getPrevious_dt_dt_id().equals(m_p56840));
 	      return retval;
 	  }
     }
 
-    SymbolicConstant_c [] objs55288 = 
-    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test55289_c(getConst_id(), getDt_id())) ;
+    SymbolicConstant_c [] objs56837 = 
+    SymbolicConstant_c.SymbolicConstantInstances(modelRoot, new SymbolicConstant_c_test56838_c(getConst_id(), getDt_id())) ;
 
-    if ( (  (objs55288.length) > 1) )
+    if ( (  (objs56837.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Association: 1505: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55288.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56837.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Association: 1505: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55288.length )  , e); 
+          + Integer.toString( objs56837.length )  , e); 
       }
       retval = false;
 
@@ -2374,41 +2374,41 @@ m_p55291 = p55291;
           // Symbolic Constant is a participating class in association: rel.Numb = 850
              // Object: Symbolic Constant Value
           // Supertype: rel.Numb = 1502
-    int objs55292 = 0;
+    int objs56841 = 0;
             // Subtype Object: Leaf Symbolic Constant
-    class LeafSymbolicConstant_c_test55293_c implements ClassQueryInterface_c
+    class LeafSymbolicConstant_c_test56842_c implements ClassQueryInterface_c
     {
-	  LeafSymbolicConstant_c_test55293_c( java.util.UUID            p55294, java.util.UUID            p55295 ) {
-	       m_p55294 = p55294; 
-m_p55295 = p55295;
+	  LeafSymbolicConstant_c_test56842_c( java.util.UUID            p56843, java.util.UUID            p56844 ) {
+	       m_p56843 = p56843; 
+m_p56844 = p56844;
 	  }
-	  private java.util.UUID             m_p55294; private java.util.UUID             m_p55295; 
+	  private java.util.UUID             m_p56843; private java.util.UUID             m_p56844; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      LeafSymbolicConstant_c selected = (LeafSymbolicConstant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getConst_id().equals(m_p55294)) & (selected.getDt_id().equals(m_p55295));
+	      retval = (selected.getConst_id().equals(m_p56843)) & (selected.getDt_id().equals(m_p56844));
 	      return retval;
 	  }
     }
 
-    LeafSymbolicConstant_c [] objs55296 = 
-    LeafSymbolicConstant_c.LeafSymbolicConstantInstances(modelRoot, new LeafSymbolicConstant_c_test55293_c(getConst_id(), getDt_id())) ;
+    LeafSymbolicConstant_c [] objs56845 = 
+    LeafSymbolicConstant_c.LeafSymbolicConstantInstances(modelRoot, new LeafSymbolicConstant_c_test56842_c(getConst_id(), getDt_id())) ;
  
-    objs55292 = objs55292 + objs55296.length;
-    if ( objs55292 != 1 )
+    objs56841 = objs56841 + objs56845.length;
+    if ( objs56841 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Symbolic Constant", //$NON-NLS-1$
            "Consistency: Object: Symbolic Constant: Association: 1502: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55292 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56841 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Symbolic Constant: Association: 1502: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55292 )  , e); 
+          + Integer.toString( objs56841 )  , e); 
       }
       retval = false;
 
@@ -2516,9 +2516,9 @@ SymbolicConstant_c [] v_consts = SymbolicConstant_c.getManyCNST_SYCsOnR1504(v_ow
 
 
 SymbolicConstant_c  v_const = null;
-for ( int i53632 = 0; i53632 < v_consts.length; i53632++)
+for ( int i55155 = 0; i55155 < v_consts.length; i55155++)
 {
-  v_const = v_consts[i53632] ;
+  v_const = v_consts[i55155] ;
 
 SymbolicConstant_c v_thisconst = SymbolicConstant_c.getOneCNST_SYCOnR1505Precedes(v_const);
 
@@ -2595,9 +2595,9 @@ SymbolicConstantValue_c [] v_scvs = SymbolicConstantValue_c.getManyV_SCVsOnR850(
 
 
 SymbolicConstantValue_c  v_scv = null;
-for ( int i53633 = 0; i53633 < v_scvs.length; i53633++)
+for ( int i55156 = 0; i55156 < v_scvs.length; i55156++)
 {
-  v_scv = v_scvs[i53633] ;
+  v_scv = v_scvs[i55156] ;
 
 this.unrelateAcrossR850From(v_scv);
 
@@ -2620,9 +2620,9 @@ SymbolicConstant_c [] v_peers = SymbolicConstant_c.getManyCNST_SYCsOnR1504(Const
 
 
 SymbolicConstant_c  v_peer = null;
-for ( int i53634 = 0; i53634 < v_peers.length; i53634++)
+for ( int i55157 = 0; i55157 < v_peers.length; i55157++)
 {
-  v_peer = v_peers[i53634] ;
+  v_peer = v_peers[i55157] ;
 
 SymbolicConstant_c v_nextConst = SymbolicConstant_c.getOneCNST_SYCOnR1505Precedes(v_peer);
 
@@ -2911,7 +2911,7 @@ else {
 Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 
 
-  class DataType_test54248_c implements ClassQueryInterface_c
+  class DataType_test55797_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2919,7 +2919,7 @@ Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 		return selected.getName().equals("integer") ;
 	}
   }
-DataType_c v_intdt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54248_c());
+DataType_c v_intdt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55797_c());
 
 
 DataTypePackage_c v_rootPkg = DataTypePackage_c.getOneS_DPKOnR1506(ConstantInPackage_c.getOneCNST_CIPOnR1506(ConstantSpecification_c.getOneCNST_CSPOnR1504(this)));
@@ -2995,7 +2995,7 @@ DataType_c v_int_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 if ( (  (v_int_dt == null)) )
 {
 
-  class DataType_test54249_c implements ClassQueryInterface_c
+  class DataType_test55798_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3003,7 +3003,7 @@ if ( (  (v_int_dt == null)) )
 		return (selected.getName().equals("integer")) ;
 	}
   }
-v_int_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(v_sys)), new DataType_test54249_c());
+v_int_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(v_sys)), new DataType_test55798_c());
 
 
 
@@ -3145,37 +3145,37 @@ java.util.UUID         v_id = v_packageableElem.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test54250_c implements ClassQueryInterface_c
+  class DataType_test55799_c implements ClassQueryInterface_c
   {
-	DataType_test54250_c( java.util.UUID         p54251 ) {
-		m_p54251 = p54251;
+	DataType_test55799_c( java.util.UUID         p55800 ) {
+		m_p55800 = p55800;
 	}
-	private java.util.UUID         m_p54251;
+	private java.util.UUID         m_p55800;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54251) ;
+		return selected.getDt_id().equals(m_p55800) ;
 	}
   }
-DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test54250_c(v_id));
+DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test55799_c(v_id));
 
 
 if ( (  (v_resolvedDt == null)) )
 {
 
-  class DataType_test54252_c implements ClassQueryInterface_c
+  class DataType_test55801_c implements ClassQueryInterface_c
   {
-	DataType_test54252_c( java.util.UUID         p54253 ) {
-		m_p54253 = p54253;
+	DataType_test55801_c( java.util.UUID         p55802 ) {
+		m_p55802 = p55802;
 	}
-	private java.util.UUID         m_p54253;
+	private java.util.UUID         m_p55802;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54253) ;
+		return selected.getDt_id().equals(m_p55802) ;
 	}
   }
-v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test54252_c(v_id));
+v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test55801_c(v_id));
 
 
 
@@ -3268,19 +3268,19 @@ java.util.UUID         v_id = v_domain.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test54254_c implements ClassQueryInterface_c
+  class DataType_test55803_c implements ClassQueryInterface_c
   {
-	DataType_test54254_c( java.util.UUID         p54255 ) {
-		m_p54255 = p54255;
+	DataType_test55803_c( java.util.UUID         p55804 ) {
+		m_p55804 = p55804;
 	}
-	private java.util.UUID         m_p54255;
+	private java.util.UUID         m_p55804;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p54255)) ;
+		return (selected.getDt_id().equals(m_p55804)) ;
 	}
   }
-DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test54254_c(v_id));
+DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test55803_c(v_id));
 
 
 if ( (  (v_resolvedDT == null)) )
@@ -3289,37 +3289,37 @@ if ( (  (v_resolvedDT == null)) )
 SystemModel_c v_domSys = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(v_domain))));
 
 
-  class DataType_test54256_c implements ClassQueryInterface_c
+  class DataType_test55805_c implements ClassQueryInterface_c
   {
-	DataType_test54256_c( java.util.UUID         p54257 ) {
-		m_p54257 = p54257;
+	DataType_test55805_c( java.util.UUID         p55806 ) {
+		m_p55806 = p55806;
 	}
-	private java.util.UUID         m_p54257;
+	private java.util.UUID         m_p55806;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p54257)) ;
+		return (selected.getDt_id().equals(m_p55806)) ;
 	}
   }
-v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_domSys), new DataType_test54256_c(v_id));
+v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_domSys), new DataType_test55805_c(v_id));
 
 
 if (   (v_resolvedDT == null) &&   (v_domSys != null) && v_domSys.getUseglobals() )
 {
 
-  class PackageableElement_test54258_c implements ClassQueryInterface_c
+  class PackageableElement_test55807_c implements ClassQueryInterface_c
   {
-	PackageableElement_test54258_c( java.util.UUID         p54259 ) {
-		m_p54259 = p54259;
+	PackageableElement_test55807_c( java.util.UUID         p55808 ) {
+		m_p55808 = p55808;
 	}
-	private java.util.UUID         m_p54259;
+	private java.util.UUID         m_p55808;
 	public boolean evaluate (Object candidate)
 	{
 		PackageableElement_c selected = (PackageableElement_c)candidate;
-		return selected.getElement_id().equals(m_p54259) ;
+		return selected.getElement_id().equals(m_p55808) ;
 	}
   }
-PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_domSys), new PackageableElement_test54258_c(v_id));
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_domSys), new PackageableElement_test55807_c(v_id));
 
 
 v_resolvedDT = DataType_c.getOneS_DTOnR8001(v_pe);
@@ -3387,9 +3387,9 @@ SymbolicConstant_c [] v_constants = SymbolicConstant_c.getManyCNST_SYCsOnR1504(C
 
 
 SymbolicConstant_c  v_constant = null;
-for ( int i53635 = 0; i53635 < v_constants.length; i53635++)
+for ( int i55158 = 0; i55158 < v_constants.length; i55158++)
 {
-  v_constant = v_constants[i53635] ;
+  v_constant = v_constants[i55158] ;
 
 if ( (v_constant != this && v_constant.getName().equals(getName())) )
 {

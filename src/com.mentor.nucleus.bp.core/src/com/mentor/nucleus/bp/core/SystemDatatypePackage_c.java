@@ -147,7 +147,8 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID
-				.equals(((SystemDatatypePackage_c) elem).getSys_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID
+						.equals(((SystemDatatypePackage_c) elem).getSys_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSys_id().equals(((SystemDatatypePackage_c) elem).getSys_id()))
@@ -173,9 +174,10 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((SystemDatatypePackage_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((SystemDatatypePackage_c) elem)
+								.getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -779,69 +781,69 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 		if (baseRoot != modelRoot && modelRoot.isCompareRoot()) {
 			baseRoot = modelRoot;
 		}
-		SystemModel_c relInst37959 = (SystemModel_c) baseRoot.getInstanceList(
+		SystemModel_c relInst38541 = (SystemModel_c) baseRoot.getInstanceList(
 				SystemModel_c.class).get(new Object[]{m_sys_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37959 == null) {
-			relInst37959 = (SystemModel_c) Ooaofooa.getDefaultInstance()
+		if (relInst38541 == null) {
+			relInst38541 = (SystemModel_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SystemModel_c.class)
 					.get(new Object[]{m_sys_id});
 		}
-		if (relInst37959 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38541 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37959 = (SystemModel_c) roots[i].getInstanceList(
+				relInst38541 = (SystemModel_c) roots[i].getInstanceList(
 						SystemModel_c.class).get(new Object[]{m_sys_id});
-				if (relInst37959 != null)
+				if (relInst38541 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37959 != null) {
+		if (relInst38541 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37959) && !isProxy())) {
-				relInst37959.relateAcrossR4400To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38541) && !isProxy())) {
+				relInst38541.relateAcrossR4400To(this, notifyChanges);
 			}
 			// set the root in the Domain's model root, not the System Model's
 			// modelRoot is the SystemModel's root when we are loading a Domain proxy
-			((Ooaofooa) getModelRoot()).setRoot(relInst37959);
+			((Ooaofooa) getModelRoot()).setRoot(relInst38541);
 		}
 		baseRoot = modelRoot;
 
-		DataTypePackage_c relInst37960 = (DataTypePackage_c) baseRoot
+		DataTypePackage_c relInst38542 = (DataTypePackage_c) baseRoot
 				.getInstanceList(DataTypePackage_c.class).get(
 						new Object[]{m_package_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37960 == null) {
-			relInst37960 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst38542 == null) {
+			relInst38542 = (DataTypePackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataTypePackage_c.class)
 					.get(new Object[]{m_package_id});
 		}
-		if (relInst37960 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38542 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37960 = (DataTypePackage_c) roots[i].getInstanceList(
+				relInst38542 = (DataTypePackage_c) roots[i].getInstanceList(
 						DataTypePackage_c.class)
 						.get(new Object[]{m_package_id});
-				if (relInst37960 != null)
+				if (relInst38542 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37960 != null) {
+		if (relInst38542 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37960) && !isProxy())) {
-				relInst37960.relateAcrossR4400To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38542) && !isProxy())) {
+				relInst38542.relateAcrossR4400To(this, notifyChanges);
 			}
 		}
 
@@ -1148,31 +1150,31 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SystemDatatypePackage_c_test37962_c
+		class SystemDatatypePackage_c_test38544_c
 				implements
 					ClassQueryInterface_c {
-			SystemDatatypePackage_c_test37962_c(java.util.UUID p37963,
-					java.util.UUID p37964) {
-				m_p37963 = p37963;
-				m_p37964 = p37964;
+			SystemDatatypePackage_c_test38544_c(java.util.UUID p38545,
+					java.util.UUID p38546) {
+				m_p38545 = p38545;
+				m_p38546 = p38546;
 			}
-			private java.util.UUID m_p37963;
-			private java.util.UUID m_p37964;
+			private java.util.UUID m_p38545;
+			private java.util.UUID m_p38546;
 			public boolean evaluate(Object candidate) {
 				SystemDatatypePackage_c selected = (SystemDatatypePackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSys_id().equals(m_p37963))
-						& (selected.getPackage_id().equals(m_p37964));
+				retval = (selected.getSys_id().equals(m_p38545))
+						& (selected.getPackage_id().equals(m_p38546));
 				return retval;
 			}
 		}
 
-		SystemDatatypePackage_c[] objs37961 = SystemDatatypePackage_c
+		SystemDatatypePackage_c[] objs38543 = SystemDatatypePackage_c
 				.SystemDatatypePackageInstances(modelRoot,
-						new SystemDatatypePackage_c_test37962_c(getSys_id(),
+						new SystemDatatypePackage_c_test38544_c(getSys_id(),
 								getPackage_id()));
 
-		if (((objs37961.length) == 0)) {
+		if (((objs38543.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1180,20 +1182,20 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"System Datatype Package", //$NON-NLS-1$
 								"Consistency: Object: System Datatype Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37961.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38543.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: System Datatype Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37961.length), e);
+										+ Integer.toString(objs38543.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37961.length) > 1)) {
+		if (((objs38543.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1202,7 +1204,7 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 								"System Datatype Package", //$NON-NLS-1$
 								"Consistency: Object: System Datatype Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37961.length)
+										+ Integer.toString(objs38543.length)
 										+ " Sys_ID: " + "Not Printable" + " Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1210,7 +1212,7 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: System Datatype Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37961.length)
+										+ Integer.toString(objs38543.length)
 										+ " Sys_ID: " + "Not Printable" + " Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1219,24 +1221,24 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 
 		// System Datatype Package is a link class in association: rel.Numb = 4400
 		// The one side class in the association is: System Model
-		class SystemModel_c_test37968_c implements ClassQueryInterface_c {
-			SystemModel_c_test37968_c(java.util.UUID p37969) {
-				m_p37969 = p37969;
+		class SystemModel_c_test38550_c implements ClassQueryInterface_c {
+			SystemModel_c_test38550_c(java.util.UUID p38551) {
+				m_p38551 = p38551;
 			}
-			private java.util.UUID m_p37969;
+			private java.util.UUID m_p38551;
 			public boolean evaluate(Object candidate) {
 				SystemModel_c selected = (SystemModel_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSys_id().equals(m_p37969));
+				retval = (selected.getSys_id().equals(m_p38551));
 				return retval;
 			}
 		}
 
-		SystemModel_c[] objs37967 = SystemModel_c.SystemModelInstances(Ooaofooa
-				.getDefaultInstance(), new SystemModel_c_test37968_c(
+		SystemModel_c[] objs38549 = SystemModel_c.SystemModelInstances(Ooaofooa
+				.getDefaultInstance(), new SystemModel_c_test38550_c(
 				getSys_id()));
 
-		if (((objs37967.length) > 1)) {
+		if (((objs38549.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1244,14 +1246,14 @@ public class SystemDatatypePackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"System Datatype Package", //$NON-NLS-1$
 								"Consistency: Object: System Datatype Package: Association: 4400: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37967.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38549.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: System Datatype Package: Association: 4400: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37967.length), e);
+										+ Integer.toString(objs38549.length), e);
 			}
 			retval = false;
 

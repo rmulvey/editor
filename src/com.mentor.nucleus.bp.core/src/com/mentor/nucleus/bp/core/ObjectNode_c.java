@@ -145,7 +145,8 @@ public class ObjectNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class ObjectNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ObjectNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ObjectNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ObjectNode_c) elem).getId()))
@@ -408,33 +410,33 @@ public class ObjectNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1105
-		ActivityNode_c relInst56921 = (ActivityNode_c) baseRoot
+		ActivityNode_c relInst58470 = (ActivityNode_c) baseRoot
 				.getInstanceList(ActivityNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56921 == null) {
-			relInst56921 = (ActivityNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58470 == null) {
+			relInst58470 = (ActivityNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActivityNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56921 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58470 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56921 = (ActivityNode_c) roots[i].getInstanceList(
+				relInst58470 = (ActivityNode_c) roots[i].getInstanceList(
 						ActivityNode_c.class).get(new Object[]{m_id});
-				if (relInst56921 != null)
+				if (relInst58470 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56921 != null) {
+		if (relInst58470 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56921) && !isProxy())) {
-				relInst56921.relateAcrossR1105To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58470) && !isProxy())) {
+				relInst58470.relateAcrossR1105To(this, notifyChanges);
 			}
 		}
 
@@ -715,42 +717,42 @@ public class ObjectNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ObjectNode_c_test56923_c implements ClassQueryInterface_c {
-			ObjectNode_c_test56923_c(java.util.UUID p56924) {
-				m_p56924 = p56924;
+		class ObjectNode_c_test58472_c implements ClassQueryInterface_c {
+			ObjectNode_c_test58472_c(java.util.UUID p58473) {
+				m_p58473 = p58473;
 			}
-			private java.util.UUID m_p56924;
+			private java.util.UUID m_p58473;
 			public boolean evaluate(Object candidate) {
 				ObjectNode_c selected = (ObjectNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56924));
+				retval = (selected.getId().equals(m_p58473));
 				return retval;
 			}
 		}
 
-		ObjectNode_c[] objs56922 = ObjectNode_c.ObjectNodeInstances(modelRoot,
-				new ObjectNode_c_test56923_c(getId()));
+		ObjectNode_c[] objs58471 = ObjectNode_c.ObjectNodeInstances(modelRoot,
+				new ObjectNode_c_test58472_c(getId()));
 
-		if (((objs56922.length) == 0)) {
+		if (((objs58471.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Object Node", //$NON-NLS-1$
 								"Consistency: Object: Object Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56922.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58471.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Object Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56922.length), e);
+								+ Integer.toString(objs58471.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56922.length) > 1)) {
+		if (((objs58471.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -758,7 +760,7 @@ public class ObjectNode_c extends NonRootModelElement
 								"Object Node", //$NON-NLS-1$
 								"Consistency: Object: Object Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56922.length)
+										+ Integer.toString(objs58471.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -766,7 +768,7 @@ public class ObjectNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Object Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56922.length)
+										+ Integer.toString(objs58471.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -775,37 +777,37 @@ public class ObjectNode_c extends NonRootModelElement
 
 		// Object Node is a subtype in association: rel.Numb = 1105
 		// The supertype class is: Activity Node
-		class ActivityNode_c_test56928_c implements ClassQueryInterface_c {
-			ActivityNode_c_test56928_c(java.util.UUID p56929) {
-				m_p56929 = p56929;
+		class ActivityNode_c_test58477_c implements ClassQueryInterface_c {
+			ActivityNode_c_test58477_c(java.util.UUID p58478) {
+				m_p58478 = p58478;
 			}
-			private java.util.UUID m_p56929;
+			private java.util.UUID m_p58478;
 			public boolean evaluate(Object candidate) {
 				ActivityNode_c selected = (ActivityNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56929));
+				retval = (selected.getId().equals(m_p58478));
 				return retval;
 			}
 		}
 
-		ActivityNode_c[] objs56927 = ActivityNode_c.ActivityNodeInstances(
-				modelRoot, new ActivityNode_c_test56928_c(getId()));
+		ActivityNode_c[] objs58476 = ActivityNode_c.ActivityNodeInstances(
+				modelRoot, new ActivityNode_c_test58477_c(getId()));
 
-		if (((objs56927.length) != 1)) {
+		if (((objs58476.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Object Node", //$NON-NLS-1$
 								"Consistency: Object: Object Node: Association: 1105: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56927.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58476.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Object Node: Association: 1105: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56927.length), e);
+										+ Integer.toString(objs58476.length), e);
 			}
 			retval = false;
 

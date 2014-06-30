@@ -194,7 +194,7 @@ p_m_smspd_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -210,14 +210,14 @@ p_m_smspd_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID.equals(((Transition_c)elem).getTrans_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID.equals(((Transition_c)elem).getTrans_id())) && this != elem)) {
       	return false;
       }
       if (!getTrans_id().equals(((Transition_c)elem).getTrans_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((Transition_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((Transition_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((Transition_c)elem).getSm_id())) return false;
@@ -1875,7 +1875,7 @@ public static Transition_c [] getManySM_TXNsOnR2953(Instance_c target, boolean l
 	if (IsDestinedToStateMachineState == null) {          
       // R506
 	  instances = baseRoot.getInstanceList(StateMachineState_c.class);
-      StateMachineState_c relInst38258 = null;
+      StateMachineState_c relInst38840 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -1884,16 +1884,16 @@ public static Transition_c [] getManySM_TXNsOnR2953(Instance_c target, boolean l
            if (     source.getSmspd_idCachedValue().equals(m_smspd_id) && 
      source.getSmstt_id().equals(m_smstt_id) && 
      source.getSm_idCachedValue().equals(m_sm_id) 		){
-  		relInst38258 = source;
+  		relInst38840 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst38258 != null )
+      if ( relInst38840 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38258) && !isProxy())) {
-	      relInst38258.relateAcrossR506To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38840) && !isProxy())) {
+	      relInst38840.relateAcrossR506To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1901,29 +1901,29 @@ public static Transition_c [] getManySM_TXNsOnR2953(Instance_c target, boolean l
 
 	if (StateMachine == null) {          
       // R505
-      StateMachine_c relInst38259 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      StateMachine_c relInst38841 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38259 == null) {
-      			relInst38259 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      		if (relInst38841 == null) {
+      			relInst38841 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
       		}
-			if (relInst38259 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38841 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38259 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
-					if (relInst38259 != null)
+					relInst38841 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+					if (relInst38841 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38259 != null )
+      if ( relInst38841 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38259) && !isProxy())) {
-	      relInst38259.relateAcrossR505To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38841) && !isProxy())) {
+	      relInst38841.relateAcrossR505To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2340,57 +2340,57 @@ private static Transition_c findTransitionInstance(ModelRoot modelRoot, ClassQue
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Transition_c_test38261_c implements ClassQueryInterface_c
+    class Transition_c_test38843_c implements ClassQueryInterface_c
     {
-	  Transition_c_test38261_c( java.util.UUID            p38262, java.util.UUID            p38263 ) {
-	       m_p38262 = p38262; 
-m_p38263 = p38263;
+	  Transition_c_test38843_c( java.util.UUID            p38844, java.util.UUID            p38845 ) {
+	       m_p38844 = p38844; 
+m_p38845 = p38845;
 	  }
-	  private java.util.UUID             m_p38262; private java.util.UUID             m_p38263; 
+	  private java.util.UUID             m_p38844; private java.util.UUID             m_p38845; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Transition_c selected = (Transition_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTrans_id().equals(m_p38262)) & (selected.getSm_id().equals(m_p38263));
+	      retval = (selected.getTrans_id().equals(m_p38844)) & (selected.getSm_id().equals(m_p38845));
 	      return retval;
 	  }
     }
 
-    Transition_c [] objs38260 = 
-    Transition_c.TransitionInstances(modelRoot, new Transition_c_test38261_c(getTrans_id(), getSm_id())) ;
+    Transition_c [] objs38842 = 
+    Transition_c.TransitionInstances(modelRoot, new Transition_c_test38843_c(getTrans_id(), getSm_id())) ;
 
-    if ( (  (objs38260.length) == 0) )
+    if ( (  (objs38842.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38260.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38842.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38260.length )  , e); 
+          + Integer.toString( objs38842.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38260.length) > 1) )
+    if ( (  (objs38842.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38260.length )  + " Trans_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38842.length )  + " Trans_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38260.length )  + " Trans_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38842.length )  + " Trans_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2398,40 +2398,40 @@ m_p38263 = p38263;
 
           // Transition is a referring class in association: rel.Numb = 505
           // The participating class is: State Machine
-    class StateMachine_c_test38267_c implements ClassQueryInterface_c
+    class StateMachine_c_test38849_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test38267_c( java.util.UUID            p38268 ) {
-	  m_p38268 = p38268;
+	  StateMachine_c_test38849_c( java.util.UUID            p38850 ) {
+	  m_p38850 = p38850;
 	  }
-	  private java.util.UUID             m_p38268; 
+	  private java.util.UUID             m_p38850; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38268));
+	      retval = (selected.getSm_id().equals(m_p38850));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs38266 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38267_c(getSm_id())) ;
+    StateMachine_c [] objs38848 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38849_c(getSm_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38266.length) != 1) )
+    if ( (  (objs38848.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Association: 505: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38266.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38848.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Association: 505: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38266.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38848.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2439,42 +2439,42 @@ m_p38263 = p38263;
 
           // Transition is a referring class in association: rel.Numb = 506
           // The participating class is: State Machine State
-    class StateMachineState_c_test38270_c implements ClassQueryInterface_c
+    class StateMachineState_c_test38852_c implements ClassQueryInterface_c
     {
-	  StateMachineState_c_test38270_c( java.util.UUID            p38271, java.util.UUID            p38272, java.util.UUID            p38273 ) {
-	            m_p38271 = p38271; 
-m_p38272 = p38272; 
-m_p38273 = p38273;
+	  StateMachineState_c_test38852_c( java.util.UUID            p38853, java.util.UUID            p38854, java.util.UUID            p38855 ) {
+	            m_p38853 = p38853; 
+m_p38854 = p38854; 
+m_p38855 = p38855;
 	  }
-	  private java.util.UUID             m_p38271; private java.util.UUID             m_p38272; private java.util.UUID             m_p38273; 
+	  private java.util.UUID             m_p38853; private java.util.UUID             m_p38854; private java.util.UUID             m_p38855; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineState_c selected = (StateMachineState_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38271)) & (selected.getSmstt_id().equals(m_p38272)) & (selected.getSmspd_id().equals(m_p38273));
+	      retval = (selected.getSm_id().equals(m_p38853)) & (selected.getSmstt_id().equals(m_p38854)) & (selected.getSmspd_id().equals(m_p38855));
 	      return retval;
 	  }
     }
 
-    StateMachineState_c [] objs38269 = 
-    StateMachineState_c.StateMachineStateInstances(modelRoot, new StateMachineState_c_test38270_c(getSm_id(), getSmstt_id(), getSmspd_id())) ;
+    StateMachineState_c [] objs38851 = 
+    StateMachineState_c.StateMachineStateInstances(modelRoot, new StateMachineState_c_test38852_c(getSm_id(), getSmstt_id(), getSmspd_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38269.length) != 1) )
+    if ( (  (objs38851.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Association: 506: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38269.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38851.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Association: 506: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38269.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38851.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2482,121 +2482,121 @@ m_p38273 = p38273;
 
           // Transition is a participating class in association: rel.Numb = 530
              // Object: Transition Action Home
-    class TransitionActionHome_c_test38275_c implements ClassQueryInterface_c
+    class TransitionActionHome_c_test38857_c implements ClassQueryInterface_c
     {
-	  TransitionActionHome_c_test38275_c( java.util.UUID            p38276, java.util.UUID            p38277 ) {
-	       m_p38276 = p38276; 
-m_p38277 = p38277;
+	  TransitionActionHome_c_test38857_c( java.util.UUID            p38858, java.util.UUID            p38859 ) {
+	       m_p38858 = p38858; 
+m_p38859 = p38859;
 	  }
-	  private java.util.UUID             m_p38276; private java.util.UUID             m_p38277; 
+	  private java.util.UUID             m_p38858; private java.util.UUID             m_p38859; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      TransitionActionHome_c selected = (TransitionActionHome_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTrans_id().equals(m_p38276)) & (selected.getSm_id().equals(m_p38277));
+	      retval = (selected.getTrans_id().equals(m_p38858)) & (selected.getSm_id().equals(m_p38859));
 	      return retval;
 	  }
     }
 
-    TransitionActionHome_c [] objs38274 = 
-    TransitionActionHome_c.TransitionActionHomeInstances(modelRoot, new TransitionActionHome_c_test38275_c(getTrans_id(), getSm_id())) ;
+    TransitionActionHome_c [] objs38856 = 
+    TransitionActionHome_c.TransitionActionHomeInstances(modelRoot, new TransitionActionHome_c_test38857_c(getTrans_id(), getSm_id())) ;
 
-    if ( (  (objs38274.length) > 1) )
+    if ( (  (objs38856.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Association: 530: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38274.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38856.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Association: 530: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38274.length )  , e); 
+          + Integer.toString( objs38856.length )  , e); 
       }
       retval = false;
 
     }
 
           // Supertype: rel.Numb = 507
-    int objs38278 = 0;
+    int objs38860 = 0;
             // Subtype Object: No Event Transition
-    class NoEventTransition_c_test38279_c implements ClassQueryInterface_c
+    class NoEventTransition_c_test38861_c implements ClassQueryInterface_c
     {
-	  NoEventTransition_c_test38279_c( java.util.UUID            p38280, java.util.UUID            p38281 ) {
-	       m_p38280 = p38280; 
-m_p38281 = p38281;
+	  NoEventTransition_c_test38861_c( java.util.UUID            p38862, java.util.UUID            p38863 ) {
+	       m_p38862 = p38862; 
+m_p38863 = p38863;
 	  }
-	  private java.util.UUID             m_p38280; private java.util.UUID             m_p38281; 
+	  private java.util.UUID             m_p38862; private java.util.UUID             m_p38863; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      NoEventTransition_c selected = (NoEventTransition_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTrans_id().equals(m_p38280)) & (selected.getSm_id().equals(m_p38281));
+	      retval = (selected.getTrans_id().equals(m_p38862)) & (selected.getSm_id().equals(m_p38863));
 	      return retval;
 	  }
     }
 
-    NoEventTransition_c [] objs38282 = 
-    NoEventTransition_c.NoEventTransitionInstances(modelRoot, new NoEventTransition_c_test38279_c(getTrans_id(), getSm_id())) ;
+    NoEventTransition_c [] objs38864 = 
+    NoEventTransition_c.NoEventTransitionInstances(modelRoot, new NoEventTransition_c_test38861_c(getTrans_id(), getSm_id())) ;
  
-    objs38278 = objs38278 + objs38282.length;
+    objs38860 = objs38860 + objs38864.length;
             // Subtype Object: Creation Transition
-    class CreationTransition_c_test38283_c implements ClassQueryInterface_c
+    class CreationTransition_c_test38865_c implements ClassQueryInterface_c
     {
-	  CreationTransition_c_test38283_c( java.util.UUID            p38284, java.util.UUID            p38285 ) {
-	       m_p38284 = p38284; 
-m_p38285 = p38285;
+	  CreationTransition_c_test38865_c( java.util.UUID            p38866, java.util.UUID            p38867 ) {
+	       m_p38866 = p38866; 
+m_p38867 = p38867;
 	  }
-	  private java.util.UUID             m_p38284; private java.util.UUID             m_p38285; 
+	  private java.util.UUID             m_p38866; private java.util.UUID             m_p38867; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      CreationTransition_c selected = (CreationTransition_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTrans_id().equals(m_p38284)) & (selected.getSm_id().equals(m_p38285));
+	      retval = (selected.getTrans_id().equals(m_p38866)) & (selected.getSm_id().equals(m_p38867));
 	      return retval;
 	  }
     }
 
-    CreationTransition_c [] objs38286 = 
-    CreationTransition_c.CreationTransitionInstances(modelRoot, new CreationTransition_c_test38283_c(getTrans_id(), getSm_id())) ;
+    CreationTransition_c [] objs38868 = 
+    CreationTransition_c.CreationTransitionInstances(modelRoot, new CreationTransition_c_test38865_c(getTrans_id(), getSm_id())) ;
  
-    objs38278 = objs38278 + objs38286.length;
+    objs38860 = objs38860 + objs38868.length;
             // Subtype Object: New State Transition
-    class NewStateTransition_c_test38287_c implements ClassQueryInterface_c
+    class NewStateTransition_c_test38869_c implements ClassQueryInterface_c
     {
-	  NewStateTransition_c_test38287_c( java.util.UUID            p38288, java.util.UUID            p38289 ) {
-	       m_p38288 = p38288; 
-m_p38289 = p38289;
+	  NewStateTransition_c_test38869_c( java.util.UUID            p38870, java.util.UUID            p38871 ) {
+	       m_p38870 = p38870; 
+m_p38871 = p38871;
 	  }
-	  private java.util.UUID             m_p38288; private java.util.UUID             m_p38289; 
+	  private java.util.UUID             m_p38870; private java.util.UUID             m_p38871; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      NewStateTransition_c selected = (NewStateTransition_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTrans_id().equals(m_p38288)) & (selected.getSm_id().equals(m_p38289));
+	      retval = (selected.getTrans_id().equals(m_p38870)) & (selected.getSm_id().equals(m_p38871));
 	      return retval;
 	  }
     }
 
-    NewStateTransition_c [] objs38290 = 
-    NewStateTransition_c.NewStateTransitionInstances(modelRoot, new NewStateTransition_c_test38287_c(getTrans_id(), getSm_id())) ;
+    NewStateTransition_c [] objs38872 = 
+    NewStateTransition_c.NewStateTransitionInstances(modelRoot, new NewStateTransition_c_test38869_c(getTrans_id(), getSm_id())) ;
  
-    objs38278 = objs38278 + objs38290.length;
-    if ( objs38278 != 1 )
+    objs38860 = objs38860 + objs38872.length;
+    if ( objs38860 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transition", //$NON-NLS-1$
            "Consistency: Object: Transition: Association: 507: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38278 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38860 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transition: Association: 507: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38278 )  , e); 
+          + Integer.toString( objs38860 )  , e); 
       }
       retval = false;
 
@@ -2731,6 +2731,182 @@ return Style_c.None;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Transition", " Operation entered: Transition::Dispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+NewStateTransition_c v_nstxn = NewStateTransition_c.getOneSM_NSTXNOnR507(this);
+
+
+if ( (  (v_nstxn != null)) )
+{
+
+SignalEvent_c v_sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR503(StateEventMatrixEntry_c.getOneSM_SEMEOnR504(v_nstxn)));
+
+
+if ( (  (v_sig != null)) )
+{
+
+Removesignal() ;
+
+
+
+}
+
+else
+{
+
+Removeevent() ;
+
+
+
+}
+
+
+}
+
+CreationTransition_c v_crtxn = CreationTransition_c.getOneSM_CRTXNOnR507(this);
+
+
+if ( (  (v_crtxn != null)) )
+{
+
+Removeevent() ;
+
+
+this.unrelateAcrossR507From(v_crtxn);
+
+
+if (v_crtxn != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_crtxn.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_crtxn));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+NoEventTransition_c v_netxn = NoEventTransition_c.getOneSM_NETXNOnR507(this);
+
+
+if ( (  (v_netxn != null)) )
+{
+
+this.unrelateAcrossR507From(v_netxn);
+
+
+StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR508(v_netxn);
+
+
+if (v_netxn != null) {
+v_netxn.unrelateAcrossR508From(v_state);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_netxn != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_netxn.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_netxn));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+StateMachine_c v_sm = StateMachine_c.getOneSM_SMOnR505(this);
+
+
+this.unrelateAcrossR505From(v_sm);
+
+
+StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR506(this);
+
+
+this.unrelateAcrossR506From(v_state);
+
+
+Action_c v_act = Action_c.getOneSM_ACTOnR514(ActionHome_c.getOneSM_AHOnR513(TransitionActionHome_c.getOneSM_TAHOnR530(this)));
+
+
+if ( (  (v_act != null)) )
+{
+
+if (v_act != null) {
+v_act.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else
+{
+
+MealyActionHome_c v_meah = MealyActionHome_c.getOneSM_MEAHOnR512(this);
+
+
+if ( (  (v_meah != null)) )
+{
+
+MealyStateMachine_c v_mealy = MealyStateMachine_c.getOneSM_MEALYOnR512(v_meah);
+
+
+if (v_meah != null) {
+v_meah.unrelateAcrossR512From( v_mealy ) ; v_meah.unrelateAcrossR512From( this ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+
+}
+
+
+}
+
+Instance_c [] v_insts = Instance_c.getManyI_INSsOnR2953(this);
+
+
+Instance_c  v_inst = null;
+for ( int i37141 = 0; i37141 < v_insts.length; i37141++)
+{
+  v_inst = v_insts[i37141] ;
+
+this.unrelateAcrossR2953From(v_inst);
+
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End dispose
   public  java.util.UUID         Get_ooa_id()
@@ -2825,9 +3001,9 @@ StateMachineEvent_c [] v_events = StateMachineEvent_c.StateMachineEventInstances
 
 
 StateMachineEvent_c  v_event = null;
-for ( int i36572 = 0; i36572 < v_events.length; i36572++)
+for ( int i37142 = 0; i37142 < v_events.length; i37142++)
 {
-  v_event = v_events[i36572] ;
+  v_event = v_events[i37142] ;
 
 if ( (! v_event.getSm_id().equals(getSm_id()) && v_event.Isassignabletostatemachine(			    
 getSm_id()			    
@@ -2846,9 +3022,9 @@ v_numSupertypeEvents = v_numSupertypeEvents + 1 ;
 v_events = StateMachineEvent_c.getManySM_EVTsOnR502(v_stateMachine);
 
 
-for ( int i36573 = 0; i36573 < v_events.length; i36573++)
+for ( int i37143 = 0; i37143 < v_events.length; i37143++)
 {
-  v_event = v_events[i36573] ;
+  v_event = v_events[i37143] ;
 
 if ( (v_event.Isassignedinsubtypestatemachine(			    
 v_instanceStateMachine.getObj_id())) )
@@ -2873,9 +3049,9 @@ StateMachineEvent_c [] v_events = StateMachineEvent_c.getManySM_EVTsOnR502(v_sta
 
 
 StateMachineEvent_c  v_event = null;
-for ( int i36574 = 0; i36574 < v_events.length; i36574++)
+for ( int i37144 = 0; i37144 < v_events.length; i37144++)
 {
-  v_event = v_events[i36574] ;
+  v_event = v_events[i37144] ;
 
 SignalEvent_c v_sigEvt = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(v_event));
 
@@ -3061,9 +3237,9 @@ Provision_c [] v_provisions = Provision_c.getManyC_PsOnR4009(InterfaceReference_
 
 
 Provision_c  v_provision = null;
-for ( int i36575 = 0; i36575 < v_provisions.length; i36575++)
+for ( int i37145 = 0; i37145 < v_provisions.length; i37145++)
 {
-  v_provision = v_provisions[i36575] ;
+  v_provision = v_provisions[i37145] ;
 
 if ( v_provision.Hasavailablesignalsfor(			    
 getTrans_id()) )
@@ -3082,9 +3258,9 @@ Requirement_c [] v_requirements = Requirement_c.getManyC_RsOnR4009(InterfaceRefe
 
 
 Requirement_c  v_requirement = null;
-for ( int i36576 = 0; i36576 < v_requirements.length; i36576++)
+for ( int i37146 = 0; i37146 < v_requirements.length; i37146++)
 {
-  v_requirement = v_requirements[i36576] ;
+  v_requirement = v_requirements[i37146] ;
 
 if ( v_requirement.Hasavailablesignalsfor(			    
 getTrans_id()) )
@@ -3126,7 +3302,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Transition", " Operation entered: Transition::Addevent") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StateMachineEvent_test36785_c implements ClassQueryInterface_c
+  class StateMachineEvent_test37367_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3134,7 +3310,7 @@ return false;
 		return selected.getSmevt_id().equals(p_Eventid) && selected.getSm_id().equals(p_Eventstatemachineid) ;
 	}
   }
-StateMachineEvent_c v_event = StateMachineEvent_c.StateMachineEventInstance(modelRoot, new StateMachineEvent_test36785_c()) ;
+StateMachineEvent_c v_event = StateMachineEvent_c.StateMachineEventInstance(modelRoot, new StateMachineEvent_test37367_c()) ;
 
 
 StateMachine_c v_sm = StateMachine_c.getOneSM_SMOnR505(this);
@@ -3197,19 +3373,19 @@ Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modelev
   this.relateAcrossR507To(v_ns_txn);
 
 
-  class StateEventMatrixEntry_test36999_c implements ClassQueryInterface_c
+  class StateEventMatrixEntry_test37581_c implements ClassQueryInterface_c
   {
-	StateEventMatrixEntry_test36999_c( java.util.UUID         p37000 ) {
-		m_p37000 = p37000;
+	StateEventMatrixEntry_test37581_c( java.util.UUID         p37582 ) {
+		m_p37582 = p37582;
 	}
-	private java.util.UUID         m_p37000;
+	private java.util.UUID         m_p37582;
 	public boolean evaluate (Object candidate)
 	{
 		StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c)candidate;
-		return selected.getSmevt_id().equals(m_p37000) ;
+		return selected.getSmevt_id().equals(m_p37582) ;
 	}
   }
-StateEventMatrixEntry_c v_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test36999_c(v_event.getSmevt_id()));
+StateEventMatrixEntry_c v_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37581_c(v_event.getSmevt_id()));
 
 
 if (v_seme != null) {
@@ -3274,19 +3450,19 @@ else {
 }
 
 
-  class StateEventMatrixEntry_test37001_c implements ClassQueryInterface_c
+  class StateEventMatrixEntry_test37583_c implements ClassQueryInterface_c
   {
-	StateEventMatrixEntry_test37001_c( java.util.UUID         p37002 ) {
-		m_p37002 = p37002;
+	StateEventMatrixEntry_test37583_c( java.util.UUID         p37584 ) {
+		m_p37584 = p37584;
 	}
-	private java.util.UUID         m_p37002;
+	private java.util.UUID         m_p37584;
 	public boolean evaluate (Object candidate)
 	{
 		StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c)candidate;
-		return selected.getSmevt_id().equals(m_p37002) ;
+		return selected.getSmevt_id().equals(m_p37584) ;
 	}
   }
-StateEventMatrixEntry_c v_new_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37001_c(v_event.getSmevt_id()));
+StateEventMatrixEntry_c v_new_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37583_c(v_event.getSmevt_id()));
 
 
 if (v_new_seme != null) {
@@ -3557,19 +3733,19 @@ v_evt.getSmevt_id()
 ,v_sm.getSm_id()) ;
 
 
-  class StateMachineEvent_test37003_c implements ClassQueryInterface_c
+  class StateMachineEvent_test37585_c implements ClassQueryInterface_c
   {
-	StateMachineEvent_test37003_c( java.util.UUID         p37004 ) {
-		m_p37004 = p37004;
+	StateMachineEvent_test37585_c( java.util.UUID         p37586 ) {
+		m_p37586 = p37586;
 	}
-	private java.util.UUID         m_p37004;
+	private java.util.UUID         m_p37586;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineEvent_c selected = (StateMachineEvent_c)candidate;
-		return selected.getSmevt_id().equals(m_p37004) ;
+		return selected.getSmevt_id().equals(m_p37586) ;
 	}
   }
-StateMachineEvent_c v_existingEvt = StateMachineEvent_c.getOneSM_EVTOnR502(v_sm, new StateMachineEvent_test37003_c(v_eventID));
+StateMachineEvent_c v_existingEvt = StateMachineEvent_c.getOneSM_EVTOnR502(v_sm, new StateMachineEvent_test37585_c(v_eventID));
 
 
 if (   (v_existingEvt != null) )
@@ -3585,26 +3761,26 @@ String       v_sep = "" ;
 
 
 StateMachineEventDataItem_c  v_dataItem = null;
-for ( int i36577 = 0; i36577 < v_dataItems.length; i36577++)
+for ( int i37147 = 0; i37147 < v_dataItems.length; i37147++)
 {
-  v_dataItem = v_dataItems[i36577] ;
+  v_dataItem = v_dataItems[i37147] ;
 
 DataType_c v_pastedDIDatatype = DataType_c.getOneS_DTOnR524(v_dataItem);
 
 
-  class StateMachineEventDataItem_test37005_c implements ClassQueryInterface_c
+  class StateMachineEventDataItem_test37587_c implements ClassQueryInterface_c
   {
-	StateMachineEventDataItem_test37005_c( String       p37006 ) {
-		m_p37006 = p37006;
+	StateMachineEventDataItem_test37587_c( String       p37588 ) {
+		m_p37588 = p37588;
 	}
-	private String       m_p37006;
+	private String       m_p37588;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c)candidate;
-		return selected.getName().equals(m_p37006) ;
+		return selected.getName().equals(m_p37588) ;
 	}
   }
-StateMachineEventDataItem_c v_existingDataItem = StateMachineEventDataItem_c.getOneSM_EVTDIOnR532(v_existingEvt, new StateMachineEventDataItem_test37005_c(v_dataItem.getName()));
+StateMachineEventDataItem_c v_existingDataItem = StateMachineEventDataItem_c.getOneSM_EVTDIOnR532(v_existingEvt, new StateMachineEventDataItem_test37587_c(v_dataItem.getName()));
 
 
 DataType_c v_existingDIDatatype = DataType_c.getOneS_DTOnR524(v_existingDataItem);
@@ -3927,9 +4103,9 @@ else {
 
 
 StateMachineEventDataItem_c  v_dataItem = null;
-for ( int i36578 = 0; i36578 < v_dataItems.length; i36578++)
+for ( int i37148 = 0; i37148 < v_dataItems.length; i37148++)
 {
-  v_dataItem = v_dataItems[i36578] ;
+  v_dataItem = v_dataItems[i37148] ;
 
 if (v_dataItem != null) {
   v_dataItem.relateAcrossR516To(v_sm);
@@ -3954,23 +4130,23 @@ StateMachineState_c [] v_states = StateMachineState_c.getManySM_STATEsOnR501(v_s
 
 
 StateMachineState_c  v_state = null;
-for ( int i36579 = 0; i36579 < v_states.length; i36579++)
+for ( int i37149 = 0; i37149 < v_states.length; i37149++)
 {
-  v_state = v_states[i36579] ;
+  v_state = v_states[i37149] ;
 
-  class StateMachineEvent_test37007_c implements ClassQueryInterface_c
+  class StateMachineEvent_test37589_c implements ClassQueryInterface_c
   {
-	StateMachineEvent_test37007_c( String       p37008 ) {
-		m_p37008 = p37008;
+	StateMachineEvent_test37589_c( String       p37590 ) {
+		m_p37590 = p37590;
 	}
-	private String       m_p37008;
+	private String       m_p37590;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineEvent_c selected = (StateMachineEvent_c)candidate;
-		return selected.getDrv_lbl().equals(m_p37008) ;
+		return selected.getDrv_lbl().equals(m_p37590) ;
 	}
   }
-v_existingEvt = StateMachineEvent_c.getOneSM_EVTOnR525(SemEvent_c.getManySM_SEVTsOnR503(StateEventMatrixEntry_c.getManySM_SEMEsOnR503(v_state)), new StateMachineEvent_test37007_c(v_evt.getDrv_lbl()));
+v_existingEvt = StateMachineEvent_c.getOneSM_EVTOnR525(SemEvent_c.getManySM_SEVTsOnR503(StateEventMatrixEntry_c.getManySM_SEMEsOnR503(v_state)), new StateMachineEvent_test37589_c(v_evt.getDrv_lbl()));
 
 
 if (   (v_existingEvt == null) )
@@ -4127,9 +4303,9 @@ StateMachineEvent_c v_copiedEvt = StateMachineEvent_c.getOneSM_EVTOnR525(SemEven
 
 
 StateMachineEvent_c  v_evt = null;
-for ( int i36580 = 0; i36580 < v_events.length; i36580++)
+for ( int i37150 = 0; i37150 < v_events.length; i37150++)
 {
-  v_evt = v_events[i36580] ;
+  v_evt = v_events[i37150] ;
 
 if ( (v_copiedEvt == v_evt) )
 {
@@ -4200,7 +4376,7 @@ return Gd_c.Null_unique_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Transition", " Operation entered: Transition::Addsignal") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ExecutableProperty_test37009_c implements ClassQueryInterface_c
+  class ExecutableProperty_test37591_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4208,7 +4384,7 @@ return Gd_c.Null_unique_id();
 		return (selected.getId().equals(p_Signal_id)) ;
 	}
   }
-ExecutableProperty_c v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(StateMachine_c.getManySM_SMsOnR505(this)))))))))), new ExecutableProperty_test37009_c());
+ExecutableProperty_c v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4204(DomainAsComponent_c.getManyCN_DCsOnR4204(Domain_c.getManyS_DOMsOnR1(Subsystem_c.getManyS_SSsOnR2(ModelClass_c.getManyO_OBJsOnR519(ClassStateMachine_c.getManySM_ASMsOnR517(StateMachine_c.getManySM_SMsOnR505(this)))))))))), new ExecutableProperty_test37591_c());
 
 
 if ( (  (v_signal == null)) )
@@ -4232,7 +4408,7 @@ Component_c v_component = (Component_c) modelRoot.getInstanceList(Component_c.cl
 if ( (  (v_component != null)) )
 {
 
-  class ExecutableProperty_test37010_c implements ClassQueryInterface_c
+  class ExecutableProperty_test37592_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4240,7 +4416,7 @@ if ( (  (v_component != null)) )
 		return (selected.getId().equals(p_Signal_id)) ;
 	}
   }
-v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(v_component))), new ExecutableProperty_test37010_c());
+v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(v_component))), new ExecutableProperty_test37592_c());
 
 
 
@@ -4252,7 +4428,7 @@ v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012
 
 }
 
-  class RequiredExecutableProperty_test37011_c implements ClassQueryInterface_c
+  class RequiredExecutableProperty_test37593_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4260,13 +4436,13 @@ v_signal = ExecutableProperty_c.getOneC_EPOnR4003(Interface_c.getManyC_IsOnR4012
 		return (selected.getExecutableproperty_id().equals(p_Signal_id) && selected.getRequirement_id().equals(p_Interface_id)) ;
 	}
   }
-RequiredExecutableProperty_c v_reqEP = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_signal, new RequiredExecutableProperty_test37011_c());
+RequiredExecutableProperty_c v_reqEP = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_signal, new RequiredExecutableProperty_test37593_c());
 
 
 RequiredSignal_c v_reqSignal = RequiredSignal_c.getOneSPR_RSOnR4502(v_reqEP);
 
 
-  class ProvidedExecutableProperty_test37012_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test37594_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4274,7 +4450,7 @@ RequiredSignal_c v_reqSignal = RequiredSignal_c.getOneSPR_RSOnR4502(v_reqEP);
 		return (selected.getExecutableproperty_id().equals(p_Signal_id) && selected.getProvision_id().equals(p_Interface_id)) ;
 	}
   }
-ProvidedExecutableProperty_c v_provEP = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_signal, new ProvidedExecutableProperty_test37012_c());
+ProvidedExecutableProperty_c v_provEP = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_signal, new ProvidedExecutableProperty_test37594_c());
 
 
 ProvidedSignal_c v_provSignal = ProvidedSignal_c.getOneSPR_PSOnR4503(v_provEP);
@@ -4475,19 +4651,19 @@ Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modelev
   this.relateAcrossR507To(v_ns_txn);
 
 
-  class StateEventMatrixEntry_test37013_c implements ClassQueryInterface_c
+  class StateEventMatrixEntry_test37595_c implements ClassQueryInterface_c
   {
-	StateEventMatrixEntry_test37013_c( java.util.UUID         p37014 ) {
-		m_p37014 = p37014;
+	StateEventMatrixEntry_test37595_c( java.util.UUID         p37596 ) {
+		m_p37596 = p37596;
 	}
-	private java.util.UUID         m_p37014;
+	private java.util.UUID         m_p37596;
 	public boolean evaluate (Object candidate)
 	{
 		StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c)candidate;
-		return selected.getSmevt_id().equals(m_p37014) ;
+		return selected.getSmevt_id().equals(m_p37596) ;
 	}
   }
-StateEventMatrixEntry_c v_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37013_c(v_signalEvent.getSmevt_id()));
+StateEventMatrixEntry_c v_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37595_c(v_signalEvent.getSmevt_id()));
 
 
 if (v_seme != null) {
@@ -4552,19 +4728,19 @@ else {
 }
 
 
-  class StateEventMatrixEntry_test37015_c implements ClassQueryInterface_c
+  class StateEventMatrixEntry_test37597_c implements ClassQueryInterface_c
   {
-	StateEventMatrixEntry_test37015_c( java.util.UUID         p37016 ) {
-		m_p37016 = p37016;
+	StateEventMatrixEntry_test37597_c( java.util.UUID         p37598 ) {
+		m_p37598 = p37598;
 	}
-	private java.util.UUID         m_p37016;
+	private java.util.UUID         m_p37598;
 	public boolean evaluate (Object candidate)
 	{
 		StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c)candidate;
-		return selected.getSmevt_id().equals(m_p37016) ;
+		return selected.getSmevt_id().equals(m_p37598) ;
 	}
   }
-StateEventMatrixEntry_c v_new_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37015_c(v_signalEvent.getSmevt_id()));
+StateEventMatrixEntry_c v_new_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR503(v_orig_state, new StateEventMatrixEntry_test37597_c(v_signalEvent.getSmevt_id()));
 
 
 if (v_new_seme != null) {
@@ -4874,19 +5050,19 @@ v_proSignal.Converttoinstance())) )
 java.util.UUID         v_signalId = Locatematchingprovidedsignal() ;
 
 
-  class ProvidedSignal_test37017_c implements ClassQueryInterface_c
+  class ProvidedSignal_test37599_c implements ClassQueryInterface_c
   {
-	ProvidedSignal_test37017_c( java.util.UUID         p37018 ) {
-		m_p37018 = p37018;
+	ProvidedSignal_test37599_c( java.util.UUID         p37600 ) {
+		m_p37600 = p37600;
 	}
-	private java.util.UUID         m_p37018;
+	private java.util.UUID         m_p37600;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedSignal_c selected = (ProvidedSignal_c)candidate;
-		return (selected.getId().equals(m_p37018)) ;
+		return (selected.getId().equals(m_p37600)) ;
 	}
   }
-ProvidedSignal_c v_matchingSignal = ProvidedSignal_c.getOneSPR_PSOnR4503(ProvidedExecutableProperty_c.getManySPR_PEPsOnR4501(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new ProvidedSignal_test37017_c(v_signalId));
+ProvidedSignal_c v_matchingSignal = ProvidedSignal_c.getOneSPR_PSOnR4503(ProvidedExecutableProperty_c.getManySPR_PEPsOnR4501(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new ProvidedSignal_test37599_c(v_signalId));
 
 
 if ( (  (v_matchingSignal != null)) )
@@ -4912,19 +5088,19 @@ else
 v_signalId = Locatematchingrequiredsignal() ;
 
 
-  class RequiredSignal_test37019_c implements ClassQueryInterface_c
+  class RequiredSignal_test37601_c implements ClassQueryInterface_c
   {
-	RequiredSignal_test37019_c( java.util.UUID         p37020 ) {
-		m_p37020 = p37020;
+	RequiredSignal_test37601_c( java.util.UUID         p37602 ) {
+		m_p37602 = p37602;
 	}
-	private java.util.UUID         m_p37020;
+	private java.util.UUID         m_p37602;
 	public boolean evaluate (Object candidate)
 	{
 		RequiredSignal_c selected = (RequiredSignal_c)candidate;
-		return (selected.getId().equals(m_p37020)) ;
+		return (selected.getId().equals(m_p37602)) ;
 	}
   }
-RequiredSignal_c v_matchingReqSignal = RequiredSignal_c.getOneSPR_RSOnR4502(RequiredExecutableProperty_c.getManySPR_REPsOnR4500(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new RequiredSignal_test37019_c(v_signalId));
+RequiredSignal_c v_matchingReqSignal = RequiredSignal_c.getOneSPR_RSOnR4502(RequiredExecutableProperty_c.getManySPR_REPsOnR4500(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new RequiredSignal_test37601_c(v_signalId));
 
 
 if ( (  (v_matchingReqSignal != null)) )
@@ -4980,19 +5156,19 @@ v_reqSignal.Converttoinstance())) )
 java.util.UUID         v_signalId = Locatematchingrequiredsignal() ;
 
 
-  class RequiredSignal_test37021_c implements ClassQueryInterface_c
+  class RequiredSignal_test37603_c implements ClassQueryInterface_c
   {
-	RequiredSignal_test37021_c( java.util.UUID         p37022 ) {
-		m_p37022 = p37022;
+	RequiredSignal_test37603_c( java.util.UUID         p37604 ) {
+		m_p37604 = p37604;
 	}
-	private java.util.UUID         m_p37022;
+	private java.util.UUID         m_p37604;
 	public boolean evaluate (Object candidate)
 	{
 		RequiredSignal_c selected = (RequiredSignal_c)candidate;
-		return (selected.getId().equals(m_p37022)) ;
+		return (selected.getId().equals(m_p37604)) ;
 	}
   }
-RequiredSignal_c v_matchingSignal = RequiredSignal_c.getOneSPR_RSOnR4502(RequiredExecutableProperty_c.getManySPR_REPsOnR4500(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new RequiredSignal_test37021_c(v_signalId));
+RequiredSignal_c v_matchingSignal = RequiredSignal_c.getOneSPR_RSOnR4502(RequiredExecutableProperty_c.getManySPR_REPsOnR4500(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new RequiredSignal_test37603_c(v_signalId));
 
 
 if ( (  (v_matchingSignal != null)) )
@@ -5018,19 +5194,19 @@ else
 v_signalId = Locatematchingprovidedsignal() ;
 
 
-  class ProvidedSignal_test37023_c implements ClassQueryInterface_c
+  class ProvidedSignal_test37605_c implements ClassQueryInterface_c
   {
-	ProvidedSignal_test37023_c( java.util.UUID         p37024 ) {
-		m_p37024 = p37024;
+	ProvidedSignal_test37605_c( java.util.UUID         p37606 ) {
+		m_p37606 = p37606;
 	}
-	private java.util.UUID         m_p37024;
+	private java.util.UUID         m_p37606;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedSignal_c selected = (ProvidedSignal_c)candidate;
-		return (selected.getId().equals(m_p37024)) ;
+		return (selected.getId().equals(m_p37606)) ;
 	}
   }
-ProvidedSignal_c v_matchingProSignal = ProvidedSignal_c.getOneSPR_PSOnR4503(ProvidedExecutableProperty_c.getManySPR_PEPsOnR4501(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new ProvidedSignal_test37023_c(v_signalId));
+ProvidedSignal_c v_matchingProSignal = ProvidedSignal_c.getOneSPR_PSOnR4503(ProvidedExecutableProperty_c.getManySPR_PEPsOnR4501(ExecutableProperty_c.getManyC_EPsOnR4003(v_interfaces)), new ProvidedSignal_test37605_c(v_signalId));
 
 
 if ( (  (v_matchingProSignal != null)) )
@@ -5247,9 +5423,9 @@ ProvidedSignal_c [] v_existingProSignals = ProvidedSignal_c.getManySPR_PSsOnR450
 
 
 ProvidedSignal_c  v_existingSignal = null;
-for ( int i36581 = 0; i36581 < v_existingProSignals.length; i36581++)
+for ( int i37151 = 0; i37151 < v_existingProSignals.length; i37151++)
 {
-  v_existingSignal = v_existingProSignals[i36581] ;
+  v_existingSignal = v_existingProSignals[i37151] ;
 
 InterfaceSignal_c v_existingAS = InterfaceSignal_c.getOneC_ASOnR4004(ExecutableProperty_c.getOneC_EPOnR4501(ProvidedExecutableProperty_c.getOneSPR_PEPOnR4503(v_existingSignal)));
 
@@ -5267,9 +5443,9 @@ boolean      v_matchNotFound = false ;
 
 
 PropertyParameter_c  v_testParm = null;
-for ( int i36582 = 0; i36582 < v_testParameters.length; i36582++)
+for ( int i37152 = 0; i37152 < v_testParameters.length; i37152++)
 {
-  v_testParm = v_testParameters[i36582] ;
+  v_testParm = v_testParameters[i37152] ;
 
 int          v_internalIndex = 0 ;
 
@@ -5278,9 +5454,9 @@ DataType_c v_testType = DataType_c.getOneS_DTOnR4007(v_testParm);
 
 
 PropertyParameter_c  v_parameter = null;
-for ( int i36583 = 0; i36583 < v_parameters.length; i36583++)
+for ( int i37153 = 0; i37153 < v_parameters.length; i37153++)
 {
-  v_parameter = v_parameters[i36583] ;
+  v_parameter = v_parameters[i37153] ;
 
 if ( (v_internalIndex == v_index) )
 {
@@ -5505,9 +5681,9 @@ RequiredSignal_c [] v_existingReqSignals = RequiredSignal_c.getManySPR_RSsOnR450
 
 
 RequiredSignal_c  v_existingSignal = null;
-for ( int i36584 = 0; i36584 < v_existingReqSignals.length; i36584++)
+for ( int i37154 = 0; i37154 < v_existingReqSignals.length; i37154++)
 {
-  v_existingSignal = v_existingReqSignals[i36584] ;
+  v_existingSignal = v_existingReqSignals[i37154] ;
 
 InterfaceSignal_c v_existingSigAS = InterfaceSignal_c.getOneC_ASOnR4004(ExecutableProperty_c.getOneC_EPOnR4500(RequiredExecutableProperty_c.getOneSPR_REPOnR4502(v_existingSignal)));
 
@@ -5525,9 +5701,9 @@ boolean      v_matchNotFound = false ;
 
 
 PropertyParameter_c  v_testParm = null;
-for ( int i36585 = 0; i36585 < v_testParameters.length; i36585++)
+for ( int i37155 = 0; i37155 < v_testParameters.length; i37155++)
 {
-  v_testParm = v_testParameters[i36585] ;
+  v_testParm = v_testParameters[i37155] ;
 
 int          v_internalIndex = 0 ;
 
@@ -5536,9 +5712,9 @@ DataType_c v_testType = DataType_c.getOneS_DTOnR4007(v_testParm);
 
 
 PropertyParameter_c  v_parameter = null;
-for ( int i36586 = 0; i36586 < v_parameters.length; i36586++)
+for ( int i37156 = 0; i37156 < v_parameters.length; i37156++)
 {
-  v_parameter = v_parameters[i36586] ;
+  v_parameter = v_parameters[i37156] ;
 
 if ( (v_internalIndex == v_index) )
 {
@@ -5715,6 +5891,220 @@ return v_result;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Transition", " Operation entered: Transition::Mergedispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+NewStateTransition_c v_nstxn = NewStateTransition_c.getOneSM_NSTXNOnR507(this);
+
+
+if ( (  (v_nstxn != null)) )
+{
+
+if (v_nstxn != null) {
+v_nstxn.unrelateAcrossR507From(this);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+StateEventMatrixEntry_c v_seme = StateEventMatrixEntry_c.getOneSM_SEMEOnR504(v_nstxn);
+
+
+if ( (  (v_seme != null)) )
+{
+
+if (v_nstxn != null) {
+v_nstxn.unrelateAcrossR504From(v_seme);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+if (v_nstxn != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_nstxn.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_nstxn));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+CreationTransition_c v_crtxn = CreationTransition_c.getOneSM_CRTXNOnR507(this);
+
+
+if ( (  (v_crtxn != null)) )
+{
+
+this.unrelateAcrossR507From(v_crtxn);
+
+
+LocalEvent_c v_evt = LocalEvent_c.getOneSM_LEVTOnR509(v_crtxn);
+
+
+if ( (  (v_evt != null)) )
+{
+
+if (v_evt != null) {
+v_evt.unrelateAcrossR509From(v_crtxn);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+if (v_crtxn != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_crtxn.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_crtxn));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+NoEventTransition_c v_netxn = NoEventTransition_c.getOneSM_NETXNOnR507(this);
+
+
+if ( (  (v_netxn != null)) )
+{
+
+this.unrelateAcrossR507From(v_netxn);
+
+
+StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR508(v_netxn);
+
+
+if (v_netxn != null) {
+v_netxn.unrelateAcrossR508From(v_state);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_netxn != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_netxn.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_netxn));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+StateMachine_c v_sm = StateMachine_c.getOneSM_SMOnR505(this);
+
+
+this.unrelateAcrossR505From(v_sm);
+
+
+StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR506(this);
+
+
+this.unrelateAcrossR506From(v_state);
+
+
+Action_c v_act = Action_c.getOneSM_ACTOnR514(ActionHome_c.getOneSM_AHOnR513(TransitionActionHome_c.getOneSM_TAHOnR530(this)));
+
+
+if ( (  (v_act != null)) )
+{
+
+if (v_act != null) {
+v_act.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else
+{
+
+MealyActionHome_c v_meah = MealyActionHome_c.getOneSM_MEAHOnR512(this);
+
+
+if ( (  (v_meah != null)) )
+{
+
+MealyStateMachine_c v_mealy = MealyStateMachine_c.getOneSM_MEALYOnR512(v_meah);
+
+
+if (v_meah != null) {
+v_meah.unrelateAcrossR512From( v_mealy ) ; v_meah.unrelateAcrossR512From( this ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+
+}
+
+
+}
+
+Instance_c [] v_insts = Instance_c.getManyI_INSsOnR2953(this);
+
+
+Instance_c  v_inst = null;
+for ( int i37157 = 0; i37157 < v_insts.length; i37157++)
+{
+  v_inst = v_insts[i37157] ;
+
+this.unrelateAcrossR2953From(v_inst);
+
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End mergeDispose
   public  void Checkintegrity()
@@ -5752,9 +6142,9 @@ Transition_c [] v_transitions = Transition_c.getManySM_TXNsOnR507(NewStateTransi
 
 
 Transition_c  v_transition = null;
-for ( int i36587 = 0; i36587 < v_transitions.length; i36587++)
+for ( int i37158 = 0; i37158 < v_transitions.length; i37158++)
 {
-  v_transition = v_transitions[i36587] ;
+  v_transition = v_transitions[i37158] ;
 
 SemEvent_c v_selfEvt = SemEvent_c.getOneSM_SEVTOnR503(StateEventMatrixEntry_c.getOneSM_SEMEOnR504(NewStateTransition_c.getOneSM_NSTXNOnR507(this)));
 
@@ -5828,21 +6218,21 @@ SemEvent_c v_event = SemEvent_c.getOneSM_SEVTOnR503(v_seme);
 StateMachineState_c v_state = StateMachineState_c.getOneSM_STATEOnR503(v_seme);
 
 
-  class StateEventMatrixEntry_test37025_c implements ClassQueryInterface_c
+  class StateEventMatrixEntry_test37607_c implements ClassQueryInterface_c
   {
-	StateEventMatrixEntry_test37025_c( java.util.UUID         p37026, java.util.UUID         p37027 ) {
-		m_p37026 = p37026;
-				m_p37027 = p37027;
+	StateEventMatrixEntry_test37607_c( java.util.UUID         p37608, java.util.UUID         p37609 ) {
+		m_p37608 = p37608;
+				m_p37609 = p37609;
 	}
-	private java.util.UUID         m_p37026;
-		private java.util.UUID         m_p37027;
+	private java.util.UUID         m_p37608;
+		private java.util.UUID         m_p37609;
 	public boolean evaluate (Object candidate)
 	{
 		StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c)candidate;
-		return (selected.getSmevt_id().equals(m_p37026) && selected.getSmstt_id().equals(m_p37027)) ;
+		return (selected.getSmevt_id().equals(m_p37608) && selected.getSmstt_id().equals(m_p37609)) ;
 	}
   }
-StateEventMatrixEntry_c [] v_existing = StateEventMatrixEntry_c.getManySM_SEMEsOnR503(v_event, new StateEventMatrixEntry_test37025_c(v_event.getSmevt_id(), v_state.getSmstt_id()));
+StateEventMatrixEntry_c [] v_existing = StateEventMatrixEntry_c.getManySM_SEMEsOnR503(v_event, new StateEventMatrixEntry_test37607_c(v_event.getSmevt_id(), v_state.getSmstt_id()));
 
 
 if ( (  (v_existing.length) == 1) )
@@ -5964,6 +6354,18 @@ return false;
 
 
    } // End mergeStateMachineEventAssignedLocalEvent
+  public  String       Getdescription()
+  {
+      Ooaofooa.log.println(ILogger.OPERATION, "Transition", " Operation entered: Transition::Getdescription") ; 
+               final ModelRoot modelRoot = getModelRoot();
+Action_c v_action = Action_c.getOneSM_ACTOnR514(ActionHome_c.getOneSM_AHOnR513(TransitionActionHome_c.getOneSM_TAHOnR530(this)));
+
+
+return v_action.getDescrip();
+
+
+
+   } // End getDescription
 
   // end transform functions
 

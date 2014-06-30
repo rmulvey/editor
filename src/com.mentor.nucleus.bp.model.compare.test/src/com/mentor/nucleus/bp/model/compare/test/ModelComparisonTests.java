@@ -103,7 +103,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Include_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Include_c.IncludeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -121,7 +121,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Generalization_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Generalization_c.GeneralizationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -139,7 +139,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Extend_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Extend_c.ExtendInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -157,7 +157,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		BinaryAssociation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = BinaryAssociation_c.BinaryAssociationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -175,7 +175,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReferentialAttribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReferentialAttribute_c.ReferentialAttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -193,7 +193,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		OperationParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = OperationParameter_c.OperationParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -211,7 +211,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		OperationParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = OperationParameter_c.OperationParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -229,7 +229,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		OperationParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = OperationParameter_c.OperationParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -247,7 +247,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		OperationParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = OperationParameter_c.OperationParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -265,7 +265,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Operation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Operation_c.OperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -283,7 +283,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Operation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Operation_c.OperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -301,7 +301,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Operation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Operation_c.OperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -319,7 +319,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Operation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Operation_c.OperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -337,7 +337,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Operation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Operation_c.OperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -349,31 +349,13 @@ public class ModelComparisonTests extends BaseTest {
 	}
 
     /**
-     *  Test modification of attribute: Model Class:Name
-     */
-	public void testAttributeValueModificationModel_ClassName() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		ModelClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
-		for(Ooaofooa root : roots) {
-			instance = ModelClass_c.ModelClassInstance(root);
-     		if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}
-		assertNotNull("Unable to locate test element for: Model Class::Name", instance);
-		performTest(instance, "setName", "Model Class::Name", instance.getName() + modifyString);
-	}
-
-    /**
      *  Test modification of attribute: Model Class:Numb
      */
 	public void testAttributeValueModificationModel_ClassNumb() throws CoreException, SecurityException, IllegalArgumentException,
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ModelClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ModelClass_c.ModelClassInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -391,7 +373,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ModelClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ModelClass_c.ModelClassInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -409,7 +391,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ModelClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ModelClass_c.ModelClassInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -427,7 +409,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DerivedBaseAttribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DerivedBaseAttribute_c.DerivedBaseAttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -445,7 +427,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AttributeReferenceInClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AttributeReferenceInClass_c.AttributeReferenceInClassInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -463,7 +445,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AttributeReferenceInClass_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AttributeReferenceInClass_c.AttributeReferenceInClassInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -481,7 +463,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -499,7 +481,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -517,7 +499,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -535,7 +517,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -553,7 +535,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -571,7 +553,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Attribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Attribute_c.AttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -589,7 +571,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineState_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineState_c.StateMachineStateInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -607,7 +589,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineState_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineState_c.StateMachineStateInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -625,7 +607,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineState_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineState_c.StateMachineStateInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -643,7 +625,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEventDataItem_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEventDataItem_c.StateMachineEventDataItemInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -661,7 +643,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEventDataItem_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEventDataItem_c.StateMachineEventDataItemInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -679,7 +661,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEventDataItem_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEventDataItem_c.StateMachineEventDataItemInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -697,7 +679,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEvent_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEvent_c.StateMachineEventInstance(root);
 			SignalEvent_c sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(instance));
@@ -716,7 +698,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEvent_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEvent_c.StateMachineEventInstance(root);
 			SignalEvent_c sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(instance));
@@ -735,7 +717,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEvent_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEvent_c.StateMachineEventInstance(root);
 			SignalEvent_c sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(instance));
@@ -754,7 +736,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEvent_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEvent_c.StateMachineEventInstance(root);
 			SignalEvent_c sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(instance));
@@ -773,7 +755,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StateMachineEvent_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StateMachineEvent_c.StateMachineEventInstance(root);
 			SignalEvent_c sig = SignalEvent_c.getOneSM_SGEVTOnR526(SemEvent_c.getOneSM_SEVTOnR525(instance));
@@ -792,7 +774,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		EventIgnored_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = EventIgnored_c.EventIgnoredInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -810,7 +792,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CantHappen_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CantHappen_c.CantHappenInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -828,7 +810,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Action_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Action_c.ActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -846,7 +828,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Action_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Action_c.ActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -864,7 +846,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PackageableElement_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PackageableElement_c.PackageableElementInstance(root);
      		instance = null;
@@ -887,7 +869,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -905,7 +887,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -923,7 +905,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -941,7 +923,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -959,7 +941,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -977,7 +959,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SynchronousMessage_c.SynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -995,7 +977,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1013,7 +995,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1031,7 +1013,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1049,7 +1031,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1067,7 +1049,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1085,7 +1067,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ReturnMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ReturnMessage_c.ReturnMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1103,7 +1085,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		MessageArgument_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = MessageArgument_c.MessageArgumentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1121,7 +1103,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		MessageArgument_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = MessageArgument_c.MessageArgumentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1139,7 +1121,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		MessageArgument_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = MessageArgument_c.MessageArgumentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1157,7 +1139,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1175,7 +1157,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1193,7 +1175,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1211,7 +1193,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1229,7 +1211,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1247,7 +1229,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AsynchronousMessage_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AsynchronousMessage_c.AsynchronousMessageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1265,7 +1247,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		UseCaseParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = UseCaseParticipant_c.UseCaseParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1283,7 +1265,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		UseCaseParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = UseCaseParticipant_c.UseCaseParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1301,7 +1283,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		TimingMark_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = TimingMark_c.TimingMarkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1319,7 +1301,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		TimingMark_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = TimingMark_c.TimingMarkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1337,7 +1319,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		TimeSpan_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = TimeSpan_c.TimeSpanInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1355,7 +1337,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		TimeSpan_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = TimeSpan_c.TimeSpanInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1373,7 +1355,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PackageParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PackageParticipant_c.PackageParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1391,7 +1373,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PackageParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PackageParticipant_c.PackageParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1409,7 +1391,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Lifespan_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Lifespan_c.LifespanInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1427,7 +1409,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Lifespan_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Lifespan_c.LifespanInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1445,7 +1427,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InstanceAttributeValue_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InstanceAttributeValue_c.InstanceAttributeValueInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1463,7 +1445,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InstanceAttributeValue_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InstanceAttributeValue_c.InstanceAttributeValueInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1481,7 +1463,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InstanceAttributeValue_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InstanceAttributeValue_c.InstanceAttributeValueInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1499,7 +1481,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntityParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntityParticipant_c.ExternalEntityParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1517,7 +1499,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntityParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntityParticipant_c.ExternalEntityParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1535,7 +1517,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ComponentParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ComponentParticipant_c.ComponentParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1553,7 +1535,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ComponentParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ComponentParticipant_c.ComponentParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1571,7 +1553,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassParticipantAttribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassParticipantAttribute_c.ClassParticipantAttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1589,7 +1571,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassParticipantAttribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassParticipantAttribute_c.ClassParticipantAttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1607,7 +1589,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassParticipantAttribute_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassParticipantAttribute_c.ClassParticipantAttributeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1625,7 +1607,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassParticipant_c.ClassParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1643,7 +1625,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassParticipant_c.ClassParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1661,7 +1643,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassInstanceParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassInstanceParticipant_c.ClassInstanceParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1679,7 +1661,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassInstanceParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassInstanceParticipant_c.ClassInstanceParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1697,7 +1679,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassInstanceParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassInstanceParticipant_c.ClassInstanceParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1715,7 +1697,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActorParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActorParticipant_c.ActorParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1733,7 +1715,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActorParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActorParticipant_c.ActorParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1745,31 +1727,13 @@ public class ModelComparisonTests extends BaseTest {
 	}
 
     /**
-     *  Test modification of attribute: Package:Name
-     */
-	public void testAttributeValueModificationPackageName() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Package_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
-		for(Ooaofooa root : roots) {
-			instance = Package_c.PackageInstance(root);
-     		if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}
-		assertNotNull("Unable to locate test element for: Package::Name", instance);
-		performTest(instance, "setName", "Package::Name", instance.getName() + modifyString);
-	}
-
-    /**
      *  Test modification of attribute: Package:Descrip
      */
 	public void testAttributeValueModificationPackageDescrip() throws CoreException, SecurityException, IllegalArgumentException,
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Package_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Package_c.PackageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1787,7 +1751,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Package_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Package_c.PackageInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1805,7 +1769,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StructureMember_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StructureMember_c.StructureMemberInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1823,7 +1787,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StructureMember_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StructureMember_c.StructureMemberInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1841,7 +1805,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		StructureMember_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = StructureMember_c.StructureMemberInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1859,7 +1823,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		FunctionParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = FunctionParameter_c.FunctionParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1877,7 +1841,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		FunctionParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = FunctionParameter_c.FunctionParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1895,7 +1859,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		FunctionParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = FunctionParameter_c.FunctionParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1913,7 +1877,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		FunctionParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = FunctionParameter_c.FunctionParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1931,7 +1895,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Function_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Function_c.FunctionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1949,7 +1913,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Function_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Function_c.FunctionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1967,7 +1931,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Function_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Function_c.FunctionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -1985,7 +1949,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Function_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Function_c.FunctionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2003,7 +1967,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntity_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntity_c.ExternalEntityInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2021,7 +1985,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntity_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntity_c.ExternalEntityInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2039,7 +2003,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntity_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntity_c.ExternalEntityInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2057,7 +2021,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntity_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntity_c.ExternalEntityInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2075,7 +2039,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ExternalEntity_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ExternalEntity_c.ExternalEntityInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2093,7 +2057,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Enumerator_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Enumerator_c.EnumeratorInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2111,7 +2075,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Enumerator_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Enumerator_c.EnumeratorInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2129,7 +2093,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DataType_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DataType_c.DataTypeInstance(root);
 			InstanceReferenceDataType_c irdt = InstanceReferenceDataType_c.getOneS_IRDTOnR17(instance);
@@ -2152,7 +2116,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DataType_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DataType_c.DataTypeInstance(root);
 			InstanceReferenceDataType_c irdt = InstanceReferenceDataType_c.getOneS_IRDTOnR17(instance);
@@ -2175,7 +2139,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DataType_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DataType_c.DataTypeInstance(root);
 			InstanceReferenceDataType_c irdt = InstanceReferenceDataType_c.getOneS_IRDTOnR17(instance);
@@ -2198,7 +2162,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		BridgeParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = BridgeParameter_c.BridgeParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2216,7 +2180,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		BridgeParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = BridgeParameter_c.BridgeParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2234,7 +2198,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		BridgeParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = BridgeParameter_c.BridgeParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2252,7 +2216,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		BridgeParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = BridgeParameter_c.BridgeParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2270,7 +2234,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Bridge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Bridge_c.BridgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2288,7 +2252,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Bridge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Bridge_c.BridgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2306,7 +2270,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Bridge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Bridge_c.BridgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2324,7 +2288,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Bridge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Bridge_c.BridgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2342,7 +2306,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SymbolicConstant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SymbolicConstant_c.SymbolicConstantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2360,7 +2324,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SymbolicConstant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SymbolicConstant_c.SymbolicConstantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2378,7 +2342,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		LiteralSymbolicConstant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = LiteralSymbolicConstant_c.LiteralSymbolicConstantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2396,7 +2360,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ConstantSpecification_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ConstantSpecification_c.ConstantSpecificationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2414,7 +2378,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ConstantSpecification_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ConstantSpecification_c.ConstantSpecificationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2432,7 +2396,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		RequiredSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = RequiredSignal_c.RequiredSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2450,7 +2414,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		RequiredOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = RequiredOperation_c.RequiredOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2468,7 +2432,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ProvidedSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ProvidedSignal_c.ProvidedSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2486,7 +2450,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ProvidedOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ProvidedOperation_c.ProvidedOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2504,7 +2468,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Satisfaction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Satisfaction_c.SatisfactionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2522,7 +2486,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Requirement_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Requirement_c.RequirementInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2540,7 +2504,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Requirement_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Requirement_c.RequirementInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2558,7 +2522,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Provision_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Provision_c.ProvisionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2576,7 +2540,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Provision_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Provision_c.ProvisionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2594,7 +2558,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PropertyParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PropertyParameter_c.PropertyParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2612,7 +2576,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PropertyParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PropertyParameter_c.PropertyParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2630,7 +2594,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PropertyParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PropertyParameter_c.PropertyParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2648,7 +2612,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		PropertyParameter_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = PropertyParameter_c.PropertyParameterInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2666,7 +2630,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Port_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Port_c.PortInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2684,7 +2648,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Port_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Port_c.PortInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2702,7 +2666,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Port_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Port_c.PortInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2720,7 +2684,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceSignal_c.InterfaceSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2738,7 +2702,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceSignal_c.InterfaceSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2756,7 +2720,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceSignal_c.InterfaceSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2774,7 +2738,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceOperation_c.InterfaceOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2792,7 +2756,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceOperation_c.InterfaceOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2810,7 +2774,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceOperation_c.InterfaceOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2828,7 +2792,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InterfaceOperation_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InterfaceOperation_c.InterfaceOperationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2840,31 +2804,13 @@ public class ModelComparisonTests extends BaseTest {
 	}
 
     /**
-     *  Test modification of attribute: Interface:Name
-     */
-	public void testAttributeValueModificationInterfaceName() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Interface_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
-		for(Ooaofooa root : roots) {
-			instance = Interface_c.InterfaceInstance(root);
-     		if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}
-		assertNotNull("Unable to locate test element for: Interface::Name", instance);
-		performTest(instance, "setName", "Interface::Name", instance.getName() + modifyString);
-	}
-
-    /**
      *  Test modification of attribute: Interface:Descrip
      */
 	public void testAttributeValueModificationInterfaceDescrip() throws CoreException, SecurityException, IllegalArgumentException,
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Interface_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Interface_c.InterfaceInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2882,7 +2828,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ImportedRequirement_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ImportedRequirement_c.ImportedRequirementInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2900,7 +2846,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ImportedProvision_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ImportedProvision_c.ImportedProvisionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2918,7 +2864,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ComponentReference_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ComponentReference_c.ComponentReferenceInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2936,7 +2882,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ComponentReference_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ComponentReference_c.ComponentReferenceInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2954,7 +2900,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ComponentReference_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ComponentReference_c.ComponentReferenceInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -2966,31 +2912,13 @@ public class ModelComparisonTests extends BaseTest {
 	}
 
     /**
-     *  Test modification of attribute: Component:Name
-     */
-	public void testAttributeValueModificationComponentName() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Component_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
-		for(Ooaofooa root : roots) {
-			instance = Component_c.ComponentInstance(root);
-     		if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}
-		assertNotNull("Unable to locate test element for: Component::Name", instance);
-		performTest(instance, "setName", "Component::Name", instance.getName() + modifyString);
-	}
-
-    /**
      *  Test modification of attribute: Component:Descrip
      */
 	public void testAttributeValueModificationComponentDescrip() throws CoreException, SecurityException, IllegalArgumentException,
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Component_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Component_c.ComponentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3008,7 +2936,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Component_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Component_c.ComponentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3026,7 +2954,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Component_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Component_c.ComponentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3044,7 +2972,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Component_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Component_c.ComponentInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3062,7 +2990,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3080,7 +3008,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3098,7 +3026,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3116,7 +3044,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3134,7 +3062,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3152,7 +3080,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		CommunicationLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = CommunicationLink_c.CommunicationLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3170,7 +3098,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3188,7 +3116,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3206,7 +3134,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleParticipant_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3224,7 +3152,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleFormalizer_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleFormalizer_c.ClassAsSimpleFormalizerInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3242,7 +3170,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleFormalizer_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleFormalizer_c.ClassAsSimpleFormalizerInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3260,7 +3188,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsSimpleFormalizer_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsSimpleFormalizer_c.ClassAsSimpleFormalizerInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3278,7 +3206,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsLink_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsLink_c.ClassAsLinkInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3296,7 +3224,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOtherSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOtherSide_c.ClassAsAssociatedOtherSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3314,7 +3242,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOtherSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOtherSide_c.ClassAsAssociatedOtherSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3332,7 +3260,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOtherSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOtherSide_c.ClassAsAssociatedOtherSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3350,7 +3278,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOneSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOneSide_c.ClassAsAssociatedOneSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3368,7 +3296,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOneSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOneSide_c.ClassAsAssociatedOneSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3386,7 +3314,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ClassAsAssociatedOneSide_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ClassAsAssociatedOneSide_c.ClassAsAssociatedOneSideInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3404,7 +3332,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Association_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Association_c.AssociationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3422,7 +3350,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		Association_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = Association_c.AssociationInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3440,7 +3368,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SendSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SendSignal_c.SendSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3458,7 +3386,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		SendSignal_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = SendSignal_c.SendSignalInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3476,7 +3404,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ObjectNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ObjectNode_c.ObjectNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3494,7 +3422,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ObjectNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ObjectNode_c.ObjectNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3512,7 +3440,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		InitialNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = InitialNode_c.InitialNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3530,7 +3458,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ForkJoinNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ForkJoinNode_c.ForkJoinNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3548,7 +3476,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ForkJoinNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ForkJoinNode_c.ForkJoinNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3566,7 +3494,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		FlowFinalNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = FlowFinalNode_c.FlowFinalNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3584,7 +3512,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DecisionMergeNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DecisionMergeNode_c.DecisionMergeNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3602,7 +3530,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		DecisionMergeNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = DecisionMergeNode_c.DecisionMergeNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3620,7 +3548,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityPartition_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityPartition_c.ActivityPartitionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3638,7 +3566,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityPartition_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityPartition_c.ActivityPartitionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3656,7 +3584,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityFinalNode_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityFinalNode_c.ActivityFinalNodeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3674,7 +3602,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityEdge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityEdge_c.ActivityEdgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3692,7 +3620,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityEdge_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityEdge_c.ActivityEdgeInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3710,7 +3638,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityDiagramAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityDiagramAction_c.ActivityDiagramActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3728,7 +3656,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		ActivityDiagramAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = ActivityDiagramAction_c.ActivityDiagramActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3746,7 +3674,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AcceptTimeEventAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AcceptTimeEventAction_c.AcceptTimeEventActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3764,7 +3692,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AcceptTimeEventAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AcceptTimeEventAction_c.AcceptTimeEventActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3782,7 +3710,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AcceptEventAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AcceptEventAction_c.AcceptEventActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3800,7 +3728,7 @@ public class ModelComparisonTests extends BaseTest {
 			NoSuchMethodException, IllegalAccessException,
 			InvocationTargetException {
 		AcceptEventAction_c instance = null;
-		Ooaofooa[] roots = Ooaofooa.getInstances();
+		Ooaofooa[] roots = Ooaofooa.getInstancesUnderSystem("HierarchyTestModel");
 		for(Ooaofooa root : roots) {
 			instance = AcceptEventAction_c.AcceptEventActionInstance(root);
      		if(instance != null && instance.getFile() != null) {
@@ -3809,330 +3737,6 @@ public class ModelComparisonTests extends BaseTest {
 		}
 		assertNotNull("Unable to locate test element for: Accept Event Action::Descrip", instance);
 		performTest(instance, "setDescrip", "Accept Event Action::Descrip", instance.getDescrip() + modifyString);
-	}
-
-    /**
-     *  Test modification of attribute: Waypoint:positionX
-     */
-	public void testAttributeValueModificationWaypointpositionX() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Waypoint_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Waypoint_c.WaypointInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Waypoint::positionX", instance);
-		performTest(instance, "setPositionx", "Waypoint::positionX", instance.getPositionx() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: Waypoint:positionY
-     */
-	public void testAttributeValueModificationWaypointpositionY() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Waypoint_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Waypoint_c.WaypointInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Waypoint::positionY", instance);
-		performTest(instance, "setPositiony", "Waypoint::positionY", instance.getPositiony() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphNode:width
-     */
-	public void testAttributeValueModificationGraphNodewidth() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphnode_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphnode_c.GraphnodeInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphNode::width", instance);
-		performTest(instance, "setWidth", "GraphNode::width", instance.getWidth() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphNode:height
-     */
-	public void testAttributeValueModificationGraphNodeheight() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphnode_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphnode_c.GraphnodeInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphNode::height", instance);
-		performTest(instance, "setHeight", "GraphNode::height", instance.getHeight() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphElement:positionX
-     */
-	public void testAttributeValueModificationGraphElementpositionX() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphelement_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphelement_c.GraphelementInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphElement::positionX", instance);
-		performTest(instance, "setPositionx", "GraphElement::positionX", instance.getPositionx() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphElement:positionY
-     */
-	public void testAttributeValueModificationGraphElementpositionY() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphelement_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphelement_c.GraphelementInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphElement::positionY", instance);
-		performTest(instance, "setPositiony", "GraphElement::positionY", instance.getPositiony() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphConnector:positionX
-     */
-	public void testAttributeValueModificationGraphConnectorpositionX() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphconnector_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphconnector_c.GraphconnectorInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphConnector::positionX", instance);
-		performTest(instance, "setPositionx", "GraphConnector::positionX", instance.getPositionx() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: GraphConnector:positionY
-     */
-	public void testAttributeValueModificationGraphConnectorpositionY() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Graphconnector_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Graphconnector_c.GraphconnectorInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: GraphConnector::positionY", instance);
-		performTest(instance, "setPositiony", "GraphConnector::positionY", instance.getPositiony() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: LineColorStyle:red
-     */
-	public void testAttributeValueModificationLineColorStylered() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Linecolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Linecolorstyle_c.LinecolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: LineColorStyle::red", instance);
-		performTest(instance, "setRed", "LineColorStyle::red", instance.getRed() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: LineColorStyle:green
-     */
-	public void testAttributeValueModificationLineColorStylegreen() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Linecolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Linecolorstyle_c.LinecolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: LineColorStyle::green", instance);
-		performTest(instance, "setGreen", "LineColorStyle::green", instance.getGreen() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: LineColorStyle:blue
-     */
-	public void testAttributeValueModificationLineColorStyleblue() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Linecolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Linecolorstyle_c.LinecolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: LineColorStyle::blue", instance);
-		performTest(instance, "setBlue", "LineColorStyle::blue", instance.getBlue() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: FillColorStyle:red
-     */
-	public void testAttributeValueModificationFillColorStylered() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Fillcolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Fillcolorstyle_c.FillcolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: FillColorStyle::red", instance);
-		performTest(instance, "setRed", "FillColorStyle::red", instance.getRed() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: FillColorStyle:green
-     */
-	public void testAttributeValueModificationFillColorStylegreen() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Fillcolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Fillcolorstyle_c.FillcolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: FillColorStyle::green", instance);
-		performTest(instance, "setGreen", "FillColorStyle::green", instance.getGreen() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: FillColorStyle:blue
-     */
-	public void testAttributeValueModificationFillColorStyleblue() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Fillcolorstyle_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Fillcolorstyle_c.FillcolorstyleInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: FillColorStyle::blue", instance);
-		performTest(instance, "setBlue", "FillColorStyle::blue", instance.getBlue() + 1);
-	}
-
-    /**
-     *  Test modification of attribute: Model:version
-     */
-	public void testAttributeValueModificationModelversion() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Model_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Model_c.ModelInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Model::version", instance);
-		performTest(instance, "setVersion", "Model::version", instance.getVersion() + modifyString);
-	}
-
-    /**
-     *  Test modification of attribute: Layer:Layer_Name
-     */
-	public void testAttributeValueModificationLayerLayer_Name() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Layer_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Layer_c.LayerInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Layer::Layer_Name", instance);
-		performTest(instance, "setLayer_name", "Layer::Layer_Name", instance.getLayer_name() + modifyString);
-	}
-
-    /**
-     *  Test modification of attribute: Layer:visible
-     */
-	public void testAttributeValueModificationLayervisible() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		Layer_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = Layer_c.LayerInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Layer::visible", instance);
-		performTest(instance, "setVisible", "Layer::visible", !instance.getVisible());
-	}
-
-    /**
-     *  Test modification of attribute: Floating Text:end
-     */
-	public void testAttributeValueModificationFloating_Textend() throws CoreException, SecurityException, IllegalArgumentException,
-			NoSuchMethodException, IllegalAccessException,
-			InvocationTargetException {
-		FloatingText_c instance = null;
-		Ooaofgraphics[] roots = Ooaofgraphics.getInstances();
-		for(Ooaofgraphics root : roots) {
-			instance = FloatingText_c.FloatingTextInstance(root);
-			if(instance != null && instance.getFile() != null) {
-				break;
-			}
-		}      
-		assertNotNull("Unable to locate test element for: Floating Text::end", instance);
-		performTest(instance, "setEnd", "Floating Text::end", End_c.None);
 	}
 
 	@SuppressWarnings("restriction")
@@ -4217,7 +3821,7 @@ public class ModelComparisonTests extends BaseTest {
 		}
 		if(differencer.getLeftDifferences().size() == 2) {
 			// this could be rename, where the differences
-			// are showed both for the attribute and the root
+			// are shown both for the attribute and the root
 			// element
 			for(TreeDifference difference : differencer.getLeftDifferences()) {
 				if(difference.getType().equals(TreeDifference.VALUE_DIFFERENCE)) {

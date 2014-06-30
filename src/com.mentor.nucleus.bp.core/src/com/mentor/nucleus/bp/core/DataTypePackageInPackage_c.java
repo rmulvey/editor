@@ -148,7 +148,7 @@ p_m_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((DataTypePackageInPackage_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((DataTypePackageInPackage_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((DataTypePackageInPackage_c)elem).getPackage_id())) return false;
@@ -607,29 +607,29 @@ public static DataTypePackageInPackage_c [] getManyS_DPIPsOnR38(DataTypePackage_
 
 	if (ContainsChildrenOfDataTypePackage == null) {          
       // R37
-      DataTypePackage_c relInst55128 = (DataTypePackage_c) baseRoot.getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
+      DataTypePackage_c relInst56677 = (DataTypePackage_c) baseRoot.getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55128 == null) {
-      			relInst55128 = (DataTypePackage_c) Ooaofooa.getDefaultInstance().getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
+      		if (relInst56677 == null) {
+      			relInst56677 = (DataTypePackage_c) Ooaofooa.getDefaultInstance().getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst55128 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56677 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55128 = (DataTypePackage_c) roots[i].getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
-					if (relInst55128 != null)
+					relInst56677 = (DataTypePackage_c) roots[i].getInstanceList(DataTypePackage_c.class).get(new Object[] {m_package_id});
+					if (relInst56677 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55128 != null )
+      if ( relInst56677 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55128) && !isProxy())) {
-	      relInst55128.relateAcrossR37To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56677) && !isProxy())) {
+	      relInst56677.relateAcrossR37To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -876,56 +876,56 @@ private static DataTypePackageInPackage_c findDataTypePackageInPackageInstance(M
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class DataTypePackageInPackage_c_test55130_c implements ClassQueryInterface_c
+    class DataTypePackageInPackage_c_test56679_c implements ClassQueryInterface_c
     {
-	  DataTypePackageInPackage_c_test55130_c( java.util.UUID            p55131 ) {
-	  m_p55131 = p55131;
+	  DataTypePackageInPackage_c_test56679_c( java.util.UUID            p56680 ) {
+	  m_p56680 = p56680;
 	  }
-	  private java.util.UUID             m_p55131; 
+	  private java.util.UUID             m_p56680; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataTypePackageInPackage_c selected = (DataTypePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55131));
+	      retval = (selected.getPackage_id().equals(m_p56680));
 	      return retval;
 	  }
     }
 
-    DataTypePackageInPackage_c [] objs55129 = 
-    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test55130_c(getPackage_id())) ;
+    DataTypePackageInPackage_c [] objs56678 = 
+    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test56679_c(getPackage_id())) ;
 
-    if ( (  (objs55129.length) == 0) )
+    if ( (  (objs56678.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package in Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55129.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56678.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55129.length )  , e); 
+          + Integer.toString( objs56678.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55129.length) > 1) )
+    if ( (  (objs56678.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package in Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55129.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56678.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55129.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56678.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -933,40 +933,40 @@ private static DataTypePackageInPackage_c findDataTypePackageInPackageInstance(M
 
           // Data Type Package in Package is a referring class in association: rel.Numb = 37
           // The participating class is: Data Type Package
-    class DataTypePackage_c_test55135_c implements ClassQueryInterface_c
+    class DataTypePackage_c_test56684_c implements ClassQueryInterface_c
     {
-	  DataTypePackage_c_test55135_c( java.util.UUID            p55136 ) {
-	  m_p55136 = p55136;
+	  DataTypePackage_c_test56684_c( java.util.UUID            p56685 ) {
+	  m_p56685 = p56685;
 	  }
-	  private java.util.UUID             m_p55136; 
+	  private java.util.UUID             m_p56685; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataTypePackage_c selected = (DataTypePackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55136));
+	      retval = (selected.getPackage_id().equals(m_p56685));
 	      return retval;
 	  }
     }
 
-    DataTypePackage_c [] objs55134 = 
-    DataTypePackage_c.DataTypePackageInstances(modelRoot, new DataTypePackage_c_test55135_c(getPackage_id())) ;
+    DataTypePackage_c [] objs56683 = 
+    DataTypePackage_c.DataTypePackageInstances(modelRoot, new DataTypePackage_c_test56684_c(getPackage_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55134.length) != 1) )
+    if ( (  (objs56683.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package in Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package in Package: Association: 37: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55134.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56683.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package in Package: Association: 37: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55134.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56683.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

@@ -214,7 +214,8 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -230,9 +231,9 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAv_id()) || IdAssigner.NULL_UUID
-				.equals(((InstanceAttributeValue_c) elem).getAv_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAv_id()) || IdAssigner.NULL_UUID
+						.equals(((InstanceAttributeValue_c) elem).getAv_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAv_id().equals(((InstanceAttributeValue_c) elem).getAv_id()))
@@ -1425,16 +1426,16 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 
 		if (ReferencesAttribute == null) {
 			// R938
-			Attribute_c relInst39948 = (Attribute_c) baseRoot.getInstanceList(
+			Attribute_c relInst40530 = (Attribute_c) baseRoot.getInstanceList(
 					Attribute_c.class).get(new Object[]{m_attr_id, m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39948 == null) {
-				relInst39948 = (Attribute_c) Ooaofooa.getDefaultInstance()
+			if (relInst40530 == null) {
+				relInst40530 = (Attribute_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Attribute_c.class)
 						.get(new Object[]{m_attr_id, m_obj_id});
 			}
-			if (relInst39948 == null && searchAllRoots
+			if (relInst40530 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1442,36 +1443,36 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39948 = (Attribute_c) roots[i].getInstanceList(
+					relInst40530 = (Attribute_c) roots[i].getInstanceList(
 							Attribute_c.class).get(
 							new Object[]{m_attr_id, m_obj_id});
-					if (relInst39948 != null)
+					if (relInst40530 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39948 != null) {
+			if (relInst40530 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39948) && !isProxy())) {
-					relInst39948.relateAcrossR938To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40530) && !isProxy())) {
+					relInst40530.relateAcrossR938To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OwnsInformalClassInstanceParticipant == null) {
 			// R936
-			ClassInstanceParticipant_c relInst39949 = (ClassInstanceParticipant_c) baseRoot
+			ClassInstanceParticipant_c relInst40531 = (ClassInstanceParticipant_c) baseRoot
 					.getInstanceList(ClassInstanceParticipant_c.class).get(
 							new Object[]{m_informal_part_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39949 == null) {
-				relInst39949 = (ClassInstanceParticipant_c) Ooaofooa
+			if (relInst40531 == null) {
+				relInst40531 = (ClassInstanceParticipant_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ClassInstanceParticipant_c.class)
 						.get(new Object[]{m_informal_part_id});
 			}
-			if (relInst39949 == null && searchAllRoots
+			if (relInst40531 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1479,36 +1480,36 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39949 = (ClassInstanceParticipant_c) roots[i]
+					relInst40531 = (ClassInstanceParticipant_c) roots[i]
 							.getInstanceList(ClassInstanceParticipant_c.class)
 							.get(new Object[]{m_informal_part_id});
-					if (relInst39949 != null)
+					if (relInst40531 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39949 != null) {
+			if (relInst40531 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39949) && !isProxy())) {
-					relInst39949.relateAcrossR936To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40531) && !isProxy())) {
+					relInst40531.relateAcrossR936To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OwnsFormalClassInstanceParticipant == null) {
 			// R937
-			ClassInstanceParticipant_c relInst39950 = (ClassInstanceParticipant_c) baseRoot
+			ClassInstanceParticipant_c relInst40532 = (ClassInstanceParticipant_c) baseRoot
 					.getInstanceList(ClassInstanceParticipant_c.class).get(
 							new Object[]{m_formal_part_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39950 == null) {
-				relInst39950 = (ClassInstanceParticipant_c) Ooaofooa
+			if (relInst40532 == null) {
+				relInst40532 = (ClassInstanceParticipant_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ClassInstanceParticipant_c.class)
 						.get(new Object[]{m_formal_part_id});
 			}
-			if (relInst39950 == null && searchAllRoots
+			if (relInst40532 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1516,18 +1517,18 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39950 = (ClassInstanceParticipant_c) roots[i]
+					relInst40532 = (ClassInstanceParticipant_c) roots[i]
 							.getInstanceList(ClassInstanceParticipant_c.class)
 							.get(new Object[]{m_formal_part_id});
-					if (relInst39950 != null)
+					if (relInst40532 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39950 != null) {
+			if (relInst40532 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39950) && !isProxy())) {
-					relInst39950.relateAcrossR937To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40532) && !isProxy())) {
+					relInst40532.relateAcrossR937To(this, notifyChanges);
 				}
 			}
 		}
@@ -2085,26 +2086,26 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InstanceAttributeValue_c_test39952_c
+		class InstanceAttributeValue_c_test40534_c
 				implements
 					ClassQueryInterface_c {
-			InstanceAttributeValue_c_test39952_c(java.util.UUID p39953) {
-				m_p39953 = p39953;
+			InstanceAttributeValue_c_test40534_c(java.util.UUID p40535) {
+				m_p40535 = p40535;
 			}
-			private java.util.UUID m_p39953;
+			private java.util.UUID m_p40535;
 			public boolean evaluate(Object candidate) {
 				InstanceAttributeValue_c selected = (InstanceAttributeValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAv_id().equals(m_p39953));
+				retval = (selected.getAv_id().equals(m_p40535));
 				return retval;
 			}
 		}
 
-		InstanceAttributeValue_c[] objs39951 = InstanceAttributeValue_c
+		InstanceAttributeValue_c[] objs40533 = InstanceAttributeValue_c
 				.InstanceAttributeValueInstances(modelRoot,
-						new InstanceAttributeValue_c_test39952_c(getAv_id()));
+						new InstanceAttributeValue_c_test40534_c(getAv_id()));
 
-		if (((objs39951.length) == 0)) {
+		if (((objs40533.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2112,20 +2113,20 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39951.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40533.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39951.length), e);
+										+ Integer.toString(objs40533.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39951.length) > 1)) {
+		if (((objs40533.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2134,7 +2135,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39951.length)
+										+ Integer.toString(objs40533.length)
 										+ " Av_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2142,7 +2143,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39951.length)
+										+ Integer.toString(objs40533.length)
 										+ " Av_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2151,26 +2152,26 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 
 		// Instance Attribute Value is a referring class in association: rel.Numb = 938
 		// The participating class is: Attribute
-		class Attribute_c_test39957_c implements ClassQueryInterface_c {
-			Attribute_c_test39957_c(java.util.UUID p39958, java.util.UUID p39959) {
-				m_p39958 = p39958;
-				m_p39959 = p39959;
+		class Attribute_c_test40539_c implements ClassQueryInterface_c {
+			Attribute_c_test40539_c(java.util.UUID p40540, java.util.UUID p40541) {
+				m_p40540 = p40540;
+				m_p40541 = p40541;
 			}
-			private java.util.UUID m_p39958;
-			private java.util.UUID m_p39959;
+			private java.util.UUID m_p40540;
+			private java.util.UUID m_p40541;
 			public boolean evaluate(Object candidate) {
 				Attribute_c selected = (Attribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p39958))
-						& (selected.getObj_id().equals(m_p39959));
+				retval = (selected.getAttr_id().equals(m_p40540))
+						& (selected.getObj_id().equals(m_p40541));
 				return retval;
 			}
 		}
 
-		Attribute_c[] objs39956 = Attribute_c.AttributeInstances(modelRoot,
-				new Attribute_c_test39957_c(getAttr_id(), getObj_id()));
+		Attribute_c[] objs40538 = Attribute_c.AttributeInstances(modelRoot,
+				new Attribute_c_test40539_c(getAttr_id(), getObj_id()));
 
-		if (((objs39956.length) > 1)) {
+		if (((objs40538.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2179,7 +2180,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Association: 938: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39956.length)
+										+ Integer.toString(objs40538.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2187,7 +2188,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Association: 938: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39956.length)
+										+ Integer.toString(objs40538.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2196,27 +2197,27 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 
 		// Instance Attribute Value is a referring class in association: rel.Numb = 936
 		// The participating class is: Class Instance Participant
-		class ClassInstanceParticipant_c_test39961_c
+		class ClassInstanceParticipant_c_test40543_c
 				implements
 					ClassQueryInterface_c {
-			ClassInstanceParticipant_c_test39961_c(java.util.UUID p39962) {
-				m_p39962 = p39962;
+			ClassInstanceParticipant_c_test40543_c(java.util.UUID p40544) {
+				m_p40544 = p40544;
 			}
-			private java.util.UUID m_p39962;
+			private java.util.UUID m_p40544;
 			public boolean evaluate(Object candidate) {
 				ClassInstanceParticipant_c selected = (ClassInstanceParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p39962));
+				retval = (selected.getPart_id().equals(m_p40544));
 				return retval;
 			}
 		}
 
-		ClassInstanceParticipant_c[] objs39960 = ClassInstanceParticipant_c
+		ClassInstanceParticipant_c[] objs40542 = ClassInstanceParticipant_c
 				.ClassInstanceParticipantInstances(modelRoot,
-						new ClassInstanceParticipant_c_test39961_c(
+						new ClassInstanceParticipant_c_test40543_c(
 								getInformal_part_id()));
 
-		if (((objs39960.length) > 1)) {
+		if (((objs40542.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2225,7 +2226,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Association: 936: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39960.length)
+										+ Integer.toString(objs40542.length)
 										+ " Informal_Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2233,7 +2234,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Association: 936: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39960.length)
+										+ Integer.toString(objs40542.length)
 										+ " Informal_Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2242,27 +2243,27 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 
 		// Instance Attribute Value is a referring class in association: rel.Numb = 937
 		// The participating class is: Class Instance Participant
-		class ClassInstanceParticipant_c_test39964_c
+		class ClassInstanceParticipant_c_test40546_c
 				implements
 					ClassQueryInterface_c {
-			ClassInstanceParticipant_c_test39964_c(java.util.UUID p39965) {
-				m_p39965 = p39965;
+			ClassInstanceParticipant_c_test40546_c(java.util.UUID p40547) {
+				m_p40547 = p40547;
 			}
-			private java.util.UUID m_p39965;
+			private java.util.UUID m_p40547;
 			public boolean evaluate(Object candidate) {
 				ClassInstanceParticipant_c selected = (ClassInstanceParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p39965));
+				retval = (selected.getPart_id().equals(m_p40547));
 				return retval;
 			}
 		}
 
-		ClassInstanceParticipant_c[] objs39963 = ClassInstanceParticipant_c
+		ClassInstanceParticipant_c[] objs40545 = ClassInstanceParticipant_c
 				.ClassInstanceParticipantInstances(modelRoot,
-						new ClassInstanceParticipant_c_test39964_c(
+						new ClassInstanceParticipant_c_test40546_c(
 								getFormal_part_id()));
 
-		if (((objs39963.length) > 1)) {
+		if (((objs40545.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2271,7 +2272,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Association: 937: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39963.length)
+										+ Integer.toString(objs40545.length)
 										+ " Formal_Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2279,7 +2280,7 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Association: 937: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39963.length)
+										+ Integer.toString(objs40545.length)
 										+ " Formal_Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2287,50 +2288,50 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 948
-		int objs39966 = 0;
+		int objs40548 = 0;
 		// Subtype Object: Informal Attribute Value
-		class InformalAttributeValue_c_test39967_c
+		class InformalAttributeValue_c_test40549_c
 				implements
 					ClassQueryInterface_c {
-			InformalAttributeValue_c_test39967_c(java.util.UUID p39968) {
-				m_p39968 = p39968;
+			InformalAttributeValue_c_test40549_c(java.util.UUID p40550) {
+				m_p40550 = p40550;
 			}
-			private java.util.UUID m_p39968;
+			private java.util.UUID m_p40550;
 			public boolean evaluate(Object candidate) {
 				InformalAttributeValue_c selected = (InformalAttributeValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAv_id().equals(m_p39968));
+				retval = (selected.getAv_id().equals(m_p40550));
 				return retval;
 			}
 		}
 
-		InformalAttributeValue_c[] objs39969 = InformalAttributeValue_c
+		InformalAttributeValue_c[] objs40551 = InformalAttributeValue_c
 				.InformalAttributeValueInstances(modelRoot,
-						new InformalAttributeValue_c_test39967_c(getAv_id()));
+						new InformalAttributeValue_c_test40549_c(getAv_id()));
 
-		objs39966 = objs39966 + objs39969.length;
+		objs40548 = objs40548 + objs40551.length;
 		// Subtype Object: Formal Attribute Value
-		class FormalAttributeValue_c_test39970_c
+		class FormalAttributeValue_c_test40552_c
 				implements
 					ClassQueryInterface_c {
-			FormalAttributeValue_c_test39970_c(java.util.UUID p39971) {
-				m_p39971 = p39971;
+			FormalAttributeValue_c_test40552_c(java.util.UUID p40553) {
+				m_p40553 = p40553;
 			}
-			private java.util.UUID m_p39971;
+			private java.util.UUID m_p40553;
 			public boolean evaluate(Object candidate) {
 				FormalAttributeValue_c selected = (FormalAttributeValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAv_id().equals(m_p39971));
+				retval = (selected.getAv_id().equals(m_p40553));
 				return retval;
 			}
 		}
 
-		FormalAttributeValue_c[] objs39972 = FormalAttributeValue_c
+		FormalAttributeValue_c[] objs40554 = FormalAttributeValue_c
 				.FormalAttributeValueInstances(modelRoot,
-						new FormalAttributeValue_c_test39970_c(getAv_id()));
+						new FormalAttributeValue_c_test40552_c(getAv_id()));
 
-		objs39966 = objs39966 + objs39972.length;
-		if (objs39966 != 1) {
+		objs40548 = objs40548 + objs40554.length;
+		if (objs40548 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2338,14 +2339,14 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Instance Attribute Value", //$NON-NLS-1$
 								"Consistency: Object: Instance Attribute Value: Association: 948: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39966)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40548)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Attribute Value: Association: 948: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39966), e);
+										+ Integer.toString(objs40548), e);
 			}
 			retval = false;
 
@@ -2508,20 +2509,20 @@ public class InstanceAttributeValue_c extends NonRootModelElement
 				&& (Util_c.Isproxy(v_attrProxy.Converttoinstance()))
 				&& (!Util_c.Isproxy(Converttoinstance()))) {
 
-			class Attribute_test37125_c implements ClassQueryInterface_c {
-				Attribute_test37125_c(String p37126) {
-					m_p37126 = p37126;
+			class Attribute_test37707_c implements ClassQueryInterface_c {
+				Attribute_test37707_c(String p37708) {
+					m_p37708 = p37708;
 				}
-				private String m_p37126;
+				private String m_p37708;
 				public boolean evaluate(Object candidate) {
 					Attribute_c selected = (Attribute_c) candidate;
-					return (selected.getName().equals(m_p37126));
+					return (selected.getName().equals(m_p37708));
 				}
 			}
 			Attribute_c v_attribute = Attribute_c.getOneO_ATTROnR102(
 					ModelClass_c.getManyO_OBJsOnR934(ClassInstanceParticipant_c
 							.getManySQ_CIPsOnR937(this)),
-					new Attribute_test37125_c(v_attrProxy.getName()));
+					new Attribute_test37707_c(v_attrProxy.getName()));
 
 			if (((v_attribute != null))) {
 

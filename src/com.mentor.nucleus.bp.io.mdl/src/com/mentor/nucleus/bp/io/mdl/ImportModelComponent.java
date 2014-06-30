@@ -3861,6 +3861,7 @@ public class ImportModelComponent extends CoreImport
   private void createO_OBJ (Ooaofooa modelRoot, String table, Vector parms, Vector rawParms, int numParms, IProgressMonitor pm) {
     ModelClass_c newInst = null;
     if(table.equalsIgnoreCase("O_OBJ")) { //$NON-NLS-1$
+      parms.setSize(6);
         newInst = ModelClass_c.resolveInstance(modelRoot,
               IdAssigner.createUUIDFromString((String)parms.elementAt(0)), 
            removeTics((String)parms.elementAt(1)).trim(), 
@@ -3879,6 +3880,8 @@ public class ImportModelComponent extends CoreImport
       else if ( table.equalsIgnoreCase("O_OBJ_PROXY") ) //$NON-NLS-1$
       {
     String path = (String)parms.lastElement();
+      parms.setSize(7);
+
         newInst = ModelClass_c.createProxy(modelRoot,
               IdAssigner.createUUIDFromString((String)parms.elementAt(0)), 
            removeTics((String)parms.elementAt(1)).trim(), 

@@ -136,7 +136,8 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,9 +153,9 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ActionLanguageEngine_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ActionLanguageEngine_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ActionLanguageEngine_c) elem).getId()))
@@ -399,33 +400,33 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9501
-		SearchEngine_c relInst39144 = (SearchEngine_c) baseRoot
+		SearchEngine_c relInst39726 = (SearchEngine_c) baseRoot
 				.getInstanceList(SearchEngine_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39144 == null) {
-			relInst39144 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
+		if (relInst39726 == null) {
+			relInst39726 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SearchEngine_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst39144 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39726 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39144 = (SearchEngine_c) roots[i].getInstanceList(
+				relInst39726 = (SearchEngine_c) roots[i].getInstanceList(
 						SearchEngine_c.class).get(new Object[]{m_id});
-				if (relInst39144 != null)
+				if (relInst39726 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39144 != null) {
+		if (relInst39726 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39144) && !isProxy())) {
-				relInst39144.relateAcrossR9501To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39726) && !isProxy())) {
+				relInst39726.relateAcrossR9501To(this, notifyChanges);
 			}
 		}
 
@@ -675,46 +676,46 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActionLanguageEngine_c_test39146_c
+		class ActionLanguageEngine_c_test39728_c
 				implements
 					ClassQueryInterface_c {
-			ActionLanguageEngine_c_test39146_c(java.util.UUID p39147) {
-				m_p39147 = p39147;
+			ActionLanguageEngine_c_test39728_c(java.util.UUID p39729) {
+				m_p39729 = p39729;
 			}
-			private java.util.UUID m_p39147;
+			private java.util.UUID m_p39729;
 			public boolean evaluate(Object candidate) {
 				ActionLanguageEngine_c selected = (ActionLanguageEngine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39147));
+				retval = (selected.getId().equals(m_p39729));
 				return retval;
 			}
 		}
 
-		ActionLanguageEngine_c[] objs39145 = ActionLanguageEngine_c
+		ActionLanguageEngine_c[] objs39727 = ActionLanguageEngine_c
 				.ActionLanguageEngineInstances(modelRoot,
-						new ActionLanguageEngine_c_test39146_c(getId()));
+						new ActionLanguageEngine_c_test39728_c(getId()));
 
-		if (((objs39145.length) == 0)) {
+		if (((objs39727.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Language Engine", //$NON-NLS-1$
 								"Consistency: Object: Action Language Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39145.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39727.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39145.length), e);
+										+ Integer.toString(objs39727.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39145.length) > 1)) {
+		if (((objs39727.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -722,7 +723,7 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 								"Action Language Engine", //$NON-NLS-1$
 								"Consistency: Object: Action Language Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39145.length)
+										+ Integer.toString(objs39727.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -730,7 +731,7 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action Language Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39145.length)
+										+ Integer.toString(objs39727.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -739,37 +740,37 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 
 		// Action Language Engine is a subtype in association: rel.Numb = 9501
 		// The supertype class is: Search Engine
-		class SearchEngine_c_test39151_c implements ClassQueryInterface_c {
-			SearchEngine_c_test39151_c(java.util.UUID p39152) {
-				m_p39152 = p39152;
+		class SearchEngine_c_test39733_c implements ClassQueryInterface_c {
+			SearchEngine_c_test39733_c(java.util.UUID p39734) {
+				m_p39734 = p39734;
 			}
-			private java.util.UUID m_p39152;
+			private java.util.UUID m_p39734;
 			public boolean evaluate(Object candidate) {
 				SearchEngine_c selected = (SearchEngine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39152));
+				retval = (selected.getId().equals(m_p39734));
 				return retval;
 			}
 		}
 
-		SearchEngine_c[] objs39150 = SearchEngine_c.SearchEngineInstances(
-				modelRoot, new SearchEngine_c_test39151_c(getId()));
+		SearchEngine_c[] objs39732 = SearchEngine_c.SearchEngineInstances(
+				modelRoot, new SearchEngine_c_test39733_c(getId()));
 
-		if (((objs39150.length) != 1)) {
+		if (((objs39732.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Language Engine", //$NON-NLS-1$
 								"Consistency: Object: Action Language Engine: Association: 9501: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39150.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39732.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Engine: Association: 9501: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39150.length), e);
+										+ Integer.toString(objs39732.length), e);
 			}
 			retval = false;
 
@@ -793,8 +794,8 @@ public class ActionLanguageEngine_c extends NonRootModelElement
 				.getManySP_SPsOnR9502(v_engine);
 
 		SearchParticipant_c v_participant = null;
-		for (int i36658 = 0; i36658 < v_participants.length; i36658++) {
-			v_participant = v_participants[i36658];
+		for (int i37240 = 0; i37240 < v_participants.length; i37240++) {
+			v_participant = v_participants[i37240];
 
 			ActionLanguageSearchable_c v_actionLanguageParticipant = ActionLanguageSearchable_c
 					.getOneSP_ALSOnR9702(SearchableElement_c

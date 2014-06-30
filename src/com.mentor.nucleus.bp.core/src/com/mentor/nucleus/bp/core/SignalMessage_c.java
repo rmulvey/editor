@@ -145,7 +145,8 @@ public class SignalMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class SignalMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((SignalMessage_c) elem).getMsg_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((SignalMessage_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((SignalMessage_c) elem).getMsg_id()))
@@ -703,53 +705,53 @@ public class SignalMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1019
-		AsynchronousMessage_c relInst39444 = (AsynchronousMessage_c) baseRoot
+		AsynchronousMessage_c relInst40026 = (AsynchronousMessage_c) baseRoot
 				.getInstanceList(AsynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39444 == null) {
-			relInst39444 = (AsynchronousMessage_c) Ooaofooa
+		if (relInst40026 == null) {
+			relInst40026 = (AsynchronousMessage_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(AsynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39444 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40026 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39444 = (AsynchronousMessage_c) roots[i]
+				relInst40026 = (AsynchronousMessage_c) roots[i]
 						.getInstanceList(AsynchronousMessage_c.class).get(
 								new Object[]{m_msg_id});
-				if (relInst39444 != null)
+				if (relInst40026 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39444 != null) {
+		if (relInst40026 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39444) && !isProxy())) {
-				relInst39444.relateAcrossR1019To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40026) && !isProxy())) {
+				relInst40026.relateAcrossR1019To(this, notifyChanges);
 			}
 		}
 
 		if (SendsInterfaceSignal == null) {
 			// R1021
-			InterfaceSignal_c relInst39445 = (InterfaceSignal_c) baseRoot
+			InterfaceSignal_c relInst40027 = (InterfaceSignal_c) baseRoot
 					.getInstanceList(InterfaceSignal_c.class).get(
 							new Object[]{m_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39445 == null) {
-				relInst39445 = (InterfaceSignal_c) Ooaofooa
+			if (relInst40027 == null) {
+				relInst40027 = (InterfaceSignal_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InterfaceSignal_c.class)
 						.get(new Object[]{m_id});
 			}
-			if (relInst39445 == null && searchAllRoots
+			if (relInst40027 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -757,18 +759,18 @@ public class SignalMessage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39445 = (InterfaceSignal_c) roots[i]
+					relInst40027 = (InterfaceSignal_c) roots[i]
 							.getInstanceList(InterfaceSignal_c.class).get(
 									new Object[]{m_id});
-					if (relInst39445 != null)
+					if (relInst40027 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39445 != null) {
+			if (relInst40027 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39445) && !isProxy())) {
-					relInst39445.relateAcrossR1021To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40027) && !isProxy())) {
+					relInst40027.relateAcrossR1021To(this, notifyChanges);
 				}
 			}
 		}
@@ -1066,42 +1068,42 @@ public class SignalMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SignalMessage_c_test39447_c implements ClassQueryInterface_c {
-			SignalMessage_c_test39447_c(java.util.UUID p39448) {
-				m_p39448 = p39448;
+		class SignalMessage_c_test40029_c implements ClassQueryInterface_c {
+			SignalMessage_c_test40029_c(java.util.UUID p40030) {
+				m_p40030 = p40030;
 			}
-			private java.util.UUID m_p39448;
+			private java.util.UUID m_p40030;
 			public boolean evaluate(Object candidate) {
 				SignalMessage_c selected = (SignalMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39448));
+				retval = (selected.getMsg_id().equals(m_p40030));
 				return retval;
 			}
 		}
 
-		SignalMessage_c[] objs39446 = SignalMessage_c.SignalMessageInstances(
-				modelRoot, new SignalMessage_c_test39447_c(getMsg_id()));
+		SignalMessage_c[] objs40028 = SignalMessage_c.SignalMessageInstances(
+				modelRoot, new SignalMessage_c_test40029_c(getMsg_id()));
 
-		if (((objs39446.length) == 0)) {
+		if (((objs40028.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Signal Message", //$NON-NLS-1$
 								"Consistency: Object: Signal Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39446.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40028.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Signal Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39446.length), e);
+								+ Integer.toString(objs40028.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39446.length) > 1)) {
+		if (((objs40028.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1109,7 +1111,7 @@ public class SignalMessage_c extends NonRootModelElement
 								"Signal Message", //$NON-NLS-1$
 								"Consistency: Object: Signal Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39446.length)
+										+ Integer.toString(objs40028.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1117,7 +1119,7 @@ public class SignalMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Signal Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39446.length)
+										+ Integer.toString(objs40028.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1126,40 +1128,40 @@ public class SignalMessage_c extends NonRootModelElement
 
 		// Signal Message is a subtype in association: rel.Numb = 1019
 		// The supertype class is: Asynchronous Message
-		class AsynchronousMessage_c_test39452_c
+		class AsynchronousMessage_c_test40034_c
 				implements
 					ClassQueryInterface_c {
-			AsynchronousMessage_c_test39452_c(java.util.UUID p39453) {
-				m_p39453 = p39453;
+			AsynchronousMessage_c_test40034_c(java.util.UUID p40035) {
+				m_p40035 = p40035;
 			}
-			private java.util.UUID m_p39453;
+			private java.util.UUID m_p40035;
 			public boolean evaluate(Object candidate) {
 				AsynchronousMessage_c selected = (AsynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39453));
+				retval = (selected.getMsg_id().equals(m_p40035));
 				return retval;
 			}
 		}
 
-		AsynchronousMessage_c[] objs39451 = AsynchronousMessage_c
+		AsynchronousMessage_c[] objs40033 = AsynchronousMessage_c
 				.AsynchronousMessageInstances(modelRoot,
-						new AsynchronousMessage_c_test39452_c(getMsg_id()));
+						new AsynchronousMessage_c_test40034_c(getMsg_id()));
 
-		if (((objs39451.length) != 1)) {
+		if (((objs40033.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Signal Message", //$NON-NLS-1$
 								"Consistency: Object: Signal Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39451.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40033.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Signal Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39451.length), e);
+										+ Integer.toString(objs40033.length), e);
 			}
 			retval = false;
 
@@ -1167,24 +1169,24 @@ public class SignalMessage_c extends NonRootModelElement
 
 		// Signal Message is a referring class in association: rel.Numb = 1021
 		// The participating class is: Interface Signal
-		class InterfaceSignal_c_test39455_c implements ClassQueryInterface_c {
-			InterfaceSignal_c_test39455_c(java.util.UUID p39456) {
-				m_p39456 = p39456;
+		class InterfaceSignal_c_test40037_c implements ClassQueryInterface_c {
+			InterfaceSignal_c_test40037_c(java.util.UUID p40038) {
+				m_p40038 = p40038;
 			}
-			private java.util.UUID m_p39456;
+			private java.util.UUID m_p40038;
 			public boolean evaluate(Object candidate) {
 				InterfaceSignal_c selected = (InterfaceSignal_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39456));
+				retval = (selected.getId().equals(m_p40038));
 				return retval;
 			}
 		}
 
-		InterfaceSignal_c[] objs39454 = InterfaceSignal_c
+		InterfaceSignal_c[] objs40036 = InterfaceSignal_c
 				.InterfaceSignalInstances(modelRoot,
-						new InterfaceSignal_c_test39455_c(getId()));
+						new InterfaceSignal_c_test40037_c(getId()));
 
-		if (((objs39454.length) > 1)) {
+		if (((objs40036.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1192,7 +1194,7 @@ public class SignalMessage_c extends NonRootModelElement
 								"Signal Message", //$NON-NLS-1$
 								"Consistency: Object: Signal Message: Association: 1021: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39454.length)
+										+ Integer.toString(objs40036.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1200,7 +1202,7 @@ public class SignalMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Signal Message: Association: 1021: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39454.length)
+										+ Integer.toString(objs40036.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -172,7 +172,8 @@ public class ClassInAssociation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -188,9 +189,9 @@ public class ClassInAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassInAssociation_c) elem).getOir_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassInAssociation_c) elem).getOir_id())) && this != elem)) {
 			return false;
 		}
 		if (!getOir_id().equals(((ClassInAssociation_c) elem).getOir_id()))
@@ -198,9 +199,9 @@ public class ClassInAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassInAssociation_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassInAssociation_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id().equals(((ClassInAssociation_c) elem).getObj_id()))
@@ -208,9 +209,9 @@ public class ClassInAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassInAssociation_c) elem).getRel_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassInAssociation_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id().equals(((ClassInAssociation_c) elem).getRel_id()))
@@ -1819,79 +1820,79 @@ public class ClassInAssociation_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R201
-		Association_c relInst56691 = (Association_c) baseRoot.getInstanceList(
+		Association_c relInst58240 = (Association_c) baseRoot.getInstanceList(
 				Association_c.class).get(new Object[]{m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56691 == null) {
-			relInst56691 = (Association_c) Ooaofooa.getDefaultInstance()
+		if (relInst58240 == null) {
+			relInst58240 = (Association_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Association_c.class)
 					.get(new Object[]{m_rel_id});
 		}
-		if (relInst56691 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58240 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56691 = (Association_c) roots[i].getInstanceList(
+				relInst58240 = (Association_c) roots[i].getInstanceList(
 						Association_c.class).get(new Object[]{m_rel_id});
-				if (relInst56691 != null)
+				if (relInst58240 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56691 != null) {
+		if (relInst58240 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56691) && !isProxy())) {
-				relInst56691.relateAcrossR201To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58240) && !isProxy())) {
+				relInst58240.relateAcrossR201To(this, notifyChanges);
 			}
 		}
 
-		ModelClass_c relInst56692 = (ModelClass_c) baseRoot.getInstanceList(
+		ModelClass_c relInst58241 = (ModelClass_c) baseRoot.getInstanceList(
 				ModelClass_c.class).get(new Object[]{m_obj_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56692 == null) {
-			relInst56692 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+		if (relInst58241 == null) {
+			relInst58241 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ModelClass_c.class)
 					.get(new Object[]{m_obj_id});
 		}
-		if (relInst56692 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58241 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56692 = (ModelClass_c) roots[i].getInstanceList(
+				relInst58241 = (ModelClass_c) roots[i].getInstanceList(
 						ModelClass_c.class).get(new Object[]{m_obj_id});
-				if (relInst56692 != null)
+				if (relInst58241 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56692 != null) {
+		if (relInst58241 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56692) && !isProxy())) {
-				relInst56692.relateAcrossR201To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58241) && !isProxy())) {
+				relInst58241.relateAcrossR201To(this, notifyChanges);
 			}
 		}
 
 		if (MayBeRepresentedByImportedClass == null) {
 			// R202
-			ImportedClass_c relInst56693 = (ImportedClass_c) baseRoot
+			ImportedClass_c relInst58242 = (ImportedClass_c) baseRoot
 					.getInstanceList(ImportedClass_c.class).get(
 							new Object[]{m_iobj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56693 == null) {
-				relInst56693 = (ImportedClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst58242 == null) {
+				relInst58242 = (ImportedClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ImportedClass_c.class)
 						.get(new Object[]{m_iobj_id});
 			}
-			if (relInst56693 == null && searchAllRoots
+			if (relInst58242 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1899,17 +1900,17 @@ public class ClassInAssociation_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56693 = (ImportedClass_c) roots[i].getInstanceList(
+					relInst58242 = (ImportedClass_c) roots[i].getInstanceList(
 							ImportedClass_c.class).get(new Object[]{m_iobj_id});
-					if (relInst56693 != null)
+					if (relInst58242 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56693 != null) {
+			if (relInst58242 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56693) && !isProxy())) {
-					relInst56693.relateAcrossR202To(this, notifyChanges);
+						|| (inSameComponent(this, relInst58242) && !isProxy())) {
+					relInst58242.relateAcrossR202To(this, notifyChanges);
 				}
 			}
 		}
@@ -2341,52 +2342,52 @@ public class ClassInAssociation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ClassInAssociation_c_test56695_c implements ClassQueryInterface_c {
-			ClassInAssociation_c_test56695_c(java.util.UUID p56696,
-					java.util.UUID p56697, java.util.UUID p56698) {
-				m_p56696 = p56696;
-				m_p56697 = p56697;
-				m_p56698 = p56698;
+		class ClassInAssociation_c_test58244_c implements ClassQueryInterface_c {
+			ClassInAssociation_c_test58244_c(java.util.UUID p58245,
+					java.util.UUID p58246, java.util.UUID p58247) {
+				m_p58245 = p58245;
+				m_p58246 = p58246;
+				m_p58247 = p58247;
 			}
-			private java.util.UUID m_p56696;
-			private java.util.UUID m_p56697;
-			private java.util.UUID m_p56698;
+			private java.util.UUID m_p58245;
+			private java.util.UUID m_p58246;
+			private java.util.UUID m_p58247;
 			public boolean evaluate(Object candidate) {
 				ClassInAssociation_c selected = (ClassInAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56696))
-						& (selected.getObj_id().equals(m_p56697))
-						& (selected.getRel_id().equals(m_p56698));
+				retval = (selected.getOir_id().equals(m_p58245))
+						& (selected.getObj_id().equals(m_p58246))
+						& (selected.getRel_id().equals(m_p58247));
 				return retval;
 			}
 		}
 
-		ClassInAssociation_c[] objs56694 = ClassInAssociation_c
+		ClassInAssociation_c[] objs58243 = ClassInAssociation_c
 				.ClassInAssociationInstances(modelRoot,
-						new ClassInAssociation_c_test56695_c(getOir_id(),
+						new ClassInAssociation_c_test58244_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56694.length) == 0)) {
+		if (((objs58243.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class In Association", //$NON-NLS-1$
 								"Consistency: Object: Class In Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56694.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58243.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class In Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56694.length), e);
+										+ Integer.toString(objs58243.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56694.length) > 1)) {
+		if (((objs58243.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2394,7 +2395,7 @@ public class ClassInAssociation_c extends NonRootModelElement
 								"Class In Association", //$NON-NLS-1$
 								"Consistency: Object: Class In Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56694.length)
+										+ Integer.toString(objs58243.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2402,7 +2403,7 @@ public class ClassInAssociation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class In Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56694.length)
+										+ Integer.toString(objs58243.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2412,38 +2413,38 @@ public class ClassInAssociation_c extends NonRootModelElement
 		// Class In Association is a link class in association: rel.Numb = 201
 		// Other side
 		// The other side class in the association is: Model Class
-		class ModelClass_c_test56702_c implements ClassQueryInterface_c {
-			ModelClass_c_test56702_c(java.util.UUID p56703) {
-				m_p56703 = p56703;
+		class ModelClass_c_test58251_c implements ClassQueryInterface_c {
+			ModelClass_c_test58251_c(java.util.UUID p58252) {
+				m_p58252 = p58252;
 			}
-			private java.util.UUID m_p56703;
+			private java.util.UUID m_p58252;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p56703));
+				retval = (selected.getObj_id().equals(m_p58252));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs56701 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test56702_c(getObj_id()));
+		ModelClass_c[] objs58250 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test58251_c(getObj_id()));
 
 		// The other side class is unconditional
-		if (((objs56701.length) == 0)) {
+		if (((objs58250.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class In Association", //$NON-NLS-1$
 								"Consistency: Object: Class In Association: Association: 201: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56701.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58250.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class In Association: Association: 201: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56701.length), e);
+										+ Integer.toString(objs58250.length), e);
 			}
 			retval = false;
 
@@ -2451,23 +2452,23 @@ public class ClassInAssociation_c extends NonRootModelElement
 
 		// Class In Association is a referring class in association: rel.Numb = 202
 		// The participating class is: Imported Class
-		class ImportedClass_c_test56705_c implements ClassQueryInterface_c {
-			ImportedClass_c_test56705_c(java.util.UUID p56706) {
-				m_p56706 = p56706;
+		class ImportedClass_c_test58254_c implements ClassQueryInterface_c {
+			ImportedClass_c_test58254_c(java.util.UUID p58255) {
+				m_p58255 = p58255;
 			}
-			private java.util.UUID m_p56706;
+			private java.util.UUID m_p58255;
 			public boolean evaluate(Object candidate) {
 				ImportedClass_c selected = (ImportedClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getIobj_id().equals(m_p56706));
+				retval = (selected.getIobj_id().equals(m_p58255));
 				return retval;
 			}
 		}
 
-		ImportedClass_c[] objs56704 = ImportedClass_c.ImportedClassInstances(
-				modelRoot, new ImportedClass_c_test56705_c(getIobj_id()));
+		ImportedClass_c[] objs58253 = ImportedClass_c.ImportedClassInstances(
+				modelRoot, new ImportedClass_c_test58254_c(getIobj_id()));
 
-		if (((objs56704.length) > 1)) {
+		if (((objs58253.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2475,7 +2476,7 @@ public class ClassInAssociation_c extends NonRootModelElement
 								"Class In Association", //$NON-NLS-1$
 								"Consistency: Object: Class In Association: Association: 202: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56704.length)
+										+ Integer.toString(objs58253.length)
 										+ " IObj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2483,7 +2484,7 @@ public class ClassInAssociation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class In Association: Association: 202: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56704.length)
+										+ Integer.toString(objs58253.length)
 										+ " IObj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2491,138 +2492,138 @@ public class ClassInAssociation_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 203
-		int objs56707 = 0;
+		int objs58256 = 0;
 		// Subtype Object: Referring Class In Assoc
-		class ReferringClassInAssoc_c_test56708_c
+		class ReferringClassInAssoc_c_test58257_c
 				implements
 					ClassQueryInterface_c {
-			ReferringClassInAssoc_c_test56708_c(java.util.UUID p56709,
-					java.util.UUID p56710, java.util.UUID p56711) {
-				m_p56709 = p56709;
-				m_p56710 = p56710;
-				m_p56711 = p56711;
+			ReferringClassInAssoc_c_test58257_c(java.util.UUID p58258,
+					java.util.UUID p58259, java.util.UUID p58260) {
+				m_p58258 = p58258;
+				m_p58259 = p58259;
+				m_p58260 = p58260;
 			}
-			private java.util.UUID m_p56709;
-			private java.util.UUID m_p56710;
-			private java.util.UUID m_p56711;
+			private java.util.UUID m_p58258;
+			private java.util.UUID m_p58259;
+			private java.util.UUID m_p58260;
 			public boolean evaluate(Object candidate) {
 				ReferringClassInAssoc_c selected = (ReferringClassInAssoc_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56709))
-						& (selected.getObj_id().equals(m_p56710))
-						& (selected.getRel_id().equals(m_p56711));
+				retval = (selected.getOir_id().equals(m_p58258))
+						& (selected.getObj_id().equals(m_p58259))
+						& (selected.getRel_id().equals(m_p58260));
 				return retval;
 			}
 		}
 
-		ReferringClassInAssoc_c[] objs56712 = ReferringClassInAssoc_c
+		ReferringClassInAssoc_c[] objs58261 = ReferringClassInAssoc_c
 				.ReferringClassInAssocInstances(modelRoot,
-						new ReferringClassInAssoc_c_test56708_c(getOir_id(),
+						new ReferringClassInAssoc_c_test58257_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		objs56707 = objs56707 + objs56712.length;
+		objs58256 = objs58256 + objs58261.length;
 		// Subtype Object: Referred To Class in Assoc
-		class ReferredToClassInAssoc_c_test56713_c
+		class ReferredToClassInAssoc_c_test58262_c
 				implements
 					ClassQueryInterface_c {
-			ReferredToClassInAssoc_c_test56713_c(java.util.UUID p56714,
-					java.util.UUID p56715, java.util.UUID p56716) {
-				m_p56714 = p56714;
-				m_p56715 = p56715;
-				m_p56716 = p56716;
+			ReferredToClassInAssoc_c_test58262_c(java.util.UUID p58263,
+					java.util.UUID p58264, java.util.UUID p58265) {
+				m_p58263 = p58263;
+				m_p58264 = p58264;
+				m_p58265 = p58265;
 			}
-			private java.util.UUID m_p56714;
-			private java.util.UUID m_p56715;
-			private java.util.UUID m_p56716;
+			private java.util.UUID m_p58263;
+			private java.util.UUID m_p58264;
+			private java.util.UUID m_p58265;
 			public boolean evaluate(Object candidate) {
 				ReferredToClassInAssoc_c selected = (ReferredToClassInAssoc_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56714))
-						& (selected.getObj_id().equals(m_p56715))
-						& (selected.getRel_id().equals(m_p56716));
+				retval = (selected.getOir_id().equals(m_p58263))
+						& (selected.getObj_id().equals(m_p58264))
+						& (selected.getRel_id().equals(m_p58265));
 				return retval;
 			}
 		}
 
-		ReferredToClassInAssoc_c[] objs56717 = ReferredToClassInAssoc_c
+		ReferredToClassInAssoc_c[] objs58266 = ReferredToClassInAssoc_c
 				.ReferredToClassInAssocInstances(modelRoot,
-						new ReferredToClassInAssoc_c_test56713_c(getOir_id(),
+						new ReferredToClassInAssoc_c_test58262_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		objs56707 = objs56707 + objs56717.length;
+		objs58256 = objs58256 + objs58266.length;
 		// Subtype Object: Class As Derived One Side
-		class ClassAsDerivedOneSide_c_test56718_c
+		class ClassAsDerivedOneSide_c_test58267_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsDerivedOneSide_c_test56718_c(java.util.UUID p56719,
-					java.util.UUID p56720, java.util.UUID p56721) {
-				m_p56719 = p56719;
-				m_p56720 = p56720;
-				m_p56721 = p56721;
+			ClassAsDerivedOneSide_c_test58267_c(java.util.UUID p58268,
+					java.util.UUID p58269, java.util.UUID p58270) {
+				m_p58268 = p58268;
+				m_p58269 = p58269;
+				m_p58270 = p58270;
 			}
-			private java.util.UUID m_p56719;
-			private java.util.UUID m_p56720;
-			private java.util.UUID m_p56721;
+			private java.util.UUID m_p58268;
+			private java.util.UUID m_p58269;
+			private java.util.UUID m_p58270;
 			public boolean evaluate(Object candidate) {
 				ClassAsDerivedOneSide_c selected = (ClassAsDerivedOneSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56719))
-						& (selected.getObj_id().equals(m_p56720))
-						& (selected.getRel_id().equals(m_p56721));
+				retval = (selected.getOir_id().equals(m_p58268))
+						& (selected.getObj_id().equals(m_p58269))
+						& (selected.getRel_id().equals(m_p58270));
 				return retval;
 			}
 		}
 
-		ClassAsDerivedOneSide_c[] objs56722 = ClassAsDerivedOneSide_c
+		ClassAsDerivedOneSide_c[] objs58271 = ClassAsDerivedOneSide_c
 				.ClassAsDerivedOneSideInstances(modelRoot,
-						new ClassAsDerivedOneSide_c_test56718_c(getOir_id(),
+						new ClassAsDerivedOneSide_c_test58267_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		objs56707 = objs56707 + objs56722.length;
+		objs58256 = objs58256 + objs58271.length;
 		// Subtype Object: Class As Derived Other Side
-		class ClassAsDerivedOtherSide_c_test56723_c
+		class ClassAsDerivedOtherSide_c_test58272_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsDerivedOtherSide_c_test56723_c(java.util.UUID p56724,
-					java.util.UUID p56725, java.util.UUID p56726) {
-				m_p56724 = p56724;
-				m_p56725 = p56725;
-				m_p56726 = p56726;
+			ClassAsDerivedOtherSide_c_test58272_c(java.util.UUID p58273,
+					java.util.UUID p58274, java.util.UUID p58275) {
+				m_p58273 = p58273;
+				m_p58274 = p58274;
+				m_p58275 = p58275;
 			}
-			private java.util.UUID m_p56724;
-			private java.util.UUID m_p56725;
-			private java.util.UUID m_p56726;
+			private java.util.UUID m_p58273;
+			private java.util.UUID m_p58274;
+			private java.util.UUID m_p58275;
 			public boolean evaluate(Object candidate) {
 				ClassAsDerivedOtherSide_c selected = (ClassAsDerivedOtherSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56724))
-						& (selected.getObj_id().equals(m_p56725))
-						& (selected.getRel_id().equals(m_p56726));
+				retval = (selected.getOir_id().equals(m_p58273))
+						& (selected.getObj_id().equals(m_p58274))
+						& (selected.getRel_id().equals(m_p58275));
 				return retval;
 			}
 		}
 
-		ClassAsDerivedOtherSide_c[] objs56727 = ClassAsDerivedOtherSide_c
+		ClassAsDerivedOtherSide_c[] objs58276 = ClassAsDerivedOtherSide_c
 				.ClassAsDerivedOtherSideInstances(modelRoot,
-						new ClassAsDerivedOtherSide_c_test56723_c(getOir_id(),
+						new ClassAsDerivedOtherSide_c_test58272_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		objs56707 = objs56707 + objs56727.length;
-		if (objs56707 != 1) {
+		objs58256 = objs58256 + objs58276.length;
+		if (objs58256 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class In Association", //$NON-NLS-1$
 								"Consistency: Object: Class In Association: Association: 203: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56707)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58256)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class In Association: Association: 203: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56707), e);
+										+ Integer.toString(objs58256), e);
 			}
 			retval = false;
 

@@ -287,7 +287,8 @@ public class Dimensions_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -303,8 +304,9 @@ public class Dimensions_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDim_id()) || IdAssigner.NULL_UUID
-				.equals(((Dimensions_c) elem).getDim_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDim_id()) || IdAssigner.NULL_UUID
+						.equals(((Dimensions_c) elem).getDim_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDim_id().equals(((Dimensions_c) elem).getDim_id()))
@@ -3484,18 +3486,18 @@ public class Dimensions_c extends NonRootModelElement
 
 		if (SpecifiesOccurrencesOfStructureMember == null) {
 			// R53
-			StructureMember_c relInst55060 = (StructureMember_c) baseRoot
+			StructureMember_c relInst56609 = (StructureMember_c) baseRoot
 					.getInstanceList(StructureMember_c.class).get(
 							new Object[]{m_member_id, m_dt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55060 == null) {
-				relInst55060 = (StructureMember_c) Ooaofooa
+			if (relInst56609 == null) {
+				relInst56609 = (StructureMember_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StructureMember_c.class)
 						.get(new Object[]{m_member_id, m_dt_id});
 			}
-			if (relInst55060 == null && searchAllRoots
+			if (relInst56609 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3503,36 +3505,36 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55060 = (StructureMember_c) roots[i]
+					relInst56609 = (StructureMember_c) roots[i]
 							.getInstanceList(StructureMember_c.class).get(
 									new Object[]{m_member_id, m_dt_id});
-					if (relInst55060 != null)
+					if (relInst56609 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55060 != null) {
+			if (relInst56609 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55060) && !isProxy())) {
-					relInst55060.relateAcrossR53To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56609) && !isProxy())) {
+					relInst56609.relateAcrossR53To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfFunctionParameter == null) {
 			// R52
-			FunctionParameter_c relInst55061 = (FunctionParameter_c) baseRoot
+			FunctionParameter_c relInst56610 = (FunctionParameter_c) baseRoot
 					.getInstanceList(FunctionParameter_c.class).get(
 							new Object[]{m_sparm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55061 == null) {
-				relInst55061 = (FunctionParameter_c) Ooaofooa
+			if (relInst56610 == null) {
+				relInst56610 = (FunctionParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(FunctionParameter_c.class)
 						.get(new Object[]{m_sparm_id});
 			}
-			if (relInst55061 == null && searchAllRoots
+			if (relInst56610 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3540,34 +3542,34 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55061 = (FunctionParameter_c) roots[i]
+					relInst56610 = (FunctionParameter_c) roots[i]
 							.getInstanceList(FunctionParameter_c.class).get(
 									new Object[]{m_sparm_id});
-					if (relInst55061 != null)
+					if (relInst56610 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55061 != null) {
+			if (relInst56610 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55061) && !isProxy())) {
-					relInst55061.relateAcrossR52To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56610) && !isProxy())) {
+					relInst56610.relateAcrossR52To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (DefinesReturnValueDimensionsForFunction == null) {
 			// R51
-			Function_c relInst55062 = (Function_c) baseRoot.getInstanceList(
+			Function_c relInst56611 = (Function_c) baseRoot.getInstanceList(
 					Function_c.class).get(new Object[]{m_sync_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55062 == null) {
-				relInst55062 = (Function_c) Ooaofooa.getDefaultInstance()
+			if (relInst56611 == null) {
+				relInst56611 = (Function_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Function_c.class)
 						.get(new Object[]{m_sync_id});
 			}
-			if (relInst55062 == null && searchAllRoots
+			if (relInst56611 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3575,34 +3577,34 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55062 = (Function_c) roots[i].getInstanceList(
+					relInst56611 = (Function_c) roots[i].getInstanceList(
 							Function_c.class).get(new Object[]{m_sync_id});
-					if (relInst55062 != null)
+					if (relInst56611 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55062 != null) {
+			if (relInst56611 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55062) && !isProxy())) {
-					relInst55062.relateAcrossR51To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56611) && !isProxy())) {
+					relInst56611.relateAcrossR51To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfTransientVar == null) {
 			// R844
-			TransientVar_c relInst55063 = (TransientVar_c) baseRoot
+			TransientVar_c relInst56612 = (TransientVar_c) baseRoot
 					.getInstanceList(TransientVar_c.class).get(
 							new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55063 == null) {
-				relInst55063 = (TransientVar_c) Ooaofooa.getDefaultInstance()
+			if (relInst56612 == null) {
+				relInst56612 = (TransientVar_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(TransientVar_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst55063 == null && searchAllRoots
+			if (relInst56612 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3610,33 +3612,33 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55063 = (TransientVar_c) roots[i].getInstanceList(
+					relInst56612 = (TransientVar_c) roots[i].getInstanceList(
 							TransientVar_c.class).get(new Object[]{m_var_id});
-					if (relInst55063 != null)
+					if (relInst56612 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55063 != null) {
+			if (relInst56612 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55063) && !isProxy())) {
-					relInst55063.relateAcrossR844To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56612) && !isProxy())) {
+					relInst56612.relateAcrossR844To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfVariable == null) {
 			// R849
-			Variable_c relInst55064 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst56613 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55064 == null) {
-				relInst55064 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst56613 == null) {
+				relInst56613 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst55064 == null && searchAllRoots
+			if (relInst56613 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3644,33 +3646,33 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55064 = (Variable_c) roots[i].getInstanceList(
+					relInst56613 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst55064 != null)
+					if (relInst56613 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55064 != null) {
+			if (relInst56613 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55064) && !isProxy())) {
-					relInst55064.relateAcrossR849To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56613) && !isProxy())) {
+					relInst56613.relateAcrossR849To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfAttribute == null) {
 			// R120
-			Attribute_c relInst55065 = (Attribute_c) baseRoot.getInstanceList(
+			Attribute_c relInst56614 = (Attribute_c) baseRoot.getInstanceList(
 					Attribute_c.class).get(new Object[]{m_attr_id, m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55065 == null) {
-				relInst55065 = (Attribute_c) Ooaofooa.getDefaultInstance()
+			if (relInst56614 == null) {
+				relInst56614 = (Attribute_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Attribute_c.class)
 						.get(new Object[]{m_attr_id, m_obj_id});
 			}
-			if (relInst55065 == null && searchAllRoots
+			if (relInst56614 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3678,36 +3680,36 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55065 = (Attribute_c) roots[i].getInstanceList(
+					relInst56614 = (Attribute_c) roots[i].getInstanceList(
 							Attribute_c.class).get(
 							new Object[]{m_attr_id, m_obj_id});
-					if (relInst55065 != null)
+					if (relInst56614 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55065 != null) {
+			if (relInst56614 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55065) && !isProxy())) {
-					relInst55065.relateAcrossR120To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56614) && !isProxy())) {
+					relInst56614.relateAcrossR120To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfOperationParameter == null) {
 			// R121
-			OperationParameter_c relInst55066 = (OperationParameter_c) baseRoot
+			OperationParameter_c relInst56615 = (OperationParameter_c) baseRoot
 					.getInstanceList(OperationParameter_c.class).get(
 							new Object[]{m_tparm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55066 == null) {
-				relInst55066 = (OperationParameter_c) Ooaofooa
+			if (relInst56615 == null) {
+				relInst56615 = (OperationParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(OperationParameter_c.class)
 						.get(new Object[]{m_tparm_id});
 			}
-			if (relInst55066 == null && searchAllRoots
+			if (relInst56615 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3715,34 +3717,34 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55066 = (OperationParameter_c) roots[i]
+					relInst56615 = (OperationParameter_c) roots[i]
 							.getInstanceList(OperationParameter_c.class).get(
 									new Object[]{m_tparm_id});
-					if (relInst55066 != null)
+					if (relInst56615 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55066 != null) {
+			if (relInst56615 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55066) && !isProxy())) {
-					relInst55066.relateAcrossR121To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56615) && !isProxy())) {
+					relInst56615.relateAcrossR121To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (DefinesReturnValueDimensionsForOperation == null) {
 			// R122
-			Operation_c relInst55067 = (Operation_c) baseRoot.getInstanceList(
+			Operation_c relInst56616 = (Operation_c) baseRoot.getInstanceList(
 					Operation_c.class).get(new Object[]{m_tfr_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55067 == null) {
-				relInst55067 = (Operation_c) Ooaofooa.getDefaultInstance()
+			if (relInst56616 == null) {
+				relInst56616 = (Operation_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Operation_c.class)
 						.get(new Object[]{m_tfr_id});
 			}
-			if (relInst55067 == null && searchAllRoots
+			if (relInst56616 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3750,35 +3752,35 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55067 = (Operation_c) roots[i].getInstanceList(
+					relInst56616 = (Operation_c) roots[i].getInstanceList(
 							Operation_c.class).get(new Object[]{m_tfr_id});
-					if (relInst55067 != null)
+					if (relInst56616 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55067 != null) {
+			if (relInst56616 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55067) && !isProxy())) {
-					relInst55067.relateAcrossR122To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56616) && !isProxy())) {
+					relInst56616.relateAcrossR122To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfStateMachineEventDataItem == null) {
 			// R531
-			StateMachineEventDataItem_c relInst55068 = (StateMachineEventDataItem_c) baseRoot
+			StateMachineEventDataItem_c relInst56617 = (StateMachineEventDataItem_c) baseRoot
 					.getInstanceList(StateMachineEventDataItem_c.class).get(
 							new Object[]{m_sm_id, m_smedi_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55068 == null) {
-				relInst55068 = (StateMachineEventDataItem_c) Ooaofooa
+			if (relInst56617 == null) {
+				relInst56617 = (StateMachineEventDataItem_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEventDataItem_c.class)
 						.get(new Object[]{m_sm_id, m_smedi_id});
 			}
-			if (relInst55068 == null && searchAllRoots
+			if (relInst56617 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3786,36 +3788,36 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55068 = (StateMachineEventDataItem_c) roots[i]
+					relInst56617 = (StateMachineEventDataItem_c) roots[i]
 							.getInstanceList(StateMachineEventDataItem_c.class)
 							.get(new Object[]{m_sm_id, m_smedi_id});
-					if (relInst55068 != null)
+					if (relInst56617 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55068 != null) {
+			if (relInst56617 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55068) && !isProxy())) {
-					relInst55068.relateAcrossR531To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56617) && !isProxy())) {
+					relInst56617.relateAcrossR531To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfBridgeParameter == null) {
 			// R49
-			BridgeParameter_c relInst55069 = (BridgeParameter_c) baseRoot
+			BridgeParameter_c relInst56618 = (BridgeParameter_c) baseRoot
 					.getInstanceList(BridgeParameter_c.class).get(
 							new Object[]{m_bparm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55069 == null) {
-				relInst55069 = (BridgeParameter_c) Ooaofooa
+			if (relInst56618 == null) {
+				relInst56618 = (BridgeParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(BridgeParameter_c.class)
 						.get(new Object[]{m_bparm_id});
 			}
-			if (relInst55069 == null && searchAllRoots
+			if (relInst56618 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3823,34 +3825,34 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55069 = (BridgeParameter_c) roots[i]
+					relInst56618 = (BridgeParameter_c) roots[i]
 							.getInstanceList(BridgeParameter_c.class).get(
 									new Object[]{m_bparm_id});
-					if (relInst55069 != null)
+					if (relInst56618 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55069 != null) {
+			if (relInst56618 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55069) && !isProxy())) {
-					relInst55069.relateAcrossR49To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56618) && !isProxy())) {
+					relInst56618.relateAcrossR49To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (DefinesReturnValueDimensionsForBridge == null) {
 			// R50
-			Bridge_c relInst55070 = (Bridge_c) baseRoot.getInstanceList(
+			Bridge_c relInst56619 = (Bridge_c) baseRoot.getInstanceList(
 					Bridge_c.class).get(new Object[]{m_brg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55070 == null) {
-				relInst55070 = (Bridge_c) Ooaofooa.getDefaultInstance()
+			if (relInst56619 == null) {
+				relInst56619 = (Bridge_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Bridge_c.class)
 						.get(new Object[]{m_brg_id});
 			}
-			if (relInst55070 == null && searchAllRoots
+			if (relInst56619 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3858,35 +3860,35 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55070 = (Bridge_c) roots[i].getInstanceList(
+					relInst56619 = (Bridge_c) roots[i].getInstanceList(
 							Bridge_c.class).get(new Object[]{m_brg_id});
-					if (relInst55070 != null)
+					if (relInst56619 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55070 != null) {
+			if (relInst56619 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55070) && !isProxy())) {
-					relInst55070.relateAcrossR50To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56619) && !isProxy())) {
+					relInst56619.relateAcrossR50To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (SpecifiesOccurrencesOfPropertyParameter == null) {
 			// R4017
-			PropertyParameter_c relInst55071 = (PropertyParameter_c) baseRoot
+			PropertyParameter_c relInst56620 = (PropertyParameter_c) baseRoot
 					.getInstanceList(PropertyParameter_c.class).get(
 							new Object[]{m_pp_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55071 == null) {
-				relInst55071 = (PropertyParameter_c) Ooaofooa
+			if (relInst56620 == null) {
+				relInst56620 = (PropertyParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(PropertyParameter_c.class)
 						.get(new Object[]{m_pp_id});
 			}
-			if (relInst55071 == null && searchAllRoots
+			if (relInst56620 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3894,36 +3896,36 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55071 = (PropertyParameter_c) roots[i]
+					relInst56620 = (PropertyParameter_c) roots[i]
 							.getInstanceList(PropertyParameter_c.class).get(
 									new Object[]{m_pp_id});
-					if (relInst55071 != null)
+					if (relInst56620 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55071 != null) {
+			if (relInst56620 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55071) && !isProxy())) {
-					relInst55071.relateAcrossR4017To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56620) && !isProxy())) {
+					relInst56620.relateAcrossR4017To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (DefinesReturnValueDimensionsForInterfaceOperation == null) {
 			// R4018
-			InterfaceOperation_c relInst55072 = (InterfaceOperation_c) baseRoot
+			InterfaceOperation_c relInst56621 = (InterfaceOperation_c) baseRoot
 					.getInstanceList(InterfaceOperation_c.class).get(
 							new Object[]{m_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55072 == null) {
-				relInst55072 = (InterfaceOperation_c) Ooaofooa
+			if (relInst56621 == null) {
+				relInst56621 = (InterfaceOperation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InterfaceOperation_c.class)
 						.get(new Object[]{m_id});
 			}
-			if (relInst55072 == null && searchAllRoots
+			if (relInst56621 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3931,18 +3933,18 @@ public class Dimensions_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55072 = (InterfaceOperation_c) roots[i]
+					relInst56621 = (InterfaceOperation_c) roots[i]
 							.getInstanceList(InterfaceOperation_c.class).get(
 									new Object[]{m_id});
-					if (relInst55072 != null)
+					if (relInst56621 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55072 != null) {
+			if (relInst56621 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55072) && !isProxy())) {
-					relInst55072.relateAcrossR4018To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56621) && !isProxy())) {
+					relInst56621.relateAcrossR4018To(this, notifyChanges);
 				}
 			}
 		}
@@ -4986,42 +4988,42 @@ public class Dimensions_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Dimensions_c_test55074_c implements ClassQueryInterface_c {
-			Dimensions_c_test55074_c(java.util.UUID p55075) {
-				m_p55075 = p55075;
+		class Dimensions_c_test56623_c implements ClassQueryInterface_c {
+			Dimensions_c_test56623_c(java.util.UUID p56624) {
+				m_p56624 = p56624;
 			}
-			private java.util.UUID m_p55075;
+			private java.util.UUID m_p56624;
 			public boolean evaluate(Object candidate) {
 				Dimensions_c selected = (Dimensions_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDim_id().equals(m_p55075));
+				retval = (selected.getDim_id().equals(m_p56624));
 				return retval;
 			}
 		}
 
-		Dimensions_c[] objs55073 = Dimensions_c.DimensionsInstances(modelRoot,
-				new Dimensions_c_test55074_c(getDim_id()));
+		Dimensions_c[] objs56622 = Dimensions_c.DimensionsInstances(modelRoot,
+				new Dimensions_c_test56623_c(getDim_id()));
 
-		if (((objs55073.length) == 0)) {
+		if (((objs56622.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55073.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56622.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Dimensions: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs55073.length), e);
+								+ Integer.toString(objs56622.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55073.length) > 1)) {
+		if (((objs56622.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5029,7 +5031,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55073.length)
+										+ Integer.toString(objs56622.length)
 										+ " DIM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5037,7 +5039,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55073.length)
+										+ Integer.toString(objs56622.length)
 										+ " DIM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5046,24 +5048,24 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 52
 		// The participating class is: Function Parameter
-		class FunctionParameter_c_test55079_c implements ClassQueryInterface_c {
-			FunctionParameter_c_test55079_c(java.util.UUID p55080) {
-				m_p55080 = p55080;
+		class FunctionParameter_c_test56628_c implements ClassQueryInterface_c {
+			FunctionParameter_c_test56628_c(java.util.UUID p56629) {
+				m_p56629 = p56629;
 			}
-			private java.util.UUID m_p55080;
+			private java.util.UUID m_p56629;
 			public boolean evaluate(Object candidate) {
 				FunctionParameter_c selected = (FunctionParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSparm_id().equals(m_p55080));
+				retval = (selected.getSparm_id().equals(m_p56629));
 				return retval;
 			}
 		}
 
-		FunctionParameter_c[] objs55078 = FunctionParameter_c
+		FunctionParameter_c[] objs56627 = FunctionParameter_c
 				.FunctionParameterInstances(modelRoot,
-						new FunctionParameter_c_test55079_c(getSparm_id()));
+						new FunctionParameter_c_test56628_c(getSparm_id()));
 
-		if (((objs55078.length) > 1)) {
+		if (((objs56627.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5071,7 +5073,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 52: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55078.length)
+										+ Integer.toString(objs56627.length)
 										+ " SParm_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5079,7 +5081,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 52: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55078.length)
+										+ Integer.toString(objs56627.length)
 										+ " SParm_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5088,24 +5090,24 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 49
 		// The participating class is: Bridge Parameter
-		class BridgeParameter_c_test55082_c implements ClassQueryInterface_c {
-			BridgeParameter_c_test55082_c(java.util.UUID p55083) {
-				m_p55083 = p55083;
+		class BridgeParameter_c_test56631_c implements ClassQueryInterface_c {
+			BridgeParameter_c_test56631_c(java.util.UUID p56632) {
+				m_p56632 = p56632;
 			}
-			private java.util.UUID m_p55083;
+			private java.util.UUID m_p56632;
 			public boolean evaluate(Object candidate) {
 				BridgeParameter_c selected = (BridgeParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBparm_id().equals(m_p55083));
+				retval = (selected.getBparm_id().equals(m_p56632));
 				return retval;
 			}
 		}
 
-		BridgeParameter_c[] objs55081 = BridgeParameter_c
+		BridgeParameter_c[] objs56630 = BridgeParameter_c
 				.BridgeParameterInstances(modelRoot,
-						new BridgeParameter_c_test55082_c(getBparm_id()));
+						new BridgeParameter_c_test56631_c(getBparm_id()));
 
-		if (((objs55081.length) > 1)) {
+		if (((objs56630.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5113,7 +5115,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 49: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55081.length)
+										+ Integer.toString(objs56630.length)
 										+ " BParm_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5121,7 +5123,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 49: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55081.length)
+										+ Integer.toString(objs56630.length)
 										+ " BParm_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5130,23 +5132,23 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 50
 		// The participating class is: Bridge
-		class Bridge_c_test55085_c implements ClassQueryInterface_c {
-			Bridge_c_test55085_c(java.util.UUID p55086) {
-				m_p55086 = p55086;
+		class Bridge_c_test56634_c implements ClassQueryInterface_c {
+			Bridge_c_test56634_c(java.util.UUID p56635) {
+				m_p56635 = p56635;
 			}
-			private java.util.UUID m_p55086;
+			private java.util.UUID m_p56635;
 			public boolean evaluate(Object candidate) {
 				Bridge_c selected = (Bridge_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBrg_id().equals(m_p55086));
+				retval = (selected.getBrg_id().equals(m_p56635));
 				return retval;
 			}
 		}
 
-		Bridge_c[] objs55084 = Bridge_c.BridgeInstances(modelRoot,
-				new Bridge_c_test55085_c(getBrg_id()));
+		Bridge_c[] objs56633 = Bridge_c.BridgeInstances(modelRoot,
+				new Bridge_c_test56634_c(getBrg_id()));
 
-		if (((objs55084.length) > 1)) {
+		if (((objs56633.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5154,7 +5156,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 50: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55084.length)
+										+ Integer.toString(objs56633.length)
 										+ " Brg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5162,7 +5164,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 50: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55084.length)
+										+ Integer.toString(objs56633.length)
 										+ " Brg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5171,24 +5173,24 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 4018
 		// The participating class is: Interface Operation
-		class InterfaceOperation_c_test55088_c implements ClassQueryInterface_c {
-			InterfaceOperation_c_test55088_c(java.util.UUID p55089) {
-				m_p55089 = p55089;
+		class InterfaceOperation_c_test56637_c implements ClassQueryInterface_c {
+			InterfaceOperation_c_test56637_c(java.util.UUID p56638) {
+				m_p56638 = p56638;
 			}
-			private java.util.UUID m_p55089;
+			private java.util.UUID m_p56638;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55089));
+				retval = (selected.getId().equals(m_p56638));
 				return retval;
 			}
 		}
 
-		InterfaceOperation_c[] objs55087 = InterfaceOperation_c
+		InterfaceOperation_c[] objs56636 = InterfaceOperation_c
 				.InterfaceOperationInstances(modelRoot,
-						new InterfaceOperation_c_test55088_c(getId()));
+						new InterfaceOperation_c_test56637_c(getId()));
 
-		if (((objs55087.length) > 1)) {
+		if (((objs56636.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5196,7 +5198,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 4018: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55087.length)
+										+ Integer.toString(objs56636.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5204,7 +5206,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 4018: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55087.length)
+										+ Integer.toString(objs56636.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5213,26 +5215,26 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 120
 		// The participating class is: Attribute
-		class Attribute_c_test55091_c implements ClassQueryInterface_c {
-			Attribute_c_test55091_c(java.util.UUID p55092, java.util.UUID p55093) {
-				m_p55092 = p55092;
-				m_p55093 = p55093;
+		class Attribute_c_test56640_c implements ClassQueryInterface_c {
+			Attribute_c_test56640_c(java.util.UUID p56641, java.util.UUID p56642) {
+				m_p56641 = p56641;
+				m_p56642 = p56642;
 			}
-			private java.util.UUID m_p55092;
-			private java.util.UUID m_p55093;
+			private java.util.UUID m_p56641;
+			private java.util.UUID m_p56642;
 			public boolean evaluate(Object candidate) {
 				Attribute_c selected = (Attribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p55092))
-						& (selected.getObj_id().equals(m_p55093));
+				retval = (selected.getAttr_id().equals(m_p56641))
+						& (selected.getObj_id().equals(m_p56642));
 				return retval;
 			}
 		}
 
-		Attribute_c[] objs55090 = Attribute_c.AttributeInstances(modelRoot,
-				new Attribute_c_test55091_c(getAttr_id(), getObj_id()));
+		Attribute_c[] objs56639 = Attribute_c.AttributeInstances(modelRoot,
+				new Attribute_c_test56640_c(getAttr_id(), getObj_id()));
 
-		if (((objs55090.length) > 1)) {
+		if (((objs56639.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5240,7 +5242,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 120: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55090.length)
+										+ Integer.toString(objs56639.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5248,7 +5250,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 120: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55090.length)
+										+ Integer.toString(objs56639.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5257,24 +5259,24 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 121
 		// The participating class is: Operation Parameter
-		class OperationParameter_c_test55095_c implements ClassQueryInterface_c {
-			OperationParameter_c_test55095_c(java.util.UUID p55096) {
-				m_p55096 = p55096;
+		class OperationParameter_c_test56644_c implements ClassQueryInterface_c {
+			OperationParameter_c_test56644_c(java.util.UUID p56645) {
+				m_p56645 = p56645;
 			}
-			private java.util.UUID m_p55096;
+			private java.util.UUID m_p56645;
 			public boolean evaluate(Object candidate) {
 				OperationParameter_c selected = (OperationParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTparm_id().equals(m_p55096));
+				retval = (selected.getTparm_id().equals(m_p56645));
 				return retval;
 			}
 		}
 
-		OperationParameter_c[] objs55094 = OperationParameter_c
+		OperationParameter_c[] objs56643 = OperationParameter_c
 				.OperationParameterInstances(modelRoot,
-						new OperationParameter_c_test55095_c(getTparm_id()));
+						new OperationParameter_c_test56644_c(getTparm_id()));
 
-		if (((objs55094.length) > 1)) {
+		if (((objs56643.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5282,7 +5284,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 121: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55094.length)
+										+ Integer.toString(objs56643.length)
 										+ " TParm_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5290,7 +5292,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 121: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55094.length)
+										+ Integer.toString(objs56643.length)
 										+ " TParm_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5299,23 +5301,23 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 122
 		// The participating class is: Operation
-		class Operation_c_test55098_c implements ClassQueryInterface_c {
-			Operation_c_test55098_c(java.util.UUID p55099) {
-				m_p55099 = p55099;
+		class Operation_c_test56647_c implements ClassQueryInterface_c {
+			Operation_c_test56647_c(java.util.UUID p56648) {
+				m_p56648 = p56648;
 			}
-			private java.util.UUID m_p55099;
+			private java.util.UUID m_p56648;
 			public boolean evaluate(Object candidate) {
 				Operation_c selected = (Operation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTfr_id().equals(m_p55099));
+				retval = (selected.getTfr_id().equals(m_p56648));
 				return retval;
 			}
 		}
 
-		Operation_c[] objs55097 = Operation_c.OperationInstances(modelRoot,
-				new Operation_c_test55098_c(getTfr_id()));
+		Operation_c[] objs56646 = Operation_c.OperationInstances(modelRoot,
+				new Operation_c_test56647_c(getTfr_id()));
 
-		if (((objs55097.length) > 1)) {
+		if (((objs56646.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5323,7 +5325,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 122: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55097.length)
+										+ Integer.toString(objs56646.length)
 										+ " Tfr_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5331,7 +5333,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 122: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55097.length)
+										+ Integer.toString(objs56646.length)
 										+ " Tfr_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5340,29 +5342,29 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 53
 		// The participating class is: Structure Member
-		class StructureMember_c_test55101_c implements ClassQueryInterface_c {
-			StructureMember_c_test55101_c(java.util.UUID p55102,
-					java.util.UUID p55103) {
-				m_p55102 = p55102;
-				m_p55103 = p55103;
+		class StructureMember_c_test56650_c implements ClassQueryInterface_c {
+			StructureMember_c_test56650_c(java.util.UUID p56651,
+					java.util.UUID p56652) {
+				m_p56651 = p56651;
+				m_p56652 = p56652;
 			}
-			private java.util.UUID m_p55102;
-			private java.util.UUID m_p55103;
+			private java.util.UUID m_p56651;
+			private java.util.UUID m_p56652;
 			public boolean evaluate(Object candidate) {
 				StructureMember_c selected = (StructureMember_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMember_id().equals(m_p55102))
-						& (selected.getParent_dt_dt_id().equals(m_p55103));
+				retval = (selected.getMember_id().equals(m_p56651))
+						& (selected.getParent_dt_dt_id().equals(m_p56652));
 				return retval;
 			}
 		}
 
-		StructureMember_c[] objs55100 = StructureMember_c
+		StructureMember_c[] objs56649 = StructureMember_c
 				.StructureMemberInstances(modelRoot,
-						new StructureMember_c_test55101_c(getMember_id(),
+						new StructureMember_c_test56650_c(getMember_id(),
 								getDt_id()));
 
-		if (((objs55100.length) > 1)) {
+		if (((objs56649.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5370,7 +5372,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 53: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55100.length)
+										+ Integer.toString(objs56649.length)
 										+ " Member_ID: " + "Not Printable" + " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5378,7 +5380,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 53: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55100.length)
+										+ Integer.toString(objs56649.length)
 										+ " Member_ID: " + "Not Printable" + " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5387,24 +5389,24 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 4017
 		// The participating class is: Property Parameter
-		class PropertyParameter_c_test55105_c implements ClassQueryInterface_c {
-			PropertyParameter_c_test55105_c(java.util.UUID p55106) {
-				m_p55106 = p55106;
+		class PropertyParameter_c_test56654_c implements ClassQueryInterface_c {
+			PropertyParameter_c_test56654_c(java.util.UUID p56655) {
+				m_p56655 = p56655;
 			}
-			private java.util.UUID m_p55106;
+			private java.util.UUID m_p56655;
 			public boolean evaluate(Object candidate) {
 				PropertyParameter_c selected = (PropertyParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPp_id().equals(m_p55106));
+				retval = (selected.getPp_id().equals(m_p56655));
 				return retval;
 			}
 		}
 
-		PropertyParameter_c[] objs55104 = PropertyParameter_c
+		PropertyParameter_c[] objs56653 = PropertyParameter_c
 				.PropertyParameterInstances(modelRoot,
-						new PropertyParameter_c_test55105_c(getPp_id()));
+						new PropertyParameter_c_test56654_c(getPp_id()));
 
-		if (((objs55104.length) > 1)) {
+		if (((objs56653.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5412,7 +5414,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 4017: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55104.length)
+										+ Integer.toString(objs56653.length)
 										+ " PP_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5420,7 +5422,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 4017: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55104.length)
+										+ Integer.toString(objs56653.length)
 										+ " PP_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5429,31 +5431,31 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 531
 		// The participating class is: State Machine Event Data Item
-		class StateMachineEventDataItem_c_test55108_c
+		class StateMachineEventDataItem_c_test56657_c
 				implements
 					ClassQueryInterface_c {
-			StateMachineEventDataItem_c_test55108_c(java.util.UUID p55109,
-					java.util.UUID p55110) {
-				m_p55109 = p55109;
-				m_p55110 = p55110;
+			StateMachineEventDataItem_c_test56657_c(java.util.UUID p56658,
+					java.util.UUID p56659) {
+				m_p56658 = p56658;
+				m_p56659 = p56659;
 			}
-			private java.util.UUID m_p55109;
-			private java.util.UUID m_p55110;
+			private java.util.UUID m_p56658;
+			private java.util.UUID m_p56659;
 			public boolean evaluate(Object candidate) {
 				StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p55109))
-						& (selected.getSmedi_id().equals(m_p55110));
+				retval = (selected.getSm_id().equals(m_p56658))
+						& (selected.getSmedi_id().equals(m_p56659));
 				return retval;
 			}
 		}
 
-		StateMachineEventDataItem_c[] objs55107 = StateMachineEventDataItem_c
+		StateMachineEventDataItem_c[] objs56656 = StateMachineEventDataItem_c
 				.StateMachineEventDataItemInstances(modelRoot,
-						new StateMachineEventDataItem_c_test55108_c(getSm_id(),
+						new StateMachineEventDataItem_c_test56657_c(getSm_id(),
 								getSmedi_id()));
 
-		if (((objs55107.length) > 1)) {
+		if (((objs56656.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5461,7 +5463,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 531: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55107.length)
+										+ Integer.toString(objs56656.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5469,7 +5471,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 531: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55107.length)
+										+ Integer.toString(objs56656.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5478,23 +5480,23 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 849
 		// The participating class is: Variable
-		class Variable_c_test55112_c implements ClassQueryInterface_c {
-			Variable_c_test55112_c(java.util.UUID p55113) {
-				m_p55113 = p55113;
+		class Variable_c_test56661_c implements ClassQueryInterface_c {
+			Variable_c_test56661_c(java.util.UUID p56662) {
+				m_p56662 = p56662;
 			}
-			private java.util.UUID m_p55113;
+			private java.util.UUID m_p56662;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p55113));
+				retval = (selected.getVar_id().equals(m_p56662));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs55111 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test55112_c(getVar_id()));
+		Variable_c[] objs56660 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test56661_c(getVar_id()));
 
-		if (((objs55111.length) > 1)) {
+		if (((objs56660.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5502,7 +5504,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 849: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55111.length)
+										+ Integer.toString(objs56660.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5510,7 +5512,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 849: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55111.length)
+										+ Integer.toString(objs56660.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5519,23 +5521,23 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 844
 		// The participating class is: Transient Var
-		class TransientVar_c_test55115_c implements ClassQueryInterface_c {
-			TransientVar_c_test55115_c(java.util.UUID p55116) {
-				m_p55116 = p55116;
+		class TransientVar_c_test56664_c implements ClassQueryInterface_c {
+			TransientVar_c_test56664_c(java.util.UUID p56665) {
+				m_p56665 = p56665;
 			}
-			private java.util.UUID m_p55116;
+			private java.util.UUID m_p56665;
 			public boolean evaluate(Object candidate) {
 				TransientVar_c selected = (TransientVar_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p55116));
+				retval = (selected.getVar_id().equals(m_p56665));
 				return retval;
 			}
 		}
 
-		TransientVar_c[] objs55114 = TransientVar_c.TransientVarInstances(
-				modelRoot, new TransientVar_c_test55115_c(getVar_id()));
+		TransientVar_c[] objs56663 = TransientVar_c.TransientVarInstances(
+				modelRoot, new TransientVar_c_test56664_c(getVar_id()));
 
-		if (((objs55114.length) > 1)) {
+		if (((objs56663.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5543,7 +5545,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 844: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55114.length)
+										+ Integer.toString(objs56663.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5551,7 +5553,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 844: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55114.length)
+										+ Integer.toString(objs56663.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5560,23 +5562,23 @@ public class Dimensions_c extends NonRootModelElement
 
 		// Dimensions is a referring class in association: rel.Numb = 51
 		// The participating class is: Function
-		class Function_c_test55118_c implements ClassQueryInterface_c {
-			Function_c_test55118_c(java.util.UUID p55119) {
-				m_p55119 = p55119;
+		class Function_c_test56667_c implements ClassQueryInterface_c {
+			Function_c_test56667_c(java.util.UUID p56668) {
+				m_p56668 = p56668;
 			}
-			private java.util.UUID m_p55119;
+			private java.util.UUID m_p56668;
 			public boolean evaluate(Object candidate) {
 				Function_c selected = (Function_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSync_id().equals(m_p55119));
+				retval = (selected.getSync_id().equals(m_p56668));
 				return retval;
 			}
 		}
 
-		Function_c[] objs55117 = Function_c.FunctionInstances(modelRoot,
-				new Function_c_test55118_c(getSync_id()));
+		Function_c[] objs56666 = Function_c.FunctionInstances(modelRoot,
+				new Function_c_test56667_c(getSync_id()));
 
-		if (((objs55117.length) > 1)) {
+		if (((objs56666.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5584,7 +5586,7 @@ public class Dimensions_c extends NonRootModelElement
 								"Dimensions", //$NON-NLS-1$
 								"Consistency: Object: Dimensions: Association: 51: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55117.length)
+										+ Integer.toString(objs56666.length)
 										+ " Sync_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5592,7 +5594,7 @@ public class Dimensions_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Dimensions: Association: 51: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55117.length)
+										+ Integer.toString(objs56666.length)
 										+ " Sync_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

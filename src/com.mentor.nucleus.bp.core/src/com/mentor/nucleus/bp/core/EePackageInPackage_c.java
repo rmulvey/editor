@@ -148,7 +148,7 @@ p_m_eepack_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_eepack_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getEepack_id()) || IdAssigner.NULL_UUID.equals(((EePackageInPackage_c)elem).getEepack_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getEepack_id()) || IdAssigner.NULL_UUID.equals(((EePackageInPackage_c)elem).getEepack_id())) && this != elem)) {
       	return false;
       }
       if (!getEepack_id().equals(((EePackageInPackage_c)elem).getEepack_id())) return false;
@@ -597,29 +597,29 @@ public static EePackageInPackage_c [] getManyS_EEPIPsOnR35(ExternalEntityPackage
 
 	if (ContainsChildrenOfExternalEntityPackage == null) {          
       // R34
-      ExternalEntityPackage_c relInst55039 = (ExternalEntityPackage_c) baseRoot.getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
+      ExternalEntityPackage_c relInst56588 = (ExternalEntityPackage_c) baseRoot.getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55039 == null) {
-      			relInst55039 = (ExternalEntityPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
+      		if (relInst56588 == null) {
+      			relInst56588 = (ExternalEntityPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
       		}
-			if (relInst55039 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56588 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55039 = (ExternalEntityPackage_c) roots[i].getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
-					if (relInst55039 != null)
+					relInst56588 = (ExternalEntityPackage_c) roots[i].getInstanceList(ExternalEntityPackage_c.class).get(new Object[] {m_eepack_id});
+					if (relInst56588 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55039 != null )
+      if ( relInst56588 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55039) && !isProxy())) {
-	      relInst55039.relateAcrossR34To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56588) && !isProxy())) {
+	      relInst56588.relateAcrossR34To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -866,56 +866,56 @@ private static EePackageInPackage_c findEePackageInPackageInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class EePackageInPackage_c_test55041_c implements ClassQueryInterface_c
+    class EePackageInPackage_c_test56590_c implements ClassQueryInterface_c
     {
-	  EePackageInPackage_c_test55041_c( java.util.UUID            p55042 ) {
-	  m_p55042 = p55042;
+	  EePackageInPackage_c_test56590_c( java.util.UUID            p56591 ) {
+	  m_p56591 = p56591;
 	  }
-	  private java.util.UUID             m_p55042; 
+	  private java.util.UUID             m_p56591; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EePackageInPackage_c selected = (EePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p55042));
+	      retval = (selected.getEepack_id().equals(m_p56591));
 	      return retval;
 	  }
     }
 
-    EePackageInPackage_c [] objs55040 = 
-    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test55041_c(getEepack_id())) ;
+    EePackageInPackage_c [] objs56589 = 
+    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test56590_c(getEepack_id())) ;
 
-    if ( (  (objs55040.length) == 0) )
+    if ( (  (objs56589.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "EE Package in Package", //$NON-NLS-1$
            "Consistency: Object: EE Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55040.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56589.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: EE Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55040.length )  , e); 
+          + Integer.toString( objs56589.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55040.length) > 1) )
+    if ( (  (objs56589.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "EE Package in Package", //$NON-NLS-1$
            "Consistency: Object: EE Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55040.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56589.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: EE Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55040.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56589.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -923,40 +923,40 @@ private static EePackageInPackage_c findEePackageInPackageInstance(ModelRoot mod
 
           // EE Package in Package is a referring class in association: rel.Numb = 34
           // The participating class is: External Entity Package
-    class ExternalEntityPackage_c_test55046_c implements ClassQueryInterface_c
+    class ExternalEntityPackage_c_test56595_c implements ClassQueryInterface_c
     {
-	  ExternalEntityPackage_c_test55046_c( java.util.UUID            p55047 ) {
-	  m_p55047 = p55047;
+	  ExternalEntityPackage_c_test56595_c( java.util.UUID            p56596 ) {
+	  m_p56596 = p56596;
 	  }
-	  private java.util.UUID             m_p55047; 
+	  private java.util.UUID             m_p56596; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExternalEntityPackage_c selected = (ExternalEntityPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p55047));
+	      retval = (selected.getEepack_id().equals(m_p56596));
 	      return retval;
 	  }
     }
 
-    ExternalEntityPackage_c [] objs55045 = 
-    ExternalEntityPackage_c.ExternalEntityPackageInstances(modelRoot, new ExternalEntityPackage_c_test55046_c(getEepack_id())) ;
+    ExternalEntityPackage_c [] objs56594 = 
+    ExternalEntityPackage_c.ExternalEntityPackageInstances(modelRoot, new ExternalEntityPackage_c_test56595_c(getEepack_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55045.length) != 1) )
+    if ( (  (objs56594.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "EE Package in Package", //$NON-NLS-1$
            "Consistency: Object: EE Package in Package: Association: 34: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55045.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56594.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: EE Package in Package: Association: 34: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55045.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56594.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

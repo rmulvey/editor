@@ -142,7 +142,8 @@ public class ActivityFinalNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -158,8 +159,9 @@ public class ActivityFinalNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ActivityFinalNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ActivityFinalNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ActivityFinalNode_c) elem).getId()))
@@ -409,33 +411,33 @@ public class ActivityFinalNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1106
-		ControlNode_c relInst57036 = (ControlNode_c) baseRoot.getInstanceList(
+		ControlNode_c relInst58585 = (ControlNode_c) baseRoot.getInstanceList(
 				ControlNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst57036 == null) {
-			relInst57036 = (ControlNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58585 == null) {
+			relInst58585 = (ControlNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ControlNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst57036 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58585 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst57036 = (ControlNode_c) roots[i].getInstanceList(
+				relInst58585 = (ControlNode_c) roots[i].getInstanceList(
 						ControlNode_c.class).get(new Object[]{m_id});
-				if (relInst57036 != null)
+				if (relInst58585 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst57036 != null) {
+		if (relInst58585 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst57036) && !isProxy())) {
-				relInst57036.relateAcrossR1106To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58585) && !isProxy())) {
+				relInst58585.relateAcrossR1106To(this, notifyChanges);
 			}
 		}
 
@@ -705,44 +707,44 @@ public class ActivityFinalNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActivityFinalNode_c_test57038_c implements ClassQueryInterface_c {
-			ActivityFinalNode_c_test57038_c(java.util.UUID p57039) {
-				m_p57039 = p57039;
+		class ActivityFinalNode_c_test58587_c implements ClassQueryInterface_c {
+			ActivityFinalNode_c_test58587_c(java.util.UUID p58588) {
+				m_p58588 = p58588;
 			}
-			private java.util.UUID m_p57039;
+			private java.util.UUID m_p58588;
 			public boolean evaluate(Object candidate) {
 				ActivityFinalNode_c selected = (ActivityFinalNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57039));
+				retval = (selected.getId().equals(m_p58588));
 				return retval;
 			}
 		}
 
-		ActivityFinalNode_c[] objs57037 = ActivityFinalNode_c
+		ActivityFinalNode_c[] objs58586 = ActivityFinalNode_c
 				.ActivityFinalNodeInstances(modelRoot,
-						new ActivityFinalNode_c_test57038_c(getId()));
+						new ActivityFinalNode_c_test58587_c(getId()));
 
-		if (((objs57037.length) == 0)) {
+		if (((objs58586.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Activity Final Node", //$NON-NLS-1$
 								"Consistency: Object: Activity Final Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57037.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58586.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Activity Final Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57037.length), e);
+										+ Integer.toString(objs58586.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs57037.length) > 1)) {
+		if (((objs58586.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -750,7 +752,7 @@ public class ActivityFinalNode_c extends NonRootModelElement
 								"Activity Final Node", //$NON-NLS-1$
 								"Consistency: Object: Activity Final Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs57037.length)
+										+ Integer.toString(objs58586.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -758,7 +760,7 @@ public class ActivityFinalNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Activity Final Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57037.length)
+										+ Integer.toString(objs58586.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -767,37 +769,37 @@ public class ActivityFinalNode_c extends NonRootModelElement
 
 		// Activity Final Node is a subtype in association: rel.Numb = 1106
 		// The supertype class is: Control Node
-		class ControlNode_c_test57043_c implements ClassQueryInterface_c {
-			ControlNode_c_test57043_c(java.util.UUID p57044) {
-				m_p57044 = p57044;
+		class ControlNode_c_test58592_c implements ClassQueryInterface_c {
+			ControlNode_c_test58592_c(java.util.UUID p58593) {
+				m_p58593 = p58593;
 			}
-			private java.util.UUID m_p57044;
+			private java.util.UUID m_p58593;
 			public boolean evaluate(Object candidate) {
 				ControlNode_c selected = (ControlNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57044));
+				retval = (selected.getId().equals(m_p58593));
 				return retval;
 			}
 		}
 
-		ControlNode_c[] objs57042 = ControlNode_c.ControlNodeInstances(
-				modelRoot, new ControlNode_c_test57043_c(getId()));
+		ControlNode_c[] objs58591 = ControlNode_c.ControlNodeInstances(
+				modelRoot, new ControlNode_c_test58592_c(getId()));
 
-		if (((objs57042.length) != 1)) {
+		if (((objs58591.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Activity Final Node", //$NON-NLS-1$
 								"Consistency: Object: Activity Final Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57042.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58591.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Activity Final Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57042.length), e);
+										+ Integer.toString(objs58591.length), e);
 			}
 			retval = false;
 

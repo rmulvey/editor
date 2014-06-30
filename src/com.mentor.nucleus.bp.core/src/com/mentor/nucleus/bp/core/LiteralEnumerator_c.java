@@ -157,7 +157,8 @@ public class LiteralEnumerator_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -173,9 +174,9 @@ public class LiteralEnumerator_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((LiteralEnumerator_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((LiteralEnumerator_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(((LiteralEnumerator_c) elem).getValue_id()))
@@ -625,50 +626,50 @@ public class LiteralEnumerator_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R801
-		Value_c relInst37572 = (Value_c) baseRoot
+		Value_c relInst38154 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37572 == null) {
-			relInst37572 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst38154 == null) {
+			relInst38154 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37572 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38154 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37572 = (Value_c) roots[i]
+				relInst38154 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37572 != null)
+				if (relInst38154 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37572 != null) {
+		if (relInst38154 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37572) && !isProxy())) {
-				relInst37572.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38154) && !isProxy())) {
+				relInst38154.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
 		if (HasValueEnumerator == null) {
 			// R824
-			Enumerator_c relInst37573 = (Enumerator_c) baseRoot
+			Enumerator_c relInst38155 = (Enumerator_c) baseRoot
 					.getInstanceList(Enumerator_c.class).get(
 							new Object[]{m_enum_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37573 == null) {
-				relInst37573 = (Enumerator_c) Ooaofooa.getDefaultInstance()
+			if (relInst38155 == null) {
+				relInst38155 = (Enumerator_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Enumerator_c.class)
 						.get(new Object[]{m_enum_id});
 			}
-			if (relInst37573 == null && searchAllRoots
+			if (relInst38155 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -676,17 +677,17 @@ public class LiteralEnumerator_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37573 = (Enumerator_c) roots[i].getInstanceList(
+					relInst38155 = (Enumerator_c) roots[i].getInstanceList(
 							Enumerator_c.class).get(new Object[]{m_enum_id});
-					if (relInst37573 != null)
+					if (relInst38155 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37573 != null) {
+			if (relInst38155 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37573) && !isProxy())) {
-					relInst37573.relateAcrossR824To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38155) && !isProxy())) {
+					relInst38155.relateAcrossR824To(this, notifyChanges);
 				}
 			}
 		}
@@ -932,44 +933,44 @@ public class LiteralEnumerator_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class LiteralEnumerator_c_test37575_c implements ClassQueryInterface_c {
-			LiteralEnumerator_c_test37575_c(java.util.UUID p37576) {
-				m_p37576 = p37576;
+		class LiteralEnumerator_c_test38157_c implements ClassQueryInterface_c {
+			LiteralEnumerator_c_test38157_c(java.util.UUID p38158) {
+				m_p38158 = p38158;
 			}
-			private java.util.UUID m_p37576;
+			private java.util.UUID m_p38158;
 			public boolean evaluate(Object candidate) {
 				LiteralEnumerator_c selected = (LiteralEnumerator_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37576));
+				retval = (selected.getValue_id().equals(m_p38158));
 				return retval;
 			}
 		}
 
-		LiteralEnumerator_c[] objs37574 = LiteralEnumerator_c
+		LiteralEnumerator_c[] objs38156 = LiteralEnumerator_c
 				.LiteralEnumeratorInstances(modelRoot,
-						new LiteralEnumerator_c_test37575_c(getValue_id()));
+						new LiteralEnumerator_c_test38157_c(getValue_id()));
 
-		if (((objs37574.length) == 0)) {
+		if (((objs38156.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Literal Enumerator", //$NON-NLS-1$
 								"Consistency: Object: Literal Enumerator: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37574.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38156.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Literal Enumerator: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37574.length), e);
+										+ Integer.toString(objs38156.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37574.length) > 1)) {
+		if (((objs38156.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -977,7 +978,7 @@ public class LiteralEnumerator_c extends NonRootModelElement
 								"Literal Enumerator", //$NON-NLS-1$
 								"Consistency: Object: Literal Enumerator: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37574.length)
+										+ Integer.toString(objs38156.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -985,7 +986,7 @@ public class LiteralEnumerator_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Literal Enumerator: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37574.length)
+										+ Integer.toString(objs38156.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -994,37 +995,37 @@ public class LiteralEnumerator_c extends NonRootModelElement
 
 		// Literal Enumerator is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37580_c implements ClassQueryInterface_c {
-			Value_c_test37580_c(java.util.UUID p37581) {
-				m_p37581 = p37581;
+		class Value_c_test38162_c implements ClassQueryInterface_c {
+			Value_c_test38162_c(java.util.UUID p38163) {
+				m_p38163 = p38163;
 			}
-			private java.util.UUID m_p37581;
+			private java.util.UUID m_p38163;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37581));
+				retval = (selected.getValue_id().equals(m_p38163));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37579 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37580_c(getValue_id()));
+		Value_c[] objs38161 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38162_c(getValue_id()));
 
-		if (((objs37579.length) != 1)) {
+		if (((objs38161.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Literal Enumerator", //$NON-NLS-1$
 								"Consistency: Object: Literal Enumerator: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37579.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38161.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Literal Enumerator: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37579.length), e);
+										+ Integer.toString(objs38161.length), e);
 			}
 			retval = false;
 
@@ -1032,25 +1033,25 @@ public class LiteralEnumerator_c extends NonRootModelElement
 
 		// Literal Enumerator is a referring class in association: rel.Numb = 824
 		// The participating class is: Enumerator
-		class Enumerator_c_test37583_c implements ClassQueryInterface_c {
-			Enumerator_c_test37583_c(java.util.UUID p37584) {
-				m_p37584 = p37584;
+		class Enumerator_c_test38165_c implements ClassQueryInterface_c {
+			Enumerator_c_test38165_c(java.util.UUID p38166) {
+				m_p38166 = p38166;
 			}
-			private java.util.UUID m_p37584;
+			private java.util.UUID m_p38166;
 			public boolean evaluate(Object candidate) {
 				Enumerator_c selected = (Enumerator_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEnum_id().equals(m_p37584));
+				retval = (selected.getEnum_id().equals(m_p38166));
 				return retval;
 			}
 		}
 
-		Enumerator_c[] objs37582 = Enumerator_c.EnumeratorInstances(modelRoot,
-				new Enumerator_c_test37583_c(getEnum_id()));
+		Enumerator_c[] objs38164 = Enumerator_c.EnumeratorInstances(modelRoot,
+				new Enumerator_c_test38165_c(getEnum_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37582.length) != 1)) {
+		if (((objs38164.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1058,7 +1059,7 @@ public class LiteralEnumerator_c extends NonRootModelElement
 								"Literal Enumerator", //$NON-NLS-1$
 								"Consistency: Object: Literal Enumerator: Association: 824: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37582.length)
+										+ Integer.toString(objs38164.length)
 										+ " Enum_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1066,7 +1067,7 @@ public class LiteralEnumerator_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Literal Enumerator: Association: 824: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37582.length)
+										+ Integer.toString(objs38164.length)
 										+ " Enum_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -147,7 +147,8 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,10 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((InterfaceOperationMessage_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((InterfaceOperationMessage_c) elem)
+								.getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(
@@ -712,51 +714,51 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1020
-		SynchronousMessage_c relInst39554 = (SynchronousMessage_c) baseRoot
+		SynchronousMessage_c relInst40136 = (SynchronousMessage_c) baseRoot
 				.getInstanceList(SynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39554 == null) {
-			relInst39554 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
+		if (relInst40136 == null) {
+			relInst40136 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39554 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40136 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39554 = (SynchronousMessage_c) roots[i].getInstanceList(
+				relInst40136 = (SynchronousMessage_c) roots[i].getInstanceList(
 						SynchronousMessage_c.class).get(new Object[]{m_msg_id});
-				if (relInst39554 != null)
+				if (relInst40136 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39554 != null) {
+		if (relInst40136 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39554) && !isProxy())) {
-				relInst39554.relateAcrossR1020To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40136) && !isProxy())) {
+				relInst40136.relateAcrossR1020To(this, notifyChanges);
 			}
 		}
 
 		if (SendsInterfaceOperation == null) {
 			// R1022
-			InterfaceOperation_c relInst39555 = (InterfaceOperation_c) baseRoot
+			InterfaceOperation_c relInst40137 = (InterfaceOperation_c) baseRoot
 					.getInstanceList(InterfaceOperation_c.class).get(
 							new Object[]{m_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39555 == null) {
-				relInst39555 = (InterfaceOperation_c) Ooaofooa
+			if (relInst40137 == null) {
+				relInst40137 = (InterfaceOperation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InterfaceOperation_c.class)
 						.get(new Object[]{m_id});
 			}
-			if (relInst39555 == null && searchAllRoots
+			if (relInst40137 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -764,18 +766,18 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39555 = (InterfaceOperation_c) roots[i]
+					relInst40137 = (InterfaceOperation_c) roots[i]
 							.getInstanceList(InterfaceOperation_c.class).get(
 									new Object[]{m_id});
-					if (relInst39555 != null)
+					if (relInst40137 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39555 != null) {
+			if (relInst40137 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39555) && !isProxy())) {
-					relInst39555.relateAcrossR1022To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40137) && !isProxy())) {
+					relInst40137.relateAcrossR1022To(this, notifyChanges);
 				}
 			}
 		}
@@ -1082,27 +1084,27 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InterfaceOperationMessage_c_test39557_c
+		class InterfaceOperationMessage_c_test40139_c
 				implements
 					ClassQueryInterface_c {
-			InterfaceOperationMessage_c_test39557_c(java.util.UUID p39558) {
-				m_p39558 = p39558;
+			InterfaceOperationMessage_c_test40139_c(java.util.UUID p40140) {
+				m_p40140 = p40140;
 			}
-			private java.util.UUID m_p39558;
+			private java.util.UUID m_p40140;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperationMessage_c selected = (InterfaceOperationMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39558));
+				retval = (selected.getMsg_id().equals(m_p40140));
 				return retval;
 			}
 		}
 
-		InterfaceOperationMessage_c[] objs39556 = InterfaceOperationMessage_c
+		InterfaceOperationMessage_c[] objs40138 = InterfaceOperationMessage_c
 				.InterfaceOperationMessageInstances(
 						modelRoot,
-						new InterfaceOperationMessage_c_test39557_c(getMsg_id()));
+						new InterfaceOperationMessage_c_test40139_c(getMsg_id()));
 
-		if (((objs39556.length) == 0)) {
+		if (((objs40138.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1110,20 +1112,20 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Interface Operation Message", //$NON-NLS-1$
 								"Consistency: Object: Interface Operation Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39556.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40138.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Interface Operation Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39556.length), e);
+										+ Integer.toString(objs40138.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39556.length) > 1)) {
+		if (((objs40138.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1132,7 +1134,7 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 								"Interface Operation Message", //$NON-NLS-1$
 								"Consistency: Object: Interface Operation Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39556.length)
+										+ Integer.toString(objs40138.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1140,7 +1142,7 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Interface Operation Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39556.length)
+										+ Integer.toString(objs40138.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1149,24 +1151,24 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 
 		// Interface Operation Message is a subtype in association: rel.Numb = 1020
 		// The supertype class is: Synchronous Message
-		class SynchronousMessage_c_test39562_c implements ClassQueryInterface_c {
-			SynchronousMessage_c_test39562_c(java.util.UUID p39563) {
-				m_p39563 = p39563;
+		class SynchronousMessage_c_test40144_c implements ClassQueryInterface_c {
+			SynchronousMessage_c_test40144_c(java.util.UUID p40145) {
+				m_p40145 = p40145;
 			}
-			private java.util.UUID m_p39563;
+			private java.util.UUID m_p40145;
 			public boolean evaluate(Object candidate) {
 				SynchronousMessage_c selected = (SynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39563));
+				retval = (selected.getMsg_id().equals(m_p40145));
 				return retval;
 			}
 		}
 
-		SynchronousMessage_c[] objs39561 = SynchronousMessage_c
+		SynchronousMessage_c[] objs40143 = SynchronousMessage_c
 				.SynchronousMessageInstances(modelRoot,
-						new SynchronousMessage_c_test39562_c(getMsg_id()));
+						new SynchronousMessage_c_test40144_c(getMsg_id()));
 
-		if (((objs39561.length) != 1)) {
+		if (((objs40143.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1174,14 +1176,14 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Interface Operation Message", //$NON-NLS-1$
 								"Consistency: Object: Interface Operation Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39561.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40143.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Interface Operation Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39561.length), e);
+										+ Integer.toString(objs40143.length), e);
 			}
 			retval = false;
 
@@ -1189,24 +1191,24 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 
 		// Interface Operation Message is a referring class in association: rel.Numb = 1022
 		// The participating class is: Interface Operation
-		class InterfaceOperation_c_test39565_c implements ClassQueryInterface_c {
-			InterfaceOperation_c_test39565_c(java.util.UUID p39566) {
-				m_p39566 = p39566;
+		class InterfaceOperation_c_test40147_c implements ClassQueryInterface_c {
+			InterfaceOperation_c_test40147_c(java.util.UUID p40148) {
+				m_p40148 = p40148;
 			}
-			private java.util.UUID m_p39566;
+			private java.util.UUID m_p40148;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39566));
+				retval = (selected.getId().equals(m_p40148));
 				return retval;
 			}
 		}
 
-		InterfaceOperation_c[] objs39564 = InterfaceOperation_c
+		InterfaceOperation_c[] objs40146 = InterfaceOperation_c
 				.InterfaceOperationInstances(modelRoot,
-						new InterfaceOperation_c_test39565_c(getId()));
+						new InterfaceOperation_c_test40147_c(getId()));
 
-		if (((objs39564.length) > 1)) {
+		if (((objs40146.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1215,7 +1217,7 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 								"Interface Operation Message", //$NON-NLS-1$
 								"Consistency: Object: Interface Operation Message: Association: 1022: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39564.length)
+										+ Integer.toString(objs40146.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1223,7 +1225,7 @@ public class InterfaceOperationMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Interface Operation Message: Association: 1022: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39564.length)
+										+ Integer.toString(objs40146.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

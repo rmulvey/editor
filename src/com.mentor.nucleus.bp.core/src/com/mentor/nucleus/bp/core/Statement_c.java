@@ -186,7 +186,8 @@ public class Statement_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -202,9 +203,9 @@ public class Statement_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Statement_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Statement_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Statement_c) elem).getStatement_id()))
@@ -5221,7 +5222,7 @@ public class Statement_c extends NonRootModelElement
 	if (SucceedsStatement == null) {          
       // R661
 	  instances = baseRoot.getInstanceList(Statement_c.class);
-      Statement_c relInst56105 = null;
+      Statement_c relInst57654 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -5229,16 +5230,16 @@ public class Statement_c extends NonRootModelElement
            Statement_c source = (Statement_c)cursor.next() ;
            if (     source.getStatement_id().equals(m_previous_statement_id) && 
      source.getBlock_idCachedValue().equals(m_block_id) 		){
-  		relInst56105 = source;
+  		relInst57654 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst56105 != null )
+      if ( relInst57654 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56105) && !isProxy())) {
-	      relInst56105.relateAcrossR661ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57654) && !isProxy())) {
+	      relInst57654.relateAcrossR661ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -5246,29 +5247,29 @@ public class Statement_c extends NonRootModelElement
 
 	if (ContainsBlock == null) {          
       // R602
-      Block_c relInst56106 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      Block_c relInst57655 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56106 == null) {
-      			relInst56106 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      		if (relInst57655 == null) {
+      			relInst57655 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
       		}
-			if (relInst56106 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57655 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56106 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
-					if (relInst56106 != null)
+					relInst57655 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+					if (relInst57655 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56106 != null )
+      if ( relInst57655 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56106) && !isProxy())) {
-	      relInst56106.relateAcrossR602To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57655) && !isProxy())) {
+	      relInst57655.relateAcrossR602To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -5737,45 +5738,45 @@ public class Statement_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Statement_c_test56108_c implements ClassQueryInterface_c {
-			Statement_c_test56108_c(java.util.UUID p56109, java.util.UUID p56110) {
-				m_p56109 = p56109;
-				m_p56110 = p56110;
+		class Statement_c_test57657_c implements ClassQueryInterface_c {
+			Statement_c_test57657_c(java.util.UUID p57658, java.util.UUID p57659) {
+				m_p57658 = p57658;
+				m_p57659 = p57659;
 			}
-			private java.util.UUID m_p56109;
-			private java.util.UUID m_p56110;
+			private java.util.UUID m_p57658;
+			private java.util.UUID m_p57659;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56109))
-						& (selected.getBlock_id().equals(m_p56110));
+				retval = (selected.getStatement_id().equals(m_p57658))
+						& (selected.getBlock_id().equals(m_p57659));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56107 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56108_c(getStatement_id(), getBlock_id()));
+		Statement_c[] objs57656 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57657_c(getStatement_id(), getBlock_id()));
 
-		if (((objs56107.length) == 0)) {
+		if (((objs57656.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56107.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57656.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56107.length), e);
+								+ Integer.toString(objs57656.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56107.length) > 1)) {
+		if (((objs57656.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5783,7 +5784,7 @@ public class Statement_c extends NonRootModelElement
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56107.length)
+										+ Integer.toString(objs57656.length)
 										+ " Statement_ID: " + "Not Printable" + " Block_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5791,49 +5792,49 @@ public class Statement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56107.length)
+										+ Integer.toString(objs57656.length)
 										+ " Statement_ID: " + "Not Printable" + " Block_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
 
 		}
 
-		class Statement_c_test56112_c implements ClassQueryInterface_c {
-			Statement_c_test56112_c(java.util.UUID p56113) {
-				m_p56113 = p56113;
+		class Statement_c_test57661_c implements ClassQueryInterface_c {
+			Statement_c_test57661_c(java.util.UUID p57662) {
+				m_p57662 = p57662;
 			}
-			private java.util.UUID m_p56113;
+			private java.util.UUID m_p57662;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56113));
+				retval = (selected.getStatement_id().equals(m_p57662));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56111 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56112_c(getStatement_id()));
+		Statement_c[] objs57660 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57661_c(getStatement_id()));
 
-		if (((objs56111.length) == 0)) {
+		if (((objs57660.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56111.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57660.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Statement: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56111.length), e);
+								+ Integer.toString(objs57660.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56111.length) > 1)) {
+		if (((objs57660.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5841,7 +5842,7 @@ public class Statement_c extends NonRootModelElement
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56111.length)
+										+ Integer.toString(objs57660.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5849,7 +5850,7 @@ public class Statement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Statement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56111.length)
+										+ Integer.toString(objs57660.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5858,25 +5859,25 @@ public class Statement_c extends NonRootModelElement
 
 		// Statement is a referring class in association: rel.Numb = 602
 		// The participating class is: Block
-		class Block_c_test56116_c implements ClassQueryInterface_c {
-			Block_c_test56116_c(java.util.UUID p56117) {
-				m_p56117 = p56117;
+		class Block_c_test57665_c implements ClassQueryInterface_c {
+			Block_c_test57665_c(java.util.UUID p57666) {
+				m_p57666 = p57666;
 			}
-			private java.util.UUID m_p56117;
+			private java.util.UUID m_p57666;
 			public boolean evaluate(Object candidate) {
 				Block_c selected = (Block_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBlock_id().equals(m_p56117));
+				retval = (selected.getBlock_id().equals(m_p57666));
 				return retval;
 			}
 		}
 
-		Block_c[] objs56115 = Block_c.BlockInstances(modelRoot,
-				new Block_c_test56116_c(getBlock_id()));
+		Block_c[] objs57664 = Block_c.BlockInstances(modelRoot,
+				new Block_c_test57665_c(getBlock_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56115.length) != 1)) {
+		if (((objs57664.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5884,7 +5885,7 @@ public class Statement_c extends NonRootModelElement
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Association: 602: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56115.length)
+										+ Integer.toString(objs57664.length)
 										+ " Block_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5892,7 +5893,7 @@ public class Statement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Statement: Association: 602: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56115.length)
+										+ Integer.toString(objs57664.length)
 										+ " Block_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5901,27 +5902,27 @@ public class Statement_c extends NonRootModelElement
 
 		// Statement is a referring class in association: rel.Numb = 661
 		// The participating class is: Statement
-		class Statement_c_test56119_c implements ClassQueryInterface_c {
-			Statement_c_test56119_c(java.util.UUID p56120, java.util.UUID p56121) {
-				m_p56120 = p56120;
-				m_p56121 = p56121;
+		class Statement_c_test57668_c implements ClassQueryInterface_c {
+			Statement_c_test57668_c(java.util.UUID p57669, java.util.UUID p57670) {
+				m_p57669 = p57669;
+				m_p57670 = p57670;
 			}
-			private java.util.UUID m_p56120;
-			private java.util.UUID m_p56121;
+			private java.util.UUID m_p57669;
+			private java.util.UUID m_p57670;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBlock_id().equals(m_p56120))
-						& (selected.getStatement_id().equals(m_p56121));
+				retval = (selected.getBlock_id().equals(m_p57669))
+						& (selected.getStatement_id().equals(m_p57670));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56118 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56119_c(getBlock_id(),
+		Statement_c[] objs57667 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57668_c(getBlock_id(),
 						getPrevious_statement_id()));
 
-		if (((objs56118.length) > 1)) {
+		if (((objs57667.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -5929,7 +5930,7 @@ public class Statement_c extends NonRootModelElement
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Association: 661: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56118.length)
+										+ Integer.toString(objs57667.length)
 										+ " Block_ID: " + "Not Printable" + " Previous_Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -5937,7 +5938,7 @@ public class Statement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Statement: Association: 661: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56118.length)
+										+ Integer.toString(objs57667.length)
 										+ " Block_ID: " + "Not Printable" + " Previous_Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -5946,577 +5947,577 @@ public class Statement_c extends NonRootModelElement
 
 		// Statement is a participating class in association: rel.Numb = 661
 		// Object: Statement
-		class Statement_c_test56123_c implements ClassQueryInterface_c {
-			Statement_c_test56123_c(java.util.UUID p56124, java.util.UUID p56125) {
-				m_p56124 = p56124;
-				m_p56125 = p56125;
+		class Statement_c_test57672_c implements ClassQueryInterface_c {
+			Statement_c_test57672_c(java.util.UUID p57673, java.util.UUID p57674) {
+				m_p57673 = p57673;
+				m_p57674 = p57674;
 			}
-			private java.util.UUID m_p56124;
-			private java.util.UUID m_p56125;
+			private java.util.UUID m_p57673;
+			private java.util.UUID m_p57674;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPrevious_statement_id().equals(m_p56124))
-						& (selected.getBlock_id().equals(m_p56125));
+				retval = (selected.getPrevious_statement_id().equals(m_p57673))
+						& (selected.getBlock_id().equals(m_p57674));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56122 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56123_c(getStatement_id(), getBlock_id()));
+		Statement_c[] objs57671 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57672_c(getStatement_id(), getBlock_id()));
 
-		if (((objs56122.length) > 1)) {
+		if (((objs57671.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Association: 661: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56122.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57671.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Statement: Association: 661: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56122.length), e);
+										+ Integer.toString(objs57671.length), e);
 			}
 			retval = false;
 
 		}
 
 		// Supertype: rel.Numb = 603
-		int objs56126 = 0;
+		int objs57675 = 0;
 		// Subtype Object: Generate Preexisting Event
-		class GeneratePreexistingEvent_c_test56127_c
+		class GeneratePreexistingEvent_c_test57676_c
 				implements
 					ClassQueryInterface_c {
-			GeneratePreexistingEvent_c_test56127_c(java.util.UUID p56128) {
-				m_p56128 = p56128;
+			GeneratePreexistingEvent_c_test57676_c(java.util.UUID p57677) {
+				m_p57677 = p57677;
 			}
-			private java.util.UUID m_p56128;
+			private java.util.UUID m_p57677;
 			public boolean evaluate(Object candidate) {
 				GeneratePreexistingEvent_c selected = (GeneratePreexistingEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56128));
+				retval = (selected.getStatement_id().equals(m_p57677));
 				return retval;
 			}
 		}
 
-		GeneratePreexistingEvent_c[] objs56129 = GeneratePreexistingEvent_c
+		GeneratePreexistingEvent_c[] objs57678 = GeneratePreexistingEvent_c
 				.GeneratePreexistingEventInstances(modelRoot,
-						new GeneratePreexistingEvent_c_test56127_c(
+						new GeneratePreexistingEvent_c_test57676_c(
 								getStatement_id()));
 
-		objs56126 = objs56126 + objs56129.length;
+		objs57675 = objs57675 + objs57678.length;
 		// Subtype Object: For Stmt
-		class ForStmt_c_test56130_c implements ClassQueryInterface_c {
-			ForStmt_c_test56130_c(java.util.UUID p56131) {
-				m_p56131 = p56131;
+		class ForStmt_c_test57679_c implements ClassQueryInterface_c {
+			ForStmt_c_test57679_c(java.util.UUID p57680) {
+				m_p57680 = p57680;
 			}
-			private java.util.UUID m_p56131;
+			private java.util.UUID m_p57680;
 			public boolean evaluate(Object candidate) {
 				ForStmt_c selected = (ForStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56131));
+				retval = (selected.getStatement_id().equals(m_p57680));
 				return retval;
 			}
 		}
 
-		ForStmt_c[] objs56132 = ForStmt_c.ForStmtInstances(modelRoot,
-				new ForStmt_c_test56130_c(getStatement_id()));
+		ForStmt_c[] objs57681 = ForStmt_c.ForStmtInstances(modelRoot,
+				new ForStmt_c_test57679_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56132.length;
+		objs57675 = objs57675 + objs57681.length;
 		// Subtype Object: While Stmt
-		class WhileStmt_c_test56133_c implements ClassQueryInterface_c {
-			WhileStmt_c_test56133_c(java.util.UUID p56134) {
-				m_p56134 = p56134;
+		class WhileStmt_c_test57682_c implements ClassQueryInterface_c {
+			WhileStmt_c_test57682_c(java.util.UUID p57683) {
+				m_p57683 = p57683;
 			}
-			private java.util.UUID m_p56134;
+			private java.util.UUID m_p57683;
 			public boolean evaluate(Object candidate) {
 				WhileStmt_c selected = (WhileStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56134));
+				retval = (selected.getStatement_id().equals(m_p57683));
 				return retval;
 			}
 		}
 
-		WhileStmt_c[] objs56135 = WhileStmt_c.WhileStmtInstances(modelRoot,
-				new WhileStmt_c_test56133_c(getStatement_id()));
+		WhileStmt_c[] objs57684 = WhileStmt_c.WhileStmtInstances(modelRoot,
+				new WhileStmt_c_test57682_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56135.length;
+		objs57675 = objs57675 + objs57684.length;
 		// Subtype Object: If Stmt
-		class IfStmt_c_test56136_c implements ClassQueryInterface_c {
-			IfStmt_c_test56136_c(java.util.UUID p56137) {
-				m_p56137 = p56137;
+		class IfStmt_c_test57685_c implements ClassQueryInterface_c {
+			IfStmt_c_test57685_c(java.util.UUID p57686) {
+				m_p57686 = p57686;
 			}
-			private java.util.UUID m_p56137;
+			private java.util.UUID m_p57686;
 			public boolean evaluate(Object candidate) {
 				IfStmt_c selected = (IfStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56137));
+				retval = (selected.getStatement_id().equals(m_p57686));
 				return retval;
 			}
 		}
 
-		IfStmt_c[] objs56138 = IfStmt_c.IfStmtInstances(modelRoot,
-				new IfStmt_c_test56136_c(getStatement_id()));
+		IfStmt_c[] objs57687 = IfStmt_c.IfStmtInstances(modelRoot,
+				new IfStmt_c_test57685_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56138.length;
+		objs57675 = objs57675 + objs57687.length;
 		// Subtype Object: ElseIf Stmt
-		class ElseifStmt_c_test56139_c implements ClassQueryInterface_c {
-			ElseifStmt_c_test56139_c(java.util.UUID p56140) {
-				m_p56140 = p56140;
+		class ElseifStmt_c_test57688_c implements ClassQueryInterface_c {
+			ElseifStmt_c_test57688_c(java.util.UUID p57689) {
+				m_p57689 = p57689;
 			}
-			private java.util.UUID m_p56140;
+			private java.util.UUID m_p57689;
 			public boolean evaluate(Object candidate) {
 				ElseifStmt_c selected = (ElseifStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56140));
+				retval = (selected.getStatement_id().equals(m_p57689));
 				return retval;
 			}
 		}
 
-		ElseifStmt_c[] objs56141 = ElseifStmt_c.ElseifStmtInstances(modelRoot,
-				new ElseifStmt_c_test56139_c(getStatement_id()));
+		ElseifStmt_c[] objs57690 = ElseifStmt_c.ElseifStmtInstances(modelRoot,
+				new ElseifStmt_c_test57688_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56141.length;
+		objs57675 = objs57675 + objs57690.length;
 		// Subtype Object: Else Stmt
-		class ElseStmt_c_test56142_c implements ClassQueryInterface_c {
-			ElseStmt_c_test56142_c(java.util.UUID p56143) {
-				m_p56143 = p56143;
+		class ElseStmt_c_test57691_c implements ClassQueryInterface_c {
+			ElseStmt_c_test57691_c(java.util.UUID p57692) {
+				m_p57692 = p57692;
 			}
-			private java.util.UUID m_p56143;
+			private java.util.UUID m_p57692;
 			public boolean evaluate(Object candidate) {
 				ElseStmt_c selected = (ElseStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56143));
+				retval = (selected.getStatement_id().equals(m_p57692));
 				return retval;
 			}
 		}
 
-		ElseStmt_c[] objs56144 = ElseStmt_c.ElseStmtInstances(modelRoot,
-				new ElseStmt_c_test56142_c(getStatement_id()));
+		ElseStmt_c[] objs57693 = ElseStmt_c.ElseStmtInstances(modelRoot,
+				new ElseStmt_c_test57691_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56144.length;
+		objs57675 = objs57675 + objs57693.length;
 		// Subtype Object: Bridge Invocation
-		class BridgeInvocation_c_test56145_c implements ClassQueryInterface_c {
-			BridgeInvocation_c_test56145_c(java.util.UUID p56146) {
-				m_p56146 = p56146;
+		class BridgeInvocation_c_test57694_c implements ClassQueryInterface_c {
+			BridgeInvocation_c_test57694_c(java.util.UUID p57695) {
+				m_p57695 = p57695;
 			}
-			private java.util.UUID m_p56146;
+			private java.util.UUID m_p57695;
 			public boolean evaluate(Object candidate) {
 				BridgeInvocation_c selected = (BridgeInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56146));
+				retval = (selected.getStatement_id().equals(m_p57695));
 				return retval;
 			}
 		}
 
-		BridgeInvocation_c[] objs56147 = BridgeInvocation_c
+		BridgeInvocation_c[] objs57696 = BridgeInvocation_c
 				.BridgeInvocationInstances(modelRoot,
-						new BridgeInvocation_c_test56145_c(getStatement_id()));
+						new BridgeInvocation_c_test57694_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56147.length;
+		objs57675 = objs57675 + objs57696.length;
 		// Subtype Object: Function Invocation
-		class FunctionInvocation_c_test56148_c implements ClassQueryInterface_c {
-			FunctionInvocation_c_test56148_c(java.util.UUID p56149) {
-				m_p56149 = p56149;
+		class FunctionInvocation_c_test57697_c implements ClassQueryInterface_c {
+			FunctionInvocation_c_test57697_c(java.util.UUID p57698) {
+				m_p57698 = p57698;
 			}
-			private java.util.UUID m_p56149;
+			private java.util.UUID m_p57698;
 			public boolean evaluate(Object candidate) {
 				FunctionInvocation_c selected = (FunctionInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56149));
+				retval = (selected.getStatement_id().equals(m_p57698));
 				return retval;
 			}
 		}
 
-		FunctionInvocation_c[] objs56150 = FunctionInvocation_c
+		FunctionInvocation_c[] objs57699 = FunctionInvocation_c
 				.FunctionInvocationInstances(modelRoot,
-						new FunctionInvocation_c_test56148_c(getStatement_id()));
+						new FunctionInvocation_c_test57697_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56150.length;
+		objs57675 = objs57675 + objs57699.length;
 		// Subtype Object: Return Stmt
-		class ReturnStmt_c_test56151_c implements ClassQueryInterface_c {
-			ReturnStmt_c_test56151_c(java.util.UUID p56152) {
-				m_p56152 = p56152;
+		class ReturnStmt_c_test57700_c implements ClassQueryInterface_c {
+			ReturnStmt_c_test57700_c(java.util.UUID p57701) {
+				m_p57701 = p57701;
 			}
-			private java.util.UUID m_p56152;
+			private java.util.UUID m_p57701;
 			public boolean evaluate(Object candidate) {
 				ReturnStmt_c selected = (ReturnStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56152));
+				retval = (selected.getStatement_id().equals(m_p57701));
 				return retval;
 			}
 		}
 
-		ReturnStmt_c[] objs56153 = ReturnStmt_c.ReturnStmtInstances(modelRoot,
-				new ReturnStmt_c_test56151_c(getStatement_id()));
+		ReturnStmt_c[] objs57702 = ReturnStmt_c.ReturnStmtInstances(modelRoot,
+				new ReturnStmt_c_test57700_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56153.length;
+		objs57675 = objs57675 + objs57702.length;
 		// Subtype Object: Operation Invocation
-		class OperationInvocation_c_test56154_c
+		class OperationInvocation_c_test57703_c
 				implements
 					ClassQueryInterface_c {
-			OperationInvocation_c_test56154_c(java.util.UUID p56155) {
-				m_p56155 = p56155;
+			OperationInvocation_c_test57703_c(java.util.UUID p57704) {
+				m_p57704 = p57704;
 			}
-			private java.util.UUID m_p56155;
+			private java.util.UUID m_p57704;
 			public boolean evaluate(Object candidate) {
 				OperationInvocation_c selected = (OperationInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56155));
+				retval = (selected.getStatement_id().equals(m_p57704));
 				return retval;
 			}
 		}
 
-		OperationInvocation_c[] objs56156 = OperationInvocation_c
+		OperationInvocation_c[] objs57705 = OperationInvocation_c
 				.OperationInvocationInstances(
 						modelRoot,
-						new OperationInvocation_c_test56154_c(getStatement_id()));
+						new OperationInvocation_c_test57703_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56156.length;
+		objs57675 = objs57675 + objs57705.length;
 		// Subtype Object: Assign to Member
-		class AssignToMember_c_test56157_c implements ClassQueryInterface_c {
-			AssignToMember_c_test56157_c(java.util.UUID p56158) {
-				m_p56158 = p56158;
+		class AssignToMember_c_test57706_c implements ClassQueryInterface_c {
+			AssignToMember_c_test57706_c(java.util.UUID p57707) {
+				m_p57707 = p57707;
 			}
-			private java.util.UUID m_p56158;
+			private java.util.UUID m_p57707;
 			public boolean evaluate(Object candidate) {
 				AssignToMember_c selected = (AssignToMember_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56158));
+				retval = (selected.getStatement_id().equals(m_p57707));
 				return retval;
 			}
 		}
 
-		AssignToMember_c[] objs56159 = AssignToMember_c
+		AssignToMember_c[] objs57708 = AssignToMember_c
 				.AssignToMemberInstances(modelRoot,
-						new AssignToMember_c_test56157_c(getStatement_id()));
+						new AssignToMember_c_test57706_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56159.length;
+		objs57675 = objs57675 + objs57708.length;
 		// Subtype Object: Delete
-		class Delete_c_test56160_c implements ClassQueryInterface_c {
-			Delete_c_test56160_c(java.util.UUID p56161) {
-				m_p56161 = p56161;
+		class Delete_c_test57709_c implements ClassQueryInterface_c {
+			Delete_c_test57709_c(java.util.UUID p57710) {
+				m_p57710 = p57710;
 			}
-			private java.util.UUID m_p56161;
+			private java.util.UUID m_p57710;
 			public boolean evaluate(Object candidate) {
 				Delete_c selected = (Delete_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56161));
+				retval = (selected.getStatement_id().equals(m_p57710));
 				return retval;
 			}
 		}
 
-		Delete_c[] objs56162 = Delete_c.DeleteInstances(modelRoot,
-				new Delete_c_test56160_c(getStatement_id()));
+		Delete_c[] objs57711 = Delete_c.DeleteInstances(modelRoot,
+				new Delete_c_test57709_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56162.length;
+		objs57675 = objs57675 + objs57711.length;
 		// Subtype Object: Create No Variable
-		class CreateNoVariable_c_test56163_c implements ClassQueryInterface_c {
-			CreateNoVariable_c_test56163_c(java.util.UUID p56164) {
-				m_p56164 = p56164;
+		class CreateNoVariable_c_test57712_c implements ClassQueryInterface_c {
+			CreateNoVariable_c_test57712_c(java.util.UUID p57713) {
+				m_p57713 = p57713;
 			}
-			private java.util.UUID m_p56164;
+			private java.util.UUID m_p57713;
 			public boolean evaluate(Object candidate) {
 				CreateNoVariable_c selected = (CreateNoVariable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56164));
+				retval = (selected.getStatement_id().equals(m_p57713));
 				return retval;
 			}
 		}
 
-		CreateNoVariable_c[] objs56165 = CreateNoVariable_c
+		CreateNoVariable_c[] objs57714 = CreateNoVariable_c
 				.CreateNoVariableInstances(modelRoot,
-						new CreateNoVariable_c_test56163_c(getStatement_id()));
+						new CreateNoVariable_c_test57712_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56165.length;
+		objs57675 = objs57675 + objs57714.length;
 		// Subtype Object: Create
-		class Create_c_test56166_c implements ClassQueryInterface_c {
-			Create_c_test56166_c(java.util.UUID p56167) {
-				m_p56167 = p56167;
+		class Create_c_test57715_c implements ClassQueryInterface_c {
+			Create_c_test57715_c(java.util.UUID p57716) {
+				m_p57716 = p57716;
 			}
-			private java.util.UUID m_p56167;
+			private java.util.UUID m_p57716;
 			public boolean evaluate(Object candidate) {
 				Create_c selected = (Create_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56167));
+				retval = (selected.getStatement_id().equals(m_p57716));
 				return retval;
 			}
 		}
 
-		Create_c[] objs56168 = Create_c.CreateInstances(modelRoot,
-				new Create_c_test56166_c(getStatement_id()));
+		Create_c[] objs57717 = Create_c.CreateInstances(modelRoot,
+				new Create_c_test57715_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56168.length;
+		objs57675 = objs57675 + objs57717.length;
 		// Subtype Object: Select
-		class Select_c_test56169_c implements ClassQueryInterface_c {
-			Select_c_test56169_c(java.util.UUID p56170) {
-				m_p56170 = p56170;
+		class Select_c_test57718_c implements ClassQueryInterface_c {
+			Select_c_test57718_c(java.util.UUID p57719) {
+				m_p57719 = p57719;
 			}
-			private java.util.UUID m_p56170;
+			private java.util.UUID m_p57719;
 			public boolean evaluate(Object candidate) {
 				Select_c selected = (Select_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56170));
+				retval = (selected.getStatement_id().equals(m_p57719));
 				return retval;
 			}
 		}
 
-		Select_c[] objs56171 = Select_c.SelectInstances(modelRoot,
-				new Select_c_test56169_c(getStatement_id()));
+		Select_c[] objs57720 = Select_c.SelectInstances(modelRoot,
+				new Select_c_test57718_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56171.length;
+		objs57675 = objs57675 + objs57720.length;
 		// Subtype Object: Select From Instances
-		class SelectFromInstances_c_test56172_c
+		class SelectFromInstances_c_test57721_c
 				implements
 					ClassQueryInterface_c {
-			SelectFromInstances_c_test56172_c(java.util.UUID p56173) {
-				m_p56173 = p56173;
+			SelectFromInstances_c_test57721_c(java.util.UUID p57722) {
+				m_p57722 = p57722;
 			}
-			private java.util.UUID m_p56173;
+			private java.util.UUID m_p57722;
 			public boolean evaluate(Object candidate) {
 				SelectFromInstances_c selected = (SelectFromInstances_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56173));
+				retval = (selected.getStatement_id().equals(m_p57722));
 				return retval;
 			}
 		}
 
-		SelectFromInstances_c[] objs56174 = SelectFromInstances_c
+		SelectFromInstances_c[] objs57723 = SelectFromInstances_c
 				.SelectFromInstancesInstances(
 						modelRoot,
-						new SelectFromInstances_c_test56172_c(getStatement_id()));
+						new SelectFromInstances_c_test57721_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56174.length;
+		objs57675 = objs57675 + objs57723.length;
 		// Subtype Object: Select From Instances Where
-		class SelectFromInstancesWhere_c_test56175_c
+		class SelectFromInstancesWhere_c_test57724_c
 				implements
 					ClassQueryInterface_c {
-			SelectFromInstancesWhere_c_test56175_c(java.util.UUID p56176) {
-				m_p56176 = p56176;
+			SelectFromInstancesWhere_c_test57724_c(java.util.UUID p57725) {
+				m_p57725 = p57725;
 			}
-			private java.util.UUID m_p56176;
+			private java.util.UUID m_p57725;
 			public boolean evaluate(Object candidate) {
 				SelectFromInstancesWhere_c selected = (SelectFromInstancesWhere_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56176));
+				retval = (selected.getStatement_id().equals(m_p57725));
 				return retval;
 			}
 		}
 
-		SelectFromInstancesWhere_c[] objs56177 = SelectFromInstancesWhere_c
+		SelectFromInstancesWhere_c[] objs57726 = SelectFromInstancesWhere_c
 				.SelectFromInstancesWhereInstances(modelRoot,
-						new SelectFromInstancesWhere_c_test56175_c(
+						new SelectFromInstancesWhere_c_test57724_c(
 								getStatement_id()));
 
-		objs56126 = objs56126 + objs56177.length;
+		objs57675 = objs57675 + objs57726.length;
 		// Subtype Object: Unrelate Using
-		class UnrelateUsing_c_test56178_c implements ClassQueryInterface_c {
-			UnrelateUsing_c_test56178_c(java.util.UUID p56179) {
-				m_p56179 = p56179;
+		class UnrelateUsing_c_test57727_c implements ClassQueryInterface_c {
+			UnrelateUsing_c_test57727_c(java.util.UUID p57728) {
+				m_p57728 = p57728;
 			}
-			private java.util.UUID m_p56179;
+			private java.util.UUID m_p57728;
 			public boolean evaluate(Object candidate) {
 				UnrelateUsing_c selected = (UnrelateUsing_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56179));
+				retval = (selected.getStatement_id().equals(m_p57728));
 				return retval;
 			}
 		}
 
-		UnrelateUsing_c[] objs56180 = UnrelateUsing_c.UnrelateUsingInstances(
-				modelRoot, new UnrelateUsing_c_test56178_c(getStatement_id()));
+		UnrelateUsing_c[] objs57729 = UnrelateUsing_c.UnrelateUsingInstances(
+				modelRoot, new UnrelateUsing_c_test57727_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56180.length;
+		objs57675 = objs57675 + objs57729.length;
 		// Subtype Object: Unrelate
-		class Unrelate_c_test56181_c implements ClassQueryInterface_c {
-			Unrelate_c_test56181_c(java.util.UUID p56182) {
-				m_p56182 = p56182;
+		class Unrelate_c_test57730_c implements ClassQueryInterface_c {
+			Unrelate_c_test57730_c(java.util.UUID p57731) {
+				m_p57731 = p57731;
 			}
-			private java.util.UUID m_p56182;
+			private java.util.UUID m_p57731;
 			public boolean evaluate(Object candidate) {
 				Unrelate_c selected = (Unrelate_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56182));
+				retval = (selected.getStatement_id().equals(m_p57731));
 				return retval;
 			}
 		}
 
-		Unrelate_c[] objs56183 = Unrelate_c.UnrelateInstances(modelRoot,
-				new Unrelate_c_test56181_c(getStatement_id()));
+		Unrelate_c[] objs57732 = Unrelate_c.UnrelateInstances(modelRoot,
+				new Unrelate_c_test57730_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56183.length;
+		objs57675 = objs57675 + objs57732.length;
 		// Subtype Object: Relate Using
-		class RelateUsing_c_test56184_c implements ClassQueryInterface_c {
-			RelateUsing_c_test56184_c(java.util.UUID p56185) {
-				m_p56185 = p56185;
+		class RelateUsing_c_test57733_c implements ClassQueryInterface_c {
+			RelateUsing_c_test57733_c(java.util.UUID p57734) {
+				m_p57734 = p57734;
 			}
-			private java.util.UUID m_p56185;
+			private java.util.UUID m_p57734;
 			public boolean evaluate(Object candidate) {
 				RelateUsing_c selected = (RelateUsing_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56185));
+				retval = (selected.getStatement_id().equals(m_p57734));
 				return retval;
 			}
 		}
 
-		RelateUsing_c[] objs56186 = RelateUsing_c.RelateUsingInstances(
-				modelRoot, new RelateUsing_c_test56184_c(getStatement_id()));
+		RelateUsing_c[] objs57735 = RelateUsing_c.RelateUsingInstances(
+				modelRoot, new RelateUsing_c_test57733_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56186.length;
+		objs57675 = objs57675 + objs57735.length;
 		// Subtype Object: Relate
-		class Relate_c_test56187_c implements ClassQueryInterface_c {
-			Relate_c_test56187_c(java.util.UUID p56188) {
-				m_p56188 = p56188;
+		class Relate_c_test57736_c implements ClassQueryInterface_c {
+			Relate_c_test57736_c(java.util.UUID p57737) {
+				m_p57737 = p57737;
 			}
-			private java.util.UUID m_p56188;
+			private java.util.UUID m_p57737;
 			public boolean evaluate(Object candidate) {
 				Relate_c selected = (Relate_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56188));
+				retval = (selected.getStatement_id().equals(m_p57737));
 				return retval;
 			}
 		}
 
-		Relate_c[] objs56189 = Relate_c.RelateInstances(modelRoot,
-				new Relate_c_test56187_c(getStatement_id()));
+		Relate_c[] objs57738 = Relate_c.RelateInstances(modelRoot,
+				new Relate_c_test57736_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56189.length;
+		objs57675 = objs57675 + objs57738.length;
 		// Subtype Object: Control
-		class Control_c_test56190_c implements ClassQueryInterface_c {
-			Control_c_test56190_c(java.util.UUID p56191) {
-				m_p56191 = p56191;
+		class Control_c_test57739_c implements ClassQueryInterface_c {
+			Control_c_test57739_c(java.util.UUID p57740) {
+				m_p57740 = p57740;
 			}
-			private java.util.UUID m_p56191;
+			private java.util.UUID m_p57740;
 			public boolean evaluate(Object candidate) {
 				Control_c selected = (Control_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56191));
+				retval = (selected.getStatement_id().equals(m_p57740));
 				return retval;
 			}
 		}
 
-		Control_c[] objs56192 = Control_c.ControlInstances(modelRoot,
-				new Control_c_test56190_c(getStatement_id()));
+		Control_c[] objs57741 = Control_c.ControlInstances(modelRoot,
+				new Control_c_test57739_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56192.length;
+		objs57675 = objs57675 + objs57741.length;
 		// Subtype Object: Break
-		class Break_c_test56193_c implements ClassQueryInterface_c {
-			Break_c_test56193_c(java.util.UUID p56194) {
-				m_p56194 = p56194;
+		class Break_c_test57742_c implements ClassQueryInterface_c {
+			Break_c_test57742_c(java.util.UUID p57743) {
+				m_p57743 = p57743;
 			}
-			private java.util.UUID m_p56194;
+			private java.util.UUID m_p57743;
 			public boolean evaluate(Object candidate) {
 				Break_c selected = (Break_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56194));
+				retval = (selected.getStatement_id().equals(m_p57743));
 				return retval;
 			}
 		}
 
-		Break_c[] objs56195 = Break_c.BreakInstances(modelRoot,
-				new Break_c_test56193_c(getStatement_id()));
+		Break_c[] objs57744 = Break_c.BreakInstances(modelRoot,
+				new Break_c_test57742_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56195.length;
+		objs57675 = objs57675 + objs57744.length;
 		// Subtype Object: Continue
-		class Continue_c_test56196_c implements ClassQueryInterface_c {
-			Continue_c_test56196_c(java.util.UUID p56197) {
-				m_p56197 = p56197;
+		class Continue_c_test57745_c implements ClassQueryInterface_c {
+			Continue_c_test57745_c(java.util.UUID p57746) {
+				m_p57746 = p57746;
 			}
-			private java.util.UUID m_p56197;
+			private java.util.UUID m_p57746;
 			public boolean evaluate(Object candidate) {
 				Continue_c selected = (Continue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56197));
+				retval = (selected.getStatement_id().equals(m_p57746));
 				return retval;
 			}
 		}
 
-		Continue_c[] objs56198 = Continue_c.ContinueInstances(modelRoot,
-				new Continue_c_test56196_c(getStatement_id()));
+		Continue_c[] objs57747 = Continue_c.ContinueInstances(modelRoot,
+				new Continue_c_test57745_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56198.length;
+		objs57675 = objs57675 + objs57747.length;
 		// Subtype Object: Event Specification Statement
-		class EventSpecificationStatement_c_test56199_c
+		class EventSpecificationStatement_c_test57748_c
 				implements
 					ClassQueryInterface_c {
-			EventSpecificationStatement_c_test56199_c(java.util.UUID p56200) {
-				m_p56200 = p56200;
+			EventSpecificationStatement_c_test57748_c(java.util.UUID p57749) {
+				m_p57749 = p57749;
 			}
-			private java.util.UUID m_p56200;
+			private java.util.UUID m_p57749;
 			public boolean evaluate(Object candidate) {
 				EventSpecificationStatement_c selected = (EventSpecificationStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56200));
+				retval = (selected.getStatement_id().equals(m_p57749));
 				return retval;
 			}
 		}
 
-		EventSpecificationStatement_c[] objs56201 = EventSpecificationStatement_c
+		EventSpecificationStatement_c[] objs57750 = EventSpecificationStatement_c
 				.EventSpecificationStatementInstances(modelRoot,
-						new EventSpecificationStatement_c_test56199_c(
+						new EventSpecificationStatement_c_test57748_c(
 								getStatement_id()));
 
-		objs56126 = objs56126 + objs56201.length;
+		objs57675 = objs57675 + objs57750.length;
 		// Subtype Object: Interface Operation Invocation
-		class InterfaceOperationInvocation_c_test56202_c
+		class InterfaceOperationInvocation_c_test57751_c
 				implements
 					ClassQueryInterface_c {
-			InterfaceOperationInvocation_c_test56202_c(java.util.UUID p56203) {
-				m_p56203 = p56203;
+			InterfaceOperationInvocation_c_test57751_c(java.util.UUID p57752) {
+				m_p57752 = p57752;
 			}
-			private java.util.UUID m_p56203;
+			private java.util.UUID m_p57752;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperationInvocation_c selected = (InterfaceOperationInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56203));
+				retval = (selected.getStatement_id().equals(m_p57752));
 				return retval;
 			}
 		}
 
-		InterfaceOperationInvocation_c[] objs56204 = InterfaceOperationInvocation_c
+		InterfaceOperationInvocation_c[] objs57753 = InterfaceOperationInvocation_c
 				.InterfaceOperationInvocationInstances(modelRoot,
-						new InterfaceOperationInvocation_c_test56202_c(
+						new InterfaceOperationInvocation_c_test57751_c(
 								getStatement_id()));
 
-		objs56126 = objs56126 + objs56204.length;
+		objs57675 = objs57675 + objs57753.length;
 		// Subtype Object: Signal Invocation
-		class SignalInvocation_c_test56205_c implements ClassQueryInterface_c {
-			SignalInvocation_c_test56205_c(java.util.UUID p56206) {
-				m_p56206 = p56206;
+		class SignalInvocation_c_test57754_c implements ClassQueryInterface_c {
+			SignalInvocation_c_test57754_c(java.util.UUID p57755) {
+				m_p57755 = p57755;
 			}
-			private java.util.UUID m_p56206;
+			private java.util.UUID m_p57755;
 			public boolean evaluate(Object candidate) {
 				SignalInvocation_c selected = (SignalInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56206));
+				retval = (selected.getStatement_id().equals(m_p57755));
 				return retval;
 			}
 		}
 
-		SignalInvocation_c[] objs56207 = SignalInvocation_c
+		SignalInvocation_c[] objs57756 = SignalInvocation_c
 				.SignalInvocationInstances(modelRoot,
-						new SignalInvocation_c_test56205_c(getStatement_id()));
+						new SignalInvocation_c_test57754_c(getStatement_id()));
 
-		objs56126 = objs56126 + objs56207.length;
-		if (objs56126 != 1) {
+		objs57675 = objs57675 + objs57756.length;
+		if (objs57675 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Statement", //$NON-NLS-1$
 								"Consistency: Object: Statement: Association: 603: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56126)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57675)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Statement: Association: 603: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56126), e);
+										+ Integer.toString(objs57675), e);
 			}
 			retval = false;
 
@@ -6542,9 +6543,7 @@ public class Statement_c extends NonRootModelElement
 		Ooaofooa.log.println(ILogger.OPERATION, "Statement",
 				" Operation entered: Statement::Checkbreakpoint");
 		final ModelRoot modelRoot = getModelRoot();
-		boolean v_result = false;
-
-		return v_result;
+		return false;
 
 	} // End checkBreakpoint
 	public boolean Stepin() {

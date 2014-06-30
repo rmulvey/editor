@@ -175,7 +175,7 @@ p_m_rootelement
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -191,7 +191,7 @@ p_m_rootelement
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getIm_id()) || IdAssigner.NULL_UUID.equals(((IntegrityManager_c)elem).getIm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getIm_id()) || IdAssigner.NULL_UUID.equals(((IntegrityManager_c)elem).getIm_id())) && this != elem)) {
       	return false;
       }
       if (!getIm_id().equals(((IntegrityManager_c)elem).getIm_id())) return false;
@@ -620,33 +620,33 @@ public static IntegrityManager_c [] getManyMI_IMsOnR1300(IntegrityIssue_c target
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst39401 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      SystemModel_c relInst39983 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39401 == null) {
-      			relInst39401 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      		if (relInst39983 == null) {
+      			relInst39983 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
       		}
-			if (relInst39401 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39983 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39401 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
-					if (relInst39401 != null)
+					relInst39983 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+					if (relInst39983 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39401 != null )
+      if ( relInst39983 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39401) && !isProxy())) {
-	      relInst39401.relateAcrossR1301To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39983) && !isProxy())) {
+	      relInst39983.relateAcrossR1301To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst39401);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst39983);
 	  }
           baseRoot = modelRoot;
 	}
@@ -905,56 +905,56 @@ private static IntegrityManager_c findIntegrityManagerInstance(ModelRoot modelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class IntegrityManager_c_test39403_c implements ClassQueryInterface_c
+    class IntegrityManager_c_test39985_c implements ClassQueryInterface_c
     {
-	  IntegrityManager_c_test39403_c( java.util.UUID            p39404 ) {
-	  m_p39404 = p39404;
+	  IntegrityManager_c_test39985_c( java.util.UUID            p39986 ) {
+	  m_p39986 = p39986;
 	  }
-	  private java.util.UUID             m_p39404; 
+	  private java.util.UUID             m_p39986; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      IntegrityManager_c selected = (IntegrityManager_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getIm_id().equals(m_p39404));
+	      retval = (selected.getIm_id().equals(m_p39986));
 	      return retval;
 	  }
     }
 
-    IntegrityManager_c [] objs39402 = 
-    IntegrityManager_c.IntegrityManagerInstances(modelRoot, new IntegrityManager_c_test39403_c(getIm_id())) ;
+    IntegrityManager_c [] objs39984 = 
+    IntegrityManager_c.IntegrityManagerInstances(modelRoot, new IntegrityManager_c_test39985_c(getIm_id())) ;
 
-    if ( (  (objs39402.length) == 0) )
+    if ( (  (objs39984.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Integrity Manager", //$NON-NLS-1$
            "Consistency: Object: Integrity Manager: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39402.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39984.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Integrity Manager: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39402.length )  , e); 
+          + Integer.toString( objs39984.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39402.length) > 1) )
+    if ( (  (objs39984.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Integrity Manager", //$NON-NLS-1$
            "Consistency: Object: Integrity Manager: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39402.length )  + " IM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39984.length )  + " IM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Integrity Manager: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39402.length )  + " IM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39984.length )  + " IM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -962,40 +962,40 @@ private static IntegrityManager_c findIntegrityManagerInstance(ModelRoot modelRo
 
           // Integrity Manager is a referring class in association: rel.Numb = 1301
           // The participating class is: System Model
-    class SystemModel_c_test39408_c implements ClassQueryInterface_c
+    class SystemModel_c_test39990_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test39408_c( java.util.UUID            p39409 ) {
-	  m_p39409 = p39409;
+	  SystemModel_c_test39990_c( java.util.UUID            p39991 ) {
+	  m_p39991 = p39991;
 	  }
-	  private java.util.UUID             m_p39409; 
+	  private java.util.UUID             m_p39991; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p39409));
+	      retval = (selected.getSys_id().equals(m_p39991));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs39407 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test39408_c(getSys_id())) ;
+    SystemModel_c [] objs39989 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test39990_c(getSys_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs39407.length) != 1) )
+    if ( (  (objs39989.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Integrity Manager", //$NON-NLS-1$
            "Consistency: Object: Integrity Manager: Association: 1301: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39407.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39989.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Integrity Manager: Association: 1301: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39407.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39989.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

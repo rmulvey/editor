@@ -148,7 +148,7 @@ p_m_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((SequenceInSequence_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((SequenceInSequence_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((SequenceInSequence_c)elem).getPackage_id())) return false;
@@ -633,29 +633,29 @@ public static SequenceInSequence_c [] getManySQ_SISsOnR928(Sequence_c target, bo
 
 	if (IsShownInSequence == null) {          
       // R911
-      Sequence_c relInst38755 = (Sequence_c) baseRoot.getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
+      Sequence_c relInst39337 = (Sequence_c) baseRoot.getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38755 == null) {
-      			relInst38755 = (Sequence_c) Ooaofooa.getDefaultInstance().getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
+      		if (relInst39337 == null) {
+      			relInst39337 = (Sequence_c) Ooaofooa.getDefaultInstance().getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst38755 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39337 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38755 = (Sequence_c) roots[i].getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
-					if (relInst38755 != null)
+					relInst39337 = (Sequence_c) roots[i].getInstanceList(Sequence_c.class).get(new Object[] {m_package_id});
+					if (relInst39337 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38755 != null )
+      if ( relInst39337 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38755) && !isProxy())) {
-	      relInst38755.relateAcrossR911To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39337) && !isProxy())) {
+	      relInst39337.relateAcrossR911To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -902,56 +902,56 @@ private static SequenceInSequence_c findSequenceInSequenceInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SequenceInSequence_c_test38757_c implements ClassQueryInterface_c
+    class SequenceInSequence_c_test39339_c implements ClassQueryInterface_c
     {
-	  SequenceInSequence_c_test38757_c( java.util.UUID            p38758 ) {
-	  m_p38758 = p38758;
+	  SequenceInSequence_c_test39339_c( java.util.UUID            p39340 ) {
+	  m_p39340 = p39340;
 	  }
-	  private java.util.UUID             m_p38758; 
+	  private java.util.UUID             m_p39340; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SequenceInSequence_c selected = (SequenceInSequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38758));
+	      retval = (selected.getPackage_id().equals(m_p39340));
 	      return retval;
 	  }
     }
 
-    SequenceInSequence_c [] objs38756 = 
-    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test38757_c(getPackage_id())) ;
+    SequenceInSequence_c [] objs39338 = 
+    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test39339_c(getPackage_id())) ;
 
-    if ( (  (objs38756.length) == 0) )
+    if ( (  (objs39338.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence in Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence in Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38756.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39338.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence in Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38756.length )  , e); 
+          + Integer.toString( objs39338.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38756.length) > 1) )
+    if ( (  (objs39338.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence in Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence in Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38756.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39338.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence in Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38756.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39338.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -959,40 +959,40 @@ private static SequenceInSequence_c findSequenceInSequenceInstance(ModelRoot mod
 
           // Sequence in Sequence is a referring class in association: rel.Numb = 911
           // The participating class is: Sequence
-    class Sequence_c_test38762_c implements ClassQueryInterface_c
+    class Sequence_c_test39344_c implements ClassQueryInterface_c
     {
-	  Sequence_c_test38762_c( java.util.UUID            p38763 ) {
-	  m_p38763 = p38763;
+	  Sequence_c_test39344_c( java.util.UUID            p39345 ) {
+	  m_p39345 = p39345;
 	  }
-	  private java.util.UUID             m_p38763; 
+	  private java.util.UUID             m_p39345; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Sequence_c selected = (Sequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38763));
+	      retval = (selected.getPackage_id().equals(m_p39345));
 	      return retval;
 	  }
     }
 
-    Sequence_c [] objs38761 = 
-    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test38762_c(getPackage_id())) ;
+    Sequence_c [] objs39343 = 
+    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test39344_c(getPackage_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38761.length) != 1) )
+    if ( (  (objs39343.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence in Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence in Sequence: Association: 911: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38761.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39343.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence in Sequence: Association: 911: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38761.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39343.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

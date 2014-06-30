@@ -20,6 +20,7 @@ import java.util.Vector;
 import com.mentor.nucleus.bp.core.*;
 import com.mentor.nucleus.bp.core.common.ModelElement;
 import com.mentor.nucleus.bp.core.common.NonRootModelElement;
+import com.mentor.nucleus.bp.core.inspector.ObjectElement;
 
 public class MetadataSortingManager {
 	private Map sorterMap = new HashMap();

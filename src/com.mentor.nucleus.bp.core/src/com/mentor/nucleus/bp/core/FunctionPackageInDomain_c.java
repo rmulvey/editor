@@ -148,7 +148,8 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -164,9 +165,10 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionPackageInDomain_c) elem).getFunpack_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionPackageInDomain_c) elem)
+								.getFunpack_id())) && this != elem)) {
 			return false;
 		}
 		if (!getFunpack_id().equals(
@@ -175,9 +177,9 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionPackageInDomain_c) elem).getDom_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionPackageInDomain_c) elem).getDom_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDom_id().equals(((FunctionPackageInDomain_c) elem).getDom_id()))
@@ -751,65 +753,65 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R301
-		FunctionPackage_c relInst55247 = (FunctionPackage_c) baseRoot
+		FunctionPackage_c relInst56796 = (FunctionPackage_c) baseRoot
 				.getInstanceList(FunctionPackage_c.class).get(
 						new Object[]{m_funpack_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55247 == null) {
-			relInst55247 = (FunctionPackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst56796 == null) {
+			relInst56796 = (FunctionPackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(FunctionPackage_c.class)
 					.get(new Object[]{m_funpack_id});
 		}
-		if (relInst55247 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56796 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55247 = (FunctionPackage_c) roots[i].getInstanceList(
+				relInst56796 = (FunctionPackage_c) roots[i].getInstanceList(
 						FunctionPackage_c.class)
 						.get(new Object[]{m_funpack_id});
-				if (relInst55247 != null)
+				if (relInst56796 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55247 != null) {
+		if (relInst56796 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55247) && !isProxy())) {
-				relInst55247.relateAcrossR301To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56796) && !isProxy())) {
+				relInst56796.relateAcrossR301To(this, notifyChanges);
 			}
 		}
 
-		Domain_c relInst55248 = (Domain_c) baseRoot.getInstanceList(
+		Domain_c relInst56797 = (Domain_c) baseRoot.getInstanceList(
 				Domain_c.class).get(new Object[]{m_dom_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55248 == null) {
-			relInst55248 = (Domain_c) Ooaofooa.getDefaultInstance()
+		if (relInst56797 == null) {
+			relInst56797 = (Domain_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Domain_c.class)
 					.get(new Object[]{m_dom_id});
 		}
-		if (relInst55248 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56797 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55248 = (Domain_c) roots[i].getInstanceList(
+				relInst56797 = (Domain_c) roots[i].getInstanceList(
 						Domain_c.class).get(new Object[]{m_dom_id});
-				if (relInst55248 != null)
+				if (relInst56797 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55248 != null) {
+		if (relInst56797 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55248) && !isProxy())) {
-				relInst55248.relateAcrossR301To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56797) && !isProxy())) {
+				relInst56797.relateAcrossR301To(this, notifyChanges);
 			}
 		}
 
@@ -1115,31 +1117,31 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FunctionPackageInDomain_c_test55250_c
+		class FunctionPackageInDomain_c_test56799_c
 				implements
 					ClassQueryInterface_c {
-			FunctionPackageInDomain_c_test55250_c(java.util.UUID p55251,
-					java.util.UUID p55252) {
-				m_p55251 = p55251;
-				m_p55252 = p55252;
+			FunctionPackageInDomain_c_test56799_c(java.util.UUID p56800,
+					java.util.UUID p56801) {
+				m_p56800 = p56800;
+				m_p56801 = p56801;
 			}
-			private java.util.UUID m_p55251;
-			private java.util.UUID m_p55252;
+			private java.util.UUID m_p56800;
+			private java.util.UUID m_p56801;
 			public boolean evaluate(Object candidate) {
 				FunctionPackageInDomain_c selected = (FunctionPackageInDomain_c) candidate;
 				boolean retval = false;
-				retval = (selected.getFunpack_id().equals(m_p55251))
-						& (selected.getDom_id().equals(m_p55252));
+				retval = (selected.getFunpack_id().equals(m_p56800))
+						& (selected.getDom_id().equals(m_p56801));
 				return retval;
 			}
 		}
 
-		FunctionPackageInDomain_c[] objs55249 = FunctionPackageInDomain_c
+		FunctionPackageInDomain_c[] objs56798 = FunctionPackageInDomain_c
 				.FunctionPackageInDomainInstances(modelRoot,
-						new FunctionPackageInDomain_c_test55250_c(
+						new FunctionPackageInDomain_c_test56799_c(
 								getFunpack_id(), getDom_id()));
 
-		if (((objs55249.length) == 0)) {
+		if (((objs56798.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1147,20 +1149,20 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Function Package in Domain", //$NON-NLS-1$
 								"Consistency: Object: Function Package in Domain: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55249.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56798.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Package in Domain: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55249.length), e);
+										+ Integer.toString(objs56798.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55249.length) > 1)) {
+		if (((objs56798.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1169,7 +1171,7 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 								"Function Package in Domain", //$NON-NLS-1$
 								"Consistency: Object: Function Package in Domain: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55249.length)
+										+ Integer.toString(objs56798.length)
 										+ " FunPack_ID: " + "Not Printable" + " Dom_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1177,7 +1179,7 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Package in Domain: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55249.length)
+										+ Integer.toString(objs56798.length)
 										+ " FunPack_ID: " + "Not Printable" + " Dom_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1187,25 +1189,25 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 		// Function Package in Domain is a link class in association: rel.Numb = 301
 		// Other side
 		// The other side class in the association is: Domain
-		class Domain_c_test55256_c implements ClassQueryInterface_c {
-			Domain_c_test55256_c(java.util.UUID p55257) {
-				m_p55257 = p55257;
+		class Domain_c_test56805_c implements ClassQueryInterface_c {
+			Domain_c_test56805_c(java.util.UUID p56806) {
+				m_p56806 = p56806;
 			}
-			private java.util.UUID m_p55257;
+			private java.util.UUID m_p56806;
 			public boolean evaluate(Object candidate) {
 				Domain_c selected = (Domain_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDom_id().equals(m_p55257));
+				retval = (selected.getDom_id().equals(m_p56806));
 				return retval;
 			}
 		}
 
-		Domain_c[] objs55255 = Domain_c.DomainInstances(modelRoot,
-				new Domain_c_test55256_c(getDom_id()));
+		Domain_c[] objs56804 = Domain_c.DomainInstances(modelRoot,
+				new Domain_c_test56805_c(getDom_id()));
 
 		// The other side class is unconditional
 		// The multiplicity of the other side class is one
-		if (((objs55255.length) != 1)) {
+		if (((objs56804.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1213,14 +1215,14 @@ public class FunctionPackageInDomain_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Function Package in Domain", //$NON-NLS-1$
 								"Consistency: Object: Function Package in Domain: Association: 301: Cardinality of other side of link is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55255.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56804.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Package in Domain: Association: 301: Cardinality of other side of link is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55255.length), e);
+										+ Integer.toString(objs56804.length), e);
 			}
 			retval = false;
 

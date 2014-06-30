@@ -143,7 +143,8 @@ public class DerivedAssociation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -159,9 +160,9 @@ public class DerivedAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((DerivedAssociation_c) elem).getRel_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((DerivedAssociation_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id().equals(((DerivedAssociation_c) elem).getRel_id()))
@@ -763,33 +764,33 @@ public class DerivedAssociation_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R206
-		Association_c relInst56676 = (Association_c) baseRoot.getInstanceList(
+		Association_c relInst58225 = (Association_c) baseRoot.getInstanceList(
 				Association_c.class).get(new Object[]{m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56676 == null) {
-			relInst56676 = (Association_c) Ooaofooa.getDefaultInstance()
+		if (relInst58225 == null) {
+			relInst58225 = (Association_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Association_c.class)
 					.get(new Object[]{m_rel_id});
 		}
-		if (relInst56676 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58225 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56676 = (Association_c) roots[i].getInstanceList(
+				relInst58225 = (Association_c) roots[i].getInstanceList(
 						Association_c.class).get(new Object[]{m_rel_id});
-				if (relInst56676 != null)
+				if (relInst58225 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56676 != null) {
+		if (relInst58225 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56676) && !isProxy())) {
-				relInst56676.relateAcrossR206To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58225) && !isProxy())) {
+				relInst58225.relateAcrossR206To(this, notifyChanges);
 			}
 		}
 
@@ -1075,44 +1076,44 @@ public class DerivedAssociation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DerivedAssociation_c_test56678_c implements ClassQueryInterface_c {
-			DerivedAssociation_c_test56678_c(java.util.UUID p56679) {
-				m_p56679 = p56679;
+		class DerivedAssociation_c_test58227_c implements ClassQueryInterface_c {
+			DerivedAssociation_c_test58227_c(java.util.UUID p58228) {
+				m_p58228 = p58228;
 			}
-			private java.util.UUID m_p56679;
+			private java.util.UUID m_p58228;
 			public boolean evaluate(Object candidate) {
 				DerivedAssociation_c selected = (DerivedAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56679));
+				retval = (selected.getRel_id().equals(m_p58228));
 				return retval;
 			}
 		}
 
-		DerivedAssociation_c[] objs56677 = DerivedAssociation_c
+		DerivedAssociation_c[] objs58226 = DerivedAssociation_c
 				.DerivedAssociationInstances(modelRoot,
-						new DerivedAssociation_c_test56678_c(getRel_id()));
+						new DerivedAssociation_c_test58227_c(getRel_id()));
 
-		if (((objs56677.length) == 0)) {
+		if (((objs58226.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Association", //$NON-NLS-1$
 								"Consistency: Object: Derived Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56677.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58226.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56677.length), e);
+										+ Integer.toString(objs58226.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56677.length) > 1)) {
+		if (((objs58226.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1120,7 +1121,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 								"Derived Association", //$NON-NLS-1$
 								"Consistency: Object: Derived Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56677.length)
+										+ Integer.toString(objs58226.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1128,7 +1129,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Derived Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56677.length)
+										+ Integer.toString(objs58226.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1137,37 +1138,37 @@ public class DerivedAssociation_c extends NonRootModelElement
 
 		// Derived Association is a subtype in association: rel.Numb = 206
 		// The supertype class is: Association
-		class Association_c_test56683_c implements ClassQueryInterface_c {
-			Association_c_test56683_c(java.util.UUID p56684) {
-				m_p56684 = p56684;
+		class Association_c_test58232_c implements ClassQueryInterface_c {
+			Association_c_test58232_c(java.util.UUID p58233) {
+				m_p58233 = p58233;
 			}
-			private java.util.UUID m_p56684;
+			private java.util.UUID m_p58233;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56684));
+				retval = (selected.getRel_id().equals(m_p58233));
 				return retval;
 			}
 		}
 
-		Association_c[] objs56682 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test56683_c(getRel_id()));
+		Association_c[] objs58231 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test58232_c(getRel_id()));
 
-		if (((objs56682.length) != 1)) {
+		if (((objs58231.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Association", //$NON-NLS-1$
 								"Consistency: Object: Derived Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56682.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58231.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Association: Association: 206: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56682.length), e);
+										+ Integer.toString(objs58231.length), e);
 			}
 			retval = false;
 
@@ -1175,40 +1176,40 @@ public class DerivedAssociation_c extends NonRootModelElement
 
 		// Derived Association is a participating class in association: rel.Numb = 214
 		// Object: Class As Derived One Side
-		class ClassAsDerivedOneSide_c_test56686_c
+		class ClassAsDerivedOneSide_c_test58235_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsDerivedOneSide_c_test56686_c(java.util.UUID p56687) {
-				m_p56687 = p56687;
+			ClassAsDerivedOneSide_c_test58235_c(java.util.UUID p58236) {
+				m_p58236 = p58236;
 			}
-			private java.util.UUID m_p56687;
+			private java.util.UUID m_p58236;
 			public boolean evaluate(Object candidate) {
 				ClassAsDerivedOneSide_c selected = (ClassAsDerivedOneSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56687));
+				retval = (selected.getRel_id().equals(m_p58236));
 				return retval;
 			}
 		}
 
-		ClassAsDerivedOneSide_c[] objs56685 = ClassAsDerivedOneSide_c
+		ClassAsDerivedOneSide_c[] objs58234 = ClassAsDerivedOneSide_c
 				.ClassAsDerivedOneSideInstances(modelRoot,
-						new ClassAsDerivedOneSide_c_test56686_c(getRel_id()));
+						new ClassAsDerivedOneSide_c_test58235_c(getRel_id()));
 
-		if (((objs56685.length) != 1)) {
+		if (((objs58234.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Association", //$NON-NLS-1$
 								"Consistency: Object: Derived Association: Association: 214: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56685.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58234.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Association: Association: 214: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56685.length), e);
+										+ Integer.toString(objs58234.length), e);
 			}
 			retval = false;
 
@@ -1216,40 +1217,40 @@ public class DerivedAssociation_c extends NonRootModelElement
 
 		// Derived Association is a participating class in association: rel.Numb = 215
 		// Object: Class As Derived Other Side
-		class ClassAsDerivedOtherSide_c_test56689_c
+		class ClassAsDerivedOtherSide_c_test58238_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsDerivedOtherSide_c_test56689_c(java.util.UUID p56690) {
-				m_p56690 = p56690;
+			ClassAsDerivedOtherSide_c_test58238_c(java.util.UUID p58239) {
+				m_p58239 = p58239;
 			}
-			private java.util.UUID m_p56690;
+			private java.util.UUID m_p58239;
 			public boolean evaluate(Object candidate) {
 				ClassAsDerivedOtherSide_c selected = (ClassAsDerivedOtherSide_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56690));
+				retval = (selected.getRel_id().equals(m_p58239));
 				return retval;
 			}
 		}
 
-		ClassAsDerivedOtherSide_c[] objs56688 = ClassAsDerivedOtherSide_c
+		ClassAsDerivedOtherSide_c[] objs58237 = ClassAsDerivedOtherSide_c
 				.ClassAsDerivedOtherSideInstances(modelRoot,
-						new ClassAsDerivedOtherSide_c_test56689_c(getRel_id()));
+						new ClassAsDerivedOtherSide_c_test58238_c(getRel_id()));
 
-		if (((objs56688.length) != 1)) {
+		if (((objs58237.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Derived Association", //$NON-NLS-1$
 								"Consistency: Object: Derived Association: Association: 215: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56688.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58237.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Derived Association: Association: 215: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56688.length), e);
+										+ Integer.toString(objs58237.length), e);
 			}
 			retval = false;
 
@@ -1308,7 +1309,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 
 		else {
 
-			class ClassAsDerivedOneSide_test54445_c
+			class ClassAsDerivedOneSide_test55994_c
 					implements
 						ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
@@ -1318,7 +1319,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 			}
 			ClassAsDerivedOneSide_c v_cone = ClassAsDerivedOneSide_c
 					.getOneR_CONEOnR214(this,
-							new ClassAsDerivedOneSide_test54445_c());
+							new ClassAsDerivedOneSide_test55994_c());
 
 			if (((v_cone != null))) {
 
@@ -1328,7 +1329,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 
 			else {
 
-				class ClassAsDerivedOtherSide_test54446_c
+				class ClassAsDerivedOtherSide_test55995_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -1338,7 +1339,7 @@ public class DerivedAssociation_c extends NonRootModelElement
 				}
 				ClassAsDerivedOtherSide_c v_coth = ClassAsDerivedOtherSide_c
 						.getOneR_COTHOnR215(this,
-								new ClassAsDerivedOtherSide_test54446_c());
+								new ClassAsDerivedOtherSide_test55995_c());
 
 				if (((v_coth != null))) {
 

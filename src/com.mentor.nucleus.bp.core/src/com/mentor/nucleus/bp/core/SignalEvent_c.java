@@ -183,7 +183,8 @@ public class SignalEvent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -199,8 +200,9 @@ public class SignalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((SignalEvent_c) elem).getSmevt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((SignalEvent_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(((SignalEvent_c) elem).getSmevt_id()))
@@ -208,8 +210,9 @@ public class SignalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((SignalEvent_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((SignalEvent_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((SignalEvent_c) elem).getSm_id()))
@@ -217,8 +220,9 @@ public class SignalEvent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((SignalEvent_c) elem).getSmspd_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((SignalEvent_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(((SignalEvent_c) elem).getSmspd_id()))
@@ -979,51 +983,51 @@ public class SignalEvent_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R526
-		SemEvent_c relInst38423 = (SemEvent_c) baseRoot.getInstanceList(
+		SemEvent_c relInst39005 = (SemEvent_c) baseRoot.getInstanceList(
 				SemEvent_c.class).get(
 				new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38423 == null) {
-			relInst38423 = (SemEvent_c) Ooaofooa.getDefaultInstance()
+		if (relInst39005 == null) {
+			relInst39005 = (SemEvent_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SemEvent_c.class)
 					.get(new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		}
-		if (relInst38423 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39005 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38423 = (SemEvent_c) roots[i].getInstanceList(
+				relInst39005 = (SemEvent_c) roots[i].getInstanceList(
 						SemEvent_c.class).get(
 						new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
-				if (relInst38423 != null)
+				if (relInst39005 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38423 != null) {
+		if (relInst39005 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38423) && !isProxy())) {
-				relInst38423.relateAcrossR526To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39005) && !isProxy())) {
+				relInst39005.relateAcrossR526To(this, notifyChanges);
 			}
 		}
 
 		if (ProvidedSignal == null) {
 			// R528
-			ProvidedSignal_c relInst38424 = (ProvidedSignal_c) baseRoot
+			ProvidedSignal_c relInst39006 = (ProvidedSignal_c) baseRoot
 					.getInstanceList(ProvidedSignal_c.class).get(
 							new Object[]{m_provided_signal_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38424 == null) {
-				relInst38424 = (ProvidedSignal_c) Ooaofooa.getDefaultInstance()
+			if (relInst39006 == null) {
+				relInst39006 = (ProvidedSignal_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ProvidedSignal_c.class)
 						.get(new Object[]{m_provided_signal_id});
 			}
-			if (relInst38424 == null && searchAllRoots
+			if (relInst39006 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1031,35 +1035,35 @@ public class SignalEvent_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38424 = (ProvidedSignal_c) roots[i].getInstanceList(
+					relInst39006 = (ProvidedSignal_c) roots[i].getInstanceList(
 							ProvidedSignal_c.class).get(
 							new Object[]{m_provided_signal_id});
-					if (relInst38424 != null)
+					if (relInst39006 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38424 != null) {
+			if (relInst39006 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38424) && !isProxy())) {
-					relInst38424.relateAcrossR528To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39006) && !isProxy())) {
+					relInst39006.relateAcrossR528To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (RequiredSignal == null) {
 			// R529
-			RequiredSignal_c relInst38425 = (RequiredSignal_c) baseRoot
+			RequiredSignal_c relInst39007 = (RequiredSignal_c) baseRoot
 					.getInstanceList(RequiredSignal_c.class).get(
 							new Object[]{m_required_signal_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38425 == null) {
-				relInst38425 = (RequiredSignal_c) Ooaofooa.getDefaultInstance()
+			if (relInst39007 == null) {
+				relInst39007 = (RequiredSignal_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(RequiredSignal_c.class)
 						.get(new Object[]{m_required_signal_id});
 			}
-			if (relInst38425 == null && searchAllRoots
+			if (relInst39007 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1067,18 +1071,18 @@ public class SignalEvent_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38425 = (RequiredSignal_c) roots[i].getInstanceList(
+					relInst39007 = (RequiredSignal_c) roots[i].getInstanceList(
 							RequiredSignal_c.class).get(
 							new Object[]{m_required_signal_id});
-					if (relInst38425 != null)
+					if (relInst39007 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38425 != null) {
+			if (relInst39007 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38425) && !isProxy())) {
-					relInst38425.relateAcrossR529To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39007) && !isProxy())) {
+					relInst39007.relateAcrossR529To(this, notifyChanges);
 				}
 			}
 		}
@@ -1611,50 +1615,50 @@ public class SignalEvent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SignalEvent_c_test38427_c implements ClassQueryInterface_c {
-			SignalEvent_c_test38427_c(java.util.UUID p38428,
-					java.util.UUID p38429, java.util.UUID p38430) {
-				m_p38428 = p38428;
-				m_p38429 = p38429;
-				m_p38430 = p38430;
+		class SignalEvent_c_test39009_c implements ClassQueryInterface_c {
+			SignalEvent_c_test39009_c(java.util.UUID p39010,
+					java.util.UUID p39011, java.util.UUID p39012) {
+				m_p39010 = p39010;
+				m_p39011 = p39011;
+				m_p39012 = p39012;
 			}
-			private java.util.UUID m_p38428;
-			private java.util.UUID m_p38429;
-			private java.util.UUID m_p38430;
+			private java.util.UUID m_p39010;
+			private java.util.UUID m_p39011;
+			private java.util.UUID m_p39012;
 			public boolean evaluate(Object candidate) {
 				SignalEvent_c selected = (SignalEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p38428))
-						& (selected.getSm_id().equals(m_p38429))
-						& (selected.getSmspd_id().equals(m_p38430));
+				retval = (selected.getSmevt_id().equals(m_p39010))
+						& (selected.getSm_id().equals(m_p39011))
+						& (selected.getSmspd_id().equals(m_p39012));
 				return retval;
 			}
 		}
 
-		SignalEvent_c[] objs38426 = SignalEvent_c.SignalEventInstances(
-				modelRoot, new SignalEvent_c_test38427_c(getSmevt_id(),
+		SignalEvent_c[] objs39008 = SignalEvent_c.SignalEventInstances(
+				modelRoot, new SignalEvent_c_test39009_c(getSmevt_id(),
 						getSm_id(), getSmspd_id()));
 
-		if (((objs38426.length) == 0)) {
+		if (((objs39008.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Signal Event", //$NON-NLS-1$
 								"Consistency: Object: Signal Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38426.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39008.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Signal Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38426.length), e);
+								+ Integer.toString(objs39008.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38426.length) > 1)) {
+		if (((objs39008.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1662,7 +1666,7 @@ public class SignalEvent_c extends NonRootModelElement
 								"Signal Event", //$NON-NLS-1$
 								"Consistency: Object: Signal Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38426.length)
+										+ Integer.toString(objs39008.length)
 										+ " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1670,7 +1674,7 @@ public class SignalEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Signal Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38426.length)
+										+ Integer.toString(objs39008.length)
 										+ " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1679,45 +1683,45 @@ public class SignalEvent_c extends NonRootModelElement
 
 		// Signal Event is a subtype in association: rel.Numb = 526
 		// The supertype class is: SEM Event
-		class SemEvent_c_test38434_c implements ClassQueryInterface_c {
-			SemEvent_c_test38434_c(java.util.UUID p38435,
-					java.util.UUID p38436, java.util.UUID p38437) {
-				m_p38435 = p38435;
-				m_p38436 = p38436;
-				m_p38437 = p38437;
+		class SemEvent_c_test39016_c implements ClassQueryInterface_c {
+			SemEvent_c_test39016_c(java.util.UUID p39017,
+					java.util.UUID p39018, java.util.UUID p39019) {
+				m_p39017 = p39017;
+				m_p39018 = p39018;
+				m_p39019 = p39019;
 			}
-			private java.util.UUID m_p38435;
-			private java.util.UUID m_p38436;
-			private java.util.UUID m_p38437;
+			private java.util.UUID m_p39017;
+			private java.util.UUID m_p39018;
+			private java.util.UUID m_p39019;
 			public boolean evaluate(Object candidate) {
 				SemEvent_c selected = (SemEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p38435))
-						& (selected.getSm_id().equals(m_p38436))
-						& (selected.getSmspd_id().equals(m_p38437));
+				retval = (selected.getSmevt_id().equals(m_p39017))
+						& (selected.getSm_id().equals(m_p39018))
+						& (selected.getSmspd_id().equals(m_p39019));
 				return retval;
 			}
 		}
 
-		SemEvent_c[] objs38433 = SemEvent_c.SemEventInstances(modelRoot,
-				new SemEvent_c_test38434_c(getSmevt_id(), getSm_id(),
+		SemEvent_c[] objs39015 = SemEvent_c.SemEventInstances(modelRoot,
+				new SemEvent_c_test39016_c(getSmevt_id(), getSm_id(),
 						getSmspd_id()));
 
-		if (((objs38433.length) != 1)) {
+		if (((objs39015.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Signal Event", //$NON-NLS-1$
 								"Consistency: Object: Signal Event: Association: 526: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38433.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39015.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Signal Event: Association: 526: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38433.length), e);
+										+ Integer.toString(objs39015.length), e);
 			}
 			retval = false;
 
@@ -1725,25 +1729,25 @@ public class SignalEvent_c extends NonRootModelElement
 
 		// Signal Event is a referring class in association: rel.Numb = 528
 		// The participating class is: Provided Signal
-		class ProvidedSignal_c_test38439_c implements ClassQueryInterface_c {
-			ProvidedSignal_c_test38439_c(java.util.UUID p38440) {
-				m_p38440 = p38440;
+		class ProvidedSignal_c_test39021_c implements ClassQueryInterface_c {
+			ProvidedSignal_c_test39021_c(java.util.UUID p39022) {
+				m_p39022 = p39022;
 			}
-			private java.util.UUID m_p38440;
+			private java.util.UUID m_p39022;
 			public boolean evaluate(Object candidate) {
 				ProvidedSignal_c selected = (ProvidedSignal_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p38440));
+				retval = (selected.getId().equals(m_p39022));
 				return retval;
 			}
 		}
 
-		ProvidedSignal_c[] objs38438 = ProvidedSignal_c
+		ProvidedSignal_c[] objs39020 = ProvidedSignal_c
 				.ProvidedSignalInstances(modelRoot,
-						new ProvidedSignal_c_test38439_c(
+						new ProvidedSignal_c_test39021_c(
 								getProvided_signal_id()));
 
-		if (((objs38438.length) > 1)) {
+		if (((objs39020.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1751,7 +1755,7 @@ public class SignalEvent_c extends NonRootModelElement
 								"Signal Event", //$NON-NLS-1$
 								"Consistency: Object: Signal Event: Association: 528: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38438.length)
+										+ Integer.toString(objs39020.length)
 										+ " Provided_Signal_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1759,7 +1763,7 @@ public class SignalEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Signal Event: Association: 528: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38438.length)
+										+ Integer.toString(objs39020.length)
 										+ " Provided_Signal_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1768,25 +1772,25 @@ public class SignalEvent_c extends NonRootModelElement
 
 		// Signal Event is a referring class in association: rel.Numb = 529
 		// The participating class is: Required Signal
-		class RequiredSignal_c_test38442_c implements ClassQueryInterface_c {
-			RequiredSignal_c_test38442_c(java.util.UUID p38443) {
-				m_p38443 = p38443;
+		class RequiredSignal_c_test39024_c implements ClassQueryInterface_c {
+			RequiredSignal_c_test39024_c(java.util.UUID p39025) {
+				m_p39025 = p39025;
 			}
-			private java.util.UUID m_p38443;
+			private java.util.UUID m_p39025;
 			public boolean evaluate(Object candidate) {
 				RequiredSignal_c selected = (RequiredSignal_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p38443));
+				retval = (selected.getId().equals(m_p39025));
 				return retval;
 			}
 		}
 
-		RequiredSignal_c[] objs38441 = RequiredSignal_c
+		RequiredSignal_c[] objs39023 = RequiredSignal_c
 				.RequiredSignalInstances(modelRoot,
-						new RequiredSignal_c_test38442_c(
+						new RequiredSignal_c_test39024_c(
 								getRequired_signal_id()));
 
-		if (((objs38441.length) > 1)) {
+		if (((objs39023.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1794,7 +1798,7 @@ public class SignalEvent_c extends NonRootModelElement
 								"Signal Event", //$NON-NLS-1$
 								"Consistency: Object: Signal Event: Association: 529: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38441.length)
+										+ Integer.toString(objs39023.length)
 										+ " Required_Signal_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1802,7 +1806,7 @@ public class SignalEvent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Signal Event: Association: 529: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38441.length)
+										+ Integer.toString(objs39023.length)
 										+ " Required_Signal_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1900,8 +1904,8 @@ public class SignalEvent_c extends NonRootModelElement
 				String v_sep = "";
 
 				PropertyParameter_c v_parameter = null;
-				for (int i36626 = 0; i36626 < v_parameters.length; i36626++) {
-					v_parameter = v_parameters[i36626];
+				for (int i37208 = 0; i37208 < v_parameters.length; i37208++) {
+					v_parameter = v_parameters[i37208];
 
 					DataType_c v_dt = DataType_c.getOneS_DTOnR4007(v_parameter);
 

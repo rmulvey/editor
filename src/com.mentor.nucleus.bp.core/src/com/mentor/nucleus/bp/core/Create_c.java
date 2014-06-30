@@ -174,7 +174,8 @@ public class Create_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -190,8 +191,9 @@ public class Create_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Create_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Create_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Create_c) elem).getStatement_id()))
@@ -856,16 +858,16 @@ public class Create_c extends NonRootModelElement
 
 		if (ResultVariable == null) {
 			// R633
-			Variable_c relInst40129 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst40711 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40129 == null) {
-				relInst40129 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst40711 == null) {
+				relInst40711 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst40129 == null && searchAllRoots
+			if (relInst40711 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -873,34 +875,34 @@ public class Create_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40129 = (Variable_c) roots[i].getInstanceList(
+					relInst40711 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst40129 != null)
+					if (relInst40711 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40129 != null) {
+			if (relInst40711 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40129) && !isProxy())) {
-					relInst40129.relateAcrossR633To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40711) && !isProxy())) {
+					relInst40711.relateAcrossR633To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (InstanceOfModelClass == null) {
 			// R671
-			ModelClass_c relInst40130 = (ModelClass_c) baseRoot
+			ModelClass_c relInst40712 = (ModelClass_c) baseRoot
 					.getInstanceList(ModelClass_c.class).get(
 							new Object[]{m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40130 == null) {
-				relInst40130 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst40712 == null) {
+				relInst40712 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ModelClass_c.class)
 						.get(new Object[]{m_obj_id});
 			}
-			if (relInst40130 == null && searchAllRoots
+			if (relInst40712 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -908,49 +910,49 @@ public class Create_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40130 = (ModelClass_c) roots[i].getInstanceList(
+					relInst40712 = (ModelClass_c) roots[i].getInstanceList(
 							ModelClass_c.class).get(new Object[]{m_obj_id});
-					if (relInst40130 != null)
+					if (relInst40712 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40130 != null) {
+			if (relInst40712 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40130) && !isProxy())) {
-					relInst40130.relateAcrossR671To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40712) && !isProxy())) {
+					relInst40712.relateAcrossR671To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst40131 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst40713 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40131 == null) {
-			relInst40131 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst40713 == null) {
+			relInst40713 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst40131 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40713 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40131 = (Statement_c) roots[i].getInstanceList(
+				relInst40713 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst40131 != null)
+				if (relInst40713 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40131 != null) {
+		if (relInst40713 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40131) && !isProxy())) {
-				relInst40131.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40713) && !isProxy())) {
+				relInst40713.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -1228,55 +1230,55 @@ public class Create_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Create_c_test40133_c implements ClassQueryInterface_c {
-			Create_c_test40133_c(java.util.UUID p40134) {
-				m_p40134 = p40134;
+		class Create_c_test40715_c implements ClassQueryInterface_c {
+			Create_c_test40715_c(java.util.UUID p40716) {
+				m_p40716 = p40716;
 			}
-			private java.util.UUID m_p40134;
+			private java.util.UUID m_p40716;
 			public boolean evaluate(Object candidate) {
 				Create_c selected = (Create_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40134));
+				retval = (selected.getStatement_id().equals(m_p40716));
 				return retval;
 			}
 		}
 
-		Create_c[] objs40132 = Create_c.CreateInstances(modelRoot,
-				new Create_c_test40133_c(getStatement_id()));
+		Create_c[] objs40714 = Create_c.CreateInstances(modelRoot,
+				new Create_c_test40715_c(getStatement_id()));
 
-		if (((objs40132.length) == 0)) {
+		if (((objs40714.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Create", //$NON-NLS-1$
 								"Consistency: Object: Create: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40132.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40714.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Create: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40132.length), e);
+								+ Integer.toString(objs40714.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40132.length) > 1)) {
+		if (((objs40714.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Create", //$NON-NLS-1$
 						"Consistency: Object: Create: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs40132.length)
+								+ Integer.toString(objs40714.length)
 								+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Create: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40132.length)
+								+ Integer.toString(objs40714.length)
 								+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1285,37 +1287,37 @@ public class Create_c extends NonRootModelElement
 
 		// Create is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test40138_c implements ClassQueryInterface_c {
-			Statement_c_test40138_c(java.util.UUID p40139) {
-				m_p40139 = p40139;
+		class Statement_c_test40720_c implements ClassQueryInterface_c {
+			Statement_c_test40720_c(java.util.UUID p40721) {
+				m_p40721 = p40721;
 			}
-			private java.util.UUID m_p40139;
+			private java.util.UUID m_p40721;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40139));
+				retval = (selected.getStatement_id().equals(m_p40721));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs40137 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test40138_c(getStatement_id()));
+		Statement_c[] objs40719 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test40720_c(getStatement_id()));
 
-		if (((objs40137.length) != 1)) {
+		if (((objs40719.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Create", //$NON-NLS-1$
 								"Consistency: Object: Create: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40137.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40719.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40137.length), e);
+										+ Integer.toString(objs40719.length), e);
 			}
 			retval = false;
 
@@ -1323,25 +1325,25 @@ public class Create_c extends NonRootModelElement
 
 		// Create is a referring class in association: rel.Numb = 633
 		// The participating class is: Variable
-		class Variable_c_test40141_c implements ClassQueryInterface_c {
-			Variable_c_test40141_c(java.util.UUID p40142) {
-				m_p40142 = p40142;
+		class Variable_c_test40723_c implements ClassQueryInterface_c {
+			Variable_c_test40723_c(java.util.UUID p40724) {
+				m_p40724 = p40724;
 			}
-			private java.util.UUID m_p40142;
+			private java.util.UUID m_p40724;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p40142));
+				retval = (selected.getVar_id().equals(m_p40724));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs40140 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test40141_c(getVar_id()));
+		Variable_c[] objs40722 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test40723_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40140.length) != 1)) {
+		if (((objs40722.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1349,7 +1351,7 @@ public class Create_c extends NonRootModelElement
 								"Create", //$NON-NLS-1$
 								"Consistency: Object: Create: Association: 633: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40140.length)
+										+ Integer.toString(objs40722.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1357,7 +1359,7 @@ public class Create_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create: Association: 633: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40140.length)
+										+ Integer.toString(objs40722.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1366,25 +1368,25 @@ public class Create_c extends NonRootModelElement
 
 		// Create is a referring class in association: rel.Numb = 671
 		// The participating class is: Model Class
-		class ModelClass_c_test40144_c implements ClassQueryInterface_c {
-			ModelClass_c_test40144_c(java.util.UUID p40145) {
-				m_p40145 = p40145;
+		class ModelClass_c_test40726_c implements ClassQueryInterface_c {
+			ModelClass_c_test40726_c(java.util.UUID p40727) {
+				m_p40727 = p40727;
 			}
-			private java.util.UUID m_p40145;
+			private java.util.UUID m_p40727;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p40145));
+				retval = (selected.getObj_id().equals(m_p40727));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs40143 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test40144_c(getObj_id()));
+		ModelClass_c[] objs40725 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test40726_c(getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40143.length) != 1)) {
+		if (((objs40725.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1392,7 +1394,7 @@ public class Create_c extends NonRootModelElement
 								"Create", //$NON-NLS-1$
 								"Consistency: Object: Create: Association: 671: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40143.length)
+										+ Integer.toString(objs40725.length)
 										+ " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1400,7 +1402,7 @@ public class Create_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create: Association: 671: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40143.length)
+										+ Integer.toString(objs40725.length)
 										+ " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -146,7 +146,8 @@ public class EeToSmEventComm_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class EeToSmEventComm_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((EeToSmEventComm_c) elem).getSmevt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((EeToSmEventComm_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(((EeToSmEventComm_c) elem).getSmevt_id()))
@@ -172,9 +173,9 @@ public class EeToSmEventComm_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID
-				.equals(((EeToSmEventComm_c) elem).getCpath_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID
+						.equals(((EeToSmEventComm_c) elem).getCpath_id())) && this != elem)) {
 			return false;
 		}
 		if (!getCpath_id().equals(((EeToSmEventComm_c) elem).getCpath_id()))
@@ -708,17 +709,17 @@ public class EeToSmEventComm_c extends NonRootModelElement
 
 		if (IsCarriedByEeToSmCommPath == null) {
 			// R404
-			EeToSmCommPath_c relInst55915 = (EeToSmCommPath_c) baseRoot
+			EeToSmCommPath_c relInst57464 = (EeToSmCommPath_c) baseRoot
 					.getInstanceList(EeToSmCommPath_c.class).get(
 							new Object[]{m_cpath_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55915 == null) {
-				relInst55915 = (EeToSmCommPath_c) Ooaofooa.getDefaultInstance()
+			if (relInst57464 == null) {
+				relInst57464 = (EeToSmCommPath_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(EeToSmCommPath_c.class)
 						.get(new Object[]{m_cpath_id});
 			}
-			if (relInst55915 == null && searchAllRoots
+			if (relInst57464 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -726,36 +727,36 @@ public class EeToSmEventComm_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55915 = (EeToSmCommPath_c) roots[i].getInstanceList(
+					relInst57464 = (EeToSmCommPath_c) roots[i].getInstanceList(
 							EeToSmCommPath_c.class).get(
 							new Object[]{m_cpath_id});
-					if (relInst55915 != null)
+					if (relInst57464 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55915 != null) {
+			if (relInst57464 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55915) && !isProxy())) {
-					relInst55915.relateAcrossR404To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57464) && !isProxy())) {
+					relInst57464.relateAcrossR404To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (RepresentsCommunicationOfStateMachineEvent == null) {
 			// R405
-			StateMachineEvent_c relInst55916 = (StateMachineEvent_c) baseRoot
+			StateMachineEvent_c relInst57465 = (StateMachineEvent_c) baseRoot
 					.getInstanceList(StateMachineEvent_c.class).get(
 							new Object[]{m_smevt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55916 == null) {
-				relInst55916 = (StateMachineEvent_c) Ooaofooa
+			if (relInst57465 == null) {
+				relInst57465 = (StateMachineEvent_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEvent_c.class)
 						.get(new Object[]{m_smevt_id});
 			}
-			if (relInst55916 == null && searchAllRoots
+			if (relInst57465 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -763,18 +764,18 @@ public class EeToSmEventComm_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55916 = (StateMachineEvent_c) roots[i]
+					relInst57465 = (StateMachineEvent_c) roots[i]
 							.getInstanceList(StateMachineEvent_c.class).get(
 									new Object[]{m_smevt_id});
-					if (relInst55916 != null)
+					if (relInst57465 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55916 != null) {
+			if (relInst57465 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55916) && !isProxy())) {
-					relInst55916.relateAcrossR405To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57465) && !isProxy())) {
+					relInst57465.relateAcrossR405To(this, notifyChanges);
 				}
 			}
 		}
@@ -1080,49 +1081,49 @@ public class EeToSmEventComm_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class EeToSmEventComm_c_test55918_c implements ClassQueryInterface_c {
-			EeToSmEventComm_c_test55918_c(java.util.UUID p55919,
-					java.util.UUID p55920) {
-				m_p55919 = p55919;
-				m_p55920 = p55920;
+		class EeToSmEventComm_c_test57467_c implements ClassQueryInterface_c {
+			EeToSmEventComm_c_test57467_c(java.util.UUID p57468,
+					java.util.UUID p57469) {
+				m_p57468 = p57468;
+				m_p57469 = p57469;
 			}
-			private java.util.UUID m_p55919;
-			private java.util.UUID m_p55920;
+			private java.util.UUID m_p57468;
+			private java.util.UUID m_p57469;
 			public boolean evaluate(Object candidate) {
 				EeToSmEventComm_c selected = (EeToSmEventComm_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p55919))
-						& (selected.getCpath_id().equals(m_p55920));
+				retval = (selected.getSmevt_id().equals(m_p57468))
+						& (selected.getCpath_id().equals(m_p57469));
 				return retval;
 			}
 		}
 
-		EeToSmEventComm_c[] objs55917 = EeToSmEventComm_c
+		EeToSmEventComm_c[] objs57466 = EeToSmEventComm_c
 				.EeToSmEventCommInstances(modelRoot,
-						new EeToSmEventComm_c_test55918_c(getSmevt_id(),
+						new EeToSmEventComm_c_test57467_c(getSmevt_id(),
 								getCpath_id()));
 
-		if (((objs55917.length) == 0)) {
+		if (((objs57466.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"EE to SM Event Comm", //$NON-NLS-1$
 								"Consistency: Object: EE to SM Event Comm: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55917.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57466.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: EE to SM Event Comm: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55917.length), e);
+										+ Integer.toString(objs57466.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55917.length) > 1)) {
+		if (((objs57466.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1130,7 +1131,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 								"EE to SM Event Comm", //$NON-NLS-1$
 								"Consistency: Object: EE to SM Event Comm: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55917.length)
+										+ Integer.toString(objs57466.length)
 										+ " SMevt_ID: " + "Not Printable" + " CPath_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1138,7 +1139,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: EE to SM Event Comm: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55917.length)
+										+ Integer.toString(objs57466.length)
 										+ " SMevt_ID: " + "Not Printable" + " CPath_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1147,26 +1148,26 @@ public class EeToSmEventComm_c extends NonRootModelElement
 
 		// EE to SM Event Comm is a referring class in association: rel.Numb = 404
 		// The participating class is: EE to SM Comm Path
-		class EeToSmCommPath_c_test55924_c implements ClassQueryInterface_c {
-			EeToSmCommPath_c_test55924_c(java.util.UUID p55925) {
-				m_p55925 = p55925;
+		class EeToSmCommPath_c_test57473_c implements ClassQueryInterface_c {
+			EeToSmCommPath_c_test57473_c(java.util.UUID p57474) {
+				m_p57474 = p57474;
 			}
-			private java.util.UUID m_p55925;
+			private java.util.UUID m_p57474;
 			public boolean evaluate(Object candidate) {
 				EeToSmCommPath_c selected = (EeToSmCommPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getCpath_id().equals(m_p55925));
+				retval = (selected.getCpath_id().equals(m_p57474));
 				return retval;
 			}
 		}
 
-		EeToSmCommPath_c[] objs55923 = EeToSmCommPath_c
+		EeToSmCommPath_c[] objs57472 = EeToSmCommPath_c
 				.EeToSmCommPathInstances(modelRoot,
-						new EeToSmCommPath_c_test55924_c(getCpath_id()));
+						new EeToSmCommPath_c_test57473_c(getCpath_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55923.length) != 1)) {
+		if (((objs57472.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1174,7 +1175,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 								"EE to SM Event Comm", //$NON-NLS-1$
 								"Consistency: Object: EE to SM Event Comm: Association: 404: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55923.length)
+										+ Integer.toString(objs57472.length)
 										+ " CPath_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1182,7 +1183,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: EE to SM Event Comm: Association: 404: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55923.length)
+										+ Integer.toString(objs57472.length)
 										+ " CPath_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1191,26 +1192,26 @@ public class EeToSmEventComm_c extends NonRootModelElement
 
 		// EE to SM Event Comm is a referring class in association: rel.Numb = 405
 		// The participating class is: State Machine Event
-		class StateMachineEvent_c_test55927_c implements ClassQueryInterface_c {
-			StateMachineEvent_c_test55927_c(java.util.UUID p55928) {
-				m_p55928 = p55928;
+		class StateMachineEvent_c_test57476_c implements ClassQueryInterface_c {
+			StateMachineEvent_c_test57476_c(java.util.UUID p57477) {
+				m_p57477 = p57477;
 			}
-			private java.util.UUID m_p55928;
+			private java.util.UUID m_p57477;
 			public boolean evaluate(Object candidate) {
 				StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p55928));
+				retval = (selected.getSmevt_id().equals(m_p57477));
 				return retval;
 			}
 		}
 
-		StateMachineEvent_c[] objs55926 = StateMachineEvent_c
+		StateMachineEvent_c[] objs57475 = StateMachineEvent_c
 				.StateMachineEventInstances(modelRoot,
-						new StateMachineEvent_c_test55927_c(getSmevt_id()));
+						new StateMachineEvent_c_test57476_c(getSmevt_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55926.length) != 1)) {
+		if (((objs57475.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1218,7 +1219,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 								"EE to SM Event Comm", //$NON-NLS-1$
 								"Consistency: Object: EE to SM Event Comm: Association: 405: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55926.length)
+										+ Integer.toString(objs57475.length)
 										+ " SMevt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1226,7 +1227,7 @@ public class EeToSmEventComm_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: EE to SM Event Comm: Association: 405: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55926.length)
+										+ Integer.toString(objs57475.length)
 										+ " SMevt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

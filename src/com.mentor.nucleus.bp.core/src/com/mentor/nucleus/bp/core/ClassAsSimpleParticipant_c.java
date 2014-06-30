@@ -169,7 +169,8 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -185,9 +186,9 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSimpleParticipant_c) elem).getOir_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSimpleParticipant_c) elem).getOir_id())) && this != elem)) {
 			return false;
 		}
 		if (!getOir_id()
@@ -196,9 +197,9 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSimpleParticipant_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSimpleParticipant_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id()
@@ -207,9 +208,9 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSimpleParticipant_c) elem).getRel_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSimpleParticipant_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id()
@@ -754,18 +755,18 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 
 		if (IsRelatedToFormalizerViaSimpleAssociation == null) {
 			// R207
-			SimpleAssociation_c relInst56762 = (SimpleAssociation_c) baseRoot
+			SimpleAssociation_c relInst58311 = (SimpleAssociation_c) baseRoot
 					.getInstanceList(SimpleAssociation_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56762 == null) {
-				relInst56762 = (SimpleAssociation_c) Ooaofooa
+			if (relInst58311 == null) {
+				relInst58311 = (SimpleAssociation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(SimpleAssociation_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst56762 == null && searchAllRoots
+			if (relInst58311 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -773,53 +774,53 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56762 = (SimpleAssociation_c) roots[i]
+					relInst58311 = (SimpleAssociation_c) roots[i]
 							.getInstanceList(SimpleAssociation_c.class).get(
 									new Object[]{m_rel_id});
-					if (relInst56762 != null)
+					if (relInst58311 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56762 != null) {
+			if (relInst58311 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56762) && !isProxy())) {
-					relInst56762.relateAcrossR207To(this, notifyChanges);
+						|| (inSameComponent(this, relInst58311) && !isProxy())) {
+					relInst58311.relateAcrossR207To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R204
-		ReferredToClassInAssoc_c relInst56763 = (ReferredToClassInAssoc_c) baseRoot
+		ReferredToClassInAssoc_c relInst58312 = (ReferredToClassInAssoc_c) baseRoot
 				.getInstanceList(ReferredToClassInAssoc_c.class).get(
 						new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56763 == null) {
-			relInst56763 = (ReferredToClassInAssoc_c) Ooaofooa
+		if (relInst58312 == null) {
+			relInst58312 = (ReferredToClassInAssoc_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ReferredToClassInAssoc_c.class)
 					.get(new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		}
-		if (relInst56763 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58312 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56763 = (ReferredToClassInAssoc_c) roots[i]
+				relInst58312 = (ReferredToClassInAssoc_c) roots[i]
 						.getInstanceList(ReferredToClassInAssoc_c.class).get(
 								new Object[]{m_oir_id, m_obj_id, m_rel_id});
-				if (relInst56763 != null)
+				if (relInst58312 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56763 != null) {
+		if (relInst58312 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56763) && !isProxy())) {
-				relInst56763.relateAcrossR204To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58312) && !isProxy())) {
+				relInst58312.relateAcrossR204To(this, notifyChanges);
 			}
 		}
 
@@ -1220,34 +1221,34 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ClassAsSimpleParticipant_c_test56765_c
+		class ClassAsSimpleParticipant_c_test58314_c
 				implements
 					ClassQueryInterface_c {
-			ClassAsSimpleParticipant_c_test56765_c(java.util.UUID p56766,
-					java.util.UUID p56767, java.util.UUID p56768) {
-				m_p56766 = p56766;
-				m_p56767 = p56767;
-				m_p56768 = p56768;
+			ClassAsSimpleParticipant_c_test58314_c(java.util.UUID p58315,
+					java.util.UUID p58316, java.util.UUID p58317) {
+				m_p58315 = p58315;
+				m_p58316 = p58316;
+				m_p58317 = p58317;
 			}
-			private java.util.UUID m_p56766;
-			private java.util.UUID m_p56767;
-			private java.util.UUID m_p56768;
+			private java.util.UUID m_p58315;
+			private java.util.UUID m_p58316;
+			private java.util.UUID m_p58317;
 			public boolean evaluate(Object candidate) {
 				ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56766))
-						& (selected.getObj_id().equals(m_p56767))
-						& (selected.getRel_id().equals(m_p56768));
+				retval = (selected.getOir_id().equals(m_p58315))
+						& (selected.getObj_id().equals(m_p58316))
+						& (selected.getRel_id().equals(m_p58317));
 				return retval;
 			}
 		}
 
-		ClassAsSimpleParticipant_c[] objs56764 = ClassAsSimpleParticipant_c
+		ClassAsSimpleParticipant_c[] objs58313 = ClassAsSimpleParticipant_c
 				.ClassAsSimpleParticipantInstances(modelRoot,
-						new ClassAsSimpleParticipant_c_test56765_c(getOir_id(),
+						new ClassAsSimpleParticipant_c_test58314_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56764.length) == 0)) {
+		if (((objs58313.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1255,20 +1256,20 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Class As Simple Participant", //$NON-NLS-1$
 								"Consistency: Object: Class As Simple Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56764.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58313.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class As Simple Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56764.length), e);
+										+ Integer.toString(objs58313.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56764.length) > 1)) {
+		if (((objs58313.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1277,7 +1278,7 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 								"Class As Simple Participant", //$NON-NLS-1$
 								"Consistency: Object: Class As Simple Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56764.length)
+										+ Integer.toString(objs58313.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1285,7 +1286,7 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Simple Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56764.length)
+										+ Integer.toString(objs58313.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1294,34 +1295,34 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 
 		// Class As Simple Participant is a subtype in association: rel.Numb = 204
 		// The supertype class is: Referred To Class in Assoc
-		class ReferredToClassInAssoc_c_test56772_c
+		class ReferredToClassInAssoc_c_test58321_c
 				implements
 					ClassQueryInterface_c {
-			ReferredToClassInAssoc_c_test56772_c(java.util.UUID p56773,
-					java.util.UUID p56774, java.util.UUID p56775) {
-				m_p56773 = p56773;
-				m_p56774 = p56774;
-				m_p56775 = p56775;
+			ReferredToClassInAssoc_c_test58321_c(java.util.UUID p58322,
+					java.util.UUID p58323, java.util.UUID p58324) {
+				m_p58322 = p58322;
+				m_p58323 = p58323;
+				m_p58324 = p58324;
 			}
-			private java.util.UUID m_p56773;
-			private java.util.UUID m_p56774;
-			private java.util.UUID m_p56775;
+			private java.util.UUID m_p58322;
+			private java.util.UUID m_p58323;
+			private java.util.UUID m_p58324;
 			public boolean evaluate(Object candidate) {
 				ReferredToClassInAssoc_c selected = (ReferredToClassInAssoc_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56773))
-						& (selected.getObj_id().equals(m_p56774))
-						& (selected.getRel_id().equals(m_p56775));
+				retval = (selected.getOir_id().equals(m_p58322))
+						& (selected.getObj_id().equals(m_p58323))
+						& (selected.getRel_id().equals(m_p58324));
 				return retval;
 			}
 		}
 
-		ReferredToClassInAssoc_c[] objs56771 = ReferredToClassInAssoc_c
+		ReferredToClassInAssoc_c[] objs58320 = ReferredToClassInAssoc_c
 				.ReferredToClassInAssocInstances(modelRoot,
-						new ReferredToClassInAssoc_c_test56772_c(getOir_id(),
+						new ReferredToClassInAssoc_c_test58321_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56771.length) != 1)) {
+		if (((objs58320.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1329,14 +1330,14 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Class As Simple Participant", //$NON-NLS-1$
 								"Consistency: Object: Class As Simple Participant: Association: 204: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56771.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58320.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class As Simple Participant: Association: 204: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56771.length), e);
+										+ Integer.toString(objs58320.length), e);
 			}
 			retval = false;
 
@@ -1344,26 +1345,26 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 
 		// Class As Simple Participant is a referring class in association: rel.Numb = 207
 		// The participating class is: Simple Association
-		class SimpleAssociation_c_test56777_c implements ClassQueryInterface_c {
-			SimpleAssociation_c_test56777_c(java.util.UUID p56778) {
-				m_p56778 = p56778;
+		class SimpleAssociation_c_test58326_c implements ClassQueryInterface_c {
+			SimpleAssociation_c_test58326_c(java.util.UUID p58327) {
+				m_p58327 = p58327;
 			}
-			private java.util.UUID m_p56778;
+			private java.util.UUID m_p58327;
 			public boolean evaluate(Object candidate) {
 				SimpleAssociation_c selected = (SimpleAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56778));
+				retval = (selected.getRel_id().equals(m_p58327));
 				return retval;
 			}
 		}
 
-		SimpleAssociation_c[] objs56776 = SimpleAssociation_c
+		SimpleAssociation_c[] objs58325 = SimpleAssociation_c
 				.SimpleAssociationInstances(modelRoot,
-						new SimpleAssociation_c_test56777_c(getRel_id()));
+						new SimpleAssociation_c_test58326_c(getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56776.length) != 1)) {
+		if (((objs58325.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1372,7 +1373,7 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 								"Class As Simple Participant", //$NON-NLS-1$
 								"Consistency: Object: Class As Simple Participant: Association: 207: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56776.length)
+										+ Integer.toString(objs58325.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1380,7 +1381,7 @@ public class ClassAsSimpleParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Simple Participant: Association: 207: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56776.length)
+										+ Integer.toString(objs58325.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

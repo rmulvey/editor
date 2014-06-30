@@ -144,7 +144,8 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -160,9 +161,9 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ActionLanguageSearchable_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ActionLanguageSearchable_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ActionLanguageSearchable_c) elem).getId()))
@@ -409,34 +410,34 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9702
-		SearchableElement_c relInst39087 = (SearchableElement_c) baseRoot
+		SearchableElement_c relInst39669 = (SearchableElement_c) baseRoot
 				.getInstanceList(SearchableElement_c.class).get(
 						new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39087 == null) {
-			relInst39087 = (SearchableElement_c) Ooaofooa.getDefaultInstance()
+		if (relInst39669 == null) {
+			relInst39669 = (SearchableElement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SearchableElement_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst39087 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39669 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39087 = (SearchableElement_c) roots[i].getInstanceList(
+				relInst39669 = (SearchableElement_c) roots[i].getInstanceList(
 						SearchableElement_c.class).get(new Object[]{m_id});
-				if (relInst39087 != null)
+				if (relInst39669 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39087 != null) {
+		if (relInst39669 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39087) && !isProxy())) {
-				relInst39087.relateAcrossR9702To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39669) && !isProxy())) {
+				relInst39669.relateAcrossR9702To(this, notifyChanges);
 			}
 		}
 
@@ -709,26 +710,26 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActionLanguageSearchable_c_test39089_c
+		class ActionLanguageSearchable_c_test39671_c
 				implements
 					ClassQueryInterface_c {
-			ActionLanguageSearchable_c_test39089_c(java.util.UUID p39090) {
-				m_p39090 = p39090;
+			ActionLanguageSearchable_c_test39671_c(java.util.UUID p39672) {
+				m_p39672 = p39672;
 			}
-			private java.util.UUID m_p39090;
+			private java.util.UUID m_p39672;
 			public boolean evaluate(Object candidate) {
 				ActionLanguageSearchable_c selected = (ActionLanguageSearchable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39090));
+				retval = (selected.getId().equals(m_p39672));
 				return retval;
 			}
 		}
 
-		ActionLanguageSearchable_c[] objs39088 = ActionLanguageSearchable_c
+		ActionLanguageSearchable_c[] objs39670 = ActionLanguageSearchable_c
 				.ActionLanguageSearchableInstances(modelRoot,
-						new ActionLanguageSearchable_c_test39089_c(getId()));
+						new ActionLanguageSearchable_c_test39671_c(getId()));
 
-		if (((objs39088.length) == 0)) {
+		if (((objs39670.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -736,20 +737,20 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Action Language Searchable", //$NON-NLS-1$
 								"Consistency: Object: Action Language Searchable: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39088.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39670.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Searchable: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39088.length), e);
+										+ Integer.toString(objs39670.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39088.length) > 1)) {
+		if (((objs39670.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -758,7 +759,7 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 								"Action Language Searchable", //$NON-NLS-1$
 								"Consistency: Object: Action Language Searchable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39088.length)
+										+ Integer.toString(objs39670.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -766,7 +767,7 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action Language Searchable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39088.length)
+										+ Integer.toString(objs39670.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -775,24 +776,24 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 
 		// Action Language Searchable is a subtype in association: rel.Numb = 9702
 		// The supertype class is: Searchable Element
-		class SearchableElement_c_test39094_c implements ClassQueryInterface_c {
-			SearchableElement_c_test39094_c(java.util.UUID p39095) {
-				m_p39095 = p39095;
+		class SearchableElement_c_test39676_c implements ClassQueryInterface_c {
+			SearchableElement_c_test39676_c(java.util.UUID p39677) {
+				m_p39677 = p39677;
 			}
-			private java.util.UUID m_p39095;
+			private java.util.UUID m_p39677;
 			public boolean evaluate(Object candidate) {
 				SearchableElement_c selected = (SearchableElement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39095));
+				retval = (selected.getId().equals(m_p39677));
 				return retval;
 			}
 		}
 
-		SearchableElement_c[] objs39093 = SearchableElement_c
+		SearchableElement_c[] objs39675 = SearchableElement_c
 				.SearchableElementInstances(modelRoot,
-						new SearchableElement_c_test39094_c(getId()));
+						new SearchableElement_c_test39676_c(getId()));
 
-		if (((objs39093.length) != 1)) {
+		if (((objs39675.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -800,14 +801,14 @@ public class ActionLanguageSearchable_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Action Language Searchable", //$NON-NLS-1$
 								"Consistency: Object: Action Language Searchable: Association: 9702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39093.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39675.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Searchable: Association: 9702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39093.length), e);
+										+ Integer.toString(objs39675.length), e);
 			}
 			retval = false;
 

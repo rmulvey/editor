@@ -234,7 +234,7 @@ p_m_previous_smedi_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -250,14 +250,14 @@ p_m_previous_smedi_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((StateMachineEventDataItem_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((StateMachineEventDataItem_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((StateMachineEventDataItem_c)elem).getSm_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID.equals(((StateMachineEventDataItem_c)elem).getSmedi_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID.equals(((StateMachineEventDataItem_c)elem).getSmedi_id())) && this != elem)) {
       	return false;
       }
       if (!getSmedi_id().equals(((StateMachineEventDataItem_c)elem).getSmedi_id())) return false;
@@ -2383,29 +2383,29 @@ public static StateMachineEventDataItem_c [] getManySM_EVTDIsOnR2934(DataItemVal
 
 	if (IsCarriedOnEventsIntoStateMachine == null) {          
       // R516
-      StateMachine_c relInst38319 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      StateMachine_c relInst38901 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38319 == null) {
-      			relInst38319 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      		if (relInst38901 == null) {
+      			relInst38901 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
       		}
-			if (relInst38319 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38901 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38319 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
-					if (relInst38319 != null)
+					relInst38901 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+					if (relInst38901 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38319 != null )
+      if ( relInst38901 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38319) && !isProxy())) {
-	      relInst38319.relateAcrossR516To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38901) && !isProxy())) {
+	      relInst38901.relateAcrossR516To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2413,29 +2413,29 @@ public static StateMachineEventDataItem_c [] getManySM_EVTDIsOnR2934(DataItemVal
 
 	if (IsDefinedByDataType == null) {          
       // R524
-      DataType_c relInst38320 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst38902 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38320 == null) {
-      			relInst38320 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst38902 == null) {
+      			relInst38902 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst38320 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38902 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38320 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst38320 != null)
+					relInst38902 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst38902 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38320 != null )
+      if ( relInst38902 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38320) && !isProxy())) {
-	      relInst38320.relateAcrossR524To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38902) && !isProxy())) {
+	      relInst38902.relateAcrossR524To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2443,29 +2443,29 @@ public static StateMachineEventDataItem_c [] getManySM_EVTDIsOnR2934(DataItemVal
 
 	if (CarriedByStateMachineEvent == null) {          
       // R532
-      StateMachineEvent_c relInst38321 = (StateMachineEvent_c) baseRoot.getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+      StateMachineEvent_c relInst38903 = (StateMachineEvent_c) baseRoot.getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38321 == null) {
-      			relInst38321 = (StateMachineEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+      		if (relInst38903 == null) {
+      			relInst38903 = (StateMachineEvent_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
       		}
-			if (relInst38321 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38903 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38321 = (StateMachineEvent_c) roots[i].getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
-					if (relInst38321 != null)
+					relInst38903 = (StateMachineEvent_c) roots[i].getInstanceList(StateMachineEvent_c.class).get(new Object[] {m_smevt_id});
+					if (relInst38903 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38321 != null )
+      if ( relInst38903 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38321) && !isProxy())) {
-	      relInst38321.relateAcrossR532To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38903) && !isProxy())) {
+	      relInst38903.relateAcrossR532To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2473,29 +2473,29 @@ public static StateMachineEventDataItem_c [] getManySM_EVTDIsOnR2934(DataItemVal
 
 	if (SucceedsStateMachineEventDataItem == null) {          
       // R533
-      StateMachineEventDataItem_c relInst38322 = (StateMachineEventDataItem_c) baseRoot.getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
+      StateMachineEventDataItem_c relInst38904 = (StateMachineEventDataItem_c) baseRoot.getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38322 == null) {
-      			relInst38322 = (StateMachineEventDataItem_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
+      		if (relInst38904 == null) {
+      			relInst38904 = (StateMachineEventDataItem_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
       		}
-			if (relInst38322 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38904 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38322 = (StateMachineEventDataItem_c) roots[i].getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
-					if (relInst38322 != null)
+					relInst38904 = (StateMachineEventDataItem_c) roots[i].getInstanceList(StateMachineEventDataItem_c.class).get(new Object[] {m_sm_id,m_previous_smedi_id});
+					if (relInst38904 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38322 != null )
+      if ( relInst38904 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38322) && !isProxy())) {
-	      relInst38322.relateAcrossR533ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38904) && !isProxy())) {
+	      relInst38904.relateAcrossR533ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3055,57 +3055,57 @@ private static StateMachineEventDataItem_c findStateMachineEventDataItemInstance
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class StateMachineEventDataItem_c_test38324_c implements ClassQueryInterface_c
+    class StateMachineEventDataItem_c_test38906_c implements ClassQueryInterface_c
     {
-	  StateMachineEventDataItem_c_test38324_c( java.util.UUID            p38325, java.util.UUID            p38326 ) {
-	       m_p38325 = p38325; 
-m_p38326 = p38326;
+	  StateMachineEventDataItem_c_test38906_c( java.util.UUID            p38907, java.util.UUID            p38908 ) {
+	       m_p38907 = p38907; 
+m_p38908 = p38908;
 	  }
-	  private java.util.UUID             m_p38325; private java.util.UUID             m_p38326; 
+	  private java.util.UUID             m_p38907; private java.util.UUID             m_p38908; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38325)) & (selected.getSmedi_id().equals(m_p38326));
+	      retval = (selected.getSm_id().equals(m_p38907)) & (selected.getSmedi_id().equals(m_p38908));
 	      return retval;
 	  }
     }
 
-    StateMachineEventDataItem_c [] objs38323 = 
-    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38324_c(getSm_id(), getSmedi_id())) ;
+    StateMachineEventDataItem_c [] objs38905 = 
+    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38906_c(getSm_id(), getSmedi_id())) ;
 
-    if ( (  (objs38323.length) == 0) )
+    if ( (  (objs38905.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38323.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38905.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38323.length )  , e); 
+          + Integer.toString( objs38905.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38323.length) > 1) )
+    if ( (  (objs38905.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38323.length )  + " SM_ID: " + "Not Printable"  + " SMedi_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38905.length )  + " SM_ID: " + "Not Printable"  + " SMedi_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38323.length )  + " SM_ID: " + "Not Printable"  + " SMedi_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38905.length )  + " SM_ID: " + "Not Printable"  + " SMedi_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3113,40 +3113,40 @@ m_p38326 = p38326;
 
           // State Machine Event Data Item is a referring class in association: rel.Numb = 516
           // The participating class is: State Machine
-    class StateMachine_c_test38330_c implements ClassQueryInterface_c
+    class StateMachine_c_test38912_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test38330_c( java.util.UUID            p38331 ) {
-	  m_p38331 = p38331;
+	  StateMachine_c_test38912_c( java.util.UUID            p38913 ) {
+	  m_p38913 = p38913;
 	  }
-	  private java.util.UUID             m_p38331; 
+	  private java.util.UUID             m_p38913; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38331));
+	      retval = (selected.getSm_id().equals(m_p38913));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs38329 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38330_c(getSm_id())) ;
+    StateMachine_c [] objs38911 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38912_c(getSm_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38329.length) != 1) )
+    if ( (  (objs38911.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Association: 516: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38329.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38911.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Association: 516: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38329.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38911.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3154,39 +3154,39 @@ m_p38326 = p38326;
 
           // State Machine Event Data Item is a referring class in association: rel.Numb = 533
           // The participating class is: State Machine Event Data Item
-    class StateMachineEventDataItem_c_test38333_c implements ClassQueryInterface_c
+    class StateMachineEventDataItem_c_test38915_c implements ClassQueryInterface_c
     {
-	  StateMachineEventDataItem_c_test38333_c( java.util.UUID            p38334, java.util.UUID            p38335 ) {
-	       m_p38334 = p38334; 
-m_p38335 = p38335;
+	  StateMachineEventDataItem_c_test38915_c( java.util.UUID            p38916, java.util.UUID            p38917 ) {
+	       m_p38916 = p38916; 
+m_p38917 = p38917;
 	  }
-	  private java.util.UUID             m_p38334; private java.util.UUID             m_p38335; 
+	  private java.util.UUID             m_p38916; private java.util.UUID             m_p38917; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38334)) & (selected.getSmedi_id().equals(m_p38335));
+	      retval = (selected.getSm_id().equals(m_p38916)) & (selected.getSmedi_id().equals(m_p38917));
 	      return retval;
 	  }
     }
 
-    StateMachineEventDataItem_c [] objs38332 = 
-    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38333_c(getSm_id(), getPrevious_smedi_id())) ;
+    StateMachineEventDataItem_c [] objs38914 = 
+    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38915_c(getSm_id(), getPrevious_smedi_id())) ;
 
-    if ( (  (objs38332.length) > 1) )
+    if ( (  (objs38914.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Association: 533: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38332.length )  + " SM_ID: " + "Not Printable"  + " Previous_SMedi_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38914.length )  + " SM_ID: " + "Not Printable"  + " Previous_SMedi_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Association: 533: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38332.length )  + " SM_ID: " + "Not Printable"  + " Previous_SMedi_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38914.length )  + " SM_ID: " + "Not Printable"  + " Previous_SMedi_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3194,40 +3194,40 @@ m_p38335 = p38335;
                 
           // State Machine Event Data Item is a referring class in association: rel.Numb = 532
           // The participating class is: State Machine Event
-    class StateMachineEvent_c_test38337_c implements ClassQueryInterface_c
+    class StateMachineEvent_c_test38919_c implements ClassQueryInterface_c
     {
-	  StateMachineEvent_c_test38337_c( java.util.UUID            p38338 ) {
-	  m_p38338 = p38338;
+	  StateMachineEvent_c_test38919_c( java.util.UUID            p38920 ) {
+	  m_p38920 = p38920;
 	  }
-	  private java.util.UUID             m_p38338; 
+	  private java.util.UUID             m_p38920; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38338));
+	      retval = (selected.getSmevt_id().equals(m_p38920));
 	      return retval;
 	  }
     }
 
-    StateMachineEvent_c [] objs38336 = 
-    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test38337_c(getSmevt_id())) ;
+    StateMachineEvent_c [] objs38918 = 
+    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test38919_c(getSmevt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38336.length) != 1) )
+    if ( (  (objs38918.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Association: 532: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38336.length )  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38918.length )  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Association: 532: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38336.length )  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38918.length )  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3235,40 +3235,40 @@ m_p38335 = p38335;
 
           // State Machine Event Data Item is a referring class in association: rel.Numb = 524
           // The participating class is: Data Type
-    class DataType_c_test38340_c implements ClassQueryInterface_c
+    class DataType_c_test38922_c implements ClassQueryInterface_c
     {
-	  DataType_c_test38340_c( java.util.UUID            p38341 ) {
-	  m_p38341 = p38341;
+	  DataType_c_test38922_c( java.util.UUID            p38923 ) {
+	  m_p38923 = p38923;
 	  }
-	  private java.util.UUID             m_p38341; 
+	  private java.util.UUID             m_p38923; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p38341));
+	      retval = (selected.getDt_id().equals(m_p38923));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs38339 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test38340_c(getDt_id())) ;
+    DataType_c [] objs38921 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test38922_c(getDt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38339.length) != 1) )
+    if ( (  (objs38921.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Association: 524: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38339.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38921.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Association: 524: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38339.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38921.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3280,38 +3280,38 @@ m_p38335 = p38335;
             // Link Object: Supplemental Data Items
           // State Machine Event Data Item is a participating class in association: rel.Numb = 533
              // Object: State Machine Event Data Item
-    class StateMachineEventDataItem_c_test38343_c implements ClassQueryInterface_c
+    class StateMachineEventDataItem_c_test38925_c implements ClassQueryInterface_c
     {
-	  StateMachineEventDataItem_c_test38343_c( java.util.UUID            p38344, java.util.UUID            p38345 ) {
-	       m_p38344 = p38344; 
-m_p38345 = p38345;
+	  StateMachineEventDataItem_c_test38925_c( java.util.UUID            p38926, java.util.UUID            p38927 ) {
+	       m_p38926 = p38926; 
+m_p38927 = p38927;
 	  }
-	  private java.util.UUID             m_p38344; private java.util.UUID             m_p38345; 
+	  private java.util.UUID             m_p38926; private java.util.UUID             m_p38927; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38344)) & (selected.getPrevious_smedi_id().equals(m_p38345));
+	      retval = (selected.getSm_id().equals(m_p38926)) & (selected.getPrevious_smedi_id().equals(m_p38927));
 	      return retval;
 	  }
     }
 
-    StateMachineEventDataItem_c [] objs38342 = 
-    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38343_c(getSm_id(), getSmedi_id())) ;
+    StateMachineEventDataItem_c [] objs38924 = 
+    StateMachineEventDataItem_c.StateMachineEventDataItemInstances(modelRoot, new StateMachineEventDataItem_c_test38925_c(getSm_id(), getSmedi_id())) ;
 
-    if ( (  (objs38342.length) > 1) )
+    if ( (  (objs38924.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "State Machine Event Data Item", //$NON-NLS-1$
            "Consistency: Object: State Machine Event Data Item: Association: 533: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38342.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38924.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: State Machine Event Data Item: Association: 533: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38342.length )  , e); 
+          + Integer.toString( objs38924.length )  , e); 
       }
       retval = false;
 
@@ -3348,9 +3348,9 @@ SupplementalDataItems_c [] v_sdis = SupplementalDataItems_c.getManySM_SDIsOnR522
 
 
 SupplementalDataItems_c  v_sdi = null;
-for ( int i36591 = 0; i36591 < v_sdis.length; i36591++)
+for ( int i37166 = 0; i37166 < v_sdis.length; i37166++)
 {
-  v_sdi = v_sdis[i36591] ;
+  v_sdi = v_sdis[i37166] ;
 
 if (v_sdi != null) {
 v_sdi.Dispose() ;
@@ -3421,9 +3421,9 @@ EventParameterReference_c [] v_evdiValRefs = EventParameterReference_c.getManyV_
 
 
 EventParameterReference_c  v_evdiValRef = null;
-for ( int i36592 = 0; i36592 < v_evdiValRefs.length; i36592++)
+for ( int i37167 = 0; i37167 < v_evdiValRefs.length; i37167++)
 {
-  v_evdiValRef = v_evdiValRefs[i36592] ;
+  v_evdiValRef = v_evdiValRefs[i37167] ;
 
 if (v_evdiValRef != null) {
 v_evdiValRef.Dispose() ;
@@ -3442,9 +3442,9 @@ DataItemValue_c [] v_divs = DataItemValue_c.getManyI_DIVsOnR2934(this);
 
 
 DataItemValue_c  v_div = null;
-for ( int i36593 = 0; i36593 < v_divs.length; i36593++)
+for ( int i37168 = 0; i37168 < v_divs.length; i37168++)
 {
-  v_div = v_divs[i36593] ;
+  v_div = v_divs[i37168] ;
 
 this.unrelateAcrossR2934From(v_div);
 
@@ -3466,9 +3466,9 @@ EventArgument_c [] v_args = EventArgument_c.getManyMSG_EAsOnR1017(this);
 
 
 EventArgument_c  v_arg = null;
-for ( int i36594 = 0; i36594 < v_args.length; i36594++)
+for ( int i37169 = 0; i37169 < v_args.length; i37169++)
 {
-  v_arg = v_args[i36594] ;
+  v_arg = v_args[i37169] ;
 
 if (v_arg != null) {
 v_arg.Dispose() ;
@@ -3487,9 +3487,9 @@ Dimensions_c [] v_dims = Dimensions_c.getManyS_DIMsOnR531(this);
 
 
 Dimensions_c  v_dim = null;
-for ( int i36595 = 0; i36595 < v_dims.length; i36595++)
+for ( int i37170 = 0; i37170 < v_dims.length; i37170++)
 {
-  v_dim = v_dims[i36595] ;
+  v_dim = v_dims[i37170] ;
 
 this.unrelateAcrossR531From(v_dim);
 
@@ -3568,37 +3568,37 @@ java.util.UUID         v_id = v_packageableElem.Resolvedatatyperelativetoself(
 ,"integer") ;
 
 
-  class DataType_test37039_c implements ClassQueryInterface_c
+  class DataType_test37621_c implements ClassQueryInterface_c
   {
-	DataType_test37039_c( java.util.UUID         p37040 ) {
-		m_p37040 = p37040;
+	DataType_test37621_c( java.util.UUID         p37622 ) {
+		m_p37622 = p37622;
 	}
-	private java.util.UUID         m_p37040;
+	private java.util.UUID         m_p37622;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p37040) ;
+		return selected.getDt_id().equals(m_p37622) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test37039_c(v_id));
+DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test37621_c(v_id));
 
 
 if ( (  (v_dt == null)) )
 {
 
-  class DataType_test37041_c implements ClassQueryInterface_c
+  class DataType_test37623_c implements ClassQueryInterface_c
   {
-	DataType_test37041_c( java.util.UUID         p37042 ) {
-		m_p37042 = p37042;
+	DataType_test37623_c( java.util.UUID         p37624 ) {
+		m_p37624 = p37624;
 	}
-	private java.util.UUID         m_p37042;
+	private java.util.UUID         m_p37624;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p37042) ;
+		return selected.getDt_id().equals(m_p37624) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test37041_c(v_id));
+v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test37623_c(v_id));
 
 
 
@@ -3645,7 +3645,7 @@ else
 Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 
 
-  class DataType_test37043_c implements ClassQueryInterface_c
+  class DataType_test37625_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3653,7 +3653,7 @@ Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 		return selected.getName().equals("integer") ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test37043_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test37625_c());
 
 
 if ( (  (v_dt == null)) )
@@ -3924,37 +3924,37 @@ java.util.UUID         v_id = v_packageableElem.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test37044_c implements ClassQueryInterface_c
+  class DataType_test37626_c implements ClassQueryInterface_c
   {
-	DataType_test37044_c( java.util.UUID         p37045 ) {
-		m_p37045 = p37045;
+	DataType_test37626_c( java.util.UUID         p37627 ) {
+		m_p37627 = p37627;
 	}
-	private java.util.UUID         m_p37045;
+	private java.util.UUID         m_p37627;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p37045) ;
+		return selected.getDt_id().equals(m_p37627) ;
 	}
   }
-DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test37044_c(v_id));
+DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test37626_c(v_id));
 
 
 if ( (  (v_resolvedDt == null)) )
 {
 
-  class DataType_test37046_c implements ClassQueryInterface_c
+  class DataType_test37628_c implements ClassQueryInterface_c
   {
-	DataType_test37046_c( java.util.UUID         p37047 ) {
-		m_p37047 = p37047;
+	DataType_test37628_c( java.util.UUID         p37629 ) {
+		m_p37629 = p37629;
 	}
-	private java.util.UUID         m_p37047;
+	private java.util.UUID         m_p37629;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p37047) ;
+		return selected.getDt_id().equals(m_p37629) ;
 	}
   }
-v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test37046_c(v_id));
+v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test37628_c(v_id));
 
 
 
@@ -3999,19 +3999,19 @@ java.util.UUID         v_id = v_domain.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test37048_c implements ClassQueryInterface_c
+  class DataType_test37630_c implements ClassQueryInterface_c
   {
-	DataType_test37048_c( java.util.UUID         p37049 ) {
-		m_p37049 = p37049;
+	DataType_test37630_c( java.util.UUID         p37631 ) {
+		m_p37631 = p37631;
 	}
-	private java.util.UUID         m_p37049;
+	private java.util.UUID         m_p37631;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p37049)) ;
+		return (selected.getDt_id().equals(m_p37631)) ;
 	}
   }
-DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37048_c(v_id));
+DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37630_c(v_id));
 
 
 if ( (  (v_resolvedDT == null)) )
@@ -4020,37 +4020,37 @@ if ( (  (v_resolvedDT == null)) )
 SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(v_domain))));
 
 
-  class DataType_test37050_c implements ClassQueryInterface_c
+  class DataType_test37632_c implements ClassQueryInterface_c
   {
-	DataType_test37050_c( java.util.UUID         p37051 ) {
-		m_p37051 = p37051;
+	DataType_test37632_c( java.util.UUID         p37633 ) {
+		m_p37633 = p37633;
 	}
-	private java.util.UUID         m_p37051;
+	private java.util.UUID         m_p37633;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p37051)) ;
+		return (selected.getDt_id().equals(m_p37633)) ;
 	}
   }
-v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test37050_c(v_id));
+v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test37632_c(v_id));
 
 
 if (   (v_resolvedDT == null) &&   (v_system != null) && v_system.getUseglobals() )
 {
 
-  class DataType_test37052_c implements ClassQueryInterface_c
+  class DataType_test37634_c implements ClassQueryInterface_c
   {
-	DataType_test37052_c( java.util.UUID         p37053 ) {
-		m_p37053 = p37053;
+	DataType_test37634_c( java.util.UUID         p37635 ) {
+		m_p37635 = p37635;
 	}
-	private java.util.UUID         m_p37053;
+	private java.util.UUID         m_p37635;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getDt_id().equals(m_p37053)) ;
+		return (selected.getDt_id().equals(m_p37635)) ;
 	}
   }
-v_resolvedDT = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)), new DataType_test37052_c(v_id));
+v_resolvedDT = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)), new DataType_test37634_c(v_id));
 
 
 
@@ -4096,7 +4096,7 @@ if ( (  (v_sm != null)) )
 boolean      v_foundDI = false ;
 
 
-  class StateMachineEventDataItem_test36797_c implements ClassQueryInterface_c
+  class StateMachineEventDataItem_test37379_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4104,28 +4104,28 @@ boolean      v_foundDI = false ;
 		return (selected.getSmedi_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-StateMachineEventDataItem_c v_resolvedDI = StateMachineEventDataItem_c.StateMachineEventDataItemInstance(modelRoot, new StateMachineEventDataItem_test36797_c()) ;
+StateMachineEventDataItem_c v_resolvedDI = StateMachineEventDataItem_c.StateMachineEventDataItemInstance(modelRoot, new StateMachineEventDataItem_test37379_c()) ;
 
 
-  class StateMachineEventDataItem_test37054_c implements ClassQueryInterface_c
+  class StateMachineEventDataItem_test37636_c implements ClassQueryInterface_c
   {
-	StateMachineEventDataItem_test37054_c( String       p37055 ) {
-		m_p37055 = p37055;
+	StateMachineEventDataItem_test37636_c( String       p37637 ) {
+		m_p37637 = p37637;
 	}
-	private String       m_p37055;
+	private String       m_p37637;
 	public boolean evaluate (Object candidate)
 	{
 		StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c)candidate;
-		return (selected.getName().equals(m_p37055)) ;
+		return (selected.getName().equals(m_p37637)) ;
 	}
   }
-StateMachineEventDataItem_c [] v_existingDIs = StateMachineEventDataItem_c.getManySM_EVTDIsOnR516(v_sm, new StateMachineEventDataItem_test37054_c(getName()));
+StateMachineEventDataItem_c [] v_existingDIs = StateMachineEventDataItem_c.getManySM_EVTDIsOnR516(v_sm, new StateMachineEventDataItem_test37636_c(getName()));
 
 
 StateMachineEventDataItem_c  v_existingDI = null;
-for ( int i36596 = 0; i36596 < v_existingDIs.length; i36596++)
+for ( int i37171 = 0; i37171 < v_existingDIs.length; i37171++)
 {
-  v_existingDI = v_existingDIs[i36596] ;
+  v_existingDI = v_existingDIs[i37171] ;
 
 DataType_c v_dt = DataType_c.getOneS_DTOnR524(this);
 
@@ -4205,19 +4205,19 @@ else {
 while ( (p_Numdimensions < Getdimensionscnt()) )
 {
 
-  class Dimensions_test37056_c implements ClassQueryInterface_c
+  class Dimensions_test37638_c implements ClassQueryInterface_c
   {
-	Dimensions_test37056_c( int          p37057 ) {
-		m_p37057 = p37057;
+	Dimensions_test37638_c( int          p37639 ) {
+		m_p37639 = p37639;
 	}
-	private int          m_p37057;
+	private int          m_p37639;
 	public boolean evaluate (Object candidate)
 	{
 		Dimensions_c selected = (Dimensions_c)candidate;
-		return (selected.getDimensioncount() == (m_p37057 - 1)) ;
+		return (selected.getDimensioncount() == (m_p37639 - 1)) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR531(this, new Dimensions_test37056_c(Getdimensionscnt()));
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR531(this, new Dimensions_test37638_c(Getdimensionscnt()));
 
 
 if (v_dim != null) {
@@ -4250,7 +4250,7 @@ else {
 if ( (p_Numdimensions > 0) )
 {
 
-  class Dimensions_test37058_c implements ClassQueryInterface_c
+  class Dimensions_test37640_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4258,7 +4258,7 @@ if ( (p_Numdimensions > 0) )
 		return (selected.getDimensioncount() == p_Dimension) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR531(this, new Dimensions_test37058_c());
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR531(this, new Dimensions_test37640_c());
 
 
 if ( (v_dim.getElementcount() != p_Elementcount) )
@@ -4718,7 +4718,7 @@ boolean      v_isInGenericPackage =   (v_package != null) ||   (v_component != n
 if ( v_isInGenericPackage )
 {
 
-  class SearchResultSet_test37059_c implements ClassQueryInterface_c
+  class SearchResultSet_test37641_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4726,10 +4726,10 @@ if ( v_isInGenericPackage )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test37059_c());
+SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test37641_c());
 
 
-  class DataType_test37060_c implements ClassQueryInterface_c
+  class DataType_test37642_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4737,13 +4737,13 @@ SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package,
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test37060_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test37642_c());
 
 
 if (   (v_component != null) )
 {
 
-  class ComponentResultSet_test37061_c implements ClassQueryInterface_c
+  class ComponentResultSet_test37643_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4751,10 +4751,10 @@ if (   (v_component != null) )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test37061_c());
+ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test37643_c());
 
 
-  class DataType_test37062_c implements ClassQueryInterface_c
+  class DataType_test37644_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4762,7 +4762,7 @@ ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test37062_c());
+v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test37644_c());
 
 
 
@@ -4802,7 +4802,7 @@ if ( (v_domain.Participatesinsystem()) )
 SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(v_domain))));
 
 
-  class DataType_test37063_c implements ClassQueryInterface_c
+  class DataType_test37645_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4810,13 +4810,13 @@ SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.get
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test37063_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test37645_c());
 
 
 if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 {
 
-  class DataType_test37064_c implements ClassQueryInterface_c
+  class DataType_test37646_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4824,7 +4824,7 @@ if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)), new DataType_test37064_c());
+v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)), new DataType_test37646_c());
 
 
 
@@ -4833,7 +4833,7 @@ v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(Gl
 if ( (  (v_dt == null)) )
 {
 
-  class DataType_test37065_c implements ClassQueryInterface_c
+  class DataType_test37647_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4841,7 +4841,7 @@ if ( (  (v_dt == null)) )
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37065_c());
+v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37647_c());
 
 
 
@@ -4869,7 +4869,7 @@ return true;
 else
 {
 
-  class DataType_test37066_c implements ClassQueryInterface_c
+  class DataType_test37648_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4877,7 +4877,7 @@ else
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37066_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_domain, new DataType_test37648_c());
 
 
 if ( (  (v_dt != null)) )
@@ -4951,9 +4951,9 @@ StateMachineEventDataItem_c [] v_parameters = StateMachineEventDataItem_c.getMan
 
 
 StateMachineEventDataItem_c  v_parameter = null;
-for ( int i36597 = 0; i36597 < v_parameters.length; i36597++)
+for ( int i37172 = 0; i37172 < v_parameters.length; i37172++)
 {
-  v_parameter = v_parameters[i36597] ;
+  v_parameter = v_parameters[i37172] ;
 
 if ( (v_parameter != this && v_parameter.getName().equals(getName())) )
 {

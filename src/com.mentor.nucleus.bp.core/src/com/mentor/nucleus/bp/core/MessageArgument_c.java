@@ -195,7 +195,8 @@ public class MessageArgument_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -211,9 +212,9 @@ public class MessageArgument_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
-				.equals(((MessageArgument_c) elem).getArg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getArg_id()) || IdAssigner.NULL_UUID
+						.equals(((MessageArgument_c) elem).getArg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getArg_id().equals(((MessageArgument_c) elem).getArg_id()))
@@ -1779,16 +1780,16 @@ public class MessageArgument_c extends NonRootModelElement
 
 		if (BelongsToInformalMessage == null) {
 			// R1000
-			Message_c relInst39492 = (Message_c) baseRoot.getInstanceList(
+			Message_c relInst40074 = (Message_c) baseRoot.getInstanceList(
 					Message_c.class).get(new Object[]{m_informal_msg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39492 == null) {
-				relInst39492 = (Message_c) Ooaofooa.getDefaultInstance()
+			if (relInst40074 == null) {
+				relInst40074 = (Message_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Message_c.class)
 						.get(new Object[]{m_informal_msg_id});
 			}
-			if (relInst39492 == null && searchAllRoots
+			if (relInst40074 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1796,34 +1797,34 @@ public class MessageArgument_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39492 = (Message_c) roots[i].getInstanceList(
+					relInst40074 = (Message_c) roots[i].getInstanceList(
 							Message_c.class).get(
 							new Object[]{m_informal_msg_id});
-					if (relInst39492 != null)
+					if (relInst40074 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39492 != null) {
+			if (relInst40074 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39492) && !isProxy())) {
-					relInst39492.relateAcrossR1000To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40074) && !isProxy())) {
+					relInst40074.relateAcrossR1000To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (BelongsToFormalMessage == null) {
 			// R1001
-			Message_c relInst39493 = (Message_c) baseRoot.getInstanceList(
+			Message_c relInst40075 = (Message_c) baseRoot.getInstanceList(
 					Message_c.class).get(new Object[]{m_formal_msg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39493 == null) {
-				relInst39493 = (Message_c) Ooaofooa.getDefaultInstance()
+			if (relInst40075 == null) {
+				relInst40075 = (Message_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Message_c.class)
 						.get(new Object[]{m_formal_msg_id});
 			}
-			if (relInst39493 == null && searchAllRoots
+			if (relInst40075 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1831,17 +1832,17 @@ public class MessageArgument_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39493 = (Message_c) roots[i].getInstanceList(
+					relInst40075 = (Message_c) roots[i].getInstanceList(
 							Message_c.class).get(new Object[]{m_formal_msg_id});
-					if (relInst39493 != null)
+					if (relInst40075 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39493 != null) {
+			if (relInst40075 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39493) && !isProxy())) {
-					relInst39493.relateAcrossR1001To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40075) && !isProxy())) {
+					relInst40075.relateAcrossR1001To(this, notifyChanges);
 				}
 			}
 		}
@@ -2365,43 +2366,43 @@ public class MessageArgument_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class MessageArgument_c_test39495_c implements ClassQueryInterface_c {
-			MessageArgument_c_test39495_c(java.util.UUID p39496) {
-				m_p39496 = p39496;
+		class MessageArgument_c_test40077_c implements ClassQueryInterface_c {
+			MessageArgument_c_test40077_c(java.util.UUID p40078) {
+				m_p40078 = p40078;
 			}
-			private java.util.UUID m_p39496;
+			private java.util.UUID m_p40078;
 			public boolean evaluate(Object candidate) {
 				MessageArgument_c selected = (MessageArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39496));
+				retval = (selected.getArg_id().equals(m_p40078));
 				return retval;
 			}
 		}
 
-		MessageArgument_c[] objs39494 = MessageArgument_c
+		MessageArgument_c[] objs40076 = MessageArgument_c
 				.MessageArgumentInstances(modelRoot,
-						new MessageArgument_c_test39495_c(getArg_id()));
+						new MessageArgument_c_test40077_c(getArg_id()));
 
-		if (((objs39494.length) == 0)) {
+		if (((objs40076.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Message Argument", //$NON-NLS-1$
 								"Consistency: Object: Message Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39494.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40076.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Message Argument: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39494.length), e);
+								+ Integer.toString(objs40076.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39494.length) > 1)) {
+		if (((objs40076.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2409,7 +2410,7 @@ public class MessageArgument_c extends NonRootModelElement
 								"Message Argument", //$NON-NLS-1$
 								"Consistency: Object: Message Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39494.length)
+										+ Integer.toString(objs40076.length)
 										+ " Arg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2417,7 +2418,7 @@ public class MessageArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message Argument: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39494.length)
+										+ Integer.toString(objs40076.length)
 										+ " Arg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2426,23 +2427,23 @@ public class MessageArgument_c extends NonRootModelElement
 
 		// Message Argument is a referring class in association: rel.Numb = 1000
 		// The participating class is: Message
-		class Message_c_test39500_c implements ClassQueryInterface_c {
-			Message_c_test39500_c(java.util.UUID p39501) {
-				m_p39501 = p39501;
+		class Message_c_test40082_c implements ClassQueryInterface_c {
+			Message_c_test40082_c(java.util.UUID p40083) {
+				m_p40083 = p40083;
 			}
-			private java.util.UUID m_p39501;
+			private java.util.UUID m_p40083;
 			public boolean evaluate(Object candidate) {
 				Message_c selected = (Message_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39501));
+				retval = (selected.getMsg_id().equals(m_p40083));
 				return retval;
 			}
 		}
 
-		Message_c[] objs39499 = Message_c.MessageInstances(modelRoot,
-				new Message_c_test39500_c(getInformal_msg_id()));
+		Message_c[] objs40081 = Message_c.MessageInstances(modelRoot,
+				new Message_c_test40082_c(getInformal_msg_id()));
 
-		if (((objs39499.length) > 1)) {
+		if (((objs40081.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2450,7 +2451,7 @@ public class MessageArgument_c extends NonRootModelElement
 								"Message Argument", //$NON-NLS-1$
 								"Consistency: Object: Message Argument: Association: 1000: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39499.length)
+										+ Integer.toString(objs40081.length)
 										+ " Informal_Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2458,7 +2459,7 @@ public class MessageArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message Argument: Association: 1000: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39499.length)
+										+ Integer.toString(objs40081.length)
 										+ " Informal_Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2467,23 +2468,23 @@ public class MessageArgument_c extends NonRootModelElement
 
 		// Message Argument is a referring class in association: rel.Numb = 1001
 		// The participating class is: Message
-		class Message_c_test39503_c implements ClassQueryInterface_c {
-			Message_c_test39503_c(java.util.UUID p39504) {
-				m_p39504 = p39504;
+		class Message_c_test40085_c implements ClassQueryInterface_c {
+			Message_c_test40085_c(java.util.UUID p40086) {
+				m_p40086 = p40086;
 			}
-			private java.util.UUID m_p39504;
+			private java.util.UUID m_p40086;
 			public boolean evaluate(Object candidate) {
 				Message_c selected = (Message_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39504));
+				retval = (selected.getMsg_id().equals(m_p40086));
 				return retval;
 			}
 		}
 
-		Message_c[] objs39502 = Message_c.MessageInstances(modelRoot,
-				new Message_c_test39503_c(getFormal_msg_id()));
+		Message_c[] objs40084 = Message_c.MessageInstances(modelRoot,
+				new Message_c_test40085_c(getFormal_msg_id()));
 
-		if (((objs39502.length) > 1)) {
+		if (((objs40084.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2491,7 +2492,7 @@ public class MessageArgument_c extends NonRootModelElement
 								"Message Argument", //$NON-NLS-1$
 								"Consistency: Object: Message Argument: Association: 1001: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39502.length)
+										+ Integer.toString(objs40084.length)
 										+ " Formal_Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2499,7 +2500,7 @@ public class MessageArgument_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message Argument: Association: 1001: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39502.length)
+										+ Integer.toString(objs40084.length)
 										+ " Formal_Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2507,138 +2508,138 @@ public class MessageArgument_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 1013
-		int objs39505 = 0;
+		int objs40087 = 0;
 		// Subtype Object: Operation Argument
-		class OperationArgument_c_test39506_c implements ClassQueryInterface_c {
-			OperationArgument_c_test39506_c(java.util.UUID p39507) {
-				m_p39507 = p39507;
+		class OperationArgument_c_test40088_c implements ClassQueryInterface_c {
+			OperationArgument_c_test40088_c(java.util.UUID p40089) {
+				m_p40089 = p40089;
 			}
-			private java.util.UUID m_p39507;
+			private java.util.UUID m_p40089;
 			public boolean evaluate(Object candidate) {
 				OperationArgument_c selected = (OperationArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39507));
+				retval = (selected.getArg_id().equals(m_p40089));
 				return retval;
 			}
 		}
 
-		OperationArgument_c[] objs39508 = OperationArgument_c
+		OperationArgument_c[] objs40090 = OperationArgument_c
 				.OperationArgumentInstances(modelRoot,
-						new OperationArgument_c_test39506_c(getArg_id()));
+						new OperationArgument_c_test40088_c(getArg_id()));
 
-		objs39505 = objs39505 + objs39508.length;
+		objs40087 = objs40087 + objs40090.length;
 		// Subtype Object: Bridge Argument
-		class BridgeArgument_c_test39509_c implements ClassQueryInterface_c {
-			BridgeArgument_c_test39509_c(java.util.UUID p39510) {
-				m_p39510 = p39510;
+		class BridgeArgument_c_test40091_c implements ClassQueryInterface_c {
+			BridgeArgument_c_test40091_c(java.util.UUID p40092) {
+				m_p40092 = p40092;
 			}
-			private java.util.UUID m_p39510;
+			private java.util.UUID m_p40092;
 			public boolean evaluate(Object candidate) {
 				BridgeArgument_c selected = (BridgeArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39510));
+				retval = (selected.getArg_id().equals(m_p40092));
 				return retval;
 			}
 		}
 
-		BridgeArgument_c[] objs39511 = BridgeArgument_c
+		BridgeArgument_c[] objs40093 = BridgeArgument_c
 				.BridgeArgumentInstances(modelRoot,
-						new BridgeArgument_c_test39509_c(getArg_id()));
+						new BridgeArgument_c_test40091_c(getArg_id()));
 
-		objs39505 = objs39505 + objs39511.length;
+		objs40087 = objs40087 + objs40093.length;
 		// Subtype Object: Function Argument
-		class FunctionArgument_c_test39512_c implements ClassQueryInterface_c {
-			FunctionArgument_c_test39512_c(java.util.UUID p39513) {
-				m_p39513 = p39513;
+		class FunctionArgument_c_test40094_c implements ClassQueryInterface_c {
+			FunctionArgument_c_test40094_c(java.util.UUID p40095) {
+				m_p40095 = p40095;
 			}
-			private java.util.UUID m_p39513;
+			private java.util.UUID m_p40095;
 			public boolean evaluate(Object candidate) {
 				FunctionArgument_c selected = (FunctionArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39513));
+				retval = (selected.getArg_id().equals(m_p40095));
 				return retval;
 			}
 		}
 
-		FunctionArgument_c[] objs39514 = FunctionArgument_c
+		FunctionArgument_c[] objs40096 = FunctionArgument_c
 				.FunctionArgumentInstances(modelRoot,
-						new FunctionArgument_c_test39512_c(getArg_id()));
+						new FunctionArgument_c_test40094_c(getArg_id()));
 
-		objs39505 = objs39505 + objs39514.length;
+		objs40087 = objs40087 + objs40096.length;
 		// Subtype Object: Event Argument
-		class EventArgument_c_test39515_c implements ClassQueryInterface_c {
-			EventArgument_c_test39515_c(java.util.UUID p39516) {
-				m_p39516 = p39516;
+		class EventArgument_c_test40097_c implements ClassQueryInterface_c {
+			EventArgument_c_test40097_c(java.util.UUID p40098) {
+				m_p40098 = p40098;
 			}
-			private java.util.UUID m_p39516;
+			private java.util.UUID m_p40098;
 			public boolean evaluate(Object candidate) {
 				EventArgument_c selected = (EventArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39516));
+				retval = (selected.getArg_id().equals(m_p40098));
 				return retval;
 			}
 		}
 
-		EventArgument_c[] objs39517 = EventArgument_c.EventArgumentInstances(
-				modelRoot, new EventArgument_c_test39515_c(getArg_id()));
+		EventArgument_c[] objs40099 = EventArgument_c.EventArgumentInstances(
+				modelRoot, new EventArgument_c_test40097_c(getArg_id()));
 
-		objs39505 = objs39505 + objs39517.length;
+		objs40087 = objs40087 + objs40099.length;
 		// Subtype Object: Informal Argument
-		class InformalArgument_c_test39518_c implements ClassQueryInterface_c {
-			InformalArgument_c_test39518_c(java.util.UUID p39519) {
-				m_p39519 = p39519;
+		class InformalArgument_c_test40100_c implements ClassQueryInterface_c {
+			InformalArgument_c_test40100_c(java.util.UUID p40101) {
+				m_p40101 = p40101;
 			}
-			private java.util.UUID m_p39519;
+			private java.util.UUID m_p40101;
 			public boolean evaluate(Object candidate) {
 				InformalArgument_c selected = (InformalArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39519));
+				retval = (selected.getArg_id().equals(m_p40101));
 				return retval;
 			}
 		}
 
-		InformalArgument_c[] objs39520 = InformalArgument_c
+		InformalArgument_c[] objs40102 = InformalArgument_c
 				.InformalArgumentInstances(modelRoot,
-						new InformalArgument_c_test39518_c(getArg_id()));
+						new InformalArgument_c_test40100_c(getArg_id()));
 
-		objs39505 = objs39505 + objs39520.length;
+		objs40087 = objs40087 + objs40102.length;
 		// Subtype Object: Executable Property Argument
-		class ExecutablePropertyArgument_c_test39521_c
+		class ExecutablePropertyArgument_c_test40103_c
 				implements
 					ClassQueryInterface_c {
-			ExecutablePropertyArgument_c_test39521_c(java.util.UUID p39522) {
-				m_p39522 = p39522;
+			ExecutablePropertyArgument_c_test40103_c(java.util.UUID p40104) {
+				m_p40104 = p40104;
 			}
-			private java.util.UUID m_p39522;
+			private java.util.UUID m_p40104;
 			public boolean evaluate(Object candidate) {
 				ExecutablePropertyArgument_c selected = (ExecutablePropertyArgument_c) candidate;
 				boolean retval = false;
-				retval = (selected.getArg_id().equals(m_p39522));
+				retval = (selected.getArg_id().equals(m_p40104));
 				return retval;
 			}
 		}
 
-		ExecutablePropertyArgument_c[] objs39523 = ExecutablePropertyArgument_c
+		ExecutablePropertyArgument_c[] objs40105 = ExecutablePropertyArgument_c
 				.ExecutablePropertyArgumentInstances(modelRoot,
-						new ExecutablePropertyArgument_c_test39521_c(
+						new ExecutablePropertyArgument_c_test40103_c(
 								getArg_id()));
 
-		objs39505 = objs39505 + objs39523.length;
-		if (objs39505 != 1) {
+		objs40087 = objs40087 + objs40105.length;
+		if (objs40087 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Message Argument", //$NON-NLS-1$
 								"Consistency: Object: Message Argument: Association: 1013: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39505)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40087)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Message Argument: Association: 1013: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39505), e);
+										+ Integer.toString(objs40087), e);
 			}
 			retval = false;
 

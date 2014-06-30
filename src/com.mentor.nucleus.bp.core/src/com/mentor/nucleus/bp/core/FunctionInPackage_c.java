@@ -147,7 +147,8 @@ public class FunctionInPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class FunctionInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionInPackage_c) elem).getFunpack_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionInPackage_c) elem).getFunpack_id())) && this != elem)) {
 			return false;
 		}
 		if (!getFunpack_id().equals(
@@ -174,9 +175,9 @@ public class FunctionInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSync_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionInPackage_c) elem).getSync_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSync_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionInPackage_c) elem).getSync_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSync_id().equals(((FunctionInPackage_c) elem).getSync_id()))
@@ -684,65 +685,65 @@ public class FunctionInPackage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R31
-		FunctionPackage_c relInst54873 = (FunctionPackage_c) baseRoot
+		FunctionPackage_c relInst56422 = (FunctionPackage_c) baseRoot
 				.getInstanceList(FunctionPackage_c.class).get(
 						new Object[]{m_funpack_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54873 == null) {
-			relInst54873 = (FunctionPackage_c) Ooaofooa.getDefaultInstance()
+		if (relInst56422 == null) {
+			relInst56422 = (FunctionPackage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(FunctionPackage_c.class)
 					.get(new Object[]{m_funpack_id});
 		}
-		if (relInst54873 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56422 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54873 = (FunctionPackage_c) roots[i].getInstanceList(
+				relInst56422 = (FunctionPackage_c) roots[i].getInstanceList(
 						FunctionPackage_c.class)
 						.get(new Object[]{m_funpack_id});
-				if (relInst54873 != null)
+				if (relInst56422 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54873 != null) {
+		if (relInst56422 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54873) && !isProxy())) {
-				relInst54873.relateAcrossR31To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56422) && !isProxy())) {
+				relInst56422.relateAcrossR31To(this, notifyChanges);
 			}
 		}
 
-		Function_c relInst54874 = (Function_c) baseRoot.getInstanceList(
+		Function_c relInst56423 = (Function_c) baseRoot.getInstanceList(
 				Function_c.class).get(new Object[]{m_sync_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54874 == null) {
-			relInst54874 = (Function_c) Ooaofooa.getDefaultInstance()
+		if (relInst56423 == null) {
+			relInst56423 = (Function_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Function_c.class)
 					.get(new Object[]{m_sync_id});
 		}
-		if (relInst54874 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56423 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54874 = (Function_c) roots[i].getInstanceList(
+				relInst56423 = (Function_c) roots[i].getInstanceList(
 						Function_c.class).get(new Object[]{m_sync_id});
-				if (relInst54874 != null)
+				if (relInst56423 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54874 != null) {
+		if (relInst56423 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54874) && !isProxy())) {
-				relInst54874.relateAcrossR31To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56423) && !isProxy())) {
+				relInst56423.relateAcrossR31To(this, notifyChanges);
 			}
 		}
 
@@ -1045,49 +1046,49 @@ public class FunctionInPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FunctionInPackage_c_test54876_c implements ClassQueryInterface_c {
-			FunctionInPackage_c_test54876_c(java.util.UUID p54877,
-					java.util.UUID p54878) {
-				m_p54877 = p54877;
-				m_p54878 = p54878;
+		class FunctionInPackage_c_test56425_c implements ClassQueryInterface_c {
+			FunctionInPackage_c_test56425_c(java.util.UUID p56426,
+					java.util.UUID p56427) {
+				m_p56426 = p56426;
+				m_p56427 = p56427;
 			}
-			private java.util.UUID m_p54877;
-			private java.util.UUID m_p54878;
+			private java.util.UUID m_p56426;
+			private java.util.UUID m_p56427;
 			public boolean evaluate(Object candidate) {
 				FunctionInPackage_c selected = (FunctionInPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getFunpack_id().equals(m_p54877))
-						& (selected.getSync_id().equals(m_p54878));
+				retval = (selected.getFunpack_id().equals(m_p56426))
+						& (selected.getSync_id().equals(m_p56427));
 				return retval;
 			}
 		}
 
-		FunctionInPackage_c[] objs54875 = FunctionInPackage_c
+		FunctionInPackage_c[] objs56424 = FunctionInPackage_c
 				.FunctionInPackageInstances(modelRoot,
-						new FunctionInPackage_c_test54876_c(getFunpack_id(),
+						new FunctionInPackage_c_test56425_c(getFunpack_id(),
 								getSync_id()));
 
-		if (((objs54875.length) == 0)) {
+		if (((objs56424.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function in Package", //$NON-NLS-1$
 								"Consistency: Object: Function in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54875.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56424.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54875.length), e);
+										+ Integer.toString(objs56424.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54875.length) > 1)) {
+		if (((objs56424.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1095,7 +1096,7 @@ public class FunctionInPackage_c extends NonRootModelElement
 								"Function in Package", //$NON-NLS-1$
 								"Consistency: Object: Function in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54875.length)
+										+ Integer.toString(objs56424.length)
 										+ " FunPack_ID: " + "Not Printable" + " Sync_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1103,7 +1104,7 @@ public class FunctionInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54875.length)
+										+ Integer.toString(objs56424.length)
 										+ " FunPack_ID: " + "Not Printable" + " Sync_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1112,40 +1113,40 @@ public class FunctionInPackage_c extends NonRootModelElement
 
 		// Function in Package is a link class in association: rel.Numb = 31
 		// The one side class in the association is: Function Package
-		class FunctionPackage_c_test54882_c implements ClassQueryInterface_c {
-			FunctionPackage_c_test54882_c(java.util.UUID p54883) {
-				m_p54883 = p54883;
+		class FunctionPackage_c_test56431_c implements ClassQueryInterface_c {
+			FunctionPackage_c_test56431_c(java.util.UUID p56432) {
+				m_p56432 = p56432;
 			}
-			private java.util.UUID m_p54883;
+			private java.util.UUID m_p56432;
 			public boolean evaluate(Object candidate) {
 				FunctionPackage_c selected = (FunctionPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getFunpack_id().equals(m_p54883));
+				retval = (selected.getFunpack_id().equals(m_p56432));
 				return retval;
 			}
 		}
 
-		FunctionPackage_c[] objs54881 = FunctionPackage_c
+		FunctionPackage_c[] objs56430 = FunctionPackage_c
 				.FunctionPackageInstances(modelRoot,
-						new FunctionPackage_c_test54882_c(getFunpack_id()));
+						new FunctionPackage_c_test56431_c(getFunpack_id()));
 
 		// The one side class is unconditional
 		// The multiplicity of the one side class is one
-		if (((objs54881.length) != 1)) {
+		if (((objs56430.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function in Package", //$NON-NLS-1$
 								"Consistency: Object: Function in Package: Association: 31: Cardinality of one side of link is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54881.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56430.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function in Package: Association: 31: Cardinality of one side of link is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54881.length), e);
+										+ Integer.toString(objs56430.length), e);
 			}
 			retval = false;
 

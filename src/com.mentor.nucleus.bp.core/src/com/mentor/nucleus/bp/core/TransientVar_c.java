@@ -169,7 +169,7 @@ p_m_dimensions
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -185,7 +185,7 @@ p_m_dimensions
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getVar_id()) || IdAssigner.NULL_UUID.equals(((TransientVar_c)elem).getVar_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getVar_id()) || IdAssigner.NULL_UUID.equals(((TransientVar_c)elem).getVar_id())) && this != elem)) {
       	return false;
       }
       if (!getVar_id().equals(((TransientVar_c)elem).getVar_id())) return false;
@@ -827,58 +827,58 @@ public static TransientVar_c [] getManyV_TRNsOnR844(Dimensions_c target, boolean
         ModelRoot baseRoot = modelRoot;
 
       // R814
-      Variable_c relInst37403 = (Variable_c) baseRoot.getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+      Variable_c relInst37985 = (Variable_c) baseRoot.getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37403 == null) {
-      			relInst37403 = (Variable_c) Ooaofooa.getDefaultInstance().getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+      		if (relInst37985 == null) {
+      			relInst37985 = (Variable_c) Ooaofooa.getDefaultInstance().getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
       		}
-			if (relInst37403 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst37985 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37403 = (Variable_c) roots[i].getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
-					if (relInst37403 != null)
+					relInst37985 = (Variable_c) roots[i].getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+					if (relInst37985 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37403 != null )
+      if ( relInst37985 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37403) && !isProxy())) {
-	      relInst37403.relateAcrossR814To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37985) && !isProxy())) {
+	      relInst37985.relateAcrossR814To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (HasDataType == null) {          
       // R821
-      DataType_c relInst37404 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst37986 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37404 == null) {
-      			relInst37404 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst37986 == null) {
+      			relInst37986 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst37404 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst37986 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37404 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst37404 != null)
+					relInst37986 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst37986 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37404 != null )
+      if ( relInst37986 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37404) && !isProxy())) {
-	      relInst37404.relateAcrossR821To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37986) && !isProxy())) {
+	      relInst37986.relateAcrossR821To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1136,56 +1136,56 @@ private static TransientVar_c findTransientVarInstance(ModelRoot modelRoot, Clas
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class TransientVar_c_test37406_c implements ClassQueryInterface_c
+    class TransientVar_c_test37988_c implements ClassQueryInterface_c
     {
-	  TransientVar_c_test37406_c( java.util.UUID            p37407 ) {
-	  m_p37407 = p37407;
+	  TransientVar_c_test37988_c( java.util.UUID            p37989 ) {
+	  m_p37989 = p37989;
 	  }
-	  private java.util.UUID             m_p37407; 
+	  private java.util.UUID             m_p37989; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      TransientVar_c selected = (TransientVar_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37407));
+	      retval = (selected.getVar_id().equals(m_p37989));
 	      return retval;
 	  }
     }
 
-    TransientVar_c [] objs37405 = 
-    TransientVar_c.TransientVarInstances(modelRoot, new TransientVar_c_test37406_c(getVar_id())) ;
+    TransientVar_c [] objs37987 = 
+    TransientVar_c.TransientVarInstances(modelRoot, new TransientVar_c_test37988_c(getVar_id())) ;
 
-    if ( (  (objs37405.length) == 0) )
+    if ( (  (objs37987.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transient Var", //$NON-NLS-1$
            "Consistency: Object: Transient Var: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37405.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs37987.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transient Var: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37405.length )  , e); 
+          + Integer.toString( objs37987.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37405.length) > 1) )
+    if ( (  (objs37987.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transient Var", //$NON-NLS-1$
            "Consistency: Object: Transient Var: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37405.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs37987.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transient Var: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37405.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs37987.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1193,37 +1193,37 @@ private static TransientVar_c findTransientVarInstance(ModelRoot modelRoot, Clas
 
           // Transient Var is a subtype in association: rel.Numb = 814
           // The supertype class is: Variable
-    class Variable_c_test37411_c implements ClassQueryInterface_c
+    class Variable_c_test37993_c implements ClassQueryInterface_c
     {
-	  Variable_c_test37411_c( java.util.UUID            p37412 ) {
-	  m_p37412 = p37412;
+	  Variable_c_test37993_c( java.util.UUID            p37994 ) {
+	  m_p37994 = p37994;
 	  }
-	  private java.util.UUID             m_p37412; 
+	  private java.util.UUID             m_p37994; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Variable_c selected = (Variable_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37412));
+	      retval = (selected.getVar_id().equals(m_p37994));
 	      return retval;
 	  }
     }
 
-    Variable_c [] objs37410 = 
-    Variable_c.VariableInstances(modelRoot, new Variable_c_test37411_c(getVar_id())) ;
+    Variable_c [] objs37992 = 
+    Variable_c.VariableInstances(modelRoot, new Variable_c_test37993_c(getVar_id())) ;
 
-    if ( (  (objs37410.length) != 1) )
+    if ( (  (objs37992.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transient Var", //$NON-NLS-1$
            "Consistency: Object: Transient Var: Association: 814: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37410.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs37992.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transient Var: Association: 814: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37410.length )  , e); 
+          + Integer.toString( objs37992.length )  , e); 
       }
       retval = false;
 
@@ -1231,38 +1231,38 @@ private static TransientVar_c findTransientVarInstance(ModelRoot modelRoot, Clas
 
           // Transient Var is a referring class in association: rel.Numb = 821
           // The participating class is: Data Type
-    class DataType_c_test37414_c implements ClassQueryInterface_c
+    class DataType_c_test37996_c implements ClassQueryInterface_c
     {
-	  DataType_c_test37414_c( java.util.UUID            p37415 ) {
-	  m_p37415 = p37415;
+	  DataType_c_test37996_c( java.util.UUID            p37997 ) {
+	  m_p37997 = p37997;
 	  }
-	  private java.util.UUID             m_p37415; 
+	  private java.util.UUID             m_p37997; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p37415));
+	      retval = (selected.getDt_id().equals(m_p37997));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs37413 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test37414_c(getDt_id())) ;
+    DataType_c [] objs37995 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test37996_c(getDt_id())) ;
 
-    if ( (  (objs37413.length) > 1) )
+    if ( (  (objs37995.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Transient Var", //$NON-NLS-1$
            "Consistency: Object: Transient Var: Association: 821: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37413.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs37995.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Transient Var: Association: 821: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37413.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs37995.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1327,19 +1327,19 @@ else {
 while ( (p_Numdimensions < Getdimensionscnt()) )
 {
 
-  class Dimensions_test36848_c implements ClassQueryInterface_c
+  class Dimensions_test37430_c implements ClassQueryInterface_c
   {
-	Dimensions_test36848_c( int          p36849 ) {
-		m_p36849 = p36849;
+	Dimensions_test37430_c( int          p37431 ) {
+		m_p37431 = p37431;
 	}
-	private int          m_p36849;
+	private int          m_p37431;
 	public boolean evaluate (Object candidate)
 	{
 		Dimensions_c selected = (Dimensions_c)candidate;
-		return (selected.getDimensioncount() == (m_p36849 - 1)) ;
+		return (selected.getDimensioncount() == (m_p37431 - 1)) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR844(this, new Dimensions_test36848_c(Getdimensionscnt()));
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR844(this, new Dimensions_test37430_c(Getdimensionscnt()));
 
 
 if (v_dim != null) {
@@ -1372,7 +1372,7 @@ else {
 if ( (p_Numdimensions > 0) )
 {
 
-  class Dimensions_test36850_c implements ClassQueryInterface_c
+  class Dimensions_test37432_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1380,7 +1380,7 @@ if ( (p_Numdimensions > 0) )
 		return (selected.getDimensioncount() == p_Dimension) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR844(this, new Dimensions_test36850_c());
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR844(this, new Dimensions_test37432_c());
 
 
 if ( (v_dim.getElementcount() != p_Elementcount) )

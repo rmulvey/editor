@@ -47,8 +47,7 @@ INSERT INTO O_TFR
 	"bc3722c8-5188-4529-8519-cf9eb9816b17",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_INSTANCE();
-',
+return GD::NULL_INSTANCE();',
 	1,
 	'',
 	"75f7076c-0a5c-42d8-8170-a7817bee6a92");

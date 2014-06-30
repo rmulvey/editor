@@ -15,7 +15,8 @@ INSERT INTO O_TFR
 responsible for, from the model.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"e58b9ddd-c972-4d0f-9de6-4efcd2ca2fb0");

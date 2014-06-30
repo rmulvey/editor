@@ -155,7 +155,8 @@ public class TransitionActionHome_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class TransitionActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
-				.equals(((TransitionActionHome_c) elem).getAct_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAct_id()) || IdAssigner.NULL_UUID
+						.equals(((TransitionActionHome_c) elem).getAct_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAct_id().equals(((TransitionActionHome_c) elem).getAct_id()))
@@ -181,9 +182,9 @@ public class TransitionActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((TransitionActionHome_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((TransitionActionHome_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((TransitionActionHome_c) elem).getSm_id()))
@@ -664,50 +665,50 @@ public class TransitionActionHome_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R513
-		ActionHome_c relInst38242 = (ActionHome_c) baseRoot.getInstanceList(
+		ActionHome_c relInst38824 = (ActionHome_c) baseRoot.getInstanceList(
 				ActionHome_c.class).get(new Object[]{m_act_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38242 == null) {
-			relInst38242 = (ActionHome_c) Ooaofooa.getDefaultInstance()
+		if (relInst38824 == null) {
+			relInst38824 = (ActionHome_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActionHome_c.class)
 					.get(new Object[]{m_act_id, m_sm_id});
 		}
-		if (relInst38242 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38824 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38242 = (ActionHome_c) roots[i].getInstanceList(
+				relInst38824 = (ActionHome_c) roots[i].getInstanceList(
 						ActionHome_c.class)
 						.get(new Object[]{m_act_id, m_sm_id});
-				if (relInst38242 != null)
+				if (relInst38824 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38242 != null) {
+		if (relInst38824 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38242) && !isProxy())) {
-				relInst38242.relateAcrossR513To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38824) && !isProxy())) {
+				relInst38824.relateAcrossR513To(this, notifyChanges);
 			}
 		}
 
 		if (Transition == null) {
 			// R530
-			Transition_c relInst38243 = (Transition_c) baseRoot
+			Transition_c relInst38825 = (Transition_c) baseRoot
 					.getInstanceList(Transition_c.class).get(
 							new Object[]{m_trans_id, m_sm_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38243 == null) {
-				relInst38243 = (Transition_c) Ooaofooa.getDefaultInstance()
+			if (relInst38825 == null) {
+				relInst38825 = (Transition_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Transition_c.class)
 						.get(new Object[]{m_trans_id, m_sm_id});
 			}
-			if (relInst38243 == null && searchAllRoots
+			if (relInst38825 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -715,18 +716,18 @@ public class TransitionActionHome_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38243 = (Transition_c) roots[i].getInstanceList(
+					relInst38825 = (Transition_c) roots[i].getInstanceList(
 							Transition_c.class).get(
 							new Object[]{m_trans_id, m_sm_id});
-					if (relInst38243 != null)
+					if (relInst38825 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38243 != null) {
+			if (relInst38825 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38243) && !isProxy())) {
-					relInst38243.relateAcrossR530To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38825) && !isProxy())) {
+					relInst38825.relateAcrossR530To(this, notifyChanges);
 				}
 			}
 		}
@@ -1067,51 +1068,51 @@ public class TransitionActionHome_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class TransitionActionHome_c_test38245_c
+		class TransitionActionHome_c_test38827_c
 				implements
 					ClassQueryInterface_c {
-			TransitionActionHome_c_test38245_c(java.util.UUID p38246,
-					java.util.UUID p38247) {
-				m_p38246 = p38246;
-				m_p38247 = p38247;
+			TransitionActionHome_c_test38827_c(java.util.UUID p38828,
+					java.util.UUID p38829) {
+				m_p38828 = p38828;
+				m_p38829 = p38829;
 			}
-			private java.util.UUID m_p38246;
-			private java.util.UUID m_p38247;
+			private java.util.UUID m_p38828;
+			private java.util.UUID m_p38829;
 			public boolean evaluate(Object candidate) {
 				TransitionActionHome_c selected = (TransitionActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38246))
-						& (selected.getSm_id().equals(m_p38247));
+				retval = (selected.getAct_id().equals(m_p38828))
+						& (selected.getSm_id().equals(m_p38829));
 				return retval;
 			}
 		}
 
-		TransitionActionHome_c[] objs38244 = TransitionActionHome_c
+		TransitionActionHome_c[] objs38826 = TransitionActionHome_c
 				.TransitionActionHomeInstances(modelRoot,
-						new TransitionActionHome_c_test38245_c(getAct_id(),
+						new TransitionActionHome_c_test38827_c(getAct_id(),
 								getSm_id()));
 
-		if (((objs38244.length) == 0)) {
+		if (((objs38826.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Transition Action Home", //$NON-NLS-1$
 								"Consistency: Object: Transition Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38244.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38826.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Transition Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38244.length), e);
+										+ Integer.toString(objs38826.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38244.length) > 1)) {
+		if (((objs38826.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1119,7 +1120,7 @@ public class TransitionActionHome_c extends NonRootModelElement
 								"Transition Action Home", //$NON-NLS-1$
 								"Consistency: Object: Transition Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38244.length)
+										+ Integer.toString(objs38826.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1127,7 +1128,7 @@ public class TransitionActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Transition Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38244.length)
+										+ Integer.toString(objs38826.length)
 										+ " Act_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1136,41 +1137,41 @@ public class TransitionActionHome_c extends NonRootModelElement
 
 		// Transition Action Home is a subtype in association: rel.Numb = 513
 		// The supertype class is: Action Home
-		class ActionHome_c_test38251_c implements ClassQueryInterface_c {
-			ActionHome_c_test38251_c(java.util.UUID p38252,
-					java.util.UUID p38253) {
-				m_p38252 = p38252;
-				m_p38253 = p38253;
+		class ActionHome_c_test38833_c implements ClassQueryInterface_c {
+			ActionHome_c_test38833_c(java.util.UUID p38834,
+					java.util.UUID p38835) {
+				m_p38834 = p38834;
+				m_p38835 = p38835;
 			}
-			private java.util.UUID m_p38252;
-			private java.util.UUID m_p38253;
+			private java.util.UUID m_p38834;
+			private java.util.UUID m_p38835;
 			public boolean evaluate(Object candidate) {
 				ActionHome_c selected = (ActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38252))
-						& (selected.getSm_id().equals(m_p38253));
+				retval = (selected.getAct_id().equals(m_p38834))
+						& (selected.getSm_id().equals(m_p38835));
 				return retval;
 			}
 		}
 
-		ActionHome_c[] objs38250 = ActionHome_c.ActionHomeInstances(modelRoot,
-				new ActionHome_c_test38251_c(getAct_id(), getSm_id()));
+		ActionHome_c[] objs38832 = ActionHome_c.ActionHomeInstances(modelRoot,
+				new ActionHome_c_test38833_c(getAct_id(), getSm_id()));
 
-		if (((objs38250.length) != 1)) {
+		if (((objs38832.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Transition Action Home", //$NON-NLS-1$
 								"Consistency: Object: Transition Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38250.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38832.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Transition Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38250.length), e);
+										+ Integer.toString(objs38832.length), e);
 			}
 			retval = false;
 
@@ -1178,29 +1179,29 @@ public class TransitionActionHome_c extends NonRootModelElement
 
 		// Transition Action Home is a referring class in association: rel.Numb = 530
 		// The participating class is: Transition
-		class Transition_c_test38255_c implements ClassQueryInterface_c {
-			Transition_c_test38255_c(java.util.UUID p38256,
-					java.util.UUID p38257) {
-				m_p38256 = p38256;
-				m_p38257 = p38257;
+		class Transition_c_test38837_c implements ClassQueryInterface_c {
+			Transition_c_test38837_c(java.util.UUID p38838,
+					java.util.UUID p38839) {
+				m_p38838 = p38838;
+				m_p38839 = p38839;
 			}
-			private java.util.UUID m_p38256;
-			private java.util.UUID m_p38257;
+			private java.util.UUID m_p38838;
+			private java.util.UUID m_p38839;
 			public boolean evaluate(Object candidate) {
 				Transition_c selected = (Transition_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38256))
-						& (selected.getTrans_id().equals(m_p38257));
+				retval = (selected.getSm_id().equals(m_p38838))
+						& (selected.getTrans_id().equals(m_p38839));
 				return retval;
 			}
 		}
 
-		Transition_c[] objs38254 = Transition_c.TransitionInstances(modelRoot,
-				new Transition_c_test38255_c(getSm_id(), getTrans_id()));
+		Transition_c[] objs38836 = Transition_c.TransitionInstances(modelRoot,
+				new Transition_c_test38837_c(getSm_id(), getTrans_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38254.length) != 1)) {
+		if (((objs38836.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1208,7 +1209,7 @@ public class TransitionActionHome_c extends NonRootModelElement
 								"Transition Action Home", //$NON-NLS-1$
 								"Consistency: Object: Transition Action Home: Association: 530: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38254.length)
+										+ Integer.toString(objs38836.length)
 										+ " SM_ID: " + "Not Printable" + " Trans_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1216,7 +1217,7 @@ public class TransitionActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Transition Action Home: Association: 530: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38254.length)
+										+ Integer.toString(objs38836.length)
 										+ " SM_ID: " + "Not Printable" + " Trans_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

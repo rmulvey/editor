@@ -140,7 +140,8 @@ public class InitialNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -156,8 +157,9 @@ public class InitialNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((InitialNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((InitialNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((InitialNode_c) elem).getId()))
@@ -402,33 +404,33 @@ public class InitialNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1106
-		ControlNode_c relInst56930 = (ControlNode_c) baseRoot.getInstanceList(
+		ControlNode_c relInst58479 = (ControlNode_c) baseRoot.getInstanceList(
 				ControlNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56930 == null) {
-			relInst56930 = (ControlNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58479 == null) {
+			relInst58479 = (ControlNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ControlNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56930 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58479 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56930 = (ControlNode_c) roots[i].getInstanceList(
+				relInst58479 = (ControlNode_c) roots[i].getInstanceList(
 						ControlNode_c.class).get(new Object[]{m_id});
-				if (relInst56930 != null)
+				if (relInst58479 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56930 != null) {
+		if (relInst58479 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56930) && !isProxy())) {
-				relInst56930.relateAcrossR1106To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58479) && !isProxy())) {
+				relInst58479.relateAcrossR1106To(this, notifyChanges);
 			}
 		}
 
@@ -687,42 +689,42 @@ public class InitialNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InitialNode_c_test56932_c implements ClassQueryInterface_c {
-			InitialNode_c_test56932_c(java.util.UUID p56933) {
-				m_p56933 = p56933;
+		class InitialNode_c_test58481_c implements ClassQueryInterface_c {
+			InitialNode_c_test58481_c(java.util.UUID p58482) {
+				m_p58482 = p58482;
 			}
-			private java.util.UUID m_p56933;
+			private java.util.UUID m_p58482;
 			public boolean evaluate(Object candidate) {
 				InitialNode_c selected = (InitialNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56933));
+				retval = (selected.getId().equals(m_p58482));
 				return retval;
 			}
 		}
 
-		InitialNode_c[] objs56931 = InitialNode_c.InitialNodeInstances(
-				modelRoot, new InitialNode_c_test56932_c(getId()));
+		InitialNode_c[] objs58480 = InitialNode_c.InitialNodeInstances(
+				modelRoot, new InitialNode_c_test58481_c(getId()));
 
-		if (((objs56931.length) == 0)) {
+		if (((objs58480.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Initial Node", //$NON-NLS-1$
 								"Consistency: Object: Initial Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56931.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58480.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Initial Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56931.length), e);
+								+ Integer.toString(objs58480.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56931.length) > 1)) {
+		if (((objs58480.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -730,7 +732,7 @@ public class InitialNode_c extends NonRootModelElement
 								"Initial Node", //$NON-NLS-1$
 								"Consistency: Object: Initial Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56931.length)
+										+ Integer.toString(objs58480.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -738,7 +740,7 @@ public class InitialNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Initial Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56931.length)
+										+ Integer.toString(objs58480.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -747,37 +749,37 @@ public class InitialNode_c extends NonRootModelElement
 
 		// Initial Node is a subtype in association: rel.Numb = 1106
 		// The supertype class is: Control Node
-		class ControlNode_c_test56937_c implements ClassQueryInterface_c {
-			ControlNode_c_test56937_c(java.util.UUID p56938) {
-				m_p56938 = p56938;
+		class ControlNode_c_test58486_c implements ClassQueryInterface_c {
+			ControlNode_c_test58486_c(java.util.UUID p58487) {
+				m_p58487 = p58487;
 			}
-			private java.util.UUID m_p56938;
+			private java.util.UUID m_p58487;
 			public boolean evaluate(Object candidate) {
 				ControlNode_c selected = (ControlNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56938));
+				retval = (selected.getId().equals(m_p58487));
 				return retval;
 			}
 		}
 
-		ControlNode_c[] objs56936 = ControlNode_c.ControlNodeInstances(
-				modelRoot, new ControlNode_c_test56937_c(getId()));
+		ControlNode_c[] objs58485 = ControlNode_c.ControlNodeInstances(
+				modelRoot, new ControlNode_c_test58486_c(getId()));
 
-		if (((objs56936.length) != 1)) {
+		if (((objs58485.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Initial Node", //$NON-NLS-1$
 								"Consistency: Object: Initial Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56936.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58485.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Initial Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56936.length), e);
+										+ Integer.toString(objs58485.length), e);
 			}
 			retval = false;
 

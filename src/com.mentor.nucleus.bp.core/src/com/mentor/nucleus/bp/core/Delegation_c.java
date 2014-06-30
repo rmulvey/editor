@@ -160,7 +160,7 @@ p_m_name
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -176,7 +176,7 @@ p_m_name
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Delegation_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Delegation_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((Delegation_c)elem).getId())) return false;
@@ -1233,29 +1233,29 @@ public static Delegation_c [] getManyC_DGsOnR4704(ImportedReference_c target, bo
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst55510 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      PackageableElement_c relInst57059 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55510 == null) {
-      			relInst55510 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      		if (relInst57059 == null) {
+      			relInst57059 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55510 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57059 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55510 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
-					if (relInst55510 != null)
+					relInst57059 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+					if (relInst57059 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55510 != null )
+      if ( relInst57059 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55510) && !isProxy())) {
-	      relInst55510.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57059) && !isProxy())) {
+	      relInst57059.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1568,56 +1568,56 @@ return v_result;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Delegation_c_test55512_c implements ClassQueryInterface_c
+    class Delegation_c_test57061_c implements ClassQueryInterface_c
     {
-	  Delegation_c_test55512_c( java.util.UUID            p55513 ) {
-	  m_p55513 = p55513;
+	  Delegation_c_test57061_c( java.util.UUID            p57062 ) {
+	  m_p57062 = p57062;
 	  }
-	  private java.util.UUID             m_p55513; 
+	  private java.util.UUID             m_p57062; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Delegation_c selected = (Delegation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55513));
+	      retval = (selected.getId().equals(m_p57062));
 	      return retval;
 	  }
     }
 
-    Delegation_c [] objs55511 = 
-    Delegation_c.DelegationInstances(modelRoot, new Delegation_c_test55512_c(getId())) ;
+    Delegation_c [] objs57060 = 
+    Delegation_c.DelegationInstances(modelRoot, new Delegation_c_test57061_c(getId())) ;
 
-    if ( (  (objs55511.length) == 0) )
+    if ( (  (objs57060.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Delegation", //$NON-NLS-1$
            "Consistency: Object: Delegation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55511.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57060.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Delegation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55511.length )  , e); 
+          + Integer.toString( objs57060.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55511.length) > 1) )
+    if ( (  (objs57060.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Delegation", //$NON-NLS-1$
            "Consistency: Object: Delegation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55511.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57060.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Delegation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55511.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57060.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1633,55 +1633,55 @@ return v_result;
              // Object: Interface Reference
           // Associated Other Side: rel.Numb = 9002
             // Link Object: Delegation In Component
-    class DelegationInComponent_c_test55519_c implements ClassQueryInterface_c
+    class DelegationInComponent_c_test57068_c implements ClassQueryInterface_c
     {
-	  DelegationInComponent_c_test55519_c( java.util.UUID            p55520 ) {
-	  m_p55520 = p55520;
+	  DelegationInComponent_c_test57068_c( java.util.UUID            p57069 ) {
+	  m_p57069 = p57069;
 	  }
-	  private java.util.UUID             m_p55520; 
+	  private java.util.UUID             m_p57069; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DelegationInComponent_c selected = (DelegationInComponent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDelegation_id().equals(m_p55520));
+	      retval = (selected.getDelegation_id().equals(m_p57069));
 	      return retval;
 	  }
     }
 
-    DelegationInComponent_c [] objs55521 = 
-    DelegationInComponent_c.DelegationInComponentInstances(modelRoot, new DelegationInComponent_c_test55519_c(getId())) ;
+    DelegationInComponent_c [] objs57070 = 
+    DelegationInComponent_c.DelegationInComponentInstances(modelRoot, new DelegationInComponent_c_test57068_c(getId())) ;
 
-    if ( (  (objs55521.length) == 0) )
+    if ( (  (objs57070.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Delegation", //$NON-NLS-1$
            "Consistency: Object: Delegation: Association: 9002: Cardinality of a link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55521.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57070.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Delegation: Association: 9002: Cardinality of a link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55521.length )  , e); 
+          + Integer.toString( objs57070.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55521.length) != 1) )
+    if ( (  (objs57070.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Delegation", //$NON-NLS-1$
            "Consistency: Object: Delegation: Association: 9002: Cardinality of a link is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55521.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57070.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Delegation: Association: 9002: Cardinality of a link is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55521.length )  , e); 
+          + Integer.toString( objs57070.length )  , e); 
       }
       retval = false;
 
@@ -1689,37 +1689,37 @@ return v_result;
 
           // Delegation is a participating class in association: rel.Numb = 4704
              // Object: Imported Reference
-    class ImportedReference_c_test55523_c implements ClassQueryInterface_c
+    class ImportedReference_c_test57072_c implements ClassQueryInterface_c
     {
-	  ImportedReference_c_test55523_c( java.util.UUID            p55524 ) {
-	  m_p55524 = p55524;
+	  ImportedReference_c_test57072_c( java.util.UUID            p57073 ) {
+	  m_p57073 = p57073;
 	  }
-	  private java.util.UUID             m_p55524; 
+	  private java.util.UUID             m_p57073; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedReference_c selected = (ImportedReference_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDelegation_id().equals(m_p55524));
+	      retval = (selected.getDelegation_id().equals(m_p57073));
 	      return retval;
 	  }
     }
 
-    ImportedReference_c [] objs55522 = 
-    ImportedReference_c.ImportedReferenceInstances(modelRoot, new ImportedReference_c_test55523_c(getId())) ;
+    ImportedReference_c [] objs57071 = 
+    ImportedReference_c.ImportedReferenceInstances(modelRoot, new ImportedReference_c_test57072_c(getId())) ;
 
-    if ( (  (objs55522.length) > 1) )
+    if ( (  (objs57071.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Delegation", //$NON-NLS-1$
            "Consistency: Object: Delegation: Association: 4704: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55522.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57071.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Delegation: Association: 4704: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55522.length )  , e); 
+          + Integer.toString( objs57071.length )  , e); 
       }
       retval = false;
 
@@ -1734,6 +1734,142 @@ return v_result;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Delegation", " Operation entered: Delegation::Dispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR8001(this);
+
+
+boolean      v_isInGenericPackage =   (v_pe != null) ;
+
+
+if ( v_isInGenericPackage )
+{
+
+if (v_pe != null) {
+v_pe.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+return ;
+
+
+
+}
+
+else
+{
+
+InterfaceReferenceInDelegation_c [] v_mediums = InterfaceReferenceInDelegation_c.getManyC_RIDsOnR4013(this);
+
+
+InterfaceReferenceInDelegation_c  v_medium = null;
+for ( int i55250 = 0; i55250 < v_mediums.length; i55250++)
+{
+  v_medium = v_mediums[i55250] ;
+
+InterfaceReference_c v_reference = InterfaceReference_c.getOneC_IROnR4013(v_medium);
+
+
+if (v_medium != null) {
+v_medium.unrelateAcrossR4013From( this ) ; v_medium.unrelateAcrossR4013From( v_reference ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_medium != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_medium.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_medium));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+InterfaceReference_c [] v_references = InterfaceReference_c.getManyC_IRsOnR4014(this);
+
+
+InterfaceReference_c  v_ref = null;
+for ( int i55251 = 0; i55251 < v_references.length; i55251++)
+{
+  v_ref = v_references[i55251] ;
+
+this.unrelateAcrossR4014From(v_ref);
+
+
+
+}
+
+ImportedReference_c v_importedRef = ImportedReference_c.getOneCL_IIROnR4704(this);
+
+
+if ( (  (v_importedRef != null)) )
+{
+
+this.unrelateAcrossR4704From(v_importedRef);
+
+
+
+}
+
+DelegationInComponent_c v_dic = DelegationInComponent_c.getOnePA_DICOnR9002(this);
+
+
+if ( (  (v_dic != null)) )
+{
+
+Component_c v_comp = Component_c.getOneC_COnR9002(v_dic);
+
+
+if (v_dic != null) {
+v_dic.unrelateAcrossR9002From( this ) ; v_dic.unrelateAcrossR9002From( v_comp ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_dic != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_dic.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_dic));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End dispose
   public  boolean      Actionfilter(final String       p_Name,final String       p_Value)

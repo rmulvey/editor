@@ -427,7 +427,7 @@ p_m_port_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -443,7 +443,7 @@ p_m_port_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceReference_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceReference_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((InterfaceReference_c)elem).getId())) return false;
@@ -2026,29 +2026,29 @@ public static InterfaceReference_c [] getManyC_IRsOnR4701(ImportedReference_c ta
 
 	if (OriginatesFromPort == null) {          
       // R4016
-      Port_c relInst55437 = (Port_c) baseRoot.getInstanceList(Port_c.class).get(new Object[] {m_port_id});
+      Port_c relInst56986 = (Port_c) baseRoot.getInstanceList(Port_c.class).get(new Object[] {m_port_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55437 == null) {
-      			relInst55437 = (Port_c) Ooaofooa.getDefaultInstance().getInstanceList(Port_c.class).get(new Object[] {m_port_id});
+      		if (relInst56986 == null) {
+      			relInst56986 = (Port_c) Ooaofooa.getDefaultInstance().getInstanceList(Port_c.class).get(new Object[] {m_port_id});
       		}
-			if (relInst55437 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56986 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55437 = (Port_c) roots[i].getInstanceList(Port_c.class).get(new Object[] {m_port_id});
-					if (relInst55437 != null)
+					relInst56986 = (Port_c) roots[i].getInstanceList(Port_c.class).get(new Object[] {m_port_id});
+					if (relInst56986 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55437 != null )
+      if ( relInst56986 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55437) && !isProxy())) {
-	      relInst55437.relateAcrossR4016To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56986) && !isProxy())) {
+	      relInst56986.relateAcrossR4016To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2056,29 +2056,29 @@ public static InterfaceReference_c [] getManyC_IRsOnR4701(ImportedReference_c ta
 
 	if (MayBeDefinedByInterface == null) {          
       // R4012
-      Interface_c relInst55438 = (Interface_c) baseRoot.getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
+      Interface_c relInst56987 = (Interface_c) baseRoot.getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55438 == null) {
-      			relInst55438 = (Interface_c) Ooaofooa.getDefaultInstance().getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
+      		if (relInst56987 == null) {
+      			relInst56987 = (Interface_c) Ooaofooa.getDefaultInstance().getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
       		}
-			if (relInst55438 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56987 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55438 = (Interface_c) roots[i].getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
-					if (relInst55438 != null)
+					relInst56987 = (Interface_c) roots[i].getInstanceList(Interface_c.class).get(new Object[] {m_formal_interface_id});
+					if (relInst56987 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55438 != null )
+      if ( relInst56987 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55438) && !isProxy())) {
-	      relInst55438.relateAcrossR4012To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56987) && !isProxy())) {
+	      relInst56987.relateAcrossR4012To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2086,29 +2086,29 @@ public static InterfaceReference_c [] getManyC_IRsOnR4701(ImportedReference_c ta
 
 	if (ReceivesDelegationViaDelegation == null) {          
       // R4014
-      Delegation_c relInst55439 = (Delegation_c) baseRoot.getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
+      Delegation_c relInst56988 = (Delegation_c) baseRoot.getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55439 == null) {
-      			relInst55439 = (Delegation_c) Ooaofooa.getDefaultInstance().getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
+      		if (relInst56988 == null) {
+      			relInst56988 = (Delegation_c) Ooaofooa.getDefaultInstance().getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
       		}
-			if (relInst55439 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56988 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55439 = (Delegation_c) roots[i].getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
-					if (relInst55439 != null)
+					relInst56988 = (Delegation_c) roots[i].getInstanceList(Delegation_c.class).get(new Object[] {m_delegation_id});
+					if (relInst56988 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55439 != null )
+      if ( relInst56988 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55439) && !isProxy())) {
-	      relInst55439.relateAcrossR4014To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56988) && !isProxy())) {
+	      relInst56988.relateAcrossR4014To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2528,56 +2528,56 @@ private static InterfaceReference_c findInterfaceReferenceInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InterfaceReference_c_test55441_c implements ClassQueryInterface_c
+    class InterfaceReference_c_test56990_c implements ClassQueryInterface_c
     {
-	  InterfaceReference_c_test55441_c( java.util.UUID            p55442 ) {
-	  m_p55442 = p55442;
+	  InterfaceReference_c_test56990_c( java.util.UUID            p56991 ) {
+	  m_p56991 = p56991;
 	  }
-	  private java.util.UUID             m_p55442; 
+	  private java.util.UUID             m_p56991; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceReference_c selected = (InterfaceReference_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55442));
+	      retval = (selected.getId().equals(m_p56991));
 	      return retval;
 	  }
     }
 
-    InterfaceReference_c [] objs55440 = 
-    InterfaceReference_c.InterfaceReferenceInstances(modelRoot, new InterfaceReference_c_test55441_c(getId())) ;
+    InterfaceReference_c [] objs56989 = 
+    InterfaceReference_c.InterfaceReferenceInstances(modelRoot, new InterfaceReference_c_test56990_c(getId())) ;
 
-    if ( (  (objs55440.length) == 0) )
+    if ( (  (objs56989.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55440.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56989.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55440.length )  , e); 
+          + Integer.toString( objs56989.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55440.length) > 1) )
+    if ( (  (objs56989.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55440.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56989.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55440.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56989.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2585,40 +2585,40 @@ private static InterfaceReference_c findInterfaceReferenceInstance(ModelRoot mod
 
           // Interface Reference is a referring class in association: rel.Numb = 4016
           // The participating class is: Port
-    class Port_c_test55446_c implements ClassQueryInterface_c
+    class Port_c_test56995_c implements ClassQueryInterface_c
     {
-	  Port_c_test55446_c( java.util.UUID            p55447 ) {
-	  m_p55447 = p55447;
+	  Port_c_test56995_c( java.util.UUID            p56996 ) {
+	  m_p56996 = p56996;
 	  }
-	  private java.util.UUID             m_p55447; 
+	  private java.util.UUID             m_p56996; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Port_c selected = (Port_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55447));
+	      retval = (selected.getId().equals(m_p56996));
 	      return retval;
 	  }
     }
 
-    Port_c [] objs55445 = 
-    Port_c.PortInstances(modelRoot, new Port_c_test55446_c(getPort_id())) ;
+    Port_c [] objs56994 = 
+    Port_c.PortInstances(modelRoot, new Port_c_test56995_c(getPort_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55445.length) != 1) )
+    if ( (  (objs56994.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Association: 4016: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55445.length )  + " Port_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56994.length )  + " Port_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Association: 4016: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55445.length )  + " Port_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56994.length )  + " Port_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2626,38 +2626,38 @@ private static InterfaceReference_c findInterfaceReferenceInstance(ModelRoot mod
 
           // Interface Reference is a referring class in association: rel.Numb = 4012
           // The participating class is: Interface
-    class Interface_c_test55449_c implements ClassQueryInterface_c
+    class Interface_c_test56998_c implements ClassQueryInterface_c
     {
-	  Interface_c_test55449_c( java.util.UUID            p55450 ) {
-	  m_p55450 = p55450;
+	  Interface_c_test56998_c( java.util.UUID            p56999 ) {
+	  m_p56999 = p56999;
 	  }
-	  private java.util.UUID             m_p55450; 
+	  private java.util.UUID             m_p56999; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Interface_c selected = (Interface_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55450));
+	      retval = (selected.getId().equals(m_p56999));
 	      return retval;
 	  }
     }
 
-    Interface_c [] objs55448 = 
-    Interface_c.InterfaceInstances(modelRoot, new Interface_c_test55449_c(getFormal_interface_id())) ;
+    Interface_c [] objs56997 = 
+    Interface_c.InterfaceInstances(modelRoot, new Interface_c_test56998_c(getFormal_interface_id())) ;
 
-    if ( (  (objs55448.length) > 1) )
+    if ( (  (objs56997.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Association: 4012: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55448.length )  + " Formal_Interface_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56997.length )  + " Formal_Interface_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Association: 4012: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55448.length )  + " Formal_Interface_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56997.length )  + " Formal_Interface_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2665,98 +2665,98 @@ private static InterfaceReference_c findInterfaceReferenceInstance(ModelRoot mod
                 
           // Interface Reference is a referring class in association: rel.Numb = 4014
           // The participating class is: Delegation
-    class Delegation_c_test55452_c implements ClassQueryInterface_c
+    class Delegation_c_test57001_c implements ClassQueryInterface_c
     {
-	  Delegation_c_test55452_c( java.util.UUID            p55453 ) {
-	  m_p55453 = p55453;
+	  Delegation_c_test57001_c( java.util.UUID            p57002 ) {
+	  m_p57002 = p57002;
 	  }
-	  private java.util.UUID             m_p55453; 
+	  private java.util.UUID             m_p57002; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Delegation_c selected = (Delegation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55453));
+	      retval = (selected.getId().equals(m_p57002));
 	      return retval;
 	  }
     }
 
-    Delegation_c [] objs55451 = 
-    Delegation_c.DelegationInstances(modelRoot, new Delegation_c_test55452_c(getDelegation_id())) ;
+    Delegation_c [] objs57000 = 
+    Delegation_c.DelegationInstances(modelRoot, new Delegation_c_test57001_c(getDelegation_id())) ;
 
-    if ( (  (objs55451.length) > 1) )
+    if ( (  (objs57000.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Association: 4014: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55451.length )  + " Delegation_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57000.length )  + " Delegation_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Association: 4014: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55451.length )  + " Delegation_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57000.length )  + " Delegation_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
                 
           // Supertype: rel.Numb = 4009
-    int objs55454 = 0;
+    int objs57003 = 0;
             // Subtype Object: Requirement
-    class Requirement_c_test55455_c implements ClassQueryInterface_c
+    class Requirement_c_test57004_c implements ClassQueryInterface_c
     {
-	  Requirement_c_test55455_c( java.util.UUID            p55456 ) {
-	  m_p55456 = p55456;
+	  Requirement_c_test57004_c( java.util.UUID            p57005 ) {
+	  m_p57005 = p57005;
 	  }
-	  private java.util.UUID             m_p55456; 
+	  private java.util.UUID             m_p57005; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Requirement_c selected = (Requirement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRequirement_id().equals(m_p55456));
+	      retval = (selected.getRequirement_id().equals(m_p57005));
 	      return retval;
 	  }
     }
 
-    Requirement_c [] objs55457 = 
-    Requirement_c.RequirementInstances(modelRoot, new Requirement_c_test55455_c(getId())) ;
+    Requirement_c [] objs57006 = 
+    Requirement_c.RequirementInstances(modelRoot, new Requirement_c_test57004_c(getId())) ;
  
-    objs55454 = objs55454 + objs55457.length;
+    objs57003 = objs57003 + objs57006.length;
             // Subtype Object: Provision
-    class Provision_c_test55458_c implements ClassQueryInterface_c
+    class Provision_c_test57007_c implements ClassQueryInterface_c
     {
-	  Provision_c_test55458_c( java.util.UUID            p55459 ) {
-	  m_p55459 = p55459;
+	  Provision_c_test57007_c( java.util.UUID            p57008 ) {
+	  m_p57008 = p57008;
 	  }
-	  private java.util.UUID             m_p55459; 
+	  private java.util.UUID             m_p57008; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Provision_c selected = (Provision_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getProvision_id().equals(m_p55459));
+	      retval = (selected.getProvision_id().equals(m_p57008));
 	      return retval;
 	  }
     }
 
-    Provision_c [] objs55460 = 
-    Provision_c.ProvisionInstances(modelRoot, new Provision_c_test55458_c(getId())) ;
+    Provision_c [] objs57009 = 
+    Provision_c.ProvisionInstances(modelRoot, new Provision_c_test57007_c(getId())) ;
  
-    objs55454 = objs55454 + objs55460.length;
-    if ( objs55454 != 1 )
+    objs57003 = objs57003 + objs57009.length;
+    if ( objs57003 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Reference", //$NON-NLS-1$
            "Consistency: Object: Interface Reference: Association: 4009: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55454 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57003 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Reference: Association: 4009: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55454 )  , e); 
+          + Integer.toString( objs57003 )  , e); 
       }
       retval = false;
 
@@ -2780,9 +2780,9 @@ InterfaceReferenceInDelegation_c [] v_delegationMediums = InterfaceReferenceInDe
 
 
 InterfaceReferenceInDelegation_c  v_dMedium = null;
-for ( int i53663 = 0; i53663 < v_delegationMediums.length; i53663++)
+for ( int i55191 = 0; i55191 < v_delegationMediums.length; i55191++)
 {
-  v_dMedium = v_delegationMediums[i53663] ;
+  v_dMedium = v_delegationMediums[i55191] ;
 
 Delegation_c v_delegation = Delegation_c.getOneC_DGOnR4013(v_dMedium);
 
@@ -3156,7 +3156,7 @@ else
 v_system = SystemModel_c.getOneS_SYSOnR4606(v_compPackage);
 
 
-  class Interface_test54289_c implements ClassQueryInterface_c
+  class Interface_test55838_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3164,7 +3164,7 @@ v_system = SystemModel_c.getOneS_SYSOnR4606(v_compPackage);
 		return (selected.getId().equals(p_Id)) ;
 	}
   }
-v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test54289_c());
+v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test55838_c());
 
 
 
@@ -3199,9 +3199,9 @@ if ( (  (v_requirement != null)) )
 Provision_c [] v_provisions = Provision_c.getManyC_PsOnR4002(Satisfaction_c.getManyC_SFsOnR4002(v_requirement));
 
 
-for ( int i53664 = 0; i53664 < v_provisions.length; i53664++)
+for ( int i55192 = 0; i55192 < v_provisions.length; i55192++)
 {
-  v_provision = v_provisions[i53664] ;
+  v_provision = v_provisions[i55192] ;
 
 if ( (p_Formalizeother) || (  !v_provision.Isformal()) )
 {
@@ -3233,9 +3233,9 @@ else if ( (  (v_provision != null)) )
 Requirement_c [] v_requirements = Requirement_c.getManyC_RsOnR4002(Satisfaction_c.getManyC_SFsOnR4002(v_provision));
 
 
-for ( int i53665 = 0; i53665 < v_requirements.length; i53665++)
+for ( int i55193 = 0; i55193 < v_requirements.length; i55193++)
 {
-  v_requirement = v_requirements[i53665] ;
+  v_requirement = v_requirements[i55193] ;
 
 if ( (p_Formalizeother) || (  !v_requirement.Isformal()) )
 {
@@ -3427,9 +3427,9 @@ RequiredExecutableProperty_c [] v_reps = RequiredExecutableProperty_c.getManySPR
 
 
 RequiredExecutableProperty_c  v_rep = null;
-for ( int i53666 = 0; i53666 < v_reps.length; i53666++)
+for ( int i55194 = 0; i55194 < v_reps.length; i55194++)
 {
-  v_rep = v_reps[i53666] ;
+  v_rep = v_reps[i55194] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4500(v_rep);
 
@@ -3463,9 +3463,9 @@ if ( (p_Unformalizeother) )
 Provision_c [] v_provisions = Provision_c.getManyC_PsOnR4002(Satisfaction_c.getManyC_SFsOnR4002(v_requirement));
 
 
-for ( int i53667 = 0; i53667 < v_provisions.length; i53667++)
+for ( int i55195 = 0; i55195 < v_provisions.length; i55195++)
 {
-  v_provision = v_provisions[i53667] ;
+  v_provision = v_provisions[i55195] ;
 
 if (v_provision != null) {
 v_provision.Unformalize(			    
@@ -3494,9 +3494,9 @@ ProvidedExecutableProperty_c [] v_peps = ProvidedExecutableProperty_c.getManySPR
 
 
 ProvidedExecutableProperty_c  v_pep = null;
-for ( int i53668 = 0; i53668 < v_peps.length; i53668++)
+for ( int i55196 = 0; i55196 < v_peps.length; i55196++)
 {
-  v_pep = v_peps[i53668] ;
+  v_pep = v_peps[i55196] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4501(v_pep);
 
@@ -3528,9 +3528,9 @@ Requirement_c [] v_reqs = Requirement_c.getManyC_RsOnR4002(Satisfaction_c.getMan
 
 
 Requirement_c  v_req = null;
-for ( int i53669 = 0; i53669 < v_reqs.length; i53669++)
+for ( int i55197 = 0; i55197 < v_reqs.length; i55197++)
 {
-  v_req = v_reqs[i53669] ;
+  v_req = v_reqs[i55197] ;
 
 if ( (p_Unformalizeother) || (v_req.Isformal()) )
 {
@@ -3603,9 +3603,9 @@ InterfaceReference_c [] v_delegatedIRs = InterfaceReference_c.getManyC_IRsOnR401
 
 
 InterfaceReference_c  v_delegatedIR = null;
-for ( int i53670 = 0; i53670 < v_delegatedIRs.length; i53670++)
+for ( int i55198 = 0; i55198 < v_delegatedIRs.length; i55198++)
 {
-  v_delegatedIR = v_delegatedIRs[i53670] ;
+  v_delegatedIR = v_delegatedIRs[i55198] ;
 
 v_interface = Interface_c.getOneC_IOnR4012(v_delegatedIR);
 
@@ -3694,7 +3694,7 @@ Package_c v_pkg = Package_c.getOneEP_PKGOnR8000(PackageableElement_c.getOnePE_PE
 if ( (  (v_component != null) &&   (v_pkg == null)) )
 {
 
-  class InterfacePackage_test54290_c implements ClassQueryInterface_c
+  class InterfacePackage_test55839_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3702,7 +3702,7 @@ if ( (  (v_component != null) &&   (v_pkg == null)) )
 		return (selected.getPackage_id().equals(p_Id)) ;
 	}
   }
-InterfacePackage_c v_ipkg = InterfacePackage_c.getOneIP_IPOnR4304(SystemModel_c.getManyS_SYSsOnR4606(ComponentPackage_c.getManyCP_CPsOnR4608(Component_c.getManyC_CsOnR4010(Port_c.getManyC_POsOnR4016(this)))), new InterfacePackage_test54290_c());
+InterfacePackage_c v_ipkg = InterfacePackage_c.getOneIP_IPOnR4304(SystemModel_c.getManyS_SYSsOnR4606(ComponentPackage_c.getManyCP_CPsOnR4608(Component_c.getManyC_CsOnR4010(Port_c.getManyC_POsOnR4016(this)))), new InterfacePackage_test55839_c());
 
 
 if ( (  (v_ipkg != null)) )
@@ -3837,9 +3837,9 @@ Interface_c v_existingInterface = Interface_c.getOneC_IOnR4012(this);
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(v_ipkg);
 
 
-for ( int i53671 = 0; i53671 < v_interfaces.length; i53671++)
+for ( int i55199 = 0; i55199 < v_interfaces.length; i55199++)
 {
-  v_interface = v_interfaces[i53671] ;
+  v_interface = v_interfaces[i55199] ;
 
 if ( (v_existingInterface != v_interface) )
 {
@@ -3951,7 +3951,7 @@ else {
 }
 
 
-  class SearchResultSet_test54291_c implements ClassQueryInterface_c
+  class SearchResultSet_test55840_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3959,16 +3959,16 @@ else {
 		return (selected.getType() == Elementtypeconstants_c.INTERFACE) ;
 	}
   }
-SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test54291_c());
+SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test55840_c());
 
 
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_srs)));
 
 
 Interface_c  v_interface = null;
-for ( int i53672 = 0; i53672 < v_interfaces.length; i53672++)
+for ( int i55200 = 0; i55200 < v_interfaces.length; i55200++)
 {
-  v_interface = v_interfaces[i53672] ;
+  v_interface = v_interfaces[i55200] ;
 
 if ( (! v_interface.getId().equals(getFormal_interface_id())) )
 {
@@ -4016,7 +4016,7 @@ else {
 }
 
 
-  class ComponentResultSet_test54292_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55841_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4024,16 +4024,16 @@ else {
 		return (selected.getType() == Elementtypeconstants_c.INTERFACE) ;
 	}
   }
-ComponentResultSet_c [] v_crs = ComponentResultSet_c.getManyPE_CRSsOnR8007(v_component, new ComponentResultSet_test54292_c());
+ComponentResultSet_c [] v_crs = ComponentResultSet_c.getManyPE_CRSsOnR8007(v_component, new ComponentResultSet_test55841_c());
 
 
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_crs)));
 
 
 Interface_c  v_interface = null;
-for ( int i53673 = 0; i53673 < v_interfaces.length; i53673++)
+for ( int i55201 = 0; i55201 < v_interfaces.length; i55201++)
 {
-  v_interface = v_interfaces[i53673] ;
+  v_interface = v_interfaces[i55201] ;
 
 if ( (! v_interface.getId().equals(getFormal_interface_id())) )
 {
@@ -4069,9 +4069,9 @@ InterfacePackage_c [] v_diagrams = InterfacePackage_c.getManyIP_IPsOnR4304(v_sys
 
 
 InterfacePackage_c  v_diagram = null;
-for ( int i53674 = 0; i53674 < v_diagrams.length; i53674++)
+for ( int i55202 = 0; i55202 < v_diagrams.length; i55202++)
 {
-  v_diagram = v_diagrams[i53674] ;
+  v_diagram = v_diagrams[i55202] ;
 
 if ( (Canuseinterfacesinpackage(			    
 v_diagram.getPackage_id())) )
@@ -4081,9 +4081,9 @@ Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(v_diagram);
 
 
 Interface_c  v_interface = null;
-for ( int i53675 = 0; i53675 < v_interfaces.length; i53675++)
+for ( int i55203 = 0; i55203 < v_interfaces.length; i55203++)
 {
-  v_interface = v_interfaces[i53675] ;
+  v_interface = v_interfaces[i55203] ;
 
 if ( (! v_interface.getId().equals(getFormal_interface_id())) )
 {
@@ -4122,9 +4122,9 @@ InterfaceReference_c [] v_nextRefs = InterfaceReference_c.getManyC_IRsOnR4014(De
 
 
 InterfaceReference_c  v_nextRef = null;
-for ( int i53676 = 0; i53676 < v_nextRefs.length; i53676++)
+for ( int i55204 = 0; i55204 < v_nextRefs.length; i55204++)
 {
-  v_nextRef = v_nextRefs[i53676] ;
+  v_nextRef = v_nextRefs[i55204] ;
 
 boolean      v_formalize = false ;
 
@@ -4210,9 +4210,9 @@ InterfaceReference_c [] v_nextRefs = InterfaceReference_c.getManyC_IRsOnR4014(De
 
 
 InterfaceReference_c  v_nextRef = null;
-for ( int i53677 = 0; i53677 < v_nextRefs.length; i53677++)
+for ( int i55205 = 0; i55205 < v_nextRefs.length; i55205++)
 {
-  v_nextRef = v_nextRefs[i53677] ;
+  v_nextRef = v_nextRefs[i55205] ;
 
 if (v_nextRef != null) {
 v_nextRef.Unformalize(			    
@@ -4333,9 +4333,9 @@ boolean      v_interfaceLocated = false ;
 
 
 Interface_c  v_interface = null;
-for ( int i53678 = 0; i53678 < v_resolvedInterfaces.length; i53678++)
+for ( int i55206 = 0; i55206 < v_resolvedInterfaces.length; i55206++)
 {
-  v_interface = v_resolvedInterfaces[i53678] ;
+  v_interface = v_resolvedInterfaces[i55206] ;
 
 if ( (v_interface.getId().equals(v_id)) )
 {
@@ -4395,19 +4395,19 @@ Gd_c.Null_unique_id()
 ,v_system.getSys_id()) ;
 
 
-  class Interface_test54293_c implements ClassQueryInterface_c
+  class Interface_test55842_c implements ClassQueryInterface_c
   {
-	Interface_test54293_c( java.util.UUID         p54294 ) {
-		m_p54294 = p54294;
+	Interface_test55842_c( java.util.UUID         p55843 ) {
+		m_p55843 = p55843;
 	}
-	private java.util.UUID         m_p54294;
+	private java.util.UUID         m_p55843;
 	public boolean evaluate (Object candidate)
 	{
 		Interface_c selected = (Interface_c)candidate;
-		return (selected.getId().equals(m_p54294)) ;
+		return (selected.getId().equals(m_p55843)) ;
 	}
   }
-Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test54293_c(v_id));
+Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test55842_c(v_id));
 
 
 if ( (  (v_interface != null)) )
@@ -4454,7 +4454,7 @@ Interfacename()
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Interface Reference", " Operation entered: InterfaceReference::Createsignalsandoperations") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Interface_test54295_c implements ClassQueryInterface_c
+  class Interface_test55844_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4462,7 +4462,7 @@ Interfacename()
 		return (selected.getId().equals(p_Interface_id)) ;
 	}
   }
-Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(SystemModel_c.getManyS_SYSsOnR4606(ComponentPackage_c.getManyCP_CPsOnR4608(Component_c.getManyC_CsOnR4010(Port_c.getManyC_POsOnR4016(this))))), new Interface_test54295_c());
+Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(SystemModel_c.getManyS_SYSsOnR4606(ComponentPackage_c.getManyCP_CPsOnR4608(Component_c.getManyC_CsOnR4010(Port_c.getManyC_POsOnR4016(this))))), new Interface_test55844_c());
 
 
 if ( (  (v_interface == null)) )
@@ -4493,9 +4493,9 @@ if ( (  (v_requirement != null)) )
 {
 
 InterfaceSignal_c  v_signal = null;
-for ( int i53679 = 0; i53679 < v_signals.length; i53679++)
+for ( int i55207 = 0; i55207 < v_signals.length; i55207++)
 {
-  v_signal = v_signals[i53679] ;
+  v_signal = v_signals[i55207] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4004(v_signal);
 
@@ -4542,9 +4542,9 @@ else {
 }
 
 InterfaceOperation_c  v_operation = null;
-for ( int i53680 = 0; i53680 < v_operations.length; i53680++)
+for ( int i55208 = 0; i55208 < v_operations.length; i55208++)
 {
-  v_operation = v_operations[i53680] ;
+  v_operation = v_operations[i55208] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4004(v_operation);
 
@@ -4600,9 +4600,9 @@ Provision_c v_provision = Provision_c.getOneC_POnR4009(this);
 
 
 InterfaceSignal_c  v_signal = null;
-for ( int i53681 = 0; i53681 < v_signals.length; i53681++)
+for ( int i55209 = 0; i55209 < v_signals.length; i55209++)
 {
-  v_signal = v_signals[i53681] ;
+  v_signal = v_signals[i55209] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4004(v_signal);
 
@@ -4649,9 +4649,9 @@ else {
 }
 
 InterfaceOperation_c  v_operation = null;
-for ( int i53682 = 0; i53682 < v_operations.length; i53682++)
+for ( int i55210 = 0; i55210 < v_operations.length; i55210++)
 {
-  v_operation = v_operations[i53682] ;
+  v_operation = v_operations[i55210] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4004(v_operation);
 
@@ -4719,9 +4719,9 @@ RequiredExecutableProperty_c [] v_reps = RequiredExecutableProperty_c.getManySPR
 
 
 RequiredExecutableProperty_c  v_rep = null;
-for ( int i53683 = 0; i53683 < v_reps.length; i53683++)
+for ( int i55211 = 0; i55211 < v_reps.length; i55211++)
 {
-  v_rep = v_reps[i53683] ;
+  v_rep = v_reps[i55211] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4500(v_rep);
 
@@ -4762,9 +4762,9 @@ ProvidedExecutableProperty_c [] v_peps = ProvidedExecutableProperty_c.getManySPR
 
 
 ProvidedExecutableProperty_c  v_pep = null;
-for ( int i53684 = 0; i53684 < v_peps.length; i53684++)
+for ( int i55212 = 0; i55212 < v_peps.length; i55212++)
 {
-  v_pep = v_peps[i53684] ;
+  v_pep = v_peps[i55212] ;
 
 ExecutableProperty_c v_ep = ExecutableProperty_c.getOneC_EPOnR4501(v_pep);
 
@@ -4918,9 +4918,9 @@ if ( (  (v_resolvedInterfaces.length) == 1) )
 {
 
 Interface_c  v_interface = null;
-for ( int i53685 = 0; i53685 < v_resolvedInterfaces.length; i53685++)
+for ( int i55213 = 0; i55213 < v_resolvedInterfaces.length; i55213++)
 {
-  v_interface = v_resolvedInterfaces[i53685] ;
+  v_interface = v_resolvedInterfaces[i55213] ;
 
 return v_interface.getId();
 
@@ -4935,9 +4935,9 @@ else
 {
 
 Interface_c  v_interface = null;
-for ( int i53686 = 0; i53686 < v_resolvedInterfaces.length; i53686++)
+for ( int i55214 = 0; i55214 < v_resolvedInterfaces.length; i55214++)
 {
-  v_interface = v_resolvedInterfaces[i53686] ;
+  v_interface = v_resolvedInterfaces[i55214] ;
 
 if ( (Interfacepreciselymatches(			    
 v_interface.getId())) )
@@ -4952,9 +4952,9 @@ return v_interface.getId();
 
 }
 
-for ( int i53687 = 0; i53687 < v_resolvedInterfaces.length; i53687++)
+for ( int i55215 = 0; i55215 < v_resolvedInterfaces.length; i55215++)
 {
-  v_interface = v_resolvedInterfaces[i53687] ;
+  v_interface = v_resolvedInterfaces[i55215] ;
 
 return v_interface.getId();
 
@@ -4971,19 +4971,19 @@ return v_interface.getId();
 else
 {
 
-  class Interface_test54296_c implements ClassQueryInterface_c
+  class Interface_test55845_c implements ClassQueryInterface_c
   {
-	Interface_test54296_c( String       p54297 ) {
-		m_p54297 = p54297;
+	Interface_test55845_c( String       p55846 ) {
+		m_p55846 = p55846;
 	}
-	private String       m_p54297;
+	private String       m_p55846;
 	public boolean evaluate (Object candidate)
 	{
 		Interface_c selected = (Interface_c)candidate;
-		return (selected.getName().equals(m_p54297)) ;
+		return (selected.getName().equals(m_p55846)) ;
 	}
   }
-Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test54296_c(v_name));
+Interface_c v_interface = Interface_c.getOneC_IOnR4303(InterfacePackage_c.getManyIP_IPsOnR4304(v_system), new Interface_test55845_c(v_name));
 
 
 if ( (  (v_interface != null)) )
@@ -5078,26 +5078,26 @@ ExecutableProperty_c [] v_eps = ExecutableProperty_c.getManyC_EPsOnR4003(v_inter
 
 
 ExecutableProperty_c  v_ep = null;
-for ( int i53688 = 0; i53688 < v_eps.length; i53688++)
+for ( int i55216 = 0; i55216 < v_eps.length; i55216++)
 {
-  v_ep = v_eps[i53688] ;
+  v_ep = v_eps[i55216] ;
 
 if ( (  (v_provision != null)) )
 {
 
-  class ProvidedExecutableProperty_test54298_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test55847_c implements ClassQueryInterface_c
   {
-	ProvidedExecutableProperty_test54298_c( java.util.UUID         p54299 ) {
-		m_p54299 = p54299;
+	ProvidedExecutableProperty_test55847_c( java.util.UUID         p55848 ) {
+		m_p55848 = p55848;
 	}
-	private java.util.UUID         m_p54299;
+	private java.util.UUID         m_p55848;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c)candidate;
-		return (selected.getExecutableproperty_id().equals(m_p54299)) ;
+		return (selected.getExecutableproperty_id().equals(m_p55848)) ;
 	}
   }
-ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_provision, new ProvidedExecutableProperty_test54298_c(v_ep.getId()));
+ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(v_provision, new ProvidedExecutableProperty_test55847_c(v_ep.getId()));
 
 
 if ( (  (v_pep == null)) )
@@ -5115,19 +5115,19 @@ return false;
 if ( (  (v_requirement != null)) )
 {
 
-  class RequiredExecutableProperty_test54300_c implements ClassQueryInterface_c
+  class RequiredExecutableProperty_test55849_c implements ClassQueryInterface_c
   {
-	RequiredExecutableProperty_test54300_c( java.util.UUID         p54301 ) {
-		m_p54301 = p54301;
+	RequiredExecutableProperty_test55849_c( java.util.UUID         p55850 ) {
+		m_p55850 = p55850;
 	}
-	private java.util.UUID         m_p54301;
+	private java.util.UUID         m_p55850;
 	public boolean evaluate (Object candidate)
 	{
 		RequiredExecutableProperty_c selected = (RequiredExecutableProperty_c)candidate;
-		return (selected.getExecutableproperty_id().equals(m_p54301)) ;
+		return (selected.getExecutableproperty_id().equals(m_p55850)) ;
 	}
   }
-RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_requirement, new RequiredExecutableProperty_test54300_c(v_ep.getId()));
+RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(v_requirement, new RequiredExecutableProperty_test55849_c(v_ep.getId()));
 
 
 if ( (  (v_rep == null)) )
@@ -5173,9 +5173,9 @@ ProvidedOperation_c [] v_providedOperations = ProvidedOperation_c.getManySPR_POs
 
 
 ProvidedOperation_c  v_providedOperation = null;
-for ( int i53689 = 0; i53689 < v_providedOperations.length; i53689++)
+for ( int i55217 = 0; i55217 < v_providedOperations.length; i55217++)
 {
-  v_providedOperation = v_providedOperations[i53689] ;
+  v_providedOperation = v_providedOperations[i55217] ;
 
 ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4503(v_providedOperation);
 
@@ -5218,23 +5218,23 @@ else {
 }
 
 InterfaceOperation_c  v_operation = null;
-for ( int i53690 = 0; i53690 < v_operations.length; i53690++)
+for ( int i55218 = 0; i55218 < v_operations.length; i55218++)
 {
-  v_operation = v_operations[i53690] ;
+  v_operation = v_operations[i55218] ;
 
-  class ProvidedExecutableProperty_test54302_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test55851_c implements ClassQueryInterface_c
   {
-	ProvidedExecutableProperty_test54302_c( java.util.UUID         p54303 ) {
-		m_p54303 = p54303;
+	ProvidedExecutableProperty_test55851_c( java.util.UUID         p55852 ) {
+		m_p55852 = p55852;
 	}
-	private java.util.UUID         m_p54303;
+	private java.util.UUID         m_p55852;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c)candidate;
-		return (selected.getProvision_id().equals(m_p54303)) ;
+		return (selected.getProvision_id().equals(m_p55852)) ;
 	}
   }
-ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(ExecutableProperty_c.getManyC_EPsOnR4004(v_operation), new ProvidedExecutableProperty_test54302_c(v_provision.getProvision_id()));
+ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(ExecutableProperty_c.getManyC_EPsOnR4004(v_operation), new ProvidedExecutableProperty_test55851_c(v_provision.getProvision_id()));
 
 
 if ( (  (v_pep == null)) )
@@ -5291,9 +5291,9 @@ ProvidedSignal_c [] v_providedSignals = ProvidedSignal_c.getManySPR_PSsOnR4503(P
 
 
 ProvidedSignal_c  v_providedSignal = null;
-for ( int i53691 = 0; i53691 < v_providedSignals.length; i53691++)
+for ( int i55219 = 0; i55219 < v_providedSignals.length; i55219++)
 {
-  v_providedSignal = v_providedSignals[i53691] ;
+  v_providedSignal = v_providedSignals[i55219] ;
 
 ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4503(v_providedSignal);
 
@@ -5336,23 +5336,23 @@ else {
 }
 
 InterfaceSignal_c  v_signal = null;
-for ( int i53692 = 0; i53692 < v_signals.length; i53692++)
+for ( int i55220 = 0; i55220 < v_signals.length; i55220++)
 {
-  v_signal = v_signals[i53692] ;
+  v_signal = v_signals[i55220] ;
 
-  class ProvidedExecutableProperty_test54304_c implements ClassQueryInterface_c
+  class ProvidedExecutableProperty_test55853_c implements ClassQueryInterface_c
   {
-	ProvidedExecutableProperty_test54304_c( java.util.UUID         p54305 ) {
-		m_p54305 = p54305;
+	ProvidedExecutableProperty_test55853_c( java.util.UUID         p55854 ) {
+		m_p55854 = p55854;
 	}
-	private java.util.UUID         m_p54305;
+	private java.util.UUID         m_p55854;
 	public boolean evaluate (Object candidate)
 	{
 		ProvidedExecutableProperty_c selected = (ProvidedExecutableProperty_c)candidate;
-		return (selected.getProvision_id().equals(m_p54305)) ;
+		return (selected.getProvision_id().equals(m_p55854)) ;
 	}
   }
-ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(ExecutableProperty_c.getManyC_EPsOnR4004(v_signal), new ProvidedExecutableProperty_test54304_c(v_provision.getProvision_id()));
+ProvidedExecutableProperty_c v_pep = ProvidedExecutableProperty_c.getOneSPR_PEPOnR4501(ExecutableProperty_c.getManyC_EPsOnR4004(v_signal), new ProvidedExecutableProperty_test55853_c(v_provision.getProvision_id()));
 
 
 if ( (  (v_pep == null)) )
@@ -5418,9 +5418,9 @@ RequiredOperation_c [] v_requiredOperations = RequiredOperation_c.getManySPR_ROs
 
 
 RequiredOperation_c  v_requiredOperation = null;
-for ( int i53693 = 0; i53693 < v_requiredOperations.length; i53693++)
+for ( int i55221 = 0; i55221 < v_requiredOperations.length; i55221++)
 {
-  v_requiredOperation = v_requiredOperations[i53693] ;
+  v_requiredOperation = v_requiredOperations[i55221] ;
 
 RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4502(v_requiredOperation);
 
@@ -5463,23 +5463,23 @@ else {
 }
 
 InterfaceOperation_c  v_operation = null;
-for ( int i53694 = 0; i53694 < v_operations.length; i53694++)
+for ( int i55222 = 0; i55222 < v_operations.length; i55222++)
 {
-  v_operation = v_operations[i53694] ;
+  v_operation = v_operations[i55222] ;
 
-  class RequiredExecutableProperty_test54306_c implements ClassQueryInterface_c
+  class RequiredExecutableProperty_test55855_c implements ClassQueryInterface_c
   {
-	RequiredExecutableProperty_test54306_c( java.util.UUID         p54307 ) {
-		m_p54307 = p54307;
+	RequiredExecutableProperty_test55855_c( java.util.UUID         p55856 ) {
+		m_p55856 = p55856;
 	}
-	private java.util.UUID         m_p54307;
+	private java.util.UUID         m_p55856;
 	public boolean evaluate (Object candidate)
 	{
 		RequiredExecutableProperty_c selected = (RequiredExecutableProperty_c)candidate;
-		return (selected.getRequirement_id().equals(m_p54307)) ;
+		return (selected.getRequirement_id().equals(m_p55856)) ;
 	}
   }
-RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(ExecutableProperty_c.getManyC_EPsOnR4004(v_operation), new RequiredExecutableProperty_test54306_c(v_requirement.getRequirement_id()));
+RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(ExecutableProperty_c.getManyC_EPsOnR4004(v_operation), new RequiredExecutableProperty_test55855_c(v_requirement.getRequirement_id()));
 
 
 if ( (  (v_rep == null)) )
@@ -5536,9 +5536,9 @@ RequiredSignal_c [] v_requiredSignals = RequiredSignal_c.getManySPR_RSsOnR4502(R
 
 
 RequiredSignal_c  v_requiredSignal = null;
-for ( int i53695 = 0; i53695 < v_requiredSignals.length; i53695++)
+for ( int i55223 = 0; i55223 < v_requiredSignals.length; i55223++)
 {
-  v_requiredSignal = v_requiredSignals[i53695] ;
+  v_requiredSignal = v_requiredSignals[i55223] ;
 
 RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4502(v_requiredSignal);
 
@@ -5581,23 +5581,23 @@ else {
 }
 
 InterfaceSignal_c  v_signal = null;
-for ( int i53696 = 0; i53696 < v_signals.length; i53696++)
+for ( int i55224 = 0; i55224 < v_signals.length; i55224++)
 {
-  v_signal = v_signals[i53696] ;
+  v_signal = v_signals[i55224] ;
 
-  class RequiredExecutableProperty_test54308_c implements ClassQueryInterface_c
+  class RequiredExecutableProperty_test55857_c implements ClassQueryInterface_c
   {
-	RequiredExecutableProperty_test54308_c( java.util.UUID         p54309 ) {
-		m_p54309 = p54309;
+	RequiredExecutableProperty_test55857_c( java.util.UUID         p55858 ) {
+		m_p55858 = p55858;
 	}
-	private java.util.UUID         m_p54309;
+	private java.util.UUID         m_p55858;
 	public boolean evaluate (Object candidate)
 	{
 		RequiredExecutableProperty_c selected = (RequiredExecutableProperty_c)candidate;
-		return (selected.getRequirement_id().equals(m_p54309)) ;
+		return (selected.getRequirement_id().equals(m_p55858)) ;
 	}
   }
-RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(ExecutableProperty_c.getManyC_EPsOnR4004(v_signal), new RequiredExecutableProperty_test54308_c(v_requirement.getRequirement_id()));
+RequiredExecutableProperty_c v_rep = RequiredExecutableProperty_c.getOneSPR_REPOnR4500(ExecutableProperty_c.getManyC_EPsOnR4004(v_signal), new RequiredExecutableProperty_test55857_c(v_requirement.getRequirement_id()));
 
 
 if ( (  (v_rep == null)) )
@@ -5672,9 +5672,9 @@ ProvidedExecutableProperty_c [] v_peps = ProvidedExecutableProperty_c.getManySPR
 
 
 ProvidedExecutableProperty_c  v_pep = null;
-for ( int i53697 = 0; i53697 < v_peps.length; i53697++)
+for ( int i55225 = 0; i55225 < v_peps.length; i55225++)
 {
-  v_pep = v_peps[i53697] ;
+  v_pep = v_peps[i55225] ;
 
 if (v_pep != null) {
 v_pep.Migrateexecutableproperty() ;
@@ -5699,9 +5699,9 @@ RequiredExecutableProperty_c [] v_reps = RequiredExecutableProperty_c.getManySPR
 
 
 RequiredExecutableProperty_c  v_rep = null;
-for ( int i53698 = 0; i53698 < v_reps.length; i53698++)
+for ( int i55226 = 0; i55226 < v_reps.length; i55226++)
 {
-  v_rep = v_reps[i53698] ;
+  v_rep = v_reps[i55226] ;
 
 if (v_rep != null) {
 v_rep.Migrateexecutableproperty() ;
@@ -5744,9 +5744,9 @@ v_resolvedInterfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_c.getMa
 }
 
 Interface_c  v_interface = null;
-for ( int i53699 = 0; i53699 < v_resolvedInterfaces.length; i53699++)
+for ( int i55227 = 0; i55227 < v_resolvedInterfaces.length; i55227++)
 {
-  v_interface = v_resolvedInterfaces[i53699] ;
+  v_interface = v_resolvedInterfaces[i55227] ;
 
 if ( (v_interface.getId().equals(p_Id)) )
 {
@@ -5773,17 +5773,17 @@ boolean      v_foundMatch = false ;
 
 
 ProvidedExecutableProperty_c  v_pep = null;
-for ( int i53700 = 0; i53700 < v_peps.length; i53700++)
+for ( int i55228 = 0; i55228 < v_peps.length; i55228++)
 {
-  v_pep = v_peps[i53700] ;
+  v_pep = v_peps[i55228] ;
 
 ExecutableProperty_c v_epProxy = ExecutableProperty_c.getOneC_EPOnR4501(v_pep);
 
 
 ExecutableProperty_c  v_ep = null;
-for ( int i53701 = 0; i53701 < v_eps.length; i53701++)
+for ( int i55229 = 0; i55229 < v_eps.length; i55229++)
 {
-  v_ep = v_eps[i53701] ;
+  v_ep = v_eps[i55229] ;
 
 if ( (v_ep.getName().equals(v_epProxy.Getcachedname())) )
 {
@@ -5897,17 +5897,17 @@ boolean      v_foundMatch = false ;
 
 
 RequiredExecutableProperty_c  v_rep = null;
-for ( int i53702 = 0; i53702 < v_reps.length; i53702++)
+for ( int i55230 = 0; i55230 < v_reps.length; i55230++)
 {
-  v_rep = v_reps[i53702] ;
+  v_rep = v_reps[i55230] ;
 
 ExecutableProperty_c v_epProxy = ExecutableProperty_c.getOneC_EPOnR4500(v_rep);
 
 
 ExecutableProperty_c  v_ep = null;
-for ( int i53703 = 0; i53703 < v_eps.length; i53703++)
+for ( int i55231 = 0; i55231 < v_eps.length; i55231++)
 {
-  v_ep = v_eps[i53703] ;
+  v_ep = v_eps[i55231] ;
 
 if ( (v_ep.getName().equals(v_epProxy.Getcachedname())) )
 {
@@ -6227,7 +6227,7 @@ else {
 }
 
 
-  class SearchResultSet_test54310_c implements ClassQueryInterface_c
+  class SearchResultSet_test55859_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6235,16 +6235,16 @@ else {
 		return (selected.getType() == Elementtypeconstants_c.INTERFACE) ;
 	}
   }
-SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test54310_c());
+SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(v_package, new SearchResultSet_test55859_c());
 
 
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_srs)));
 
 
 Interface_c  v_interface = null;
-for ( int i53704 = 0; i53704 < v_interfaces.length; i53704++)
+for ( int i55232 = 0; i55232 < v_interfaces.length; i55232++)
 {
-  v_interface = v_interfaces[i53704] ;
+  v_interface = v_interfaces[i55232] ;
 
 if ( (v_interface.getId().equals(getFormal_interface_id())) )
 {
@@ -6292,7 +6292,7 @@ else {
 }
 
 
-  class ComponentResultSet_test54311_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55860_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6300,16 +6300,16 @@ else {
 		return (selected.getType() == Elementtypeconstants_c.INTERFACE) ;
 	}
   }
-ComponentResultSet_c [] v_crs = ComponentResultSet_c.getManyPE_CRSsOnR8007(v_component, new ComponentResultSet_test54311_c());
+ComponentResultSet_c [] v_crs = ComponentResultSet_c.getManyPE_CRSsOnR8007(v_component, new ComponentResultSet_test55860_c());
 
 
 Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_crs)));
 
 
 Interface_c  v_interface = null;
-for ( int i53705 = 0; i53705 < v_interfaces.length; i53705++)
+for ( int i55233 = 0; i55233 < v_interfaces.length; i55233++)
 {
-  v_interface = v_interfaces[i53705] ;
+  v_interface = v_interfaces[i55233] ;
 
 if ( (v_interface.getId().equals(getFormal_interface_id())) )
 {
@@ -6345,9 +6345,9 @@ InterfacePackage_c [] v_diagrams = InterfacePackage_c.getManyIP_IPsOnR4304(v_sys
 
 
 InterfacePackage_c  v_diagram = null;
-for ( int i53706 = 0; i53706 < v_diagrams.length; i53706++)
+for ( int i55234 = 0; i55234 < v_diagrams.length; i55234++)
 {
-  v_diagram = v_diagrams[i53706] ;
+  v_diagram = v_diagrams[i55234] ;
 
 if ( (Canuseinterfacesinpackage(			    
 v_diagram.getPackage_id())) )
@@ -6357,9 +6357,9 @@ Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(v_diagram);
 
 
 Interface_c  v_interface = null;
-for ( int i53707 = 0; i53707 < v_interfaces.length; i53707++)
+for ( int i55235 = 0; i55235 < v_interfaces.length; i55235++)
 {
-  v_interface = v_interfaces[i53707] ;
+  v_interface = v_interfaces[i55235] ;
 
 if ( (v_interface.getId().equals(getFormal_interface_id())) )
 {

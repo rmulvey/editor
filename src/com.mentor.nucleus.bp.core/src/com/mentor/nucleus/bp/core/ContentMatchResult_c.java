@@ -154,7 +154,8 @@ public class ContentMatchResult_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,8 +171,9 @@ public class ContentMatchResult_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ContentMatchResult_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ContentMatchResult_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ContentMatchResult_c) elem).getId()))
@@ -446,44 +448,44 @@ public class ContentMatchResult_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ContentMatchResult_c_test38964_c implements ClassQueryInterface_c {
-			ContentMatchResult_c_test38964_c(java.util.UUID p38965) {
-				m_p38965 = p38965;
+		class ContentMatchResult_c_test39546_c implements ClassQueryInterface_c {
+			ContentMatchResult_c_test39546_c(java.util.UUID p39547) {
+				m_p39547 = p39547;
 			}
-			private java.util.UUID m_p38965;
+			private java.util.UUID m_p39547;
 			public boolean evaluate(Object candidate) {
 				ContentMatchResult_c selected = (ContentMatchResult_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p38965));
+				retval = (selected.getId().equals(m_p39547));
 				return retval;
 			}
 		}
 
-		ContentMatchResult_c[] objs38963 = ContentMatchResult_c
+		ContentMatchResult_c[] objs39545 = ContentMatchResult_c
 				.ContentMatchResultInstances(modelRoot,
-						new ContentMatchResult_c_test38964_c(getId()));
+						new ContentMatchResult_c_test39546_c(getId()));
 
-		if (((objs38963.length) == 0)) {
+		if (((objs39545.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Content Match Result", //$NON-NLS-1$
 								"Consistency: Object: Content Match Result: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38963.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39545.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Content Match Result: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38963.length), e);
+										+ Integer.toString(objs39545.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38963.length) > 1)) {
+		if (((objs39545.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -491,7 +493,7 @@ public class ContentMatchResult_c extends NonRootModelElement
 								"Content Match Result", //$NON-NLS-1$
 								"Consistency: Object: Content Match Result: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38963.length)
+										+ Integer.toString(objs39545.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -499,7 +501,7 @@ public class ContentMatchResult_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Content Match Result: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38963.length)
+										+ Integer.toString(objs39545.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

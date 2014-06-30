@@ -163,7 +163,7 @@ p_m_obj_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -180,7 +180,7 @@ p_m_obj_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ClassIdentifier_c)elem).getObj_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ClassIdentifier_c)elem).getObj_id())) && this != elem)) {
       	return false;
       }
       if (!getObj_id().equals(((ClassIdentifier_c)elem).getObj_id())) return false;
@@ -868,29 +868,29 @@ public static ClassIdentifier_c [] getManyO_IDsOnR109(ReferredToClassInAssoc_c t
 
 	if (IdentifiesModelClass == null) {          
       // R104
-      ModelClass_c relInst38153 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      ModelClass_c relInst38735 = (ModelClass_c) baseRoot.getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38153 == null) {
-      			relInst38153 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+      		if (relInst38735 == null) {
+      			relInst38735 = (ModelClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
       		}
-			if (relInst38153 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38735 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38153 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
-					if (relInst38153 != null)
+					relInst38735 = (ModelClass_c) roots[i].getInstanceList(ModelClass_c.class).get(new Object[] {m_obj_id});
+					if (relInst38735 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38153 != null )
+      if ( relInst38735 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38153) && !isProxy())) {
-	      relInst38153.relateAcrossR104To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38735) && !isProxy())) {
+	      relInst38735.relateAcrossR104To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1163,57 +1163,57 @@ private static ClassIdentifier_c findClassIdentifierInstance(ModelRoot modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ClassIdentifier_c_test38155_c implements ClassQueryInterface_c
+    class ClassIdentifier_c_test38737_c implements ClassQueryInterface_c
     {
-	  ClassIdentifier_c_test38155_c( int             p38156, java.util.UUID            p38157 ) {
-	       m_p38156 = p38156; 
-m_p38157 = p38157;
+	  ClassIdentifier_c_test38737_c( int             p38738, java.util.UUID            p38739 ) {
+	       m_p38738 = p38738; 
+m_p38739 = p38739;
 	  }
-	  private int              m_p38156; private java.util.UUID             m_p38157; 
+	  private int              m_p38738; private java.util.UUID             m_p38739; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassIdentifier_c selected = (ClassIdentifier_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOid_id() == (m_p38156)) & (selected.getObj_id().equals(m_p38157));
+	      retval = (selected.getOid_id() == (m_p38738)) & (selected.getObj_id().equals(m_p38739));
 	      return retval;
 	  }
     }
 
-    ClassIdentifier_c [] objs38154 = 
-    ClassIdentifier_c.ClassIdentifierInstances(modelRoot, new ClassIdentifier_c_test38155_c(getOid_id(), getObj_id())) ;
+    ClassIdentifier_c [] objs38736 = 
+    ClassIdentifier_c.ClassIdentifierInstances(modelRoot, new ClassIdentifier_c_test38737_c(getOid_id(), getObj_id())) ;
 
-    if ( (  (objs38154.length) == 0) )
+    if ( (  (objs38736.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Class Identifier", //$NON-NLS-1$
            "Consistency: Object: Class Identifier: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38154.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38736.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Class Identifier: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38154.length )  , e); 
+          + Integer.toString( objs38736.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38154.length) > 1) )
+    if ( (  (objs38736.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Class Identifier", //$NON-NLS-1$
            "Consistency: Object: Class Identifier: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38154.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38736.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Class Identifier: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38154.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38736.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1221,40 +1221,40 @@ m_p38157 = p38157;
 
           // Class Identifier is a referring class in association: rel.Numb = 104
           // The participating class is: Model Class
-    class ModelClass_c_test38161_c implements ClassQueryInterface_c
+    class ModelClass_c_test38743_c implements ClassQueryInterface_c
     {
-	  ModelClass_c_test38161_c( java.util.UUID            p38162 ) {
-	  m_p38162 = p38162;
+	  ModelClass_c_test38743_c( java.util.UUID            p38744 ) {
+	  m_p38744 = p38744;
 	  }
-	  private java.util.UUID             m_p38162; 
+	  private java.util.UUID             m_p38744; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ModelClass_c selected = (ModelClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getObj_id().equals(m_p38162));
+	      retval = (selected.getObj_id().equals(m_p38744));
 	      return retval;
 	  }
     }
 
-    ModelClass_c [] objs38160 = 
-    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test38161_c(getObj_id())) ;
+    ModelClass_c [] objs38742 = 
+    ModelClass_c.ModelClassInstances(modelRoot, new ModelClass_c_test38743_c(getObj_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs38160.length) != 1) )
+    if ( (  (objs38742.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Class Identifier", //$NON-NLS-1$
            "Consistency: Object: Class Identifier: Association: 104: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38160.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38742.length )  + " Obj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Class Identifier: Association: 104: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38160.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38742.length )  + " Obj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1284,9 +1284,9 @@ ReferredToClassInAssoc_c [] v_rtos = ReferredToClassInAssoc_c.getManyR_RTOsOnR10
 
 
 ReferredToClassInAssoc_c  v_rto = null;
-for ( int i36556 = 0; i36556 < v_rtos.length; i36556++)
+for ( int i37125 = 0; i37125 < v_rtos.length; i37125++)
 {
-  v_rto = v_rtos[i36556] ;
+  v_rto = v_rtos[i37125] ;
 
 if (v_rto != null) {
 v_rto.Dispose() ;
@@ -1305,9 +1305,9 @@ ClassIdentifierAttribute_c [] v_oidas = ClassIdentifierAttribute_c.getManyO_OIDA
 
 
 ClassIdentifierAttribute_c  v_oida = null;
-for ( int i36557 = 0; i36557 < v_oidas.length; i36557++)
+for ( int i37126 = 0; i37126 < v_oidas.length; i37126++)
 {
-  v_oida = v_oidas[i36557] ;
+  v_oida = v_oidas[i37126] ;
 
 if (v_oida != null) {
 v_oida.Dispose() ;
@@ -1342,7 +1342,7 @@ getOid_id() + 1);
   public static boolean      Hasattributes(ModelRoot modelRoot,final java.util.UUID         p_Obj_id,final int          p_Oid_id)
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Class Identifier", " Operation entered: ClassIdentifier::Hasattributes") ; 
-  class ClassIdentifier_test36780_c implements ClassQueryInterface_c
+  class ClassIdentifier_test37362_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1350,7 +1350,7 @@ getOid_id() + 1);
 		return selected.getObj_id().equals(p_Obj_id) && selected.getOid_id() == p_Oid_id ;
 	}
   }
-ClassIdentifier_c v_oid = ClassIdentifier_c.ClassIdentifierInstance(modelRoot, new ClassIdentifier_test36780_c()) ;
+ClassIdentifier_c v_oid = ClassIdentifier_c.ClassIdentifierInstance(modelRoot, new ClassIdentifier_test37362_c()) ;
 
 
 ClassIdentifierAttribute_c v_oida = ClassIdentifierAttribute_c.getOneO_OIDAOnR105(v_oid);

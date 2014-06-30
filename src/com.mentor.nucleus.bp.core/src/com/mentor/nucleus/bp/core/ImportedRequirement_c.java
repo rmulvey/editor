@@ -161,7 +161,8 @@ public class ImportedRequirement_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -177,9 +178,9 @@ public class ImportedRequirement_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ImportedRequirement_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ImportedRequirement_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ImportedRequirement_c) elem).getId()))
@@ -680,17 +681,17 @@ public class ImportedRequirement_c extends NonRootModelElement
 
 		if (ProvidesSatisfactionThroughSatisfaction == null) {
 			// R4706
-			Satisfaction_c relInst55687 = (Satisfaction_c) baseRoot
+			Satisfaction_c relInst57236 = (Satisfaction_c) baseRoot
 					.getInstanceList(Satisfaction_c.class).get(
 							new Object[]{m_satisfaction_element_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55687 == null) {
-				relInst55687 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
+			if (relInst57236 == null) {
+				relInst57236 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Satisfaction_c.class)
 						.get(new Object[]{m_satisfaction_element_id});
 			}
-			if (relInst55687 == null && searchAllRoots
+			if (relInst57236 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -698,51 +699,51 @@ public class ImportedRequirement_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55687 = (Satisfaction_c) roots[i].getInstanceList(
+					relInst57236 = (Satisfaction_c) roots[i].getInstanceList(
 							Satisfaction_c.class).get(
 							new Object[]{m_satisfaction_element_id});
-					if (relInst55687 != null)
+					if (relInst57236 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55687 != null) {
+			if (relInst57236 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55687) && !isProxy())) {
-					relInst55687.relateAcrossR4706To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57236) && !isProxy())) {
+					relInst57236.relateAcrossR4706To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R4703
-		ImportedReference_c relInst55688 = (ImportedReference_c) baseRoot
+		ImportedReference_c relInst57237 = (ImportedReference_c) baseRoot
 				.getInstanceList(ImportedReference_c.class).get(
 						new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55688 == null) {
-			relInst55688 = (ImportedReference_c) Ooaofooa.getDefaultInstance()
+		if (relInst57237 == null) {
+			relInst57237 = (ImportedReference_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ImportedReference_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst55688 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57237 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55688 = (ImportedReference_c) roots[i].getInstanceList(
+				relInst57237 = (ImportedReference_c) roots[i].getInstanceList(
 						ImportedReference_c.class).get(new Object[]{m_id});
-				if (relInst55688 != null)
+				if (relInst57237 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55688 != null) {
+		if (relInst57237 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55688) && !isProxy())) {
-				relInst55688.relateAcrossR4703To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57237) && !isProxy())) {
+				relInst57237.relateAcrossR4703To(this, notifyChanges);
 			}
 		}
 
@@ -1092,46 +1093,46 @@ public class ImportedRequirement_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ImportedRequirement_c_test55690_c
+		class ImportedRequirement_c_test57239_c
 				implements
 					ClassQueryInterface_c {
-			ImportedRequirement_c_test55690_c(java.util.UUID p55691) {
-				m_p55691 = p55691;
+			ImportedRequirement_c_test57239_c(java.util.UUID p57240) {
+				m_p57240 = p57240;
 			}
-			private java.util.UUID m_p55691;
+			private java.util.UUID m_p57240;
 			public boolean evaluate(Object candidate) {
 				ImportedRequirement_c selected = (ImportedRequirement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55691));
+				retval = (selected.getId().equals(m_p57240));
 				return retval;
 			}
 		}
 
-		ImportedRequirement_c[] objs55689 = ImportedRequirement_c
+		ImportedRequirement_c[] objs57238 = ImportedRequirement_c
 				.ImportedRequirementInstances(modelRoot,
-						new ImportedRequirement_c_test55690_c(getId()));
+						new ImportedRequirement_c_test57239_c(getId()));
 
-		if (((objs55689.length) == 0)) {
+		if (((objs57238.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Imported Requirement", //$NON-NLS-1$
 								"Consistency: Object: Imported Requirement: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55689.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57238.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Imported Requirement: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55689.length), e);
+										+ Integer.toString(objs57238.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55689.length) > 1)) {
+		if (((objs57238.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1139,7 +1140,7 @@ public class ImportedRequirement_c extends NonRootModelElement
 								"Imported Requirement", //$NON-NLS-1$
 								"Consistency: Object: Imported Requirement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55689.length)
+										+ Integer.toString(objs57238.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1147,7 +1148,7 @@ public class ImportedRequirement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Imported Requirement: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55689.length)
+										+ Integer.toString(objs57238.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1156,38 +1157,38 @@ public class ImportedRequirement_c extends NonRootModelElement
 
 		// Imported Requirement is a subtype in association: rel.Numb = 4703
 		// The supertype class is: Imported Reference
-		class ImportedReference_c_test55695_c implements ClassQueryInterface_c {
-			ImportedReference_c_test55695_c(java.util.UUID p55696) {
-				m_p55696 = p55696;
+		class ImportedReference_c_test57244_c implements ClassQueryInterface_c {
+			ImportedReference_c_test57244_c(java.util.UUID p57245) {
+				m_p57245 = p57245;
 			}
-			private java.util.UUID m_p55696;
+			private java.util.UUID m_p57245;
 			public boolean evaluate(Object candidate) {
 				ImportedReference_c selected = (ImportedReference_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55696));
+				retval = (selected.getId().equals(m_p57245));
 				return retval;
 			}
 		}
 
-		ImportedReference_c[] objs55694 = ImportedReference_c
+		ImportedReference_c[] objs57243 = ImportedReference_c
 				.ImportedReferenceInstances(modelRoot,
-						new ImportedReference_c_test55695_c(getId()));
+						new ImportedReference_c_test57244_c(getId()));
 
-		if (((objs55694.length) != 1)) {
+		if (((objs57243.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Imported Requirement", //$NON-NLS-1$
 								"Consistency: Object: Imported Requirement: Association: 4703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55694.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57243.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Imported Requirement: Association: 4703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55694.length), e);
+										+ Integer.toString(objs57243.length), e);
 			}
 			retval = false;
 
@@ -1195,24 +1196,24 @@ public class ImportedRequirement_c extends NonRootModelElement
 
 		// Imported Requirement is a referring class in association: rel.Numb = 4706
 		// The participating class is: Satisfaction
-		class Satisfaction_c_test55698_c implements ClassQueryInterface_c {
-			Satisfaction_c_test55698_c(java.util.UUID p55699) {
-				m_p55699 = p55699;
+		class Satisfaction_c_test57247_c implements ClassQueryInterface_c {
+			Satisfaction_c_test57247_c(java.util.UUID p57248) {
+				m_p57248 = p57248;
 			}
-			private java.util.UUID m_p55699;
+			private java.util.UUID m_p57248;
 			public boolean evaluate(Object candidate) {
 				Satisfaction_c selected = (Satisfaction_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55699));
+				retval = (selected.getId().equals(m_p57248));
 				return retval;
 			}
 		}
 
-		Satisfaction_c[] objs55697 = Satisfaction_c.SatisfactionInstances(
-				modelRoot, new Satisfaction_c_test55698_c(
+		Satisfaction_c[] objs57246 = Satisfaction_c.SatisfactionInstances(
+				modelRoot, new Satisfaction_c_test57247_c(
 						getSatisfaction_element_id()));
 
-		if (((objs55697.length) > 1)) {
+		if (((objs57246.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1220,7 +1221,7 @@ public class ImportedRequirement_c extends NonRootModelElement
 								"Imported Requirement", //$NON-NLS-1$
 								"Consistency: Object: Imported Requirement: Association: 4706: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55697.length)
+										+ Integer.toString(objs57246.length)
 										+ " Satisfaction_Element_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1228,7 +1229,7 @@ public class ImportedRequirement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Imported Requirement: Association: 4706: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55697.length)
+										+ Integer.toString(objs57246.length)
 										+ " Satisfaction_Element_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

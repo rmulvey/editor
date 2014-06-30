@@ -155,7 +155,8 @@ public class ClassAsSubtype_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,8 +172,9 @@ public class ClassAsSubtype_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSubtype_c) elem).getOir_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSubtype_c) elem).getOir_id())) && this != elem)) {
 			return false;
 		}
 		if (!getOir_id().equals(((ClassAsSubtype_c) elem).getOir_id()))
@@ -180,8 +182,9 @@ public class ClassAsSubtype_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSubtype_c) elem).getObj_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSubtype_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id().equals(((ClassAsSubtype_c) elem).getObj_id()))
@@ -189,8 +192,9 @@ public class ClassAsSubtype_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassAsSubtype_c) elem).getRel_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassAsSubtype_c) elem).getRel_id())) && this != elem)) {
 			return false;
 		}
 		if (!getRel_id().equals(((ClassAsSubtype_c) elem).getRel_id()))
@@ -725,18 +729,18 @@ public class ClassAsSubtype_c extends NonRootModelElement
 
 		if (IsRelatedToSupertypeViaSubtypeSupertypeAssociation == null) {
 			// R213
-			SubtypeSupertypeAssociation_c relInst56745 = (SubtypeSupertypeAssociation_c) baseRoot
+			SubtypeSupertypeAssociation_c relInst58294 = (SubtypeSupertypeAssociation_c) baseRoot
 					.getInstanceList(SubtypeSupertypeAssociation_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56745 == null) {
-				relInst56745 = (SubtypeSupertypeAssociation_c) Ooaofooa
+			if (relInst58294 == null) {
+				relInst58294 = (SubtypeSupertypeAssociation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(SubtypeSupertypeAssociation_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst56745 == null && searchAllRoots
+			if (relInst58294 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -744,54 +748,54 @@ public class ClassAsSubtype_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56745 = (SubtypeSupertypeAssociation_c) roots[i]
+					relInst58294 = (SubtypeSupertypeAssociation_c) roots[i]
 							.getInstanceList(
 									SubtypeSupertypeAssociation_c.class).get(
 									new Object[]{m_rel_id});
-					if (relInst56745 != null)
+					if (relInst58294 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56745 != null) {
+			if (relInst58294 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56745) && !isProxy())) {
-					relInst56745.relateAcrossR213To(this, notifyChanges);
+						|| (inSameComponent(this, relInst58294) && !isProxy())) {
+					relInst58294.relateAcrossR213To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R205
-		ReferringClassInAssoc_c relInst56746 = (ReferringClassInAssoc_c) baseRoot
+		ReferringClassInAssoc_c relInst58295 = (ReferringClassInAssoc_c) baseRoot
 				.getInstanceList(ReferringClassInAssoc_c.class).get(
 						new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56746 == null) {
-			relInst56746 = (ReferringClassInAssoc_c) Ooaofooa
+		if (relInst58295 == null) {
+			relInst58295 = (ReferringClassInAssoc_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(ReferringClassInAssoc_c.class)
 					.get(new Object[]{m_oir_id, m_obj_id, m_rel_id});
 		}
-		if (relInst56746 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58295 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56746 = (ReferringClassInAssoc_c) roots[i]
+				relInst58295 = (ReferringClassInAssoc_c) roots[i]
 						.getInstanceList(ReferringClassInAssoc_c.class).get(
 								new Object[]{m_oir_id, m_obj_id, m_rel_id});
-				if (relInst56746 != null)
+				if (relInst58295 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56746 != null) {
+		if (relInst58295 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56746) && !isProxy())) {
-				relInst56746.relateAcrossR205To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58295) && !isProxy())) {
+				relInst58295.relateAcrossR205To(this, notifyChanges);
 			}
 		}
 
@@ -1135,51 +1139,51 @@ public class ClassAsSubtype_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ClassAsSubtype_c_test56748_c implements ClassQueryInterface_c {
-			ClassAsSubtype_c_test56748_c(java.util.UUID p56749,
-					java.util.UUID p56750, java.util.UUID p56751) {
-				m_p56749 = p56749;
-				m_p56750 = p56750;
-				m_p56751 = p56751;
+		class ClassAsSubtype_c_test58297_c implements ClassQueryInterface_c {
+			ClassAsSubtype_c_test58297_c(java.util.UUID p58298,
+					java.util.UUID p58299, java.util.UUID p58300) {
+				m_p58298 = p58298;
+				m_p58299 = p58299;
+				m_p58300 = p58300;
 			}
-			private java.util.UUID m_p56749;
-			private java.util.UUID m_p56750;
-			private java.util.UUID m_p56751;
+			private java.util.UUID m_p58298;
+			private java.util.UUID m_p58299;
+			private java.util.UUID m_p58300;
 			public boolean evaluate(Object candidate) {
 				ClassAsSubtype_c selected = (ClassAsSubtype_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56749))
-						& (selected.getObj_id().equals(m_p56750))
-						& (selected.getRel_id().equals(m_p56751));
+				retval = (selected.getOir_id().equals(m_p58298))
+						& (selected.getObj_id().equals(m_p58299))
+						& (selected.getRel_id().equals(m_p58300));
 				return retval;
 			}
 		}
 
-		ClassAsSubtype_c[] objs56747 = ClassAsSubtype_c
+		ClassAsSubtype_c[] objs58296 = ClassAsSubtype_c
 				.ClassAsSubtypeInstances(modelRoot,
-						new ClassAsSubtype_c_test56748_c(getOir_id(),
+						new ClassAsSubtype_c_test58297_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56747.length) == 0)) {
+		if (((objs58296.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class As Subtype", //$NON-NLS-1$
 								"Consistency: Object: Class As Subtype: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56747.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58296.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Class As Subtype: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56747.length), e);
+								+ Integer.toString(objs58296.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56747.length) > 1)) {
+		if (((objs58296.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1187,7 +1191,7 @@ public class ClassAsSubtype_c extends NonRootModelElement
 								"Class As Subtype", //$NON-NLS-1$
 								"Consistency: Object: Class As Subtype: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56747.length)
+										+ Integer.toString(objs58296.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1195,7 +1199,7 @@ public class ClassAsSubtype_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Subtype: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56747.length)
+										+ Integer.toString(objs58296.length)
 										+ " OIR_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable" + " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1204,48 +1208,48 @@ public class ClassAsSubtype_c extends NonRootModelElement
 
 		// Class As Subtype is a subtype in association: rel.Numb = 205
 		// The supertype class is: Referring Class In Assoc
-		class ReferringClassInAssoc_c_test56755_c
+		class ReferringClassInAssoc_c_test58304_c
 				implements
 					ClassQueryInterface_c {
-			ReferringClassInAssoc_c_test56755_c(java.util.UUID p56756,
-					java.util.UUID p56757, java.util.UUID p56758) {
-				m_p56756 = p56756;
-				m_p56757 = p56757;
-				m_p56758 = p56758;
+			ReferringClassInAssoc_c_test58304_c(java.util.UUID p58305,
+					java.util.UUID p58306, java.util.UUID p58307) {
+				m_p58305 = p58305;
+				m_p58306 = p58306;
+				m_p58307 = p58307;
 			}
-			private java.util.UUID m_p56756;
-			private java.util.UUID m_p56757;
-			private java.util.UUID m_p56758;
+			private java.util.UUID m_p58305;
+			private java.util.UUID m_p58306;
+			private java.util.UUID m_p58307;
 			public boolean evaluate(Object candidate) {
 				ReferringClassInAssoc_c selected = (ReferringClassInAssoc_c) candidate;
 				boolean retval = false;
-				retval = (selected.getOir_id().equals(m_p56756))
-						& (selected.getObj_id().equals(m_p56757))
-						& (selected.getRel_id().equals(m_p56758));
+				retval = (selected.getOir_id().equals(m_p58305))
+						& (selected.getObj_id().equals(m_p58306))
+						& (selected.getRel_id().equals(m_p58307));
 				return retval;
 			}
 		}
 
-		ReferringClassInAssoc_c[] objs56754 = ReferringClassInAssoc_c
+		ReferringClassInAssoc_c[] objs58303 = ReferringClassInAssoc_c
 				.ReferringClassInAssocInstances(modelRoot,
-						new ReferringClassInAssoc_c_test56755_c(getOir_id(),
+						new ReferringClassInAssoc_c_test58304_c(getOir_id(),
 								getObj_id(), getRel_id()));
 
-		if (((objs56754.length) != 1)) {
+		if (((objs58303.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class As Subtype", //$NON-NLS-1$
 								"Consistency: Object: Class As Subtype: Association: 205: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56754.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58303.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class As Subtype: Association: 205: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56754.length), e);
+										+ Integer.toString(objs58303.length), e);
 			}
 			retval = false;
 
@@ -1253,29 +1257,29 @@ public class ClassAsSubtype_c extends NonRootModelElement
 
 		// Class As Subtype is a referring class in association: rel.Numb = 213
 		// The participating class is: Subtype Supertype Association
-		class SubtypeSupertypeAssociation_c_test56760_c
+		class SubtypeSupertypeAssociation_c_test58309_c
 				implements
 					ClassQueryInterface_c {
-			SubtypeSupertypeAssociation_c_test56760_c(java.util.UUID p56761) {
-				m_p56761 = p56761;
+			SubtypeSupertypeAssociation_c_test58309_c(java.util.UUID p58310) {
+				m_p58310 = p58310;
 			}
-			private java.util.UUID m_p56761;
+			private java.util.UUID m_p58310;
 			public boolean evaluate(Object candidate) {
 				SubtypeSupertypeAssociation_c selected = (SubtypeSupertypeAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56761));
+				retval = (selected.getRel_id().equals(m_p58310));
 				return retval;
 			}
 		}
 
-		SubtypeSupertypeAssociation_c[] objs56759 = SubtypeSupertypeAssociation_c
+		SubtypeSupertypeAssociation_c[] objs58308 = SubtypeSupertypeAssociation_c
 				.SubtypeSupertypeAssociationInstances(modelRoot,
-						new SubtypeSupertypeAssociation_c_test56760_c(
+						new SubtypeSupertypeAssociation_c_test58309_c(
 								getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56759.length) != 1)) {
+		if (((objs58308.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1283,7 +1287,7 @@ public class ClassAsSubtype_c extends NonRootModelElement
 								"Class As Subtype", //$NON-NLS-1$
 								"Consistency: Object: Class As Subtype: Association: 213: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56759.length)
+										+ Integer.toString(objs58308.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1291,7 +1295,7 @@ public class ClassAsSubtype_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class As Subtype: Association: 213: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56759.length)
+										+ Integer.toString(objs58308.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

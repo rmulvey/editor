@@ -184,7 +184,7 @@ p_m_externalentitykeyletterscolumn
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -200,7 +200,7 @@ p_m_externalentitykeyletterscolumn
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((BridgeValue_c)elem).getValue_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((BridgeValue_c)elem).getValue_id())) && this != elem)) {
       	return false;
       }
       if (!getValue_id().equals(((BridgeValue_c)elem).getValue_id())) return false;
@@ -834,58 +834,58 @@ public static BridgeValue_c [] getManyV_BRVsOnR810(ActualParameter_c target, boo
         ModelRoot baseRoot = modelRoot;
 
       // R801
-      Value_c relInst37689 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst38271 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37689 == null) {
-      			relInst37689 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst38271 == null) {
+      			relInst38271 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst37689 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38271 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37689 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst37689 != null)
+					relInst38271 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst38271 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37689 != null )
+      if ( relInst38271 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37689) && !isProxy())) {
-	      relInst37689.relateAcrossR801To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38271) && !isProxy())) {
+	      relInst38271.relateAcrossR801To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (Bridge == null) {          
       // R828
-      Bridge_c relInst37690 = (Bridge_c) baseRoot.getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
+      Bridge_c relInst38272 = (Bridge_c) baseRoot.getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37690 == null) {
-      			relInst37690 = (Bridge_c) Ooaofooa.getDefaultInstance().getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
+      		if (relInst38272 == null) {
+      			relInst38272 = (Bridge_c) Ooaofooa.getDefaultInstance().getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
       		}
-			if (relInst37690 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38272 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37690 = (Bridge_c) roots[i].getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
-					if (relInst37690 != null)
+					relInst38272 = (Bridge_c) roots[i].getInstanceList(Bridge_c.class).get(new Object[] {m_brg_id});
+					if (relInst38272 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37690 != null )
+      if ( relInst38272 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37690) && !isProxy())) {
-	      relInst37690.relateAcrossR828To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38272) && !isProxy())) {
+	      relInst38272.relateAcrossR828To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1163,56 +1163,56 @@ private static BridgeValue_c findBridgeValueInstance(ModelRoot modelRoot, ClassQ
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class BridgeValue_c_test37692_c implements ClassQueryInterface_c
+    class BridgeValue_c_test38274_c implements ClassQueryInterface_c
     {
-	  BridgeValue_c_test37692_c( java.util.UUID            p37693 ) {
-	  m_p37693 = p37693;
+	  BridgeValue_c_test38274_c( java.util.UUID            p38275 ) {
+	  m_p38275 = p38275;
 	  }
-	  private java.util.UUID             m_p37693; 
+	  private java.util.UUID             m_p38275; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      BridgeValue_c selected = (BridgeValue_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37693));
+	      retval = (selected.getValue_id().equals(m_p38275));
 	      return retval;
 	  }
     }
 
-    BridgeValue_c [] objs37691 = 
-    BridgeValue_c.BridgeValueInstances(modelRoot, new BridgeValue_c_test37692_c(getValue_id())) ;
+    BridgeValue_c [] objs38273 = 
+    BridgeValue_c.BridgeValueInstances(modelRoot, new BridgeValue_c_test38274_c(getValue_id())) ;
 
-    if ( (  (objs37691.length) == 0) )
+    if ( (  (objs38273.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge Value", //$NON-NLS-1$
            "Consistency: Object: Bridge Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37691.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38273.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37691.length )  , e); 
+          + Integer.toString( objs38273.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37691.length) > 1) )
+    if ( (  (objs38273.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge Value", //$NON-NLS-1$
            "Consistency: Object: Bridge Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37691.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38273.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37691.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38273.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1220,37 +1220,37 @@ private static BridgeValue_c findBridgeValueInstance(ModelRoot modelRoot, ClassQ
 
           // Bridge Value is a subtype in association: rel.Numb = 801
           // The supertype class is: Value
-    class Value_c_test37697_c implements ClassQueryInterface_c
+    class Value_c_test38279_c implements ClassQueryInterface_c
     {
-	  Value_c_test37697_c( java.util.UUID            p37698 ) {
-	  m_p37698 = p37698;
+	  Value_c_test38279_c( java.util.UUID            p38280 ) {
+	  m_p38280 = p38280;
 	  }
-	  private java.util.UUID             m_p37698; 
+	  private java.util.UUID             m_p38280; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37698));
+	      retval = (selected.getValue_id().equals(m_p38280));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37696 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37697_c(getValue_id())) ;
+    Value_c [] objs38278 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38279_c(getValue_id())) ;
 
-    if ( (  (objs37696.length) != 1) )
+    if ( (  (objs38278.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge Value", //$NON-NLS-1$
            "Consistency: Object: Bridge Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37696.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38278.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37696.length )  , e); 
+          + Integer.toString( objs38278.length )  , e); 
       }
       retval = false;
 
@@ -1258,40 +1258,40 @@ private static BridgeValue_c findBridgeValueInstance(ModelRoot modelRoot, ClassQ
 
           // Bridge Value is a referring class in association: rel.Numb = 828
           // The participating class is: Bridge
-    class Bridge_c_test37700_c implements ClassQueryInterface_c
+    class Bridge_c_test38282_c implements ClassQueryInterface_c
     {
-	  Bridge_c_test37700_c( java.util.UUID            p37701 ) {
-	  m_p37701 = p37701;
+	  Bridge_c_test38282_c( java.util.UUID            p38283 ) {
+	  m_p38283 = p38283;
 	  }
-	  private java.util.UUID             m_p37701; 
+	  private java.util.UUID             m_p38283; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Bridge_c selected = (Bridge_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBrg_id().equals(m_p37701));
+	      retval = (selected.getBrg_id().equals(m_p38283));
 	      return retval;
 	  }
     }
 
-    Bridge_c [] objs37699 = 
-    Bridge_c.BridgeInstances(modelRoot, new Bridge_c_test37700_c(getBrg_id())) ;
+    Bridge_c [] objs38281 = 
+    Bridge_c.BridgeInstances(modelRoot, new Bridge_c_test38282_c(getBrg_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37699.length) != 1) )
+    if ( (  (objs38281.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Bridge Value", //$NON-NLS-1$
            "Consistency: Object: Bridge Value: Association: 828: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37699.length )  + " Brg_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38281.length )  + " Brg_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Bridge Value: Association: 828: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37699.length )  + " Brg_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38281.length )  + " Brg_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1324,9 +1324,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR810(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36502 = 0; i36502 < v_parm_set.length; i36502++)
+for ( int i37050 = 0; i37050 < v_parm_set.length; i37050++)
 {
-  v_parm = v_parm_set[i36502] ;
+  v_parm = v_parm_set[i37050] ;
 
 this.unrelateAcrossR810From(v_parm);
 
@@ -1359,7 +1359,7 @@ delete() ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Bridge Value", " Operation entered: BridgeValue::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

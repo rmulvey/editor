@@ -147,7 +147,8 @@ public class BodyInElement_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class BodyInElement_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID
-				.equals(((BodyInElement_c) elem).getAction_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID
+						.equals(((BodyInElement_c) elem).getAction_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAction_id().equals(((BodyInElement_c) elem).getAction_id()))
@@ -173,9 +174,9 @@ public class BodyInElement_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
-				.equals(((BodyInElement_c) elem).getElement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
+						.equals(((BodyInElement_c) elem).getElement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getElement_id().equals(((BodyInElement_c) elem).getElement_id()))
@@ -642,65 +643,65 @@ public class BodyInElement_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R640
-		Body_c relInst56451 = (Body_c) baseRoot.getInstanceList(Body_c.class)
+		Body_c relInst58000 = (Body_c) baseRoot.getInstanceList(Body_c.class)
 				.get(new Object[]{m_action_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56451 == null) {
-			relInst56451 = (Body_c) Ooaofooa.getDefaultInstance()
+		if (relInst58000 == null) {
+			relInst58000 = (Body_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Body_c.class)
 					.get(new Object[]{m_action_id});
 		}
-		if (relInst56451 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58000 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56451 = (Body_c) roots[i].getInstanceList(Body_c.class)
+				relInst58000 = (Body_c) roots[i].getInstanceList(Body_c.class)
 						.get(new Object[]{m_action_id});
-				if (relInst56451 != null)
+				if (relInst58000 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56451 != null) {
+		if (relInst58000 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56451) && !isProxy())) {
-				relInst56451.relateAcrossR640To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58000) && !isProxy())) {
+				relInst58000.relateAcrossR640To(this, notifyChanges);
 			}
 		}
 
-		PackageableElement_c relInst56452 = (PackageableElement_c) baseRoot
+		PackageableElement_c relInst58001 = (PackageableElement_c) baseRoot
 				.getInstanceList(PackageableElement_c.class).get(
 						new Object[]{m_element_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56452 == null) {
-			relInst56452 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
+		if (relInst58001 == null) {
+			relInst58001 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(PackageableElement_c.class)
 					.get(new Object[]{m_element_id});
 		}
-		if (relInst56452 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58001 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56452 = (PackageableElement_c) roots[i].getInstanceList(
+				relInst58001 = (PackageableElement_c) roots[i].getInstanceList(
 						PackageableElement_c.class).get(
 						new Object[]{m_element_id});
-				if (relInst56452 != null)
+				if (relInst58001 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56452 != null) {
+		if (relInst58001 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56452) && !isProxy())) {
-				relInst56452.relateAcrossR640To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58001) && !isProxy())) {
+				relInst58001.relateAcrossR640To(this, notifyChanges);
 			}
 		}
 
@@ -920,47 +921,47 @@ public class BodyInElement_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class BodyInElement_c_test56454_c implements ClassQueryInterface_c {
-			BodyInElement_c_test56454_c(java.util.UUID p56455,
-					java.util.UUID p56456) {
-				m_p56455 = p56455;
-				m_p56456 = p56456;
+		class BodyInElement_c_test58003_c implements ClassQueryInterface_c {
+			BodyInElement_c_test58003_c(java.util.UUID p58004,
+					java.util.UUID p58005) {
+				m_p58004 = p58004;
+				m_p58005 = p58005;
 			}
-			private java.util.UUID m_p56455;
-			private java.util.UUID m_p56456;
+			private java.util.UUID m_p58004;
+			private java.util.UUID m_p58005;
 			public boolean evaluate(Object candidate) {
 				BodyInElement_c selected = (BodyInElement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAction_id().equals(m_p56455))
-						& (selected.getElement_id().equals(m_p56456));
+				retval = (selected.getAction_id().equals(m_p58004))
+						& (selected.getElement_id().equals(m_p58005));
 				return retval;
 			}
 		}
 
-		BodyInElement_c[] objs56453 = BodyInElement_c.BodyInElementInstances(
-				modelRoot, new BodyInElement_c_test56454_c(getAction_id(),
+		BodyInElement_c[] objs58002 = BodyInElement_c.BodyInElementInstances(
+				modelRoot, new BodyInElement_c_test58003_c(getAction_id(),
 						getElement_id()));
 
-		if (((objs56453.length) == 0)) {
+		if (((objs58002.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Body in Element", //$NON-NLS-1$
 								"Consistency: Object: Body in Element: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56453.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58002.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Body in Element: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56453.length), e);
+								+ Integer.toString(objs58002.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56453.length) > 1)) {
+		if (((objs58002.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -968,7 +969,7 @@ public class BodyInElement_c extends NonRootModelElement
 								"Body in Element", //$NON-NLS-1$
 								"Consistency: Object: Body in Element: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56453.length)
+										+ Integer.toString(objs58002.length)
 										+ " Action_ID: " + "Not Printable" + " Element_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -976,7 +977,7 @@ public class BodyInElement_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Body in Element: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56453.length)
+										+ Integer.toString(objs58002.length)
 										+ " Action_ID: " + "Not Printable" + " Element_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -986,38 +987,38 @@ public class BodyInElement_c extends NonRootModelElement
 		// Body in Element is a link class in association: rel.Numb = 640
 		// Other side
 		// The other side class in the association is: Packageable Element
-		class PackageableElement_c_test56460_c implements ClassQueryInterface_c {
-			PackageableElement_c_test56460_c(java.util.UUID p56461) {
-				m_p56461 = p56461;
+		class PackageableElement_c_test58009_c implements ClassQueryInterface_c {
+			PackageableElement_c_test58009_c(java.util.UUID p58010) {
+				m_p58010 = p58010;
 			}
-			private java.util.UUID m_p56461;
+			private java.util.UUID m_p58010;
 			public boolean evaluate(Object candidate) {
 				PackageableElement_c selected = (PackageableElement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getElement_id().equals(m_p56461));
+				retval = (selected.getElement_id().equals(m_p58010));
 				return retval;
 			}
 		}
 
-		PackageableElement_c[] objs56459 = PackageableElement_c
+		PackageableElement_c[] objs58008 = PackageableElement_c
 				.PackageableElementInstances(modelRoot,
-						new PackageableElement_c_test56460_c(getElement_id()));
+						new PackageableElement_c_test58009_c(getElement_id()));
 
-		if (((objs56459.length) > 1)) {
+		if (((objs58008.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Body in Element", //$NON-NLS-1$
 								"Consistency: Object: Body in Element: Association: 640: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56459.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58008.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Body in Element: Association: 640: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56459.length), e);
+										+ Integer.toString(objs58008.length), e);
 			}
 			retval = false;
 

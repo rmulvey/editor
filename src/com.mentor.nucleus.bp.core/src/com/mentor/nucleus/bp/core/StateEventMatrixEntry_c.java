@@ -163,7 +163,8 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -179,9 +180,9 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((StateEventMatrixEntry_c) elem).getSmspd_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((StateEventMatrixEntry_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(
@@ -190,9 +191,9 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((StateEventMatrixEntry_c) elem).getSmevt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((StateEventMatrixEntry_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(
@@ -201,9 +202,9 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((StateEventMatrixEntry_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((StateEventMatrixEntry_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((StateEventMatrixEntry_c) elem).getSm_id()))
@@ -211,9 +212,9 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
-				.equals(((StateEventMatrixEntry_c) elem).getSmstt_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
+						.equals(((StateEventMatrixEntry_c) elem).getSmstt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmstt_id().equals(
@@ -1303,67 +1304,67 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R503
-		StateMachineState_c relInst38394 = (StateMachineState_c) baseRoot
+		StateMachineState_c relInst38976 = (StateMachineState_c) baseRoot
 				.getInstanceList(StateMachineState_c.class).get(
 						new Object[]{m_sm_id, m_smstt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38394 == null) {
-			relInst38394 = (StateMachineState_c) Ooaofooa.getDefaultInstance()
+		if (relInst38976 == null) {
+			relInst38976 = (StateMachineState_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(StateMachineState_c.class)
 					.get(new Object[]{m_sm_id, m_smstt_id});
 		}
-		if (relInst38394 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38976 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38394 = (StateMachineState_c) roots[i].getInstanceList(
+				relInst38976 = (StateMachineState_c) roots[i].getInstanceList(
 						StateMachineState_c.class).get(
 						new Object[]{m_sm_id, m_smstt_id});
-				if (relInst38394 != null)
+				if (relInst38976 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38394 != null) {
+		if (relInst38976 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38394) && !isProxy())) {
-				relInst38394.relateAcrossR503To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38976) && !isProxy())) {
+				relInst38976.relateAcrossR503To(this, notifyChanges);
 			}
 		}
 
-		SemEvent_c relInst38395 = (SemEvent_c) baseRoot.getInstanceList(
+		SemEvent_c relInst38977 = (SemEvent_c) baseRoot.getInstanceList(
 				SemEvent_c.class).get(
 				new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38395 == null) {
-			relInst38395 = (SemEvent_c) Ooaofooa.getDefaultInstance()
+		if (relInst38977 == null) {
+			relInst38977 = (SemEvent_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SemEvent_c.class)
 					.get(new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
 		}
-		if (relInst38395 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38977 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38395 = (SemEvent_c) roots[i].getInstanceList(
+				relInst38977 = (SemEvent_c) roots[i].getInstanceList(
 						SemEvent_c.class).get(
 						new Object[]{m_smevt_id, m_sm_id, m_smspd_id});
-				if (relInst38395 != null)
+				if (relInst38977 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38395 != null) {
+		if (relInst38977 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38395) && !isProxy())) {
-				relInst38395.relateAcrossR503To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38977) && !isProxy())) {
+				relInst38977.relateAcrossR503To(this, notifyChanges);
 			}
 		}
 
@@ -1773,38 +1774,38 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class StateEventMatrixEntry_c_test38397_c
+		class StateEventMatrixEntry_c_test38979_c
 				implements
 					ClassQueryInterface_c {
-			StateEventMatrixEntry_c_test38397_c(java.util.UUID p38398,
-					java.util.UUID p38399, java.util.UUID p38400,
-					java.util.UUID p38401) {
-				m_p38398 = p38398;
-				m_p38399 = p38399;
-				m_p38400 = p38400;
-				m_p38401 = p38401;
+			StateEventMatrixEntry_c_test38979_c(java.util.UUID p38980,
+					java.util.UUID p38981, java.util.UUID p38982,
+					java.util.UUID p38983) {
+				m_p38980 = p38980;
+				m_p38981 = p38981;
+				m_p38982 = p38982;
+				m_p38983 = p38983;
 			}
-			private java.util.UUID m_p38398;
-			private java.util.UUID m_p38399;
-			private java.util.UUID m_p38400;
-			private java.util.UUID m_p38401;
+			private java.util.UUID m_p38980;
+			private java.util.UUID m_p38981;
+			private java.util.UUID m_p38982;
+			private java.util.UUID m_p38983;
 			public boolean evaluate(Object candidate) {
 				StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmspd_id().equals(m_p38398))
-						& (selected.getSmevt_id().equals(m_p38399))
-						& (selected.getSm_id().equals(m_p38400))
-						& (selected.getSmstt_id().equals(m_p38401));
+				retval = (selected.getSmspd_id().equals(m_p38980))
+						& (selected.getSmevt_id().equals(m_p38981))
+						& (selected.getSm_id().equals(m_p38982))
+						& (selected.getSmstt_id().equals(m_p38983));
 				return retval;
 			}
 		}
 
-		StateEventMatrixEntry_c[] objs38396 = StateEventMatrixEntry_c
+		StateEventMatrixEntry_c[] objs38978 = StateEventMatrixEntry_c
 				.StateEventMatrixEntryInstances(modelRoot,
-						new StateEventMatrixEntry_c_test38397_c(getSmspd_id(),
+						new StateEventMatrixEntry_c_test38979_c(getSmspd_id(),
 								getSmevt_id(), getSm_id(), getSmstt_id()));
 
-		if (((objs38396.length) == 0)) {
+		if (((objs38978.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1812,20 +1813,20 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"State Event Matrix Entry", //$NON-NLS-1$
 								"Consistency: Object: State Event Matrix Entry: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38396.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38978.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: State Event Matrix Entry: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38396.length), e);
+										+ Integer.toString(objs38978.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38396.length) > 1)) {
+		if (((objs38978.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1834,7 +1835,7 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 								"State Event Matrix Entry", //$NON-NLS-1$
 								"Consistency: Object: State Event Matrix Entry: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38396.length)
+										+ Integer.toString(objs38978.length)
 										+ " SMspd_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1842,7 +1843,7 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: State Event Matrix Entry: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38396.length)
+										+ Integer.toString(objs38978.length)
 										+ " SMspd_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1852,99 +1853,99 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 		// State Event Matrix Entry is a link class in association: rel.Numb = 503
 		// Other side
 		// Supertype: rel.Numb = 504
-		int objs38404 = 0;
+		int objs38986 = 0;
 		// Subtype Object: Event Ignored
-		class EventIgnored_c_test38405_c implements ClassQueryInterface_c {
-			EventIgnored_c_test38405_c(java.util.UUID p38406,
-					java.util.UUID p38407, java.util.UUID p38408,
-					java.util.UUID p38409) {
-				m_p38406 = p38406;
-				m_p38407 = p38407;
-				m_p38408 = p38408;
-				m_p38409 = p38409;
+		class EventIgnored_c_test38987_c implements ClassQueryInterface_c {
+			EventIgnored_c_test38987_c(java.util.UUID p38988,
+					java.util.UUID p38989, java.util.UUID p38990,
+					java.util.UUID p38991) {
+				m_p38988 = p38988;
+				m_p38989 = p38989;
+				m_p38990 = p38990;
+				m_p38991 = p38991;
 			}
-			private java.util.UUID m_p38406;
-			private java.util.UUID m_p38407;
-			private java.util.UUID m_p38408;
-			private java.util.UUID m_p38409;
+			private java.util.UUID m_p38988;
+			private java.util.UUID m_p38989;
+			private java.util.UUID m_p38990;
+			private java.util.UUID m_p38991;
 			public boolean evaluate(Object candidate) {
 				EventIgnored_c selected = (EventIgnored_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmstt_id().equals(m_p38406))
-						& (selected.getSmevt_id().equals(m_p38407))
-						& (selected.getSm_id().equals(m_p38408))
-						& (selected.getSmspd_id().equals(m_p38409));
+				retval = (selected.getSmstt_id().equals(m_p38988))
+						& (selected.getSmevt_id().equals(m_p38989))
+						& (selected.getSm_id().equals(m_p38990))
+						& (selected.getSmspd_id().equals(m_p38991));
 				return retval;
 			}
 		}
 
-		EventIgnored_c[] objs38410 = EventIgnored_c.EventIgnoredInstances(
-				modelRoot, new EventIgnored_c_test38405_c(getSmstt_id(),
+		EventIgnored_c[] objs38992 = EventIgnored_c.EventIgnoredInstances(
+				modelRoot, new EventIgnored_c_test38987_c(getSmstt_id(),
 						getSmevt_id(), getSm_id(), getSmspd_id()));
 
-		objs38404 = objs38404 + objs38410.length;
+		objs38986 = objs38986 + objs38992.length;
 		// Subtype Object: Cant Happen
-		class CantHappen_c_test38411_c implements ClassQueryInterface_c {
-			CantHappen_c_test38411_c(java.util.UUID p38412,
-					java.util.UUID p38413, java.util.UUID p38414,
-					java.util.UUID p38415) {
-				m_p38412 = p38412;
-				m_p38413 = p38413;
-				m_p38414 = p38414;
-				m_p38415 = p38415;
+		class CantHappen_c_test38993_c implements ClassQueryInterface_c {
+			CantHappen_c_test38993_c(java.util.UUID p38994,
+					java.util.UUID p38995, java.util.UUID p38996,
+					java.util.UUID p38997) {
+				m_p38994 = p38994;
+				m_p38995 = p38995;
+				m_p38996 = p38996;
+				m_p38997 = p38997;
 			}
-			private java.util.UUID m_p38412;
-			private java.util.UUID m_p38413;
-			private java.util.UUID m_p38414;
-			private java.util.UUID m_p38415;
+			private java.util.UUID m_p38994;
+			private java.util.UUID m_p38995;
+			private java.util.UUID m_p38996;
+			private java.util.UUID m_p38997;
 			public boolean evaluate(Object candidate) {
 				CantHappen_c selected = (CantHappen_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmstt_id().equals(m_p38412))
-						& (selected.getSmevt_id().equals(m_p38413))
-						& (selected.getSm_id().equals(m_p38414))
-						& (selected.getSmspd_id().equals(m_p38415));
+				retval = (selected.getSmstt_id().equals(m_p38994))
+						& (selected.getSmevt_id().equals(m_p38995))
+						& (selected.getSm_id().equals(m_p38996))
+						& (selected.getSmspd_id().equals(m_p38997));
 				return retval;
 			}
 		}
 
-		CantHappen_c[] objs38416 = CantHappen_c.CantHappenInstances(modelRoot,
-				new CantHappen_c_test38411_c(getSmstt_id(), getSmevt_id(),
+		CantHappen_c[] objs38998 = CantHappen_c.CantHappenInstances(modelRoot,
+				new CantHappen_c_test38993_c(getSmstt_id(), getSmevt_id(),
 						getSm_id(), getSmspd_id()));
 
-		objs38404 = objs38404 + objs38416.length;
+		objs38986 = objs38986 + objs38998.length;
 		// Subtype Object: New State Transition
-		class NewStateTransition_c_test38417_c implements ClassQueryInterface_c {
-			NewStateTransition_c_test38417_c(java.util.UUID p38418,
-					java.util.UUID p38419, java.util.UUID p38420,
-					java.util.UUID p38421) {
-				m_p38418 = p38418;
-				m_p38419 = p38419;
-				m_p38420 = p38420;
-				m_p38421 = p38421;
+		class NewStateTransition_c_test38999_c implements ClassQueryInterface_c {
+			NewStateTransition_c_test38999_c(java.util.UUID p39000,
+					java.util.UUID p39001, java.util.UUID p39002,
+					java.util.UUID p39003) {
+				m_p39000 = p39000;
+				m_p39001 = p39001;
+				m_p39002 = p39002;
+				m_p39003 = p39003;
 			}
-			private java.util.UUID m_p38418;
-			private java.util.UUID m_p38419;
-			private java.util.UUID m_p38420;
-			private java.util.UUID m_p38421;
+			private java.util.UUID m_p39000;
+			private java.util.UUID m_p39001;
+			private java.util.UUID m_p39002;
+			private java.util.UUID m_p39003;
 			public boolean evaluate(Object candidate) {
 				NewStateTransition_c selected = (NewStateTransition_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38418))
-						& (selected.getSmstt_id().equals(m_p38419))
-						& (selected.getSmevt_id().equals(m_p38420))
-						& (selected.getSmspd_id().equals(m_p38421));
+				retval = (selected.getSm_id().equals(m_p39000))
+						& (selected.getSmstt_id().equals(m_p39001))
+						& (selected.getSmevt_id().equals(m_p39002))
+						& (selected.getSmspd_id().equals(m_p39003));
 				return retval;
 			}
 		}
 
-		NewStateTransition_c[] objs38422 = NewStateTransition_c
+		NewStateTransition_c[] objs39004 = NewStateTransition_c
 				.NewStateTransitionInstances(modelRoot,
-						new NewStateTransition_c_test38417_c(getSm_id(),
+						new NewStateTransition_c_test38999_c(getSm_id(),
 								getSmstt_id(), getSmevt_id(), getSmspd_id()));
 
-		objs38404 = objs38404 + objs38422.length;
-		if (objs38404 != 1) {
+		objs38986 = objs38986 + objs39004.length;
+		if (objs38986 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1952,14 +1953,14 @@ public class StateEventMatrixEntry_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"State Event Matrix Entry", //$NON-NLS-1$
 								"Consistency: Object: State Event Matrix Entry: Association: 504: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38404)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38986)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: State Event Matrix Entry: Association: 504: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38404), e);
+										+ Integer.toString(objs38986), e);
 			}
 			retval = false;
 

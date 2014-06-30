@@ -196,7 +196,7 @@ p_m_dt_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -212,7 +212,7 @@ p_m_dt_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getVar_id()) || IdAssigner.NULL_UUID.equals(((Variable_c)elem).getVar_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getVar_id()) || IdAssigner.NULL_UUID.equals(((Variable_c)elem).getVar_id())) && this != elem)) {
       	return false;
       }
       if (!getVar_id().equals(((Variable_c)elem).getVar_id())) return false;
@@ -6152,29 +6152,29 @@ public static Variable_c [] getManyV_VARsOnR652(ForStmt_c target, boolean loadCo
 
 	if (Block == null) {          
       // R823
-      Block_c relInst37227 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      Block_c relInst37809 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37227 == null) {
-      			relInst37227 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      		if (relInst37809 == null) {
+      			relInst37809 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
       		}
-			if (relInst37227 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst37809 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37227 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
-					if (relInst37227 != null)
+					relInst37809 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+					if (relInst37809 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37227 != null )
+      if ( relInst37809 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37227) && !isProxy())) {
-	      relInst37227.relateAcrossR823To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37809) && !isProxy())) {
+	      relInst37809.relateAcrossR823To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -6182,29 +6182,29 @@ public static Variable_c [] getManyV_VARsOnR652(ForStmt_c target, boolean loadCo
 
 	if (HasDataType == null) {          
       // R848
-      DataType_c relInst37228 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst37810 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37228 == null) {
-      			relInst37228 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst37810 == null) {
+      			relInst37810 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst37228 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst37810 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37228 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst37228 != null)
+					relInst37810 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst37810 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37228 != null )
+      if ( relInst37810 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37228) && !isProxy())) {
-	      relInst37228.relateAcrossR848To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37810) && !isProxy())) {
+	      relInst37810.relateAcrossR848To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -6705,56 +6705,56 @@ private static Variable_c findVariableInstance(ModelRoot modelRoot, ClassQueryIn
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Variable_c_test37230_c implements ClassQueryInterface_c
+    class Variable_c_test37812_c implements ClassQueryInterface_c
     {
-	  Variable_c_test37230_c( java.util.UUID            p37231 ) {
-	  m_p37231 = p37231;
+	  Variable_c_test37812_c( java.util.UUID            p37813 ) {
+	  m_p37813 = p37813;
 	  }
-	  private java.util.UUID             m_p37231; 
+	  private java.util.UUID             m_p37813; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Variable_c selected = (Variable_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37231));
+	      retval = (selected.getVar_id().equals(m_p37813));
 	      return retval;
 	  }
     }
 
-    Variable_c [] objs37229 = 
-    Variable_c.VariableInstances(modelRoot, new Variable_c_test37230_c(getVar_id())) ;
+    Variable_c [] objs37811 = 
+    Variable_c.VariableInstances(modelRoot, new Variable_c_test37812_c(getVar_id())) ;
 
-    if ( (  (objs37229.length) == 0) )
+    if ( (  (objs37811.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37229.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs37811.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37229.length )  , e); 
+          + Integer.toString( objs37811.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37229.length) > 1) )
+    if ( (  (objs37811.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37229.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs37811.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37229.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs37811.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6762,40 +6762,40 @@ private static Variable_c findVariableInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Variable is a referring class in association: rel.Numb = 823
           // The participating class is: Block
-    class Block_c_test37235_c implements ClassQueryInterface_c
+    class Block_c_test37817_c implements ClassQueryInterface_c
     {
-	  Block_c_test37235_c( java.util.UUID            p37236 ) {
-	  m_p37236 = p37236;
+	  Block_c_test37817_c( java.util.UUID            p37818 ) {
+	  m_p37818 = p37818;
 	  }
-	  private java.util.UUID             m_p37236; 
+	  private java.util.UUID             m_p37818; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Block_c selected = (Block_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p37236));
+	      retval = (selected.getBlock_id().equals(m_p37818));
 	      return retval;
 	  }
     }
 
-    Block_c [] objs37234 = 
-    Block_c.BlockInstances(modelRoot, new Block_c_test37235_c(getBlock_id())) ;
+    Block_c [] objs37816 = 
+    Block_c.BlockInstances(modelRoot, new Block_c_test37817_c(getBlock_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37234.length) != 1) )
+    if ( (  (objs37816.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Association: 823: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37234.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs37816.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Association: 823: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37234.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs37816.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6803,40 +6803,40 @@ private static Variable_c findVariableInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Variable is a referring class in association: rel.Numb = 848
           // The participating class is: Data Type
-    class DataType_c_test37238_c implements ClassQueryInterface_c
+    class DataType_c_test37820_c implements ClassQueryInterface_c
     {
-	  DataType_c_test37238_c( java.util.UUID            p37239 ) {
-	  m_p37239 = p37239;
+	  DataType_c_test37820_c( java.util.UUID            p37821 ) {
+	  m_p37821 = p37821;
 	  }
-	  private java.util.UUID             m_p37239; 
+	  private java.util.UUID             m_p37821; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p37239));
+	      retval = (selected.getDt_id().equals(m_p37821));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs37237 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test37238_c(getDt_id())) ;
+    DataType_c [] objs37819 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test37820_c(getDt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37237.length) != 1) )
+    if ( (  (objs37819.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Association: 848: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37237.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs37819.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Association: 848: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37237.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs37819.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6844,117 +6844,117 @@ private static Variable_c findVariableInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Variable is a participating class in association: rel.Numb = 835
              // Object: Variable Location
-    class VariableLocation_c_test37241_c implements ClassQueryInterface_c
+    class VariableLocation_c_test37823_c implements ClassQueryInterface_c
     {
-	  VariableLocation_c_test37241_c( java.util.UUID            p37242 ) {
-	  m_p37242 = p37242;
+	  VariableLocation_c_test37823_c( java.util.UUID            p37824 ) {
+	  m_p37824 = p37824;
 	  }
-	  private java.util.UUID             m_p37242; 
+	  private java.util.UUID             m_p37824; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      VariableLocation_c selected = (VariableLocation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37242));
+	      retval = (selected.getVar_id().equals(m_p37824));
 	      return retval;
 	  }
     }
 
-    VariableLocation_c [] objs37240 = 
-    VariableLocation_c.VariableLocationInstances(modelRoot, new VariableLocation_c_test37241_c(getVar_id())) ;
+    VariableLocation_c [] objs37822 = 
+    VariableLocation_c.VariableLocationInstances(modelRoot, new VariableLocation_c_test37823_c(getVar_id())) ;
 
-    if ( (  (objs37240.length) == 0) )
+    if ( (  (objs37822.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Association: 835: Cardinality of an unconditional formalizer is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37240.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs37822.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Association: 835: Cardinality of an unconditional formalizer is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37240.length )  , e); 
+          + Integer.toString( objs37822.length )  , e); 
       }
       retval = false;
 
     }
                 
           // Supertype: rel.Numb = 814
-    int objs37243 = 0;
+    int objs37825 = 0;
             // Subtype Object: Instance Handle
-    class InstanceHandle_c_test37244_c implements ClassQueryInterface_c
+    class InstanceHandle_c_test37826_c implements ClassQueryInterface_c
     {
-	  InstanceHandle_c_test37244_c( java.util.UUID            p37245 ) {
-	  m_p37245 = p37245;
+	  InstanceHandle_c_test37826_c( java.util.UUID            p37827 ) {
+	  m_p37827 = p37827;
 	  }
-	  private java.util.UUID             m_p37245; 
+	  private java.util.UUID             m_p37827; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InstanceHandle_c selected = (InstanceHandle_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37245));
+	      retval = (selected.getVar_id().equals(m_p37827));
 	      return retval;
 	  }
     }
 
-    InstanceHandle_c [] objs37246 = 
-    InstanceHandle_c.InstanceHandleInstances(modelRoot, new InstanceHandle_c_test37244_c(getVar_id())) ;
+    InstanceHandle_c [] objs37828 = 
+    InstanceHandle_c.InstanceHandleInstances(modelRoot, new InstanceHandle_c_test37826_c(getVar_id())) ;
  
-    objs37243 = objs37243 + objs37246.length;
+    objs37825 = objs37825 + objs37828.length;
             // Subtype Object: Instance Set
-    class InstanceSet_c_test37247_c implements ClassQueryInterface_c
+    class InstanceSet_c_test37829_c implements ClassQueryInterface_c
     {
-	  InstanceSet_c_test37247_c( java.util.UUID            p37248 ) {
-	  m_p37248 = p37248;
+	  InstanceSet_c_test37829_c( java.util.UUID            p37830 ) {
+	  m_p37830 = p37830;
 	  }
-	  private java.util.UUID             m_p37248; 
+	  private java.util.UUID             m_p37830; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InstanceSet_c selected = (InstanceSet_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37248));
+	      retval = (selected.getVar_id().equals(m_p37830));
 	      return retval;
 	  }
     }
 
-    InstanceSet_c [] objs37249 = 
-    InstanceSet_c.InstanceSetInstances(modelRoot, new InstanceSet_c_test37247_c(getVar_id())) ;
+    InstanceSet_c [] objs37831 = 
+    InstanceSet_c.InstanceSetInstances(modelRoot, new InstanceSet_c_test37829_c(getVar_id())) ;
  
-    objs37243 = objs37243 + objs37249.length;
+    objs37825 = objs37825 + objs37831.length;
             // Subtype Object: Transient Var
-    class TransientVar_c_test37250_c implements ClassQueryInterface_c
+    class TransientVar_c_test37832_c implements ClassQueryInterface_c
     {
-	  TransientVar_c_test37250_c( java.util.UUID            p37251 ) {
-	  m_p37251 = p37251;
+	  TransientVar_c_test37832_c( java.util.UUID            p37833 ) {
+	  m_p37833 = p37833;
 	  }
-	  private java.util.UUID             m_p37251; 
+	  private java.util.UUID             m_p37833; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      TransientVar_c selected = (TransientVar_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37251));
+	      retval = (selected.getVar_id().equals(m_p37833));
 	      return retval;
 	  }
     }
 
-    TransientVar_c [] objs37252 = 
-    TransientVar_c.TransientVarInstances(modelRoot, new TransientVar_c_test37250_c(getVar_id())) ;
+    TransientVar_c [] objs37834 = 
+    TransientVar_c.TransientVarInstances(modelRoot, new TransientVar_c_test37832_c(getVar_id())) ;
  
-    objs37243 = objs37243 + objs37252.length;
-    if ( objs37243 != 1 )
+    objs37825 = objs37825 + objs37834.length;
+    if ( objs37825 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Variable", //$NON-NLS-1$
            "Consistency: Object: Variable: Association: 814: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37243 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs37825 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Variable: Association: 814: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37243 )  , e); 
+          + Integer.toString( objs37825 )  , e); 
       }
       retval = false;
 
@@ -7207,19 +7207,19 @@ else {
 while ( (p_Numdimensions < Getdimensionscnt()) )
 {
 
-  class Dimensions_test36830_c implements ClassQueryInterface_c
+  class Dimensions_test37412_c implements ClassQueryInterface_c
   {
-	Dimensions_test36830_c( int          p36831 ) {
-		m_p36831 = p36831;
+	Dimensions_test37412_c( int          p37413 ) {
+		m_p37413 = p37413;
 	}
-	private int          m_p36831;
+	private int          m_p37413;
 	public boolean evaluate (Object candidate)
 	{
 		Dimensions_c selected = (Dimensions_c)candidate;
-		return (selected.getDimensioncount() == (m_p36831 - 1)) ;
+		return (selected.getDimensioncount() == (m_p37413 - 1)) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR849(this, new Dimensions_test36830_c(Getdimensionscnt()));
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR849(this, new Dimensions_test37412_c(Getdimensionscnt()));
 
 
 if (v_dim != null) {
@@ -7252,7 +7252,7 @@ else {
 if ( (p_Numdimensions > 0) )
 {
 
-  class Dimensions_test36832_c implements ClassQueryInterface_c
+  class Dimensions_test37414_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -7260,7 +7260,7 @@ if ( (p_Numdimensions > 0) )
 		return (selected.getDimensioncount() == p_Dimension) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR849(this, new Dimensions_test36832_c());
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR849(this, new Dimensions_test37414_c());
 
 
 if ( (v_dim.getElementcount() != p_Elementcount) )

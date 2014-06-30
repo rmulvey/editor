@@ -178,7 +178,8 @@ public class ComponentVisibility_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -194,9 +195,9 @@ public class ComponentVisibility_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ComponentVisibility_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ComponentVisibility_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ComponentVisibility_c) elem).getId()))
@@ -204,9 +205,9 @@ public class ComponentVisibility_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
-				.equals(((ComponentVisibility_c) elem).getElement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
+						.equals(((ComponentVisibility_c) elem).getElement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getElement_id().equals(
@@ -215,9 +216,10 @@ public class ComponentVisibility_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getVisibility_id()) || IdAssigner.NULL_UUID
-				.equals(((ComponentVisibility_c) elem).getVisibility_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getVisibility_id()) || IdAssigner.NULL_UUID
+						.equals(((ComponentVisibility_c) elem)
+								.getVisibility_id())) && this != elem)) {
 			return false;
 		}
 		if (!getVisibility_id().equals(
@@ -1016,81 +1018,81 @@ public class ComponentVisibility_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R8004
-		PackageableElement_c relInst39375 = (PackageableElement_c) baseRoot
+		PackageableElement_c relInst39957 = (PackageableElement_c) baseRoot
 				.getInstanceList(PackageableElement_c.class).get(
 						new Object[]{m_element_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39375 == null) {
-			relInst39375 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
+		if (relInst39957 == null) {
+			relInst39957 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(PackageableElement_c.class)
 					.get(new Object[]{m_element_id});
 		}
-		if (relInst39375 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39957 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39375 = (PackageableElement_c) roots[i].getInstanceList(
+				relInst39957 = (PackageableElement_c) roots[i].getInstanceList(
 						PackageableElement_c.class).get(
 						new Object[]{m_element_id});
-				if (relInst39375 != null)
+				if (relInst39957 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39375 != null) {
+		if (relInst39957 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39375) && !isProxy())) {
-				relInst39375.relateAcrossR8004To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39957) && !isProxy())) {
+				relInst39957.relateAcrossR8004To(this, notifyChanges);
 			}
 		}
 
-		Component_c relInst39376 = (Component_c) baseRoot.getInstanceList(
+		Component_c relInst39958 = (Component_c) baseRoot.getInstanceList(
 				Component_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39376 == null) {
-			relInst39376 = (Component_c) Ooaofooa.getDefaultInstance()
+		if (relInst39958 == null) {
+			relInst39958 = (Component_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Component_c.class).get(new Object[]{m_id});
 		}
-		if (relInst39376 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39958 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39376 = (Component_c) roots[i].getInstanceList(
+				relInst39958 = (Component_c) roots[i].getInstanceList(
 						Component_c.class).get(new Object[]{m_id});
-				if (relInst39376 != null)
+				if (relInst39958 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39376 != null) {
+		if (relInst39958 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39376) && !isProxy())) {
-				relInst39376.relateAcrossR8004To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39958) && !isProxy())) {
+				relInst39958.relateAcrossR8004To(this, notifyChanges);
 			}
 		}
 
 		if (MakesUpAComponentResultSet == null) {
 			// R8008
-			ComponentResultSet_c relInst39377 = (ComponentResultSet_c) baseRoot
+			ComponentResultSet_c relInst39959 = (ComponentResultSet_c) baseRoot
 					.getInstanceList(ComponentResultSet_c.class).get(
 							new Object[]{m_name, m_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39377 == null) {
-				relInst39377 = (ComponentResultSet_c) Ooaofooa
+			if (relInst39959 == null) {
+				relInst39959 = (ComponentResultSet_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ComponentResultSet_c.class)
 						.get(new Object[]{m_name, m_id});
 			}
-			if (relInst39377 == null && searchAllRoots
+			if (relInst39959 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1098,18 +1100,18 @@ public class ComponentVisibility_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39377 = (ComponentResultSet_c) roots[i]
+					relInst39959 = (ComponentResultSet_c) roots[i]
 							.getInstanceList(ComponentResultSet_c.class).get(
 									new Object[]{m_name, m_id});
-					if (relInst39377 != null)
+					if (relInst39959 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39377 != null) {
+			if (relInst39959 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39377) && !isProxy())) {
-					relInst39377.relateAcrossR8008To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39959) && !isProxy())) {
+					relInst39959.relateAcrossR8008To(this, notifyChanges);
 				}
 			}
 		}
@@ -1460,54 +1462,54 @@ public class ComponentVisibility_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ComponentVisibility_c_test39379_c
+		class ComponentVisibility_c_test39961_c
 				implements
 					ClassQueryInterface_c {
-			ComponentVisibility_c_test39379_c(java.util.UUID p39380,
-					java.util.UUID p39381, java.util.UUID p39382) {
-				m_p39380 = p39380;
-				m_p39381 = p39381;
-				m_p39382 = p39382;
+			ComponentVisibility_c_test39961_c(java.util.UUID p39962,
+					java.util.UUID p39963, java.util.UUID p39964) {
+				m_p39962 = p39962;
+				m_p39963 = p39963;
+				m_p39964 = p39964;
 			}
-			private java.util.UUID m_p39380;
-			private java.util.UUID m_p39381;
-			private java.util.UUID m_p39382;
+			private java.util.UUID m_p39962;
+			private java.util.UUID m_p39963;
+			private java.util.UUID m_p39964;
 			public boolean evaluate(Object candidate) {
 				ComponentVisibility_c selected = (ComponentVisibility_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39380))
-						& (selected.getElement_id().equals(m_p39381))
-						& (selected.getVisibility_id().equals(m_p39382));
+				retval = (selected.getId().equals(m_p39962))
+						& (selected.getElement_id().equals(m_p39963))
+						& (selected.getVisibility_id().equals(m_p39964));
 				return retval;
 			}
 		}
 
-		ComponentVisibility_c[] objs39378 = ComponentVisibility_c
+		ComponentVisibility_c[] objs39960 = ComponentVisibility_c
 				.ComponentVisibilityInstances(modelRoot,
-						new ComponentVisibility_c_test39379_c(getId(),
+						new ComponentVisibility_c_test39961_c(getId(),
 								getElement_id(), getVisibility_id()));
 
-		if (((objs39378.length) == 0)) {
+		if (((objs39960.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Component Visibility", //$NON-NLS-1$
 								"Consistency: Object: Component Visibility: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39378.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39960.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Component Visibility: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39378.length), e);
+										+ Integer.toString(objs39960.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39378.length) > 1)) {
+		if (((objs39960.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1515,7 +1517,7 @@ public class ComponentVisibility_c extends NonRootModelElement
 								"Component Visibility", //$NON-NLS-1$
 								"Consistency: Object: Component Visibility: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39378.length)
+										+ Integer.toString(objs39960.length)
 										+ " Id: " + "Not Printable" + " Element_ID: " + "Not Printable" + " Visibility_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1523,7 +1525,7 @@ public class ComponentVisibility_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component Visibility: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39378.length)
+										+ Integer.toString(objs39960.length)
 										+ " Id: " + "Not Printable" + " Element_ID: " + "Not Printable" + " Visibility_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1534,34 +1536,34 @@ public class ComponentVisibility_c extends NonRootModelElement
 		// Other side
 		// Component Visibility is a referring class in association: rel.Numb = 8008
 		// The participating class is: Component Result Set
-		class ComponentResultSet_c_test39386_c implements ClassQueryInterface_c {
-			ComponentResultSet_c_test39386_c(java.util.UUID p39387,
-					String p39388, int p39389) {
-				m_p39387 = p39387;
-				m_p39388 = p39388;
-				m_p39389 = p39389;
+		class ComponentResultSet_c_test39968_c implements ClassQueryInterface_c {
+			ComponentResultSet_c_test39968_c(java.util.UUID p39969,
+					String p39970, int p39971) {
+				m_p39969 = p39969;
+				m_p39970 = p39970;
+				m_p39971 = p39971;
 			}
-			private java.util.UUID m_p39387;
-			private String m_p39388;
-			private int m_p39389;
+			private java.util.UUID m_p39969;
+			private String m_p39970;
+			private int m_p39971;
 			public boolean evaluate(Object candidate) {
 				ComponentResultSet_c selected = (ComponentResultSet_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39387))
-						& (selected.getName().equals(m_p39388))
-						& (selected.getType() == (m_p39389));
+				retval = (selected.getId().equals(m_p39969))
+						& (selected.getName().equals(m_p39970))
+						& (selected.getType() == (m_p39971));
 				return retval;
 			}
 		}
 
-		ComponentResultSet_c[] objs39385 = ComponentResultSet_c
+		ComponentResultSet_c[] objs39967 = ComponentResultSet_c
 				.ComponentResultSetInstances(modelRoot,
-						new ComponentResultSet_c_test39386_c(getId(),
+						new ComponentResultSet_c_test39968_c(getId(),
 								getName(), getType()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39385.length) != 1)) {
+		if (((objs39967.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1569,7 +1571,7 @@ public class ComponentVisibility_c extends NonRootModelElement
 								"Component Visibility", //$NON-NLS-1$
 								"Consistency: Object: Component Visibility: Association: 8008: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39385.length)
+										+ Integer.toString(objs39967.length)
 										+ " Id: " + "Not Printable" + " Name: " + getName() + " Type: " + Integer.toString(getType())); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1577,7 +1579,7 @@ public class ComponentVisibility_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component Visibility: Association: 8008: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39385.length)
+										+ Integer.toString(objs39967.length)
 										+ " Id: " + "Not Printable" + " Name: " + getName() + " Type: " + Integer.toString(getType()), e); //$NON-NLS-1$
 			}
 			retval = false;

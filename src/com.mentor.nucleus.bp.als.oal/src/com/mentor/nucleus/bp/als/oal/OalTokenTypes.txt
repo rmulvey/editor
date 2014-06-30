@@ -1,4 +1,4 @@
-// $ANTLR 2.7.2: oal.g -> OalTokenTypes.txt$
+// $ANTLR : oal.g -> OalTokenTypes.txt$
 Oal    // output token vocab name
 Semicolon=4
 LITERAL_assign="assign"=5

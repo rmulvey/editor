@@ -145,7 +145,8 @@ public class DomainAsComponent_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,9 +162,9 @@ public class DomainAsComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
-				.equals(((DomainAsComponent_c) elem).getDom_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID
+						.equals(((DomainAsComponent_c) elem).getDom_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDom_id().equals(((DomainAsComponent_c) elem).getDom_id()))
@@ -171,8 +172,9 @@ public class DomainAsComponent_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((DomainAsComponent_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((DomainAsComponent_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((DomainAsComponent_c) elem).getId()))
@@ -653,62 +655,62 @@ public class DomainAsComponent_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R4204
-		Domain_c relInst55661 = (Domain_c) baseRoot.getInstanceList(
+		Domain_c relInst57210 = (Domain_c) baseRoot.getInstanceList(
 				Domain_c.class).get(new Object[]{m_dom_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55661 == null) {
-			relInst55661 = (Domain_c) Ooaofooa.getDefaultInstance()
+		if (relInst57210 == null) {
+			relInst57210 = (Domain_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Domain_c.class)
 					.get(new Object[]{m_dom_id});
 		}
-		if (relInst55661 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57210 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55661 = (Domain_c) roots[i].getInstanceList(
+				relInst57210 = (Domain_c) roots[i].getInstanceList(
 						Domain_c.class).get(new Object[]{m_dom_id});
-				if (relInst55661 != null)
+				if (relInst57210 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55661 != null) {
+		if (relInst57210 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55661) && !isProxy())) {
-				relInst55661.relateAcrossR4204To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57210) && !isProxy())) {
+				relInst57210.relateAcrossR4204To(this, notifyChanges);
 			}
 		}
 
-		Component_c relInst55662 = (Component_c) baseRoot.getInstanceList(
+		Component_c relInst57211 = (Component_c) baseRoot.getInstanceList(
 				Component_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55662 == null) {
-			relInst55662 = (Component_c) Ooaofooa.getDefaultInstance()
+		if (relInst57211 == null) {
+			relInst57211 = (Component_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Component_c.class).get(new Object[]{m_id});
 		}
-		if (relInst55662 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57211 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55662 = (Component_c) roots[i].getInstanceList(
+				relInst57211 = (Component_c) roots[i].getInstanceList(
 						Component_c.class).get(new Object[]{m_id});
-				if (relInst55662 != null)
+				if (relInst57211 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55662 != null) {
+		if (relInst57211 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55662) && !isProxy())) {
-				relInst55662.relateAcrossR4204To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57211) && !isProxy())) {
+				relInst57211.relateAcrossR4204To(this, notifyChanges);
 			}
 		}
 
@@ -1010,49 +1012,49 @@ public class DomainAsComponent_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DomainAsComponent_c_test55664_c implements ClassQueryInterface_c {
-			DomainAsComponent_c_test55664_c(java.util.UUID p55665,
-					java.util.UUID p55666) {
-				m_p55665 = p55665;
-				m_p55666 = p55666;
+		class DomainAsComponent_c_test57213_c implements ClassQueryInterface_c {
+			DomainAsComponent_c_test57213_c(java.util.UUID p57214,
+					java.util.UUID p57215) {
+				m_p57214 = p57214;
+				m_p57215 = p57215;
 			}
-			private java.util.UUID m_p55665;
-			private java.util.UUID m_p55666;
+			private java.util.UUID m_p57214;
+			private java.util.UUID m_p57215;
 			public boolean evaluate(Object candidate) {
 				DomainAsComponent_c selected = (DomainAsComponent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDom_id().equals(m_p55665))
-						& (selected.getId().equals(m_p55666));
+				retval = (selected.getDom_id().equals(m_p57214))
+						& (selected.getId().equals(m_p57215));
 				return retval;
 			}
 		}
 
-		DomainAsComponent_c[] objs55663 = DomainAsComponent_c
+		DomainAsComponent_c[] objs57212 = DomainAsComponent_c
 				.DomainAsComponentInstances(modelRoot,
-						new DomainAsComponent_c_test55664_c(getDom_id(),
+						new DomainAsComponent_c_test57213_c(getDom_id(),
 								getId()));
 
-		if (((objs55663.length) == 0)) {
+		if (((objs57212.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Domain As Component", //$NON-NLS-1$
 								"Consistency: Object: Domain As Component: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55663.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57212.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Domain As Component: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55663.length), e);
+										+ Integer.toString(objs57212.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55663.length) > 1)) {
+		if (((objs57212.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1060,7 +1062,7 @@ public class DomainAsComponent_c extends NonRootModelElement
 								"Domain As Component", //$NON-NLS-1$
 								"Consistency: Object: Domain As Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55663.length)
+										+ Integer.toString(objs57212.length)
 										+ " Dom_ID: " + "Not Printable" + " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1068,7 +1070,7 @@ public class DomainAsComponent_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Domain As Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55663.length)
+										+ Integer.toString(objs57212.length)
 										+ " Dom_ID: " + "Not Printable" + " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1077,37 +1079,37 @@ public class DomainAsComponent_c extends NonRootModelElement
 
 		// Domain As Component is a link class in association: rel.Numb = 4204
 		// The one side class in the association is: Component
-		class Component_c_test55670_c implements ClassQueryInterface_c {
-			Component_c_test55670_c(java.util.UUID p55671) {
-				m_p55671 = p55671;
+		class Component_c_test57219_c implements ClassQueryInterface_c {
+			Component_c_test57219_c(java.util.UUID p57220) {
+				m_p57220 = p57220;
 			}
-			private java.util.UUID m_p55671;
+			private java.util.UUID m_p57220;
 			public boolean evaluate(Object candidate) {
 				Component_c selected = (Component_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55671));
+				retval = (selected.getId().equals(m_p57220));
 				return retval;
 			}
 		}
 
-		Component_c[] objs55669 = Component_c.ComponentInstances(modelRoot,
-				new Component_c_test55670_c(getId()));
+		Component_c[] objs57218 = Component_c.ComponentInstances(modelRoot,
+				new Component_c_test57219_c(getId()));
 
-		if (((objs55669.length) > 1)) {
+		if (((objs57218.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Domain As Component", //$NON-NLS-1$
 								"Consistency: Object: Domain As Component: Association: 4204: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55669.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57218.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Domain As Component: Association: 4204: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55669.length), e);
+										+ Integer.toString(objs57218.length), e);
 			}
 			retval = false;
 
@@ -1115,37 +1117,37 @@ public class DomainAsComponent_c extends NonRootModelElement
 
 		// Other side
 		// The other side class in the association is: Domain
-		class Domain_c_test55673_c implements ClassQueryInterface_c {
-			Domain_c_test55673_c(java.util.UUID p55674) {
-				m_p55674 = p55674;
+		class Domain_c_test57222_c implements ClassQueryInterface_c {
+			Domain_c_test57222_c(java.util.UUID p57223) {
+				m_p57223 = p57223;
 			}
-			private java.util.UUID m_p55674;
+			private java.util.UUID m_p57223;
 			public boolean evaluate(Object candidate) {
 				Domain_c selected = (Domain_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDom_id().equals(m_p55674));
+				retval = (selected.getDom_id().equals(m_p57223));
 				return retval;
 			}
 		}
 
-		Domain_c[] objs55672 = Domain_c.DomainInstances(modelRoot,
-				new Domain_c_test55673_c(getDom_id()));
+		Domain_c[] objs57221 = Domain_c.DomainInstances(modelRoot,
+				new Domain_c_test57222_c(getDom_id()));
 
-		if (((objs55672.length) > 1)) {
+		if (((objs57221.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Domain As Component", //$NON-NLS-1$
 								"Consistency: Object: Domain As Component: Association: 4204: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55672.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57221.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Domain As Component: Association: 4204: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55672.length), e);
+										+ Integer.toString(objs57221.length), e);
 			}
 			retval = false;
 

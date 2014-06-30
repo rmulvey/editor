@@ -155,7 +155,8 @@ public class SupplementalDataItems_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class SupplementalDataItems_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID
-				.equals(((SupplementalDataItems_c) elem).getSmedi_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID
+						.equals(((SupplementalDataItems_c) elem).getSmedi_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmedi_id().equals(
@@ -182,9 +183,9 @@ public class SupplementalDataItems_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((SupplementalDataItems_c) elem).getSmspd_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((SupplementalDataItems_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(
@@ -193,9 +194,9 @@ public class SupplementalDataItems_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((SupplementalDataItems_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((SupplementalDataItems_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((SupplementalDataItems_c) elem).getSm_id()))
@@ -751,69 +752,69 @@ public class SupplementalDataItems_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R522
-		EventSupplementalData_c relInst38291 = (EventSupplementalData_c) baseRoot
+		EventSupplementalData_c relInst38873 = (EventSupplementalData_c) baseRoot
 				.getInstanceList(EventSupplementalData_c.class).get(
 						new Object[]{m_smspd_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38291 == null) {
-			relInst38291 = (EventSupplementalData_c) Ooaofooa
+		if (relInst38873 == null) {
+			relInst38873 = (EventSupplementalData_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(EventSupplementalData_c.class)
 					.get(new Object[]{m_smspd_id, m_sm_id});
 		}
-		if (relInst38291 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38873 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38291 = (EventSupplementalData_c) roots[i]
+				relInst38873 = (EventSupplementalData_c) roots[i]
 						.getInstanceList(EventSupplementalData_c.class).get(
 								new Object[]{m_smspd_id, m_sm_id});
-				if (relInst38291 != null)
+				if (relInst38873 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38291 != null) {
+		if (relInst38873 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38291) && !isProxy())) {
-				relInst38291.relateAcrossR522To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38873) && !isProxy())) {
+				relInst38873.relateAcrossR522To(this, notifyChanges);
 			}
 		}
 
-		StateMachineEventDataItem_c relInst38292 = (StateMachineEventDataItem_c) baseRoot
+		StateMachineEventDataItem_c relInst38874 = (StateMachineEventDataItem_c) baseRoot
 				.getInstanceList(StateMachineEventDataItem_c.class).get(
 						new Object[]{m_sm_id, m_smedi_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38292 == null) {
-			relInst38292 = (StateMachineEventDataItem_c) Ooaofooa
+		if (relInst38874 == null) {
+			relInst38874 = (StateMachineEventDataItem_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(StateMachineEventDataItem_c.class)
 					.get(new Object[]{m_sm_id, m_smedi_id});
 		}
-		if (relInst38292 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38874 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38292 = (StateMachineEventDataItem_c) roots[i]
+				relInst38874 = (StateMachineEventDataItem_c) roots[i]
 						.getInstanceList(StateMachineEventDataItem_c.class)
 						.get(new Object[]{m_sm_id, m_smedi_id});
-				if (relInst38292 != null)
+				if (relInst38874 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38292 != null) {
+		if (relInst38874 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38292) && !isProxy())) {
-				relInst38292.relateAcrossR522To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38874) && !isProxy())) {
+				relInst38874.relateAcrossR522To(this, notifyChanges);
 			}
 		}
 
@@ -1156,34 +1157,34 @@ public class SupplementalDataItems_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SupplementalDataItems_c_test38294_c
+		class SupplementalDataItems_c_test38876_c
 				implements
 					ClassQueryInterface_c {
-			SupplementalDataItems_c_test38294_c(java.util.UUID p38295,
-					java.util.UUID p38296, java.util.UUID p38297) {
-				m_p38295 = p38295;
-				m_p38296 = p38296;
-				m_p38297 = p38297;
+			SupplementalDataItems_c_test38876_c(java.util.UUID p38877,
+					java.util.UUID p38878, java.util.UUID p38879) {
+				m_p38877 = p38877;
+				m_p38878 = p38878;
+				m_p38879 = p38879;
 			}
-			private java.util.UUID m_p38295;
-			private java.util.UUID m_p38296;
-			private java.util.UUID m_p38297;
+			private java.util.UUID m_p38877;
+			private java.util.UUID m_p38878;
+			private java.util.UUID m_p38879;
 			public boolean evaluate(Object candidate) {
 				SupplementalDataItems_c selected = (SupplementalDataItems_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmedi_id().equals(m_p38295))
-						& (selected.getSmspd_id().equals(m_p38296))
-						& (selected.getSm_id().equals(m_p38297));
+				retval = (selected.getSmedi_id().equals(m_p38877))
+						& (selected.getSmspd_id().equals(m_p38878))
+						& (selected.getSm_id().equals(m_p38879));
 				return retval;
 			}
 		}
 
-		SupplementalDataItems_c[] objs38293 = SupplementalDataItems_c
+		SupplementalDataItems_c[] objs38875 = SupplementalDataItems_c
 				.SupplementalDataItemsInstances(modelRoot,
-						new SupplementalDataItems_c_test38294_c(getSmedi_id(),
+						new SupplementalDataItems_c_test38876_c(getSmedi_id(),
 								getSmspd_id(), getSm_id()));
 
-		if (((objs38293.length) == 0)) {
+		if (((objs38875.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1191,20 +1192,20 @@ public class SupplementalDataItems_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Supplemental Data Items", //$NON-NLS-1$
 								"Consistency: Object: Supplemental Data Items: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38293.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38875.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Supplemental Data Items: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38293.length), e);
+										+ Integer.toString(objs38875.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38293.length) > 1)) {
+		if (((objs38875.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1213,7 +1214,7 @@ public class SupplementalDataItems_c extends NonRootModelElement
 								"Supplemental Data Items", //$NON-NLS-1$
 								"Consistency: Object: Supplemental Data Items: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38293.length)
+										+ Integer.toString(objs38875.length)
 										+ " SMedi_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1221,7 +1222,7 @@ public class SupplementalDataItems_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Supplemental Data Items: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38293.length)
+										+ Integer.toString(objs38875.length)
 										+ " SMedi_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

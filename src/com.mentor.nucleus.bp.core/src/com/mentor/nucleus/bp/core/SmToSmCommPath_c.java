@@ -196,7 +196,7 @@ p_m_diobj_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -212,7 +212,7 @@ p_m_diobj_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID.equals(((SmToSmCommPath_c)elem).getCpath_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getCpath_id()) || IdAssigner.NULL_UUID.equals(((SmToSmCommPath_c)elem).getCpath_id())) && this != elem)) {
       	return false;
       }
       if (!getCpath_id().equals(((SmToSmCommPath_c)elem).getCpath_id())) return false;
@@ -1562,58 +1562,58 @@ public static SmToSmCommPath_c [] getManyCA_SMSMCsOnR408(SmToSmEventComm_c targe
         ModelRoot baseRoot = modelRoot;
 
       // R401
-      CommunicationPath_c relInst55779 = (CommunicationPath_c) baseRoot.getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
+      CommunicationPath_c relInst57328 = (CommunicationPath_c) baseRoot.getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55779 == null) {
-      			relInst55779 = (CommunicationPath_c) Ooaofooa.getDefaultInstance().getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
+      		if (relInst57328 == null) {
+      			relInst57328 = (CommunicationPath_c) Ooaofooa.getDefaultInstance().getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
       		}
-			if (relInst55779 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57328 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55779 = (CommunicationPath_c) roots[i].getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
-					if (relInst55779 != null)
+					relInst57328 = (CommunicationPath_c) roots[i].getInstanceList(CommunicationPath_c.class).get(new Object[] {m_cpath_id});
+					if (relInst57328 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55779 != null )
+      if ( relInst57328 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55779) && !isProxy())) {
-	      relInst55779.relateAcrossR401To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57328) && !isProxy())) {
+	      relInst57328.relateAcrossR401To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (DestinationSmCanBeRepresentedByImportedClass == null) {          
       // R414
-      ImportedClass_c relInst55780 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
+      ImportedClass_c relInst57329 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55780 == null) {
-      			relInst55780 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
+      		if (relInst57329 == null) {
+      			relInst57329 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
       		}
-			if (relInst55780 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57329 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55780 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
-					if (relInst55780 != null)
+					relInst57329 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_diobj_id});
+					if (relInst57329 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55780 != null )
+      if ( relInst57329 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55780) && !isProxy())) {
-	      relInst55780.relateAcrossR414To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57329) && !isProxy())) {
+	      relInst57329.relateAcrossR414To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1621,29 +1621,29 @@ public static SmToSmCommPath_c [] getManyCA_SMSMCsOnR408(SmToSmEventComm_c targe
 
 	if (OriginationSmCanBeRepresentedByImportedClass == null) {          
       // R424
-      ImportedClass_c relInst55781 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
+      ImportedClass_c relInst57330 = (ImportedClass_c) baseRoot.getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55781 == null) {
-      			relInst55781 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
+      		if (relInst57330 == null) {
+      			relInst57330 = (ImportedClass_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
       		}
-			if (relInst55781 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57330 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55781 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
-					if (relInst55781 != null)
+					relInst57330 = (ImportedClass_c) roots[i].getInstanceList(ImportedClass_c.class).get(new Object[] {m_oiobj_id});
+					if (relInst57330 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55781 != null )
+      if ( relInst57330 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55781) && !isProxy())) {
-	      relInst55781.relateAcrossR424To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57330) && !isProxy())) {
+	      relInst57330.relateAcrossR424To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1651,29 +1651,29 @@ public static SmToSmCommPath_c [] getManyCA_SMSMCsOnR408(SmToSmEventComm_c targe
 
 	if (OriginatesFromStateMachine == null) {          
       // R406
-      StateMachine_c relInst55782 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
+      StateMachine_c relInst57331 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55782 == null) {
-      			relInst55782 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
+      		if (relInst57331 == null) {
+      			relInst57331 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
       		}
-			if (relInst55782 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57331 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55782 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
-					if (relInst55782 != null)
+					relInst57331 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_osm_id});
+					if (relInst57331 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55782 != null )
+      if ( relInst57331 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55782) && !isProxy())) {
-	      relInst55782.relateAcrossR406To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57331) && !isProxy())) {
+	      relInst57331.relateAcrossR406To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1681,29 +1681,29 @@ public static SmToSmCommPath_c [] getManyCA_SMSMCsOnR408(SmToSmEventComm_c targe
 
 	if (ShowsEventCommunicationToStateMachine == null) {          
       // R407
-      StateMachine_c relInst55783 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
+      StateMachine_c relInst57332 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55783 == null) {
-      			relInst55783 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
+      		if (relInst57332 == null) {
+      			relInst57332 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
       		}
-			if (relInst55783 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57332 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55783 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
-					if (relInst55783 != null)
+					relInst57332 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_dsm_id});
+					if (relInst57332 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55783 != null )
+      if ( relInst57332 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55783) && !isProxy())) {
-	      relInst55783.relateAcrossR407To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57332) && !isProxy())) {
+	      relInst57332.relateAcrossR407To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2194,112 +2194,112 @@ private static SmToSmCommPath_c findSmToSmCommPathInstance(ModelRoot modelRoot, 
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SmToSmCommPath_c_test55785_c implements ClassQueryInterface_c
+    class SmToSmCommPath_c_test57334_c implements ClassQueryInterface_c
     {
-	  SmToSmCommPath_c_test55785_c( java.util.UUID            p55786 ) {
-	  m_p55786 = p55786;
+	  SmToSmCommPath_c_test57334_c( java.util.UUID            p57335 ) {
+	  m_p57335 = p57335;
 	  }
-	  private java.util.UUID             m_p55786; 
+	  private java.util.UUID             m_p57335; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SmToSmCommPath_c selected = (SmToSmCommPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getCpath_id().equals(m_p55786));
+	      retval = (selected.getCpath_id().equals(m_p57335));
 	      return retval;
 	  }
     }
 
-    SmToSmCommPath_c [] objs55784 = 
-    SmToSmCommPath_c.SmToSmCommPathInstances(modelRoot, new SmToSmCommPath_c_test55785_c(getCpath_id())) ;
+    SmToSmCommPath_c [] objs57333 = 
+    SmToSmCommPath_c.SmToSmCommPathInstances(modelRoot, new SmToSmCommPath_c_test57334_c(getCpath_id())) ;
 
-    if ( (  (objs55784.length) == 0) )
+    if ( (  (objs57333.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55784.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57333.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55784.length )  , e); 
+          + Integer.toString( objs57333.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55784.length) > 1) )
+    if ( (  (objs57333.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55784.length )  + " CPath_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57333.length )  + " CPath_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55784.length )  + " CPath_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57333.length )  + " CPath_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
 
-    class SmToSmCommPath_c_test55788_c implements ClassQueryInterface_c
+    class SmToSmCommPath_c_test57337_c implements ClassQueryInterface_c
     {
-	  SmToSmCommPath_c_test55788_c( java.util.UUID            p55789, java.util.UUID            p55790 ) {
-	       m_p55789 = p55789; 
-m_p55790 = p55790;
+	  SmToSmCommPath_c_test57337_c( java.util.UUID            p57338, java.util.UUID            p57339 ) {
+	       m_p57338 = p57338; 
+m_p57339 = p57339;
 	  }
-	  private java.util.UUID             m_p55789; private java.util.UUID             m_p55790; 
+	  private java.util.UUID             m_p57338; private java.util.UUID             m_p57339; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SmToSmCommPath_c selected = (SmToSmCommPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOsm_id().equals(m_p55789)) & (selected.getDsm_id().equals(m_p55790));
+	      retval = (selected.getOsm_id().equals(m_p57338)) & (selected.getDsm_id().equals(m_p57339));
 	      return retval;
 	  }
     }
 
-    SmToSmCommPath_c [] objs55787 = 
-    SmToSmCommPath_c.SmToSmCommPathInstances(modelRoot, new SmToSmCommPath_c_test55788_c(getOsm_id(), getDsm_id())) ;
+    SmToSmCommPath_c [] objs57336 = 
+    SmToSmCommPath_c.SmToSmCommPathInstances(modelRoot, new SmToSmCommPath_c_test57337_c(getOsm_id(), getDsm_id())) ;
 
-    if ( (  (objs55787.length) == 0) )
+    if ( (  (objs57336.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55787.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57336.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55787.length )  , e); 
+          + Integer.toString( objs57336.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55787.length) > 1) )
+    if ( (  (objs57336.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55787.length )  + " OSM_ID: " + "Not Printable"  + " DSM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57336.length )  + " OSM_ID: " + "Not Printable"  + " DSM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55787.length )  + " OSM_ID: " + "Not Printable"  + " DSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57336.length )  + " OSM_ID: " + "Not Printable"  + " DSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2307,37 +2307,37 @@ m_p55790 = p55790;
 
           // SM to SM Comm Path is a subtype in association: rel.Numb = 401
           // The supertype class is: Communication Path
-    class CommunicationPath_c_test55793_c implements ClassQueryInterface_c
+    class CommunicationPath_c_test57342_c implements ClassQueryInterface_c
     {
-	  CommunicationPath_c_test55793_c( java.util.UUID            p55794 ) {
-	  m_p55794 = p55794;
+	  CommunicationPath_c_test57342_c( java.util.UUID            p57343 ) {
+	  m_p57343 = p57343;
 	  }
-	  private java.util.UUID             m_p55794; 
+	  private java.util.UUID             m_p57343; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      CommunicationPath_c selected = (CommunicationPath_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getCpath_id().equals(m_p55794));
+	      retval = (selected.getCpath_id().equals(m_p57343));
 	      return retval;
 	  }
     }
 
-    CommunicationPath_c [] objs55792 = 
-    CommunicationPath_c.CommunicationPathInstances(modelRoot, new CommunicationPath_c_test55793_c(getCpath_id())) ;
+    CommunicationPath_c [] objs57341 = 
+    CommunicationPath_c.CommunicationPathInstances(modelRoot, new CommunicationPath_c_test57342_c(getCpath_id())) ;
 
-    if ( (  (objs55792.length) != 1) )
+    if ( (  (objs57341.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Association: 401: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55792.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57341.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Association: 401: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55792.length )  , e); 
+          + Integer.toString( objs57341.length )  , e); 
       }
       retval = false;
 
@@ -2345,40 +2345,40 @@ m_p55790 = p55790;
 
           // SM to SM Comm Path is a referring class in association: rel.Numb = 406
           // The participating class is: State Machine
-    class StateMachine_c_test55796_c implements ClassQueryInterface_c
+    class StateMachine_c_test57345_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test55796_c( java.util.UUID            p55797 ) {
-	  m_p55797 = p55797;
+	  StateMachine_c_test57345_c( java.util.UUID            p57346 ) {
+	  m_p57346 = p57346;
 	  }
-	  private java.util.UUID             m_p55797; 
+	  private java.util.UUID             m_p57346; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p55797));
+	      retval = (selected.getSm_id().equals(m_p57346));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs55795 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test55796_c(getOsm_id())) ;
+    StateMachine_c [] objs57344 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test57345_c(getOsm_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55795.length) != 1) )
+    if ( (  (objs57344.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Association: 406: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55795.length )  + " OSM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57344.length )  + " OSM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Association: 406: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55795.length )  + " OSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57344.length )  + " OSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2386,40 +2386,40 @@ m_p55790 = p55790;
 
           // SM to SM Comm Path is a referring class in association: rel.Numb = 407
           // The participating class is: State Machine
-    class StateMachine_c_test55799_c implements ClassQueryInterface_c
+    class StateMachine_c_test57348_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test55799_c( java.util.UUID            p55800 ) {
-	  m_p55800 = p55800;
+	  StateMachine_c_test57348_c( java.util.UUID            p57349 ) {
+	  m_p57349 = p57349;
 	  }
-	  private java.util.UUID             m_p55800; 
+	  private java.util.UUID             m_p57349; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p55800));
+	      retval = (selected.getSm_id().equals(m_p57349));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs55798 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test55799_c(getDsm_id())) ;
+    StateMachine_c [] objs57347 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test57348_c(getDsm_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55798.length) != 1) )
+    if ( (  (objs57347.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Association: 407: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55798.length )  + " DSM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57347.length )  + " DSM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Association: 407: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55798.length )  + " DSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57347.length )  + " DSM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2427,38 +2427,38 @@ m_p55790 = p55790;
 
           // SM to SM Comm Path is a referring class in association: rel.Numb = 414
           // The participating class is: Imported Class
-    class ImportedClass_c_test55802_c implements ClassQueryInterface_c
+    class ImportedClass_c_test57351_c implements ClassQueryInterface_c
     {
-	  ImportedClass_c_test55802_c( java.util.UUID            p55803 ) {
-	  m_p55803 = p55803;
+	  ImportedClass_c_test57351_c( java.util.UUID            p57352 ) {
+	  m_p57352 = p57352;
 	  }
-	  private java.util.UUID             m_p55803; 
+	  private java.util.UUID             m_p57352; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedClass_c selected = (ImportedClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getIobj_id().equals(m_p55803));
+	      retval = (selected.getIobj_id().equals(m_p57352));
 	      return retval;
 	  }
     }
 
-    ImportedClass_c [] objs55801 = 
-    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test55802_c(getDiobj_id())) ;
+    ImportedClass_c [] objs57350 = 
+    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test57351_c(getDiobj_id())) ;
 
-    if ( (  (objs55801.length) > 1) )
+    if ( (  (objs57350.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Association: 414: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55801.length )  + " DIObj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57350.length )  + " DIObj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Association: 414: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55801.length )  + " DIObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57350.length )  + " DIObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2466,38 +2466,38 @@ m_p55790 = p55790;
                 
           // SM to SM Comm Path is a referring class in association: rel.Numb = 424
           // The participating class is: Imported Class
-    class ImportedClass_c_test55805_c implements ClassQueryInterface_c
+    class ImportedClass_c_test57354_c implements ClassQueryInterface_c
     {
-	  ImportedClass_c_test55805_c( java.util.UUID            p55806 ) {
-	  m_p55806 = p55806;
+	  ImportedClass_c_test57354_c( java.util.UUID            p57355 ) {
+	  m_p57355 = p57355;
 	  }
-	  private java.util.UUID             m_p55806; 
+	  private java.util.UUID             m_p57355; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedClass_c selected = (ImportedClass_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getIobj_id().equals(m_p55806));
+	      retval = (selected.getIobj_id().equals(m_p57355));
 	      return retval;
 	  }
     }
 
-    ImportedClass_c [] objs55804 = 
-    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test55805_c(getOiobj_id())) ;
+    ImportedClass_c [] objs57353 = 
+    ImportedClass_c.ImportedClassInstances(modelRoot, new ImportedClass_c_test57354_c(getOiobj_id())) ;
 
-    if ( (  (objs55804.length) > 1) )
+    if ( (  (objs57353.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SM to SM Comm Path", //$NON-NLS-1$
            "Consistency: Object: SM to SM Comm Path: Association: 424: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55804.length )  + " OIObj_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57353.length )  + " OIObj_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SM to SM Comm Path: Association: 424: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55804.length )  + " OIObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57353.length )  + " OIObj_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2518,9 +2518,9 @@ SmToSmEventComm_c [] v_smsmes = SmToSmEventComm_c.getManyCA_SMSMEsOnR408(this);
 
 
 SmToSmEventComm_c  v_smsme = null;
-for ( int i53864 = 0; i53864 < v_smsmes.length; i53864++)
+for ( int i55394 = 0; i55394 < v_smsmes.length; i55394++)
 {
-  v_smsme = v_smsmes[i53864] ;
+  v_smsme = v_smsmes[i55394] ;
 
 StateMachineEvent_c v_smEvt = StateMachineEvent_c.getOneSM_EVTOnR409(v_smsme);
 

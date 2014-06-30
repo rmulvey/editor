@@ -42,6 +42,9 @@ import com.mentor.nucleus.bp.ui.preference.IPreferenceModel;
 public class ExportPreferences extends PreferencePage implements
 		IWorkbenchPreferencePage {
 
+    private Group exportOALGroup;
+    private Button exportOALYesRadio;
+    private Button exportOALNoRadio;
     private Group exportGraphicsGroup;
     private Button exportGraphicsYesRadio;
     private Button exportGraphicsNoRadio;
@@ -61,10 +64,24 @@ public class ExportPreferences extends PreferencePage implements
 	    composite.setLayout(gl);
 
 	    // Create the "Export OAL?" group box and set its layout
+	    exportOALGroup = new Group(composite, SWT.SHADOW_ETCHED_IN);
 	    GridLayout bkLayout = new GridLayout(2, true);
+	    exportOALGroup.setLayout(bkLayout);
+
 	    GridData data = new GridData(GridData.FILL_HORIZONTAL);
 	    data.grabExcessHorizontalSpace = true;
 	    data.horizontalIndent = -1;
+	    exportOALGroup.setLayoutData(data);
+
+	    // The "Export OAL?" group box data
+	    exportOALGroup.setText("Export OAL");
+
+	    exportOALYesRadio = new Button(exportOALGroup, SWT.RADIO | SWT.LEFT);
+	    exportOALYesRadio.setText("&Yes");
+	    exportOALYesRadio.setLayoutData(new GridData());
+	    exportOALNoRadio = new Button(exportOALGroup, SWT.RADIO | SWT.LEFT);
+	    exportOALNoRadio.setText("&No");
+	    exportOALNoRadio.setLayoutData(new GridData());
 
 	    // Create the "Export Graphics?" group box and set its layout
 	    exportGraphicsGroup = new Group(composite, SWT.SHADOW_ETCHED_IN);
@@ -132,12 +149,6 @@ public class ExportPreferences extends PreferencePage implements
 
     private void syncUIWithPreferences() {
         BridgePointPreferencesModel bpPrefs = (BridgePointPreferencesModel) model;
-        
-        // NOTE: We do NOT want to call model.loadModel(...) here.  The model will
-        // have already been set up with the correct data (either from the store
-        // or defaults) before this function is called.  Calling model.loadModel(...)
-        // here would overwrite the population of the default model data in
-        // performDefaults().
 
         if (bpPrefs.exportGraphics.equals(MessageDialogWithToggle.ALWAYS)) {
             exportGraphicsYesRadio.setSelection(true);

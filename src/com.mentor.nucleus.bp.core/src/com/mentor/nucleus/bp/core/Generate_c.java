@@ -145,7 +145,8 @@ public class Generate_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class Generate_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Generate_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Generate_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Generate_c) elem).getStatement_id()))
@@ -615,51 +617,51 @@ public class Generate_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R705
-		GenerateSmEventStatement_c relInst54535 = (GenerateSmEventStatement_c) baseRoot
+		GenerateSmEventStatement_c relInst56084 = (GenerateSmEventStatement_c) baseRoot
 				.getInstanceList(GenerateSmEventStatement_c.class).get(
 						new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54535 == null) {
-			relInst54535 = (GenerateSmEventStatement_c) Ooaofooa
+		if (relInst56084 == null) {
+			relInst56084 = (GenerateSmEventStatement_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(GenerateSmEventStatement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst54535 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56084 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54535 = (GenerateSmEventStatement_c) roots[i]
+				relInst56084 = (GenerateSmEventStatement_c) roots[i]
 						.getInstanceList(GenerateSmEventStatement_c.class).get(
 								new Object[]{m_statement_id});
-				if (relInst54535 != null)
+				if (relInst56084 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54535 != null) {
+		if (relInst56084 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54535) && !isProxy())) {
-				relInst54535.relateAcrossR705To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56084) && !isProxy())) {
+				relInst56084.relateAcrossR705To(this, notifyChanges);
 			}
 		}
 
 		if (HasRecipientVariable == null) {
 			// R712
-			Variable_c relInst54536 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst56085 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54536 == null) {
-				relInst54536 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst56085 == null) {
+				relInst56085 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst54536 == null && searchAllRoots
+			if (relInst56085 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -667,17 +669,17 @@ public class Generate_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54536 = (Variable_c) roots[i].getInstanceList(
+					relInst56085 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst54536 != null)
+					if (relInst56085 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54536 != null) {
+			if (relInst56085 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54536) && !isProxy())) {
-					relInst54536.relateAcrossR712To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56085) && !isProxy())) {
+					relInst56085.relateAcrossR712To(this, notifyChanges);
 				}
 			}
 		}
@@ -899,42 +901,42 @@ public class Generate_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Generate_c_test54538_c implements ClassQueryInterface_c {
-			Generate_c_test54538_c(java.util.UUID p54539) {
-				m_p54539 = p54539;
+		class Generate_c_test56087_c implements ClassQueryInterface_c {
+			Generate_c_test56087_c(java.util.UUID p56088) {
+				m_p56088 = p56088;
 			}
-			private java.util.UUID m_p54539;
+			private java.util.UUID m_p56088;
 			public boolean evaluate(Object candidate) {
 				Generate_c selected = (Generate_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54539));
+				retval = (selected.getStatement_id().equals(m_p56088));
 				return retval;
 			}
 		}
 
-		Generate_c[] objs54537 = Generate_c.GenerateInstances(modelRoot,
-				new Generate_c_test54538_c(getStatement_id()));
+		Generate_c[] objs56086 = Generate_c.GenerateInstances(modelRoot,
+				new Generate_c_test56087_c(getStatement_id()));
 
-		if (((objs54537.length) == 0)) {
+		if (((objs56086.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Generate", //$NON-NLS-1$
 								"Consistency: Object: Generate: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54537.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56086.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Generate: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs54537.length), e);
+								+ Integer.toString(objs56086.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54537.length) > 1)) {
+		if (((objs56086.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -942,7 +944,7 @@ public class Generate_c extends NonRootModelElement
 								"Generate", //$NON-NLS-1$
 								"Consistency: Object: Generate: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54537.length)
+										+ Integer.toString(objs56086.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -950,7 +952,7 @@ public class Generate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54537.length)
+										+ Integer.toString(objs56086.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -959,41 +961,41 @@ public class Generate_c extends NonRootModelElement
 
 		// Generate is a subtype in association: rel.Numb = 705
 		// The supertype class is: Generate SM Event Statement
-		class GenerateSmEventStatement_c_test54543_c
+		class GenerateSmEventStatement_c_test56092_c
 				implements
 					ClassQueryInterface_c {
-			GenerateSmEventStatement_c_test54543_c(java.util.UUID p54544) {
-				m_p54544 = p54544;
+			GenerateSmEventStatement_c_test56092_c(java.util.UUID p56093) {
+				m_p56093 = p56093;
 			}
-			private java.util.UUID m_p54544;
+			private java.util.UUID m_p56093;
 			public boolean evaluate(Object candidate) {
 				GenerateSmEventStatement_c selected = (GenerateSmEventStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54544));
+				retval = (selected.getStatement_id().equals(m_p56093));
 				return retval;
 			}
 		}
 
-		GenerateSmEventStatement_c[] objs54542 = GenerateSmEventStatement_c
+		GenerateSmEventStatement_c[] objs56091 = GenerateSmEventStatement_c
 				.GenerateSmEventStatementInstances(modelRoot,
-						new GenerateSmEventStatement_c_test54543_c(
+						new GenerateSmEventStatement_c_test56092_c(
 								getStatement_id()));
 
-		if (((objs54542.length) != 1)) {
+		if (((objs56091.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Generate", //$NON-NLS-1$
 								"Consistency: Object: Generate: Association: 705: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54542.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56091.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generate: Association: 705: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54542.length), e);
+										+ Integer.toString(objs56091.length), e);
 			}
 			retval = false;
 
@@ -1001,25 +1003,25 @@ public class Generate_c extends NonRootModelElement
 
 		// Generate is a referring class in association: rel.Numb = 712
 		// The participating class is: Variable
-		class Variable_c_test54546_c implements ClassQueryInterface_c {
-			Variable_c_test54546_c(java.util.UUID p54547) {
-				m_p54547 = p54547;
+		class Variable_c_test56095_c implements ClassQueryInterface_c {
+			Variable_c_test56095_c(java.util.UUID p56096) {
+				m_p56096 = p56096;
 			}
-			private java.util.UUID m_p54547;
+			private java.util.UUID m_p56096;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p54547));
+				retval = (selected.getVar_id().equals(m_p56096));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs54545 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test54546_c(getVar_id()));
+		Variable_c[] objs56094 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test56095_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54545.length) != 1)) {
+		if (((objs56094.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1027,7 +1029,7 @@ public class Generate_c extends NonRootModelElement
 								"Generate", //$NON-NLS-1$
 								"Consistency: Object: Generate: Association: 712: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54545.length)
+										+ Integer.toString(objs56094.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1035,7 +1037,7 @@ public class Generate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generate: Association: 712: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54545.length)
+										+ Integer.toString(objs56094.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

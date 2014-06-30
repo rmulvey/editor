@@ -193,7 +193,8 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -209,9 +210,10 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((SelectFromInstancesWhere_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((SelectFromInstancesWhere_c) elem)
+								.getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -1101,16 +1103,16 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 
 		if (ResultVariable == null) {
 			// R665
-			Variable_c relInst38836 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst39418 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38836 == null) {
-				relInst38836 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst39418 == null) {
+				relInst39418 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst38836 == null && searchAllRoots
+			if (relInst39418 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1118,33 +1120,33 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38836 = (Variable_c) roots[i].getInstanceList(
+					relInst39418 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst38836 != null)
+					if (relInst39418 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38836 != null) {
+			if (relInst39418 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38836) && !isProxy())) {
-					relInst38836.relateAcrossR665To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39418) && !isProxy())) {
+					relInst39418.relateAcrossR665To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (WhereClauseValue == null) {
 			// R610
-			Value_c relInst38837 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst39419 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_where_clause_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38837 == null) {
-				relInst38837 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst39419 == null) {
+				relInst39419 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_where_clause_value_id});
 			}
-			if (relInst38837 == null && searchAllRoots
+			if (relInst39419 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1152,35 +1154,35 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38837 = (Value_c) roots[i].getInstanceList(
+					relInst39419 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(
 							new Object[]{m_where_clause_value_id});
-					if (relInst38837 != null)
+					if (relInst39419 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38837 != null) {
+			if (relInst39419 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38837) && !isProxy())) {
-					relInst38837.relateAcrossR610To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39419) && !isProxy())) {
+					relInst39419.relateAcrossR610To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (FromExtentOfModelClass == null) {
 			// R676
-			ModelClass_c relInst38838 = (ModelClass_c) baseRoot
+			ModelClass_c relInst39420 = (ModelClass_c) baseRoot
 					.getInstanceList(ModelClass_c.class).get(
 							new Object[]{m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38838 == null) {
-				relInst38838 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst39420 == null) {
+				relInst39420 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ModelClass_c.class)
 						.get(new Object[]{m_obj_id});
 			}
-			if (relInst38838 == null && searchAllRoots
+			if (relInst39420 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1188,49 +1190,49 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38838 = (ModelClass_c) roots[i].getInstanceList(
+					relInst39420 = (ModelClass_c) roots[i].getInstanceList(
 							ModelClass_c.class).get(new Object[]{m_obj_id});
-					if (relInst38838 != null)
+					if (relInst39420 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38838 != null) {
+			if (relInst39420 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38838) && !isProxy())) {
-					relInst38838.relateAcrossR676To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39420) && !isProxy())) {
+					relInst39420.relateAcrossR676To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst38839 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst39421 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38839 == null) {
-			relInst38839 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst39421 == null) {
+			relInst39421 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst38839 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39421 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38839 = (Statement_c) roots[i].getInstanceList(
+				relInst39421 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst38839 != null)
+				if (relInst39421 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38839 != null) {
+		if (relInst39421 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38839) && !isProxy())) {
-				relInst38839.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39421) && !isProxy())) {
+				relInst39421.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -1570,27 +1572,27 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SelectFromInstancesWhere_c_test38841_c
+		class SelectFromInstancesWhere_c_test39423_c
 				implements
 					ClassQueryInterface_c {
-			SelectFromInstancesWhere_c_test38841_c(java.util.UUID p38842) {
-				m_p38842 = p38842;
+			SelectFromInstancesWhere_c_test39423_c(java.util.UUID p39424) {
+				m_p39424 = p39424;
 			}
-			private java.util.UUID m_p38842;
+			private java.util.UUID m_p39424;
 			public boolean evaluate(Object candidate) {
 				SelectFromInstancesWhere_c selected = (SelectFromInstancesWhere_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p38842));
+				retval = (selected.getStatement_id().equals(m_p39424));
 				return retval;
 			}
 		}
 
-		SelectFromInstancesWhere_c[] objs38840 = SelectFromInstancesWhere_c
+		SelectFromInstancesWhere_c[] objs39422 = SelectFromInstancesWhere_c
 				.SelectFromInstancesWhereInstances(modelRoot,
-						new SelectFromInstancesWhere_c_test38841_c(
+						new SelectFromInstancesWhere_c_test39423_c(
 								getStatement_id()));
 
-		if (((objs38840.length) == 0)) {
+		if (((objs39422.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1598,20 +1600,20 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38840.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39422.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Select From Instances Where: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38840.length), e);
+										+ Integer.toString(objs39422.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38840.length) > 1)) {
+		if (((objs39422.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1620,7 +1622,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38840.length)
+										+ Integer.toString(objs39422.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1628,7 +1630,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Select From Instances Where: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38840.length)
+										+ Integer.toString(objs39422.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1637,23 +1639,23 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 
 		// Select From Instances Where is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test38846_c implements ClassQueryInterface_c {
-			Statement_c_test38846_c(java.util.UUID p38847) {
-				m_p38847 = p38847;
+		class Statement_c_test39428_c implements ClassQueryInterface_c {
+			Statement_c_test39428_c(java.util.UUID p39429) {
+				m_p39429 = p39429;
 			}
-			private java.util.UUID m_p38847;
+			private java.util.UUID m_p39429;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p38847));
+				retval = (selected.getStatement_id().equals(m_p39429));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs38845 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test38846_c(getStatement_id()));
+		Statement_c[] objs39427 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test39428_c(getStatement_id()));
 
-		if (((objs38845.length) != 1)) {
+		if (((objs39427.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1661,14 +1663,14 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38845.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39427.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Select From Instances Where: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38845.length), e);
+										+ Integer.toString(objs39427.length), e);
 			}
 			retval = false;
 
@@ -1676,25 +1678,25 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 
 		// Select From Instances Where is a referring class in association: rel.Numb = 665
 		// The participating class is: Variable
-		class Variable_c_test38849_c implements ClassQueryInterface_c {
-			Variable_c_test38849_c(java.util.UUID p38850) {
-				m_p38850 = p38850;
+		class Variable_c_test39431_c implements ClassQueryInterface_c {
+			Variable_c_test39431_c(java.util.UUID p39432) {
+				m_p39432 = p39432;
 			}
-			private java.util.UUID m_p38850;
+			private java.util.UUID m_p39432;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p38850));
+				retval = (selected.getVar_id().equals(m_p39432));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs38848 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test38849_c(getVar_id()));
+		Variable_c[] objs39430 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test39431_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38848.length) != 1)) {
+		if (((objs39430.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1703,7 +1705,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Association: 665: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38848.length)
+										+ Integer.toString(objs39430.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1711,7 +1713,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Select From Instances Where: Association: 665: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38848.length)
+										+ Integer.toString(objs39430.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1720,25 +1722,25 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 
 		// Select From Instances Where is a referring class in association: rel.Numb = 610
 		// The participating class is: Value
-		class Value_c_test38852_c implements ClassQueryInterface_c {
-			Value_c_test38852_c(java.util.UUID p38853) {
-				m_p38853 = p38853;
+		class Value_c_test39434_c implements ClassQueryInterface_c {
+			Value_c_test39434_c(java.util.UUID p39435) {
+				m_p39435 = p39435;
 			}
-			private java.util.UUID m_p38853;
+			private java.util.UUID m_p39435;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p38853));
+				retval = (selected.getValue_id().equals(m_p39435));
 				return retval;
 			}
 		}
 
-		Value_c[] objs38851 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test38852_c(getWhere_clause_value_id()));
+		Value_c[] objs39433 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test39434_c(getWhere_clause_value_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38851.length) != 1)) {
+		if (((objs39433.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1747,7 +1749,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Association: 610: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38851.length)
+										+ Integer.toString(objs39433.length)
 										+ " Where_Clause_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1755,7 +1757,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Select From Instances Where: Association: 610: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38851.length)
+										+ Integer.toString(objs39433.length)
 										+ " Where_Clause_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1764,23 +1766,23 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 
 		// Select From Instances Where is a referring class in association: rel.Numb = 676
 		// The participating class is: Model Class
-		class ModelClass_c_test38855_c implements ClassQueryInterface_c {
-			ModelClass_c_test38855_c(java.util.UUID p38856) {
-				m_p38856 = p38856;
+		class ModelClass_c_test39437_c implements ClassQueryInterface_c {
+			ModelClass_c_test39437_c(java.util.UUID p39438) {
+				m_p39438 = p39438;
 			}
-			private java.util.UUID m_p38856;
+			private java.util.UUID m_p39438;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p38856));
+				retval = (selected.getObj_id().equals(m_p39438));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs38854 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test38855_c(getObj_id()));
+		ModelClass_c[] objs39436 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test39437_c(getObj_id()));
 
-		if (((objs38854.length) > 1)) {
+		if (((objs39436.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1789,7 +1791,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 								"Select From Instances Where", //$NON-NLS-1$
 								"Consistency: Object: Select From Instances Where: Association: 676: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38854.length)
+										+ Integer.toString(objs39436.length)
 										+ " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1797,7 +1799,7 @@ public class SelectFromInstancesWhere_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Select From Instances Where: Association: 676: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38854.length)
+										+ Integer.toString(objs39436.length)
 										+ " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

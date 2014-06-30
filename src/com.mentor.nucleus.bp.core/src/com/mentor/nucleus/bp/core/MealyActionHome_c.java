@@ -154,7 +154,8 @@ public class MealyActionHome_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,9 +171,9 @@ public class MealyActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID
-				.equals(((MealyActionHome_c) elem).getTrans_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID
+						.equals(((MealyActionHome_c) elem).getTrans_id())) && this != elem)) {
 			return false;
 		}
 		if (!getTrans_id().equals(((MealyActionHome_c) elem).getTrans_id()))
@@ -180,8 +181,9 @@ public class MealyActionHome_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((MealyActionHome_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((MealyActionHome_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((MealyActionHome_c) elem).getSm_id()))
@@ -919,97 +921,97 @@ public class MealyActionHome_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R513
-		ActionHome_c relInst38584 = (ActionHome_c) baseRoot.getInstanceList(
+		ActionHome_c relInst39166 = (ActionHome_c) baseRoot.getInstanceList(
 				ActionHome_c.class).get(new Object[]{m_act_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38584 == null) {
-			relInst38584 = (ActionHome_c) Ooaofooa.getDefaultInstance()
+		if (relInst39166 == null) {
+			relInst39166 = (ActionHome_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActionHome_c.class)
 					.get(new Object[]{m_act_id, m_sm_id});
 		}
-		if (relInst38584 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39166 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38584 = (ActionHome_c) roots[i].getInstanceList(
+				relInst39166 = (ActionHome_c) roots[i].getInstanceList(
 						ActionHome_c.class)
 						.get(new Object[]{m_act_id, m_sm_id});
-				if (relInst38584 != null)
+				if (relInst39166 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38584 != null) {
+		if (relInst39166 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38584) && !isProxy())) {
-				relInst38584.relateAcrossR513To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39166) && !isProxy())) {
+				relInst39166.relateAcrossR513To(this, notifyChanges);
 			}
 		}
 
 		// R512
-		Transition_c relInst38585 = (Transition_c) baseRoot.getInstanceList(
+		Transition_c relInst39167 = (Transition_c) baseRoot.getInstanceList(
 				Transition_c.class).get(new Object[]{m_trans_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38585 == null) {
-			relInst38585 = (Transition_c) Ooaofooa.getDefaultInstance()
+		if (relInst39167 == null) {
+			relInst39167 = (Transition_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Transition_c.class)
 					.get(new Object[]{m_trans_id, m_sm_id});
 		}
-		if (relInst38585 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39167 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38585 = (Transition_c) roots[i].getInstanceList(
+				relInst39167 = (Transition_c) roots[i].getInstanceList(
 						Transition_c.class).get(
 						new Object[]{m_trans_id, m_sm_id});
-				if (relInst38585 != null)
+				if (relInst39167 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38585 != null) {
+		if (relInst39167 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38585) && !isProxy())) {
-				relInst38585.relateAcrossR512To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39167) && !isProxy())) {
+				relInst39167.relateAcrossR512To(this, notifyChanges);
 			}
 		}
 
-		MealyStateMachine_c relInst38586 = (MealyStateMachine_c) baseRoot
+		MealyStateMachine_c relInst39168 = (MealyStateMachine_c) baseRoot
 				.getInstanceList(MealyStateMachine_c.class).get(
 						new Object[]{m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38586 == null) {
-			relInst38586 = (MealyStateMachine_c) Ooaofooa.getDefaultInstance()
+		if (relInst39168 == null) {
+			relInst39168 = (MealyStateMachine_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(MealyStateMachine_c.class)
 					.get(new Object[]{m_sm_id});
 		}
-		if (relInst38586 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39168 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38586 = (MealyStateMachine_c) roots[i].getInstanceList(
+				relInst39168 = (MealyStateMachine_c) roots[i].getInstanceList(
 						MealyStateMachine_c.class).get(new Object[]{m_sm_id});
-				if (relInst38586 != null)
+				if (relInst39168 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38586 != null) {
+		if (relInst39168 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38586) && !isProxy())) {
-				relInst38586.relateAcrossR512To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39168) && !isProxy())) {
+				relInst39168.relateAcrossR512To(this, notifyChanges);
 			}
 		}
 
@@ -1365,49 +1367,49 @@ public class MealyActionHome_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class MealyActionHome_c_test38588_c implements ClassQueryInterface_c {
-			MealyActionHome_c_test38588_c(java.util.UUID p38589,
-					java.util.UUID p38590) {
-				m_p38589 = p38589;
-				m_p38590 = p38590;
+		class MealyActionHome_c_test39170_c implements ClassQueryInterface_c {
+			MealyActionHome_c_test39170_c(java.util.UUID p39171,
+					java.util.UUID p39172) {
+				m_p39171 = p39171;
+				m_p39172 = p39172;
 			}
-			private java.util.UUID m_p38589;
-			private java.util.UUID m_p38590;
+			private java.util.UUID m_p39171;
+			private java.util.UUID m_p39172;
 			public boolean evaluate(Object candidate) {
 				MealyActionHome_c selected = (MealyActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTrans_id().equals(m_p38589))
-						& (selected.getSm_id().equals(m_p38590));
+				retval = (selected.getTrans_id().equals(m_p39171))
+						& (selected.getSm_id().equals(m_p39172));
 				return retval;
 			}
 		}
 
-		MealyActionHome_c[] objs38587 = MealyActionHome_c
+		MealyActionHome_c[] objs39169 = MealyActionHome_c
 				.MealyActionHomeInstances(modelRoot,
-						new MealyActionHome_c_test38588_c(getTrans_id(),
+						new MealyActionHome_c_test39170_c(getTrans_id(),
 								getSm_id()));
 
-		if (((objs38587.length) == 0)) {
+		if (((objs39169.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38587.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39169.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38587.length), e);
+										+ Integer.toString(objs39169.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38587.length) > 1)) {
+		if (((objs39169.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1415,7 +1417,7 @@ public class MealyActionHome_c extends NonRootModelElement
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38587.length)
+										+ Integer.toString(objs39169.length)
 										+ " Trans_ID: " + "Not Printable" + " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1423,56 +1425,56 @@ public class MealyActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38587.length)
+										+ Integer.toString(objs39169.length)
 										+ " Trans_ID: " + "Not Printable" + " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
 
 		}
 
-		class MealyActionHome_c_test38592_c implements ClassQueryInterface_c {
-			MealyActionHome_c_test38592_c(java.util.UUID p38593,
-					java.util.UUID p38594) {
-				m_p38593 = p38593;
-				m_p38594 = p38594;
+		class MealyActionHome_c_test39174_c implements ClassQueryInterface_c {
+			MealyActionHome_c_test39174_c(java.util.UUID p39175,
+					java.util.UUID p39176) {
+				m_p39175 = p39175;
+				m_p39176 = p39176;
 			}
-			private java.util.UUID m_p38593;
-			private java.util.UUID m_p38594;
+			private java.util.UUID m_p39175;
+			private java.util.UUID m_p39176;
 			public boolean evaluate(Object candidate) {
 				MealyActionHome_c selected = (MealyActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38593))
-						& (selected.getAct_id().equals(m_p38594));
+				retval = (selected.getSm_id().equals(m_p39175))
+						& (selected.getAct_id().equals(m_p39176));
 				return retval;
 			}
 		}
 
-		MealyActionHome_c[] objs38591 = MealyActionHome_c
+		MealyActionHome_c[] objs39173 = MealyActionHome_c
 				.MealyActionHomeInstances(modelRoot,
-						new MealyActionHome_c_test38592_c(getSm_id(),
+						new MealyActionHome_c_test39174_c(getSm_id(),
 								getAct_id()));
 
-		if (((objs38591.length) == 0)) {
+		if (((objs39173.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38591.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39173.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38591.length), e);
+										+ Integer.toString(objs39173.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38591.length) > 1)) {
+		if (((objs39173.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1480,7 +1482,7 @@ public class MealyActionHome_c extends NonRootModelElement
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38591.length)
+										+ Integer.toString(objs39173.length)
 										+ " SM_ID: " + "Not Printable" + " Act_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1488,7 +1490,7 @@ public class MealyActionHome_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Mealy Action Home: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38591.length)
+										+ Integer.toString(objs39173.length)
 										+ " SM_ID: " + "Not Printable" + " Act_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1497,41 +1499,41 @@ public class MealyActionHome_c extends NonRootModelElement
 
 		// Mealy Action Home is a subtype in association: rel.Numb = 513
 		// The supertype class is: Action Home
-		class ActionHome_c_test38597_c implements ClassQueryInterface_c {
-			ActionHome_c_test38597_c(java.util.UUID p38598,
-					java.util.UUID p38599) {
-				m_p38598 = p38598;
-				m_p38599 = p38599;
+		class ActionHome_c_test39179_c implements ClassQueryInterface_c {
+			ActionHome_c_test39179_c(java.util.UUID p39180,
+					java.util.UUID p39181) {
+				m_p39180 = p39180;
+				m_p39181 = p39181;
 			}
-			private java.util.UUID m_p38598;
-			private java.util.UUID m_p38599;
+			private java.util.UUID m_p39180;
+			private java.util.UUID m_p39181;
 			public boolean evaluate(Object candidate) {
 				ActionHome_c selected = (ActionHome_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAct_id().equals(m_p38598))
-						& (selected.getSm_id().equals(m_p38599));
+				retval = (selected.getAct_id().equals(m_p39180))
+						& (selected.getSm_id().equals(m_p39181));
 				return retval;
 			}
 		}
 
-		ActionHome_c[] objs38596 = ActionHome_c.ActionHomeInstances(modelRoot,
-				new ActionHome_c_test38597_c(getAct_id(), getSm_id()));
+		ActionHome_c[] objs39178 = ActionHome_c.ActionHomeInstances(modelRoot,
+				new ActionHome_c_test39179_c(getAct_id(), getSm_id()));
 
-		if (((objs38596.length) != 1)) {
+		if (((objs39178.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38596.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39178.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Mealy Action Home: Association: 513: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38596.length), e);
+										+ Integer.toString(objs39178.length), e);
 			}
 			retval = false;
 
@@ -1539,38 +1541,38 @@ public class MealyActionHome_c extends NonRootModelElement
 
 		// Mealy Action Home is a link class in association: rel.Numb = 512
 		// The one side class in the association is: Mealy State Machine
-		class MealyStateMachine_c_test38601_c implements ClassQueryInterface_c {
-			MealyStateMachine_c_test38601_c(java.util.UUID p38602) {
-				m_p38602 = p38602;
+		class MealyStateMachine_c_test39183_c implements ClassQueryInterface_c {
+			MealyStateMachine_c_test39183_c(java.util.UUID p39184) {
+				m_p39184 = p39184;
 			}
-			private java.util.UUID m_p38602;
+			private java.util.UUID m_p39184;
 			public boolean evaluate(Object candidate) {
 				MealyStateMachine_c selected = (MealyStateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38602));
+				retval = (selected.getSm_id().equals(m_p39184));
 				return retval;
 			}
 		}
 
-		MealyStateMachine_c[] objs38600 = MealyStateMachine_c
+		MealyStateMachine_c[] objs39182 = MealyStateMachine_c
 				.MealyStateMachineInstances(modelRoot,
-						new MealyStateMachine_c_test38601_c(getSm_id()));
+						new MealyStateMachine_c_test39183_c(getSm_id()));
 
-		if (((objs38600.length) > 1)) {
+		if (((objs39182.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Association: 512: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38600.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39182.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Mealy Action Home: Association: 512: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38600.length), e);
+										+ Integer.toString(objs39182.length), e);
 			}
 			retval = false;
 
@@ -1578,42 +1580,42 @@ public class MealyActionHome_c extends NonRootModelElement
 
 		// Other side
 		// The other side class in the association is: Transition
-		class Transition_c_test38604_c implements ClassQueryInterface_c {
-			Transition_c_test38604_c(java.util.UUID p38605,
-					java.util.UUID p38606) {
-				m_p38605 = p38605;
-				m_p38606 = p38606;
+		class Transition_c_test39186_c implements ClassQueryInterface_c {
+			Transition_c_test39186_c(java.util.UUID p39187,
+					java.util.UUID p39188) {
+				m_p39187 = p39187;
+				m_p39188 = p39188;
 			}
-			private java.util.UUID m_p38605;
-			private java.util.UUID m_p38606;
+			private java.util.UUID m_p39187;
+			private java.util.UUID m_p39188;
 			public boolean evaluate(Object candidate) {
 				Transition_c selected = (Transition_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTrans_id().equals(m_p38605))
-						& (selected.getSm_id().equals(m_p38606));
+				retval = (selected.getTrans_id().equals(m_p39187))
+						& (selected.getSm_id().equals(m_p39188));
 				return retval;
 			}
 		}
 
-		Transition_c[] objs38603 = Transition_c.TransitionInstances(modelRoot,
-				new Transition_c_test38604_c(getTrans_id(), getSm_id()));
+		Transition_c[] objs39185 = Transition_c.TransitionInstances(modelRoot,
+				new Transition_c_test39186_c(getTrans_id(), getSm_id()));
 
 		// The other side class is unconditional
-		if (((objs38603.length) == 0)) {
+		if (((objs39185.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Mealy Action Home", //$NON-NLS-1$
 								"Consistency: Object: Mealy Action Home: Association: 512: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38603.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39185.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Mealy Action Home: Association: 512: Cardinality of unconditional other side of link is equal to zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38603.length), e);
+										+ Integer.toString(objs39185.length), e);
 			}
 			retval = false;
 

@@ -206,7 +206,8 @@ public class Unrelate_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -222,8 +223,9 @@ public class Unrelate_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Unrelate_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Unrelate_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Unrelate_c) elem).getStatement_id()))
@@ -1111,16 +1113,16 @@ public class Unrelate_c extends NonRootModelElement
 
 		if (OneVariable == null) {
 			// R620
-			Variable_c relInst39178 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst39760 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_one_side_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39178 == null) {
-				relInst39178 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst39760 == null) {
+				relInst39760 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_one_side_var_id});
 			}
-			if (relInst39178 == null && searchAllRoots
+			if (relInst39760 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1128,34 +1130,34 @@ public class Unrelate_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39178 = (Variable_c) roots[i].getInstanceList(
+					relInst39760 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(
 							new Object[]{m_one_side_var_id});
-					if (relInst39178 != null)
+					if (relInst39760 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39178 != null) {
+			if (relInst39760 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39178) && !isProxy())) {
-					relInst39178.relateAcrossR620To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39760) && !isProxy())) {
+					relInst39760.relateAcrossR620To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OtherVariable == null) {
 			// R621
-			Variable_c relInst39179 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst39761 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_other_side_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39179 == null) {
-				relInst39179 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst39761 == null) {
+				relInst39761 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_other_side_var_id});
 			}
-			if (relInst39179 == null && searchAllRoots
+			if (relInst39761 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1163,66 +1165,66 @@ public class Unrelate_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39179 = (Variable_c) roots[i].getInstanceList(
+					relInst39761 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(
 							new Object[]{m_other_side_var_id});
-					if (relInst39179 != null)
+					if (relInst39761 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39179 != null) {
+			if (relInst39761 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39179) && !isProxy())) {
-					relInst39179.relateAcrossR621To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39761) && !isProxy())) {
+					relInst39761.relateAcrossR621To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst39180 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst39762 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39180 == null) {
-			relInst39180 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst39762 == null) {
+			relInst39762 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst39180 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39762 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39180 = (Statement_c) roots[i].getInstanceList(
+				relInst39762 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst39180 != null)
+				if (relInst39762 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39180 != null) {
+		if (relInst39762 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39180) && !isProxy())) {
-				relInst39180.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39762) && !isProxy())) {
+				relInst39762.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
 		if (DestroysAssociation == null) {
 			// R655
-			Association_c relInst39181 = (Association_c) baseRoot
+			Association_c relInst39763 = (Association_c) baseRoot
 					.getInstanceList(Association_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39181 == null) {
-				relInst39181 = (Association_c) Ooaofooa.getDefaultInstance()
+			if (relInst39763 == null) {
+				relInst39763 = (Association_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Association_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst39181 == null && searchAllRoots
+			if (relInst39763 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1230,17 +1232,17 @@ public class Unrelate_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39181 = (Association_c) roots[i].getInstanceList(
+					relInst39763 = (Association_c) roots[i].getInstanceList(
 							Association_c.class).get(new Object[]{m_rel_id});
-					if (relInst39181 != null)
+					if (relInst39763 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39181 != null) {
+			if (relInst39763 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39181) && !isProxy())) {
-					relInst39181.relateAcrossR655To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39763) && !isProxy())) {
+					relInst39763.relateAcrossR655To(this, notifyChanges);
 				}
 			}
 		}
@@ -1574,42 +1576,42 @@ public class Unrelate_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Unrelate_c_test39183_c implements ClassQueryInterface_c {
-			Unrelate_c_test39183_c(java.util.UUID p39184) {
-				m_p39184 = p39184;
+		class Unrelate_c_test39765_c implements ClassQueryInterface_c {
+			Unrelate_c_test39765_c(java.util.UUID p39766) {
+				m_p39766 = p39766;
 			}
-			private java.util.UUID m_p39184;
+			private java.util.UUID m_p39766;
 			public boolean evaluate(Object candidate) {
 				Unrelate_c selected = (Unrelate_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p39184));
+				retval = (selected.getStatement_id().equals(m_p39766));
 				return retval;
 			}
 		}
 
-		Unrelate_c[] objs39182 = Unrelate_c.UnrelateInstances(modelRoot,
-				new Unrelate_c_test39183_c(getStatement_id()));
+		Unrelate_c[] objs39764 = Unrelate_c.UnrelateInstances(modelRoot,
+				new Unrelate_c_test39765_c(getStatement_id()));
 
-		if (((objs39182.length) == 0)) {
+		if (((objs39764.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39182.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39764.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Unrelate: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39182.length), e);
+								+ Integer.toString(objs39764.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39182.length) > 1)) {
+		if (((objs39764.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1617,7 +1619,7 @@ public class Unrelate_c extends NonRootModelElement
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39182.length)
+										+ Integer.toString(objs39764.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1625,7 +1627,7 @@ public class Unrelate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Unrelate: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39182.length)
+										+ Integer.toString(objs39764.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1634,37 +1636,37 @@ public class Unrelate_c extends NonRootModelElement
 
 		// Unrelate is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test39188_c implements ClassQueryInterface_c {
-			Statement_c_test39188_c(java.util.UUID p39189) {
-				m_p39189 = p39189;
+		class Statement_c_test39770_c implements ClassQueryInterface_c {
+			Statement_c_test39770_c(java.util.UUID p39771) {
+				m_p39771 = p39771;
 			}
-			private java.util.UUID m_p39189;
+			private java.util.UUID m_p39771;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p39189));
+				retval = (selected.getStatement_id().equals(m_p39771));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs39187 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test39188_c(getStatement_id()));
+		Statement_c[] objs39769 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test39770_c(getStatement_id()));
 
-		if (((objs39187.length) != 1)) {
+		if (((objs39769.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39187.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39769.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Unrelate: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39187.length), e);
+										+ Integer.toString(objs39769.length), e);
 			}
 			retval = false;
 
@@ -1672,25 +1674,25 @@ public class Unrelate_c extends NonRootModelElement
 
 		// Unrelate is a referring class in association: rel.Numb = 620
 		// The participating class is: Variable
-		class Variable_c_test39191_c implements ClassQueryInterface_c {
-			Variable_c_test39191_c(java.util.UUID p39192) {
-				m_p39192 = p39192;
+		class Variable_c_test39773_c implements ClassQueryInterface_c {
+			Variable_c_test39773_c(java.util.UUID p39774) {
+				m_p39774 = p39774;
 			}
-			private java.util.UUID m_p39192;
+			private java.util.UUID m_p39774;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p39192));
+				retval = (selected.getVar_id().equals(m_p39774));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs39190 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test39191_c(getOne_side_var_id()));
+		Variable_c[] objs39772 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test39773_c(getOne_side_var_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39190.length) != 1)) {
+		if (((objs39772.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1698,7 +1700,7 @@ public class Unrelate_c extends NonRootModelElement
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Association: 620: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39190.length)
+										+ Integer.toString(objs39772.length)
 										+ " One_Side_Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1706,7 +1708,7 @@ public class Unrelate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Unrelate: Association: 620: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39190.length)
+										+ Integer.toString(objs39772.length)
 										+ " One_Side_Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1715,25 +1717,25 @@ public class Unrelate_c extends NonRootModelElement
 
 		// Unrelate is a referring class in association: rel.Numb = 621
 		// The participating class is: Variable
-		class Variable_c_test39194_c implements ClassQueryInterface_c {
-			Variable_c_test39194_c(java.util.UUID p39195) {
-				m_p39195 = p39195;
+		class Variable_c_test39776_c implements ClassQueryInterface_c {
+			Variable_c_test39776_c(java.util.UUID p39777) {
+				m_p39777 = p39777;
 			}
-			private java.util.UUID m_p39195;
+			private java.util.UUID m_p39777;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p39195));
+				retval = (selected.getVar_id().equals(m_p39777));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs39193 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test39194_c(getOther_side_var_id()));
+		Variable_c[] objs39775 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test39776_c(getOther_side_var_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39193.length) != 1)) {
+		if (((objs39775.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1741,7 +1743,7 @@ public class Unrelate_c extends NonRootModelElement
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Association: 621: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39193.length)
+										+ Integer.toString(objs39775.length)
 										+ " Other_Side_Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1749,7 +1751,7 @@ public class Unrelate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Unrelate: Association: 621: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39193.length)
+										+ Integer.toString(objs39775.length)
 										+ " Other_Side_Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1758,25 +1760,25 @@ public class Unrelate_c extends NonRootModelElement
 
 		// Unrelate is a referring class in association: rel.Numb = 655
 		// The participating class is: Association
-		class Association_c_test39197_c implements ClassQueryInterface_c {
-			Association_c_test39197_c(java.util.UUID p39198) {
-				m_p39198 = p39198;
+		class Association_c_test39779_c implements ClassQueryInterface_c {
+			Association_c_test39779_c(java.util.UUID p39780) {
+				m_p39780 = p39780;
 			}
-			private java.util.UUID m_p39198;
+			private java.util.UUID m_p39780;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p39198));
+				retval = (selected.getRel_id().equals(m_p39780));
 				return retval;
 			}
 		}
 
-		Association_c[] objs39196 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test39197_c(getRel_id()));
+		Association_c[] objs39778 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test39779_c(getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39196.length) != 1)) {
+		if (((objs39778.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1784,7 +1786,7 @@ public class Unrelate_c extends NonRootModelElement
 								"Unrelate", //$NON-NLS-1$
 								"Consistency: Object: Unrelate: Association: 655: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39196.length)
+										+ Integer.toString(objs39778.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1792,7 +1794,7 @@ public class Unrelate_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Unrelate: Association: 655: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39196.length)
+										+ Integer.toString(objs39778.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

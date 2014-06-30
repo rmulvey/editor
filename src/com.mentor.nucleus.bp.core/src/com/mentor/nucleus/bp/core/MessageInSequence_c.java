@@ -147,7 +147,8 @@ public class MessageInSequence_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class MessageInSequence_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((MessageInSequence_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((MessageInSequence_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((MessageInSequence_c) elem).getMsg_id()))
@@ -173,9 +174,9 @@ public class MessageInSequence_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((MessageInSequence_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((MessageInSequence_c) elem).getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -670,16 +671,16 @@ public class MessageInSequence_c extends NonRootModelElement
 
 		if (ContainedInSequence == null) {
 			// R953
-			Sequence_c relInst38800 = (Sequence_c) baseRoot.getInstanceList(
+			Sequence_c relInst39382 = (Sequence_c) baseRoot.getInstanceList(
 					Sequence_c.class).get(new Object[]{m_package_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38800 == null) {
-				relInst38800 = (Sequence_c) Ooaofooa.getDefaultInstance()
+			if (relInst39382 == null) {
+				relInst39382 = (Sequence_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Sequence_c.class)
 						.get(new Object[]{m_package_id});
 			}
-			if (relInst38800 == null && searchAllRoots
+			if (relInst39382 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -687,33 +688,33 @@ public class MessageInSequence_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38800 = (Sequence_c) roots[i].getInstanceList(
+					relInst39382 = (Sequence_c) roots[i].getInstanceList(
 							Sequence_c.class).get(new Object[]{m_package_id});
-					if (relInst38800 != null)
+					if (relInst39382 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38800 != null) {
+			if (relInst39382 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38800) && !isProxy())) {
-					relInst38800.relateAcrossR953To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39382) && !isProxy())) {
+					relInst39382.relateAcrossR953To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (ProvidesContainmentMessage == null) {
 			// R954
-			Message_c relInst38801 = (Message_c) baseRoot.getInstanceList(
+			Message_c relInst39383 = (Message_c) baseRoot.getInstanceList(
 					Message_c.class).get(new Object[]{m_msg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38801 == null) {
-				relInst38801 = (Message_c) Ooaofooa.getDefaultInstance()
+			if (relInst39383 == null) {
+				relInst39383 = (Message_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Message_c.class)
 						.get(new Object[]{m_msg_id});
 			}
-			if (relInst38801 == null && searchAllRoots
+			if (relInst39383 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -721,17 +722,17 @@ public class MessageInSequence_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38801 = (Message_c) roots[i].getInstanceList(
+					relInst39383 = (Message_c) roots[i].getInstanceList(
 							Message_c.class).get(new Object[]{m_msg_id});
-					if (relInst38801 != null)
+					if (relInst39383 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38801 != null) {
+			if (relInst39383 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38801) && !isProxy())) {
-					relInst38801.relateAcrossR954To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39383) && !isProxy())) {
+					relInst39383.relateAcrossR954To(this, notifyChanges);
 				}
 			}
 		}
@@ -1034,49 +1035,49 @@ public class MessageInSequence_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class MessageInSequence_c_test38803_c implements ClassQueryInterface_c {
-			MessageInSequence_c_test38803_c(java.util.UUID p38804,
-					java.util.UUID p38805) {
-				m_p38804 = p38804;
-				m_p38805 = p38805;
+		class MessageInSequence_c_test39385_c implements ClassQueryInterface_c {
+			MessageInSequence_c_test39385_c(java.util.UUID p39386,
+					java.util.UUID p39387) {
+				m_p39386 = p39386;
+				m_p39387 = p39387;
 			}
-			private java.util.UUID m_p38804;
-			private java.util.UUID m_p38805;
+			private java.util.UUID m_p39386;
+			private java.util.UUID m_p39387;
 			public boolean evaluate(Object candidate) {
 				MessageInSequence_c selected = (MessageInSequence_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p38804))
-						& (selected.getPackage_id().equals(m_p38805));
+				retval = (selected.getMsg_id().equals(m_p39386))
+						& (selected.getPackage_id().equals(m_p39387));
 				return retval;
 			}
 		}
 
-		MessageInSequence_c[] objs38802 = MessageInSequence_c
+		MessageInSequence_c[] objs39384 = MessageInSequence_c
 				.MessageInSequenceInstances(modelRoot,
-						new MessageInSequence_c_test38803_c(getMsg_id(),
+						new MessageInSequence_c_test39385_c(getMsg_id(),
 								getPackage_id()));
 
-		if (((objs38802.length) == 0)) {
+		if (((objs39384.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Message In Sequence", //$NON-NLS-1$
 								"Consistency: Object: Message In Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38802.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39384.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Message In Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38802.length), e);
+										+ Integer.toString(objs39384.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38802.length) > 1)) {
+		if (((objs39384.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1084,7 +1085,7 @@ public class MessageInSequence_c extends NonRootModelElement
 								"Message In Sequence", //$NON-NLS-1$
 								"Consistency: Object: Message In Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38802.length)
+										+ Integer.toString(objs39384.length)
 										+ " Msg_ID: " + "Not Printable" + " Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1092,7 +1093,7 @@ public class MessageInSequence_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message In Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38802.length)
+										+ Integer.toString(objs39384.length)
 										+ " Msg_ID: " + "Not Printable" + " Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1101,25 +1102,25 @@ public class MessageInSequence_c extends NonRootModelElement
 
 		// Message In Sequence is a referring class in association: rel.Numb = 954
 		// The participating class is: Message
-		class Message_c_test38809_c implements ClassQueryInterface_c {
-			Message_c_test38809_c(java.util.UUID p38810) {
-				m_p38810 = p38810;
+		class Message_c_test39391_c implements ClassQueryInterface_c {
+			Message_c_test39391_c(java.util.UUID p39392) {
+				m_p39392 = p39392;
 			}
-			private java.util.UUID m_p38810;
+			private java.util.UUID m_p39392;
 			public boolean evaluate(Object candidate) {
 				Message_c selected = (Message_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p38810));
+				retval = (selected.getMsg_id().equals(m_p39392));
 				return retval;
 			}
 		}
 
-		Message_c[] objs38808 = Message_c.MessageInstances(modelRoot,
-				new Message_c_test38809_c(getMsg_id()));
+		Message_c[] objs39390 = Message_c.MessageInstances(modelRoot,
+				new Message_c_test39391_c(getMsg_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38808.length) != 1)) {
+		if (((objs39390.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1127,7 +1128,7 @@ public class MessageInSequence_c extends NonRootModelElement
 								"Message In Sequence", //$NON-NLS-1$
 								"Consistency: Object: Message In Sequence: Association: 954: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38808.length)
+										+ Integer.toString(objs39390.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1135,7 +1136,7 @@ public class MessageInSequence_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message In Sequence: Association: 954: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38808.length)
+										+ Integer.toString(objs39390.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1144,25 +1145,25 @@ public class MessageInSequence_c extends NonRootModelElement
 
 		// Message In Sequence is a referring class in association: rel.Numb = 953
 		// The participating class is: Sequence
-		class Sequence_c_test38812_c implements ClassQueryInterface_c {
-			Sequence_c_test38812_c(java.util.UUID p38813) {
-				m_p38813 = p38813;
+		class Sequence_c_test39394_c implements ClassQueryInterface_c {
+			Sequence_c_test39394_c(java.util.UUID p39395) {
+				m_p39395 = p39395;
 			}
-			private java.util.UUID m_p38813;
+			private java.util.UUID m_p39395;
 			public boolean evaluate(Object candidate) {
 				Sequence_c selected = (Sequence_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p38813));
+				retval = (selected.getPackage_id().equals(m_p39395));
 				return retval;
 			}
 		}
 
-		Sequence_c[] objs38811 = Sequence_c.SequenceInstances(modelRoot,
-				new Sequence_c_test38812_c(getPackage_id()));
+		Sequence_c[] objs39393 = Sequence_c.SequenceInstances(modelRoot,
+				new Sequence_c_test39394_c(getPackage_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38811.length) != 1)) {
+		if (((objs39393.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1170,7 +1171,7 @@ public class MessageInSequence_c extends NonRootModelElement
 								"Message In Sequence", //$NON-NLS-1$
 								"Consistency: Object: Message In Sequence: Association: 953: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38811.length)
+										+ Integer.toString(objs39393.length)
 										+ " Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1178,7 +1179,7 @@ public class MessageInSequence_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Message In Sequence: Association: 953: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38811.length)
+										+ Integer.toString(objs39393.length)
 										+ " Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

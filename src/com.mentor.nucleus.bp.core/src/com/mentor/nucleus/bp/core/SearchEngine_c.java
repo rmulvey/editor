@@ -155,7 +155,7 @@ p_m_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -171,7 +171,7 @@ p_m_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((SearchEngine_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((SearchEngine_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((SearchEngine_c)elem).getId())) return false;
@@ -1748,56 +1748,56 @@ private static SearchEngine_c findSearchEngineInstance(ModelRoot modelRoot, Clas
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SearchEngine_c_test39097_c implements ClassQueryInterface_c
+    class SearchEngine_c_test39679_c implements ClassQueryInterface_c
     {
-	  SearchEngine_c_test39097_c( java.util.UUID            p39098 ) {
-	  m_p39098 = p39098;
+	  SearchEngine_c_test39679_c( java.util.UUID            p39680 ) {
+	  m_p39680 = p39680;
 	  }
-	  private java.util.UUID             m_p39098; 
+	  private java.util.UUID             m_p39680; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SearchEngine_c selected = (SearchEngine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39098));
+	      retval = (selected.getId().equals(m_p39680));
 	      return retval;
 	  }
     }
 
-    SearchEngine_c [] objs39096 = 
-    SearchEngine_c.SearchEngineInstances(modelRoot, new SearchEngine_c_test39097_c(getId())) ;
+    SearchEngine_c [] objs39678 = 
+    SearchEngine_c.SearchEngineInstances(modelRoot, new SearchEngine_c_test39679_c(getId())) ;
 
-    if ( (  (objs39096.length) == 0) )
+    if ( (  (objs39678.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Search Engine", //$NON-NLS-1$
            "Consistency: Object: Search Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39096.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39678.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Search Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39096.length )  , e); 
+          + Integer.toString( objs39678.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39096.length) > 1) )
+    if ( (  (objs39678.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Search Engine", //$NON-NLS-1$
            "Consistency: Object: Search Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39096.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39678.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Search Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39096.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39678.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1807,37 +1807,37 @@ private static SearchEngine_c findSearchEngineInstance(ModelRoot modelRoot, Clas
              // Object: Search Result
           // Search Engine is a participating class in association: rel.Numb = 9500
              // Object: Query
-    class Query_c_test39102_c implements ClassQueryInterface_c
+    class Query_c_test39684_c implements ClassQueryInterface_c
     {
-	  Query_c_test39102_c( java.util.UUID            p39103 ) {
-	  m_p39103 = p39103;
+	  Query_c_test39684_c( java.util.UUID            p39685 ) {
+	  m_p39685 = p39685;
 	  }
-	  private java.util.UUID             m_p39103; 
+	  private java.util.UUID             m_p39685; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Query_c selected = (Query_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEngine_id().equals(m_p39103));
+	      retval = (selected.getEngine_id().equals(m_p39685));
 	      return retval;
 	  }
     }
 
-    Query_c [] objs39101 = 
-    Query_c.QueryInstances(modelRoot, new Query_c_test39102_c(getId())) ;
+    Query_c [] objs39683 = 
+    Query_c.QueryInstances(modelRoot, new Query_c_test39684_c(getId())) ;
 
-    if ( (  (objs39101.length) != 1) )
+    if ( (  (objs39683.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Search Engine", //$NON-NLS-1$
            "Consistency: Object: Search Engine: Association: 9500: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39101.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39683.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Search Engine: Association: 9500: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39101.length )  , e); 
+          + Integer.toString( objs39683.length )  , e); 
       }
       retval = false;
 
@@ -1846,100 +1846,100 @@ private static SearchEngine_c findSearchEngineInstance(ModelRoot modelRoot, Clas
           // Search Engine is a participating class in association: rel.Numb = 9502
              // Object: Search Participant
           // Supertype: rel.Numb = 9501
-    int objs39104 = 0;
+    int objs39686 = 0;
             // Subtype Object: Action Language Engine
-    class ActionLanguageEngine_c_test39105_c implements ClassQueryInterface_c
+    class ActionLanguageEngine_c_test39687_c implements ClassQueryInterface_c
     {
-	  ActionLanguageEngine_c_test39105_c( java.util.UUID            p39106 ) {
-	  m_p39106 = p39106;
+	  ActionLanguageEngine_c_test39687_c( java.util.UUID            p39688 ) {
+	  m_p39688 = p39688;
 	  }
-	  private java.util.UUID             m_p39106; 
+	  private java.util.UUID             m_p39688; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ActionLanguageEngine_c selected = (ActionLanguageEngine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39106));
+	      retval = (selected.getId().equals(m_p39688));
 	      return retval;
 	  }
     }
 
-    ActionLanguageEngine_c [] objs39107 = 
-    ActionLanguageEngine_c.ActionLanguageEngineInstances(modelRoot, new ActionLanguageEngine_c_test39105_c(getId())) ;
+    ActionLanguageEngine_c [] objs39689 = 
+    ActionLanguageEngine_c.ActionLanguageEngineInstances(modelRoot, new ActionLanguageEngine_c_test39687_c(getId())) ;
  
-    objs39104 = objs39104 + objs39107.length;
+    objs39686 = objs39686 + objs39689.length;
             // Subtype Object: Description Engine
-    class DescriptionEngine_c_test39108_c implements ClassQueryInterface_c
+    class DescriptionEngine_c_test39690_c implements ClassQueryInterface_c
     {
-	  DescriptionEngine_c_test39108_c( java.util.UUID            p39109 ) {
-	  m_p39109 = p39109;
+	  DescriptionEngine_c_test39690_c( java.util.UUID            p39691 ) {
+	  m_p39691 = p39691;
 	  }
-	  private java.util.UUID             m_p39109; 
+	  private java.util.UUID             m_p39691; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DescriptionEngine_c selected = (DescriptionEngine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39109));
+	      retval = (selected.getId().equals(m_p39691));
 	      return retval;
 	  }
     }
 
-    DescriptionEngine_c [] objs39110 = 
-    DescriptionEngine_c.DescriptionEngineInstances(modelRoot, new DescriptionEngine_c_test39108_c(getId())) ;
+    DescriptionEngine_c [] objs39692 = 
+    DescriptionEngine_c.DescriptionEngineInstances(modelRoot, new DescriptionEngine_c_test39690_c(getId())) ;
  
-    objs39104 = objs39104 + objs39110.length;
+    objs39686 = objs39686 + objs39692.length;
             // Subtype Object: Declarations Engine
-    class DeclarationsEngine_c_test39111_c implements ClassQueryInterface_c
+    class DeclarationsEngine_c_test39693_c implements ClassQueryInterface_c
     {
-	  DeclarationsEngine_c_test39111_c( java.util.UUID            p39112 ) {
-	  m_p39112 = p39112;
+	  DeclarationsEngine_c_test39693_c( java.util.UUID            p39694 ) {
+	  m_p39694 = p39694;
 	  }
-	  private java.util.UUID             m_p39112; 
+	  private java.util.UUID             m_p39694; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DeclarationsEngine_c selected = (DeclarationsEngine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39112));
+	      retval = (selected.getId().equals(m_p39694));
 	      return retval;
 	  }
     }
 
-    DeclarationsEngine_c [] objs39113 = 
-    DeclarationsEngine_c.DeclarationsEngineInstances(modelRoot, new DeclarationsEngine_c_test39111_c(getId())) ;
+    DeclarationsEngine_c [] objs39695 = 
+    DeclarationsEngine_c.DeclarationsEngineInstances(modelRoot, new DeclarationsEngine_c_test39693_c(getId())) ;
  
-    objs39104 = objs39104 + objs39113.length;
+    objs39686 = objs39686 + objs39695.length;
             // Subtype Object: References Engine
-    class ReferencesEngine_c_test39114_c implements ClassQueryInterface_c
+    class ReferencesEngine_c_test39696_c implements ClassQueryInterface_c
     {
-	  ReferencesEngine_c_test39114_c( java.util.UUID            p39115 ) {
-	  m_p39115 = p39115;
+	  ReferencesEngine_c_test39696_c( java.util.UUID            p39697 ) {
+	  m_p39697 = p39697;
 	  }
-	  private java.util.UUID             m_p39115; 
+	  private java.util.UUID             m_p39697; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ReferencesEngine_c selected = (ReferencesEngine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39115));
+	      retval = (selected.getId().equals(m_p39697));
 	      return retval;
 	  }
     }
 
-    ReferencesEngine_c [] objs39116 = 
-    ReferencesEngine_c.ReferencesEngineInstances(modelRoot, new ReferencesEngine_c_test39114_c(getId())) ;
+    ReferencesEngine_c [] objs39698 = 
+    ReferencesEngine_c.ReferencesEngineInstances(modelRoot, new ReferencesEngine_c_test39696_c(getId())) ;
  
-    objs39104 = objs39104 + objs39116.length;
-    if ( objs39104 != 1 )
+    objs39686 = objs39686 + objs39698.length;
+    if ( objs39686 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Search Engine", //$NON-NLS-1$
            "Consistency: Object: Search Engine: Association: 9501: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39104 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39686 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Search Engine: Association: 9501: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39104 )  , e); 
+          + Integer.toString( objs39686 )  , e); 
       }
       retval = false;
 
@@ -2110,9 +2110,9 @@ SearchParticipant_c [] v_participants = SearchParticipant_c.getManySP_SPsOnR9502
 
 
 SearchParticipant_c  v_participant = null;
-for ( int i36655 = 0; i36655 < v_participants.length; i36655++)
+for ( int i37237 = 0; i37237 < v_participants.length; i37237++)
 {
-  v_participant = v_participants[i36655] ;
+  v_participant = v_participants[i37237] ;
 
 this.unrelateAcrossR9502From(v_participant);
 
@@ -2134,9 +2134,9 @@ SearchResult_c [] v_results = SearchResult_c.getManySR_SRsOnR9503(this);
 
 
 SearchResult_c  v_result = null;
-for ( int i36656 = 0; i36656 < v_results.length; i36656++)
+for ( int i37238 = 0; i37238 < v_results.length; i37238++)
 {
-  v_result = v_results[i36656] ;
+  v_result = v_results[i37238] ;
 
 this.unrelateAcrossR9503From(v_result);
 

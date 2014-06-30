@@ -202,7 +202,7 @@ p_m_num_rng
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -218,7 +218,7 @@ p_m_num_rng
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((Package_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((Package_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((Package_c)elem).getPackage_id())) return false;
@@ -2535,29 +2535,29 @@ public static Package_c [] getManyEP_PKGsOnR2970(ComponentInstance_c target, boo
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst54697 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
+      PackageableElement_c relInst56246 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54697 == null) {
-      			relInst54697 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
+      		if (relInst56246 == null) {
+      			relInst56246 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst54697 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56246 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54697 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
-					if (relInst54697 != null)
+					relInst56246 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_package_id});
+					if (relInst56246 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54697 != null )
+      if ( relInst56246 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54697) && !isProxy())) {
-	      relInst54697.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56246) && !isProxy())) {
+	      relInst56246.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -2568,33 +2568,33 @@ public static Package_c [] getManyEP_PKGsOnR2970(ComponentInstance_c target, boo
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst54698 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      SystemModel_c relInst56247 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54698 == null) {
-      			relInst54698 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      		if (relInst56247 == null) {
+      			relInst56247 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
       		}
-			if (relInst54698 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56247 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54698 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
-					if (relInst54698 != null)
+					relInst56247 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+					if (relInst56247 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54698 != null )
+      if ( relInst56247 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54698) && !isProxy())) {
-	      relInst54698.relateAcrossR1401To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56247) && !isProxy())) {
+	      relInst56247.relateAcrossR1401To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst54698);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst56247);
 	  }
           baseRoot = modelRoot;
 	}
@@ -2606,33 +2606,33 @@ public static Package_c [] getManyEP_PKGsOnR2970(ComponentInstance_c target, boo
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst54699 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+      SystemModel_c relInst56248 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54699 == null) {
-      			relInst54699 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+      		if (relInst56248 == null) {
+      			relInst56248 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
       		}
-			if (relInst54699 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56248 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54699 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
-					if (relInst54699 != null)
+					relInst56248 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+					if (relInst56248 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54699 != null )
+      if ( relInst56248 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54699) && !isProxy())) {
-	      relInst54699.relateAcrossR1405To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56248) && !isProxy())) {
+	      relInst56248.relateAcrossR1405To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst54699);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst56248);
 	  }
           baseRoot = modelRoot;
 	}
@@ -3115,56 +3115,56 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Package_c_test54701_c implements ClassQueryInterface_c
+    class Package_c_test56250_c implements ClassQueryInterface_c
     {
-	  Package_c_test54701_c( java.util.UUID            p54702 ) {
-	  m_p54702 = p54702;
+	  Package_c_test56250_c( java.util.UUID            p56251 ) {
+	  m_p56251 = p56251;
 	  }
-	  private java.util.UUID             m_p54702; 
+	  private java.util.UUID             m_p56251; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Package_c selected = (Package_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p54702));
+	      retval = (selected.getPackage_id().equals(m_p56251));
 	      return retval;
 	  }
     }
 
-    Package_c [] objs54700 = 
-    Package_c.PackageInstances(modelRoot, new Package_c_test54701_c(getPackage_id())) ;
+    Package_c [] objs56249 = 
+    Package_c.PackageInstances(modelRoot, new Package_c_test56250_c(getPackage_id())) ;
 
-    if ( (  (objs54700.length) == 0) )
+    if ( (  (objs56249.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54700.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56249.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54700.length )  , e); 
+          + Integer.toString( objs56249.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54700.length) > 1) )
+    if ( (  (objs56249.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54700.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56249.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54700.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56249.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3172,38 +3172,38 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
 
           // Package is a referring class in association: rel.Numb = 1401
           // The participating class is: System Model
-    class SystemModel_c_test54706_c implements ClassQueryInterface_c
+    class SystemModel_c_test56255_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test54706_c( java.util.UUID            p54707 ) {
-	  m_p54707 = p54707;
+	  SystemModel_c_test56255_c( java.util.UUID            p56256 ) {
+	  m_p56256 = p56256;
 	  }
-	  private java.util.UUID             m_p54707; 
+	  private java.util.UUID             m_p56256; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p54707));
+	      retval = (selected.getSys_id().equals(m_p56256));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs54705 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test54706_c(getSys_id())) ;
+    SystemModel_c [] objs56254 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test56255_c(getSys_id())) ;
 
-    if ( (  (objs54705.length) > 1) )
+    if ( (  (objs56254.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Association: 1401: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54705.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56254.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Association: 1401: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54705.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56254.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3211,40 +3211,40 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
                 
           // Package is a referring class in association: rel.Numb = 1405
           // The participating class is: System Model
-    class SystemModel_c_test54709_c implements ClassQueryInterface_c
+    class SystemModel_c_test56258_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test54709_c( java.util.UUID            p54710 ) {
-	  m_p54710 = p54710;
+	  SystemModel_c_test56258_c( java.util.UUID            p56259 ) {
+	  m_p56259 = p56259;
 	  }
-	  private java.util.UUID             m_p54710; 
+	  private java.util.UUID             m_p56259; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p54710));
+	      retval = (selected.getSys_id().equals(m_p56259));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs54708 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test54709_c(getDirect_sys_id())) ;
+    SystemModel_c [] objs56257 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test56258_c(getDirect_sys_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs54708.length) != 1) )
+    if ( (  (objs56257.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Association: 1405: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54708.length )  + " Direct_Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56257.length )  + " Direct_Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Association: 1405: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54708.length )  + " Direct_Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56257.length )  + " Direct_Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3260,37 +3260,37 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
              // Object: Package In Package
           // Package is a participating class in association: rel.Numb = 1404
              // Object: Package In Package
-    class PackageInPackage_c_test54715_c implements ClassQueryInterface_c
+    class PackageInPackage_c_test56264_c implements ClassQueryInterface_c
     {
-	  PackageInPackage_c_test54715_c( java.util.UUID            p54716 ) {
-	  m_p54716 = p54716;
+	  PackageInPackage_c_test56264_c( java.util.UUID            p56265 ) {
+	  m_p56265 = p56265;
 	  }
-	  private java.util.UUID             m_p54716; 
+	  private java.util.UUID             m_p56265; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PackageInPackage_c selected = (PackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getChild_package_id().equals(m_p54716));
+	      retval = (selected.getChild_package_id().equals(m_p56265));
 	      return retval;
 	  }
     }
 
-    PackageInPackage_c [] objs54714 = 
-    PackageInPackage_c.PackageInPackageInstances(modelRoot, new PackageInPackage_c_test54715_c(getPackage_id())) ;
+    PackageInPackage_c [] objs56263 = 
+    PackageInPackage_c.PackageInPackageInstances(modelRoot, new PackageInPackage_c_test56264_c(getPackage_id())) ;
 
-    if ( (  (objs54714.length) > 1) )
+    if ( (  (objs56263.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Association: 1404: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54714.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56263.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Association: 1404: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54714.length )  , e); 
+          + Integer.toString( objs56263.length )  , e); 
       }
       retval = false;
 
@@ -3306,37 +3306,37 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
              // Object: Package Participant
           // Package is a participating class in association: rel.Numb = 2970
              // Object: Component Instance
-    class ComponentInstance_c_test54718_c implements ClassQueryInterface_c
+    class ComponentInstance_c_test56267_c implements ClassQueryInterface_c
     {
-	  ComponentInstance_c_test54718_c( java.util.UUID            p54719 ) {
-	  m_p54719 = p54719;
+	  ComponentInstance_c_test56267_c( java.util.UUID            p56268 ) {
+	  m_p56268 = p56268;
 	  }
-	  private java.util.UUID             m_p54719; 
+	  private java.util.UUID             m_p56268; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInstance_c selected = (ComponentInstance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p54719));
+	      retval = (selected.getPackage_id().equals(m_p56268));
 	      return retval;
 	  }
     }
 
-    ComponentInstance_c [] objs54717 = 
-    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test54718_c(getPackage_id())) ;
+    ComponentInstance_c [] objs56266 = 
+    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test56267_c(getPackage_id())) ;
 
-    if ( (  (objs54717.length) > 1) )
+    if ( (  (objs56266.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Package", //$NON-NLS-1$
            "Consistency: Object: Package: Association: 2970: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54717.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56266.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Package: Association: 2970: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54717.length )  , e); 
+          + Integer.toString( objs56266.length )  , e); 
       }
       retval = false;
 
@@ -3351,6 +3351,279 @@ private static Package_c findPackageInstance(ModelRoot modelRoot, ClassQueryInte
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Dispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR1401(this);
+
+
+if ( (  (v_system != null)) )
+{
+
+this.unrelateAcrossR1401From(v_system);
+
+
+
+}
+
+SpecificationPackage_c [] v_specPkgs = SpecificationPackage_c.getManyEP_SPKGsOnR1400(this);
+
+
+SpecificationPackage_c  v_specPkg = null;
+for ( int i54832 = 0; i54832 < v_specPkgs.length; i54832++)
+{
+  v_specPkg = v_specPkgs[i54832] ;
+
+if (v_specPkg != null) {
+v_specPkg.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+this.unrelateAcrossR1400From(v_specPkg);
+
+
+
+}
+
+PackageParticipant_c [] v_pps = PackageParticipant_c.getManySQ_PPsOnR956(this);
+
+
+PackageParticipant_c  v_pp = null;
+for ( int i54833 = 0; i54833 < v_pps.length; i54833++)
+{
+  v_pp = v_pps[i54833] ;
+
+if (v_pp != null) {
+v_pp.Unformalize() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+PackageInPackage_c [] v_pips = PackageInPackage_c.getManyEP_PIPsOnR1403(this);
+
+
+PackageInPackage_c  v_pip = null;
+for ( int i54834 = 0; i54834 < v_pips.length; i54834++)
+{
+  v_pip = v_pips[i54834] ;
+
+Package_c v_childPackage = Package_c.getOneEP_PKGOnR1404(v_pip);
+
+
+this.unrelateAcrossR1403From(v_pip);
+
+
+if (v_childPackage != null) {
+v_childPackage.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+v_pip = PackageInPackage_c.getOneEP_PIPOnR1404(this);
+
+
+if ( (  (v_pip != null)) )
+{
+
+this.unrelateAcrossR1404From(v_pip);
+
+
+Package_c v_parent = Package_c.getOneEP_PKGOnR1403(v_pip);
+
+
+if ( (  (v_parent != null)) )
+{
+
+if (v_pip != null) {
+v_pip.unrelateAcrossR1403From(v_parent);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+if (v_pip != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_pip.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_pip));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+Clearscope() ;
+
+
+PackageableElement_c [] v_pes = PackageableElement_c.getManyPE_PEsOnR8000(this);
+
+
+PackageableElement_c  v_pe = null;
+for ( int i54835 = 0; i54835 < v_pes.length; i54835++)
+{
+  v_pe = v_pes[i54835] ;
+
+if (v_pe != null) {
+v_pe.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+v_system = SystemModel_c.getOneS_SYSOnR1405(this);
+
+
+if ( (  (v_system != null)) )
+{
+
+this.unrelateAcrossR1405From(v_system);
+
+
+
+}
+
+PackageableElement_c v_pkgElement = PackageableElement_c.getOnePE_PEOnR8001(this);
+
+
+if (   (v_pkgElement != null) )
+{
+
+this.unrelateAcrossR8001From(v_pkgElement);
+
+
+if (v_pkgElement != null) {
+v_pkgElement.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+ElementVisibility_c [] v_elemVis = ElementVisibility_c.getManyPE_VISsOnR8002(this);
+
+
+ElementVisibility_c  v_elemV = null;
+for ( int i54836 = 0; i54836 < v_elemVis.length; i54836++)
+{
+  v_elemV = v_elemVis[i54836] ;
+
+v_pe = PackageableElement_c.getOnePE_PEOnR8002(v_elemV);
+
+
+if (v_elemV != null) {
+v_elemV.unrelateAcrossR8002From( this ) ; v_elemV.unrelateAcrossR8002From( v_pe ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_elemV != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_elemV.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_elemV));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+SearchResultSet_c [] v_elemRSs = SearchResultSet_c.getManyPE_SRSsOnR8005(this);
+
+
+SearchResultSet_c  v_elemRS = null;
+for ( int i54837 = 0; i54837 < v_elemRSs.length; i54837++)
+{
+  v_elemRS = v_elemRSs[i54837] ;
+
+if (v_elemRS != null) {
+v_elemRS.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+ComponentInstance_c v_compInst = ComponentInstance_c.getOneI_EXEOnR2970(this);
+
+
+if (   (v_compInst != null) )
+{
+
+this.unrelateAcrossR2970From(v_compInst);
+
+
+if (v_compInst != null) {
+v_compInst.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End dispose
   public  String       Getpath(final String       p_Path)
@@ -3823,9 +4096,9 @@ ComponentPackage_c [] v_componentPackages = ComponentPackage_c.getManyCP_CPsOnR1
 
 
 ComponentPackage_c  v_componentPackage = null;
-for ( int i53385 = 0; i53385 < v_componentPackages.length; i53385++)
+for ( int i54838 = 0; i54838 < v_componentPackages.length; i54838++)
 {
-  v_componentPackage = v_componentPackages[i53385] ;
+  v_componentPackage = v_componentPackages[i54838] ;
 
 if (v_componentPackage != null) {
 v_componentPackage.Associatepackagewithsystem(			    
@@ -3845,9 +4118,9 @@ InterfacePackage_c [] v_interfacePackages = InterfacePackage_c.getManyIP_IPsOnR1
 
 
 InterfacePackage_c  v_interfacePackage = null;
-for ( int i53386 = 0; i53386 < v_interfacePackages.length; i53386++)
+for ( int i54839 = 0; i54839 < v_interfacePackages.length; i54839++)
 {
-  v_interfacePackage = v_interfacePackages[i53386] ;
+  v_interfacePackage = v_interfacePackages[i54839] ;
 
 if (v_interfacePackage != null) {
 v_interfacePackage.Associatepackagewithsystem(			    
@@ -3867,9 +4140,9 @@ Package_c [] v_pips = Package_c.getManyEP_PKGsOnR1404(PackageInPackage_c.getMany
 
 
 Package_c  v_pip = null;
-for ( int i53387 = 0; i53387 < v_pips.length; i53387++)
+for ( int i54840 = 0; i54840 < v_pips.length; i54840++)
 {
-  v_pip = v_pips[i53387] ;
+  v_pip = v_pips[i54840] ;
 
 if (v_pip != null) {
 v_pip.Associatewithsystem(			    
@@ -3895,9 +4168,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53388 = 0; i53388 < v_packages.length; i53388++)
+for ( int i54841 = 0; i54841 < v_packages.length; i54841++)
 {
-  v_package = v_packages[i53388] ;
+  v_package = v_packages[i54841] ;
 
 if (v_package != null) {
   v_package.relateAcrossR1405To(v_system);
@@ -3927,9 +4200,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53389 = 0; i53389 < v_components.length; i53389++)
+for ( int i54842 = 0; i54842 < v_components.length; i54842++)
 {
-  v_component = v_components[i53389] ;
+  v_component = v_components[i54842] ;
 
 if (v_component != null) {
 v_component.Associatepackageswithsystem(			    
@@ -3952,9 +4225,9 @@ DataTypePackage_c [] v_dtPackages = DataTypePackage_c.getManyS_DPKsOnR1402(Speci
 
 
 DataTypePackage_c  v_dtPackage = null;
-for ( int i53390 = 0; i53390 < v_dtPackages.length; i53390++)
+for ( int i54843 = 0; i54843 < v_dtPackages.length; i54843++)
 {
-  v_dtPackage = v_dtPackages[i53390] ;
+  v_dtPackage = v_dtPackages[i54843] ;
 
 if (v_dtPackage != null) {
 v_dtPackage.Associatedtswithsystem(			    
@@ -4489,7 +4762,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newassociation") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ActorParticipant_test54040_c implements ClassQueryInterface_c
+  class ActorParticipant_test55576_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4497,10 +4770,10 @@ else {
 		return selected.getPart_id().equals(p_From) ;
 	}
   }
-ActorParticipant_c v_sourceActor = ActorParticipant_c.getOneSQ_APOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new ActorParticipant_test54040_c());
+ActorParticipant_c v_sourceActor = ActorParticipant_c.getOneSQ_APOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new ActorParticipant_test55576_c());
 
 
-  class UseCaseParticipant_test54041_c implements ClassQueryInterface_c
+  class UseCaseParticipant_test55577_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4508,7 +4781,7 @@ ActorParticipant_c v_sourceActor = ActorParticipant_c.getOneSQ_APOnR930(Interact
 		return selected.getPart_id().equals(p_To) ;
 	}
   }
-UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test54041_c());
+UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test55577_c());
 
 
 if (   (v_sourceActor != null) &&   (v_destinationUC != null) )
@@ -4604,7 +4877,7 @@ return true;
 else
 {
 
-  class ModelClass_test54042_c implements ClassQueryInterface_c
+  class ModelClass_test55578_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4612,10 +4885,10 @@ else
 		return (selected.getObj_id().equals(p_From)) ;
 	}
   }
-ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test54042_c());
+ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test55578_c());
 
 
-  class ImportedClass_test54043_c implements ClassQueryInterface_c
+  class ImportedClass_test55579_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4623,7 +4896,7 @@ ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.
 		return (selected.getIobj_id().equals(p_From)) ;
 	}
   }
-ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54043_c());
+ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55579_c());
 
 
 if ( (p_Fromisimported) )
@@ -4641,7 +4914,7 @@ v_fromClass = ModelClass_c.getOneO_OBJOnR101(v_fromIClass);
 
 }
 
-  class ModelClass_test54044_c implements ClassQueryInterface_c
+  class ModelClass_test55580_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4649,10 +4922,10 @@ v_fromClass = ModelClass_c.getOneO_OBJOnR101(v_fromIClass);
 		return (selected.getObj_id().equals(p_To)) ;
 	}
   }
-ModelClass_c v_toClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test54044_c());
+ModelClass_c v_toClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test55580_c());
 
 
-  class ImportedClass_test54045_c implements ClassQueryInterface_c
+  class ImportedClass_test55581_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4660,7 +4933,7 @@ ModelClass_c v_toClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.ge
 		return (selected.getIobj_id().equals(p_To)) ;
 	}
   }
-ImportedClass_c v_toIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54045_c());
+ImportedClass_c v_toIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55581_c());
 
 
 if ( (p_Toisimported) )
@@ -5877,7 +6150,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newgeneralization") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class InteractionParticipant_test54046_c implements ClassQueryInterface_c
+  class InteractionParticipant_test55582_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -5885,10 +6158,10 @@ else {
 		return (selected.getPart_id().equals(p_From)) ;
 	}
   }
-InteractionParticipant_c v_source = InteractionParticipant_c.getOneSQ_POnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new InteractionParticipant_test54046_c());
+InteractionParticipant_c v_source = InteractionParticipant_c.getOneSQ_POnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new InteractionParticipant_test55582_c());
 
 
-  class InteractionParticipant_test54047_c implements ClassQueryInterface_c
+  class InteractionParticipant_test55583_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -5896,7 +6169,7 @@ InteractionParticipant_c v_source = InteractionParticipant_c.getOneSQ_POnR8001(P
 		return (selected.getPart_id().equals(p_To)) ;
 	}
   }
-InteractionParticipant_c v_destination = InteractionParticipant_c.getOneSQ_POnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new InteractionParticipant_test54047_c());
+InteractionParticipant_c v_destination = InteractionParticipant_c.getOneSQ_POnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new InteractionParticipant_test55583_c());
 
 
 boolean      v_createAssoc = false ;
@@ -6049,7 +6322,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newinclude") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class UseCaseParticipant_test54048_c implements ClassQueryInterface_c
+  class UseCaseParticipant_test55584_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6057,10 +6330,10 @@ return false;
 		return (selected.getPart_id().equals(p_From)) ;
 	}
   }
-UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test54048_c());
+UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test55584_c());
 
 
-  class UseCaseParticipant_test54049_c implements ClassQueryInterface_c
+  class UseCaseParticipant_test55585_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6068,7 +6341,7 @@ UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(Intera
 		return (selected.getPart_id().equals(p_To)) ;
 	}
   }
-UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test54049_c());
+UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test55585_c());
 
 
 if ( (  (v_sourceUC != null) &&   (v_destinationUC != null)) && (v_sourceUC != v_destinationUC) )
@@ -6170,7 +6443,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newextend") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class UseCaseParticipant_test54050_c implements ClassQueryInterface_c
+  class UseCaseParticipant_test55586_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6178,10 +6451,10 @@ return false;
 		return (selected.getPart_id().equals(p_From)) ;
 	}
   }
-UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test54050_c());
+UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test55586_c());
 
 
-  class UseCaseParticipant_test54051_c implements ClassQueryInterface_c
+  class UseCaseParticipant_test55587_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6189,7 +6462,7 @@ UseCaseParticipant_c v_sourceUC = UseCaseParticipant_c.getOneIA_UCPOnR930(Intera
 		return (selected.getPart_id().equals(p_To)) ;
 	}
   }
-UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test54051_c());
+UseCaseParticipant_c v_destinationUC = UseCaseParticipant_c.getOneIA_UCPOnR930(InteractionParticipant_c.getManySQ_PsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this)), new UseCaseParticipant_test55587_c());
 
 
 if ( (  (v_sourceUC != null) &&   (v_destinationUC != null)) && (v_sourceUC != v_destinationUC) )
@@ -6435,7 +6708,7 @@ return false;
 
 }
 
-  class ActivityNode_test54052_c implements ClassQueryInterface_c
+  class ActivityNode_test55588_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6443,10 +6716,10 @@ return false;
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-ActivityNode_c v_fromNode = ActivityNode_c.getOneA_NOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ActivityNode_test54052_c());
+ActivityNode_c v_fromNode = ActivityNode_c.getOneA_NOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ActivityNode_test55588_c());
 
 
-  class ActivityNode_test54053_c implements ClassQueryInterface_c
+  class ActivityNode_test55589_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6454,7 +6727,7 @@ ActivityNode_c v_fromNode = ActivityNode_c.getOneA_NOnR8001(PackageableElement_c
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-ActivityNode_c v_toNode = ActivityNode_c.getOneA_NOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ActivityNode_test54053_c());
+ActivityNode_c v_toNode = ActivityNode_c.getOneA_NOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ActivityNode_test55589_c());
 
 
 if ( (  (v_fromNode != null) &&   (v_toNode != null)) )
@@ -8275,7 +8548,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newassociative") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ModelClass_test54054_c implements ClassQueryInterface_c
+  class ModelClass_test55590_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8283,13 +8556,13 @@ else {
 		return (selected.getObj_id().equals(p_From)) ;
 	}
   }
-ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test54054_c());
+ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test55590_c());
 
 
 if ( (p_Fromisimportedclass) )
 {
 
-  class ImportedClass_test54055_c implements ClassQueryInterface_c
+  class ImportedClass_test55591_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8297,7 +8570,7 @@ if ( (p_Fromisimportedclass) )
 		return (selected.getIobj_id().equals(p_From)) ;
 	}
   }
-ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54055_c());
+ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55591_c());
 
 
 if ( (  (v_fromIClass != null)) )
@@ -8312,7 +8585,7 @@ v_fromClass = ModelClass_c.getOneO_OBJOnR101(v_fromIClass);
 
 }
 
-  class Association_test54056_c implements ClassQueryInterface_c
+  class Association_test55592_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8320,16 +8593,16 @@ v_fromClass = ModelClass_c.getOneO_OBJOnR101(v_fromIClass);
 		return (selected.getRel_id().equals(p_To)) ;
 	}
   }
-Association_c v_toAssoc = Association_c.getOneR_RELOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new Association_test54056_c());
+Association_c v_toAssoc = Association_c.getOneR_RELOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new Association_test55592_c());
 
 
 ModelClass_c [] v_classes = ModelClass_c.getManyO_OBJsOnR201(ClassInAssociation_c.getManyR_OIRsOnR201(v_toAssoc));
 
 
 ModelClass_c  v_clazz = null;
-for ( int i53391 = 0; i53391 < v_classes.length; i53391++)
+for ( int i54844 = 0; i54844 < v_classes.length; i54844++)
 {
-  v_clazz = v_classes[i53391] ;
+  v_clazz = v_classes[i54844] ;
 
 if ( (v_clazz == v_fromClass) )
 {
@@ -8415,7 +8688,7 @@ return true;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newsupertype") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ModelClass_test54057_c implements ClassQueryInterface_c
+  class ModelClass_test55593_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8423,10 +8696,10 @@ return true;
 		return (selected.getObj_id().equals(p_From)) ;
 	}
   }
-ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test54057_c());
+ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test55593_c());
 
 
-  class ImportedClass_test54058_c implements ClassQueryInterface_c
+  class ImportedClass_test55594_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8434,7 +8707,7 @@ ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.
 		return (selected.getIobj_id().equals(p_From)) ;
 	}
   }
-ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54058_c());
+ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55594_c());
 
 
 if ( (p_Fromisimportedclass) )
@@ -8616,7 +8889,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Newsubtype") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ModelClass_test54059_c implements ClassQueryInterface_c
+  class ModelClass_test55595_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8624,13 +8897,13 @@ return false;
 		return (selected.getObj_id().equals(p_From)) ;
 	}
   }
-ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test54059_c());
+ModelClass_c v_fromClass = ModelClass_c.getOneO_OBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ModelClass_test55595_c());
 
 
 if ( (p_Fromisimportedclass) )
 {
 
-  class ImportedClass_test54060_c implements ClassQueryInterface_c
+  class ImportedClass_test55596_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8638,7 +8911,7 @@ if ( (p_Fromisimportedclass) )
 		return (selected.getIobj_id().equals(p_From)) ;
 	}
   }
-ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54060_c());
+ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55596_c());
 
 
 if ( (  (v_fromIClass != null)) )
@@ -8656,7 +8929,7 @@ v_fromClass = ModelClass_c.getOneO_OBJOnR101(v_fromIClass);
 if ( (  (v_fromClass != null)) )
 {
 
-  class Association_test54061_c implements ClassQueryInterface_c
+  class Association_test55597_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8664,7 +8937,7 @@ if ( (  (v_fromClass != null)) )
 		return (selected.getRel_id().equals(p_To)) ;
 	}
   }
-Association_c v_toAssoc = Association_c.getOneR_RELOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new Association_test54061_c());
+Association_c v_toAssoc = Association_c.getOneR_RELOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new Association_test55597_c());
 
 
 if ( (  (v_toAssoc != null)) )
@@ -8689,9 +8962,9 @@ ModelClass_c [] v_subClasses = ModelClass_c.getManyO_OBJsOnR201(ClassInAssociati
 
 
 ModelClass_c  v_subClass = null;
-for ( int i53392 = 0; i53392 < v_subClasses.length; i53392++)
+for ( int i54845 = 0; i54845 < v_subClasses.length; i54845++)
 {
-  v_subClass = v_subClasses[i53392] ;
+  v_subClass = v_subClasses[i54845] ;
 
 if ( (v_fromClass == v_subClass) )
 {
@@ -8728,7 +9001,7 @@ else {
 if ( (p_Fromisimportedclass) )
 {
 
-  class ImportedClass_test54062_c implements ClassQueryInterface_c
+  class ImportedClass_test55598_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8736,7 +9009,7 @@ if ( (p_Fromisimportedclass) )
 		return (selected.getIobj_id().equals(p_From)) ;
 	}
   }
-ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test54062_c());
+ImportedClass_c v_fromIClass = ImportedClass_c.getOneO_IOBJOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this), new ImportedClass_test55598_c());
 
 
 if (v_cir != null) {
@@ -8803,9 +9076,9 @@ ClassIdentifierAttribute_c [] v_oida_set = ClassIdentifierAttribute_c.getManyO_O
 
 
 ClassIdentifierAttribute_c  v_oida = null;
-for ( int i53393 = 0; i53393 < v_oida_set.length; i53393++)
+for ( int i54846 = 0; i54846 < v_oida_set.length; i54846++)
 {
-  v_oida = v_oida_set[i53393] ;
+  v_oida = v_oida_set[i54846] ;
 
 java.util.UUID         v_newAttr_id = v_oida.Addreference(			    
 v_unused_oid			    
@@ -9003,9 +9276,9 @@ int          v_count = -1 ;
 
 
 Package_c  v_pckg = null;
-for ( int i53394 = 0; i53394 < v_pckgs.length; i53394++)
+for ( int i54847 = 0; i54847 < v_pckgs.length; i54847++)
 {
-  v_pckg = v_pckgs[i53394] ;
+  v_pckg = v_pckgs[i54847] ;
 
 if ( (  (v_pckg != null)) )
 {
@@ -9059,9 +9332,9 @@ int          v_count = -1 ;
 
 
 Activity_c  v_activity = null;
-for ( int i53395 = 0; i53395 < v_activities.length; i53395++)
+for ( int i54848 = 0; i54848 < v_activities.length; i54848++)
 {
-  v_activity = v_activities[i53395] ;
+  v_activity = v_activities[i54848] ;
 
 if ( (  (v_activity != null)) )
 {
@@ -9115,9 +9388,9 @@ int          v_count = -1 ;
 
 
 Communication_c  v_communication = null;
-for ( int i53396 = 0; i53396 < v_communications.length; i53396++)
+for ( int i54849 = 0; i54849 < v_communications.length; i54849++)
 {
-  v_communication = v_communications[i53396] ;
+  v_communication = v_communications[i54849] ;
 
 if ( (  (v_communication != null)) )
 {
@@ -9171,9 +9444,9 @@ int          v_count = -1 ;
 
 
 ComponentPackage_c  v_compPckg = null;
-for ( int i53397 = 0; i53397 < v_compPckgs.length; i53397++)
+for ( int i54850 = 0; i54850 < v_compPckgs.length; i54850++)
 {
-  v_compPckg = v_compPckgs[i53397] ;
+  v_compPckg = v_compPckgs[i54850] ;
 
 if ( (  (v_compPckg != null)) )
 {
@@ -9227,9 +9500,9 @@ int          v_count = -1 ;
 
 
 DataTypePackage_c  v_datatypePckg = null;
-for ( int i53398 = 0; i53398 < v_datatypePckgs.length; i53398++)
+for ( int i54851 = 0; i54851 < v_datatypePckgs.length; i54851++)
 {
-  v_datatypePckg = v_datatypePckgs[i53398] ;
+  v_datatypePckg = v_datatypePckgs[i54851] ;
 
 if ( (  (v_datatypePckg != null)) )
 {
@@ -9283,9 +9556,9 @@ int          v_count = -1 ;
 
 
 InterfacePackage_c  v_interfacePckg = null;
-for ( int i53399 = 0; i53399 < v_interfacePckgs.length; i53399++)
+for ( int i54852 = 0; i54852 < v_interfacePckgs.length; i54852++)
 {
-  v_interfacePckg = v_interfacePckgs[i53399] ;
+  v_interfacePckg = v_interfacePckgs[i54852] ;
 
 if ( (  (v_interfacePckg != null)) )
 {
@@ -9327,9 +9600,9 @@ int          v_count = -1 ;
 
 
 Sequence_c  v_sequence = null;
-for ( int i53400 = 0; i53400 < v_sequences.length; i53400++)
+for ( int i54853 = 0; i54853 < v_sequences.length; i54853++)
 {
-  v_sequence = v_sequences[i53400] ;
+  v_sequence = v_sequences[i54853] ;
 
 if ( (  (v_sequence != null)) )
 {
@@ -9395,9 +9668,9 @@ int          v_count = -1 ;
 
 
 UseCaseParticipant_c  v_usecase = null;
-for ( int i53401 = 0; i53401 < v_usecases.length; i53401++)
+for ( int i54854 = 0; i54854 < v_usecases.length; i54854++)
 {
-  v_usecase = v_usecases[i53401] ;
+  v_usecase = v_usecases[i54854] ;
 
 v_count = v_count + 1 ;
 
@@ -9432,7 +9705,7 @@ Package_c v_originatingPackage = Package_c.getOneEP_PKGOnR8001(v_originatingPack
 if ( this == v_originatingPackage )
 {
 
-  class SearchResultSet_test54063_c implements ClassQueryInterface_c
+  class SearchResultSet_test55599_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9440,7 +9713,7 @@ if ( this == v_originatingPackage )
 		return selected.getName().equals(p_Name) && selected.getType() == p_Type ;
 	}
   }
-SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(this, new SearchResultSet_test54063_c());
+SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(this, new SearchResultSet_test55599_c());
 
 
 if (   (v_resultSet != null) )
@@ -9489,9 +9762,9 @@ PackageableElement_c [] v_elements = PackageableElement_c.getManyPE_PEsOnR8000(t
 
 
 PackageableElement_c  v_element = null;
-for ( int i53402 = 0; i53402 < v_elements.length; i53402++)
+for ( int i54855 = 0; i54855 < v_elements.length; i54855++)
 {
-  v_element = v_elements[i53402] ;
+  v_element = v_elements[i54855] ;
 
 if (v_element != null) {
 v_element.Collectvisibleelementsforname(			    
@@ -9522,9 +9795,9 @@ PackageableElement_c [] v_elements = PackageableElement_c.getManyPE_PEsOnR8000(t
 
 
 PackageableElement_c  v_element = null;
-for ( int i53403 = 0; i53403 < v_elements.length; i53403++)
+for ( int i54856 = 0; i54856 < v_elements.length; i54856++)
 {
-  v_element = v_elements[i53403] ;
+  v_element = v_elements[i54856] ;
 
 if ( v_element.Getvisibilityvalue() == Visibility_c.Public || p_Descending == false && v_element.Getvisibilityvalue() == Visibility_c.Protected )
 {
@@ -9973,9 +10246,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR8001(PackageableElemen
 
 
 Association_c  v_assoc = null;
-for ( int i53404 = 0; i53404 < v_assocs.length; i53404++)
+for ( int i54857 = 0; i54857 < v_assocs.length; i54857++)
 {
-  v_assoc = v_assocs[i53404] ;
+  v_assoc = v_assocs[i54857] ;
 
 if ( (v_assoc.getNumb() >= v_rel.getNumb()) )
 {
@@ -10069,9 +10342,9 @@ Attribute_c [] v_attributes = Attribute_c.getManyO_ATTRsOnR102(v_cl);
 
 
 Attribute_c  v_attribute = null;
-for ( int i53405 = 0; i53405 < v_attributes.length; i53405++)
+for ( int i54858 = 0; i54858 < v_attributes.length; i54858++)
 {
-  v_attribute = v_attributes[i53405] ;
+  v_attribute = v_attributes[i54858] ;
 
 boolean      v_result = v_cl.Removeincompletereferential(			    
 v_attribute.getAttr_id()) ;
@@ -10224,9 +10497,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4002(v_provisi
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53406 = 0; i53406 < v_satisfactions.length; i53406++)
+for ( int i54859 = 0; i54859 < v_satisfactions.length; i54859++)
 {
-  v_satisfaction = v_satisfactions[i53406] ;
+  v_satisfaction = v_satisfactions[i54859] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4002(v_satisfaction);
 
@@ -10950,9 +11223,9 @@ SearchResultSet_c [] v_srs = SearchResultSet_c.getManyPE_SRSsOnR8005(this);
 
 
 SearchResultSet_c  v_sr = null;
-for ( int i53407 = 0; i53407 < v_srs.length; i53407++)
+for ( int i54860 = 0; i54860 < v_srs.length; i54860++)
 {
-  v_sr = v_srs[i53407] ;
+  v_sr = v_srs[i54860] ;
 
 if (v_sr != null) {
 v_sr.Dispose() ;
@@ -11006,6 +11279,34 @@ return Gd_c.Null_unique_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Initializeclasses") ; 
                final ModelRoot modelRoot = getModelRoot();
+ComponentInstance_c v_compInst = (ComponentInstance_c) modelRoot.getInstanceList(ComponentInstance_c.class).getGlobal(null, p_Compinstid);
+
+
+ModelClass_c [] v_classes = ModelClass_c.getManyO_OBJsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this));
+
+
+Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(this));
+
+
+Package_c  v_package = null;
+for ( int i54861 = 0; i54861 < v_packages.length; i54861++)
+{
+  v_package = v_packages[i54861] ;
+
+if (v_package != null) {
+v_package.Initializeclasses(			    
+p_Compinstid ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
 
    } // End initializeClasses
   public  boolean      Isexecutingorischildexecuting()
@@ -11028,9 +11329,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_childPkg = null;
-for ( int i53408 = 0; i53408 < v_packages.length; i53408++)
+for ( int i54862 = 0; i54862 < v_packages.length; i54862++)
 {
-  v_childPkg = v_packages[i53408] ;
+  v_childPkg = v_packages[i54862] ;
 
 if ( v_childPkg.Isexecutingorischildexecuting() )
 {
@@ -11048,9 +11349,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53409 = 0; i53409 < v_components.length; i53409++)
+for ( int i54863 = 0; i54863 < v_components.length; i54863++)
 {
-  v_component = v_components[i53409] ;
+  v_component = v_components[i54863] ;
 
 if ( v_component.Isexecutingorischildexecuting() )
 {
@@ -11068,9 +11369,9 @@ ComponentReference_c [] v_compRefs = ComponentReference_c.getManyCL_ICsOnR8001(P
 
 
 ComponentReference_c  v_compRef = null;
-for ( int i53410 = 0; i53410 < v_compRefs.length; i53410++)
+for ( int i54864 = 0; i54864 < v_compRefs.length; i54864++)
 {
-  v_compRef = v_compRefs[i53410] ;
+  v_compRef = v_compRefs[i54864] ;
 
 if ( v_compRef.Isexecuting() )
 {
@@ -11154,9 +11455,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_childPkg = null;
-for ( int i53411 = 0; i53411 < v_packages.length; i53411++)
+for ( int i54865 = 0; i54865 < v_packages.length; i54865++)
 {
-  v_childPkg = v_packages[i53411] ;
+  v_childPkg = v_packages[i54865] ;
 
 if ( v_childPkg.Ownsexecutableelementsorchildownsexecutableelements() )
 {
@@ -11210,7 +11511,7 @@ p_Id ) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Package", " Operation entered: Package::Pasteclassassubtype") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ClassAsSubtype_test53934_c implements ClassQueryInterface_c
+  class ClassAsSubtype_test55464_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -11218,7 +11519,7 @@ p_Id ) ;
 		return (selected.getOir_id().equals(p_Id)) ;
 	}
   }
-ClassAsSubtype_c v_subtype = ClassAsSubtype_c.ClassAsSubtypeInstance(modelRoot, new ClassAsSubtype_test53934_c()) ;
+ClassAsSubtype_c v_subtype = ClassAsSubtype_c.ClassAsSubtypeInstance(modelRoot, new ClassAsSubtype_test55464_c()) ;
 
 
 if ( (  (v_subtype != null)) )
@@ -11720,9 +12021,9 @@ int          v_count = -1 ;
 
 
 UserDataType_c  v_udt = null;
-for ( int i53412 = 0; i53412 < v_udts.length; i53412++)
+for ( int i54866 = 0; i54866 < v_udts.length; i54866++)
 {
-  v_udt = v_udts[i53412] ;
+  v_udt = v_udts[i54866] ;
 
 v_count = v_count + 1 ;
 
@@ -11770,9 +12071,9 @@ int          v_count = -1 ;
 
 
 ActorParticipant_c  v_actor = null;
-for ( int i53413 = 0; i53413 < v_actors.length; i53413++)
+for ( int i54867 = 0; i54867 < v_actors.length; i54867++)
 {
-  v_actor = v_actors[i53413] ;
+  v_actor = v_actors[i54867] ;
 
 v_count = v_count + 1 ;
 
@@ -11820,9 +12121,9 @@ int          v_count = -1 ;
 
 
 SendSignal_c  v_elem = null;
-for ( int i53414 = 0; i53414 < v_elems.length; i53414++)
+for ( int i54868 = 0; i54868 < v_elems.length; i54868++)
 {
-  v_elem = v_elems[i53414] ;
+  v_elem = v_elems[i54868] ;
 
 v_count = v_count + 1 ;
 
@@ -11870,9 +12171,9 @@ int          v_count = -1 ;
 
 
 AcceptEventAction_c  v_elem = null;
-for ( int i53415 = 0; i53415 < v_elems.length; i53415++)
+for ( int i54869 = 0; i54869 < v_elems.length; i54869++)
 {
-  v_elem = v_elems[i53415] ;
+  v_elem = v_elems[i54869] ;
 
 v_count = v_count + 1 ;
 
@@ -11920,9 +12221,9 @@ int          v_count = -1 ;
 
 
 AcceptTimeEventAction_c  v_elem = null;
-for ( int i53416 = 0; i53416 < v_elems.length; i53416++)
+for ( int i54870 = 0; i54870 < v_elems.length; i54870++)
 {
-  v_elem = v_elems[i53416] ;
+  v_elem = v_elems[i54870] ;
 
 v_count = v_count + 1 ;
 
@@ -11970,9 +12271,9 @@ int          v_count = -1 ;
 
 
 ActivityDiagramAction_c  v_elem = null;
-for ( int i53417 = 0; i53417 < v_elems.length; i53417++)
+for ( int i54871 = 0; i54871 < v_elems.length; i54871++)
 {
-  v_elem = v_elems[i53417] ;
+  v_elem = v_elems[i54871] ;
 
 v_count = v_count + 1 ;
 
@@ -12020,9 +12321,9 @@ int          v_count = -1 ;
 
 
 ModelClass_c  v_elem = null;
-for ( int i53418 = 0; i53418 < v_elems.length; i53418++)
+for ( int i54872 = 0; i54872 < v_elems.length; i54872++)
 {
-  v_elem = v_elems[i53418] ;
+  v_elem = v_elems[i54872] ;
 
 v_count = v_count + 1 ;
 
@@ -12070,9 +12371,9 @@ int          v_count = -1 ;
 
 
 Component_c  v_elem = null;
-for ( int i53419 = 0; i53419 < v_elems.length; i53419++)
+for ( int i54873 = 0; i54873 < v_elems.length; i54873++)
 {
-  v_elem = v_elems[i53419] ;
+  v_elem = v_elems[i54873] ;
 
 v_count = v_count + 1 ;
 
@@ -12120,9 +12421,9 @@ int          v_count = -1 ;
 
 
 ComponentReference_c  v_elem = null;
-for ( int i53420 = 0; i53420 < v_elems.length; i53420++)
+for ( int i54874 = 0; i54874 < v_elems.length; i54874++)
 {
-  v_elem = v_elems[i53420] ;
+  v_elem = v_elems[i54874] ;
 
 v_count = v_count + 1 ;
 
@@ -12170,9 +12471,9 @@ int          v_count = -1 ;
 
 
 Interface_c  v_elem = null;
-for ( int i53421 = 0; i53421 < v_elems.length; i53421++)
+for ( int i54875 = 0; i54875 < v_elems.length; i54875++)
 {
-  v_elem = v_elems[i53421] ;
+  v_elem = v_elems[i54875] ;
 
 v_count = v_count + 1 ;
 
@@ -12220,9 +12521,9 @@ int          v_count = -1 ;
 
 
 ConstantSpecification_c  v_elem = null;
-for ( int i53422 = 0; i53422 < v_elems.length; i53422++)
+for ( int i54876 = 0; i54876 < v_elems.length; i54876++)
 {
-  v_elem = v_elems[i53422] ;
+  v_elem = v_elems[i54876] ;
 
 v_count = v_count + 1 ;
 
@@ -12270,9 +12571,9 @@ int          v_count = -1 ;
 
 
 StructuredDataType_c  v_elem = null;
-for ( int i53423 = 0; i53423 < v_elems.length; i53423++)
+for ( int i54877 = 0; i54877 < v_elems.length; i54877++)
 {
-  v_elem = v_elems[i53423] ;
+  v_elem = v_elems[i54877] ;
 
 v_count = v_count + 1 ;
 
@@ -12320,9 +12621,9 @@ int          v_count = -1 ;
 
 
 EnumerationDataType_c  v_elem = null;
-for ( int i53424 = 0; i53424 < v_elems.length; i53424++)
+for ( int i54878 = 0; i54878 < v_elems.length; i54878++)
 {
-  v_elem = v_elems[i53424] ;
+  v_elem = v_elems[i54878] ;
 
 v_count = v_count + 1 ;
 
@@ -12370,9 +12671,9 @@ int          v_count = -1 ;
 
 
 ComponentParticipant_c  v_elem = null;
-for ( int i53425 = 0; i53425 < v_elems.length; i53425++)
+for ( int i54879 = 0; i54879 < v_elems.length; i54879++)
 {
-  v_elem = v_elems[i53425] ;
+  v_elem = v_elems[i54879] ;
 
 v_count = v_count + 1 ;
 
@@ -12420,9 +12721,9 @@ int          v_count = -1 ;
 
 
 ClassInstanceParticipant_c  v_elem = null;
-for ( int i53426 = 0; i53426 < v_elems.length; i53426++)
+for ( int i54880 = 0; i54880 < v_elems.length; i54880++)
 {
-  v_elem = v_elems[i53426] ;
+  v_elem = v_elems[i54880] ;
 
 v_count = v_count + 1 ;
 
@@ -12470,9 +12771,9 @@ int          v_count = -1 ;
 
 
 ExternalEntity_c  v_elem = null;
-for ( int i53427 = 0; i53427 < v_elems.length; i53427++)
+for ( int i54881 = 0; i54881 < v_elems.length; i54881++)
 {
-  v_elem = v_elems[i53427] ;
+  v_elem = v_elems[i54881] ;
 
 v_count = v_count + 1 ;
 
@@ -12520,9 +12821,9 @@ int          v_count = -1 ;
 
 
 PackageParticipant_c  v_elem = null;
-for ( int i53428 = 0; i53428 < v_elems.length; i53428++)
+for ( int i54882 = 0; i54882 < v_elems.length; i54882++)
 {
-  v_elem = v_elems[i53428] ;
+  v_elem = v_elems[i54882] ;
 
 v_count = v_count + 1 ;
 
@@ -12570,9 +12871,9 @@ int          v_count = -1 ;
 
 
 ClassParticipant_c  v_elem = null;
-for ( int i53429 = 0; i53429 < v_elems.length; i53429++)
+for ( int i54883 = 0; i54883 < v_elems.length; i54883++)
 {
-  v_elem = v_elems[i53429] ;
+  v_elem = v_elems[i54883] ;
 
 v_count = v_count + 1 ;
 
@@ -12620,9 +12921,9 @@ int          v_count = -1 ;
 
 
 ObjectNode_c  v_elem = null;
-for ( int i53430 = 0; i53430 < v_elems.length; i53430++)
+for ( int i54884 = 0; i54884 < v_elems.length; i54884++)
 {
-  v_elem = v_elems[i53430] ;
+  v_elem = v_elems[i54884] ;
 
 v_count = v_count + 1 ;
 
@@ -12670,9 +12971,9 @@ int          v_count = -1 ;
 
 
 DecisionMergeNode_c  v_elem = null;
-for ( int i53431 = 0; i53431 < v_elems.length; i53431++)
+for ( int i54885 = 0; i54885 < v_elems.length; i54885++)
 {
-  v_elem = v_elems[i53431] ;
+  v_elem = v_elems[i54885] ;
 
 v_count = v_count + 1 ;
 
@@ -12720,9 +13021,9 @@ int          v_count = -1 ;
 
 
 InitialNode_c  v_elem = null;
-for ( int i53432 = 0; i53432 < v_elems.length; i53432++)
+for ( int i54886 = 0; i54886 < v_elems.length; i54886++)
 {
-  v_elem = v_elems[i53432] ;
+  v_elem = v_elems[i54886] ;
 
 v_count = v_count + 1 ;
 
@@ -12770,9 +13071,9 @@ int          v_count = -1 ;
 
 
 ActivityFinalNode_c  v_elem = null;
-for ( int i53433 = 0; i53433 < v_elems.length; i53433++)
+for ( int i54887 = 0; i54887 < v_elems.length; i54887++)
 {
-  v_elem = v_elems[i53433] ;
+  v_elem = v_elems[i54887] ;
 
 v_count = v_count + 1 ;
 
@@ -12820,9 +13121,9 @@ int          v_count = -1 ;
 
 
 FlowFinalNode_c  v_elem = null;
-for ( int i53434 = 0; i53434 < v_elems.length; i53434++)
+for ( int i54888 = 0; i54888 < v_elems.length; i54888++)
 {
-  v_elem = v_elems[i53434] ;
+  v_elem = v_elems[i54888] ;
 
 v_count = v_count + 1 ;
 
@@ -12870,9 +13171,9 @@ int          v_count = -1 ;
 
 
 ImportedClass_c  v_elem = null;
-for ( int i53435 = 0; i53435 < v_elems.length; i53435++)
+for ( int i54889 = 0; i54889 < v_elems.length; i54889++)
 {
-  v_elem = v_elems[i53435] ;
+  v_elem = v_elems[i54889] ;
 
 v_count = v_count + 1 ;
 
@@ -12920,9 +13221,9 @@ int          v_count = -1 ;
 
 
 ExternalEntityParticipant_c  v_elem = null;
-for ( int i53436 = 0; i53436 < v_elems.length; i53436++)
+for ( int i54890 = 0; i54890 < v_elems.length; i54890++)
 {
-  v_elem = v_elems[i53436] ;
+  v_elem = v_elems[i54890] ;
 
 v_count = v_count + 1 ;
 
@@ -12952,9 +13253,9 @@ ModelClass_c [] v_classes = ModelClass_c.getManyO_OBJsOnR8001(PackageableElement
 
 
 ModelClass_c  v_cls = null;
-for ( int i53437 = 0; i53437 < v_classes.length; i53437++)
+for ( int i54891 = 0; i54891 < v_classes.length; i54891++)
 {
-  v_cls = v_classes[i53437] ;
+  v_cls = v_classes[i54891] ;
 
 if (v_cls != null) {
 v_cls.Removeincompletenonlocalevents() ;
@@ -12973,9 +13274,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53438 = 0; i53438 < v_packages.length; i53438++)
+for ( int i54892 = 0; i54892 < v_packages.length; i54892++)
 {
-  v_package = v_packages[i53438] ;
+  v_package = v_packages[i54892] ;
 
 if (v_package != null) {
 v_package.Removeincompletesignalevents() ;
@@ -12994,9 +13295,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53439 = 0; i53439 < v_components.length; i53439++)
+for ( int i54893 = 0; i54893 < v_components.length; i54893++)
 {
-  v_component = v_components[i53439] ;
+  v_component = v_components[i54893] ;
 
 if (v_component != null) {
 v_component.Removeincompletesignalevents() ;
@@ -13027,9 +13328,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4705(ImportedP
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53440 = 0; i53440 < v_satisfactions.length; i53440++)
+for ( int i54894 = 0; i54894 < v_satisfactions.length; i54894++)
 {
-  v_satisfaction = v_satisfactions[i53440] ;
+  v_satisfaction = v_satisfactions[i54894] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4002(v_satisfaction);
 
@@ -13163,9 +13464,9 @@ ComponentReference_c [] v_componentRefs = ComponentReference_c.getManyCL_ICsOnR8
 
 
 ComponentReference_c  v_componentRef = null;
-for ( int i53441 = 0; i53441 < v_componentRefs.length; i53441++)
+for ( int i54895 = 0; i54895 < v_componentRefs.length; i54895++)
 {
-  v_componentRef = v_componentRefs[i53441] ;
+  v_componentRef = v_componentRefs[i54895] ;
 
 Util_c.Addelementtolist(			    
 v_componentRef.Converttoinstance()			    
@@ -13194,9 +13495,9 @@ Package_c [] v_pkgs = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.getMa
 
 
 Package_c  v_pkg = null;
-for ( int i53442 = 0; i53442 < v_pkgs.length; i53442++)
+for ( int i54896 = 0; i54896 < v_pkgs.length; i54896++)
 {
-  v_pkg = v_pkgs[i53442] ;
+  v_pkg = v_pkgs[i54896] ;
 
 if (v_pkg != null) {
 v_pkg.Collectreferencesforsynchronization(			    
@@ -13217,9 +13518,9 @@ Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR8001(PackageableElement_
 
 
 Interface_c  v_interface = null;
-for ( int i53443 = 0; i53443 < v_interfaces.length; i53443++)
+for ( int i54897 = 0; i54897 < v_interfaces.length; i54897++)
 {
-  v_interface = v_interfaces[i53443] ;
+  v_interface = v_interfaces[i54897] ;
 
 if (v_interface != null) {
 v_interface.Collectreferencesforsynchronization(			    
@@ -13240,9 +13541,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53444 = 0; i53444 < v_components.length; i53444++)
+for ( int i54898 = 0; i54898 < v_components.length; i54898++)
 {
-  v_component = v_components[i53444] ;
+  v_component = v_components[i54898] ;
 
 if (v_component != null) {
 v_component.Collectreferencesforsynchronization(			    
@@ -13263,9 +13564,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR1404(PackageInPackage_c.get
 
 
 Package_c  v_package = null;
-for ( int i53445 = 0; i53445 < v_packages.length; i53445++)
+for ( int i54899 = 0; i54899 < v_packages.length; i54899++)
 {
-  v_package = v_packages[i53445] ;
+  v_package = v_packages[i54899] ;
 
 if (v_package != null) {
 v_package.Collectreferencesforsynchronization(			    
@@ -13286,9 +13587,9 @@ ComponentPackage_c [] v_componentPkgs = ComponentPackage_c.getManyCP_CPsOnR1402(
 
 
 ComponentPackage_c  v_componentPkg = null;
-for ( int i53446 = 0; i53446 < v_componentPkgs.length; i53446++)
+for ( int i54900 = 0; i54900 < v_componentPkgs.length; i54900++)
 {
-  v_componentPkg = v_componentPkgs[i53446] ;
+  v_componentPkg = v_componentPkgs[i54900] ;
 
 if (v_componentPkg != null) {
 v_componentPkg.Collectreferencesforsynchronization(			    
@@ -13309,9 +13610,9 @@ InterfacePackage_c [] v_interfacePkgs = InterfacePackage_c.getManyIP_IPsOnR1402(
 
 
 InterfacePackage_c  v_interfacePkg = null;
-for ( int i53447 = 0; i53447 < v_interfacePkgs.length; i53447++)
+for ( int i54901 = 0; i54901 < v_interfacePkgs.length; i54901++)
 {
-  v_interfacePkg = v_interfacePkgs[i53447] ;
+  v_interfacePkg = v_interfacePkgs[i54901] ;
 
 if (v_interfacePkg != null) {
 v_interfacePkg.Collectreferencesforsynchronization(			    
@@ -13341,9 +13642,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53448 = 0; i53448 < v_packages.length; i53448++)
+for ( int i54902 = 0; i54902 < v_packages.length; i54902++)
 {
-  v_package = v_packages[i53448] ;
+  v_package = v_packages[i54902] ;
 
 if ( v_package.Hasrealizedcomponents() == true )
 {
@@ -13364,9 +13665,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53449 = 0; i53449 < v_components.length; i53449++)
+for ( int i54903 = 0; i54903 < v_components.length; i54903++)
 {
-  v_component = v_components[i53449] ;
+  v_component = v_components[i54903] ;
 
 if ( v_component.Hasrealizedcomponents() == true )
 {
@@ -13387,9 +13688,9 @@ ComponentReference_c [] v_compRefs = ComponentReference_c.getManyCL_ICsOnR8001(P
 
 
 ComponentReference_c  v_compRef = null;
-for ( int i53450 = 0; i53450 < v_compRefs.length; i53450++)
+for ( int i54904 = 0; i54904 < v_compRefs.length; i54904++)
 {
-  v_compRef = v_compRefs[i53450] ;
+  v_compRef = v_compRefs[i54904] ;
 
 v_component = Component_c.getOneC_COnR4201(v_compRef);
 

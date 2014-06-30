@@ -2003,7 +2003,7 @@ private static String s_invoke(
 		      
 }
 
-private static String[] errorReportingIgnoredFor = new String[] { "getDescrip", "not used", "Get_connector_tooltip"};
+private static String[] errorReportingIgnoredFor = new String[] { "Getdescription", "getDescrip", "not used", "Get_connector_tooltip"};
 public static Method findMethod (Object target, String methodName, Class[] argTypes)
   {
     try {
@@ -2200,6 +2200,7 @@ public static void Settoolbarstate(boolean readonly) {
 
     }
     public static boolean Ishighlighted(final Object Element) {
+    	// Mentor Graphics Verifier-specific Implementation
         return false;
   } // End ishighlighted
     

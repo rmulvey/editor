@@ -219,7 +219,8 @@ public class CommunicationLink_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -235,9 +236,9 @@ public class CommunicationLink_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
-				.equals(((CommunicationLink_c) elem).getLink_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
+						.equals(((CommunicationLink_c) elem).getLink_id())) && this != elem)) {
 			return false;
 		}
 		if (!getLink_id().equals(((CommunicationLink_c) elem).getLink_id()))
@@ -1085,17 +1086,17 @@ public class CommunicationLink_c extends NonRootModelElement
 
 		if (MayBeFormalizedAgainstAssociation == null) {
 			// R1128
-			Association_c relInst56012 = (Association_c) baseRoot
+			Association_c relInst57561 = (Association_c) baseRoot
 					.getInstanceList(Association_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56012 == null) {
-				relInst56012 = (Association_c) Ooaofooa.getDefaultInstance()
+			if (relInst57561 == null) {
+				relInst57561 = (Association_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Association_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst56012 == null && searchAllRoots
+			if (relInst57561 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1103,35 +1104,35 @@ public class CommunicationLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56012 = (Association_c) roots[i].getInstanceList(
+					relInst57561 = (Association_c) roots[i].getInstanceList(
 							Association_c.class).get(new Object[]{m_rel_id});
-					if (relInst56012 != null)
+					if (relInst57561 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56012 != null) {
+			if (relInst57561 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56012) && !isProxy())) {
-					relInst56012.relateAcrossR1128To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57561) && !isProxy())) {
+					relInst57561.relateAcrossR1128To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (StartsAtInteractionParticipant == null) {
 			// R1133
-			InteractionParticipant_c relInst56013 = (InteractionParticipant_c) baseRoot
+			InteractionParticipant_c relInst57562 = (InteractionParticipant_c) baseRoot
 					.getInstanceList(InteractionParticipant_c.class).get(
 							new Object[]{m_start_part_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56013 == null) {
-				relInst56013 = (InteractionParticipant_c) Ooaofooa
+			if (relInst57562 == null) {
+				relInst57562 = (InteractionParticipant_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InteractionParticipant_c.class)
 						.get(new Object[]{m_start_part_id});
 			}
-			if (relInst56013 == null && searchAllRoots
+			if (relInst57562 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1139,36 +1140,36 @@ public class CommunicationLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56013 = (InteractionParticipant_c) roots[i]
+					relInst57562 = (InteractionParticipant_c) roots[i]
 							.getInstanceList(InteractionParticipant_c.class)
 							.get(new Object[]{m_start_part_id});
-					if (relInst56013 != null)
+					if (relInst57562 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56013 != null) {
+			if (relInst57562 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56013) && !isProxy())) {
-					relInst56013.relateAcrossR1133To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57562) && !isProxy())) {
+					relInst57562.relateAcrossR1133To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (IsDestinedForInteractionParticipant == null) {
 			// R1134
-			InteractionParticipant_c relInst56014 = (InteractionParticipant_c) baseRoot
+			InteractionParticipant_c relInst57563 = (InteractionParticipant_c) baseRoot
 					.getInstanceList(InteractionParticipant_c.class).get(
 							new Object[]{m_destination_part_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56014 == null) {
-				relInst56014 = (InteractionParticipant_c) Ooaofooa
+			if (relInst57563 == null) {
+				relInst57563 = (InteractionParticipant_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InteractionParticipant_c.class)
 						.get(new Object[]{m_destination_part_id});
 			}
-			if (relInst56014 == null && searchAllRoots
+			if (relInst57563 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1176,18 +1177,18 @@ public class CommunicationLink_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56014 = (InteractionParticipant_c) roots[i]
+					relInst57563 = (InteractionParticipant_c) roots[i]
 							.getInstanceList(InteractionParticipant_c.class)
 							.get(new Object[]{m_destination_part_id});
-					if (relInst56014 != null)
+					if (relInst57563 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56014 != null) {
+			if (relInst57563 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56014) && !isProxy())) {
-					relInst56014.relateAcrossR1134To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57563) && !isProxy())) {
+					relInst57563.relateAcrossR1134To(this, notifyChanges);
 				}
 			}
 		}
@@ -1713,44 +1714,44 @@ public class CommunicationLink_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CommunicationLink_c_test56016_c implements ClassQueryInterface_c {
-			CommunicationLink_c_test56016_c(java.util.UUID p56017) {
-				m_p56017 = p56017;
+		class CommunicationLink_c_test57565_c implements ClassQueryInterface_c {
+			CommunicationLink_c_test57565_c(java.util.UUID p57566) {
+				m_p57566 = p57566;
 			}
-			private java.util.UUID m_p56017;
+			private java.util.UUID m_p57566;
 			public boolean evaluate(Object candidate) {
 				CommunicationLink_c selected = (CommunicationLink_c) candidate;
 				boolean retval = false;
-				retval = (selected.getLink_id().equals(m_p56017));
+				retval = (selected.getLink_id().equals(m_p57566));
 				return retval;
 			}
 		}
 
-		CommunicationLink_c[] objs56015 = CommunicationLink_c
+		CommunicationLink_c[] objs57564 = CommunicationLink_c
 				.CommunicationLinkInstances(modelRoot,
-						new CommunicationLink_c_test56016_c(getLink_id()));
+						new CommunicationLink_c_test57565_c(getLink_id()));
 
-		if (((objs56015.length) == 0)) {
+		if (((objs57564.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Communication Link", //$NON-NLS-1$
 								"Consistency: Object: Communication Link: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56015.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57564.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Communication Link: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56015.length), e);
+										+ Integer.toString(objs57564.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56015.length) > 1)) {
+		if (((objs57564.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1758,7 +1759,7 @@ public class CommunicationLink_c extends NonRootModelElement
 								"Communication Link", //$NON-NLS-1$
 								"Consistency: Object: Communication Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56015.length)
+										+ Integer.toString(objs57564.length)
 										+ " Link_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1766,7 +1767,7 @@ public class CommunicationLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56015.length)
+										+ Integer.toString(objs57564.length)
 										+ " Link_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1775,29 +1776,29 @@ public class CommunicationLink_c extends NonRootModelElement
 
 		// Communication Link is a referring class in association: rel.Numb = 1133
 		// The participating class is: Interaction Participant
-		class InteractionParticipant_c_test56021_c
+		class InteractionParticipant_c_test57570_c
 				implements
 					ClassQueryInterface_c {
-			InteractionParticipant_c_test56021_c(java.util.UUID p56022) {
-				m_p56022 = p56022;
+			InteractionParticipant_c_test57570_c(java.util.UUID p57571) {
+				m_p57571 = p57571;
 			}
-			private java.util.UUID m_p56022;
+			private java.util.UUID m_p57571;
 			public boolean evaluate(Object candidate) {
 				InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p56022));
+				retval = (selected.getPart_id().equals(m_p57571));
 				return retval;
 			}
 		}
 
-		InteractionParticipant_c[] objs56020 = InteractionParticipant_c
+		InteractionParticipant_c[] objs57569 = InteractionParticipant_c
 				.InteractionParticipantInstances(modelRoot,
-						new InteractionParticipant_c_test56021_c(
+						new InteractionParticipant_c_test57570_c(
 								getStart_part_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56020.length) != 1)) {
+		if (((objs57569.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1805,7 +1806,7 @@ public class CommunicationLink_c extends NonRootModelElement
 								"Communication Link", //$NON-NLS-1$
 								"Consistency: Object: Communication Link: Association: 1133: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56020.length)
+										+ Integer.toString(objs57569.length)
 										+ " Start_Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1813,7 +1814,7 @@ public class CommunicationLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Link: Association: 1133: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56020.length)
+										+ Integer.toString(objs57569.length)
 										+ " Start_Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1822,29 +1823,29 @@ public class CommunicationLink_c extends NonRootModelElement
 
 		// Communication Link is a referring class in association: rel.Numb = 1134
 		// The participating class is: Interaction Participant
-		class InteractionParticipant_c_test56024_c
+		class InteractionParticipant_c_test57573_c
 				implements
 					ClassQueryInterface_c {
-			InteractionParticipant_c_test56024_c(java.util.UUID p56025) {
-				m_p56025 = p56025;
+			InteractionParticipant_c_test57573_c(java.util.UUID p57574) {
+				m_p57574 = p57574;
 			}
-			private java.util.UUID m_p56025;
+			private java.util.UUID m_p57574;
 			public boolean evaluate(Object candidate) {
 				InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p56025));
+				retval = (selected.getPart_id().equals(m_p57574));
 				return retval;
 			}
 		}
 
-		InteractionParticipant_c[] objs56023 = InteractionParticipant_c
+		InteractionParticipant_c[] objs57572 = InteractionParticipant_c
 				.InteractionParticipantInstances(modelRoot,
-						new InteractionParticipant_c_test56024_c(
+						new InteractionParticipant_c_test57573_c(
 								getDestination_part_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56023.length) != 1)) {
+		if (((objs57572.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1852,7 +1853,7 @@ public class CommunicationLink_c extends NonRootModelElement
 								"Communication Link", //$NON-NLS-1$
 								"Consistency: Object: Communication Link: Association: 1134: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56023.length)
+										+ Integer.toString(objs57572.length)
 										+ " Destination_Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1860,7 +1861,7 @@ public class CommunicationLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Link: Association: 1134: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56023.length)
+										+ Integer.toString(objs57572.length)
 										+ " Destination_Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1869,23 +1870,23 @@ public class CommunicationLink_c extends NonRootModelElement
 
 		// Communication Link is a referring class in association: rel.Numb = 1128
 		// The participating class is: Association
-		class Association_c_test56027_c implements ClassQueryInterface_c {
-			Association_c_test56027_c(java.util.UUID p56028) {
-				m_p56028 = p56028;
+		class Association_c_test57576_c implements ClassQueryInterface_c {
+			Association_c_test57576_c(java.util.UUID p57577) {
+				m_p57577 = p57577;
 			}
-			private java.util.UUID m_p56028;
+			private java.util.UUID m_p57577;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p56028));
+				retval = (selected.getRel_id().equals(m_p57577));
 				return retval;
 			}
 		}
 
-		Association_c[] objs56026 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test56027_c(getRel_id()));
+		Association_c[] objs57575 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test57576_c(getRel_id()));
 
-		if (((objs56026.length) > 1)) {
+		if (((objs57575.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1893,7 +1894,7 @@ public class CommunicationLink_c extends NonRootModelElement
 								"Communication Link", //$NON-NLS-1$
 								"Consistency: Object: Communication Link: Association: 1128: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56026.length)
+										+ Integer.toString(objs57575.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1901,7 +1902,7 @@ public class CommunicationLink_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Communication Link: Association: 1128: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56026.length)
+										+ Integer.toString(objs57575.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2098,8 +2099,8 @@ public class CommunicationLink_c extends NonRootModelElement
 					if (((v_part_objs.length) > 1)) {
 
 						ModelClass_c v_obj = null;
-						for (int i53869 = 0; i53869 < v_part_objs.length; i53869++) {
-							v_obj = v_part_objs[i53869];
+						for (int i55399 = 0; i55399 < v_part_objs.length; i55399++) {
+							v_obj = v_part_objs[i55399];
 
 							if ((v_obj == v_startClass)) {
 
@@ -2204,8 +2205,8 @@ public class CommunicationLink_c extends NonRootModelElement
 					}
 
 					ModelClass_c v_sub_obj = null;
-					for (int i53870 = 0; i53870 < v_sub_objs.length; i53870++) {
-						v_sub_obj = v_sub_objs[i53870];
+					for (int i55400 = 0; i55400 < v_sub_objs.length; i55400++) {
+						v_sub_obj = v_sub_objs[i55400];
 
 						if ((v_sub_obj == v_startClass)) {
 
@@ -2348,8 +2349,8 @@ public class CommunicationLink_c extends NonRootModelElement
 											.getManyS_SYSsOnR1405(v_pkg))));
 
 					Association_c v_assoc = null;
-					for (int i53871 = 0; i53871 < v_assocs.length; i53871++) {
-						v_assoc = v_assocs[i53871];
+					for (int i55401 = 0; i55401 < v_assocs.length; i55401++) {
+						v_assoc = v_assocs[i55401];
 
 						if ((Participateswithformalparticipants(v_assoc
 								.getRel_id()))) {
@@ -2366,18 +2367,18 @@ public class CommunicationLink_c extends NonRootModelElement
 
 					String v_domName = v_comm.Getpath(true);
 
-					class Domain_test54033_c implements ClassQueryInterface_c {
-						Domain_test54033_c(String p54034) {
-							m_p54034 = p54034;
+					class Domain_test55569_c implements ClassQueryInterface_c {
+						Domain_test55569_c(String p55570) {
+							m_p55570 = p55570;
 						}
-						private String m_p54034;
+						private String m_p55570;
 						public boolean evaluate(Object candidate) {
 							Domain_c selected = (Domain_c) candidate;
-							return (selected.getName().equals(m_p54034));
+							return (selected.getName().equals(m_p55570));
 						}
 					}
 					Domain_c v_domain = Domain_c.DomainInstance(modelRoot,
-							new Domain_test54033_c(v_domName));
+							new Domain_test55569_c(v_domName));
 
 					if (((v_domain != null))) {
 
@@ -2387,8 +2388,8 @@ public class CommunicationLink_c extends NonRootModelElement
 												.getManyS_SSsOnR1(v_domain))));
 
 						Association_c v_assoc = null;
-						for (int i53872 = 0; i53872 < v_assocs.length; i53872++) {
-							v_assoc = v_assocs[i53872];
+						for (int i55402 = 0; i55402 < v_assocs.length; i55402++) {
+							v_assoc = v_assocs[i55402];
 
 							if ((Participateswithformalparticipants(v_assoc
 									.getRel_id()))) {
@@ -2476,162 +2477,162 @@ public class CommunicationLink_c extends NonRootModelElement
 
 		if ((((v_mclass != null)) && ((v_assoc != null)))) {
 
-			class ClassAsSimpleParticipant_test54405_c
+			class ClassAsSimpleParticipant_test55954_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsSimpleParticipant_test54405_c(java.util.UUID p54406) {
-					m_p54406 = p54406;
+				ClassAsSimpleParticipant_test55954_c(java.util.UUID p55955) {
+					m_p55955 = p55955;
 				}
-				private java.util.UUID m_p54406;
+				private java.util.UUID m_p55955;
 				public boolean evaluate(Object candidate) {
 					ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c) candidate;
-					return (selected.getObj_id().equals(m_p54406));
+					return (selected.getObj_id().equals(m_p55955));
 				}
 			}
 			ClassAsSimpleParticipant_c[] v_parts = ClassAsSimpleParticipant_c
 					.getManyR_PARTsOnR207(
 							SimpleAssociation_c.getManyR_SIMPsOnR206(v_assoc),
-							new ClassAsSimpleParticipant_test54405_c(v_mclass
+							new ClassAsSimpleParticipant_test55954_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsSimpleParticipant_test54407_c
+			class ClassAsSimpleParticipant_test55956_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsSimpleParticipant_test54407_c(java.util.UUID p54408) {
-					m_p54408 = p54408;
+				ClassAsSimpleParticipant_test55956_c(java.util.UUID p55957) {
+					m_p55957 = p55957;
 				}
-				private java.util.UUID m_p54408;
+				private java.util.UUID m_p55957;
 				public boolean evaluate(Object candidate) {
 					ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c) candidate;
-					return (selected.getObj_id().equals(m_p54408));
+					return (selected.getObj_id().equals(m_p55957));
 				}
 			}
 			ClassAsSimpleParticipant_c v_part = ClassAsSimpleParticipant_c
 					.getOneR_PARTOnR207(
 							SimpleAssociation_c.getManyR_SIMPsOnR206(v_assoc),
-							new ClassAsSimpleParticipant_test54407_c(v_mclass
+							new ClassAsSimpleParticipant_test55956_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsSimpleFormalizer_test54409_c
+			class ClassAsSimpleFormalizer_test55958_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsSimpleFormalizer_test54409_c(java.util.UUID p54410) {
-					m_p54410 = p54410;
+				ClassAsSimpleFormalizer_test55958_c(java.util.UUID p55959) {
+					m_p55959 = p55959;
 				}
-				private java.util.UUID m_p54410;
+				private java.util.UUID m_p55959;
 				public boolean evaluate(Object candidate) {
 					ClassAsSimpleFormalizer_c selected = (ClassAsSimpleFormalizer_c) candidate;
-					return (selected.getObj_id().equals(m_p54410));
+					return (selected.getObj_id().equals(m_p55959));
 				}
 			}
 			ClassAsSimpleFormalizer_c v_form = ClassAsSimpleFormalizer_c
 					.getOneR_FORMOnR208(
 							SimpleAssociation_c.getOneR_SIMPOnR206(v_assoc),
-							new ClassAsSimpleFormalizer_test54409_c(v_mclass
+							new ClassAsSimpleFormalizer_test55958_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsAssociatedOneSide_test54411_c
+			class ClassAsAssociatedOneSide_test55960_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsAssociatedOneSide_test54411_c(java.util.UUID p54412) {
-					m_p54412 = p54412;
+				ClassAsAssociatedOneSide_test55960_c(java.util.UUID p55961) {
+					m_p55961 = p55961;
 				}
-				private java.util.UUID m_p54412;
+				private java.util.UUID m_p55961;
 				public boolean evaluate(Object candidate) {
 					ClassAsAssociatedOneSide_c selected = (ClassAsAssociatedOneSide_c) candidate;
-					return (selected.getObj_id().equals(m_p54412));
+					return (selected.getObj_id().equals(m_p55961));
 				}
 			}
 			ClassAsAssociatedOneSide_c v_aone = ClassAsAssociatedOneSide_c
 					.getOneR_AONEOnR209(
 							LinkedAssociation_c.getOneR_ASSOCOnR206(v_assoc),
-							new ClassAsAssociatedOneSide_test54411_c(v_mclass
+							new ClassAsAssociatedOneSide_test55960_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsAssociatedOtherSide_test54413_c
+			class ClassAsAssociatedOtherSide_test55962_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsAssociatedOtherSide_test54413_c(java.util.UUID p54414) {
-					m_p54414 = p54414;
+				ClassAsAssociatedOtherSide_test55962_c(java.util.UUID p55963) {
+					m_p55963 = p55963;
 				}
-				private java.util.UUID m_p54414;
+				private java.util.UUID m_p55963;
 				public boolean evaluate(Object candidate) {
 					ClassAsAssociatedOtherSide_c selected = (ClassAsAssociatedOtherSide_c) candidate;
-					return (selected.getObj_id().equals(m_p54414));
+					return (selected.getObj_id().equals(m_p55963));
 				}
 			}
 			ClassAsAssociatedOtherSide_c v_aoth = ClassAsAssociatedOtherSide_c
 					.getOneR_AOTHOnR210(
 							LinkedAssociation_c.getOneR_ASSOCOnR206(v_assoc),
-							new ClassAsAssociatedOtherSide_test54413_c(v_mclass
+							new ClassAsAssociatedOtherSide_test55962_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsSupertype_test54415_c implements ClassQueryInterface_c {
-				ClassAsSupertype_test54415_c(java.util.UUID p54416) {
-					m_p54416 = p54416;
+			class ClassAsSupertype_test55964_c implements ClassQueryInterface_c {
+				ClassAsSupertype_test55964_c(java.util.UUID p55965) {
+					m_p55965 = p55965;
 				}
-				private java.util.UUID m_p54416;
+				private java.util.UUID m_p55965;
 				public boolean evaluate(Object candidate) {
 					ClassAsSupertype_c selected = (ClassAsSupertype_c) candidate;
-					return (selected.getObj_id().equals(m_p54416));
+					return (selected.getObj_id().equals(m_p55965));
 				}
 			}
 			ClassAsSupertype_c v_sup = ClassAsSupertype_c
 					.getOneR_SUPEROnR212(
 							SubtypeSupertypeAssociation_c
 									.getOneR_SUBSUPOnR206(v_assoc),
-							new ClassAsSupertype_test54415_c(v_mclass
+							new ClassAsSupertype_test55964_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsSubtype_test54417_c implements ClassQueryInterface_c {
-				ClassAsSubtype_test54417_c(java.util.UUID p54418) {
-					m_p54418 = p54418;
+			class ClassAsSubtype_test55966_c implements ClassQueryInterface_c {
+				ClassAsSubtype_test55966_c(java.util.UUID p55967) {
+					m_p55967 = p55967;
 				}
-				private java.util.UUID m_p54418;
+				private java.util.UUID m_p55967;
 				public boolean evaluate(Object candidate) {
 					ClassAsSubtype_c selected = (ClassAsSubtype_c) candidate;
-					return (selected.getObj_id().equals(m_p54418));
+					return (selected.getObj_id().equals(m_p55967));
 				}
 			}
 			ClassAsSubtype_c v_sub = ClassAsSubtype_c.getOneR_SUBOnR213(
 					SubtypeSupertypeAssociation_c
 							.getManyR_SUBSUPsOnR206(v_assoc),
-					new ClassAsSubtype_test54417_c(v_mclass.getObj_id()));
+					new ClassAsSubtype_test55966_c(v_mclass.getObj_id()));
 
-			class ClassAsDerivedOneSide_test54419_c
+			class ClassAsDerivedOneSide_test55968_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsDerivedOneSide_test54419_c(java.util.UUID p54420) {
-					m_p54420 = p54420;
+				ClassAsDerivedOneSide_test55968_c(java.util.UUID p55969) {
+					m_p55969 = p55969;
 				}
-				private java.util.UUID m_p54420;
+				private java.util.UUID m_p55969;
 				public boolean evaluate(Object candidate) {
 					ClassAsDerivedOneSide_c selected = (ClassAsDerivedOneSide_c) candidate;
-					return (selected.getObj_id().equals(m_p54420));
+					return (selected.getObj_id().equals(m_p55969));
 				}
 			}
 			ClassAsDerivedOneSide_c v_cone = ClassAsDerivedOneSide_c
 					.getOneR_CONEOnR214(
 							DerivedAssociation_c.getOneR_COMPOnR206(v_assoc),
-							new ClassAsDerivedOneSide_test54419_c(v_mclass
+							new ClassAsDerivedOneSide_test55968_c(v_mclass
 									.getObj_id()));
 
-			class ClassAsDerivedOtherSide_test54421_c
+			class ClassAsDerivedOtherSide_test55970_c
 					implements
 						ClassQueryInterface_c {
-				ClassAsDerivedOtherSide_test54421_c(java.util.UUID p54422) {
-					m_p54422 = p54422;
+				ClassAsDerivedOtherSide_test55970_c(java.util.UUID p55971) {
+					m_p55971 = p55971;
 				}
-				private java.util.UUID m_p54422;
+				private java.util.UUID m_p55971;
 				public boolean evaluate(Object candidate) {
 					ClassAsDerivedOtherSide_c selected = (ClassAsDerivedOtherSide_c) candidate;
-					return (selected.getObj_id().equals(m_p54422));
+					return (selected.getObj_id().equals(m_p55971));
 				}
 			}
 			ClassAsDerivedOtherSide_c v_coth = ClassAsDerivedOtherSide_c
 					.getOneR_COTHOnR215(
 							DerivedAssociation_c.getOneR_COMPOnR206(v_assoc),
-							new ClassAsDerivedOtherSide_test54421_c(v_mclass
+							new ClassAsDerivedOtherSide_test55970_c(v_mclass
 									.getObj_id()));
 
 			if (((v_parts.length) == 1) && ((v_form != null))) {
@@ -2656,8 +2657,8 @@ public class CommunicationLink_c extends NonRootModelElement
 
 					int v_part_num = 0;
 
-					for (int i53873 = 0; i53873 < v_parts.length; i53873++) {
-						v_part = v_parts[i53873];
+					for (int i55403 = 0; i55403 < v_parts.length; i55403++) {
+						v_part = v_parts[i55403];
 
 						v_part_num = v_part_num + 1;
 

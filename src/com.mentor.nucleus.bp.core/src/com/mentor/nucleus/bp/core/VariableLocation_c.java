@@ -168,7 +168,8 @@ public class VariableLocation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -184,8 +185,9 @@ public class VariableLocation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((VariableLocation_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((VariableLocation_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((VariableLocation_c) elem).getId()))
@@ -446,16 +448,16 @@ public class VariableLocation_c extends NonRootModelElement
 
 		if (Variable == null) {
 			// R835
-			Variable_c relInst37218 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst37800 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37218 == null) {
-				relInst37218 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst37800 == null) {
+				relInst37800 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst37218 == null && searchAllRoots
+			if (relInst37800 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -463,17 +465,17 @@ public class VariableLocation_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37218 = (Variable_c) roots[i].getInstanceList(
+					relInst37800 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst37218 != null)
+					if (relInst37800 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37218 != null) {
+			if (relInst37800 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37218) && !isProxy())) {
-					relInst37218.relateAcrossR835To(this, notifyChanges);
+						|| (inSameComponent(this, relInst37800) && !isProxy())) {
+					relInst37800.relateAcrossR835To(this, notifyChanges);
 				}
 			}
 		}
@@ -714,44 +716,44 @@ public class VariableLocation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class VariableLocation_c_test37220_c implements ClassQueryInterface_c {
-			VariableLocation_c_test37220_c(java.util.UUID p37221) {
-				m_p37221 = p37221;
+		class VariableLocation_c_test37802_c implements ClassQueryInterface_c {
+			VariableLocation_c_test37802_c(java.util.UUID p37803) {
+				m_p37803 = p37803;
 			}
-			private java.util.UUID m_p37221;
+			private java.util.UUID m_p37803;
 			public boolean evaluate(Object candidate) {
 				VariableLocation_c selected = (VariableLocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p37221));
+				retval = (selected.getId().equals(m_p37803));
 				return retval;
 			}
 		}
 
-		VariableLocation_c[] objs37219 = VariableLocation_c
+		VariableLocation_c[] objs37801 = VariableLocation_c
 				.VariableLocationInstances(modelRoot,
-						new VariableLocation_c_test37220_c(getId()));
+						new VariableLocation_c_test37802_c(getId()));
 
-		if (((objs37219.length) == 0)) {
+		if (((objs37801.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Variable Location", //$NON-NLS-1$
 								"Consistency: Object: Variable Location: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37219.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs37801.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Variable Location: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37219.length), e);
+										+ Integer.toString(objs37801.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37219.length) > 1)) {
+		if (((objs37801.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -759,7 +761,7 @@ public class VariableLocation_c extends NonRootModelElement
 								"Variable Location", //$NON-NLS-1$
 								"Consistency: Object: Variable Location: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37219.length)
+										+ Integer.toString(objs37801.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -767,7 +769,7 @@ public class VariableLocation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Variable Location: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37219.length)
+										+ Integer.toString(objs37801.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -776,23 +778,23 @@ public class VariableLocation_c extends NonRootModelElement
 
 		// Variable Location is a referring class in association: rel.Numb = 835
 		// The participating class is: Variable
-		class Variable_c_test37225_c implements ClassQueryInterface_c {
-			Variable_c_test37225_c(java.util.UUID p37226) {
-				m_p37226 = p37226;
+		class Variable_c_test37807_c implements ClassQueryInterface_c {
+			Variable_c_test37807_c(java.util.UUID p37808) {
+				m_p37808 = p37808;
 			}
-			private java.util.UUID m_p37226;
+			private java.util.UUID m_p37808;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p37226));
+				retval = (selected.getVar_id().equals(m_p37808));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs37224 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test37225_c(getVar_id()));
+		Variable_c[] objs37806 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test37807_c(getVar_id()));
 
-		if (((objs37224.length) > 1)) {
+		if (((objs37806.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -800,7 +802,7 @@ public class VariableLocation_c extends NonRootModelElement
 								"Variable Location", //$NON-NLS-1$
 								"Consistency: Object: Variable Location: Association: 835: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37224.length)
+										+ Integer.toString(objs37806.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -808,7 +810,7 @@ public class VariableLocation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Variable Location: Association: 835: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37224.length)
+										+ Integer.toString(objs37806.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

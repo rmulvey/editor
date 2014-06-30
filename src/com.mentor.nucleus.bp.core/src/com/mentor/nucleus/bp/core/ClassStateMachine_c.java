@@ -146,7 +146,8 @@ public class ClassStateMachine_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class ClassStateMachine_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((ClassStateMachine_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((ClassStateMachine_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((ClassStateMachine_c) elem).getSm_id()))
@@ -659,17 +660,17 @@ public class ClassStateMachine_c extends NonRootModelElement
 
 		if (ModelClass == null) {
 			// R519
-			ModelClass_c relInst38681 = (ModelClass_c) baseRoot
+			ModelClass_c relInst39263 = (ModelClass_c) baseRoot
 					.getInstanceList(ModelClass_c.class).get(
 							new Object[]{m_obj_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38681 == null) {
-				relInst38681 = (ModelClass_c) Ooaofooa.getDefaultInstance()
+			if (relInst39263 == null) {
+				relInst39263 = (ModelClass_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ModelClass_c.class)
 						.get(new Object[]{m_obj_id});
 			}
-			if (relInst38681 == null && searchAllRoots
+			if (relInst39263 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -677,50 +678,50 @@ public class ClassStateMachine_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38681 = (ModelClass_c) roots[i].getInstanceList(
+					relInst39263 = (ModelClass_c) roots[i].getInstanceList(
 							ModelClass_c.class).get(new Object[]{m_obj_id});
-					if (relInst38681 != null)
+					if (relInst39263 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38681 != null) {
+			if (relInst39263 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38681) && !isProxy())) {
-					relInst38681.relateAcrossR519To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39263) && !isProxy())) {
+					relInst39263.relateAcrossR519To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R517
-		StateMachine_c relInst38682 = (StateMachine_c) baseRoot
+		StateMachine_c relInst39264 = (StateMachine_c) baseRoot
 				.getInstanceList(StateMachine_c.class).get(
 						new Object[]{m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38682 == null) {
-			relInst38682 = (StateMachine_c) Ooaofooa.getDefaultInstance()
+		if (relInst39264 == null) {
+			relInst39264 = (StateMachine_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(StateMachine_c.class)
 					.get(new Object[]{m_sm_id});
 		}
-		if (relInst38682 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39264 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38682 = (StateMachine_c) roots[i].getInstanceList(
+				relInst39264 = (StateMachine_c) roots[i].getInstanceList(
 						StateMachine_c.class).get(new Object[]{m_sm_id});
-				if (relInst38682 != null)
+				if (relInst39264 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38682 != null) {
+		if (relInst39264 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38682) && !isProxy())) {
-				relInst38682.relateAcrossR517To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39264) && !isProxy())) {
+				relInst39264.relateAcrossR517To(this, notifyChanges);
 			}
 		}
 
@@ -1022,44 +1023,44 @@ public class ClassStateMachine_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ClassStateMachine_c_test38684_c implements ClassQueryInterface_c {
-			ClassStateMachine_c_test38684_c(java.util.UUID p38685) {
-				m_p38685 = p38685;
+		class ClassStateMachine_c_test39266_c implements ClassQueryInterface_c {
+			ClassStateMachine_c_test39266_c(java.util.UUID p39267) {
+				m_p39267 = p39267;
 			}
-			private java.util.UUID m_p38685;
+			private java.util.UUID m_p39267;
 			public boolean evaluate(Object candidate) {
 				ClassStateMachine_c selected = (ClassStateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38685));
+				retval = (selected.getSm_id().equals(m_p39267));
 				return retval;
 			}
 		}
 
-		ClassStateMachine_c[] objs38683 = ClassStateMachine_c
+		ClassStateMachine_c[] objs39265 = ClassStateMachine_c
 				.ClassStateMachineInstances(modelRoot,
-						new ClassStateMachine_c_test38684_c(getSm_id()));
+						new ClassStateMachine_c_test39266_c(getSm_id()));
 
-		if (((objs38683.length) == 0)) {
+		if (((objs39265.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class State Machine", //$NON-NLS-1$
 								"Consistency: Object: Class State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38683.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39265.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38683.length), e);
+										+ Integer.toString(objs39265.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38683.length) > 1)) {
+		if (((objs39265.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1067,7 +1068,7 @@ public class ClassStateMachine_c extends NonRootModelElement
 								"Class State Machine", //$NON-NLS-1$
 								"Consistency: Object: Class State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38683.length)
+										+ Integer.toString(objs39265.length)
 										+ " SM_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1075,7 +1076,7 @@ public class ClassStateMachine_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38683.length)
+										+ Integer.toString(objs39265.length)
 										+ " SM_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1084,37 +1085,37 @@ public class ClassStateMachine_c extends NonRootModelElement
 
 		// Class State Machine is a subtype in association: rel.Numb = 517
 		// The supertype class is: State Machine
-		class StateMachine_c_test38689_c implements ClassQueryInterface_c {
-			StateMachine_c_test38689_c(java.util.UUID p38690) {
-				m_p38690 = p38690;
+		class StateMachine_c_test39271_c implements ClassQueryInterface_c {
+			StateMachine_c_test39271_c(java.util.UUID p39272) {
+				m_p39272 = p39272;
 			}
-			private java.util.UUID m_p38690;
+			private java.util.UUID m_p39272;
 			public boolean evaluate(Object candidate) {
 				StateMachine_c selected = (StateMachine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38690));
+				retval = (selected.getSm_id().equals(m_p39272));
 				return retval;
 			}
 		}
 
-		StateMachine_c[] objs38688 = StateMachine_c.StateMachineInstances(
-				modelRoot, new StateMachine_c_test38689_c(getSm_id()));
+		StateMachine_c[] objs39270 = StateMachine_c.StateMachineInstances(
+				modelRoot, new StateMachine_c_test39271_c(getSm_id()));
 
-		if (((objs38688.length) != 1)) {
+		if (((objs39270.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Class State Machine", //$NON-NLS-1$
 								"Consistency: Object: Class State Machine: Association: 517: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38688.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39270.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Class State Machine: Association: 517: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38688.length), e);
+										+ Integer.toString(objs39270.length), e);
 			}
 			retval = false;
 
@@ -1122,25 +1123,25 @@ public class ClassStateMachine_c extends NonRootModelElement
 
 		// Class State Machine is a referring class in association: rel.Numb = 519
 		// The participating class is: Model Class
-		class ModelClass_c_test38692_c implements ClassQueryInterface_c {
-			ModelClass_c_test38692_c(java.util.UUID p38693) {
-				m_p38693 = p38693;
+		class ModelClass_c_test39274_c implements ClassQueryInterface_c {
+			ModelClass_c_test39274_c(java.util.UUID p39275) {
+				m_p39275 = p39275;
 			}
-			private java.util.UUID m_p38693;
+			private java.util.UUID m_p39275;
 			public boolean evaluate(Object candidate) {
 				ModelClass_c selected = (ModelClass_c) candidate;
 				boolean retval = false;
-				retval = (selected.getObj_id().equals(m_p38693));
+				retval = (selected.getObj_id().equals(m_p39275));
 				return retval;
 			}
 		}
 
-		ModelClass_c[] objs38691 = ModelClass_c.ModelClassInstances(modelRoot,
-				new ModelClass_c_test38692_c(getObj_id()));
+		ModelClass_c[] objs39273 = ModelClass_c.ModelClassInstances(modelRoot,
+				new ModelClass_c_test39274_c(getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs38691.length) != 1)) {
+		if (((objs39273.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1148,7 +1149,7 @@ public class ClassStateMachine_c extends NonRootModelElement
 								"Class State Machine", //$NON-NLS-1$
 								"Consistency: Object: Class State Machine: Association: 519: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38691.length)
+										+ Integer.toString(objs39273.length)
 										+ " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1156,7 +1157,7 @@ public class ClassStateMachine_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Class State Machine: Association: 519: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38691.length)
+										+ Integer.toString(objs39273.length)
 										+ " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1325,8 +1326,8 @@ public class ClassStateMachine_c extends NonRootModelElement
 		int v_count = -1;
 
 		StateMachineState_c v_state = null;
-		for (int i36643 = 0; i36643 < v_states.length; i36643++) {
-			v_state = v_states[i36643];
+		for (int i37225 = 0; i37225 < v_states.length; i37225++) {
+			v_state = v_states[i37225];
 
 			if (((v_state != null))) {
 

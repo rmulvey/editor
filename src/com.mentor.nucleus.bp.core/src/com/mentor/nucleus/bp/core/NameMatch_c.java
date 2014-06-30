@@ -139,7 +139,8 @@ public class NameMatch_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -155,8 +156,9 @@ public class NameMatch_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((NameMatch_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((NameMatch_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((NameMatch_c) elem).getId()))
@@ -390,32 +392,32 @@ public class NameMatch_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9801
-		Match_c relInst38938 = (Match_c) baseRoot
+		Match_c relInst39520 = (Match_c) baseRoot
 				.getInstanceList(Match_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38938 == null) {
-			relInst38938 = (Match_c) Ooaofooa.getDefaultInstance()
+		if (relInst39520 == null) {
+			relInst39520 = (Match_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Match_c.class).get(new Object[]{m_id});
 		}
-		if (relInst38938 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39520 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38938 = (Match_c) roots[i]
+				relInst39520 = (Match_c) roots[i]
 						.getInstanceList(Match_c.class).get(new Object[]{m_id});
-				if (relInst38938 != null)
+				if (relInst39520 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38938 != null) {
+		if (relInst39520 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38938) && !isProxy())) {
-				relInst38938.relateAcrossR9801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39520) && !isProxy())) {
+				relInst39520.relateAcrossR9801To(this, notifyChanges);
 			}
 		}
 
@@ -667,42 +669,42 @@ public class NameMatch_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class NameMatch_c_test38940_c implements ClassQueryInterface_c {
-			NameMatch_c_test38940_c(java.util.UUID p38941) {
-				m_p38941 = p38941;
+		class NameMatch_c_test39522_c implements ClassQueryInterface_c {
+			NameMatch_c_test39522_c(java.util.UUID p39523) {
+				m_p39523 = p39523;
 			}
-			private java.util.UUID m_p38941;
+			private java.util.UUID m_p39523;
 			public boolean evaluate(Object candidate) {
 				NameMatch_c selected = (NameMatch_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p38941));
+				retval = (selected.getId().equals(m_p39523));
 				return retval;
 			}
 		}
 
-		NameMatch_c[] objs38939 = NameMatch_c.NameMatchInstances(modelRoot,
-				new NameMatch_c_test38940_c(getId()));
+		NameMatch_c[] objs39521 = NameMatch_c.NameMatchInstances(modelRoot,
+				new NameMatch_c_test39522_c(getId()));
 
-		if (((objs38939.length) == 0)) {
+		if (((objs39521.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Name Match", //$NON-NLS-1$
 								"Consistency: Object: Name Match: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38939.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39521.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Name Match: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38939.length), e);
+								+ Integer.toString(objs39521.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38939.length) > 1)) {
+		if (((objs39521.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -710,7 +712,7 @@ public class NameMatch_c extends NonRootModelElement
 								"Name Match", //$NON-NLS-1$
 								"Consistency: Object: Name Match: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38939.length)
+										+ Integer.toString(objs39521.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -718,7 +720,7 @@ public class NameMatch_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Name Match: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38939.length)
+										+ Integer.toString(objs39521.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -727,37 +729,37 @@ public class NameMatch_c extends NonRootModelElement
 
 		// Name Match is a subtype in association: rel.Numb = 9801
 		// The supertype class is: Match
-		class Match_c_test38945_c implements ClassQueryInterface_c {
-			Match_c_test38945_c(java.util.UUID p38946) {
-				m_p38946 = p38946;
+		class Match_c_test39527_c implements ClassQueryInterface_c {
+			Match_c_test39527_c(java.util.UUID p39528) {
+				m_p39528 = p39528;
 			}
-			private java.util.UUID m_p38946;
+			private java.util.UUID m_p39528;
 			public boolean evaluate(Object candidate) {
 				Match_c selected = (Match_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p38946));
+				retval = (selected.getId().equals(m_p39528));
 				return retval;
 			}
 		}
 
-		Match_c[] objs38944 = Match_c.MatchInstances(modelRoot,
-				new Match_c_test38945_c(getId()));
+		Match_c[] objs39526 = Match_c.MatchInstances(modelRoot,
+				new Match_c_test39527_c(getId()));
 
-		if (((objs38944.length) != 1)) {
+		if (((objs39526.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Name Match", //$NON-NLS-1$
 								"Consistency: Object: Name Match: Association: 9801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38944.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39526.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Name Match: Association: 9801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38944.length), e);
+										+ Integer.toString(objs39526.length), e);
 			}
 			retval = false;
 

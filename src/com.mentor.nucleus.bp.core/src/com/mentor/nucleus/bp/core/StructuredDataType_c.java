@@ -149,7 +149,7 @@ p_m_dt_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -165,7 +165,7 @@ p_m_dt_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((StructuredDataType_c)elem).getDt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((StructuredDataType_c)elem).getDt_id())) && this != elem)) {
       	return false;
       }
       if (!getDt_id().equals(((StructuredDataType_c)elem).getDt_id())) return false;
@@ -601,29 +601,29 @@ public static StructuredDataType_c [] getManyS_SDTsOnR44(StructureMember_c targe
         ModelRoot baseRoot = modelRoot;
 
       // R17
-      DataType_c relInst54778 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst56327 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54778 == null) {
-      			relInst54778 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst56327 == null) {
+      			relInst56327 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst54778 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56327 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54778 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst54778 != null)
+					relInst56327 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst56327 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54778 != null )
+      if ( relInst56327 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54778) && !isProxy())) {
-	      relInst54778.relateAcrossR17To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56327) && !isProxy())) {
+	      relInst56327.relateAcrossR17To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -873,56 +873,56 @@ private static StructuredDataType_c findStructuredDataTypeInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class StructuredDataType_c_test54780_c implements ClassQueryInterface_c
+    class StructuredDataType_c_test56329_c implements ClassQueryInterface_c
     {
-	  StructuredDataType_c_test54780_c( java.util.UUID            p54781 ) {
-	  m_p54781 = p54781;
+	  StructuredDataType_c_test56329_c( java.util.UUID            p56330 ) {
+	  m_p56330 = p56330;
 	  }
-	  private java.util.UUID             m_p54781; 
+	  private java.util.UUID             m_p56330; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StructuredDataType_c selected = (StructuredDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p54781));
+	      retval = (selected.getDt_id().equals(m_p56330));
 	      return retval;
 	  }
     }
 
-    StructuredDataType_c [] objs54779 = 
-    StructuredDataType_c.StructuredDataTypeInstances(modelRoot, new StructuredDataType_c_test54780_c(getDt_id())) ;
+    StructuredDataType_c [] objs56328 = 
+    StructuredDataType_c.StructuredDataTypeInstances(modelRoot, new StructuredDataType_c_test56329_c(getDt_id())) ;
 
-    if ( (  (objs54779.length) == 0) )
+    if ( (  (objs56328.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Structured Data Type", //$NON-NLS-1$
            "Consistency: Object: Structured Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54779.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56328.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Structured Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54779.length )  , e); 
+          + Integer.toString( objs56328.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54779.length) > 1) )
+    if ( (  (objs56328.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Structured Data Type", //$NON-NLS-1$
            "Consistency: Object: Structured Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54779.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56328.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Structured Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54779.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56328.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -930,37 +930,37 @@ private static StructuredDataType_c findStructuredDataTypeInstance(ModelRoot mod
 
           // Structured Data Type is a subtype in association: rel.Numb = 17
           // The supertype class is: Data Type
-    class DataType_c_test54785_c implements ClassQueryInterface_c
+    class DataType_c_test56334_c implements ClassQueryInterface_c
     {
-	  DataType_c_test54785_c( java.util.UUID            p54786 ) {
-	  m_p54786 = p54786;
+	  DataType_c_test56334_c( java.util.UUID            p56335 ) {
+	  m_p56335 = p56335;
 	  }
-	  private java.util.UUID             m_p54786; 
+	  private java.util.UUID             m_p56335; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p54786));
+	      retval = (selected.getDt_id().equals(m_p56335));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs54784 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test54785_c(getDt_id())) ;
+    DataType_c [] objs56333 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56334_c(getDt_id())) ;
 
-    if ( (  (objs54784.length) != 1) )
+    if ( (  (objs56333.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Structured Data Type", //$NON-NLS-1$
            "Consistency: Object: Structured Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54784.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56333.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Structured Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54784.length )  , e); 
+          + Integer.toString( objs56333.length )  , e); 
       }
       retval = false;
 
@@ -987,7 +987,7 @@ Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modelev
 Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 
 
-  class DataType_test54105_c implements ClassQueryInterface_c
+  class DataType_test55641_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -995,7 +995,7 @@ Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 		return selected.getName().equals("integer") ;
 	}
   }
-DataType_c v_int_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54105_c());
+DataType_c v_int_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55641_c());
 
 
 if ( (  (v_dom != null) &&   (v_int_dt == null)) )
@@ -1088,7 +1088,7 @@ v_int_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 if ( (  (v_int_dt == null)) )
 {
 
-  class DataType_test54106_c implements ClassQueryInterface_c
+  class DataType_test55642_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1096,7 +1096,7 @@ if ( (  (v_int_dt == null)) )
 		return (selected.getName().equals("integer")) ;
 	}
   }
-v_int_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(v_sys)), new DataType_test54106_c());
+v_int_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8000(Package_c.getManyEP_PKGsOnR1405(v_sys)), new DataType_test55642_c());
 
 
 
@@ -1139,9 +1139,9 @@ StructureMember_c [] v_members = StructureMember_c.getManyS_MBRsOnR44(this);
 
 
 StructureMember_c  v_member = null;
-for ( int i53517 = 0; i53517 < v_members.length; i53517++)
+for ( int i54971 = 0; i54971 < v_members.length; i54971++)
 {
-  v_member = v_members[i53517] ;
+  v_member = v_members[i54971] ;
 
 this.unrelateAcrossR44From(v_member);
 
@@ -1233,7 +1233,7 @@ v_result = v_result + Ooaofooa.Getorphanedelementname(modelRoot) ;
 else
 {
 
-  class StructureMember_test54107_c implements ClassQueryInterface_c
+  class StructureMember_test55643_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1241,7 +1241,7 @@ else
 		return (selected.getPrevious_member_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-StructureMember_c v_member = StructureMember_c.getOneS_MBROnR44(this, new StructureMember_test54107_c());
+StructureMember_c v_member = StructureMember_c.getOneS_MBROnR44(this, new StructureMember_test55643_c());
 
 
 if ( (p_At == Justification_c.Left) )
@@ -1509,7 +1509,7 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Structured Data Type", " Operation entered: StructuredDataType::Pastestructuremember") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StructureMember_test53949_c implements ClassQueryInterface_c
+  class StructureMember_test55479_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1517,7 +1517,7 @@ return false;
 		return (selected.getMember_id().equals(p_Id)) ;
 	}
   }
-StructureMember_c v_member = StructureMember_c.StructureMemberInstance(modelRoot, new StructureMember_test53949_c()) ;
+StructureMember_c v_member = StructureMember_c.StructureMemberInstance(modelRoot, new StructureMember_test55479_c()) ;
 
 
 if ( (  (v_member != null)) )
@@ -1565,7 +1565,7 @@ v_member.getMember_id() ) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Structured Data Type", " Operation entered: StructuredDataType::Addmembertoorder") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class StructureMember_test53950_c implements ClassQueryInterface_c
+  class StructureMember_test55480_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1573,7 +1573,7 @@ v_member.getMember_id() ) ;
 		return (selected.getMember_id().equals(p_Id)) ;
 	}
   }
-StructureMember_c v_member = StructureMember_c.StructureMemberInstance(modelRoot, new StructureMember_test53950_c()) ;
+StructureMember_c v_member = StructureMember_c.StructureMemberInstance(modelRoot, new StructureMember_test55480_c()) ;
 
 
 if ( (  (v_member != null)) )
@@ -1587,9 +1587,9 @@ StructureMember_c [] v_peers = StructureMember_c.getManyS_MBRsOnR44(this);
 
 
 StructureMember_c  v_peer = null;
-for ( int i53518 = 0; i53518 < v_peers.length; i53518++)
+for ( int i54972 = 0; i54972 < v_peers.length; i54972++)
 {
-  v_peer = v_peers[i53518] ;
+  v_peer = v_peers[i54972] ;
 
 if ( (v_peer != v_member) )
 {
@@ -1681,9 +1681,9 @@ v_dts = DataType_c.getManyS_DTsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003
 }
 
 DataType_c  v_otherDt = null;
-for ( int i53519 = 0; i53519 < v_dts.length; i53519++)
+for ( int i54973 = 0; i54973 < v_dts.length; i54973++)
 {
-  v_otherDt = v_dts[i53519] ;
+  v_otherDt = v_dts[i54973] ;
 
 if ( (v_otherDt != v_dt && v_otherDt.getName().equals(v_dt.getName())) )
 {
@@ -1713,6 +1713,18 @@ true
       Ooaofooa.log.println(ILogger.OPERATION, "Structured Data Type", " Operation entered: StructuredDataType::Converttoinstance") ; 
 return this;
    } // End convertToInstance
+  public  String       Getdescription()
+  {
+      Ooaofooa.log.println(ILogger.OPERATION, "Structured Data Type", " Operation entered: StructuredDataType::Getdescription") ; 
+               final ModelRoot modelRoot = getModelRoot();
+DataType_c v_dt = DataType_c.getOneS_DTOnR17(this);
+
+
+return v_dt.getDescrip();
+
+
+
+   } // End getDescription
 
   // end transform functions
 

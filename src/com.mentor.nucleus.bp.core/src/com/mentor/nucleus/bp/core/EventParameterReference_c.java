@@ -164,7 +164,8 @@ public class EventParameterReference_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -180,9 +181,10 @@ public class EventParameterReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((EventParameterReference_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((EventParameterReference_c) elem)
+								.getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(
@@ -191,9 +193,9 @@ public class EventParameterReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((EventParameterReference_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((EventParameterReference_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((EventParameterReference_c) elem).getSm_id()))
@@ -201,9 +203,10 @@ public class EventParameterReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID
-				.equals(((EventParameterReference_c) elem).getSmedi_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmedi_id()) || IdAssigner.NULL_UUID
+						.equals(((EventParameterReference_c) elem)
+								.getSmedi_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmedi_id().equals(
@@ -212,9 +215,9 @@ public class EventParameterReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPp_id()) || IdAssigner.NULL_UUID
-				.equals(((EventParameterReference_c) elem).getPp_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPp_id()) || IdAssigner.NULL_UUID
+						.equals(((EventParameterReference_c) elem).getPp_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPp_id().equals(((EventParameterReference_c) elem).getPp_id()))
@@ -974,18 +977,18 @@ public class EventParameterReference_c extends NonRootModelElement
 
 		if (EventDatumValue == null) {
 			// R834
-			EventDatumValue_c relInst37659 = (EventDatumValue_c) baseRoot
+			EventDatumValue_c relInst38241 = (EventDatumValue_c) baseRoot
 					.getInstanceList(EventDatumValue_c.class).get(
 							new Object[]{m_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37659 == null) {
-				relInst37659 = (EventDatumValue_c) Ooaofooa
+			if (relInst38241 == null) {
+				relInst38241 = (EventDatumValue_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(EventDatumValue_c.class)
 						.get(new Object[]{m_value_id});
 			}
-			if (relInst37659 == null && searchAllRoots
+			if (relInst38241 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -993,36 +996,36 @@ public class EventParameterReference_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37659 = (EventDatumValue_c) roots[i]
+					relInst38241 = (EventDatumValue_c) roots[i]
 							.getInstanceList(EventDatumValue_c.class).get(
 									new Object[]{m_value_id});
-					if (relInst37659 != null)
+					if (relInst38241 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37659 != null) {
+			if (relInst38241 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37659) && !isProxy())) {
-					relInst37659.relateAcrossR834To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38241) && !isProxy())) {
+					relInst38241.relateAcrossR834To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (StateMachineEventDataItem == null) {
 			// R846
-			StateMachineEventDataItem_c relInst37660 = (StateMachineEventDataItem_c) baseRoot
+			StateMachineEventDataItem_c relInst38242 = (StateMachineEventDataItem_c) baseRoot
 					.getInstanceList(StateMachineEventDataItem_c.class).get(
 							new Object[]{m_sm_id, m_smedi_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37660 == null) {
-				relInst37660 = (StateMachineEventDataItem_c) Ooaofooa
+			if (relInst38242 == null) {
+				relInst38242 = (StateMachineEventDataItem_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEventDataItem_c.class)
 						.get(new Object[]{m_sm_id, m_smedi_id});
 			}
-			if (relInst37660 == null && searchAllRoots
+			if (relInst38242 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1030,36 +1033,36 @@ public class EventParameterReference_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37660 = (StateMachineEventDataItem_c) roots[i]
+					relInst38242 = (StateMachineEventDataItem_c) roots[i]
 							.getInstanceList(StateMachineEventDataItem_c.class)
 							.get(new Object[]{m_sm_id, m_smedi_id});
-					if (relInst37660 != null)
+					if (relInst38242 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37660 != null) {
+			if (relInst38242 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37660) && !isProxy())) {
-					relInst37660.relateAcrossR846To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38242) && !isProxy())) {
+					relInst38242.relateAcrossR846To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (PropertyParameter == null) {
 			// R847
-			PropertyParameter_c relInst37661 = (PropertyParameter_c) baseRoot
+			PropertyParameter_c relInst38243 = (PropertyParameter_c) baseRoot
 					.getInstanceList(PropertyParameter_c.class).get(
 							new Object[]{m_pp_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37661 == null) {
-				relInst37661 = (PropertyParameter_c) Ooaofooa
+			if (relInst38243 == null) {
+				relInst38243 = (PropertyParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(PropertyParameter_c.class)
 						.get(new Object[]{m_pp_id});
 			}
-			if (relInst37661 == null && searchAllRoots
+			if (relInst38243 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1067,18 +1070,18 @@ public class EventParameterReference_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37661 = (PropertyParameter_c) roots[i]
+					relInst38243 = (PropertyParameter_c) roots[i]
 							.getInstanceList(PropertyParameter_c.class).get(
 									new Object[]{m_pp_id});
-					if (relInst37661 != null)
+					if (relInst38243 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37661 != null) {
+			if (relInst38243 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37661) && !isProxy())) {
-					relInst37661.relateAcrossR847To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38243) && !isProxy())) {
+					relInst38243.relateAcrossR847To(this, notifyChanges);
 				}
 			}
 		}
@@ -1375,39 +1378,39 @@ public class EventParameterReference_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class EventParameterReference_c_test37663_c
+		class EventParameterReference_c_test38245_c
 				implements
 					ClassQueryInterface_c {
-			EventParameterReference_c_test37663_c(java.util.UUID p37664,
-					java.util.UUID p37665, java.util.UUID p37666,
-					java.util.UUID p37667) {
-				m_p37664 = p37664;
-				m_p37665 = p37665;
-				m_p37666 = p37666;
-				m_p37667 = p37667;
+			EventParameterReference_c_test38245_c(java.util.UUID p38246,
+					java.util.UUID p38247, java.util.UUID p38248,
+					java.util.UUID p38249) {
+				m_p38246 = p38246;
+				m_p38247 = p38247;
+				m_p38248 = p38248;
+				m_p38249 = p38249;
 			}
-			private java.util.UUID m_p37664;
-			private java.util.UUID m_p37665;
-			private java.util.UUID m_p37666;
-			private java.util.UUID m_p37667;
+			private java.util.UUID m_p38246;
+			private java.util.UUID m_p38247;
+			private java.util.UUID m_p38248;
+			private java.util.UUID m_p38249;
 			public boolean evaluate(Object candidate) {
 				EventParameterReference_c selected = (EventParameterReference_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37664))
-						& (selected.getSm_id().equals(m_p37665))
-						& (selected.getSmedi_id().equals(m_p37666))
-						& (selected.getPp_id().equals(m_p37667));
+				retval = (selected.getValue_id().equals(m_p38246))
+						& (selected.getSm_id().equals(m_p38247))
+						& (selected.getSmedi_id().equals(m_p38248))
+						& (selected.getPp_id().equals(m_p38249));
 				return retval;
 			}
 		}
 
-		EventParameterReference_c[] objs37662 = EventParameterReference_c
+		EventParameterReference_c[] objs38244 = EventParameterReference_c
 				.EventParameterReferenceInstances(modelRoot,
-						new EventParameterReference_c_test37663_c(
+						new EventParameterReference_c_test38245_c(
 								getValue_id(), getSm_id(), getSmedi_id(),
 								getPp_id()));
 
-		if (((objs37662.length) == 0)) {
+		if (((objs38244.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1415,20 +1418,20 @@ public class EventParameterReference_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Event Parameter Reference", //$NON-NLS-1$
 								"Consistency: Object: Event Parameter Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37662.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38244.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Event Parameter Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37662.length), e);
+										+ Integer.toString(objs38244.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37662.length) > 1)) {
+		if (((objs38244.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1437,7 +1440,7 @@ public class EventParameterReference_c extends NonRootModelElement
 								"Event Parameter Reference", //$NON-NLS-1$
 								"Consistency: Object: Event Parameter Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37662.length)
+										+ Integer.toString(objs38244.length)
 										+ " Value_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable" + " PP_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1445,7 +1448,7 @@ public class EventParameterReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Parameter Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37662.length)
+										+ Integer.toString(objs38244.length)
 										+ " Value_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable" + " PP_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1454,26 +1457,26 @@ public class EventParameterReference_c extends NonRootModelElement
 
 		// Event Parameter Reference is a referring class in association: rel.Numb = 834
 		// The participating class is: Event Datum Value
-		class EventDatumValue_c_test37671_c implements ClassQueryInterface_c {
-			EventDatumValue_c_test37671_c(java.util.UUID p37672) {
-				m_p37672 = p37672;
+		class EventDatumValue_c_test38253_c implements ClassQueryInterface_c {
+			EventDatumValue_c_test38253_c(java.util.UUID p38254) {
+				m_p38254 = p38254;
 			}
-			private java.util.UUID m_p37672;
+			private java.util.UUID m_p38254;
 			public boolean evaluate(Object candidate) {
 				EventDatumValue_c selected = (EventDatumValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37672));
+				retval = (selected.getValue_id().equals(m_p38254));
 				return retval;
 			}
 		}
 
-		EventDatumValue_c[] objs37670 = EventDatumValue_c
+		EventDatumValue_c[] objs38252 = EventDatumValue_c
 				.EventDatumValueInstances(modelRoot,
-						new EventDatumValue_c_test37671_c(getValue_id()));
+						new EventDatumValue_c_test38253_c(getValue_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37670.length) != 1)) {
+		if (((objs38252.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1482,7 +1485,7 @@ public class EventParameterReference_c extends NonRootModelElement
 								"Event Parameter Reference", //$NON-NLS-1$
 								"Consistency: Object: Event Parameter Reference: Association: 834: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37670.length)
+										+ Integer.toString(objs38252.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1490,7 +1493,7 @@ public class EventParameterReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Parameter Reference: Association: 834: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37670.length)
+										+ Integer.toString(objs38252.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1499,31 +1502,31 @@ public class EventParameterReference_c extends NonRootModelElement
 
 		// Event Parameter Reference is a referring class in association: rel.Numb = 846
 		// The participating class is: State Machine Event Data Item
-		class StateMachineEventDataItem_c_test37674_c
+		class StateMachineEventDataItem_c_test38256_c
 				implements
 					ClassQueryInterface_c {
-			StateMachineEventDataItem_c_test37674_c(java.util.UUID p37675,
-					java.util.UUID p37676) {
-				m_p37675 = p37675;
-				m_p37676 = p37676;
+			StateMachineEventDataItem_c_test38256_c(java.util.UUID p38257,
+					java.util.UUID p38258) {
+				m_p38257 = p38257;
+				m_p38258 = p38258;
 			}
-			private java.util.UUID m_p37675;
-			private java.util.UUID m_p37676;
+			private java.util.UUID m_p38257;
+			private java.util.UUID m_p38258;
 			public boolean evaluate(Object candidate) {
 				StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p37675))
-						& (selected.getSmedi_id().equals(m_p37676));
+				retval = (selected.getSm_id().equals(m_p38257))
+						& (selected.getSmedi_id().equals(m_p38258));
 				return retval;
 			}
 		}
 
-		StateMachineEventDataItem_c[] objs37673 = StateMachineEventDataItem_c
+		StateMachineEventDataItem_c[] objs38255 = StateMachineEventDataItem_c
 				.StateMachineEventDataItemInstances(modelRoot,
-						new StateMachineEventDataItem_c_test37674_c(getSm_id(),
+						new StateMachineEventDataItem_c_test38256_c(getSm_id(),
 								getSmedi_id()));
 
-		if (((objs37673.length) > 1)) {
+		if (((objs38255.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1532,7 +1535,7 @@ public class EventParameterReference_c extends NonRootModelElement
 								"Event Parameter Reference", //$NON-NLS-1$
 								"Consistency: Object: Event Parameter Reference: Association: 846: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37673.length)
+										+ Integer.toString(objs38255.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1540,7 +1543,7 @@ public class EventParameterReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Parameter Reference: Association: 846: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37673.length)
+										+ Integer.toString(objs38255.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1549,24 +1552,24 @@ public class EventParameterReference_c extends NonRootModelElement
 
 		// Event Parameter Reference is a referring class in association: rel.Numb = 847
 		// The participating class is: Property Parameter
-		class PropertyParameter_c_test37678_c implements ClassQueryInterface_c {
-			PropertyParameter_c_test37678_c(java.util.UUID p37679) {
-				m_p37679 = p37679;
+		class PropertyParameter_c_test38260_c implements ClassQueryInterface_c {
+			PropertyParameter_c_test38260_c(java.util.UUID p38261) {
+				m_p38261 = p38261;
 			}
-			private java.util.UUID m_p37679;
+			private java.util.UUID m_p38261;
 			public boolean evaluate(Object candidate) {
 				PropertyParameter_c selected = (PropertyParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPp_id().equals(m_p37679));
+				retval = (selected.getPp_id().equals(m_p38261));
 				return retval;
 			}
 		}
 
-		PropertyParameter_c[] objs37677 = PropertyParameter_c
+		PropertyParameter_c[] objs38259 = PropertyParameter_c
 				.PropertyParameterInstances(modelRoot,
-						new PropertyParameter_c_test37678_c(getPp_id()));
+						new PropertyParameter_c_test38260_c(getPp_id()));
 
-		if (((objs37677.length) > 1)) {
+		if (((objs38259.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1575,7 +1578,7 @@ public class EventParameterReference_c extends NonRootModelElement
 								"Event Parameter Reference", //$NON-NLS-1$
 								"Consistency: Object: Event Parameter Reference: Association: 847: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37677.length)
+										+ Integer.toString(objs38259.length)
 										+ " PP_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1583,7 +1586,7 @@ public class EventParameterReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Parameter Reference: Association: 847: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37677.length)
+										+ Integer.toString(objs38259.length)
 										+ " PP_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

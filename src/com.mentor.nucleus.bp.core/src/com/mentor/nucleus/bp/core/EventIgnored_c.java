@@ -168,7 +168,8 @@ public class EventIgnored_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -184,8 +185,9 @@ public class EventIgnored_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((EventIgnored_c) elem).getSmevt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((EventIgnored_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(((EventIgnored_c) elem).getSmevt_id()))
@@ -193,8 +195,9 @@ public class EventIgnored_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((EventIgnored_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((EventIgnored_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((EventIgnored_c) elem).getSm_id()))
@@ -202,8 +205,9 @@ public class EventIgnored_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((EventIgnored_c) elem).getSmspd_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((EventIgnored_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(((EventIgnored_c) elem).getSmspd_id()))
@@ -211,8 +215,9 @@ public class EventIgnored_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
-				.equals(((EventIgnored_c) elem).getSmstt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
+						.equals(((EventIgnored_c) elem).getSmstt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmstt_id().equals(((EventIgnored_c) elem).getSmstt_id()))
@@ -510,39 +515,39 @@ public class EventIgnored_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R504
-		StateEventMatrixEntry_c relInst38650 = (StateEventMatrixEntry_c) baseRoot
+		StateEventMatrixEntry_c relInst39232 = (StateEventMatrixEntry_c) baseRoot
 				.getInstanceList(StateEventMatrixEntry_c.class).get(
 						new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 								m_smstt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38650 == null) {
-			relInst38650 = (StateEventMatrixEntry_c) Ooaofooa
+		if (relInst39232 == null) {
+			relInst39232 = (StateEventMatrixEntry_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(StateEventMatrixEntry_c.class)
 					.get(new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 							m_smstt_id});
 		}
-		if (relInst38650 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39232 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38650 = (StateEventMatrixEntry_c) roots[i]
+				relInst39232 = (StateEventMatrixEntry_c) roots[i]
 						.getInstanceList(StateEventMatrixEntry_c.class).get(
 								new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 										m_smstt_id});
-				if (relInst38650 != null)
+				if (relInst39232 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38650 != null) {
+		if (relInst39232 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38650) && !isProxy())) {
-				relInst38650.relateAcrossR504To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39232) && !isProxy())) {
+				relInst39232.relateAcrossR504To(this, notifyChanges);
 			}
 		}
 
@@ -945,54 +950,54 @@ public class EventIgnored_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class EventIgnored_c_test38652_c implements ClassQueryInterface_c {
-			EventIgnored_c_test38652_c(java.util.UUID p38653,
-					java.util.UUID p38654, java.util.UUID p38655,
-					java.util.UUID p38656) {
-				m_p38653 = p38653;
-				m_p38654 = p38654;
-				m_p38655 = p38655;
-				m_p38656 = p38656;
+		class EventIgnored_c_test39234_c implements ClassQueryInterface_c {
+			EventIgnored_c_test39234_c(java.util.UUID p39235,
+					java.util.UUID p39236, java.util.UUID p39237,
+					java.util.UUID p39238) {
+				m_p39235 = p39235;
+				m_p39236 = p39236;
+				m_p39237 = p39237;
+				m_p39238 = p39238;
 			}
-			private java.util.UUID m_p38653;
-			private java.util.UUID m_p38654;
-			private java.util.UUID m_p38655;
-			private java.util.UUID m_p38656;
+			private java.util.UUID m_p39235;
+			private java.util.UUID m_p39236;
+			private java.util.UUID m_p39237;
+			private java.util.UUID m_p39238;
 			public boolean evaluate(Object candidate) {
 				EventIgnored_c selected = (EventIgnored_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmevt_id().equals(m_p38653))
-						& (selected.getSm_id().equals(m_p38654))
-						& (selected.getSmspd_id().equals(m_p38655))
-						& (selected.getSmstt_id().equals(m_p38656));
+				retval = (selected.getSmevt_id().equals(m_p39235))
+						& (selected.getSm_id().equals(m_p39236))
+						& (selected.getSmspd_id().equals(m_p39237))
+						& (selected.getSmstt_id().equals(m_p39238));
 				return retval;
 			}
 		}
 
-		EventIgnored_c[] objs38651 = EventIgnored_c.EventIgnoredInstances(
-				modelRoot, new EventIgnored_c_test38652_c(getSmevt_id(),
+		EventIgnored_c[] objs39233 = EventIgnored_c.EventIgnoredInstances(
+				modelRoot, new EventIgnored_c_test39234_c(getSmevt_id(),
 						getSm_id(), getSmspd_id(), getSmstt_id()));
 
-		if (((objs38651.length) == 0)) {
+		if (((objs39233.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Event Ignored", //$NON-NLS-1$
 								"Consistency: Object: Event Ignored: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38651.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39233.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Event Ignored: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38651.length), e);
+								+ Integer.toString(objs39233.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38651.length) > 1)) {
+		if (((objs39233.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1000,7 +1005,7 @@ public class EventIgnored_c extends NonRootModelElement
 								"Event Ignored", //$NON-NLS-1$
 								"Consistency: Object: Event Ignored: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38651.length)
+										+ Integer.toString(objs39233.length)
 										+ " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1008,7 +1013,7 @@ public class EventIgnored_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Event Ignored: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38651.length)
+										+ Integer.toString(objs39233.length)
 										+ " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMspd_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1017,52 +1022,52 @@ public class EventIgnored_c extends NonRootModelElement
 
 		// Event Ignored is a subtype in association: rel.Numb = 504
 		// The supertype class is: State Event Matrix Entry
-		class StateEventMatrixEntry_c_test38660_c
+		class StateEventMatrixEntry_c_test39242_c
 				implements
 					ClassQueryInterface_c {
-			StateEventMatrixEntry_c_test38660_c(java.util.UUID p38661,
-					java.util.UUID p38662, java.util.UUID p38663,
-					java.util.UUID p38664) {
-				m_p38661 = p38661;
-				m_p38662 = p38662;
-				m_p38663 = p38663;
-				m_p38664 = p38664;
+			StateEventMatrixEntry_c_test39242_c(java.util.UUID p39243,
+					java.util.UUID p39244, java.util.UUID p39245,
+					java.util.UUID p39246) {
+				m_p39243 = p39243;
+				m_p39244 = p39244;
+				m_p39245 = p39245;
+				m_p39246 = p39246;
 			}
-			private java.util.UUID m_p38661;
-			private java.util.UUID m_p38662;
-			private java.util.UUID m_p38663;
-			private java.util.UUID m_p38664;
+			private java.util.UUID m_p39243;
+			private java.util.UUID m_p39244;
+			private java.util.UUID m_p39245;
+			private java.util.UUID m_p39246;
 			public boolean evaluate(Object candidate) {
 				StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmstt_id().equals(m_p38661))
-						& (selected.getSmevt_id().equals(m_p38662))
-						& (selected.getSm_id().equals(m_p38663))
-						& (selected.getSmspd_id().equals(m_p38664));
+				retval = (selected.getSmstt_id().equals(m_p39243))
+						& (selected.getSmevt_id().equals(m_p39244))
+						& (selected.getSm_id().equals(m_p39245))
+						& (selected.getSmspd_id().equals(m_p39246));
 				return retval;
 			}
 		}
 
-		StateEventMatrixEntry_c[] objs38659 = StateEventMatrixEntry_c
+		StateEventMatrixEntry_c[] objs39241 = StateEventMatrixEntry_c
 				.StateEventMatrixEntryInstances(modelRoot,
-						new StateEventMatrixEntry_c_test38660_c(getSmstt_id(),
+						new StateEventMatrixEntry_c_test39242_c(getSmstt_id(),
 								getSmevt_id(), getSm_id(), getSmspd_id()));
 
-		if (((objs38659.length) != 1)) {
+		if (((objs39241.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Event Ignored", //$NON-NLS-1$
 								"Consistency: Object: Event Ignored: Association: 504: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38659.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39241.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Event Ignored: Association: 504: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38659.length), e);
+										+ Integer.toString(objs39241.length), e);
 			}
 			retval = false;
 

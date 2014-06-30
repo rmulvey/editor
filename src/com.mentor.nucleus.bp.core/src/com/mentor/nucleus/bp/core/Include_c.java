@@ -139,7 +139,8 @@ public class Include_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -155,8 +156,9 @@ public class Include_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
-				.equals(((Include_c) elem).getAssoc_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
+						.equals(((Include_c) elem).getAssoc_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAssoc_id().equals(((Include_c) elem).getAssoc_id()))
@@ -404,35 +406,35 @@ public class Include_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1210
-		UseCaseAssociation_c relInst37912 = (UseCaseAssociation_c) baseRoot
+		UseCaseAssociation_c relInst38494 = (UseCaseAssociation_c) baseRoot
 				.getInstanceList(UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37912 == null) {
-			relInst37912 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
+		if (relInst38494 == null) {
+			relInst38494 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(UseCaseAssociation_c.class)
 					.get(new Object[]{m_assoc_id});
 		}
-		if (relInst37912 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38494 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37912 = (UseCaseAssociation_c) roots[i].getInstanceList(
+				relInst38494 = (UseCaseAssociation_c) roots[i].getInstanceList(
 						UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
-				if (relInst37912 != null)
+				if (relInst38494 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37912 != null) {
+		if (relInst38494 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37912) && !isProxy())) {
-				relInst37912.relateAcrossR1210To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38494) && !isProxy())) {
+				relInst38494.relateAcrossR1210To(this, notifyChanges);
 			}
 		}
 
@@ -689,42 +691,42 @@ public class Include_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Include_c_test37914_c implements ClassQueryInterface_c {
-			Include_c_test37914_c(java.util.UUID p37915) {
-				m_p37915 = p37915;
+		class Include_c_test38496_c implements ClassQueryInterface_c {
+			Include_c_test38496_c(java.util.UUID p38497) {
+				m_p38497 = p38497;
 			}
-			private java.util.UUID m_p37915;
+			private java.util.UUID m_p38497;
 			public boolean evaluate(Object candidate) {
 				Include_c selected = (Include_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37915));
+				retval = (selected.getAssoc_id().equals(m_p38497));
 				return retval;
 			}
 		}
 
-		Include_c[] objs37913 = Include_c.IncludeInstances(modelRoot,
-				new Include_c_test37914_c(getAssoc_id()));
+		Include_c[] objs38495 = Include_c.IncludeInstances(modelRoot,
+				new Include_c_test38496_c(getAssoc_id()));
 
-		if (((objs37913.length) == 0)) {
+		if (((objs38495.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Include", //$NON-NLS-1$
 								"Consistency: Object: Include: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37913.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38495.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Include: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37913.length), e);
+								+ Integer.toString(objs38495.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37913.length) > 1)) {
+		if (((objs38495.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -732,7 +734,7 @@ public class Include_c extends NonRootModelElement
 								"Include", //$NON-NLS-1$
 								"Consistency: Object: Include: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37913.length)
+										+ Integer.toString(objs38495.length)
 										+ " Assoc_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -740,7 +742,7 @@ public class Include_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Include: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37913.length)
+										+ Integer.toString(objs38495.length)
 										+ " Assoc_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -749,38 +751,38 @@ public class Include_c extends NonRootModelElement
 
 		// Include is a subtype in association: rel.Numb = 1210
 		// The supertype class is: Use Case Association
-		class UseCaseAssociation_c_test37919_c implements ClassQueryInterface_c {
-			UseCaseAssociation_c_test37919_c(java.util.UUID p37920) {
-				m_p37920 = p37920;
+		class UseCaseAssociation_c_test38501_c implements ClassQueryInterface_c {
+			UseCaseAssociation_c_test38501_c(java.util.UUID p38502) {
+				m_p38502 = p38502;
 			}
-			private java.util.UUID m_p37920;
+			private java.util.UUID m_p38502;
 			public boolean evaluate(Object candidate) {
 				UseCaseAssociation_c selected = (UseCaseAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37920));
+				retval = (selected.getAssoc_id().equals(m_p38502));
 				return retval;
 			}
 		}
 
-		UseCaseAssociation_c[] objs37918 = UseCaseAssociation_c
+		UseCaseAssociation_c[] objs38500 = UseCaseAssociation_c
 				.UseCaseAssociationInstances(modelRoot,
-						new UseCaseAssociation_c_test37919_c(getAssoc_id()));
+						new UseCaseAssociation_c_test38501_c(getAssoc_id()));
 
-		if (((objs37918.length) != 1)) {
+		if (((objs38500.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Include", //$NON-NLS-1$
 								"Consistency: Object: Include: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37918.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38500.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Include: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37918.length), e);
+										+ Integer.toString(objs38500.length), e);
 			}
 			retval = false;
 

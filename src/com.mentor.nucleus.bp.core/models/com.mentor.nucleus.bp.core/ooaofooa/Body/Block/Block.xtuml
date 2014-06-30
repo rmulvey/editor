@@ -77,7 +77,7 @@ INSERT INTO O_TFR
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_UNIQUE_ID();',
+return GD::NULL_UNIQUE_ID(); ',
 	1,
 	'',
 	"1440d0c3-4c94-4b8e-86e5-df7c20021c76");
@@ -98,8 +98,7 @@ INSERT INTO O_TFR
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_UNIQUE_ID();
-',
+return GD::NULL_UNIQUE_ID(); ',
 	1,
 	'',
 	"2328d5bc-16fb-40ca-8031-a4798a29be74");
@@ -120,8 +119,7 @@ INSERT INTO O_TFR
 	"a5f314e0-43b6-40bd-8aee-520de6952a24",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_UNIQUE_ID();
-',
+return GD::NULL_UNIQUE_ID(); ',
 	1,
 	'',
 	"2c6fa559-cae7-45ed-80aa-d72500f547fc");

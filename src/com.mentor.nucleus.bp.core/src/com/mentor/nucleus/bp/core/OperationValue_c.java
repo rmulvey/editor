@@ -196,7 +196,7 @@ p_m_modelclasskeyletterscolumn
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -212,7 +212,7 @@ p_m_modelclasskeyletterscolumn
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((OperationValue_c)elem).getValue_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID.equals(((OperationValue_c)elem).getValue_id())) && this != elem)) {
       	return false;
       }
       if (!getValue_id().equals(((OperationValue_c)elem).getValue_id())) return false;
@@ -1245,87 +1245,87 @@ public static OperationValue_c [] getManyV_TRVsOnR811(ActualParameter_c target, 
 
 	if (Variable == null) {          
       // R830
-      Variable_c relInst37486 = (Variable_c) baseRoot.getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+      Variable_c relInst38068 = (Variable_c) baseRoot.getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37486 == null) {
-      			relInst37486 = (Variable_c) Ooaofooa.getDefaultInstance().getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+      		if (relInst38068 == null) {
+      			relInst38068 = (Variable_c) Ooaofooa.getDefaultInstance().getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
       		}
-			if (relInst37486 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38068 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37486 = (Variable_c) roots[i].getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
-					if (relInst37486 != null)
+					relInst38068 = (Variable_c) roots[i].getInstanceList(Variable_c.class).get(new Object[] {m_var_id});
+					if (relInst38068 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37486 != null )
+      if ( relInst38068 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37486) && !isProxy())) {
-	      relInst37486.relateAcrossR830To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38068) && !isProxy())) {
+	      relInst38068.relateAcrossR830To(this, notifyChanges);
 	  }
 	  }
 	}
 	          
 
       // R801
-      Value_c relInst37487 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst38069 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37487 == null) {
-      			relInst37487 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst38069 == null) {
+      			relInst38069 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst37487 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38069 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37487 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst37487 != null)
+					relInst38069 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst38069 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37487 != null )
+      if ( relInst38069 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37487) && !isProxy())) {
-	      relInst37487.relateAcrossR801To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38069) && !isProxy())) {
+	      relInst38069.relateAcrossR801To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (Operation == null) {          
       // R829
-      Operation_c relInst37488 = (Operation_c) baseRoot.getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
+      Operation_c relInst38070 = (Operation_c) baseRoot.getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37488 == null) {
-      			relInst37488 = (Operation_c) Ooaofooa.getDefaultInstance().getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
+      		if (relInst38070 == null) {
+      			relInst38070 = (Operation_c) Ooaofooa.getDefaultInstance().getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
       		}
-			if (relInst37488 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38070 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37488 = (Operation_c) roots[i].getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
-					if (relInst37488 != null)
+					relInst38070 = (Operation_c) roots[i].getInstanceList(Operation_c.class).get(new Object[] {m_tfr_id});
+					if (relInst38070 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37488 != null )
+      if ( relInst38070 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37488) && !isProxy())) {
-	      relInst37488.relateAcrossR829To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38070) && !isProxy())) {
+	      relInst38070.relateAcrossR829To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1657,56 +1657,56 @@ private static OperationValue_c findOperationValueInstance(ModelRoot modelRoot, 
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class OperationValue_c_test37490_c implements ClassQueryInterface_c
+    class OperationValue_c_test38072_c implements ClassQueryInterface_c
     {
-	  OperationValue_c_test37490_c( java.util.UUID            p37491 ) {
-	  m_p37491 = p37491;
+	  OperationValue_c_test38072_c( java.util.UUID            p38073 ) {
+	  m_p38073 = p38073;
 	  }
-	  private java.util.UUID             m_p37491; 
+	  private java.util.UUID             m_p38073; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      OperationValue_c selected = (OperationValue_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37491));
+	      retval = (selected.getValue_id().equals(m_p38073));
 	      return retval;
 	  }
     }
 
-    OperationValue_c [] objs37489 = 
-    OperationValue_c.OperationValueInstances(modelRoot, new OperationValue_c_test37490_c(getValue_id())) ;
+    OperationValue_c [] objs38071 = 
+    OperationValue_c.OperationValueInstances(modelRoot, new OperationValue_c_test38072_c(getValue_id())) ;
 
-    if ( (  (objs37489.length) == 0) )
+    if ( (  (objs38071.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37489.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38071.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37489.length )  , e); 
+          + Integer.toString( objs38071.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37489.length) > 1) )
+    if ( (  (objs38071.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37489.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38071.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37489.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38071.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1714,37 +1714,37 @@ private static OperationValue_c findOperationValueInstance(ModelRoot modelRoot, 
 
           // Operation Value is a subtype in association: rel.Numb = 801
           // The supertype class is: Value
-    class Value_c_test37495_c implements ClassQueryInterface_c
+    class Value_c_test38077_c implements ClassQueryInterface_c
     {
-	  Value_c_test37495_c( java.util.UUID            p37496 ) {
-	  m_p37496 = p37496;
+	  Value_c_test38077_c( java.util.UUID            p38078 ) {
+	  m_p38078 = p38078;
 	  }
-	  private java.util.UUID             m_p37496; 
+	  private java.util.UUID             m_p38078; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p37496));
+	      retval = (selected.getValue_id().equals(m_p38078));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs37494 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test37495_c(getValue_id())) ;
+    Value_c [] objs38076 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test38077_c(getValue_id())) ;
 
-    if ( (  (objs37494.length) != 1) )
+    if ( (  (objs38076.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37494.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38076.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37494.length )  , e); 
+          + Integer.toString( objs38076.length )  , e); 
       }
       retval = false;
 
@@ -1752,40 +1752,40 @@ private static OperationValue_c findOperationValueInstance(ModelRoot modelRoot, 
 
           // Operation Value is a referring class in association: rel.Numb = 829
           // The participating class is: Operation
-    class Operation_c_test37498_c implements ClassQueryInterface_c
+    class Operation_c_test38080_c implements ClassQueryInterface_c
     {
-	  Operation_c_test37498_c( java.util.UUID            p37499 ) {
-	  m_p37499 = p37499;
+	  Operation_c_test38080_c( java.util.UUID            p38081 ) {
+	  m_p38081 = p38081;
 	  }
-	  private java.util.UUID             m_p37499; 
+	  private java.util.UUID             m_p38081; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Operation_c selected = (Operation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getTfr_id().equals(m_p37499));
+	      retval = (selected.getTfr_id().equals(m_p38081));
 	      return retval;
 	  }
     }
 
-    Operation_c [] objs37497 = 
-    Operation_c.OperationInstances(modelRoot, new Operation_c_test37498_c(getTfr_id())) ;
+    Operation_c [] objs38079 = 
+    Operation_c.OperationInstances(modelRoot, new Operation_c_test38080_c(getTfr_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37497.length) != 1) )
+    if ( (  (objs38079.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Association: 829: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37497.length )  + " Tfr_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38079.length )  + " Tfr_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Association: 829: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37497.length )  + " Tfr_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38079.length )  + " Tfr_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1793,38 +1793,38 @@ private static OperationValue_c findOperationValueInstance(ModelRoot modelRoot, 
 
           // Operation Value is a referring class in association: rel.Numb = 830
           // The participating class is: Variable
-    class Variable_c_test37501_c implements ClassQueryInterface_c
+    class Variable_c_test38083_c implements ClassQueryInterface_c
     {
-	  Variable_c_test37501_c( java.util.UUID            p37502 ) {
-	  m_p37502 = p37502;
+	  Variable_c_test38083_c( java.util.UUID            p38084 ) {
+	  m_p38084 = p38084;
 	  }
-	  private java.util.UUID             m_p37502; 
+	  private java.util.UUID             m_p38084; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Variable_c selected = (Variable_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getVar_id().equals(m_p37502));
+	      retval = (selected.getVar_id().equals(m_p38084));
 	      return retval;
 	  }
     }
 
-    Variable_c [] objs37500 = 
-    Variable_c.VariableInstances(modelRoot, new Variable_c_test37501_c(getVar_id())) ;
+    Variable_c [] objs38082 = 
+    Variable_c.VariableInstances(modelRoot, new Variable_c_test38083_c(getVar_id())) ;
 
-    if ( (  (objs37500.length) > 1) )
+    if ( (  (objs38082.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Association: 830: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37500.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38082.length )  + " Var_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Association: 830: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37500.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38082.length )  + " Var_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1832,37 +1832,37 @@ private static OperationValue_c findOperationValueInstance(ModelRoot modelRoot, 
                 
           // Operation Value is a participating class in association: rel.Numb = 825
              // Object: Selected Reference
-    class SelectedReference_c_test37504_c implements ClassQueryInterface_c
+    class SelectedReference_c_test38086_c implements ClassQueryInterface_c
     {
-	  SelectedReference_c_test37504_c( java.util.UUID            p37505 ) {
-	  m_p37505 = p37505;
+	  SelectedReference_c_test38086_c( java.util.UUID            p38087 ) {
+	  m_p38087 = p38087;
 	  }
-	  private java.util.UUID             m_p37505; 
+	  private java.util.UUID             m_p38087; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SelectedReference_c selected = (SelectedReference_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOp_value_id().equals(m_p37505));
+	      retval = (selected.getOp_value_id().equals(m_p38087));
 	      return retval;
 	  }
     }
 
-    SelectedReference_c [] objs37503 = 
-    SelectedReference_c.SelectedReferenceInstances(modelRoot, new SelectedReference_c_test37504_c(getValue_id())) ;
+    SelectedReference_c [] objs38085 = 
+    SelectedReference_c.SelectedReferenceInstances(modelRoot, new SelectedReference_c_test38086_c(getValue_id())) ;
 
-    if ( (  (objs37503.length) > 1) )
+    if ( (  (objs38085.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Operation Value", //$NON-NLS-1$
            "Consistency: Object: Operation Value: Association: 825: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37503.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38085.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Operation Value: Association: 825: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37503.length )  , e); 
+          + Integer.toString( objs38085.length )  , e); 
       }
       retval = false;
 
@@ -1907,9 +1907,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR811(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36498 = 0; i36498 < v_parm_set.length; i36498++)
+for ( int i37046 = 0; i37046 < v_parm_set.length; i37046++)
 {
-  v_parm = v_parm_set[i36498] ;
+  v_parm = v_parm_set[i37046] ;
 
 this.unrelateAcrossR811From(v_parm);
 
@@ -1942,7 +1942,7 @@ delete() ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Operation Value", " Operation entered: OperationValue::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

@@ -145,7 +145,8 @@ public class FunctionMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,9 +162,9 @@ public class FunctionMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionMessage_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionMessage_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((FunctionMessage_c) elem).getMsg_id()))
@@ -695,49 +696,49 @@ public class FunctionMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1020
-		SynchronousMessage_c relInst39594 = (SynchronousMessage_c) baseRoot
+		SynchronousMessage_c relInst40176 = (SynchronousMessage_c) baseRoot
 				.getInstanceList(SynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39594 == null) {
-			relInst39594 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
+		if (relInst40176 == null) {
+			relInst40176 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39594 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40176 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39594 = (SynchronousMessage_c) roots[i].getInstanceList(
+				relInst40176 = (SynchronousMessage_c) roots[i].getInstanceList(
 						SynchronousMessage_c.class).get(new Object[]{m_msg_id});
-				if (relInst39594 != null)
+				if (relInst40176 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39594 != null) {
+		if (relInst40176 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39594) && !isProxy())) {
-				relInst39594.relateAcrossR1020To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40176) && !isProxy())) {
+				relInst40176.relateAcrossR1020To(this, notifyChanges);
 			}
 		}
 
 		if (IsInvocationOfFunction == null) {
 			// R1010
-			Function_c relInst39595 = (Function_c) baseRoot.getInstanceList(
+			Function_c relInst40177 = (Function_c) baseRoot.getInstanceList(
 					Function_c.class).get(new Object[]{m_sync_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39595 == null) {
-				relInst39595 = (Function_c) Ooaofooa.getDefaultInstance()
+			if (relInst40177 == null) {
+				relInst40177 = (Function_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Function_c.class)
 						.get(new Object[]{m_sync_id});
 			}
-			if (relInst39595 == null && searchAllRoots
+			if (relInst40177 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -745,17 +746,17 @@ public class FunctionMessage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39595 = (Function_c) roots[i].getInstanceList(
+					relInst40177 = (Function_c) roots[i].getInstanceList(
 							Function_c.class).get(new Object[]{m_sync_id});
-					if (relInst39595 != null)
+					if (relInst40177 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39595 != null) {
+			if (relInst40177 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39595) && !isProxy())) {
-					relInst39595.relateAcrossR1010To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40177) && !isProxy())) {
+					relInst40177.relateAcrossR1010To(this, notifyChanges);
 				}
 			}
 		}
@@ -1056,43 +1057,43 @@ public class FunctionMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FunctionMessage_c_test39597_c implements ClassQueryInterface_c {
-			FunctionMessage_c_test39597_c(java.util.UUID p39598) {
-				m_p39598 = p39598;
+		class FunctionMessage_c_test40179_c implements ClassQueryInterface_c {
+			FunctionMessage_c_test40179_c(java.util.UUID p40180) {
+				m_p40180 = p40180;
 			}
-			private java.util.UUID m_p39598;
+			private java.util.UUID m_p40180;
 			public boolean evaluate(Object candidate) {
 				FunctionMessage_c selected = (FunctionMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39598));
+				retval = (selected.getMsg_id().equals(m_p40180));
 				return retval;
 			}
 		}
 
-		FunctionMessage_c[] objs39596 = FunctionMessage_c
+		FunctionMessage_c[] objs40178 = FunctionMessage_c
 				.FunctionMessageInstances(modelRoot,
-						new FunctionMessage_c_test39597_c(getMsg_id()));
+						new FunctionMessage_c_test40179_c(getMsg_id()));
 
-		if (((objs39596.length) == 0)) {
+		if (((objs40178.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function Message", //$NON-NLS-1$
 								"Consistency: Object: Function Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39596.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40178.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Function Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39596.length), e);
+								+ Integer.toString(objs40178.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39596.length) > 1)) {
+		if (((objs40178.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1100,7 +1101,7 @@ public class FunctionMessage_c extends NonRootModelElement
 								"Function Message", //$NON-NLS-1$
 								"Consistency: Object: Function Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39596.length)
+										+ Integer.toString(objs40178.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1108,7 +1109,7 @@ public class FunctionMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39596.length)
+										+ Integer.toString(objs40178.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1117,38 +1118,38 @@ public class FunctionMessage_c extends NonRootModelElement
 
 		// Function Message is a subtype in association: rel.Numb = 1020
 		// The supertype class is: Synchronous Message
-		class SynchronousMessage_c_test39602_c implements ClassQueryInterface_c {
-			SynchronousMessage_c_test39602_c(java.util.UUID p39603) {
-				m_p39603 = p39603;
+		class SynchronousMessage_c_test40184_c implements ClassQueryInterface_c {
+			SynchronousMessage_c_test40184_c(java.util.UUID p40185) {
+				m_p40185 = p40185;
 			}
-			private java.util.UUID m_p39603;
+			private java.util.UUID m_p40185;
 			public boolean evaluate(Object candidate) {
 				SynchronousMessage_c selected = (SynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39603));
+				retval = (selected.getMsg_id().equals(m_p40185));
 				return retval;
 			}
 		}
 
-		SynchronousMessage_c[] objs39601 = SynchronousMessage_c
+		SynchronousMessage_c[] objs40183 = SynchronousMessage_c
 				.SynchronousMessageInstances(modelRoot,
-						new SynchronousMessage_c_test39602_c(getMsg_id()));
+						new SynchronousMessage_c_test40184_c(getMsg_id()));
 
-		if (((objs39601.length) != 1)) {
+		if (((objs40183.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Function Message", //$NON-NLS-1$
 								"Consistency: Object: Function Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39601.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40183.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39601.length), e);
+										+ Integer.toString(objs40183.length), e);
 			}
 			retval = false;
 
@@ -1156,23 +1157,23 @@ public class FunctionMessage_c extends NonRootModelElement
 
 		// Function Message is a referring class in association: rel.Numb = 1010
 		// The participating class is: Function
-		class Function_c_test39605_c implements ClassQueryInterface_c {
-			Function_c_test39605_c(java.util.UUID p39606) {
-				m_p39606 = p39606;
+		class Function_c_test40187_c implements ClassQueryInterface_c {
+			Function_c_test40187_c(java.util.UUID p40188) {
+				m_p40188 = p40188;
 			}
-			private java.util.UUID m_p39606;
+			private java.util.UUID m_p40188;
 			public boolean evaluate(Object candidate) {
 				Function_c selected = (Function_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSync_id().equals(m_p39606));
+				retval = (selected.getSync_id().equals(m_p40188));
 				return retval;
 			}
 		}
 
-		Function_c[] objs39604 = Function_c.FunctionInstances(modelRoot,
-				new Function_c_test39605_c(getSync_id()));
+		Function_c[] objs40186 = Function_c.FunctionInstances(modelRoot,
+				new Function_c_test40187_c(getSync_id()));
 
-		if (((objs39604.length) > 1)) {
+		if (((objs40186.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1180,7 +1181,7 @@ public class FunctionMessage_c extends NonRootModelElement
 								"Function Message", //$NON-NLS-1$
 								"Consistency: Object: Function Message: Association: 1010: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39604.length)
+										+ Integer.toString(objs40186.length)
 										+ " Sync_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1188,7 +1189,7 @@ public class FunctionMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Message: Association: 1010: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39604.length)
+										+ Integer.toString(objs40186.length)
 										+ " Sync_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1226,8 +1227,8 @@ public class FunctionMessage_c extends NonRootModelElement
 								.getManyMSG_SMsOnR1020(this)));
 
 		MessageArgument_c v_argument = null;
-		for (int i36676 = 0; i36676 < v_arguments.length; i36676++) {
-			v_argument = v_arguments[i36676];
+		for (int i37258 = 0; i37258 < v_arguments.length; i37258++) {
+			v_argument = v_arguments[i37258];
 
 			if (v_argument != null) {
 				v_argument.Dispose();

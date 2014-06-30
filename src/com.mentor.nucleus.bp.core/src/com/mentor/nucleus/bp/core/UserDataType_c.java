@@ -151,7 +151,8 @@ public class UserDataType_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -167,8 +168,9 @@ public class UserDataType_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
-				.equals(((UserDataType_c) elem).getDt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID
+						.equals(((UserDataType_c) elem).getDt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDt_id().equals(((UserDataType_c) elem).getDt_id()))
@@ -655,48 +657,48 @@ public class UserDataType_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R17
-		DataType_c relInst54720 = (DataType_c) baseRoot.getInstanceList(
+		DataType_c relInst56269 = (DataType_c) baseRoot.getInstanceList(
 				DataType_c.class).get(new Object[]{m_dt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54720 == null) {
-			relInst54720 = (DataType_c) Ooaofooa.getDefaultInstance()
+		if (relInst56269 == null) {
+			relInst56269 = (DataType_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(DataType_c.class)
 					.get(new Object[]{m_dt_id});
 		}
-		if (relInst54720 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56269 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54720 = (DataType_c) roots[i].getInstanceList(
+				relInst56269 = (DataType_c) roots[i].getInstanceList(
 						DataType_c.class).get(new Object[]{m_dt_id});
-				if (relInst54720 != null)
+				if (relInst56269 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54720 != null) {
+		if (relInst56269 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54720) && !isProxy())) {
-				relInst54720.relateAcrossR17To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56269) && !isProxy())) {
+				relInst56269.relateAcrossR17To(this, notifyChanges);
 			}
 		}
 
 		if (AreDefinedWithinDataType == null) {
 			// R18
-			DataType_c relInst54721 = (DataType_c) baseRoot.getInstanceList(
+			DataType_c relInst56270 = (DataType_c) baseRoot.getInstanceList(
 					DataType_c.class).get(new Object[]{m_cdt_dt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54721 == null) {
-				relInst54721 = (DataType_c) Ooaofooa.getDefaultInstance()
+			if (relInst56270 == null) {
+				relInst56270 = (DataType_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(DataType_c.class)
 						.get(new Object[]{m_cdt_dt_id});
 			}
-			if (relInst54721 == null && searchAllRoots
+			if (relInst56270 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -704,17 +706,17 @@ public class UserDataType_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54721 = (DataType_c) roots[i].getInstanceList(
+					relInst56270 = (DataType_c) roots[i].getInstanceList(
 							DataType_c.class).get(new Object[]{m_cdt_dt_id});
-					if (relInst54721 != null)
+					if (relInst56270 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54721 != null) {
+			if (relInst56270 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54721) && !isProxy())) {
-					relInst54721.relateAcrossR18To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56270) && !isProxy())) {
+					relInst56270.relateAcrossR18To(this, notifyChanges);
 				}
 			}
 		}
@@ -1025,42 +1027,42 @@ public class UserDataType_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class UserDataType_c_test54723_c implements ClassQueryInterface_c {
-			UserDataType_c_test54723_c(java.util.UUID p54724) {
-				m_p54724 = p54724;
+		class UserDataType_c_test56272_c implements ClassQueryInterface_c {
+			UserDataType_c_test56272_c(java.util.UUID p56273) {
+				m_p56273 = p56273;
 			}
-			private java.util.UUID m_p54724;
+			private java.util.UUID m_p56273;
 			public boolean evaluate(Object candidate) {
 				UserDataType_c selected = (UserDataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p54724));
+				retval = (selected.getDt_id().equals(m_p56273));
 				return retval;
 			}
 		}
 
-		UserDataType_c[] objs54722 = UserDataType_c.UserDataTypeInstances(
-				modelRoot, new UserDataType_c_test54723_c(getDt_id()));
+		UserDataType_c[] objs56271 = UserDataType_c.UserDataTypeInstances(
+				modelRoot, new UserDataType_c_test56272_c(getDt_id()));
 
-		if (((objs54722.length) == 0)) {
+		if (((objs56271.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"User Data Type", //$NON-NLS-1$
 								"Consistency: Object: User Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54722.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56271.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: User Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs54722.length), e);
+								+ Integer.toString(objs56271.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54722.length) > 1)) {
+		if (((objs56271.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1068,7 +1070,7 @@ public class UserDataType_c extends NonRootModelElement
 								"User Data Type", //$NON-NLS-1$
 								"Consistency: Object: User Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54722.length)
+										+ Integer.toString(objs56271.length)
 										+ " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1076,7 +1078,7 @@ public class UserDataType_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: User Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54722.length)
+										+ Integer.toString(objs56271.length)
 										+ " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1085,37 +1087,37 @@ public class UserDataType_c extends NonRootModelElement
 
 		// User Data Type is a subtype in association: rel.Numb = 17
 		// The supertype class is: Data Type
-		class DataType_c_test54728_c implements ClassQueryInterface_c {
-			DataType_c_test54728_c(java.util.UUID p54729) {
-				m_p54729 = p54729;
+		class DataType_c_test56277_c implements ClassQueryInterface_c {
+			DataType_c_test56277_c(java.util.UUID p56278) {
+				m_p56278 = p56278;
 			}
-			private java.util.UUID m_p54729;
+			private java.util.UUID m_p56278;
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p54729));
+				retval = (selected.getDt_id().equals(m_p56278));
 				return retval;
 			}
 		}
 
-		DataType_c[] objs54727 = DataType_c.DataTypeInstances(modelRoot,
-				new DataType_c_test54728_c(getDt_id()));
+		DataType_c[] objs56276 = DataType_c.DataTypeInstances(modelRoot,
+				new DataType_c_test56277_c(getDt_id()));
 
-		if (((objs54727.length) != 1)) {
+		if (((objs56276.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"User Data Type", //$NON-NLS-1$
 								"Consistency: Object: User Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54727.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56276.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: User Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54727.length), e);
+										+ Integer.toString(objs56276.length), e);
 			}
 			retval = false;
 
@@ -1123,25 +1125,25 @@ public class UserDataType_c extends NonRootModelElement
 
 		// User Data Type is a referring class in association: rel.Numb = 18
 		// The participating class is: Data Type
-		class DataType_c_test54731_c implements ClassQueryInterface_c {
-			DataType_c_test54731_c(java.util.UUID p54732) {
-				m_p54732 = p54732;
+		class DataType_c_test56280_c implements ClassQueryInterface_c {
+			DataType_c_test56280_c(java.util.UUID p56281) {
+				m_p56281 = p56281;
 			}
-			private java.util.UUID m_p54732;
+			private java.util.UUID m_p56281;
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDt_id().equals(m_p54732));
+				retval = (selected.getDt_id().equals(m_p56281));
 				return retval;
 			}
 		}
 
-		DataType_c[] objs54730 = DataType_c.DataTypeInstances(modelRoot,
-				new DataType_c_test54731_c(getCdt_dt_id()));
+		DataType_c[] objs56279 = DataType_c.DataTypeInstances(modelRoot,
+				new DataType_c_test56280_c(getCdt_dt_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54730.length) != 1)) {
+		if (((objs56279.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1149,7 +1151,7 @@ public class UserDataType_c extends NonRootModelElement
 								"User Data Type", //$NON-NLS-1$
 								"Consistency: Object: User Data Type: Association: 18: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54730.length)
+										+ Integer.toString(objs56279.length)
 										+ " CDT_DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1157,7 +1159,7 @@ public class UserDataType_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: User Data Type: Association: 18: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54730.length)
+										+ Integer.toString(objs56279.length)
 										+ " CDT_DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1368,7 +1370,7 @@ public class UserDataType_c extends NonRootModelElement
 		final ModelRoot modelRoot = getModelRoot();
 		DataType_c v_dt = DataType_c.getOneS_DTOnR18(this);
 
-		class DataType_test54064_c implements ClassQueryInterface_c {
+		class DataType_test55600_c implements ClassQueryInterface_c {
 			public boolean evaluate(Object candidate) {
 				DataType_c selected = (DataType_c) candidate;
 				return selected.getName().equals(p_Typename);
@@ -1376,7 +1378,7 @@ public class UserDataType_c extends NonRootModelElement
 		}
 		DataType_c v_new_dt = DataType_c
 				.getOneS_DTOnR14(Domain_c.getManyS_DOMsOnR14(DataType_c
-						.getManyS_DTsOnR17(this)), new DataType_test54064_c());
+						.getManyS_DTsOnR17(this)), new DataType_test55600_c());
 
 		PackageableElement_c v_packageableElem = PackageableElement_c
 				.getOnePE_PEOnR8001(DataType_c.getOneS_DTOnR17(this));
@@ -1394,37 +1396,37 @@ public class UserDataType_c extends NonRootModelElement
 			java.util.UUID v_id = v_packageableElem
 					.Resolvedatatyperelativetoself(p_Typename, p_Typename);
 
-			class DataType_test54065_c implements ClassQueryInterface_c {
-				DataType_test54065_c(java.util.UUID p54066) {
-					m_p54066 = p54066;
+			class DataType_test55601_c implements ClassQueryInterface_c {
+				DataType_test55601_c(java.util.UUID p55602) {
+					m_p55602 = p55602;
 				}
-				private java.util.UUID m_p54066;
+				private java.util.UUID m_p55602;
 				public boolean evaluate(Object candidate) {
 					DataType_c selected = (DataType_c) candidate;
-					return selected.getDt_id().equals(m_p54066);
+					return selected.getDt_id().equals(m_p55602);
 				}
 			}
 			v_new_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 					.getManyPE_PEsOnR8002(ElementVisibility_c
 							.getManyPE_VISsOnR8002(v_package)),
-					new DataType_test54065_c(v_id));
+					new DataType_test55601_c(v_id));
 
 			if (((v_new_dt == null))) {
 
-				class DataType_test54067_c implements ClassQueryInterface_c {
-					DataType_test54067_c(java.util.UUID p54068) {
-						m_p54068 = p54068;
+				class DataType_test55603_c implements ClassQueryInterface_c {
+					DataType_test55603_c(java.util.UUID p55604) {
+						m_p55604 = p55604;
 					}
-					private java.util.UUID m_p54068;
+					private java.util.UUID m_p55604;
 					public boolean evaluate(Object candidate) {
 						DataType_c selected = (DataType_c) candidate;
-						return selected.getDt_id().equals(m_p54068);
+						return selected.getDt_id().equals(m_p55604);
 					}
 				}
 				v_new_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 						.getManyPE_PEsOnR8004(ComponentVisibility_c
 								.getManyPE_CVSsOnR8004(v_component)),
-						new DataType_test54067_c(v_id));
+						new DataType_test55603_c(v_id));
 
 			}
 
@@ -1635,18 +1637,18 @@ public class UserDataType_c extends NonRootModelElement
 					java.util.UUID v_id = v_domain
 							.Resolvedatatyperelativetoself("integer", v_name);
 
-					class DataType_test54069_c implements ClassQueryInterface_c {
-						DataType_test54069_c(java.util.UUID p54070) {
-							m_p54070 = p54070;
+					class DataType_test55605_c implements ClassQueryInterface_c {
+						DataType_test55605_c(java.util.UUID p55606) {
+							m_p55606 = p55606;
 						}
-						private java.util.UUID m_p54070;
+						private java.util.UUID m_p55606;
 						public boolean evaluate(Object candidate) {
 							DataType_c selected = (DataType_c) candidate;
-							return (selected.getDt_id().equals(m_p54070));
+							return (selected.getDt_id().equals(m_p55606));
 						}
 					}
 					DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(
-							v_domain, new DataType_test54069_c(v_id));
+							v_domain, new DataType_test55605_c(v_id));
 
 					if (((v_resolvedDT == null))) {
 
@@ -1655,37 +1657,37 @@ public class UserDataType_c extends NonRootModelElement
 										.getOneC_COnR4204(DomainAsComponent_c
 												.getOneCN_DCOnR4204(v_domain))));
 
-						class DataType_test54071_c
+						class DataType_test55607_c
 								implements
 									ClassQueryInterface_c {
-							DataType_test54071_c(java.util.UUID p54072) {
-								m_p54072 = p54072;
+							DataType_test55607_c(java.util.UUID p55608) {
+								m_p55608 = p55608;
 							}
-							private java.util.UUID m_p54072;
+							private java.util.UUID m_p55608;
 							public boolean evaluate(Object candidate) {
 								DataType_c selected = (DataType_c) candidate;
-								return (selected.getDt_id().equals(m_p54072));
+								return (selected.getDt_id().equals(m_p55608));
 							}
 						}
 						v_resolvedDT = DataType_c.getOneS_DTOnR4401(
 								SystemDatatypeInPackage_c
 										.getManySLD_SDINPsOnR4402(v_domSys),
-								new DataType_test54071_c(v_id));
+								new DataType_test55607_c(v_id));
 
 						if ((v_resolvedDT == null) && (v_domSys != null)
 								&& v_domSys.getUseglobals()) {
 
-							class DataType_test54073_c
+							class DataType_test55609_c
 									implements
 										ClassQueryInterface_c {
-								DataType_test54073_c(java.util.UUID p54074) {
-									m_p54074 = p54074;
+								DataType_test55609_c(java.util.UUID p55610) {
+									m_p55610 = p55610;
 								}
-								private java.util.UUID m_p54074;
+								private java.util.UUID m_p55610;
 								public boolean evaluate(Object candidate) {
 									DataType_c selected = (DataType_c) candidate;
 									return (selected.getDt_id()
-											.equals(m_p54074));
+											.equals(m_p55610));
 								}
 							}
 							v_resolvedDT = DataType_c
@@ -1693,7 +1695,7 @@ public class UserDataType_c extends NonRootModelElement
 											PackageableElement_c
 													.getManyPE_PEsOnR9100(GlobalElementInSystem_c
 															.getManyG_EISsOnR9100(v_domSys)),
-											new DataType_test54073_c(v_id));
+											new DataType_test55609_c(v_id));
 
 						}
 
@@ -1832,7 +1834,7 @@ public class UserDataType_c extends NonRootModelElement
 
 		if (v_isInGenericPackage) {
 
-			class SearchResultSet_test54075_c implements ClassQueryInterface_c {
+			class SearchResultSet_test55611_c implements ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
 					SearchResultSet_c selected = (SearchResultSet_c) candidate;
 					return selected.getName().equals("")
@@ -1841,9 +1843,9 @@ public class UserDataType_c extends NonRootModelElement
 			}
 			SearchResultSet_c v_resultSet = SearchResultSet_c
 					.getOnePE_SRSOnR8005(v_package,
-							new SearchResultSet_test54075_c());
+							new SearchResultSet_test55611_c());
 
-			class DataType_test54076_c implements ClassQueryInterface_c {
+			class DataType_test55612_c implements ClassQueryInterface_c {
 				public boolean evaluate(Object candidate) {
 					DataType_c selected = (DataType_c) candidate;
 					return selected.getDt_id().equals(p_Id);
@@ -1852,11 +1854,11 @@ public class UserDataType_c extends NonRootModelElement
 			DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 					.getManyPE_PEsOnR8002(ElementVisibility_c
 							.getManyPE_VISsOnR8006(v_resultSet)),
-					new DataType_test54076_c());
+					new DataType_test55612_c());
 
 			if ((v_component != null)) {
 
-				class ComponentResultSet_test54077_c
+				class ComponentResultSet_test55613_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -1867,9 +1869,9 @@ public class UserDataType_c extends NonRootModelElement
 				}
 				ComponentResultSet_c v_compResultSet = ComponentResultSet_c
 						.getOnePE_CRSOnR8007(v_component,
-								new ComponentResultSet_test54077_c());
+								new ComponentResultSet_test55613_c());
 
-				class DataType_test54078_c implements ClassQueryInterface_c {
+				class DataType_test55614_c implements ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
 						DataType_c selected = (DataType_c) candidate;
 						return selected.getDt_id().equals(p_Id);
@@ -1878,7 +1880,7 @@ public class UserDataType_c extends NonRootModelElement
 				v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c
 						.getManyPE_PEsOnR8004(ComponentVisibility_c
 								.getManyPE_CVSsOnR8008(v_compResultSet)),
-						new DataType_test54078_c());
+						new DataType_test55614_c());
 
 			}
 
@@ -1916,7 +1918,7 @@ public class UserDataType_c extends NonRootModelElement
 									.getOneC_COnR4204(DomainAsComponent_c
 											.getOneCN_DCOnR4204(v_domain))));
 
-					class DataType_test54079_c implements ClassQueryInterface_c {
+					class DataType_test55615_c implements ClassQueryInterface_c {
 						public boolean evaluate(Object candidate) {
 							DataType_c selected = (DataType_c) candidate;
 							return (selected.getDt_id().equals(p_Id));
@@ -1925,12 +1927,12 @@ public class UserDataType_c extends NonRootModelElement
 					DataType_c v_dt = DataType_c.getOneS_DTOnR4401(
 							SystemDatatypeInPackage_c
 									.getManySLD_SDINPsOnR4402(v_system),
-							new DataType_test54079_c());
+							new DataType_test55615_c());
 
 					if ((v_dt == null) && (v_system != null)
 							&& v_system.getUseglobals()) {
 
-						class PackageableElement_test54080_c
+						class PackageableElement_test55616_c
 								implements
 									ClassQueryInterface_c {
 							public boolean evaluate(Object candidate) {
@@ -1941,7 +1943,7 @@ public class UserDataType_c extends NonRootModelElement
 						PackageableElement_c v_pe = PackageableElement_c
 								.getOnePE_PEOnR9100(GlobalElementInSystem_c
 										.getManyG_EISsOnR9100(v_system),
-										new PackageableElement_test54080_c());
+										new PackageableElement_test55616_c());
 
 						v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 
@@ -1949,7 +1951,7 @@ public class UserDataType_c extends NonRootModelElement
 
 					if (((v_dt == null))) {
 
-						class DataType_test54081_c
+						class DataType_test55617_c
 								implements
 									ClassQueryInterface_c {
 							public boolean evaluate(Object candidate) {
@@ -1958,7 +1960,7 @@ public class UserDataType_c extends NonRootModelElement
 							}
 						}
 						v_dt = DataType_c.getOneS_DTOnR14(v_domain,
-								new DataType_test54081_c());
+								new DataType_test55617_c());
 
 					}
 
@@ -1983,14 +1985,14 @@ public class UserDataType_c extends NonRootModelElement
 
 				else {
 
-					class DataType_test54082_c implements ClassQueryInterface_c {
+					class DataType_test55618_c implements ClassQueryInterface_c {
 						public boolean evaluate(Object candidate) {
 							DataType_c selected = (DataType_c) candidate;
 							return (selected.getDt_id().equals(p_Id));
 						}
 					}
 					DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_domain,
-							new DataType_test54082_c());
+							new DataType_test55618_c());
 
 					if (((v_dt != null))) {
 
@@ -2029,7 +2031,7 @@ public class UserDataType_c extends NonRootModelElement
 
 				}
 
-				class DataType_test54083_c implements ClassQueryInterface_c {
+				class DataType_test55619_c implements ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
 						DataType_c selected = (DataType_c) candidate;
 						return (selected.getDt_id().equals(p_Id));
@@ -2038,12 +2040,12 @@ public class UserDataType_c extends NonRootModelElement
 				DataType_c v_dt = DataType_c.getOneS_DTOnR4401(
 						SystemDatatypeInPackage_c
 								.getManySLD_SDINPsOnR4402(v_system),
-						new DataType_test54083_c());
+						new DataType_test55619_c());
 
 				if ((v_dt == null) && (v_system != null)
 						&& v_system.getUseglobals()) {
 
-					class PackageableElement_test54084_c
+					class PackageableElement_test55620_c
 							implements
 								ClassQueryInterface_c {
 						public boolean evaluate(Object candidate) {
@@ -2054,7 +2056,7 @@ public class UserDataType_c extends NonRootModelElement
 					PackageableElement_c v_pe = PackageableElement_c
 							.getOnePE_PEOnR9100(GlobalElementInSystem_c
 									.getManyG_EISsOnR9100(v_system),
-									new PackageableElement_test54084_c());
+									new PackageableElement_test55620_c());
 
 					v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 
@@ -2262,8 +2264,8 @@ public class UserDataType_c extends NonRootModelElement
 		}
 
 		DataType_c v_otherDt = null;
-		for (int i53451 = 0; i53451 < v_dts.length; i53451++) {
-			v_otherDt = v_dts[i53451];
+		for (int i54905 = 0; i54905 < v_dts.length; i54905++) {
+			v_otherDt = v_dts[i54905];
 
 			if ((v_otherDt != v_dt && v_otherDt.getName()
 					.equals(v_dt.getName()))) {
@@ -2279,6 +2281,15 @@ public class UserDataType_c extends NonRootModelElement
 		}
 
 	} // End checkIntegrity
+	public String Getdescription() {
+		Ooaofooa.log.println(ILogger.OPERATION, "User Data Type",
+				" Operation entered: UserDataType::Getdescription");
+		final ModelRoot modelRoot = getModelRoot();
+		DataType_c v_dt = DataType_c.getOneS_DTOnR17(this);
+
+		return v_dt.getDescrip();
+
+	} // End getDescription
 
 	// end transform functions
 

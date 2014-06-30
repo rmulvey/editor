@@ -162,7 +162,7 @@ p_m_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -178,7 +178,7 @@ p_m_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ActivityNode_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ActivityNode_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((ActivityNode_c)elem).getId())) return false;
@@ -1580,58 +1580,58 @@ public static ActivityNode_c [] getManyA_NsOnR1104(ActivityEdge_c target, boolea
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst57004 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      PackageableElement_c relInst58553 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst57004 == null) {
-      			relInst57004 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      		if (relInst58553 == null) {
+      			relInst58553 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
       		}
-			if (relInst57004 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58553 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst57004 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
-					if (relInst57004 != null)
+					relInst58553 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+					if (relInst58553 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst57004 != null )
+      if ( relInst58553 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57004) && !isProxy())) {
-	      relInst57004.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58553) && !isProxy())) {
+	      relInst58553.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (Activity == null) {          
       // R1101
-      Activity_c relInst57005 = (Activity_c) baseRoot.getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+      Activity_c relInst58554 = (Activity_c) baseRoot.getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst57005 == null) {
-      			relInst57005 = (Activity_c) Ooaofooa.getDefaultInstance().getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+      		if (relInst58554 == null) {
+      			relInst58554 = (Activity_c) Ooaofooa.getDefaultInstance().getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst57005 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58554 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst57005 = (Activity_c) roots[i].getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
-					if (relInst57005 != null)
+					relInst58554 = (Activity_c) roots[i].getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+					if (relInst58554 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst57005 != null )
+      if ( relInst58554 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57005) && !isProxy())) {
-	      relInst57005.relateAcrossR1101To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58554) && !isProxy())) {
+	      relInst58554.relateAcrossR1101To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1971,56 +1971,56 @@ private static ActivityNode_c findActivityNodeInstance(ModelRoot modelRoot, Clas
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ActivityNode_c_test57007_c implements ClassQueryInterface_c
+    class ActivityNode_c_test58556_c implements ClassQueryInterface_c
     {
-	  ActivityNode_c_test57007_c( java.util.UUID            p57008 ) {
-	  m_p57008 = p57008;
+	  ActivityNode_c_test58556_c( java.util.UUID            p58557 ) {
+	  m_p58557 = p58557;
 	  }
-	  private java.util.UUID             m_p57008; 
+	  private java.util.UUID             m_p58557; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ActivityNode_c selected = (ActivityNode_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p57008));
+	      retval = (selected.getId().equals(m_p58557));
 	      return retval;
 	  }
     }
 
-    ActivityNode_c [] objs57006 = 
-    ActivityNode_c.ActivityNodeInstances(modelRoot, new ActivityNode_c_test57007_c(getId())) ;
+    ActivityNode_c [] objs58555 = 
+    ActivityNode_c.ActivityNodeInstances(modelRoot, new ActivityNode_c_test58556_c(getId())) ;
 
-    if ( (  (objs57006.length) == 0) )
+    if ( (  (objs58555.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity Node", //$NON-NLS-1$
            "Consistency: Object: Activity Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs57006.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58555.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57006.length )  , e); 
+          + Integer.toString( objs58555.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs57006.length) > 1) )
+    if ( (  (objs58555.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity Node", //$NON-NLS-1$
            "Consistency: Object: Activity Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs57006.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58555.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57006.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58555.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2028,38 +2028,38 @@ private static ActivityNode_c findActivityNodeInstance(ModelRoot modelRoot, Clas
 
           // Activity Node is a referring class in association: rel.Numb = 1101
           // The participating class is: Activity
-    class Activity_c_test57012_c implements ClassQueryInterface_c
+    class Activity_c_test58561_c implements ClassQueryInterface_c
     {
-	  Activity_c_test57012_c( java.util.UUID            p57013 ) {
-	  m_p57013 = p57013;
+	  Activity_c_test58561_c( java.util.UUID            p58562 ) {
+	  m_p58562 = p58562;
 	  }
-	  private java.util.UUID             m_p57013; 
+	  private java.util.UUID             m_p58562; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Activity_c selected = (Activity_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p57013));
+	      retval = (selected.getPackage_id().equals(m_p58562));
 	      return retval;
 	  }
     }
 
-    Activity_c [] objs57011 = 
-    Activity_c.ActivityInstances(modelRoot, new Activity_c_test57012_c(getPackage_id())) ;
+    Activity_c [] objs58560 = 
+    Activity_c.ActivityInstances(modelRoot, new Activity_c_test58561_c(getPackage_id())) ;
 
-    if ( (  (objs57011.length) > 1) )
+    if ( (  (objs58560.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity Node", //$NON-NLS-1$
            "Consistency: Object: Activity Node: Association: 1101: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs57011.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58560.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity Node: Association: 1101: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57011.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58560.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2070,80 +2070,80 @@ private static ActivityNode_c findActivityNodeInstance(ModelRoot modelRoot, Clas
          //    Note: The consistency test for this supertype has been removed 
          //          until generic package _migration_ is complete.
           // Supertype: rel.Numb = 1105
-    int objs57017 = 0;
+    int objs58566 = 0;
             // Subtype Object: Object Node
-    class ObjectNode_c_test57018_c implements ClassQueryInterface_c
+    class ObjectNode_c_test58567_c implements ClassQueryInterface_c
     {
-	  ObjectNode_c_test57018_c( java.util.UUID            p57019 ) {
-	  m_p57019 = p57019;
+	  ObjectNode_c_test58567_c( java.util.UUID            p58568 ) {
+	  m_p58568 = p58568;
 	  }
-	  private java.util.UUID             m_p57019; 
+	  private java.util.UUID             m_p58568; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ObjectNode_c selected = (ObjectNode_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p57019));
+	      retval = (selected.getId().equals(m_p58568));
 	      return retval;
 	  }
     }
 
-    ObjectNode_c [] objs57020 = 
-    ObjectNode_c.ObjectNodeInstances(modelRoot, new ObjectNode_c_test57018_c(getId())) ;
+    ObjectNode_c [] objs58569 = 
+    ObjectNode_c.ObjectNodeInstances(modelRoot, new ObjectNode_c_test58567_c(getId())) ;
  
-    objs57017 = objs57017 + objs57020.length;
+    objs58566 = objs58566 + objs58569.length;
             // Subtype Object: Action Node
-    class ActionNode_c_test57021_c implements ClassQueryInterface_c
+    class ActionNode_c_test58570_c implements ClassQueryInterface_c
     {
-	  ActionNode_c_test57021_c( java.util.UUID            p57022 ) {
-	  m_p57022 = p57022;
+	  ActionNode_c_test58570_c( java.util.UUID            p58571 ) {
+	  m_p58571 = p58571;
 	  }
-	  private java.util.UUID             m_p57022; 
+	  private java.util.UUID             m_p58571; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ActionNode_c selected = (ActionNode_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p57022));
+	      retval = (selected.getId().equals(m_p58571));
 	      return retval;
 	  }
     }
 
-    ActionNode_c [] objs57023 = 
-    ActionNode_c.ActionNodeInstances(modelRoot, new ActionNode_c_test57021_c(getId())) ;
+    ActionNode_c [] objs58572 = 
+    ActionNode_c.ActionNodeInstances(modelRoot, new ActionNode_c_test58570_c(getId())) ;
  
-    objs57017 = objs57017 + objs57023.length;
+    objs58566 = objs58566 + objs58572.length;
             // Subtype Object: Control Node
-    class ControlNode_c_test57024_c implements ClassQueryInterface_c
+    class ControlNode_c_test58573_c implements ClassQueryInterface_c
     {
-	  ControlNode_c_test57024_c( java.util.UUID            p57025 ) {
-	  m_p57025 = p57025;
+	  ControlNode_c_test58573_c( java.util.UUID            p58574 ) {
+	  m_p58574 = p58574;
 	  }
-	  private java.util.UUID             m_p57025; 
+	  private java.util.UUID             m_p58574; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ControlNode_c selected = (ControlNode_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p57025));
+	      retval = (selected.getId().equals(m_p58574));
 	      return retval;
 	  }
     }
 
-    ControlNode_c [] objs57026 = 
-    ControlNode_c.ControlNodeInstances(modelRoot, new ControlNode_c_test57024_c(getId())) ;
+    ControlNode_c [] objs58575 = 
+    ControlNode_c.ControlNodeInstances(modelRoot, new ControlNode_c_test58573_c(getId())) ;
  
-    objs57017 = objs57017 + objs57026.length;
-    if ( objs57017 != 1 )
+    objs58566 = objs58566 + objs58575.length;
+    if ( objs58566 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity Node", //$NON-NLS-1$
            "Consistency: Object: Activity Node: Association: 1105: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs57017 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58566 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity Node: Association: 1105: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57017 )  , e); 
+          + Integer.toString( objs58566 )  , e); 
       }
       retval = false;
 
@@ -2244,9 +2244,9 @@ ActivityEdge_c [] v_inEdges = ActivityEdge_c.getManyA_EsOnR1103(this);
 
 
 ActivityEdge_c  v_inEdge = null;
-for ( int i53918 = 0; i53918 < v_inEdges.length; i53918++)
+for ( int i55448 = 0; i55448 < v_inEdges.length; i55448++)
 {
-  v_inEdge = v_inEdges[i53918] ;
+  v_inEdge = v_inEdges[i55448] ;
 
 if (v_inEdge != null) {
 v_inEdge.Dispose() ;
@@ -2265,9 +2265,9 @@ ActivityEdge_c [] v_outEdges = ActivityEdge_c.getManyA_EsOnR1104(this);
 
 
 ActivityEdge_c  v_outEdge = null;
-for ( int i53919 = 0; i53919 < v_outEdges.length; i53919++)
+for ( int i55449 = 0; i55449 < v_outEdges.length; i55449++)
 {
-  v_outEdge = v_outEdges[i53919] ;
+  v_outEdge = v_outEdges[i55449] ;
 
 if (v_outEdge != null) {
 v_outEdge.Dispose() ;

@@ -148,7 +148,7 @@ p_m_funpack_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_funpack_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID.equals(((FunctionPackageInPackage_c)elem).getFunpack_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getFunpack_id()) || IdAssigner.NULL_UUID.equals(((FunctionPackageInPackage_c)elem).getFunpack_id())) && this != elem)) {
       	return false;
       }
       if (!getFunpack_id().equals(((FunctionPackageInPackage_c)elem).getFunpack_id())) return false;
@@ -597,29 +597,29 @@ public static FunctionPackageInPackage_c [] getManyS_FPIPsOnR32(FunctionPackage_
 
 	if (ContainsChildrenOfFunctionPackage == null) {          
       // R30
-      FunctionPackage_c relInst54843 = (FunctionPackage_c) baseRoot.getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
+      FunctionPackage_c relInst56392 = (FunctionPackage_c) baseRoot.getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54843 == null) {
-      			relInst54843 = (FunctionPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
+      		if (relInst56392 == null) {
+      			relInst56392 = (FunctionPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
       		}
-			if (relInst54843 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56392 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54843 = (FunctionPackage_c) roots[i].getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
-					if (relInst54843 != null)
+					relInst56392 = (FunctionPackage_c) roots[i].getInstanceList(FunctionPackage_c.class).get(new Object[] {m_funpack_id});
+					if (relInst56392 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54843 != null )
+      if ( relInst56392 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54843) && !isProxy())) {
-	      relInst54843.relateAcrossR30To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56392) && !isProxy())) {
+	      relInst56392.relateAcrossR30To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -866,56 +866,56 @@ private static FunctionPackageInPackage_c findFunctionPackageInPackageInstance(M
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class FunctionPackageInPackage_c_test54845_c implements ClassQueryInterface_c
+    class FunctionPackageInPackage_c_test56394_c implements ClassQueryInterface_c
     {
-	  FunctionPackageInPackage_c_test54845_c( java.util.UUID            p54846 ) {
-	  m_p54846 = p54846;
+	  FunctionPackageInPackage_c_test56394_c( java.util.UUID            p56395 ) {
+	  m_p56395 = p56395;
 	  }
-	  private java.util.UUID             m_p54846; 
+	  private java.util.UUID             m_p56395; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionPackageInPackage_c selected = (FunctionPackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getFunpack_id().equals(m_p54846));
+	      retval = (selected.getFunpack_id().equals(m_p56395));
 	      return retval;
 	  }
     }
 
-    FunctionPackageInPackage_c [] objs54844 = 
-    FunctionPackageInPackage_c.FunctionPackageInPackageInstances(modelRoot, new FunctionPackageInPackage_c_test54845_c(getFunpack_id())) ;
+    FunctionPackageInPackage_c [] objs56393 = 
+    FunctionPackageInPackage_c.FunctionPackageInPackageInstances(modelRoot, new FunctionPackageInPackage_c_test56394_c(getFunpack_id())) ;
 
-    if ( (  (objs54844.length) == 0) )
+    if ( (  (objs56393.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Package in Package", //$NON-NLS-1$
            "Consistency: Object: Function Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54844.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56393.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54844.length )  , e); 
+          + Integer.toString( objs56393.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54844.length) > 1) )
+    if ( (  (objs56393.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Package in Package", //$NON-NLS-1$
            "Consistency: Object: Function Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54844.length )  + " FunPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56393.length )  + " FunPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54844.length )  + " FunPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56393.length )  + " FunPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -923,40 +923,40 @@ private static FunctionPackageInPackage_c findFunctionPackageInPackageInstance(M
 
           // Function Package in Package is a referring class in association: rel.Numb = 30
           // The participating class is: Function Package
-    class FunctionPackage_c_test54850_c implements ClassQueryInterface_c
+    class FunctionPackage_c_test56399_c implements ClassQueryInterface_c
     {
-	  FunctionPackage_c_test54850_c( java.util.UUID            p54851 ) {
-	  m_p54851 = p54851;
+	  FunctionPackage_c_test56399_c( java.util.UUID            p56400 ) {
+	  m_p56400 = p56400;
 	  }
-	  private java.util.UUID             m_p54851; 
+	  private java.util.UUID             m_p56400; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionPackage_c selected = (FunctionPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getFunpack_id().equals(m_p54851));
+	      retval = (selected.getFunpack_id().equals(m_p56400));
 	      return retval;
 	  }
     }
 
-    FunctionPackage_c [] objs54849 = 
-    FunctionPackage_c.FunctionPackageInstances(modelRoot, new FunctionPackage_c_test54850_c(getFunpack_id())) ;
+    FunctionPackage_c [] objs56398 = 
+    FunctionPackage_c.FunctionPackageInstances(modelRoot, new FunctionPackage_c_test56399_c(getFunpack_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs54849.length) != 1) )
+    if ( (  (objs56398.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Package in Package", //$NON-NLS-1$
            "Consistency: Object: Function Package in Package: Association: 30: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54849.length )  + " FunPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56398.length )  + " FunPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Package in Package: Association: 30: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54849.length )  + " FunPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56398.length )  + " FunPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

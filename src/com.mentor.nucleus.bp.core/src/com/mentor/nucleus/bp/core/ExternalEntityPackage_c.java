@@ -189,7 +189,7 @@ p_m_parent_eepack_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -205,7 +205,7 @@ p_m_parent_eepack_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getEepack_id()) || IdAssigner.NULL_UUID.equals(((ExternalEntityPackage_c)elem).getEepack_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getEepack_id()) || IdAssigner.NULL_UUID.equals(((ExternalEntityPackage_c)elem).getEepack_id())) && this != elem)) {
       	return false;
       }
       if (!getEepack_id().equals(((ExternalEntityPackage_c)elem).getEepack_id())) return false;
@@ -1389,29 +1389,29 @@ public static ExternalEntityPackage_c [] getManyS_EEPKsOnR300(Domain_c target, b
 
 	if (IsChildViaEePackageInPackage == null) {          
       // R35
-      EePackageInPackage_c relInst54907 = (EePackageInPackage_c) baseRoot.getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
+      EePackageInPackage_c relInst56456 = (EePackageInPackage_c) baseRoot.getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54907 == null) {
-      			relInst54907 = (EePackageInPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
+      		if (relInst56456 == null) {
+      			relInst56456 = (EePackageInPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
       		}
-			if (relInst54907 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56456 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54907 = (EePackageInPackage_c) roots[i].getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
-					if (relInst54907 != null)
+					relInst56456 = (EePackageInPackage_c) roots[i].getInstanceList(EePackageInPackage_c.class).get(new Object[] {m_parent_eepack_id});
+					if (relInst56456 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54907 != null )
+      if ( relInst56456 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54907) && !isProxy())) {
-	      relInst54907.relateAcrossR35To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56456) && !isProxy())) {
+	      relInst56456.relateAcrossR35To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1419,29 +1419,29 @@ public static ExternalEntityPackage_c [] getManyS_EEPKsOnR300(Domain_c target, b
 
 	if (IsContainedInDomain == null) {          
       // R36
-      Domain_c relInst54908 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      Domain_c relInst56457 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst54908 == null) {
-      			relInst54908 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      		if (relInst56457 == null) {
+      			relInst56457 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
       		}
-			if (relInst54908 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56457 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst54908 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
-					if (relInst54908 != null)
+					relInst56457 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+					if (relInst56457 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst54908 != null )
+      if ( relInst56457 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst54908) && !isProxy())) {
-	      relInst54908.relateAcrossR36To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56457) && !isProxy())) {
+	      relInst56457.relateAcrossR36To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1817,56 +1817,56 @@ private static ExternalEntityPackage_c findExternalEntityPackageInstance(ModelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ExternalEntityPackage_c_test54910_c implements ClassQueryInterface_c
+    class ExternalEntityPackage_c_test56459_c implements ClassQueryInterface_c
     {
-	  ExternalEntityPackage_c_test54910_c( java.util.UUID            p54911 ) {
-	  m_p54911 = p54911;
+	  ExternalEntityPackage_c_test56459_c( java.util.UUID            p56460 ) {
+	  m_p56460 = p56460;
 	  }
-	  private java.util.UUID             m_p54911; 
+	  private java.util.UUID             m_p56460; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExternalEntityPackage_c selected = (ExternalEntityPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p54911));
+	      retval = (selected.getEepack_id().equals(m_p56460));
 	      return retval;
 	  }
     }
 
-    ExternalEntityPackage_c [] objs54909 = 
-    ExternalEntityPackage_c.ExternalEntityPackageInstances(modelRoot, new ExternalEntityPackage_c_test54910_c(getEepack_id())) ;
+    ExternalEntityPackage_c [] objs56458 = 
+    ExternalEntityPackage_c.ExternalEntityPackageInstances(modelRoot, new ExternalEntityPackage_c_test56459_c(getEepack_id())) ;
 
-    if ( (  (objs54909.length) == 0) )
+    if ( (  (objs56458.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54909.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56458.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54909.length )  , e); 
+          + Integer.toString( objs56458.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54909.length) > 1) )
+    if ( (  (objs56458.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54909.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56458.length )  + " EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54909.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56458.length )  + " EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1874,38 +1874,38 @@ private static ExternalEntityPackage_c findExternalEntityPackageInstance(ModelRo
 
           // External Entity Package is a referring class in association: rel.Numb = 36
           // The participating class is: Domain
-    class Domain_c_test54915_c implements ClassQueryInterface_c
+    class Domain_c_test56464_c implements ClassQueryInterface_c
     {
-	  Domain_c_test54915_c( java.util.UUID            p54916 ) {
-	  m_p54916 = p54916;
+	  Domain_c_test56464_c( java.util.UUID            p56465 ) {
+	  m_p56465 = p56465;
 	  }
-	  private java.util.UUID             m_p54916; 
+	  private java.util.UUID             m_p56465; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Domain_c selected = (Domain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p54916));
+	      retval = (selected.getDom_id().equals(m_p56465));
 	      return retval;
 	  }
     }
 
-    Domain_c [] objs54914 = 
-    Domain_c.DomainInstances(modelRoot, new Domain_c_test54915_c(getDom_id())) ;
+    Domain_c [] objs56463 = 
+    Domain_c.DomainInstances(modelRoot, new Domain_c_test56464_c(getDom_id())) ;
 
-    if ( (  (objs54914.length) > 1) )
+    if ( (  (objs56463.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Association: 36: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54914.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56463.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Association: 36: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54914.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56463.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1913,38 +1913,38 @@ private static ExternalEntityPackage_c findExternalEntityPackageInstance(ModelRo
                 
           // External Entity Package is a referring class in association: rel.Numb = 35
           // The participating class is: EE Package in Package
-    class EePackageInPackage_c_test54918_c implements ClassQueryInterface_c
+    class EePackageInPackage_c_test56467_c implements ClassQueryInterface_c
     {
-	  EePackageInPackage_c_test54918_c( java.util.UUID            p54919 ) {
-	  m_p54919 = p54919;
+	  EePackageInPackage_c_test56467_c( java.util.UUID            p56468 ) {
+	  m_p56468 = p56468;
 	  }
-	  private java.util.UUID             m_p54919; 
+	  private java.util.UUID             m_p56468; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EePackageInPackage_c selected = (EePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p54919));
+	      retval = (selected.getEepack_id().equals(m_p56468));
 	      return retval;
 	  }
     }
 
-    EePackageInPackage_c [] objs54917 = 
-    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test54918_c(getParent_eepack_id())) ;
+    EePackageInPackage_c [] objs56466 = 
+    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test56467_c(getParent_eepack_id())) ;
 
-    if ( (  (objs54917.length) > 1) )
+    if ( (  (objs56466.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Association: 35: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs54917.length )  + " Parent_EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56466.length )  + " Parent_EEPack_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Association: 35: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54917.length )  + " Parent_EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56466.length )  + " Parent_EEPack_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1955,37 +1955,37 @@ private static ExternalEntityPackage_c findExternalEntityPackageInstance(ModelRo
             // Other Side Class: External Entity
           // External Entity Package is a participating class in association: rel.Numb = 34
              // Object: EE Package in Package
-    class EePackageInPackage_c_test54921_c implements ClassQueryInterface_c
+    class EePackageInPackage_c_test56470_c implements ClassQueryInterface_c
     {
-	  EePackageInPackage_c_test54921_c( java.util.UUID            p54922 ) {
-	  m_p54922 = p54922;
+	  EePackageInPackage_c_test56470_c( java.util.UUID            p56471 ) {
+	  m_p56471 = p56471;
 	  }
-	  private java.util.UUID             m_p54922; 
+	  private java.util.UUID             m_p56471; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EePackageInPackage_c selected = (EePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p54922));
+	      retval = (selected.getEepack_id().equals(m_p56471));
 	      return retval;
 	  }
     }
 
-    EePackageInPackage_c [] objs54920 = 
-    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test54921_c(getEepack_id())) ;
+    EePackageInPackage_c [] objs56469 = 
+    EePackageInPackage_c.EePackageInPackageInstances(modelRoot, new EePackageInPackage_c_test56470_c(getEepack_id())) ;
 
-    if ( (  (objs54920.length) > 1) )
+    if ( (  (objs56469.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Association: 34: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54920.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56469.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Association: 34: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54920.length )  , e); 
+          + Integer.toString( objs56469.length )  , e); 
       }
       retval = false;
 
@@ -1993,55 +1993,55 @@ private static ExternalEntityPackage_c findExternalEntityPackageInstance(ModelRo
 
           // Associated Other Side: rel.Numb = 300
             // Link Object: External Entity Package in Domain
-    class ExternalEntityPackageInDomain_c_test54923_c implements ClassQueryInterface_c
+    class ExternalEntityPackageInDomain_c_test56472_c implements ClassQueryInterface_c
     {
-	  ExternalEntityPackageInDomain_c_test54923_c( java.util.UUID            p54924 ) {
-	  m_p54924 = p54924;
+	  ExternalEntityPackageInDomain_c_test56472_c( java.util.UUID            p56473 ) {
+	  m_p56473 = p56473;
 	  }
-	  private java.util.UUID             m_p54924; 
+	  private java.util.UUID             m_p56473; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExternalEntityPackageInDomain_c selected = (ExternalEntityPackageInDomain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEepack_id().equals(m_p54924));
+	      retval = (selected.getEepack_id().equals(m_p56473));
 	      return retval;
 	  }
     }
 
-    ExternalEntityPackageInDomain_c [] objs54925 = 
-    ExternalEntityPackageInDomain_c.ExternalEntityPackageInDomainInstances(modelRoot, new ExternalEntityPackageInDomain_c_test54923_c(getEepack_id())) ;
+    ExternalEntityPackageInDomain_c [] objs56474 = 
+    ExternalEntityPackageInDomain_c.ExternalEntityPackageInDomainInstances(modelRoot, new ExternalEntityPackageInDomain_c_test56472_c(getEepack_id())) ;
 
-    if ( (  (objs54925.length) == 0) )
+    if ( (  (objs56474.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Association: 300: Cardinality of a link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54925.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56474.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Association: 300: Cardinality of a link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54925.length )  , e); 
+          + Integer.toString( objs56474.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs54925.length) != 1) )
+    if ( (  (objs56474.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "External Entity Package", //$NON-NLS-1$
            "Consistency: Object: External Entity Package: Association: 300: Cardinality of a link is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs54925.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56474.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: External Entity Package: Association: 300: Cardinality of a link is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs54925.length )  , e); 
+          + Integer.toString( objs56474.length )  , e); 
       }
       retval = false;
 
@@ -2090,9 +2090,9 @@ ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR33(this);
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53543 = 0; i53543 < v_ees.length; i53543++)
+for ( int i54999 = 0; i54999 < v_ees.length; i54999++)
 {
-  v_ee = v_ees[i53543] ;
+  v_ee = v_ees[i54999] ;
 
 if (v_ee != null) {
 v_ee.Dispose() ;
@@ -2117,9 +2117,9 @@ ExternalEntityPackage_c [] v_pkgs = ExternalEntityPackage_c.getManyS_EEPKsOnR35(
 
 
 ExternalEntityPackage_c  v_pkg = null;
-for ( int i53544 = 0; i53544 < v_pkgs.length; i53544++)
+for ( int i55000 = 0; i55000 < v_pkgs.length; i55000++)
 {
-  v_pkg = v_pkgs[i53544] ;
+  v_pkg = v_pkgs[i55000] ;
 
 if (v_epip != null) {
 v_epip.unrelateAcrossR35From(v_pkg);
@@ -2663,17 +2663,17 @@ ExternalEntityPackage_c [] v_childPkgs = ExternalEntityPackage_c.getManyS_EEPKsO
 
 
 ExternalEntityPackage_c  v_childPkg = null;
-for ( int i53545 = 0; i53545 < v_childPkgs.length; i53545++)
+for ( int i55001 = 0; i55001 < v_childPkgs.length; i55001++)
 {
-  v_childPkg = v_childPkgs[i53545] ;
+  v_childPkg = v_childPkgs[i55001] ;
 
 ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR33(ExternalEntityInPackage_c.getManyS_EEIPsOnR33(v_childPkg));
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53546 = 0; i53546 < v_ees.length; i53546++)
+for ( int i55002 = 0; i55002 < v_ees.length; i55002++)
 {
-  v_ee = v_ees[i53546] ;
+  v_ee = v_ees[i55002] ;
 
 Domain_c v_prevDom = Domain_c.getOneS_DOMOnR8(v_ee);
 
@@ -2714,9 +2714,9 @@ ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR33(ExternalEntityInP
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53547 = 0; i53547 < v_ees.length; i53547++)
+for ( int i55003 = 0; i55003 < v_ees.length; i55003++)
 {
-  v_ee = v_ees[i53547] ;
+  v_ee = v_ees[i55003] ;
 
 Domain_c v_prevDom = Domain_c.getOneS_DOMOnR8(v_ee);
 
@@ -2769,9 +2769,9 @@ ExternalEntityPackage_c [] v_childPKGs = ExternalEntityPackage_c.getManyS_EEPKsO
 
 
 ExternalEntityPackage_c  v_child = null;
-for ( int i53548 = 0; i53548 < v_childPKGs.length; i53548++)
+for ( int i55004 = 0; i55004 < v_childPKGs.length; i55004++)
 {
-  v_child = v_childPKGs[i53548] ;
+  v_child = v_childPKGs[i55004] ;
 
 ExternalEntityPackageInDomain_c v_existingEPID = ExternalEntityPackageInDomain_c.getOnePL_EEPIDOnR300(v_child);
 
@@ -2844,9 +2844,9 @@ int          v_count = -1 ;
 
 
 ExternalEntity_c  v_externalEntity = null;
-for ( int i53549 = 0; i53549 < v_externalEntities.length; i53549++)
+for ( int i55005 = 0; i55005 < v_externalEntities.length; i55005++)
 {
-  v_externalEntity = v_externalEntities[i53549] ;
+  v_externalEntity = v_externalEntities[i55005] ;
 
 if ( (  (v_externalEntity != null)) )
 {
@@ -2900,9 +2900,9 @@ int          v_count = -1 ;
 
 
 ExternalEntityPackage_c  v_externalEntitiyPckg = null;
-for ( int i53550 = 0; i53550 < v_externalEntitiyPckgs.length; i53550++)
+for ( int i55006 = 0; i55006 < v_externalEntitiyPckgs.length; i55006++)
 {
-  v_externalEntitiyPckg = v_externalEntitiyPckgs[i53550] ;
+  v_externalEntitiyPckg = v_externalEntitiyPckgs[i55006] ;
 
 if ( (  (v_externalEntitiyPckg != null)) )
 {

@@ -173,7 +173,8 @@ public class CreationTransition_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -189,9 +190,9 @@ public class CreationTransition_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((CreationTransition_c) elem).getSm_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((CreationTransition_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((CreationTransition_c) elem).getSm_id()))
@@ -199,9 +200,9 @@ public class CreationTransition_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID
-				.equals(((CreationTransition_c) elem).getTrans_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getTrans_id()) || IdAssigner.NULL_UUID
+						.equals(((CreationTransition_c) elem).getTrans_id())) && this != elem)) {
 			return false;
 		}
 		if (!getTrans_id().equals(((CreationTransition_c) elem).getTrans_id()))
@@ -684,50 +685,50 @@ public class CreationTransition_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R507
-		Transition_c relInst38665 = (Transition_c) baseRoot.getInstanceList(
+		Transition_c relInst39247 = (Transition_c) baseRoot.getInstanceList(
 				Transition_c.class).get(new Object[]{m_trans_id, m_sm_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38665 == null) {
-			relInst38665 = (Transition_c) Ooaofooa.getDefaultInstance()
+		if (relInst39247 == null) {
+			relInst39247 = (Transition_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Transition_c.class)
 					.get(new Object[]{m_trans_id, m_sm_id});
 		}
-		if (relInst38665 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39247 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38665 = (Transition_c) roots[i].getInstanceList(
+				relInst39247 = (Transition_c) roots[i].getInstanceList(
 						Transition_c.class).get(
 						new Object[]{m_trans_id, m_sm_id});
-				if (relInst38665 != null)
+				if (relInst39247 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38665 != null) {
+		if (relInst39247 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38665) && !isProxy())) {
-				relInst38665.relateAcrossR507To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39247) && !isProxy())) {
+				relInst39247.relateAcrossR507To(this, notifyChanges);
 			}
 		}
 
 		if (IsAssignedToLocalEvent == null) {
 			// R509
-			LocalEvent_c relInst38666 = (LocalEvent_c) baseRoot
+			LocalEvent_c relInst39248 = (LocalEvent_c) baseRoot
 					.getInstanceList(LocalEvent_c.class).get(
 							new Object[]{m_sm_id, m_smevt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst38666 == null) {
-				relInst38666 = (LocalEvent_c) Ooaofooa.getDefaultInstance()
+			if (relInst39248 == null) {
+				relInst39248 = (LocalEvent_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(LocalEvent_c.class)
 						.get(new Object[]{m_sm_id, m_smevt_id});
 			}
-			if (relInst38666 == null && searchAllRoots
+			if (relInst39248 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -735,18 +736,18 @@ public class CreationTransition_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst38666 = (LocalEvent_c) roots[i].getInstanceList(
+					relInst39248 = (LocalEvent_c) roots[i].getInstanceList(
 							LocalEvent_c.class).get(
 							new Object[]{m_sm_id, m_smevt_id});
-					if (relInst38666 != null)
+					if (relInst39248 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst38666 != null) {
+			if (relInst39248 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst38666) && !isProxy())) {
-					relInst38666.relateAcrossR509To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39248) && !isProxy())) {
+					relInst39248.relateAcrossR509To(this, notifyChanges);
 				}
 			}
 		}
@@ -1119,49 +1120,49 @@ public class CreationTransition_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CreationTransition_c_test38668_c implements ClassQueryInterface_c {
-			CreationTransition_c_test38668_c(java.util.UUID p38669,
-					java.util.UUID p38670) {
-				m_p38669 = p38669;
-				m_p38670 = p38670;
+		class CreationTransition_c_test39250_c implements ClassQueryInterface_c {
+			CreationTransition_c_test39250_c(java.util.UUID p39251,
+					java.util.UUID p39252) {
+				m_p39251 = p39251;
+				m_p39252 = p39252;
 			}
-			private java.util.UUID m_p38669;
-			private java.util.UUID m_p38670;
+			private java.util.UUID m_p39251;
+			private java.util.UUID m_p39252;
 			public boolean evaluate(Object candidate) {
 				CreationTransition_c selected = (CreationTransition_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38669))
-						& (selected.getTrans_id().equals(m_p38670));
+				retval = (selected.getSm_id().equals(m_p39251))
+						& (selected.getTrans_id().equals(m_p39252));
 				return retval;
 			}
 		}
 
-		CreationTransition_c[] objs38667 = CreationTransition_c
+		CreationTransition_c[] objs39249 = CreationTransition_c
 				.CreationTransitionInstances(modelRoot,
-						new CreationTransition_c_test38668_c(getSm_id(),
+						new CreationTransition_c_test39250_c(getSm_id(),
 								getTrans_id()));
 
-		if (((objs38667.length) == 0)) {
+		if (((objs39249.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Creation Transition", //$NON-NLS-1$
 								"Consistency: Object: Creation Transition: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38667.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39249.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Creation Transition: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38667.length), e);
+										+ Integer.toString(objs39249.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38667.length) > 1)) {
+		if (((objs39249.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1169,7 +1170,7 @@ public class CreationTransition_c extends NonRootModelElement
 								"Creation Transition", //$NON-NLS-1$
 								"Consistency: Object: Creation Transition: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38667.length)
+										+ Integer.toString(objs39249.length)
 										+ " SM_ID: " + "Not Printable" + " Trans_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1177,7 +1178,7 @@ public class CreationTransition_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Creation Transition: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38667.length)
+										+ Integer.toString(objs39249.length)
 										+ " SM_ID: " + "Not Printable" + " Trans_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1186,41 +1187,41 @@ public class CreationTransition_c extends NonRootModelElement
 
 		// Creation Transition is a subtype in association: rel.Numb = 507
 		// The supertype class is: Transition
-		class Transition_c_test38674_c implements ClassQueryInterface_c {
-			Transition_c_test38674_c(java.util.UUID p38675,
-					java.util.UUID p38676) {
-				m_p38675 = p38675;
-				m_p38676 = p38676;
+		class Transition_c_test39256_c implements ClassQueryInterface_c {
+			Transition_c_test39256_c(java.util.UUID p39257,
+					java.util.UUID p39258) {
+				m_p39257 = p39257;
+				m_p39258 = p39258;
 			}
-			private java.util.UUID m_p38675;
-			private java.util.UUID m_p38676;
+			private java.util.UUID m_p39257;
+			private java.util.UUID m_p39258;
 			public boolean evaluate(Object candidate) {
 				Transition_c selected = (Transition_c) candidate;
 				boolean retval = false;
-				retval = (selected.getTrans_id().equals(m_p38675))
-						& (selected.getSm_id().equals(m_p38676));
+				retval = (selected.getTrans_id().equals(m_p39257))
+						& (selected.getSm_id().equals(m_p39258));
 				return retval;
 			}
 		}
 
-		Transition_c[] objs38673 = Transition_c.TransitionInstances(modelRoot,
-				new Transition_c_test38674_c(getTrans_id(), getSm_id()));
+		Transition_c[] objs39255 = Transition_c.TransitionInstances(modelRoot,
+				new Transition_c_test39256_c(getTrans_id(), getSm_id()));
 
-		if (((objs38673.length) != 1)) {
+		if (((objs39255.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Creation Transition", //$NON-NLS-1$
 								"Consistency: Object: Creation Transition: Association: 507: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38673.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39255.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Creation Transition: Association: 507: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38673.length), e);
+										+ Integer.toString(objs39255.length), e);
 			}
 			retval = false;
 
@@ -1228,27 +1229,27 @@ public class CreationTransition_c extends NonRootModelElement
 
 		// Creation Transition is a referring class in association: rel.Numb = 509
 		// The participating class is: Local Event
-		class LocalEvent_c_test38678_c implements ClassQueryInterface_c {
-			LocalEvent_c_test38678_c(java.util.UUID p38679,
-					java.util.UUID p38680) {
-				m_p38679 = p38679;
-				m_p38680 = p38680;
+		class LocalEvent_c_test39260_c implements ClassQueryInterface_c {
+			LocalEvent_c_test39260_c(java.util.UUID p39261,
+					java.util.UUID p39262) {
+				m_p39261 = p39261;
+				m_p39262 = p39262;
 			}
-			private java.util.UUID m_p38679;
-			private java.util.UUID m_p38680;
+			private java.util.UUID m_p39261;
+			private java.util.UUID m_p39262;
 			public boolean evaluate(Object candidate) {
 				LocalEvent_c selected = (LocalEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p38679))
-						& (selected.getSmevt_id().equals(m_p38680));
+				retval = (selected.getSm_id().equals(m_p39261))
+						& (selected.getSmevt_id().equals(m_p39262));
 				return retval;
 			}
 		}
 
-		LocalEvent_c[] objs38677 = LocalEvent_c.LocalEventInstances(modelRoot,
-				new LocalEvent_c_test38678_c(getSm_id(), getSmevt_id()));
+		LocalEvent_c[] objs39259 = LocalEvent_c.LocalEventInstances(modelRoot,
+				new LocalEvent_c_test39260_c(getSm_id(), getSmevt_id()));
 
-		if (((objs38677.length) > 1)) {
+		if (((objs39259.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1256,7 +1257,7 @@ public class CreationTransition_c extends NonRootModelElement
 								"Creation Transition", //$NON-NLS-1$
 								"Consistency: Object: Creation Transition: Association: 509: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38677.length)
+										+ Integer.toString(objs39259.length)
 										+ " SM_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1264,7 +1265,7 @@ public class CreationTransition_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Creation Transition: Association: 509: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38677.length)
+										+ Integer.toString(objs39259.length)
 										+ " SM_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1413,6 +1414,15 @@ public class CreationTransition_c extends NonRootModelElement
 		return v_transition.Mergestatemachineeventassignedlocalevent(p_Eventid);
 
 	} // End mergeStateMachineEventCreationEvent
+	public String Getdescription() {
+		Ooaofooa.log.println(ILogger.OPERATION, "Creation Transition",
+				" Operation entered: CreationTransition::Getdescription");
+		final ModelRoot modelRoot = getModelRoot();
+		Transition_c v_transition = Transition_c.getOneSM_TXNOnR507(this);
+
+		return v_transition.Getdescription();
+
+	} // End getDescription
 
 	// end transform functions
 

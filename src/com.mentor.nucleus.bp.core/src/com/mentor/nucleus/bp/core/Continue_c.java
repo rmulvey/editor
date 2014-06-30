@@ -136,7 +136,8 @@ public class Continue_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,8 +153,9 @@ public class Continue_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Continue_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Continue_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Continue_c) elem).getStatement_id()))
@@ -374,33 +376,33 @@ public class Continue_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R603
-		Statement_c relInst56420 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst57969 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56420 == null) {
-			relInst56420 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst57969 == null) {
+			relInst57969 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst56420 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57969 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56420 = (Statement_c) roots[i].getInstanceList(
+				relInst57969 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst56420 != null)
+				if (relInst57969 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56420 != null) {
+		if (relInst57969 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56420) && !isProxy())) {
-				relInst56420.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57969) && !isProxy())) {
+				relInst57969.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -580,42 +582,42 @@ public class Continue_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Continue_c_test56422_c implements ClassQueryInterface_c {
-			Continue_c_test56422_c(java.util.UUID p56423) {
-				m_p56423 = p56423;
+		class Continue_c_test57971_c implements ClassQueryInterface_c {
+			Continue_c_test57971_c(java.util.UUID p57972) {
+				m_p57972 = p57972;
 			}
-			private java.util.UUID m_p56423;
+			private java.util.UUID m_p57972;
 			public boolean evaluate(Object candidate) {
 				Continue_c selected = (Continue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56423));
+				retval = (selected.getStatement_id().equals(m_p57972));
 				return retval;
 			}
 		}
 
-		Continue_c[] objs56421 = Continue_c.ContinueInstances(modelRoot,
-				new Continue_c_test56422_c(getStatement_id()));
+		Continue_c[] objs57970 = Continue_c.ContinueInstances(modelRoot,
+				new Continue_c_test57971_c(getStatement_id()));
 
-		if (((objs56421.length) == 0)) {
+		if (((objs57970.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Continue", //$NON-NLS-1$
 								"Consistency: Object: Continue: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56421.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57970.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Continue: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56421.length), e);
+								+ Integer.toString(objs57970.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56421.length) > 1)) {
+		if (((objs57970.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -623,7 +625,7 @@ public class Continue_c extends NonRootModelElement
 								"Continue", //$NON-NLS-1$
 								"Consistency: Object: Continue: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56421.length)
+										+ Integer.toString(objs57970.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -631,7 +633,7 @@ public class Continue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Continue: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56421.length)
+										+ Integer.toString(objs57970.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -640,37 +642,37 @@ public class Continue_c extends NonRootModelElement
 
 		// Continue is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test56427_c implements ClassQueryInterface_c {
-			Statement_c_test56427_c(java.util.UUID p56428) {
-				m_p56428 = p56428;
+		class Statement_c_test57976_c implements ClassQueryInterface_c {
+			Statement_c_test57976_c(java.util.UUID p57977) {
+				m_p57977 = p57977;
 			}
-			private java.util.UUID m_p56428;
+			private java.util.UUID m_p57977;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56428));
+				retval = (selected.getStatement_id().equals(m_p57977));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56426 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56427_c(getStatement_id()));
+		Statement_c[] objs57975 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57976_c(getStatement_id()));
 
-		if (((objs56426.length) != 1)) {
+		if (((objs57975.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Continue", //$NON-NLS-1$
 								"Consistency: Object: Continue: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56426.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57975.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Continue: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56426.length), e);
+										+ Integer.toString(objs57975.length), e);
 			}
 			retval = false;
 

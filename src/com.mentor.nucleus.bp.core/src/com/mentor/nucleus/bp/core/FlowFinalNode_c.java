@@ -142,7 +142,8 @@ public class FlowFinalNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -158,8 +159,9 @@ public class FlowFinalNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((FlowFinalNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((FlowFinalNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((FlowFinalNode_c) elem).getId()))
@@ -406,33 +408,33 @@ public class FlowFinalNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1106
-		ControlNode_c relInst56948 = (ControlNode_c) baseRoot.getInstanceList(
+		ControlNode_c relInst58497 = (ControlNode_c) baseRoot.getInstanceList(
 				ControlNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56948 == null) {
-			relInst56948 = (ControlNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58497 == null) {
+			relInst58497 = (ControlNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ControlNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56948 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58497 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56948 = (ControlNode_c) roots[i].getInstanceList(
+				relInst58497 = (ControlNode_c) roots[i].getInstanceList(
 						ControlNode_c.class).get(new Object[]{m_id});
-				if (relInst56948 != null)
+				if (relInst58497 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56948 != null) {
+		if (relInst58497 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56948) && !isProxy())) {
-				relInst56948.relateAcrossR1106To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58497) && !isProxy())) {
+				relInst58497.relateAcrossR1106To(this, notifyChanges);
 			}
 		}
 
@@ -696,42 +698,42 @@ public class FlowFinalNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FlowFinalNode_c_test56950_c implements ClassQueryInterface_c {
-			FlowFinalNode_c_test56950_c(java.util.UUID p56951) {
-				m_p56951 = p56951;
+		class FlowFinalNode_c_test58499_c implements ClassQueryInterface_c {
+			FlowFinalNode_c_test58499_c(java.util.UUID p58500) {
+				m_p58500 = p58500;
 			}
-			private java.util.UUID m_p56951;
+			private java.util.UUID m_p58500;
 			public boolean evaluate(Object candidate) {
 				FlowFinalNode_c selected = (FlowFinalNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56951));
+				retval = (selected.getId().equals(m_p58500));
 				return retval;
 			}
 		}
 
-		FlowFinalNode_c[] objs56949 = FlowFinalNode_c.FlowFinalNodeInstances(
-				modelRoot, new FlowFinalNode_c_test56950_c(getId()));
+		FlowFinalNode_c[] objs58498 = FlowFinalNode_c.FlowFinalNodeInstances(
+				modelRoot, new FlowFinalNode_c_test58499_c(getId()));
 
-		if (((objs56949.length) == 0)) {
+		if (((objs58498.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Flow Final Node", //$NON-NLS-1$
 								"Consistency: Object: Flow Final Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56949.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58498.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Flow Final Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56949.length), e);
+								+ Integer.toString(objs58498.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56949.length) > 1)) {
+		if (((objs58498.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -739,7 +741,7 @@ public class FlowFinalNode_c extends NonRootModelElement
 								"Flow Final Node", //$NON-NLS-1$
 								"Consistency: Object: Flow Final Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56949.length)
+										+ Integer.toString(objs58498.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -747,7 +749,7 @@ public class FlowFinalNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Flow Final Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56949.length)
+										+ Integer.toString(objs58498.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -756,37 +758,37 @@ public class FlowFinalNode_c extends NonRootModelElement
 
 		// Flow Final Node is a subtype in association: rel.Numb = 1106
 		// The supertype class is: Control Node
-		class ControlNode_c_test56955_c implements ClassQueryInterface_c {
-			ControlNode_c_test56955_c(java.util.UUID p56956) {
-				m_p56956 = p56956;
+		class ControlNode_c_test58504_c implements ClassQueryInterface_c {
+			ControlNode_c_test58504_c(java.util.UUID p58505) {
+				m_p58505 = p58505;
 			}
-			private java.util.UUID m_p56956;
+			private java.util.UUID m_p58505;
 			public boolean evaluate(Object candidate) {
 				ControlNode_c selected = (ControlNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56956));
+				retval = (selected.getId().equals(m_p58505));
 				return retval;
 			}
 		}
 
-		ControlNode_c[] objs56954 = ControlNode_c.ControlNodeInstances(
-				modelRoot, new ControlNode_c_test56955_c(getId()));
+		ControlNode_c[] objs58503 = ControlNode_c.ControlNodeInstances(
+				modelRoot, new ControlNode_c_test58504_c(getId()));
 
-		if (((objs56954.length) != 1)) {
+		if (((objs58503.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Flow Final Node", //$NON-NLS-1$
 								"Consistency: Object: Flow Final Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56954.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58503.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Flow Final Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56954.length), e);
+										+ Integer.toString(objs58503.length), e);
 			}
 			retval = false;
 

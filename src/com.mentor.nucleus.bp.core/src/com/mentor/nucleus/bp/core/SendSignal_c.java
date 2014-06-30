@@ -145,7 +145,8 @@ public class SendSignal_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class SendSignal_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((SendSignal_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((SendSignal_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((SendSignal_c) elem).getId()))
@@ -408,33 +410,33 @@ public class SendSignal_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1107
-		ActionNode_c relInst56912 = (ActionNode_c) baseRoot.getInstanceList(
+		ActionNode_c relInst58461 = (ActionNode_c) baseRoot.getInstanceList(
 				ActionNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56912 == null) {
-			relInst56912 = (ActionNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58461 == null) {
+			relInst58461 = (ActionNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActionNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56912 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58461 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56912 = (ActionNode_c) roots[i].getInstanceList(
+				relInst58461 = (ActionNode_c) roots[i].getInstanceList(
 						ActionNode_c.class).get(new Object[]{m_id});
-				if (relInst56912 != null)
+				if (relInst58461 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56912 != null) {
+		if (relInst58461 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56912) && !isProxy())) {
-				relInst56912.relateAcrossR1107To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58461) && !isProxy())) {
+				relInst58461.relateAcrossR1107To(this, notifyChanges);
 			}
 		}
 
@@ -715,42 +717,42 @@ public class SendSignal_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SendSignal_c_test56914_c implements ClassQueryInterface_c {
-			SendSignal_c_test56914_c(java.util.UUID p56915) {
-				m_p56915 = p56915;
+		class SendSignal_c_test58463_c implements ClassQueryInterface_c {
+			SendSignal_c_test58463_c(java.util.UUID p58464) {
+				m_p58464 = p58464;
 			}
-			private java.util.UUID m_p56915;
+			private java.util.UUID m_p58464;
 			public boolean evaluate(Object candidate) {
 				SendSignal_c selected = (SendSignal_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56915));
+				retval = (selected.getId().equals(m_p58464));
 				return retval;
 			}
 		}
 
-		SendSignal_c[] objs56913 = SendSignal_c.SendSignalInstances(modelRoot,
-				new SendSignal_c_test56914_c(getId()));
+		SendSignal_c[] objs58462 = SendSignal_c.SendSignalInstances(modelRoot,
+				new SendSignal_c_test58463_c(getId()));
 
-		if (((objs56913.length) == 0)) {
+		if (((objs58462.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Send Signal", //$NON-NLS-1$
 								"Consistency: Object: Send Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56913.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58462.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Send Signal: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56913.length), e);
+								+ Integer.toString(objs58462.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56913.length) > 1)) {
+		if (((objs58462.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -758,7 +760,7 @@ public class SendSignal_c extends NonRootModelElement
 								"Send Signal", //$NON-NLS-1$
 								"Consistency: Object: Send Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56913.length)
+										+ Integer.toString(objs58462.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -766,7 +768,7 @@ public class SendSignal_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Send Signal: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56913.length)
+										+ Integer.toString(objs58462.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -775,37 +777,37 @@ public class SendSignal_c extends NonRootModelElement
 
 		// Send Signal is a subtype in association: rel.Numb = 1107
 		// The supertype class is: Action Node
-		class ActionNode_c_test56919_c implements ClassQueryInterface_c {
-			ActionNode_c_test56919_c(java.util.UUID p56920) {
-				m_p56920 = p56920;
+		class ActionNode_c_test58468_c implements ClassQueryInterface_c {
+			ActionNode_c_test58468_c(java.util.UUID p58469) {
+				m_p58469 = p58469;
 			}
-			private java.util.UUID m_p56920;
+			private java.util.UUID m_p58469;
 			public boolean evaluate(Object candidate) {
 				ActionNode_c selected = (ActionNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56920));
+				retval = (selected.getId().equals(m_p58469));
 				return retval;
 			}
 		}
 
-		ActionNode_c[] objs56918 = ActionNode_c.ActionNodeInstances(modelRoot,
-				new ActionNode_c_test56919_c(getId()));
+		ActionNode_c[] objs58467 = ActionNode_c.ActionNodeInstances(modelRoot,
+				new ActionNode_c_test58468_c(getId()));
 
-		if (((objs56918.length) != 1)) {
+		if (((objs58467.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Send Signal", //$NON-NLS-1$
 								"Consistency: Object: Send Signal: Association: 1107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56918.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58467.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Send Signal: Association: 1107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56918.length), e);
+										+ Integer.toString(objs58467.length), e);
 			}
 			retval = false;
 

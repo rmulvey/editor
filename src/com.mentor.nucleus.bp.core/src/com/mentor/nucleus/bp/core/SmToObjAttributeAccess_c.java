@@ -155,7 +155,8 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToObjAttributeAccess_c) elem).getAttr_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAttr_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToObjAttributeAccess_c) elem).getAttr_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAttr_id()
@@ -182,9 +183,9 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToObjAttributeAccess_c) elem).getApath_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getApath_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToObjAttributeAccess_c) elem).getApath_id())) && this != elem)) {
 			return false;
 		}
 		if (!getApath_id().equals(
@@ -193,9 +194,9 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
-				.equals(((SmToObjAttributeAccess_c) elem).getObj_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID
+						.equals(((SmToObjAttributeAccess_c) elem).getObj_id())) && this != elem)) {
 			return false;
 		}
 		if (!getObj_id().equals(((SmToObjAttributeAccess_c) elem).getObj_id()))
@@ -756,7 +757,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 	if (IsCarriedBySmToObjAccessPath == null) {          
       // R418
 	  instances = baseRoot.getInstanceList(SmToObjAccessPath_c.class);
-      SmToObjAccessPath_c relInst55807 = null;
+      SmToObjAccessPath_c relInst57356 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -764,16 +765,16 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
            SmToObjAccessPath_c source = (SmToObjAccessPath_c)cursor.next() ;
            if (     source.getApath_idCachedValue().equals(m_apath_id) && 
      source.getObj_idCachedValue().equals(m_obj_id) 		){
-  		relInst55807 = source;
+  		relInst57356 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst55807 != null )
+      if ( relInst57356 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55807) && !isProxy())) {
-	      relInst55807.relateAcrossR418To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57356) && !isProxy())) {
+	      relInst57356.relateAcrossR418To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -781,29 +782,29 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 
 	if (RepresentsAccessOfAttribute == null) {          
       // R419
-      Attribute_c relInst55808 = (Attribute_c) baseRoot.getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+      Attribute_c relInst57357 = (Attribute_c) baseRoot.getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55808 == null) {
-      			relInst55808 = (Attribute_c) Ooaofooa.getDefaultInstance().getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+      		if (relInst57357 == null) {
+      			relInst57357 = (Attribute_c) Ooaofooa.getDefaultInstance().getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
       		}
-			if (relInst55808 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57357 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55808 = (Attribute_c) roots[i].getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
-					if (relInst55808 != null)
+					relInst57357 = (Attribute_c) roots[i].getInstanceList(Attribute_c.class).get(new Object[] {m_attr_id,m_obj_id});
+					if (relInst57357 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55808 != null )
+      if ( relInst57357 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55808) && !isProxy())) {
-	      relInst55808.relateAcrossR419To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57357) && !isProxy())) {
+	      relInst57357.relateAcrossR419To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1145,34 +1146,34 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SmToObjAttributeAccess_c_test55810_c
+		class SmToObjAttributeAccess_c_test57359_c
 				implements
 					ClassQueryInterface_c {
-			SmToObjAttributeAccess_c_test55810_c(java.util.UUID p55811,
-					java.util.UUID p55812, java.util.UUID p55813) {
-				m_p55811 = p55811;
-				m_p55812 = p55812;
-				m_p55813 = p55813;
+			SmToObjAttributeAccess_c_test57359_c(java.util.UUID p57360,
+					java.util.UUID p57361, java.util.UUID p57362) {
+				m_p57360 = p57360;
+				m_p57361 = p57361;
+				m_p57362 = p57362;
 			}
-			private java.util.UUID m_p55811;
-			private java.util.UUID m_p55812;
-			private java.util.UUID m_p55813;
+			private java.util.UUID m_p57360;
+			private java.util.UUID m_p57361;
+			private java.util.UUID m_p57362;
 			public boolean evaluate(Object candidate) {
 				SmToObjAttributeAccess_c selected = (SmToObjAttributeAccess_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p55811))
-						& (selected.getApath_id().equals(m_p55812))
-						& (selected.getObj_id().equals(m_p55813));
+				retval = (selected.getAttr_id().equals(m_p57360))
+						& (selected.getApath_id().equals(m_p57361))
+						& (selected.getObj_id().equals(m_p57362));
 				return retval;
 			}
 		}
 
-		SmToObjAttributeAccess_c[] objs55809 = SmToObjAttributeAccess_c
+		SmToObjAttributeAccess_c[] objs57358 = SmToObjAttributeAccess_c
 				.SmToObjAttributeAccessInstances(modelRoot,
-						new SmToObjAttributeAccess_c_test55810_c(getAttr_id(),
+						new SmToObjAttributeAccess_c_test57359_c(getAttr_id(),
 								getApath_id(), getObj_id()));
 
-		if (((objs55809.length) == 0)) {
+		if (((objs57358.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1180,20 +1181,20 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"SM to OBJ Attribute Access", //$NON-NLS-1$
 								"Consistency: Object: SM to OBJ Attribute Access: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55809.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57358.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: SM to OBJ Attribute Access: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55809.length), e);
+										+ Integer.toString(objs57358.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55809.length) > 1)) {
+		if (((objs57358.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1202,7 +1203,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 								"SM to OBJ Attribute Access", //$NON-NLS-1$
 								"Consistency: Object: SM to OBJ Attribute Access: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55809.length)
+										+ Integer.toString(objs57358.length)
 										+ " Attr_ID: " + "Not Printable" + " APath_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1210,7 +1211,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to OBJ Attribute Access: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55809.length)
+										+ Integer.toString(objs57358.length)
 										+ " Attr_ID: " + "Not Printable" + " APath_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1219,31 +1220,31 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 
 		// SM to OBJ Attribute Access is a referring class in association: rel.Numb = 418
 		// The participating class is: SM to OBJ Access Path
-		class SmToObjAccessPath_c_test55817_c implements ClassQueryInterface_c {
-			SmToObjAccessPath_c_test55817_c(java.util.UUID p55818,
-					java.util.UUID p55819) {
-				m_p55818 = p55818;
-				m_p55819 = p55819;
+		class SmToObjAccessPath_c_test57366_c implements ClassQueryInterface_c {
+			SmToObjAccessPath_c_test57366_c(java.util.UUID p57367,
+					java.util.UUID p57368) {
+				m_p57367 = p57367;
+				m_p57368 = p57368;
 			}
-			private java.util.UUID m_p55818;
-			private java.util.UUID m_p55819;
+			private java.util.UUID m_p57367;
+			private java.util.UUID m_p57368;
 			public boolean evaluate(Object candidate) {
 				SmToObjAccessPath_c selected = (SmToObjAccessPath_c) candidate;
 				boolean retval = false;
-				retval = (selected.getApath_id().equals(m_p55818))
-						& (selected.getObj_id().equals(m_p55819));
+				retval = (selected.getApath_id().equals(m_p57367))
+						& (selected.getObj_id().equals(m_p57368));
 				return retval;
 			}
 		}
 
-		SmToObjAccessPath_c[] objs55816 = SmToObjAccessPath_c
+		SmToObjAccessPath_c[] objs57365 = SmToObjAccessPath_c
 				.SmToObjAccessPathInstances(modelRoot,
-						new SmToObjAccessPath_c_test55817_c(getApath_id(),
+						new SmToObjAccessPath_c_test57366_c(getApath_id(),
 								getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55816.length) != 1)) {
+		if (((objs57365.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1252,7 +1253,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 								"SM to OBJ Attribute Access", //$NON-NLS-1$
 								"Consistency: Object: SM to OBJ Attribute Access: Association: 418: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55816.length)
+										+ Integer.toString(objs57365.length)
 										+ " APath_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1260,7 +1261,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to OBJ Attribute Access: Association: 418: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55816.length)
+										+ Integer.toString(objs57365.length)
 										+ " APath_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1269,28 +1270,28 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 
 		// SM to OBJ Attribute Access is a referring class in association: rel.Numb = 419
 		// The participating class is: Attribute
-		class Attribute_c_test55821_c implements ClassQueryInterface_c {
-			Attribute_c_test55821_c(java.util.UUID p55822, java.util.UUID p55823) {
-				m_p55822 = p55822;
-				m_p55823 = p55823;
+		class Attribute_c_test57370_c implements ClassQueryInterface_c {
+			Attribute_c_test57370_c(java.util.UUID p57371, java.util.UUID p57372) {
+				m_p57371 = p57371;
+				m_p57372 = p57372;
 			}
-			private java.util.UUID m_p55822;
-			private java.util.UUID m_p55823;
+			private java.util.UUID m_p57371;
+			private java.util.UUID m_p57372;
 			public boolean evaluate(Object candidate) {
 				Attribute_c selected = (Attribute_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAttr_id().equals(m_p55822))
-						& (selected.getObj_id().equals(m_p55823));
+				retval = (selected.getAttr_id().equals(m_p57371))
+						& (selected.getObj_id().equals(m_p57372));
 				return retval;
 			}
 		}
 
-		Attribute_c[] objs55820 = Attribute_c.AttributeInstances(modelRoot,
-				new Attribute_c_test55821_c(getAttr_id(), getObj_id()));
+		Attribute_c[] objs57369 = Attribute_c.AttributeInstances(modelRoot,
+				new Attribute_c_test57370_c(getAttr_id(), getObj_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55820.length) != 1)) {
+		if (((objs57369.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1299,7 +1300,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 								"SM to OBJ Attribute Access", //$NON-NLS-1$
 								"Consistency: Object: SM to OBJ Attribute Access: Association: 419: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55820.length)
+										+ Integer.toString(objs57369.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1307,7 +1308,7 @@ public class SmToObjAttributeAccess_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: SM to OBJ Attribute Access: Association: 419: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55820.length)
+										+ Integer.toString(objs57369.length)
 										+ " Attr_ID: " + "Not Printable" + " Obj_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -212,5 +212,32 @@ InterfaceReference_c.getOneC_IROnR4009(
 		}
 		return CorePlugin.getImageFor("Provision.gif");
 	}
-    }       
+
+  /**
+  * Returns a "slot number" to be used when comparing and merging tree elements
+  * that contain multiple children.  All model element inspector's contain this 
+  * function, but it only returns a value for cases where it a parent element
+  * in a tree and the parent has multiple children.
+  * 
+  * @returns 0 if this is not a "parent" in the tree OR if the parent has less 
+  * than 2 children. 
+  */
+	@Override
+	public int getTreeDifferenceSlot(Object element) {
+    	if (element instanceof Interface_c) {
+			return 1;
+		}
+    	if (element instanceof ProvidedOperation_c) {
+			return 2;
+		}
+    	if (element instanceof ProvidedSignal_c) {
+			return 3;
+		}
+    	if (element instanceof Delegation_c) {
+			return 4;
+		}
+		return 0;
+	}
+
+	}       
 

@@ -148,7 +148,7 @@ p_m_sm_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_sm_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((MealyStateMachine_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((MealyStateMachine_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((MealyStateMachine_c)elem).getSm_id())) return false;
@@ -602,29 +602,29 @@ public static MealyStateMachine_c getOneSM_MEALYOnR512(Transition_c target,
         ModelRoot baseRoot = modelRoot;
 
       // R510
-      StateMachine_c relInst38570 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      StateMachine_c relInst39152 = (StateMachine_c) baseRoot.getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38570 == null) {
-      			relInst38570 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+      		if (relInst39152 == null) {
+      			relInst39152 = (StateMachine_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
       		}
-			if (relInst38570 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39152 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38570 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
-					if (relInst38570 != null)
+					relInst39152 = (StateMachine_c) roots[i].getInstanceList(StateMachine_c.class).get(new Object[] {m_sm_id});
+					if (relInst39152 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38570 != null )
+      if ( relInst39152 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38570) && !isProxy())) {
-	      relInst38570.relateAcrossR510To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39152) && !isProxy())) {
+	      relInst39152.relateAcrossR510To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -874,56 +874,56 @@ private static MealyStateMachine_c findMealyStateMachineInstance(ModelRoot model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class MealyStateMachine_c_test38572_c implements ClassQueryInterface_c
+    class MealyStateMachine_c_test39154_c implements ClassQueryInterface_c
     {
-	  MealyStateMachine_c_test38572_c( java.util.UUID            p38573 ) {
-	  m_p38573 = p38573;
+	  MealyStateMachine_c_test39154_c( java.util.UUID            p39155 ) {
+	  m_p39155 = p39155;
 	  }
-	  private java.util.UUID             m_p38573; 
+	  private java.util.UUID             m_p39155; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MealyStateMachine_c selected = (MealyStateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38573));
+	      retval = (selected.getSm_id().equals(m_p39155));
 	      return retval;
 	  }
     }
 
-    MealyStateMachine_c [] objs38571 = 
-    MealyStateMachine_c.MealyStateMachineInstances(modelRoot, new MealyStateMachine_c_test38572_c(getSm_id())) ;
+    MealyStateMachine_c [] objs39153 = 
+    MealyStateMachine_c.MealyStateMachineInstances(modelRoot, new MealyStateMachine_c_test39154_c(getSm_id())) ;
 
-    if ( (  (objs38571.length) == 0) )
+    if ( (  (objs39153.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Mealy State Machine", //$NON-NLS-1$
            "Consistency: Object: Mealy State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38571.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39153.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Mealy State Machine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38571.length )  , e); 
+          + Integer.toString( objs39153.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38571.length) > 1) )
+    if ( (  (objs39153.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Mealy State Machine", //$NON-NLS-1$
            "Consistency: Object: Mealy State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38571.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39153.length )  + " SM_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Mealy State Machine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38571.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39153.length )  + " SM_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -931,37 +931,37 @@ private static MealyStateMachine_c findMealyStateMachineInstance(ModelRoot model
 
           // Mealy State Machine is a subtype in association: rel.Numb = 510
           // The supertype class is: State Machine
-    class StateMachine_c_test38577_c implements ClassQueryInterface_c
+    class StateMachine_c_test39159_c implements ClassQueryInterface_c
     {
-	  StateMachine_c_test38577_c( java.util.UUID            p38578 ) {
-	  m_p38578 = p38578;
+	  StateMachine_c_test39159_c( java.util.UUID            p39160 ) {
+	  m_p39160 = p39160;
 	  }
-	  private java.util.UUID             m_p38578; 
+	  private java.util.UUID             m_p39160; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachine_c selected = (StateMachine_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38578));
+	      retval = (selected.getSm_id().equals(m_p39160));
 	      return retval;
 	  }
     }
 
-    StateMachine_c [] objs38576 = 
-    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test38577_c(getSm_id())) ;
+    StateMachine_c [] objs39158 = 
+    StateMachine_c.StateMachineInstances(modelRoot, new StateMachine_c_test39159_c(getSm_id())) ;
 
-    if ( (  (objs38576.length) != 1) )
+    if ( (  (objs39158.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Mealy State Machine", //$NON-NLS-1$
            "Consistency: Object: Mealy State Machine: Association: 510: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38576.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39158.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Mealy State Machine: Association: 510: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38576.length )  , e); 
+          + Integer.toString( objs39158.length )  , e); 
       }
       retval = false;
 
@@ -970,37 +970,37 @@ private static MealyStateMachine_c findMealyStateMachineInstance(ModelRoot model
           // Associated One Side: rel.Numb = 512
             // Link Object: Mealy Action Home
             // Other Side Class: Transition
-    class MealyActionHome_c_test38581_c implements ClassQueryInterface_c
+    class MealyActionHome_c_test39163_c implements ClassQueryInterface_c
     {
-	  MealyActionHome_c_test38581_c( java.util.UUID            p38582 ) {
-	  m_p38582 = p38582;
+	  MealyActionHome_c_test39163_c( java.util.UUID            p39164 ) {
+	  m_p39164 = p39164;
 	  }
-	  private java.util.UUID             m_p38582; 
+	  private java.util.UUID             m_p39164; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      MealyActionHome_c selected = (MealyActionHome_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38582));
+	      retval = (selected.getSm_id().equals(m_p39164));
 	      return retval;
 	  }
     }
 
-    MealyActionHome_c [] objs38583 = 
-    MealyActionHome_c.MealyActionHomeInstances(modelRoot, new MealyActionHome_c_test38581_c(getSm_id())) ;
+    MealyActionHome_c [] objs39165 = 
+    MealyActionHome_c.MealyActionHomeInstances(modelRoot, new MealyActionHome_c_test39163_c(getSm_id())) ;
 
-    if ( (  (objs38583.length) == 0) )
+    if ( (  (objs39165.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Mealy State Machine", //$NON-NLS-1$
            "Consistency: Object: Mealy State Machine: Association: 512: Cardinality of a link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38583.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39165.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Mealy State Machine: Association: 512: Cardinality of a link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38583.length )  , e); 
+          + Integer.toString( objs39165.length )  , e); 
       }
       retval = false;
 

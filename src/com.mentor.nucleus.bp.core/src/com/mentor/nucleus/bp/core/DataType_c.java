@@ -1723,7 +1723,7 @@ p_m_defaultvalue
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -1739,7 +1739,7 @@ p_m_defaultvalue
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((DataType_c)elem).getDt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((DataType_c)elem).getDt_id())) && this != elem)) {
       	return false;
       }
       if (!getDt_id().equals(((DataType_c)elem).getDt_id())) return false;
@@ -7258,58 +7258,58 @@ public static DataType_c [] getManyS_DTsOnR4008(InterfaceOperation_c target, boo
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst55168 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
+      PackageableElement_c relInst56717 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55168 == null) {
-      			relInst55168 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
+      		if (relInst56717 == null) {
+      			relInst56717 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst55168 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56717 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55168 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
-					if (relInst55168 != null)
+					relInst56717 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_dt_id});
+					if (relInst56717 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55168 != null )
+      if ( relInst56717 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55168) && !isProxy())) {
-	      relInst55168.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56717) && !isProxy())) {
+	      relInst56717.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (DefinesTypesAvailableWithinDomain == null) {          
       // R14
-      Domain_c relInst55169 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      Domain_c relInst56718 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55169 == null) {
-      			relInst55169 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      		if (relInst56718 == null) {
+      			relInst56718 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
       		}
-			if (relInst55169 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56718 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55169 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
-					if (relInst55169 != null)
+					relInst56718 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+					if (relInst56718 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55169 != null )
+      if ( relInst56718 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55169) && !isProxy())) {
-	      relInst55169.relateAcrossR14To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56718) && !isProxy())) {
+	      relInst56718.relateAcrossR14To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -7865,111 +7865,111 @@ private static DataType_c findDataTypeInstance(ModelRoot modelRoot, ClassQueryIn
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class DataType_c_test55171_c implements ClassQueryInterface_c
+    class DataType_c_test56720_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55171_c( java.util.UUID            p55172 ) {
-	  m_p55172 = p55172;
+	  DataType_c_test56720_c( java.util.UUID            p56721 ) {
+	  m_p56721 = p56721;
 	  }
-	  private java.util.UUID             m_p55172; 
+	  private java.util.UUID             m_p56721; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55172));
+	      retval = (selected.getDt_id().equals(m_p56721));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55170 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55171_c(getDt_id())) ;
+    DataType_c [] objs56719 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56720_c(getDt_id())) ;
 
-    if ( (  (objs55170.length) == 0) )
+    if ( (  (objs56719.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55170.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56719.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55170.length )  , e); 
+          + Integer.toString( objs56719.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55170.length) > 1) )
+    if ( (  (objs56719.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55170.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56719.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55170.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56719.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
 
-    class DataType_c_test55174_c implements ClassQueryInterface_c
+    class DataType_c_test56723_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55174_c( java.util.UUID            p55175 ) {
-	  m_p55175 = p55175;
+	  DataType_c_test56723_c( java.util.UUID            p56724 ) {
+	  m_p56724 = p56724;
 	  }
-	  private java.util.UUID             m_p55175; 
+	  private java.util.UUID             m_p56724; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55175));
+	      retval = (selected.getDt_id().equals(m_p56724));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55173 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55174_c(getDt_id())) ;
+    DataType_c [] objs56722 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56723_c(getDt_id())) ;
 
-    if ( (  (objs55173.length) == 0) )
+    if ( (  (objs56722.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55173.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56722.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55173.length )  , e); 
+          + Integer.toString( objs56722.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55173.length) > 1) )
+    if ( (  (objs56722.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55173.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56722.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55173.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56722.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -7977,38 +7977,38 @@ private static DataType_c findDataTypeInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Data Type is a referring class in association: rel.Numb = 14
           // The participating class is: Domain
-    class Domain_c_test55178_c implements ClassQueryInterface_c
+    class Domain_c_test56727_c implements ClassQueryInterface_c
     {
-	  Domain_c_test55178_c( java.util.UUID            p55179 ) {
-	  m_p55179 = p55179;
+	  Domain_c_test56727_c( java.util.UUID            p56728 ) {
+	  m_p56728 = p56728;
 	  }
-	  private java.util.UUID             m_p55179; 
+	  private java.util.UUID             m_p56728; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Domain_c selected = (Domain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p55179));
+	      retval = (selected.getDom_id().equals(m_p56728));
 	      return retval;
 	  }
     }
 
-    Domain_c [] objs55177 = 
-    Domain_c.DomainInstances(modelRoot, new Domain_c_test55178_c(getDom_id())) ;
+    Domain_c [] objs56726 = 
+    Domain_c.DomainInstances(modelRoot, new Domain_c_test56727_c(getDom_id())) ;
 
-    if ( (  (objs55177.length) > 1) )
+    if ( (  (objs56726.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Association: 14: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55177.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56726.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Association: 14: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55177.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56726.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -8019,120 +8019,120 @@ private static DataType_c findDataTypeInstance(ModelRoot modelRoot, ClassQueryIn
          //    Note: The consistency test for this supertype has been removed 
          //          until generic package _migration_ is complete.
           // Supertype: rel.Numb = 17
-    int objs55183 = 0;
+    int objs56732 = 0;
             // Subtype Object: User Data Type
-    class UserDataType_c_test55184_c implements ClassQueryInterface_c
+    class UserDataType_c_test56733_c implements ClassQueryInterface_c
     {
-	  UserDataType_c_test55184_c( java.util.UUID            p55185 ) {
-	  m_p55185 = p55185;
+	  UserDataType_c_test56733_c( java.util.UUID            p56734 ) {
+	  m_p56734 = p56734;
 	  }
-	  private java.util.UUID             m_p55185; 
+	  private java.util.UUID             m_p56734; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      UserDataType_c selected = (UserDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55185));
+	      retval = (selected.getDt_id().equals(m_p56734));
 	      return retval;
 	  }
     }
 
-    UserDataType_c [] objs55186 = 
-    UserDataType_c.UserDataTypeInstances(modelRoot, new UserDataType_c_test55184_c(getDt_id())) ;
+    UserDataType_c [] objs56735 = 
+    UserDataType_c.UserDataTypeInstances(modelRoot, new UserDataType_c_test56733_c(getDt_id())) ;
  
-    objs55183 = objs55183 + objs55186.length;
+    objs56732 = objs56732 + objs56735.length;
             // Subtype Object: Core Data Type
-    class CoreDataType_c_test55187_c implements ClassQueryInterface_c
+    class CoreDataType_c_test56736_c implements ClassQueryInterface_c
     {
-	  CoreDataType_c_test55187_c( java.util.UUID            p55188 ) {
-	  m_p55188 = p55188;
+	  CoreDataType_c_test56736_c( java.util.UUID            p56737 ) {
+	  m_p56737 = p56737;
 	  }
-	  private java.util.UUID             m_p55188; 
+	  private java.util.UUID             m_p56737; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      CoreDataType_c selected = (CoreDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55188));
+	      retval = (selected.getDt_id().equals(m_p56737));
 	      return retval;
 	  }
     }
 
-    CoreDataType_c [] objs55189 = 
-    CoreDataType_c.CoreDataTypeInstances(modelRoot, new CoreDataType_c_test55187_c(getDt_id())) ;
+    CoreDataType_c [] objs56738 = 
+    CoreDataType_c.CoreDataTypeInstances(modelRoot, new CoreDataType_c_test56736_c(getDt_id())) ;
  
-    objs55183 = objs55183 + objs55189.length;
+    objs56732 = objs56732 + objs56738.length;
             // Subtype Object: Enumeration Data Type
-    class EnumerationDataType_c_test55190_c implements ClassQueryInterface_c
+    class EnumerationDataType_c_test56739_c implements ClassQueryInterface_c
     {
-	  EnumerationDataType_c_test55190_c( java.util.UUID            p55191 ) {
-	  m_p55191 = p55191;
+	  EnumerationDataType_c_test56739_c( java.util.UUID            p56740 ) {
+	  m_p56740 = p56740;
 	  }
-	  private java.util.UUID             m_p55191; 
+	  private java.util.UUID             m_p56740; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EnumerationDataType_c selected = (EnumerationDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55191));
+	      retval = (selected.getDt_id().equals(m_p56740));
 	      return retval;
 	  }
     }
 
-    EnumerationDataType_c [] objs55192 = 
-    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test55190_c(getDt_id())) ;
+    EnumerationDataType_c [] objs56741 = 
+    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test56739_c(getDt_id())) ;
  
-    objs55183 = objs55183 + objs55192.length;
+    objs56732 = objs56732 + objs56741.length;
             // Subtype Object: Structured Data Type
-    class StructuredDataType_c_test55193_c implements ClassQueryInterface_c
+    class StructuredDataType_c_test56742_c implements ClassQueryInterface_c
     {
-	  StructuredDataType_c_test55193_c( java.util.UUID            p55194 ) {
-	  m_p55194 = p55194;
+	  StructuredDataType_c_test56742_c( java.util.UUID            p56743 ) {
+	  m_p56743 = p56743;
 	  }
-	  private java.util.UUID             m_p55194; 
+	  private java.util.UUID             m_p56743; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StructuredDataType_c selected = (StructuredDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55194));
+	      retval = (selected.getDt_id().equals(m_p56743));
 	      return retval;
 	  }
     }
 
-    StructuredDataType_c [] objs55195 = 
-    StructuredDataType_c.StructuredDataTypeInstances(modelRoot, new StructuredDataType_c_test55193_c(getDt_id())) ;
+    StructuredDataType_c [] objs56744 = 
+    StructuredDataType_c.StructuredDataTypeInstances(modelRoot, new StructuredDataType_c_test56742_c(getDt_id())) ;
  
-    objs55183 = objs55183 + objs55195.length;
+    objs56732 = objs56732 + objs56744.length;
             // Subtype Object: Instance Reference Data Type
-    class InstanceReferenceDataType_c_test55196_c implements ClassQueryInterface_c
+    class InstanceReferenceDataType_c_test56745_c implements ClassQueryInterface_c
     {
-	  InstanceReferenceDataType_c_test55196_c( java.util.UUID            p55197 ) {
-	  m_p55197 = p55197;
+	  InstanceReferenceDataType_c_test56745_c( java.util.UUID            p56746 ) {
+	  m_p56746 = p56746;
 	  }
-	  private java.util.UUID             m_p55197; 
+	  private java.util.UUID             m_p56746; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InstanceReferenceDataType_c selected = (InstanceReferenceDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55197));
+	      retval = (selected.getDt_id().equals(m_p56746));
 	      return retval;
 	  }
     }
 
-    InstanceReferenceDataType_c [] objs55198 = 
-    InstanceReferenceDataType_c.InstanceReferenceDataTypeInstances(modelRoot, new InstanceReferenceDataType_c_test55196_c(getDt_id())) ;
+    InstanceReferenceDataType_c [] objs56747 = 
+    InstanceReferenceDataType_c.InstanceReferenceDataTypeInstances(modelRoot, new InstanceReferenceDataType_c_test56745_c(getDt_id())) ;
  
-    objs55183 = objs55183 + objs55198.length;
-    if ( objs55183 != 1 )
+    objs56732 = objs56732 + objs56747.length;
+    if ( objs56732 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type", //$NON-NLS-1$
            "Consistency: Object: Data Type: Association: 17: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55183 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56732 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type: Association: 17: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55183 )  , e); 
+          + Integer.toString( objs56732 )  , e); 
       }
       retval = false;
 
@@ -8190,6 +8190,973 @@ private static DataType_c findDataTypeInstance(ModelRoot modelRoot, ClassQueryIn
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Data Type", " Operation entered: DataType::Dispose") ; 
                final ModelRoot modelRoot = getModelRoot();
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR8001(this);
+
+
+Package_c v_PKG = Package_c.getOneEP_PKGOnR8000(v_pe);
+
+
+SystemModel_c v_systemModel = SystemModel_c.getOneS_SYSOnR1405(v_PKG);
+
+
+Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
+
+
+  class DataType_test55748_c implements ClassQueryInterface_c
+  {
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return selected.getName().equals("integer") ;
+	}
+  }
+DataType_c v_intdt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55748_c());
+
+
+  class DataType_test55749_c implements ClassQueryInterface_c
+  {
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return selected.getName().equals("void") ;
+	}
+  }
+DataType_c v_voidDt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55749_c());
+
+
+DataTypePackage_c v_rootPkg = DataTypePackage_c.getOneS_DPKOnR39(DataTypeInPackage_c.getOneS_DIPOnR39(this));
+
+
+DataTypePackage_c v_actualRootPkg = v_rootPkg ;
+
+
+SystemModel_c v_sys = SystemModel_c.getOneS_SYSOnR4400(SystemDatatypePackage_c.getOneSLD_SDPOnR4400(v_rootPkg));
+
+
+if ( (  (v_sys == null)) )
+{
+
+while ( (  (v_rootPkg != null)) )
+{
+
+v_sys = SystemModel_c.getOneS_SYSOnR4400(SystemDatatypePackage_c.getOneSLD_SDPOnR4400(v_rootPkg));
+
+
+v_rootPkg = DataTypePackage_c.getOneS_DPKOnR37(DataTypePackageInPackage_c.getOneS_DPIPOnR38(v_rootPkg));
+
+
+if ( (  (v_rootPkg != null)) )
+{
+
+v_actualRootPkg = v_rootPkg ;
+
+
+
+}
+
+
+}
+
+
+}
+
+if ( (  (v_sys == null)) )
+{
+
+v_sys = SystemModel_c.getOneS_SYSOnR1405(Package_c.getOneEP_PKGOnR1400(SpecificationPackage_c.getOneEP_SPKGOnR1402(v_actualRootPkg)));
+
+
+if (   (v_sys == null) )
+{
+
+v_sys = SystemModel_c.getOneS_SYSOnR28(v_dom);
+
+
+
+}
+
+
+}
+
+if ( ((  (v_intdt == null)) && (  (v_sys != null))) )
+{
+
+java.util.UUID         v_intdt_id = v_sys.Getcoretypeid(			    
+"integer") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_intdt_id);
+
+
+v_intdt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+
+}
+
+if ( (  (v_voidDt == null) &&   (v_sys != null)) )
+{
+
+java.util.UUID         v_voiddt_id = v_sys.Getcoretypeid(			    
+"void") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_voiddt_id);
+
+
+v_voidDt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+
+}
+
+if ( (  (v_intdt == null) &&   (v_voidDt == null)) )
+{
+
+SystemModel_c v_compSys = SystemModel_c.getOneS_SYSOnR4606(ComponentPackage_c.getOneCP_CPOnR4608(Component_c.getOneC_COnR4204(DomainAsComponent_c.getOneCN_DCOnR4204(Domain_c.getOneS_DOMOnR14(this)))));
+
+
+if (   (v_compSys != null) )
+{
+
+java.util.UUID         v_intdt_id = v_compSys.Getcoretypeid(			    
+"integer") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_intdt_id);
+
+
+v_intdt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+java.util.UUID         v_voiddt_id = v_compSys.Getcoretypeid(			    
+"void") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_voiddt_id);
+
+
+v_voidDt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+
+}
+
+
+}
+
+if ( (  (v_intdt == null) &&   (v_voidDt == null)) )
+{
+
+if ( (  (v_systemModel != null)) )
+{
+
+java.util.UUID         v_intdt_id = v_systemModel.Getcoretypeid(			    
+"integer") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_intdt_id);
+
+
+v_intdt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+java.util.UUID         v_voiddt_id = v_systemModel.Getcoretypeid(			    
+"void") ;
+
+
+v_pe = (PackageableElement_c) modelRoot.getInstanceList(PackageableElement_c.class).getGlobal(null, v_voiddt_id);
+
+
+v_voidDt = DataType_c.getOneS_DTOnR8001(v_pe);
+
+
+
+}
+
+
+}
+
+Bridge_c [] v_brgs = Bridge_c.getManyS_BRGsOnR20(this);
+
+
+Bridge_c  v_brg = null;
+for ( int i55121 = 0; i55121 < v_brgs.length; i55121++)
+{
+  v_brg = v_brgs[i55121] ;
+
+this.unrelateAcrossR20From(v_brg);
+
+
+if (v_brg != null) {
+  v_brg.relateAcrossR20To(v_voidDt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_brg.getName()			    
+,"- Bridge : " ) ;
+
+
+
+}
+
+BridgeParameter_c [] v_bparms = BridgeParameter_c.getManyS_BPARMsOnR22(this);
+
+
+BridgeParameter_c  v_bparm = null;
+for ( int i55122 = 0; i55122 < v_bparms.length; i55122++)
+{
+  v_bparm = v_bparms[i55122] ;
+
+this.unrelateAcrossR22From(v_bparm);
+
+
+if (v_bparm != null) {
+  v_bparm.relateAcrossR22To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_bparm.getName()			    
+,"- Bridge Parameter : " ) ;
+
+
+
+}
+
+ExternalEntityDataItem_c [] v_eedis = ExternalEntityDataItem_c.getManyS_EEDIsOnR15(this);
+
+
+ExternalEntityDataItem_c  v_eedi = null;
+for ( int i55123 = 0; i55123 < v_eedis.length; i55123++)
+{
+  v_eedi = v_eedis[i55123] ;
+
+this.unrelateAcrossR15From(v_eedi);
+
+
+if (v_eedi != null) {
+  v_eedi.relateAcrossR15To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_eedi.getName()			    
+,"- External Entity : " ) ;
+
+
+
+}
+
+ExternalEntityEventDataItem_c [] v_eeedis = ExternalEntityEventDataItem_c.getManyS_EEEDIsOnR16(this);
+
+
+ExternalEntityEventDataItem_c  v_eeedi = null;
+for ( int i55124 = 0; i55124 < v_eeedis.length; i55124++)
+{
+  v_eeedi = v_eeedis[i55124] ;
+
+this.unrelateAcrossR16From(v_eeedi);
+
+
+if (v_eeedi != null) {
+  v_eeedi.relateAcrossR16To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_eeedi.getName()			    
+,"- External Entity Event DataItem : " ) ;
+
+
+
+}
+
+FunctionParameter_c [] v_sparms = FunctionParameter_c.getManyS_SPARMsOnR26(this);
+
+
+FunctionParameter_c  v_sparm = null;
+for ( int i55125 = 0; i55125 < v_sparms.length; i55125++)
+{
+  v_sparm = v_sparms[i55125] ;
+
+this.unrelateAcrossR26From(v_sparm);
+
+
+if (v_sparm != null) {
+  v_sparm.relateAcrossR26To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_sparm.getName()			    
+,"- Function Parameter : " ) ;
+
+
+
+}
+
+Function_c [] v_fns = Function_c.getManyS_SYNCsOnR25(this);
+
+
+Function_c  v_fn = null;
+for ( int i55126 = 0; i55126 < v_fns.length; i55126++)
+{
+  v_fn = v_fns[i55126] ;
+
+this.unrelateAcrossR25From(v_fn);
+
+
+if (v_fn != null) {
+  v_fn.relateAcrossR25To(v_voidDt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_fn.getName()			    
+,"- Function : " ) ;
+
+
+
+}
+
+StateMachineEventDataItem_c [] v_evtdis = StateMachineEventDataItem_c.getManySM_EVTDIsOnR524(this);
+
+
+StateMachineEventDataItem_c  v_evtdi = null;
+for ( int i55127 = 0; i55127 < v_evtdis.length; i55127++)
+{
+  v_evtdi = v_evtdis[i55127] ;
+
+this.unrelateAcrossR524From(v_evtdi);
+
+
+if (v_evtdi != null) {
+  v_evtdi.relateAcrossR524To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_evtdi.getName()			    
+,"- State Machine Event DataItem : " ) ;
+
+
+
+}
+
+Operation_c [] v_opers = Operation_c.getManyO_TFRsOnR116(this);
+
+
+Operation_c  v_oper = null;
+for ( int i55128 = 0; i55128 < v_opers.length; i55128++)
+{
+  v_oper = v_opers[i55128] ;
+
+this.unrelateAcrossR116From(v_oper);
+
+
+if (v_oper != null) {
+  v_oper.relateAcrossR116To(v_voidDt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_oper.getName()			    
+,"- Operation : " ) ;
+
+
+
+}
+
+OperationParameter_c [] v_oparms = OperationParameter_c.getManyO_TPARMsOnR118(this);
+
+
+OperationParameter_c  v_oparm = null;
+for ( int i55129 = 0; i55129 < v_oparms.length; i55129++)
+{
+  v_oparm = v_oparms[i55129] ;
+
+this.unrelateAcrossR118From(v_oparm);
+
+
+if (v_oparm != null) {
+  v_oparm.relateAcrossR118To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_oparm.getName()			    
+,"- Operation Parameter : " ) ;
+
+
+
+}
+
+Attribute_c [] v_attrs = Attribute_c.getManyO_ATTRsOnR114(this);
+
+
+Attribute_c  v_attr = null;
+for ( int i55130 = 0; i55130 < v_attrs.length; i55130++)
+{
+  v_attr = v_attrs[i55130] ;
+
+this.unrelateAcrossR114From(v_attr);
+
+
+if (v_attr != null) {
+  v_attr.relateAcrossR114To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_attr.getName()			    
+,"- Attribute : " ) ;
+
+
+
+}
+
+StructureMember_c [] v_members = StructureMember_c.getManyS_MBRsOnR45(this);
+
+
+StructureMember_c  v_member = null;
+for ( int i55131 = 0; i55131 < v_members.length; i55131++)
+{
+  v_member = v_members[i55131] ;
+
+this.unrelateAcrossR45From(v_member);
+
+
+if (v_member != null) {
+  v_member.relateAcrossR45To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_member.getName()			    
+,"- Structure Member : " ) ;
+
+
+
+}
+
+UserDataType_c v_udt = UserDataType_c.getOneS_UDTOnR17(this);
+
+
+EnumerationDataType_c v_edt = EnumerationDataType_c.getOneS_EDTOnR17(this);
+
+
+CoreDataType_c v_cdt = CoreDataType_c.getOneS_CDTOnR17(this);
+
+
+boolean      v_isCoreType =   (v_cdt != null) ;
+
+
+StructuredDataType_c v_sdt = StructuredDataType_c.getOneS_SDTOnR17(this);
+
+
+InstanceReferenceDataType_c v_irdt = InstanceReferenceDataType_c.getOneS_IRDTOnR17(this);
+
+
+if (   (v_udt != null) )
+{
+
+if (v_udt != null) {
+v_udt.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else if ( (  (v_edt != null)) )
+{
+
+if (v_edt != null) {
+v_edt.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else if ( (  (v_cdt != null)) )
+{
+
+if (v_cdt != null) {
+v_cdt.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else if ( (  (v_sdt != null)) )
+{
+
+if (v_sdt != null) {
+v_sdt.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+else if ( (  (v_irdt != null)) )
+{
+
+if (v_irdt != null) {
+v_irdt.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+SymbolicConstant_c [] v_sycs = SymbolicConstant_c.getManyCNST_SYCsOnR1500(this);
+
+
+SymbolicConstant_c  v_syc = null;
+for ( int i55132 = 0; i55132 < v_sycs.length; i55132++)
+{
+  v_syc = v_sycs[i55132] ;
+
+if (v_syc != null) {
+v_syc.Settodefaultdatatype() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_syc.getName()			    
+,"- Symbolic Constant : " ) ;
+
+
+
+}
+
+Value_c [] v_vals = Value_c.getManyV_VALsOnR820(this);
+
+
+Value_c  v_val = null;
+for ( int i55133 = 0; i55133 < v_vals.length; i55133++)
+{
+  v_val = v_vals[i55133] ;
+
+this.unrelateAcrossR820From(v_val);
+
+
+if (v_val != null) {
+  v_val.relateAcrossR820To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+TransientVar_c [] v_tvars = TransientVar_c.getManyV_TRNsOnR821(this);
+
+
+TransientVar_c  v_tvar = null;
+for ( int i55134 = 0; i55134 < v_tvars.length; i55134++)
+{
+  v_tvar = v_tvars[i55134] ;
+
+this.unrelateAcrossR821From(v_tvar);
+
+
+if (v_tvar != null) {
+  v_tvar.relateAcrossR821To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Variable_c [] v_vvars = Variable_c.getManyV_VARsOnR848(this);
+
+
+Variable_c  v_vvar = null;
+for ( int i55135 = 0; i55135 < v_vvars.length; i55135++)
+{
+  v_vvar = v_vvars[i55135] ;
+
+this.unrelateAcrossR848From(v_vvar);
+
+
+if (v_vvar != null) {
+  v_vvar.relateAcrossR848To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_vvar.getName()			    
+,"- Variable : " ) ;
+
+
+
+}
+
+DataTypeInPackage_c v_dip = DataTypeInPackage_c.getOneS_DIPOnR39(this);
+
+
+if ( (  (v_dip != null)) )
+{
+
+DataTypePackage_c v_dpk = DataTypePackage_c.getOneS_DPKOnR39(this);
+
+
+if (v_dip != null) {
+v_dip.unrelateAcrossR39From( this ) ; v_dip.unrelateAcrossR39From( v_dpk ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_dip != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_dip.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_dip));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+SystemDatatypeInPackage_c [] v_sdips = SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4401(this);
+
+
+SystemDatatypeInPackage_c  v_sdip = null;
+for ( int i55136 = 0; i55136 < v_sdips.length; i55136++)
+{
+  v_sdip = v_sdips[i55136] ;
+
+DataTypePackage_c v_dtp = DataTypePackage_c.getOneS_DPKOnR4401(v_sdip);
+
+
+if (v_sdip != null) {
+v_sdip.unrelateAcrossR4401From( this ) ; v_sdip.unrelateAcrossR4401From( v_dtp ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4402(v_sdip);
+
+
+if (v_sdip != null) {
+v_sdip.unrelateAcrossR4402From(v_system);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_sdip != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_sdip.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_sdip));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+v_dom = Domain_c.getOneS_DOMOnR14(this);
+
+
+if ( (  (v_dom != null)) )
+{
+
+this.unrelateAcrossR14From(v_dom);
+
+
+
+}
+
+DatatypeInSuppression_c [] v_diss = DatatypeInSuppression_c.getManyS_DISsOnR47(this);
+
+
+DatatypeInSuppression_c  v_dis = null;
+for ( int i55137 = 0; i55137 < v_diss.length; i55137++)
+{
+  v_dis = v_diss[i55137] ;
+
+Domain_c v_domain = Domain_c.getOneS_DOMOnR47(v_dis);
+
+
+if (v_dis != null) {
+v_dis.unrelateAcrossR47From( this ) ; v_dis.unrelateAcrossR47From( v_domain ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate using attempted on null link class instance.", t);
+}
+
+
+if (v_dis != null) {
+// get the location of this element in the instance list
+// before deleting
+if ( v_dis.delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, v_dis));
+}
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Delete attempted on null instance.", t);
+}
+
+
+
+}
+
+InterfaceOperation_c [] v_ios = InterfaceOperation_c.getManyC_IOsOnR4008(this);
+
+
+InterfaceOperation_c  v_io = null;
+for ( int i55138 = 0; i55138 < v_ios.length; i55138++)
+{
+  v_io = v_ios[i55138] ;
+
+this.unrelateAcrossR4008From(v_io);
+
+
+if (v_io != null) {
+  v_io.relateAcrossR4008To(v_voidDt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_io.getName()			    
+,"- Interface Operation : " ) ;
+
+
+
+}
+
+PropertyParameter_c [] v_pps = PropertyParameter_c.getManyC_PPsOnR4007(this);
+
+
+PropertyParameter_c  v_pp = null;
+for ( int i55139 = 0; i55139 < v_pps.length; i55139++)
+{
+  v_pp = v_pps[i55139] ;
+
+this.unrelateAcrossR4007From(v_pp);
+
+
+if (v_pp != null) {
+  v_pp.relateAcrossR4007To(v_intdt);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+Util_c.Collectmodelelementsnames(			    
+v_pp.getName()			    
+,"- Property Parameter : " ) ;
+
+
+
+}
+
+UserDataType_c [] v_udts = UserDataType_c.getManyS_UDTsOnR18(this);
+
+
+for ( int i55140 = 0; i55140 < v_udts.length; i55140++)
+{
+  v_udt = v_udts[i55140] ;
+
+this.unrelateAcrossR18From(v_udt);
+
+
+if (v_udt != null) {
+v_udt.Changecoretype(			    
+"integer" ) ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+DataType_c v_udtDt = DataType_c.getOneS_DTOnR17(v_udt);
+
+
+if ( (  !v_isCoreType &&   (v_udtDt != null)) )
+{
+
+Util_c.Collectmodelelementsnames(			    
+v_udtDt.getName()			    
+,"- User Data Type : " ) ;
+
+
+
+}
+
+
+}
+
+PackageableElement_c v_packageableElement = PackageableElement_c.getOnePE_PEOnR8001(this);
+
+
+if (   (v_packageableElement != null) )
+{
+
+this.unrelateAcrossR8001From(v_packageableElement);
+
+
+if (v_packageableElement != null) {
+v_packageableElement.Dispose() ;
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Attempted to call an operation on a null instance.", t);
+}
+
+
+
+}
+
+if ( delete() ) {
+    Ooaofooa.getDefaultInstance().fireModelElementDeleted(new BaseModelDelta(Modeleventnotification_c.DELTA_DELETE, this));
+}
+
+
 
    } // End dispose
   public  void Initialize(final String       p_Newname)
@@ -8347,7 +9314,7 @@ return false;
 Domain_c v_dom = (Domain_c) modelRoot.getInstanceList(Domain_c.class).getGlobal(null, p_Dom_id);
 
 
-  class DataType_test54201_c implements ClassQueryInterface_c
+  class DataType_test55750_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8355,13 +9322,13 @@ Domain_c v_dom = (Domain_c) modelRoot.getInstanceList(Domain_c.class).getGlobal(
 		return selected.getName().equals(p_Typename) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54201_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55750_c());
 
 
 if ( (  (v_dt == null)) )
 {
 
-  class DataType_test53979_c implements ClassQueryInterface_c
+  class DataType_test55515_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8369,7 +9336,7 @@ if ( (  (v_dt == null)) )
 		return (selected.getName().equals(p_Typename)) ;
 	}
   }
-v_dt = DataType_c.DataTypeInstance(modelRoot, new DataType_test53979_c()) ;
+v_dt = DataType_c.DataTypeInstance(modelRoot, new DataType_test55515_c()) ;
 
 
 
@@ -8413,7 +9380,7 @@ Domain_c v_dom = (Domain_c) modelRoot.getInstanceList(Domain_c.class).getGlobal(
 if ( (  (v_dom != null)) )
 {
 
-  class DataType_test54202_c implements ClassQueryInterface_c
+  class DataType_test55751_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8421,7 +9388,7 @@ if ( (  (v_dom != null)) )
 		return selected.getName().equals(p_Typename) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54202_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55751_c());
 
 
 if (   (v_dt != null) )
@@ -8439,7 +9406,7 @@ return v_dt.Iscommonallowedtype();
 else
 {
 
-  class DataType_test53980_c implements ClassQueryInterface_c
+  class DataType_test55516_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8447,7 +9414,7 @@ else
 		return (selected.getName().equals(p_Typename)) ;
 	}
   }
-DataType_c v_dt = DataType_c.DataTypeInstance(modelRoot, new DataType_test53980_c()) ;
+DataType_c v_dt = DataType_c.DataTypeInstance(modelRoot, new DataType_test55516_c()) ;
 
 
 if (   (v_dt != null) )

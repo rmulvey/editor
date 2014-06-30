@@ -180,7 +180,7 @@ p_m_ss_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -196,7 +196,7 @@ p_m_ss_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((Association_c)elem).getRel_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((Association_c)elem).getRel_id())) && this != elem)) {
       	return false;
       }
       if (!getRel_id().equals(((Association_c)elem).getRel_id())) return false;
@@ -3092,58 +3092,58 @@ public static Association_c [] getManyR_RELsOnR2959(LinkParticipation_c target, 
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst56881 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
+      PackageableElement_c relInst58430 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56881 == null) {
-      			relInst56881 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
+      		if (relInst58430 == null) {
+      			relInst58430 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
       		}
-			if (relInst56881 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58430 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56881 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
-					if (relInst56881 != null)
+					relInst58430 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_rel_id});
+					if (relInst58430 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56881 != null )
+      if ( relInst58430 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56881) && !isProxy())) {
-	      relInst56881.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58430) && !isProxy())) {
+	      relInst58430.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (AbstractsAssociationsBetweenClassesInSubsystem == null) {          
       // R4
-      Subsystem_c relInst56882 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      Subsystem_c relInst58431 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56882 == null) {
-      			relInst56882 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      		if (relInst58431 == null) {
+      			relInst58431 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
       		}
-			if (relInst56882 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58431 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56882 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
-					if (relInst56882 != null)
+					relInst58431 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+					if (relInst58431 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56882 != null )
+      if ( relInst58431 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56882) && !isProxy())) {
-	      relInst56882.relateAcrossR4To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58431) && !isProxy())) {
+	      relInst58431.relateAcrossR4To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3578,56 +3578,56 @@ private static Association_c findAssociationInstance(ModelRoot modelRoot, ClassQ
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Association_c_test56884_c implements ClassQueryInterface_c
+    class Association_c_test58433_c implements ClassQueryInterface_c
     {
-	  Association_c_test56884_c( java.util.UUID            p56885 ) {
-	  m_p56885 = p56885;
+	  Association_c_test58433_c( java.util.UUID            p58434 ) {
+	  m_p58434 = p58434;
 	  }
-	  private java.util.UUID             m_p56885; 
+	  private java.util.UUID             m_p58434; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Association_c selected = (Association_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56885));
+	      retval = (selected.getRel_id().equals(m_p58434));
 	      return retval;
 	  }
     }
 
-    Association_c [] objs56883 = 
-    Association_c.AssociationInstances(modelRoot, new Association_c_test56884_c(getRel_id())) ;
+    Association_c [] objs58432 = 
+    Association_c.AssociationInstances(modelRoot, new Association_c_test58433_c(getRel_id())) ;
 
-    if ( (  (objs56883.length) == 0) )
+    if ( (  (objs58432.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Association", //$NON-NLS-1$
            "Consistency: Object: Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56883.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58432.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56883.length )  , e); 
+          + Integer.toString( objs58432.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56883.length) > 1) )
+    if ( (  (objs58432.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Association", //$NON-NLS-1$
            "Consistency: Object: Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56883.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58432.length )  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56883.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58432.length )  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3635,38 +3635,38 @@ private static Association_c findAssociationInstance(ModelRoot modelRoot, ClassQ
 
           // Association is a referring class in association: rel.Numb = 4
           // The participating class is: Subsystem
-    class Subsystem_c_test56889_c implements ClassQueryInterface_c
+    class Subsystem_c_test58438_c implements ClassQueryInterface_c
     {
-	  Subsystem_c_test56889_c( java.util.UUID            p56890 ) {
-	  m_p56890 = p56890;
+	  Subsystem_c_test58438_c( java.util.UUID            p58439 ) {
+	  m_p58439 = p58439;
 	  }
-	  private java.util.UUID             m_p56890; 
+	  private java.util.UUID             m_p58439; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Subsystem_c selected = (Subsystem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSs_id().equals(m_p56890));
+	      retval = (selected.getSs_id().equals(m_p58439));
 	      return retval;
 	  }
     }
 
-    Subsystem_c [] objs56888 = 
-    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test56889_c(getSs_id())) ;
+    Subsystem_c [] objs58437 = 
+    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test58438_c(getSs_id())) ;
 
-    if ( (  (objs56888.length) > 1) )
+    if ( (  (objs58437.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Association", //$NON-NLS-1$
            "Consistency: Object: Association: Association: 4: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56888.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58437.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Association: Association: 4: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56888.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58437.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3679,100 +3679,100 @@ private static Association_c findAssociationInstance(ModelRoot modelRoot, ClassQ
           // Association is a participating class in association: rel.Numb = 1128
              // Object: Communication Link
           // Supertype: rel.Numb = 206
-    int objs56894 = 0;
+    int objs58443 = 0;
             // Subtype Object: Subtype Supertype Association
-    class SubtypeSupertypeAssociation_c_test56895_c implements ClassQueryInterface_c
+    class SubtypeSupertypeAssociation_c_test58444_c implements ClassQueryInterface_c
     {
-	  SubtypeSupertypeAssociation_c_test56895_c( java.util.UUID            p56896 ) {
-	  m_p56896 = p56896;
+	  SubtypeSupertypeAssociation_c_test58444_c( java.util.UUID            p58445 ) {
+	  m_p58445 = p58445;
 	  }
-	  private java.util.UUID             m_p56896; 
+	  private java.util.UUID             m_p58445; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SubtypeSupertypeAssociation_c selected = (SubtypeSupertypeAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56896));
+	      retval = (selected.getRel_id().equals(m_p58445));
 	      return retval;
 	  }
     }
 
-    SubtypeSupertypeAssociation_c [] objs56897 = 
-    SubtypeSupertypeAssociation_c.SubtypeSupertypeAssociationInstances(modelRoot, new SubtypeSupertypeAssociation_c_test56895_c(getRel_id())) ;
+    SubtypeSupertypeAssociation_c [] objs58446 = 
+    SubtypeSupertypeAssociation_c.SubtypeSupertypeAssociationInstances(modelRoot, new SubtypeSupertypeAssociation_c_test58444_c(getRel_id())) ;
  
-    objs56894 = objs56894 + objs56897.length;
+    objs58443 = objs58443 + objs58446.length;
             // Subtype Object: Simple Association
-    class SimpleAssociation_c_test56898_c implements ClassQueryInterface_c
+    class SimpleAssociation_c_test58447_c implements ClassQueryInterface_c
     {
-	  SimpleAssociation_c_test56898_c( java.util.UUID            p56899 ) {
-	  m_p56899 = p56899;
+	  SimpleAssociation_c_test58447_c( java.util.UUID            p58448 ) {
+	  m_p58448 = p58448;
 	  }
-	  private java.util.UUID             m_p56899; 
+	  private java.util.UUID             m_p58448; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SimpleAssociation_c selected = (SimpleAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56899));
+	      retval = (selected.getRel_id().equals(m_p58448));
 	      return retval;
 	  }
     }
 
-    SimpleAssociation_c [] objs56900 = 
-    SimpleAssociation_c.SimpleAssociationInstances(modelRoot, new SimpleAssociation_c_test56898_c(getRel_id())) ;
+    SimpleAssociation_c [] objs58449 = 
+    SimpleAssociation_c.SimpleAssociationInstances(modelRoot, new SimpleAssociation_c_test58447_c(getRel_id())) ;
  
-    objs56894 = objs56894 + objs56900.length;
+    objs58443 = objs58443 + objs58449.length;
             // Subtype Object: Derived Association
-    class DerivedAssociation_c_test56901_c implements ClassQueryInterface_c
+    class DerivedAssociation_c_test58450_c implements ClassQueryInterface_c
     {
-	  DerivedAssociation_c_test56901_c( java.util.UUID            p56902 ) {
-	  m_p56902 = p56902;
+	  DerivedAssociation_c_test58450_c( java.util.UUID            p58451 ) {
+	  m_p58451 = p58451;
 	  }
-	  private java.util.UUID             m_p56902; 
+	  private java.util.UUID             m_p58451; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DerivedAssociation_c selected = (DerivedAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56902));
+	      retval = (selected.getRel_id().equals(m_p58451));
 	      return retval;
 	  }
     }
 
-    DerivedAssociation_c [] objs56903 = 
-    DerivedAssociation_c.DerivedAssociationInstances(modelRoot, new DerivedAssociation_c_test56901_c(getRel_id())) ;
+    DerivedAssociation_c [] objs58452 = 
+    DerivedAssociation_c.DerivedAssociationInstances(modelRoot, new DerivedAssociation_c_test58450_c(getRel_id())) ;
  
-    objs56894 = objs56894 + objs56903.length;
+    objs58443 = objs58443 + objs58452.length;
             // Subtype Object: Linked Association
-    class LinkedAssociation_c_test56904_c implements ClassQueryInterface_c
+    class LinkedAssociation_c_test58453_c implements ClassQueryInterface_c
     {
-	  LinkedAssociation_c_test56904_c( java.util.UUID            p56905 ) {
-	  m_p56905 = p56905;
+	  LinkedAssociation_c_test58453_c( java.util.UUID            p58454 ) {
+	  m_p58454 = p58454;
 	  }
-	  private java.util.UUID             m_p56905; 
+	  private java.util.UUID             m_p58454; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      LinkedAssociation_c selected = (LinkedAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56905));
+	      retval = (selected.getRel_id().equals(m_p58454));
 	      return retval;
 	  }
     }
 
-    LinkedAssociation_c [] objs56906 = 
-    LinkedAssociation_c.LinkedAssociationInstances(modelRoot, new LinkedAssociation_c_test56904_c(getRel_id())) ;
+    LinkedAssociation_c [] objs58455 = 
+    LinkedAssociation_c.LinkedAssociationInstances(modelRoot, new LinkedAssociation_c_test58453_c(getRel_id())) ;
  
-    objs56894 = objs56894 + objs56906.length;
-    if ( objs56894 != 1 )
+    objs58443 = objs58443 + objs58455.length;
+    if ( objs58443 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Association", //$NON-NLS-1$
            "Consistency: Object: Association: Association: 206: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56894 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58443 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Association: Association: 206: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56894 )  , e); 
+          + Integer.toString( objs58443 )  , e); 
       }
       retval = false;
 
@@ -3781,37 +3781,37 @@ private static Association_c findAssociationInstance(ModelRoot modelRoot, ClassQ
           // Associated One Side: rel.Numb = 201
             // Link Object: Class In Association
             // Other Side Class: Model Class
-    class ClassInAssociation_c_test56909_c implements ClassQueryInterface_c
+    class ClassInAssociation_c_test58458_c implements ClassQueryInterface_c
     {
-	  ClassInAssociation_c_test56909_c( java.util.UUID            p56910 ) {
-	  m_p56910 = p56910;
+	  ClassInAssociation_c_test58458_c( java.util.UUID            p58459 ) {
+	  m_p58459 = p58459;
 	  }
-	  private java.util.UUID             m_p56910; 
+	  private java.util.UUID             m_p58459; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassInAssociation_c selected = (ClassInAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRel_id().equals(m_p56910));
+	      retval = (selected.getRel_id().equals(m_p58459));
 	      return retval;
 	  }
     }
 
-    ClassInAssociation_c [] objs56911 = 
-    ClassInAssociation_c.ClassInAssociationInstances(modelRoot, new ClassInAssociation_c_test56909_c(getRel_id())) ;
+    ClassInAssociation_c [] objs58460 = 
+    ClassInAssociation_c.ClassInAssociationInstances(modelRoot, new ClassInAssociation_c_test58458_c(getRel_id())) ;
 
-    if ( (  (objs56911.length) == 0) )
+    if ( (  (objs58460.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Association", //$NON-NLS-1$
            "Consistency: Object: Association: Association: 201: Cardinality of a link is equal to zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56911.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58460.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Association: Association: 201: Cardinality of a link is equal to zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56911.length )  , e); 
+          + Integer.toString( objs58460.length )  , e); 
       }
       retval = false;
 
@@ -3856,19 +3856,19 @@ if ( (  (v_part_set.length) > 1) )
 ClassAsSimpleParticipant_c v_part1 = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(v_srel);
 
 
-  class ClassAsSimpleParticipant_test54447_c implements ClassQueryInterface_c
+  class ClassAsSimpleParticipant_test55996_c implements ClassQueryInterface_c
   {
-	ClassAsSimpleParticipant_test54447_c( java.util.UUID         p54448 ) {
-		m_p54448 = p54448;
+	ClassAsSimpleParticipant_test55996_c( java.util.UUID         p55997 ) {
+		m_p55997 = p55997;
 	}
-	private java.util.UUID         m_p54448;
+	private java.util.UUID         m_p55997;
 	public boolean evaluate (Object candidate)
 	{
 		ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c)candidate;
-		return ! selected.getOir_id().equals(m_p54448) ;
+		return ! selected.getOir_id().equals(m_p55997) ;
 	}
   }
-ClassAsSimpleParticipant_c v_part2 = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(v_srel, new ClassAsSimpleParticipant_test54447_c(v_part1.getOir_id()));
+ClassAsSimpleParticipant_c v_part2 = ClassAsSimpleParticipant_c.getOneR_PARTOnR207(v_srel, new ClassAsSimpleParticipant_test55996_c(v_part1.getOir_id()));
 
 
 if ( (v_part1.getObj_id().equals(v_part2.getObj_id())) )
@@ -4174,9 +4174,9 @@ ClassInAssociation_c [] v_rto_oirs = ClassInAssociation_c.getManyR_OIRsOnR203(Re
 
 
 ClassInAssociation_c  v_rgo_oir = null;
-for ( int i53904 = 0; i53904 < v_rgo_oirs.length; i53904++)
+for ( int i55434 = 0; i55434 < v_rgo_oirs.length; i55434++)
 {
-  v_rgo_oir = v_rgo_oirs[i53904] ;
+  v_rgo_oir = v_rgo_oirs[i55434] ;
 
 if (v_rgo_oir != null) {
 v_rgo_oir.Dispose() ;
@@ -4192,9 +4192,9 @@ else {
 }
 
 ClassInAssociation_c  v_rto_oir = null;
-for ( int i53905 = 0; i53905 < v_rto_oirs.length; i53905++)
+for ( int i55435 = 0; i55435 < v_rto_oirs.length; i55435++)
 {
-  v_rto_oir = v_rto_oirs[i53905] ;
+  v_rto_oir = v_rto_oirs[i55435] ;
 
 if (v_rto_oir != null) {
 v_rto_oir.Dispose() ;
@@ -4289,9 +4289,9 @@ Relate_c [] v_rels = Relate_c.getManyACT_RELsOnR653(this);
 
 
 Relate_c  v_rel = null;
-for ( int i53906 = 0; i53906 < v_rels.length; i53906++)
+for ( int i55436 = 0; i55436 < v_rels.length; i55436++)
 {
-  v_rel = v_rels[i53906] ;
+  v_rel = v_rels[i55436] ;
 
 this.unrelateAcrossR653From(v_rel);
 
@@ -4303,9 +4303,9 @@ RelateUsing_c [] v_rus = RelateUsing_c.getManyACT_RUsOnR654(this);
 
 
 RelateUsing_c  v_ru = null;
-for ( int i53907 = 0; i53907 < v_rus.length; i53907++)
+for ( int i55437 = 0; i55437 < v_rus.length; i55437++)
 {
-  v_ru = v_rus[i53907] ;
+  v_ru = v_rus[i55437] ;
 
 this.unrelateAcrossR654From(v_ru);
 
@@ -4317,9 +4317,9 @@ Unrelate_c [] v_unrs = Unrelate_c.getManyACT_UNRsOnR655(this);
 
 
 Unrelate_c  v_unr = null;
-for ( int i53908 = 0; i53908 < v_unrs.length; i53908++)
+for ( int i55438 = 0; i55438 < v_unrs.length; i55438++)
 {
-  v_unr = v_unrs[i53908] ;
+  v_unr = v_unrs[i55438] ;
 
 this.unrelateAcrossR655From(v_unr);
 
@@ -4331,9 +4331,9 @@ UnrelateUsing_c [] v_urus = UnrelateUsing_c.getManyACT_URUsOnR656(this);
 
 
 UnrelateUsing_c  v_uru = null;
-for ( int i53909 = 0; i53909 < v_urus.length; i53909++)
+for ( int i55439 = 0; i55439 < v_urus.length; i55439++)
 {
-  v_uru = v_urus[i53909] ;
+  v_uru = v_urus[i55439] ;
 
 this.unrelateAcrossR656From(v_uru);
 
@@ -4345,9 +4345,9 @@ ChainLink_c [] v_lnks = ChainLink_c.getManyACT_LNKsOnR681(this);
 
 
 ChainLink_c  v_lnk = null;
-for ( int i53910 = 0; i53910 < v_lnks.length; i53910++)
+for ( int i55440 = 0; i55440 < v_lnks.length; i55440++)
 {
-  v_lnk = v_lnks[i53910] ;
+  v_lnk = v_lnks[i55440] ;
 
 this.unrelateAcrossR681From(v_lnk);
 
@@ -4371,9 +4371,9 @@ LinkParticipation_c [] v_iils = LinkParticipation_c.getManyI_LIPsOnR2959(this);
 
 
 LinkParticipation_c  v_iil = null;
-for ( int i53911 = 0; i53911 < v_iils.length; i53911++)
+for ( int i55441 = 0; i55441 < v_iils.length; i55441++)
 {
-  v_iil = v_iils[i53911] ;
+  v_iil = v_iils[i55441] ;
 
 this.unrelateAcrossR2959From(v_iil);
 
@@ -4395,9 +4395,9 @@ Link_c [] v_ilinks = Link_c.getManyI_LNKsOnR2904(this);
 
 
 Link_c  v_ilink = null;
-for ( int i53912 = 0; i53912 < v_ilinks.length; i53912++)
+for ( int i55442 = 0; i55442 < v_ilinks.length; i55442++)
 {
-  v_ilink = v_ilinks[i53912] ;
+  v_ilink = v_ilinks[i55442] ;
 
 this.unrelateAcrossR2904From(v_ilink);
 
@@ -4419,9 +4419,9 @@ CommunicationLink_c [] v_links = CommunicationLink_c.getManyCOMM_LNKsOnR1128(thi
 
 
 CommunicationLink_c  v_link = null;
-for ( int i53913 = 0; i53913 < v_links.length; i53913++)
+for ( int i55443 = 0; i55443 < v_links.length; i55443++)
 {
-  v_link = v_links[i53913] ;
+  v_link = v_links[i55443] ;
 
 if (v_link != null) {
 v_link.Unformalize() ;
@@ -4521,9 +4521,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR8001(PackageableElemen
 
 
 Association_c  v_assoc = null;
-for ( int i53914 = 0; i53914 < v_assocs.length; i53914++)
+for ( int i55444 = 0; i55444 < v_assocs.length; i55444++)
 {
-  v_assoc = v_assocs[i53914] ;
+  v_assoc = v_assocs[i55444] ;
 
 if ( (v_assoc.getRel_id().equals(getRel_id())) )
 {
@@ -4577,9 +4577,9 @@ Association_c [] v_assocs = Association_c.getManyR_RELsOnR4(v_ss);
 
 
 Association_c  v_assoc = null;
-for ( int i53915 = 0; i53915 < v_assocs.length; i53915++)
+for ( int i55445 = 0; i55445 < v_assocs.length; i55445++)
 {
-  v_assoc = v_assocs[i53915] ;
+  v_assoc = v_assocs[i55445] ;
 
 if ( (v_assoc.getRel_id().equals(getRel_id())) )
 {
@@ -4645,9 +4645,9 @@ boolean      v_one_mult_has_id = false ;
 
 
 ClassAsSimpleParticipant_c  v_part = null;
-for ( int i53916 = 0; i53916 < v_part_set.length; i53916++)
+for ( int i55446 = 0; i55446 < v_part_set.length; i55446++)
 {
-  v_part = v_part_set[i53916] ;
+  v_part = v_part_set[i55446] ;
 
 if ( (v_part.getMult() == 1) )
 {
@@ -4941,9 +4941,9 @@ v_sys_id = v_system.getSys_id() ;
 }
 
 Association_c  v_association = null;
-for ( int i53917 = 0; i53917 < v_associations.length; i53917++)
+for ( int i55447 = 0; i55447 < v_associations.length; i55447++)
 {
-  v_association = v_associations[i53917] ;
+  v_association = v_associations[i55447] ;
 
 if ( (v_association != this && v_association.getNumb() == getNumb()) )
 {

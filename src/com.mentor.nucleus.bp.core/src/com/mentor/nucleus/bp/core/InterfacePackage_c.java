@@ -229,7 +229,7 @@ p_m_descrip
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -245,7 +245,7 @@ p_m_descrip
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((InterfacePackage_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((InterfacePackage_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((InterfacePackage_c)elem).getPackage_id())) return false;
@@ -2200,58 +2200,58 @@ public static InterfacePackage_c [] getManyIP_IPsOnR4303(Interface_c target, boo
         ModelRoot baseRoot = modelRoot;
 
       // R1402
-      SpecificationPackage_c relInst39812 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      SpecificationPackage_c relInst40394 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39812 == null) {
-      			relInst39812 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      		if (relInst40394 == null) {
+      			relInst40394 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst39812 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40394 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39812 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
-					if (relInst39812 != null)
+					relInst40394 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+					if (relInst40394 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39812 != null )
+      if ( relInst40394 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39812) && !isProxy())) {
-	      relInst39812.relateAcrossR1402To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40394) && !isProxy())) {
+	      relInst40394.relateAcrossR1402To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (MayBeShownInInterfacePackageInInterfacePackage == null) {          
       // R4301
-      InterfacePackageInInterfacePackage_c relInst39813 = (InterfacePackageInInterfacePackage_c) baseRoot.getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
+      InterfacePackageInInterfacePackage_c relInst40395 = (InterfacePackageInInterfacePackage_c) baseRoot.getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39813 == null) {
-      			relInst39813 = (InterfacePackageInInterfacePackage_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
+      		if (relInst40395 == null) {
+      			relInst40395 = (InterfacePackageInInterfacePackage_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
       		}
-			if (relInst39813 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40395 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39813 = (InterfacePackageInInterfacePackage_c) roots[i].getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
-					if (relInst39813 != null)
+					relInst40395 = (InterfacePackageInInterfacePackage_c) roots[i].getInstanceList(InterfacePackageInInterfacePackage_c.class).get(new Object[] {m_parent_package_id});
+					if (relInst40395 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39813 != null )
+      if ( relInst40395 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39813) && !isProxy())) {
-	      relInst39813.relateAcrossR4301To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40395) && !isProxy())) {
+	      relInst40395.relateAcrossR4301To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2263,33 +2263,33 @@ public static InterfacePackage_c [] getManyIP_IPsOnR4303(Interface_c target, boo
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst39814 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+      SystemModel_c relInst40396 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39814 == null) {
-      			relInst39814 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+      		if (relInst40396 == null) {
+      			relInst40396 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
       		}
-			if (relInst39814 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40396 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39814 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
-					if (relInst39814 != null)
+					relInst40396 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_direct_sys_id});
+					if (relInst40396 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39814 != null )
+      if ( relInst40396 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39814) && !isProxy())) {
-	      relInst39814.relateAcrossR4302To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40396) && !isProxy())) {
+	      relInst40396.relateAcrossR4302To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst39814);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst40396);
 	  }
           baseRoot = modelRoot;
 	}
@@ -2301,33 +2301,33 @@ public static InterfacePackage_c [] getManyIP_IPsOnR4303(Interface_c target, boo
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst39815 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      SystemModel_c relInst40397 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39815 == null) {
-      			relInst39815 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      		if (relInst40397 == null) {
+      			relInst40397 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
       		}
-			if (relInst39815 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40397 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39815 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
-					if (relInst39815 != null)
+					relInst40397 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+					if (relInst40397 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39815 != null )
+      if ( relInst40397 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39815) && !isProxy())) {
-	      relInst39815.relateAcrossR4304To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40397) && !isProxy())) {
+	      relInst40397.relateAcrossR4304To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst39815);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst40397);
 	  }
           baseRoot = modelRoot;
 	}
@@ -2335,29 +2335,29 @@ public static InterfacePackage_c [] getManyIP_IPsOnR4303(Interface_c target, boo
 
 	if (MayExistInComponentPackage == null) {          
       // R4607
-      ComponentPackage_c relInst39816 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+      ComponentPackage_c relInst40398 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39816 == null) {
-      			relInst39816 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+      		if (relInst40398 == null) {
+      			relInst40398 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
       		}
-			if (relInst39816 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40398 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39816 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
-					if (relInst39816 != null)
+					relInst40398 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+					if (relInst40398 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39816 != null )
+      if ( relInst40398 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39816) && !isProxy())) {
-	      relInst39816.relateAcrossR4607To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40398) && !isProxy())) {
+	      relInst40398.relateAcrossR4607To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2365,29 +2365,29 @@ public static InterfacePackage_c [] getManyIP_IPsOnR4303(Interface_c target, boo
 
 	if (MayBeContainedInComponent == null) {          
       // R4206
-      Component_c relInst39817 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      Component_c relInst40399 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39817 == null) {
-      			relInst39817 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      		if (relInst40399 == null) {
+      			relInst40399 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
       		}
-			if (relInst39817 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40399 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39817 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
-					if (relInst39817 != null)
+					relInst40399 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+					if (relInst40399 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39817 != null )
+      if ( relInst40399 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39817) && !isProxy())) {
-	      relInst39817.relateAcrossR4206To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40399) && !isProxy())) {
+	      relInst40399.relateAcrossR4206To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2992,56 +2992,56 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InterfacePackage_c_test39819_c implements ClassQueryInterface_c
+    class InterfacePackage_c_test40401_c implements ClassQueryInterface_c
     {
-	  InterfacePackage_c_test39819_c( java.util.UUID            p39820 ) {
-	  m_p39820 = p39820;
+	  InterfacePackage_c_test40401_c( java.util.UUID            p40402 ) {
+	  m_p40402 = p40402;
 	  }
-	  private java.util.UUID             m_p39820; 
+	  private java.util.UUID             m_p40402; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfacePackage_c selected = (InterfacePackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39820));
+	      retval = (selected.getPackage_id().equals(m_p40402));
 	      return retval;
 	  }
     }
 
-    InterfacePackage_c [] objs39818 = 
-    InterfacePackage_c.InterfacePackageInstances(modelRoot, new InterfacePackage_c_test39819_c(getPackage_id())) ;
+    InterfacePackage_c [] objs40400 = 
+    InterfacePackage_c.InterfacePackageInstances(modelRoot, new InterfacePackage_c_test40401_c(getPackage_id())) ;
 
-    if ( (  (objs39818.length) == 0) )
+    if ( (  (objs40400.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39818.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40400.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39818.length )  , e); 
+          + Integer.toString( objs40400.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39818.length) > 1) )
+    if ( (  (objs40400.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39818.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40400.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39818.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40400.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3049,38 +3049,38 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
 
           // Interface Package is a referring class in association: rel.Numb = 4302
           // The participating class is: System Model
-    class SystemModel_c_test39824_c implements ClassQueryInterface_c
+    class SystemModel_c_test40406_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test39824_c( java.util.UUID            p39825 ) {
-	  m_p39825 = p39825;
+	  SystemModel_c_test40406_c( java.util.UUID            p40407 ) {
+	  m_p40407 = p40407;
 	  }
-	  private java.util.UUID             m_p39825; 
+	  private java.util.UUID             m_p40407; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p39825));
+	      retval = (selected.getSys_id().equals(m_p40407));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs39823 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test39824_c(getDirect_sys_id())) ;
+    SystemModel_c [] objs40405 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test40406_c(getDirect_sys_id())) ;
 
-    if ( (  (objs39823.length) > 1) )
+    if ( (  (objs40405.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4302: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39823.length )  + " Direct_Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40405.length )  + " Direct_Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4302: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39823.length )  + " Direct_Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40405.length )  + " Direct_Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3088,40 +3088,40 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
                 
           // Interface Package is a referring class in association: rel.Numb = 4304
           // The participating class is: System Model
-    class SystemModel_c_test39827_c implements ClassQueryInterface_c
+    class SystemModel_c_test40409_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test39827_c( java.util.UUID            p39828 ) {
-	  m_p39828 = p39828;
+	  SystemModel_c_test40409_c( java.util.UUID            p40410 ) {
+	  m_p40410 = p40410;
 	  }
-	  private java.util.UUID             m_p39828; 
+	  private java.util.UUID             m_p40410; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p39828));
+	      retval = (selected.getSys_id().equals(m_p40410));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs39826 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test39827_c(getSys_id())) ;
+    SystemModel_c [] objs40408 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test40409_c(getSys_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs39826.length) != 1) )
+    if ( (  (objs40408.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4304: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39826.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40408.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4304: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39826.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40408.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3129,37 +3129,37 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
 
           // Interface Package is a subtype in association: rel.Numb = 1402
           // The supertype class is: Specification Package
-    class SpecificationPackage_c_test39830_c implements ClassQueryInterface_c
+    class SpecificationPackage_c_test40412_c implements ClassQueryInterface_c
     {
-	  SpecificationPackage_c_test39830_c( java.util.UUID            p39831 ) {
-	  m_p39831 = p39831;
+	  SpecificationPackage_c_test40412_c( java.util.UUID            p40413 ) {
+	  m_p40413 = p40413;
 	  }
-	  private java.util.UUID             m_p39831; 
+	  private java.util.UUID             m_p40413; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SpecificationPackage_c selected = (SpecificationPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39831));
+	      retval = (selected.getPackage_id().equals(m_p40413));
 	      return retval;
 	  }
     }
 
-    SpecificationPackage_c [] objs39829 = 
-    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test39830_c(getPackage_id())) ;
+    SpecificationPackage_c [] objs40411 = 
+    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test40412_c(getPackage_id())) ;
 
-    if ( (  (objs39829.length) != 1) )
+    if ( (  (objs40411.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39829.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40411.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39829.length )  , e); 
+          + Integer.toString( objs40411.length )  , e); 
       }
       retval = false;
 
@@ -3167,38 +3167,38 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
 
           // Interface Package is a referring class in association: rel.Numb = 4607
           // The participating class is: Component Package
-    class ComponentPackage_c_test39833_c implements ClassQueryInterface_c
+    class ComponentPackage_c_test40415_c implements ClassQueryInterface_c
     {
-	  ComponentPackage_c_test39833_c( java.util.UUID            p39834 ) {
-	  m_p39834 = p39834;
+	  ComponentPackage_c_test40415_c( java.util.UUID            p40416 ) {
+	  m_p40416 = p40416;
 	  }
-	  private java.util.UUID             m_p39834; 
+	  private java.util.UUID             m_p40416; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentPackage_c selected = (ComponentPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39834));
+	      retval = (selected.getPackage_id().equals(m_p40416));
 	      return retval;
 	  }
     }
 
-    ComponentPackage_c [] objs39832 = 
-    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test39833_c(getComponent_package_id())) ;
+    ComponentPackage_c [] objs40414 = 
+    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test40415_c(getComponent_package_id())) ;
 
-    if ( (  (objs39832.length) > 1) )
+    if ( (  (objs40414.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4607: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39832.length )  + " Component_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40414.length )  + " Component_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4607: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39832.length )  + " Component_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40414.length )  + " Component_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3206,38 +3206,38 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
                 
           // Interface Package is a referring class in association: rel.Numb = 4301
           // The participating class is: Interface Package in Interface Package
-    class InterfacePackageInInterfacePackage_c_test39836_c implements ClassQueryInterface_c
+    class InterfacePackageInInterfacePackage_c_test40418_c implements ClassQueryInterface_c
     {
-	  InterfacePackageInInterfacePackage_c_test39836_c( java.util.UUID            p39837 ) {
-	  m_p39837 = p39837;
+	  InterfacePackageInInterfacePackage_c_test40418_c( java.util.UUID            p40419 ) {
+	  m_p40419 = p40419;
 	  }
-	  private java.util.UUID             m_p39837; 
+	  private java.util.UUID             m_p40419; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfacePackageInInterfacePackage_c selected = (InterfacePackageInInterfacePackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39837));
+	      retval = (selected.getPackage_id().equals(m_p40419));
 	      return retval;
 	  }
     }
 
-    InterfacePackageInInterfacePackage_c [] objs39835 = 
-    InterfacePackageInInterfacePackage_c.InterfacePackageInInterfacePackageInstances(modelRoot, new InterfacePackageInInterfacePackage_c_test39836_c(getParent_package_id())) ;
+    InterfacePackageInInterfacePackage_c [] objs40417 = 
+    InterfacePackageInInterfacePackage_c.InterfacePackageInInterfacePackageInstances(modelRoot, new InterfacePackageInInterfacePackage_c_test40418_c(getParent_package_id())) ;
 
-    if ( (  (objs39835.length) > 1) )
+    if ( (  (objs40417.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4301: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39835.length )  + " Parent_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40417.length )  + " Parent_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4301: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39835.length )  + " Parent_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40417.length )  + " Parent_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3245,38 +3245,38 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
                 
           // Interface Package is a referring class in association: rel.Numb = 4206
           // The participating class is: Component
-    class Component_c_test39839_c implements ClassQueryInterface_c
+    class Component_c_test40421_c implements ClassQueryInterface_c
     {
-	  Component_c_test39839_c( java.util.UUID            p39840 ) {
-	  m_p39840 = p39840;
+	  Component_c_test40421_c( java.util.UUID            p40422 ) {
+	  m_p40422 = p40422;
 	  }
-	  private java.util.UUID             m_p39840; 
+	  private java.util.UUID             m_p40422; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Component_c selected = (Component_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39840));
+	      retval = (selected.getId().equals(m_p40422));
 	      return retval;
 	  }
     }
 
-    Component_c [] objs39838 = 
-    Component_c.ComponentInstances(modelRoot, new Component_c_test39839_c(getComponent_id())) ;
+    Component_c [] objs40420 = 
+    Component_c.ComponentInstances(modelRoot, new Component_c_test40421_c(getComponent_id())) ;
 
-    if ( (  (objs39838.length) > 1) )
+    if ( (  (objs40420.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4206: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39838.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40420.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4206: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39838.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40420.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3284,37 +3284,37 @@ private static InterfacePackage_c findInterfacePackageInstance(ModelRoot modelRo
                 
           // Interface Package is a participating class in association: rel.Numb = 4300
              // Object: Interface Package in Interface Package
-    class InterfacePackageInInterfacePackage_c_test39842_c implements ClassQueryInterface_c
+    class InterfacePackageInInterfacePackage_c_test40424_c implements ClassQueryInterface_c
     {
-	  InterfacePackageInInterfacePackage_c_test39842_c( java.util.UUID            p39843 ) {
-	  m_p39843 = p39843;
+	  InterfacePackageInInterfacePackage_c_test40424_c( java.util.UUID            p40425 ) {
+	  m_p40425 = p40425;
 	  }
-	  private java.util.UUID             m_p39843; 
+	  private java.util.UUID             m_p40425; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfacePackageInInterfacePackage_c selected = (InterfacePackageInInterfacePackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39843));
+	      retval = (selected.getPackage_id().equals(m_p40425));
 	      return retval;
 	  }
     }
 
-    InterfacePackageInInterfacePackage_c [] objs39841 = 
-    InterfacePackageInInterfacePackage_c.InterfacePackageInInterfacePackageInstances(modelRoot, new InterfacePackageInInterfacePackage_c_test39842_c(getPackage_id())) ;
+    InterfacePackageInInterfacePackage_c [] objs40423 = 
+    InterfacePackageInInterfacePackage_c.InterfacePackageInInterfacePackageInstances(modelRoot, new InterfacePackageInInterfacePackage_c_test40424_c(getPackage_id())) ;
 
-    if ( (  (objs39841.length) > 1) )
+    if ( (  (objs40423.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Package", //$NON-NLS-1$
            "Consistency: Object: Interface Package: Association: 4300: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39841.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40423.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Package: Association: 4300: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39841.length )  , e); 
+          + Integer.toString( objs40423.length )  , e); 
       }
       retval = false;
 
@@ -3604,9 +3604,9 @@ InterfacePackage_c [] v_diagrams = InterfacePackage_c.getManyIP_IPsOnR4301(v_did
 
 
 InterfacePackage_c  v_diagram = null;
-for ( int i36687 = 0; i36687 < v_diagrams.length; i36687++)
+for ( int i37269 = 0; i37269 < v_diagrams.length; i37269++)
 {
-  v_diagram = v_diagrams[i36687] ;
+  v_diagram = v_diagrams[i37269] ;
 
 if (v_diagram != null) {
 v_diagram.Dispose() ;
@@ -3625,9 +3625,9 @@ Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(this);
 
 
 Interface_c  v_i = null;
-for ( int i36688 = 0; i36688 < v_interfaces.length; i36688++)
+for ( int i37270 = 0; i37270 < v_interfaces.length; i37270++)
 {
-  v_i = v_interfaces[i36688] ;
+  v_i = v_interfaces[i37270] ;
 
 if (v_i != null) {
 v_i.unrelateAcrossR4303From(this);
@@ -3725,9 +3725,9 @@ InterfacePackage_c [] v_childPkgs = InterfacePackage_c.getManyIP_IPsOnR4301(Inte
 
 
 InterfacePackage_c  v_childPkg = null;
-for ( int i36689 = 0; i36689 < v_childPkgs.length; i36689++)
+for ( int i37271 = 0; i37271 < v_childPkgs.length; i37271++)
 {
-  v_childPkg = v_childPkgs[i36689] ;
+  v_childPkg = v_childPkgs[i37271] ;
 
 if ( (v_childPkg.getPackage_id().equals(p_Id)) )
 {
@@ -3818,9 +3818,9 @@ InterfacePackage_c [] v_childPkgs = InterfacePackage_c.getManyIP_IPsOnR4301(Inte
 
 
 InterfacePackage_c  v_childPkg = null;
-for ( int i36690 = 0; i36690 < v_childPkgs.length; i36690++)
+for ( int i37272 = 0; i37272 < v_childPkgs.length; i37272++)
 {
-  v_childPkg = v_childPkgs[i36690] ;
+  v_childPkg = v_childPkgs[i37272] ;
 
 if (v_childPkg != null) {
 v_childPkg.Associatepackagewithsystem(			    
@@ -4170,9 +4170,9 @@ int          v_count = -1 ;
 
 
 InterfacePackage_c  v_interfacePckg = null;
-for ( int i36691 = 0; i36691 < v_interfacePckgs.length; i36691++)
+for ( int i37273 = 0; i37273 < v_interfacePckgs.length; i37273++)
 {
-  v_interfacePckg = v_interfacePckgs[i36691] ;
+  v_interfacePckg = v_interfacePckgs[i37273] ;
 
 if ( (  (v_interfacePckg != null)) )
 {
@@ -4226,9 +4226,9 @@ int          v_count = -1 ;
 
 
 Interface_c  v_interface = null;
-for ( int i36692 = 0; i36692 < v_interfaces.length; i36692++)
+for ( int i37274 = 0; i37274 < v_interfaces.length; i37274++)
 {
-  v_interface = v_interfaces[i36692] ;
+  v_interface = v_interfaces[i37274] ;
 
 if ( (  (v_interface != null)) )
 {
@@ -4302,9 +4302,9 @@ Interface_c [] v_interfaces = Interface_c.getManyC_IsOnR4303(this);
 
 
 Interface_c  v_interface = null;
-for ( int i36693 = 0; i36693 < v_interfaces.length; i36693++)
+for ( int i37275 = 0; i37275 < v_interfaces.length; i37275++)
 {
-  v_interface = v_interfaces[i36693] ;
+  v_interface = v_interfaces[i37275] ;
 
 if (v_interface != null) {
 v_interface.Collectreferencesforsynchronization(			    
@@ -4325,9 +4325,9 @@ InterfacePackage_c [] v_interfacePkgs = InterfacePackage_c.getManyIP_IPsOnR4301(
 
 
 InterfacePackage_c  v_interfacePkg = null;
-for ( int i36694 = 0; i36694 < v_interfacePkgs.length; i36694++)
+for ( int i37276 = 0; i37276 < v_interfacePkgs.length; i37276++)
 {
-  v_interfacePkg = v_interfacePkgs[i36694] ;
+  v_interfacePkg = v_interfacePkgs[i37276] ;
 
 if (v_interfacePkg != null) {
 v_interfacePkg.Collectreferencesforsynchronization(			    

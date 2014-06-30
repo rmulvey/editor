@@ -216,7 +216,7 @@ p_m_sys_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -232,7 +232,7 @@ p_m_sys_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID.equals(((Domain_c)elem).getDom_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getDom_id()) || IdAssigner.NULL_UUID.equals(((Domain_c)elem).getDom_id())) && this != elem)) {
       	return false;
       }
       if (!getDom_id().equals(((Domain_c)elem).getDom_id())) return false;
@@ -3886,33 +3886,33 @@ public static Domain_c [] getManyS_DOMsOnR1100(Activity_c target, boolean loadCo
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst55048 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      SystemModel_c relInst56597 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55048 == null) {
-      			relInst55048 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      		if (relInst56597 == null) {
+      			relInst56597 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
       		}
-			if (relInst55048 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56597 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55048 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
-					if (relInst55048 != null)
+					relInst56597 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+					if (relInst56597 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55048 != null )
+      if ( relInst56597 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55048) && !isProxy())) {
-	      relInst55048.relateAcrossR28To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56597) && !isProxy())) {
+	      relInst56597.relateAcrossR28To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst55048);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst56597);
 	  }
           baseRoot = modelRoot;
 	}
@@ -4411,56 +4411,56 @@ return   (v_ee != null);
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Domain_c_test55050_c implements ClassQueryInterface_c
+    class Domain_c_test56599_c implements ClassQueryInterface_c
     {
-	  Domain_c_test55050_c( java.util.UUID            p55051 ) {
-	  m_p55051 = p55051;
+	  Domain_c_test56599_c( java.util.UUID            p56600 ) {
+	  m_p56600 = p56600;
 	  }
-	  private java.util.UUID             m_p55051; 
+	  private java.util.UUID             m_p56600; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Domain_c selected = (Domain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p55051));
+	      retval = (selected.getDom_id().equals(m_p56600));
 	      return retval;
 	  }
     }
 
-    Domain_c [] objs55049 = 
-    Domain_c.DomainInstances(modelRoot, new Domain_c_test55050_c(getDom_id())) ;
+    Domain_c [] objs56598 = 
+    Domain_c.DomainInstances(modelRoot, new Domain_c_test56599_c(getDom_id())) ;
 
-    if ( (  (objs55049.length) == 0) )
+    if ( (  (objs56598.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Domain", //$NON-NLS-1$
            "Consistency: Object: Domain: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55049.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56598.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Domain: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55049.length )  , e); 
+          + Integer.toString( objs56598.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55049.length) > 1) )
+    if ( (  (objs56598.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Domain", //$NON-NLS-1$
            "Consistency: Object: Domain: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55049.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56598.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Domain: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55049.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56598.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4468,38 +4468,38 @@ return   (v_ee != null);
 
           // Domain is a referring class in association: rel.Numb = 28
           // The participating class is: System Model
-    class SystemModel_c_test55055_c implements ClassQueryInterface_c
+    class SystemModel_c_test56604_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test55055_c( java.util.UUID            p55056 ) {
-	  m_p55056 = p55056;
+	  SystemModel_c_test56604_c( java.util.UUID            p56605 ) {
+	  m_p56605 = p56605;
 	  }
-	  private java.util.UUID             m_p55056; 
+	  private java.util.UUID             m_p56605; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p55056));
+	      retval = (selected.getSys_id().equals(m_p56605));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs55054 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test55055_c(getSys_id())) ;
+    SystemModel_c [] objs56603 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test56604_c(getSys_id())) ;
 
-    if ( (  (objs55054.length) > 1) )
+    if ( (  (objs56603.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Domain", //$NON-NLS-1$
            "Consistency: Object: Domain: Association: 28: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55054.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56603.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Domain: Association: 28: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55054.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56603.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4525,37 +4525,37 @@ return   (v_ee != null);
              // Object: Sequence
           // Domain is a participating class in association: rel.Numb = 2948
              // Object: Component Instance
-    class ComponentInstance_c_test55058_c implements ClassQueryInterface_c
+    class ComponentInstance_c_test56607_c implements ClassQueryInterface_c
     {
-	  ComponentInstance_c_test55058_c( java.util.UUID            p55059 ) {
-	  m_p55059 = p55059;
+	  ComponentInstance_c_test56607_c( java.util.UUID            p56608 ) {
+	  m_p56608 = p56608;
 	  }
-	  private java.util.UUID             m_p55059; 
+	  private java.util.UUID             m_p56608; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInstance_c selected = (ComponentInstance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p55059));
+	      retval = (selected.getDom_id().equals(m_p56608));
 	      return retval;
 	  }
     }
 
-    ComponentInstance_c [] objs55057 = 
-    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test55058_c(getDom_id())) ;
+    ComponentInstance_c [] objs56606 = 
+    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test56607_c(getDom_id())) ;
 
-    if ( (  (objs55057.length) > 1) )
+    if ( (  (objs56606.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Domain", //$NON-NLS-1$
            "Consistency: Object: Domain: Association: 2948: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55057.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56606.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Domain: Association: 2948: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55057.length )  , e); 
+          + Integer.toString( objs56606.length )  , e); 
       }
       retval = false;
 
@@ -4656,9 +4656,9 @@ Subsystem_c [] v_sses = Subsystem_c.getManyS_SSsOnR43(this);
 
 
 Subsystem_c  v_ss = null;
-for ( int i53574 = 0; i53574 < v_sses.length; i53574++)
+for ( int i55030 = 0; i55030 < v_sses.length; i55030++)
 {
-  v_ss = v_sses[i53574] ;
+  v_ss = v_sses[i55030] ;
 
 if (v_ss != null) {
 v_ss.Dispose() ;
@@ -4677,9 +4677,9 @@ ExternalEntityPackage_c [] v_eepks = ExternalEntityPackage_c.getManyS_EEPKsOnR36
 
 
 ExternalEntityPackage_c  v_eepk = null;
-for ( int i53575 = 0; i53575 < v_eepks.length; i53575++)
+for ( int i55031 = 0; i55031 < v_eepks.length; i55031++)
 {
-  v_eepk = v_eepks[i53575] ;
+  v_eepk = v_eepks[i55031] ;
 
 if (v_eepk != null) {
 v_eepk.Dispose() ;
@@ -4698,9 +4698,9 @@ FunctionPackage_c [] v_fpks = FunctionPackage_c.getManyS_FPKsOnR29(this);
 
 
 FunctionPackage_c  v_fpk = null;
-for ( int i53576 = 0; i53576 < v_fpks.length; i53576++)
+for ( int i55032 = 0; i55032 < v_fpks.length; i55032++)
 {
-  v_fpk = v_fpks[i53576] ;
+  v_fpk = v_fpks[i55032] ;
 
 if (v_fpk != null) {
 v_fpk.Dispose() ;
@@ -4719,9 +4719,9 @@ DataTypePackage_c [] v_dpks = DataTypePackage_c.getManyS_DPKsOnR40(this);
 
 
 DataTypePackage_c  v_dpk = null;
-for ( int i53577 = 0; i53577 < v_dpks.length; i53577++)
+for ( int i55033 = 0; i55033 < v_dpks.length; i55033++)
 {
-  v_dpk = v_dpks[i53577] ;
+  v_dpk = v_dpks[i55033] ;
 
 if (v_dpk != null) {
 v_dpk.Internal_dispose() ;
@@ -4740,9 +4740,9 @@ Sequence_c [] v_sequences = Sequence_c.getManySQ_SsOnR913(this);
 
 
 Sequence_c  v_sequence = null;
-for ( int i53578 = 0; i53578 < v_sequences.length; i53578++)
+for ( int i55034 = 0; i55034 < v_sequences.length; i55034++)
 {
-  v_sequence = v_sequences[i53578] ;
+  v_sequence = v_sequences[i55034] ;
 
 if (v_sequence != null) {
 v_sequence.Dispose() ;
@@ -4761,9 +4761,9 @@ Communication_c [] v_comms = Communication_c.getManyCOMM_COMMsOnR1132(this);
 
 
 Communication_c  v_comm = null;
-for ( int i53579 = 0; i53579 < v_comms.length; i53579++)
+for ( int i55035 = 0; i55035 < v_comms.length; i55035++)
 {
-  v_comm = v_comms[i53579] ;
+  v_comm = v_comms[i55035] ;
 
 if (v_comm != null) {
 v_comm.Dispose() ;
@@ -4782,9 +4782,9 @@ UseCaseDiagram_c [] v_uccs = UseCaseDiagram_c.getManyUC_UCCsOnR1201(this);
 
 
 UseCaseDiagram_c  v_ucc = null;
-for ( int i53580 = 0; i53580 < v_uccs.length; i53580++)
+for ( int i55036 = 0; i55036 < v_uccs.length; i55036++)
 {
-  v_ucc = v_uccs[i53580] ;
+  v_ucc = v_uccs[i55036] ;
 
 if (v_ucc != null) {
 v_ucc.Dispose() ;
@@ -4803,9 +4803,9 @@ Activity_c [] v_acts = Activity_c.getManyA_AsOnR1100(this);
 
 
 Activity_c  v_act = null;
-for ( int i53581 = 0; i53581 < v_acts.length; i53581++)
+for ( int i55037 = 0; i55037 < v_acts.length; i55037++)
 {
-  v_act = v_acts[i53581] ;
+  v_act = v_acts[i55037] ;
 
 if (v_act != null) {
 v_act.Dispose() ;
@@ -4860,9 +4860,9 @@ DatatypeInSuppression_c [] v_diss = DatatypeInSuppression_c.getManyS_DISsOnR47(t
 
 
 DatatypeInSuppression_c  v_dis = null;
-for ( int i53582 = 0; i53582 < v_diss.length; i53582++)
+for ( int i55038 = 0; i55038 < v_diss.length; i55038++)
 {
-  v_dis = v_diss[i53582] ;
+  v_dis = v_diss[i55038] ;
 
 DataType_c v_dt = DataType_c.getOneS_DTOnR47(v_dis);
 
@@ -5217,17 +5217,17 @@ ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR8(this);
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53583 = 0; i53583 < v_ees.length; i53583++)
+for ( int i55039 = 0; i55039 < v_ees.length; i55039++)
 {
-  v_ee = v_ees[i53583] ;
+  v_ee = v_ees[i55039] ;
 
 Bridge_c [] v_bridges = Bridge_c.getManyS_BRGsOnR19(v_ee);
 
 
 Bridge_c  v_brg = null;
-for ( int i53584 = 0; i53584 < v_bridges.length; i53584++)
+for ( int i55040 = 0; i55040 < v_bridges.length; i55040++)
 {
-  v_brg = v_bridges[i53584] ;
+  v_brg = v_bridges[i55040] ;
 
 AutomaticWiring_c v_wiring = new AutomaticWiring_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_wiring));
@@ -5253,9 +5253,9 @@ boolean      v_wiring_found = false ;
 
 
 Domain_c  v_dom = null;
-for ( int i53585 = 0; i53585 < v_doms.length; i53585++)
+for ( int i55041 = 0; i55041 < v_doms.length; i55041++)
 {
-  v_dom = v_doms[i53585] ;
+  v_dom = v_doms[i55041] ;
 
 if ( (v_wiring_found) )
 {
@@ -5273,9 +5273,9 @@ FunctionPackage_c [] v_function_pkgs = FunctionPackage_c.getManyS_FPKsOnR29(v_do
 
 
 FunctionPackage_c  v_function_pkg = null;
-for ( int i53586 = 0; i53586 < v_function_pkgs.length; i53586++)
+for ( int i55042 = 0; i55042 < v_function_pkgs.length; i55042++)
 {
-  v_function_pkg = v_function_pkgs[i53586] ;
+  v_function_pkg = v_function_pkgs[i55042] ;
 
 if ( (v_wiring_found) )
 {
@@ -5286,19 +5286,19 @@ break;
 
 }
 
-  class Function_test54186_c implements ClassQueryInterface_c
+  class Function_test55722_c implements ClassQueryInterface_c
   {
-	Function_test54186_c( String       p54187 ) {
-		m_p54187 = p54187;
+	Function_test55722_c( String       p55723 ) {
+		m_p55723 = p55723;
 	}
-	private String       m_p54187;
+	private String       m_p55723;
 	public boolean evaluate (Object candidate)
 	{
 		Function_c selected = (Function_c)candidate;
-		return (selected.getName().equals(m_p54187)) ;
+		return (selected.getName().equals(m_p55723)) ;
 	}
   }
-Function_c v_function = Function_c.getOneS_SYNCOnR31(v_function_pkg, new Function_test54186_c(v_brg.getName()));
+Function_c v_function = Function_c.getOneS_SYNCOnR31(v_function_pkg, new Function_test55722_c(v_brg.getName()));
 
 
 if ( (  (v_function != null)) )
@@ -5311,23 +5311,23 @@ boolean      v_params_match = true ;
 
 
 BridgeParameter_c  v_bridge_param = null;
-for ( int i53587 = 0; i53587 < v_bridge_params.length; i53587++)
+for ( int i55043 = 0; i55043 < v_bridge_params.length; i55043++)
 {
-  v_bridge_param = v_bridge_params[i53587] ;
+  v_bridge_param = v_bridge_params[i55043] ;
 
-  class FunctionParameter_test54188_c implements ClassQueryInterface_c
+  class FunctionParameter_test55724_c implements ClassQueryInterface_c
   {
-	FunctionParameter_test54188_c( String       p54189 ) {
-		m_p54189 = p54189;
+	FunctionParameter_test55724_c( String       p55725 ) {
+		m_p55725 = p55725;
 	}
-	private String       m_p54189;
+	private String       m_p55725;
 	public boolean evaluate (Object candidate)
 	{
 		FunctionParameter_c selected = (FunctionParameter_c)candidate;
-		return (selected.getName().equals(m_p54189)) ;
+		return (selected.getName().equals(m_p55725)) ;
 	}
   }
-FunctionParameter_c v_func_param = FunctionParameter_c.getOneS_SPARMOnR24(v_function, new FunctionParameter_test54188_c(v_bridge_param.getName()));
+FunctionParameter_c v_func_param = FunctionParameter_c.getOneS_SPARMOnR24(v_function, new FunctionParameter_test55724_c(v_bridge_param.getName()));
 
 
 if ( (  (v_func_param == null)) )
@@ -5425,9 +5425,9 @@ AutomaticWiring_c [] v_wirings = AutomaticWiring_c.AutomaticWiringInstances(mode
 
 
 AutomaticWiring_c  v_wiring = null;
-for ( int i53588 = 0; i53588 < v_wirings.length; i53588++)
+for ( int i55044 = 0; i55044 < v_wirings.length; i55044++)
 {
-  v_wiring = v_wirings[i53588] ;
+  v_wiring = v_wirings[i55044] ;
 
 if (v_wiring != null) {
 v_wiring.Dispose() ;
@@ -5722,17 +5722,17 @@ ExternalEntityPackage_c [] v_childPkgs = ExternalEntityPackage_c.getManyS_EEPKsO
 
 
 ExternalEntityPackage_c  v_childPkg = null;
-for ( int i53589 = 0; i53589 < v_childPkgs.length; i53589++)
+for ( int i55045 = 0; i55045 < v_childPkgs.length; i55045++)
 {
-  v_childPkg = v_childPkgs[i53589] ;
+  v_childPkg = v_childPkgs[i55045] ;
 
 ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR33(ExternalEntityInPackage_c.getManyS_EEIPsOnR33(v_childPkg));
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53590 = 0; i53590 < v_ees.length; i53590++)
+for ( int i55046 = 0; i55046 < v_ees.length; i55046++)
 {
-  v_ee = v_ees[i53590] ;
+  v_ee = v_ees[i55046] ;
 
 Domain_c v_prevDom = Domain_c.getOneS_DOMOnR8(v_ee);
 
@@ -5773,9 +5773,9 @@ ExternalEntity_c [] v_ees = ExternalEntity_c.getManyS_EEsOnR33(ExternalEntityInP
 
 
 ExternalEntity_c  v_ee = null;
-for ( int i53591 = 0; i53591 < v_ees.length; i53591++)
+for ( int i55047 = 0; i55047 < v_ees.length; i55047++)
 {
-  v_ee = v_ees[i53591] ;
+  v_ee = v_ees[i55047] ;
 
 Domain_c v_prevDom = Domain_c.getOneS_DOMOnR8(v_ee);
 
@@ -5933,9 +5933,9 @@ Function_c [] v_functions = Function_c.getManyS_SYNCsOnR31(v_fpkg);
 
 
 Function_c  v_function = null;
-for ( int i53592 = 0; i53592 < v_functions.length; i53592++)
+for ( int i55048 = 0; i55048 < v_functions.length; i55048++)
 {
-  v_function = v_functions[i53592] ;
+  v_function = v_functions[i55048] ;
 
 Domain_c v_prevDomain = Domain_c.getOneS_DOMOnR23(v_function);
 
@@ -6060,7 +6060,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Domain", " Operation entered: Domain::Cancopydatatypepackage") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class DataTypePackage_test54190_c implements ClassQueryInterface_c
+  class DataTypePackage_test55726_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6068,7 +6068,7 @@ else {
 		return (selected.getPackage_id().equals(p_Id)) ;
 	}
   }
-DataTypePackage_c v_dtPackage = DataTypePackage_c.getOneS_DPKOnR40(this, new DataTypePackage_test54190_c());
+DataTypePackage_c v_dtPackage = DataTypePackage_c.getOneS_DPKOnR40(this, new DataTypePackage_test55726_c());
 
 
 if ( (  (v_dtPackage != null)) )
@@ -6095,25 +6095,1466 @@ return false;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Domain", " Operation entered: Domain::Associatechildrenwithsystemcoretypes") ; 
                final ModelRoot modelRoot = getModelRoot();
+DataType_c [] v_coreTypes = DataType_c.getManyS_DTsOnR17(CoreDataType_c.getManyS_CDTsOnR17(DataType_c.getManyS_DTsOnR14(this)));
+
+
+DataType_c  v_coreType = null;
+for ( int i55049 = 0; i55049 < v_coreTypes.length; i55049++)
+{
+  v_coreType = v_coreTypes[i55049] ;
+
+SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR28(this);
+
+
+  class DataType_test55727_c implements ClassQueryInterface_c
+  {
+	DataType_test55727_c( String       p55728 ) {
+		m_p55728 = p55728;
+	}
+	private String       m_p55728;
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return (selected.getName().equals(m_p55728)) ;
+	}
+  }
+DataType_c v_matchingSystemType = DataType_c.getOneS_DTOnR17(CoreDataType_c.getManyS_CDTsOnR17(DataType_c.getManyS_DTsOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system))), new DataType_test55727_c(v_coreType.getName()));
+
+
+if (   (v_matchingSystemType == null) &&   (v_system != null) && v_system.getUseglobals() )
+{
+
+  class DataType_test55729_c implements ClassQueryInterface_c
+  {
+	DataType_test55729_c( String       p55730 ) {
+		m_p55730 = p55730;
+	}
+	private String       m_p55730;
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return (selected.getName().equals(m_p55730)) ;
+	}
+  }
+v_matchingSystemType = DataType_c.getOneS_DTOnR17(CoreDataType_c.getManyS_CDTsOnR17(DataType_c.getManyS_DTsOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)))), new DataType_test55729_c(v_coreType.getName()));
+
+
+
+}
+
+Function_c [] v_functions = Function_c.getManyS_SYNCsOnR25(v_coreType);
+
+
+Function_c  v_function = null;
+for ( int i55050 = 0; i55050 < v_functions.length; i55050++)
+{
+  v_function = v_functions[i55050] ;
+
+if (v_function != null) {
+v_function.unrelateAcrossR25From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_function != null) {
+  v_function.relateAcrossR25To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+FunctionParameter_c [] v_functionParams = FunctionParameter_c.getManyS_SPARMsOnR26(v_coreType);
+
+
+FunctionParameter_c  v_functionParam = null;
+for ( int i55051 = 0; i55051 < v_functionParams.length; i55051++)
+{
+  v_functionParam = v_functionParams[i55051] ;
+
+if (v_functionParam != null) {
+v_functionParam.unrelateAcrossR26From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_functionParam != null) {
+  v_functionParam.relateAcrossR26To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+StructureMember_c [] v_structureMembers = StructureMember_c.getManyS_MBRsOnR45(v_coreType);
+
+
+StructureMember_c  v_structureMember = null;
+for ( int i55052 = 0; i55052 < v_structureMembers.length; i55052++)
+{
+  v_structureMember = v_structureMembers[i55052] ;
+
+if (v_structureMember != null) {
+v_structureMember.unrelateAcrossR45From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_structureMember != null) {
+  v_structureMember.relateAcrossR45To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Bridge_c [] v_bridges = Bridge_c.getManyS_BRGsOnR20(v_coreType);
+
+
+Bridge_c  v_brg = null;
+for ( int i55053 = 0; i55053 < v_bridges.length; i55053++)
+{
+  v_brg = v_bridges[i55053] ;
+
+if (v_brg != null) {
+v_brg.unrelateAcrossR20From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_brg != null) {
+  v_brg.relateAcrossR20To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+BridgeParameter_c [] v_parms = BridgeParameter_c.getManyS_BPARMsOnR22(v_coreType);
+
+
+BridgeParameter_c  v_parm = null;
+for ( int i55054 = 0; i55054 < v_parms.length; i55054++)
+{
+  v_parm = v_parms[i55054] ;
+
+if (v_parm != null) {
+v_parm.unrelateAcrossR22From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_parm != null) {
+  v_parm.relateAcrossR22To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityDataItem_c [] v_eedis = ExternalEntityDataItem_c.getManyS_EEDIsOnR15(v_coreType);
+
+
+ExternalEntityDataItem_c  v_eedi = null;
+for ( int i55055 = 0; i55055 < v_eedis.length; i55055++)
+{
+  v_eedi = v_eedis[i55055] ;
+
+if (v_eedi != null) {
+v_eedi.unrelateAcrossR15From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eedi != null) {
+  v_eedi.relateAcrossR15To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityEventDataItem_c [] v_eeedis = ExternalEntityEventDataItem_c.getManyS_EEEDIsOnR16(v_coreType);
+
+
+ExternalEntityEventDataItem_c  v_eeedi = null;
+for ( int i55056 = 0; i55056 < v_eeedis.length; i55056++)
+{
+  v_eeedi = v_eeedis[i55056] ;
+
+if (v_eeedi != null) {
+v_eeedi.unrelateAcrossR16From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eeedi != null) {
+  v_eeedi.relateAcrossR16To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+UserDataType_c [] v_udts = UserDataType_c.getManyS_UDTsOnR18(v_coreType);
+
+
+UserDataType_c  v_udt = null;
+for ( int i55057 = 0; i55057 < v_udts.length; i55057++)
+{
+  v_udt = v_udts[i55057] ;
+
+if ( v_udt.getGen_type() == 0 )
+{
+
+CoreDataType_c v_coreTypeCore = CoreDataType_c.getOneS_CDTOnR17(v_coreType);
+
+
+if ( (  (v_coreTypeCore != null)) )
+{
+
+if (v_udt != null) {
+v_udt.unrelateAcrossR18From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_udt != null) {
+  v_udt.relateAcrossR18To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+
+}
+
+
+}
+
+StateMachineEventDataItem_c [] v_evtdis = StateMachineEventDataItem_c.getManySM_EVTDIsOnR524(v_coreType);
+
+
+StateMachineEventDataItem_c  v_evtdi = null;
+for ( int i55058 = 0; i55058 < v_evtdis.length; i55058++)
+{
+  v_evtdi = v_evtdis[i55058] ;
+
+if (v_evtdi != null) {
+v_evtdi.unrelateAcrossR524From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_evtdi != null) {
+  v_evtdi.relateAcrossR524To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Operation_c [] v_ops = Operation_c.getManyO_TFRsOnR116(v_coreType);
+
+
+Operation_c  v_op = null;
+for ( int i55059 = 0; i55059 < v_ops.length; i55059++)
+{
+  v_op = v_ops[i55059] ;
+
+if (v_op != null) {
+v_op.unrelateAcrossR116From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_op != null) {
+  v_op.relateAcrossR116To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+OperationParameter_c [] v_opParms = OperationParameter_c.getManyO_TPARMsOnR118(v_coreType);
+
+
+OperationParameter_c  v_opParm = null;
+for ( int i55060 = 0; i55060 < v_opParms.length; i55060++)
+{
+  v_opParm = v_opParms[i55060] ;
+
+if (v_opParm != null) {
+v_opParm.unrelateAcrossR118From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_opParm != null) {
+  v_opParm.relateAcrossR118To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Attribute_c [] v_attrs = Attribute_c.getManyO_ATTRsOnR114(v_coreType);
+
+
+Attribute_c  v_attr = null;
+for ( int i55061 = 0; i55061 < v_attrs.length; i55061++)
+{
+  v_attr = v_attrs[i55061] ;
+
+if (v_attr != null) {
+v_attr.unrelateAcrossR114From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_attr != null) {
+  v_attr.relateAcrossR114To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Variable_c [] v_vvars = Variable_c.getManyV_VARsOnR848(v_coreType);
+
+
+Variable_c  v_vvar = null;
+for ( int i55062 = 0; i55062 < v_vvars.length; i55062++)
+{
+  v_vvar = v_vvars[i55062] ;
+
+if (v_vvar != null) {
+v_vvar.unrelateAcrossR848From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_vvar != null) {
+  v_vvar.relateAcrossR848To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+SymbolicConstant_c [] v_constants = SymbolicConstant_c.getManyCNST_SYCsOnR1500(v_coreType);
+
+
+SymbolicConstant_c  v_constant = null;
+for ( int i55063 = 0; i55063 < v_constants.length; i55063++)
+{
+  v_constant = v_constants[i55063] ;
+
+if (v_constant != null) {
+v_constant.unrelateAcrossR1500From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_constant != null) {
+  v_constant.relateAcrossR1500To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+
+}
+
 
    } // End associateChildrenWithSystemCoreTypes
   public  void Associatechildrenwithsystembuiltintypes()
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Domain", " Operation entered: Domain::Associatechildrenwithsystembuiltintypes") ; 
                final ModelRoot modelRoot = getModelRoot();
+  class UserDataType_test55731_c implements ClassQueryInterface_c
+  {
+	public boolean evaluate (Object candidate)
+	{
+		UserDataType_c selected = (UserDataType_c)candidate;
+		return (selected.getGen_type() != 0) ;
+	}
+  }
+UserDataType_c [] v_coreTypes = UserDataType_c.getManyS_UDTsOnR17(DataType_c.getManyS_DTsOnR14(this), new UserDataType_test55731_c());
+
+
+UserDataType_c  v_builtInType = null;
+for ( int i55064 = 0; i55064 < v_coreTypes.length; i55064++)
+{
+  v_builtInType = v_coreTypes[i55064] ;
+
+DataType_c v_coreType = DataType_c.getOneS_DTOnR17(v_builtInType);
+
+
+SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR28(this);
+
+
+  class DataType_test55732_c implements ClassQueryInterface_c
+  {
+	DataType_test55732_c( String       p55733 ) {
+		m_p55733 = p55733;
+	}
+	private String       m_p55733;
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return (selected.getName().equals(m_p55733)) ;
+	}
+  }
+DataType_c [] v_matchingSystemTypes = DataType_c.getManyS_DTsOnR17(UserDataType_c.getManyS_UDTsOnR17(DataType_c.getManyS_DTsOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system))), new DataType_test55732_c(v_coreType.getName()));
+
+
+if (   (v_matchingSystemTypes.length == 0) &&   (v_system != null) && v_system.getUseglobals() )
+{
+
+  class DataType_test55734_c implements ClassQueryInterface_c
+  {
+	DataType_test55734_c( String       p55735 ) {
+		m_p55735 = p55735;
+	}
+	private String       m_p55735;
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return (selected.getName().equals(m_p55735)) ;
+	}
+  }
+v_matchingSystemTypes = DataType_c.getManyS_DTsOnR17(UserDataType_c.getManyS_UDTsOnR17(DataType_c.getManyS_DTsOnR8001(PackageableElement_c.getManyPE_PEsOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system)))), new DataType_test55734_c(v_coreType.getName()));
+
+
+
+}
+
+DataType_c  v_matchingSystemType = null;
+for ( int i55065 = 0; i55065 < v_matchingSystemTypes.length; i55065++)
+{
+  v_matchingSystemType = v_matchingSystemTypes[i55065] ;
+
+UserDataType_c v_udt = UserDataType_c.getOneS_UDTOnR17(v_matchingSystemType);
+
+
+if ( (v_udt.getGen_type() == 0) )
+{
+
+continue;
+
+
+
+}
+
+Function_c [] v_functions = Function_c.getManyS_SYNCsOnR25(v_coreType);
+
+
+Function_c  v_function = null;
+for ( int i55066 = 0; i55066 < v_functions.length; i55066++)
+{
+  v_function = v_functions[i55066] ;
+
+if (v_function != null) {
+v_function.unrelateAcrossR25From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_function != null) {
+  v_function.relateAcrossR25To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+FunctionParameter_c [] v_functionParams = FunctionParameter_c.getManyS_SPARMsOnR26(v_coreType);
+
+
+FunctionParameter_c  v_functionParam = null;
+for ( int i55067 = 0; i55067 < v_functionParams.length; i55067++)
+{
+  v_functionParam = v_functionParams[i55067] ;
+
+if (v_functionParam != null) {
+v_functionParam.unrelateAcrossR26From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_functionParam != null) {
+  v_functionParam.relateAcrossR26To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+StructureMember_c [] v_structureMembers = StructureMember_c.getManyS_MBRsOnR45(v_coreType);
+
+
+StructureMember_c  v_structureMember = null;
+for ( int i55068 = 0; i55068 < v_structureMembers.length; i55068++)
+{
+  v_structureMember = v_structureMembers[i55068] ;
+
+if (v_structureMember != null) {
+v_structureMember.unrelateAcrossR45From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_structureMember != null) {
+  v_structureMember.relateAcrossR45To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Bridge_c [] v_bridges = Bridge_c.getManyS_BRGsOnR20(v_coreType);
+
+
+Bridge_c  v_brg = null;
+for ( int i55069 = 0; i55069 < v_bridges.length; i55069++)
+{
+  v_brg = v_bridges[i55069] ;
+
+if (v_brg != null) {
+v_brg.unrelateAcrossR20From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_brg != null) {
+  v_brg.relateAcrossR20To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+BridgeParameter_c [] v_parms = BridgeParameter_c.getManyS_BPARMsOnR22(v_coreType);
+
+
+BridgeParameter_c  v_parm = null;
+for ( int i55070 = 0; i55070 < v_parms.length; i55070++)
+{
+  v_parm = v_parms[i55070] ;
+
+if (v_parm != null) {
+v_parm.unrelateAcrossR22From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_parm != null) {
+  v_parm.relateAcrossR22To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityDataItem_c [] v_eedis = ExternalEntityDataItem_c.getManyS_EEDIsOnR15(v_coreType);
+
+
+ExternalEntityDataItem_c  v_eedi = null;
+for ( int i55071 = 0; i55071 < v_eedis.length; i55071++)
+{
+  v_eedi = v_eedis[i55071] ;
+
+if (v_eedi != null) {
+v_eedi.unrelateAcrossR15From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eedi != null) {
+  v_eedi.relateAcrossR15To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityEventDataItem_c [] v_eeedis = ExternalEntityEventDataItem_c.getManyS_EEEDIsOnR16(v_coreType);
+
+
+ExternalEntityEventDataItem_c  v_eeedi = null;
+for ( int i55072 = 0; i55072 < v_eeedis.length; i55072++)
+{
+  v_eeedi = v_eeedis[i55072] ;
+
+if (v_eeedi != null) {
+v_eeedi.unrelateAcrossR16From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eeedi != null) {
+  v_eeedi.relateAcrossR16To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+UserDataType_c [] v_udts = UserDataType_c.getManyS_UDTsOnR18(v_coreType);
+
+
+for ( int i55073 = 0; i55073 < v_udts.length; i55073++)
+{
+  v_udt = v_udts[i55073] ;
+
+CoreDataType_c v_coreTypeCore = CoreDataType_c.getOneS_CDTOnR17(v_coreType);
+
+
+CoreDataType_c v_systemCoreType = CoreDataType_c.getOneS_CDTOnR17(v_matchingSystemType);
+
+
+if (v_udt != null) {
+v_udt.unrelateAcrossR18From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_udt != null) {
+  v_udt.relateAcrossR18To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+StateMachineEventDataItem_c [] v_evtdis = StateMachineEventDataItem_c.getManySM_EVTDIsOnR524(v_coreType);
+
+
+StateMachineEventDataItem_c  v_evtdi = null;
+for ( int i55074 = 0; i55074 < v_evtdis.length; i55074++)
+{
+  v_evtdi = v_evtdis[i55074] ;
+
+if (v_evtdi != null) {
+v_evtdi.unrelateAcrossR524From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_evtdi != null) {
+  v_evtdi.relateAcrossR524To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Operation_c [] v_ops = Operation_c.getManyO_TFRsOnR116(v_coreType);
+
+
+Operation_c  v_op = null;
+for ( int i55075 = 0; i55075 < v_ops.length; i55075++)
+{
+  v_op = v_ops[i55075] ;
+
+if (v_op != null) {
+v_op.unrelateAcrossR116From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_op != null) {
+  v_op.relateAcrossR116To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+OperationParameter_c [] v_opParms = OperationParameter_c.getManyO_TPARMsOnR118(v_coreType);
+
+
+OperationParameter_c  v_opParm = null;
+for ( int i55076 = 0; i55076 < v_opParms.length; i55076++)
+{
+  v_opParm = v_opParms[i55076] ;
+
+if (v_opParm != null) {
+v_opParm.unrelateAcrossR118From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_opParm != null) {
+  v_opParm.relateAcrossR118To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Attribute_c [] v_attrs = Attribute_c.getManyO_ATTRsOnR114(v_coreType);
+
+
+Attribute_c  v_attr = null;
+for ( int i55077 = 0; i55077 < v_attrs.length; i55077++)
+{
+  v_attr = v_attrs[i55077] ;
+
+if (v_attr != null) {
+v_attr.unrelateAcrossR114From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_attr != null) {
+  v_attr.relateAcrossR114To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Variable_c [] v_vvars = Variable_c.getManyV_VARsOnR848(v_coreType);
+
+
+Variable_c  v_vvar = null;
+for ( int i55078 = 0; i55078 < v_vvars.length; i55078++)
+{
+  v_vvar = v_vvars[i55078] ;
+
+if (v_vvar != null) {
+v_vvar.unrelateAcrossR848From(v_coreType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_vvar != null) {
+  v_vvar.relateAcrossR848To(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+
+}
+
+
+}
+
 
    } // End associateChildrenWithSystemBuiltInTypes
   public  void Associatechildrenwithsuppresseddatatypes()
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Domain", " Operation entered: Domain::Associatechildrenwithsuppresseddatatypes") ; 
                final ModelRoot modelRoot = getModelRoot();
+DataType_c [] v_suppressedTypes = DataType_c.getManyS_DTsOnR47(DatatypeInSuppression_c.getManyS_DISsOnR47(this));
+
+
+DataType_c  v_suppressedType = null;
+for ( int i55079 = 0; i55079 < v_suppressedTypes.length; i55079++)
+{
+  v_suppressedType = v_suppressedTypes[i55079] ;
+
+  class DataType_test55736_c implements ClassQueryInterface_c
+  {
+	DataType_test55736_c( String       p55737 ) {
+		m_p55737 = p55737;
+	}
+	private String       m_p55737;
+	public boolean evaluate (Object candidate)
+	{
+		DataType_c selected = (DataType_c)candidate;
+		return (selected.getName().equals(m_p55737)) ;
+	}
+  }
+DataType_c v_matchingSystemType = DataType_c.getOneS_DTOnR14(this, new DataType_test55736_c(v_suppressedType.getName()));
+
+
+if (   (v_matchingSystemType != null) )
+{
+
+Function_c [] v_functions = Function_c.getManyS_SYNCsOnR25(v_matchingSystemType);
+
+
+Function_c  v_function = null;
+for ( int i55080 = 0; i55080 < v_functions.length; i55080++)
+{
+  v_function = v_functions[i55080] ;
+
+if (v_function != null) {
+v_function.unrelateAcrossR25From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_function != null) {
+  v_function.relateAcrossR25To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+FunctionParameter_c [] v_functionParams = FunctionParameter_c.getManyS_SPARMsOnR26(v_matchingSystemType);
+
+
+FunctionParameter_c  v_functionParam = null;
+for ( int i55081 = 0; i55081 < v_functionParams.length; i55081++)
+{
+  v_functionParam = v_functionParams[i55081] ;
+
+if (v_functionParam != null) {
+v_functionParam.unrelateAcrossR26From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_functionParam != null) {
+  v_functionParam.relateAcrossR26To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+StructureMember_c [] v_structureMembers = StructureMember_c.getManyS_MBRsOnR45(v_matchingSystemType);
+
+
+StructureMember_c  v_structureMember = null;
+for ( int i55082 = 0; i55082 < v_structureMembers.length; i55082++)
+{
+  v_structureMember = v_structureMembers[i55082] ;
+
+if (v_structureMember != null) {
+v_structureMember.unrelateAcrossR45From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_structureMember != null) {
+  v_structureMember.relateAcrossR45To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Bridge_c [] v_bridges = Bridge_c.getManyS_BRGsOnR20(v_matchingSystemType);
+
+
+Bridge_c  v_brg = null;
+for ( int i55083 = 0; i55083 < v_bridges.length; i55083++)
+{
+  v_brg = v_bridges[i55083] ;
+
+if (v_brg != null) {
+v_brg.unrelateAcrossR20From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_brg != null) {
+  v_brg.relateAcrossR20To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+BridgeParameter_c [] v_parms = BridgeParameter_c.getManyS_BPARMsOnR22(v_matchingSystemType);
+
+
+BridgeParameter_c  v_parm = null;
+for ( int i55084 = 0; i55084 < v_parms.length; i55084++)
+{
+  v_parm = v_parms[i55084] ;
+
+if (v_parm != null) {
+v_parm.unrelateAcrossR22From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_parm != null) {
+  v_parm.relateAcrossR22To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityDataItem_c [] v_eedis = ExternalEntityDataItem_c.getManyS_EEDIsOnR15(v_matchingSystemType);
+
+
+ExternalEntityDataItem_c  v_eedi = null;
+for ( int i55085 = 0; i55085 < v_eedis.length; i55085++)
+{
+  v_eedi = v_eedis[i55085] ;
+
+if (v_eedi != null) {
+v_eedi.unrelateAcrossR15From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eedi != null) {
+  v_eedi.relateAcrossR15To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+ExternalEntityEventDataItem_c [] v_eeedis = ExternalEntityEventDataItem_c.getManyS_EEEDIsOnR16(v_matchingSystemType);
+
+
+ExternalEntityEventDataItem_c  v_eeedi = null;
+for ( int i55086 = 0; i55086 < v_eeedis.length; i55086++)
+{
+  v_eeedi = v_eeedis[i55086] ;
+
+if (v_eeedi != null) {
+v_eeedi.unrelateAcrossR16From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_eeedi != null) {
+  v_eeedi.relateAcrossR16To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+UserDataType_c [] v_udts = UserDataType_c.getManyS_UDTsOnR18(v_matchingSystemType);
+
+
+UserDataType_c  v_udt = null;
+for ( int i55087 = 0; i55087 < v_udts.length; i55087++)
+{
+  v_udt = v_udts[i55087] ;
+
+SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4402(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4401(DataType_c.getManyS_DTsOnR17(v_udt)));
+
+
+GlobalElementInSystem_c v_global = GlobalElementInSystem_c.getOneG_EISOnR9100(PackageableElement_c.getManyPE_PEsOnR8001(DataType_c.getManyS_DTsOnR17(v_udt)));
+
+
+if (   (v_system == null) &&   (v_global == null) )
+{
+
+CoreDataType_c v_systemCoreType = CoreDataType_c.getOneS_CDTOnR17(v_matchingSystemType);
+
+
+CoreDataType_c v_suppressedCoreType = CoreDataType_c.getOneS_CDTOnR17(v_suppressedType);
+
+
+if (v_udt != null) {
+v_udt.unrelateAcrossR18From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_udt != null) {
+  v_udt.relateAcrossR18To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+
+}
+
+StateMachineEventDataItem_c [] v_evtdis = StateMachineEventDataItem_c.getManySM_EVTDIsOnR524(v_matchingSystemType);
+
+
+StateMachineEventDataItem_c  v_evtdi = null;
+for ( int i55088 = 0; i55088 < v_evtdis.length; i55088++)
+{
+  v_evtdi = v_evtdis[i55088] ;
+
+if (v_evtdi != null) {
+v_evtdi.unrelateAcrossR524From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_evtdi != null) {
+  v_evtdi.relateAcrossR524To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Operation_c [] v_ops = Operation_c.getManyO_TFRsOnR116(v_matchingSystemType);
+
+
+Operation_c  v_op = null;
+for ( int i55089 = 0; i55089 < v_ops.length; i55089++)
+{
+  v_op = v_ops[i55089] ;
+
+if (v_op != null) {
+v_op.unrelateAcrossR116From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_op != null) {
+  v_op.relateAcrossR116To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+OperationParameter_c [] v_opParms = OperationParameter_c.getManyO_TPARMsOnR118(v_matchingSystemType);
+
+
+OperationParameter_c  v_opParm = null;
+for ( int i55090 = 0; i55090 < v_opParms.length; i55090++)
+{
+  v_opParm = v_opParms[i55090] ;
+
+if (v_opParm != null) {
+v_opParm.unrelateAcrossR118From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_opParm != null) {
+  v_opParm.relateAcrossR118To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Attribute_c [] v_attrs = Attribute_c.getManyO_ATTRsOnR114(v_matchingSystemType);
+
+
+Attribute_c  v_attr = null;
+for ( int i55091 = 0; i55091 < v_attrs.length; i55091++)
+{
+  v_attr = v_attrs[i55091] ;
+
+if (v_attr != null) {
+v_attr.unrelateAcrossR114From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_attr != null) {
+  v_attr.relateAcrossR114To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+Variable_c [] v_vvars = Variable_c.getManyV_VARsOnR848(v_matchingSystemType);
+
+
+Variable_c  v_vvar = null;
+for ( int i55092 = 0; i55092 < v_vvars.length; i55092++)
+{
+  v_vvar = v_vvars[i55092] ;
+
+if (v_vvar != null) {
+v_vvar.unrelateAcrossR848From(v_matchingSystemType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Unrelate attempted on null left hand instance.", t);
+}
+
+
+if (v_vvar != null) {
+  v_vvar.relateAcrossR848To(v_suppressedType);
+}
+else {
+  Throwable t = new Throwable();
+  t.fillInStackTrace();
+  CorePlugin.logError("Relate attempted on null left hand instance.", t);
+}
+
+
+
+}
+
+
+}
+
+
+}
+
 
    } // End associateChildrenWithSuppressedDatatypes
   public  java.util.UUID         Resolvedatatyperelativetoself(final String       p_Default_name,final String       p_Expected_name)
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Domain", " Operation entered: Domain::Resolvedatatyperelativetoself") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class DataType_test54191_c implements ClassQueryInterface_c
+  class DataType_test55738_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6121,7 +7562,7 @@ return false;
 		return (selected.getName().equals(p_Expected_name)) ;
 	}
   }
-DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(this, new DataType_test54191_c());
+DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR14(this, new DataType_test55738_c());
 
 
 if ( (  (v_resolvedDT == null)) )
@@ -6164,7 +7605,7 @@ if ( (  (v_resolvedDT == null)) )
 if ( (  (v_component == null)) )
 {
 
-  class DataType_test54192_c implements ClassQueryInterface_c
+  class DataType_test55739_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -6172,7 +7613,7 @@ if ( (  (v_component == null)) )
 		return (selected.getName().equals(p_Default_name)) ;
 	}
   }
-v_resolvedDT = DataType_c.getOneS_DTOnR14(this, new DataType_test54192_c());
+v_resolvedDT = DataType_c.getOneS_DTOnR14(this, new DataType_test55739_c());
 
 
 
@@ -6496,9 +7937,9 @@ int          v_count = -1 ;
 
 
 Subsystem_c  v_subsystem = null;
-for ( int i53593 = 0; i53593 < v_subsystems.length; i53593++)
+for ( int i55093 = 0; i55093 < v_subsystems.length; i55093++)
 {
-  v_subsystem = v_subsystems[i53593] ;
+  v_subsystem = v_subsystems[i55093] ;
 
 if ( (  (v_subsystem != null)) )
 {
@@ -6552,9 +7993,9 @@ int          v_count = -1 ;
 
 
 ExternalEntityPackage_c  v_externalEntityPckg = null;
-for ( int i53594 = 0; i53594 < v_externalEntityPckgs.length; i53594++)
+for ( int i55094 = 0; i55094 < v_externalEntityPckgs.length; i55094++)
 {
-  v_externalEntityPckg = v_externalEntityPckgs[i53594] ;
+  v_externalEntityPckg = v_externalEntityPckgs[i55094] ;
 
 if ( (  (v_externalEntityPckg != null)) )
 {
@@ -6608,9 +8049,9 @@ int          v_count = -1 ;
 
 
 FunctionPackage_c  v_functionPckg = null;
-for ( int i53595 = 0; i53595 < v_functionPckgs.length; i53595++)
+for ( int i55095 = 0; i55095 < v_functionPckgs.length; i55095++)
 {
-  v_functionPckg = v_functionPckgs[i53595] ;
+  v_functionPckg = v_functionPckgs[i55095] ;
 
 if ( (  (v_functionPckg != null)) )
 {
@@ -6664,9 +8105,9 @@ int          v_count = -1 ;
 
 
 DataTypePackage_c  v_datatypePckg = null;
-for ( int i53596 = 0; i53596 < v_datatypePckgs.length; i53596++)
+for ( int i55096 = 0; i55096 < v_datatypePckgs.length; i55096++)
 {
-  v_datatypePckg = v_datatypePckgs[i53596] ;
+  v_datatypePckg = v_datatypePckgs[i55096] ;
 
 if ( (  (v_datatypePckg != null)) )
 {
@@ -6720,9 +8161,9 @@ int          v_count = -1 ;
 
 
 Sequence_c  v_sequence = null;
-for ( int i53597 = 0; i53597 < v_sequences.length; i53597++)
+for ( int i55097 = 0; i55097 < v_sequences.length; i55097++)
 {
-  v_sequence = v_sequences[i53597] ;
+  v_sequence = v_sequences[i55097] ;
 
 if ( (  (v_sequence != null)) )
 {
@@ -6776,9 +8217,9 @@ int          v_count = -1 ;
 
 
 Communication_c  v_communication = null;
-for ( int i53598 = 0; i53598 < v_communications.length; i53598++)
+for ( int i55098 = 0; i55098 < v_communications.length; i55098++)
 {
-  v_communication = v_communications[i53598] ;
+  v_communication = v_communications[i55098] ;
 
 if ( (  (v_communication != null)) )
 {
@@ -6832,9 +8273,9 @@ int          v_count = -1 ;
 
 
 UseCaseDiagram_c  v_usecase = null;
-for ( int i53599 = 0; i53599 < v_usecases.length; i53599++)
+for ( int i55099 = 0; i55099 < v_usecases.length; i55099++)
 {
-  v_usecase = v_usecases[i53599] ;
+  v_usecase = v_usecases[i55099] ;
 
 if ( (  (v_usecase != null)) )
 {
@@ -6888,9 +8329,9 @@ int          v_count = -1 ;
 
 
 Activity_c  v_activity = null;
-for ( int i53600 = 0; i53600 < v_activities.length; i53600++)
+for ( int i55100 = 0; i55100 < v_activities.length; i55100++)
 {
-  v_activity = v_activities[i53600] ;
+  v_activity = v_activities[i55100] ;
 
 if ( (  (v_activity != null)) )
 {
@@ -6970,9 +8411,9 @@ Subsystem_c [] v_subsystems = Subsystem_c.getManyS_SSsOnR1(this);
 
 
 Subsystem_c  v_subsystem = null;
-for ( int i53601 = 0; i53601 < v_subsystems.length; i53601++)
+for ( int i55101 = 0; i55101 < v_subsystems.length; i55101++)
 {
-  v_subsystem = v_subsystems[i53601] ;
+  v_subsystem = v_subsystems[i55101] ;
 
 if (v_subsystem != null) {
 v_subsystem.Removeincompletesignalevents() ;

@@ -143,7 +143,8 @@ public class BinaryAssociation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -159,9 +160,9 @@ public class BinaryAssociation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
-				.equals(((BinaryAssociation_c) elem).getAssoc_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
+						.equals(((BinaryAssociation_c) elem).getAssoc_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAssoc_id().equals(((BinaryAssociation_c) elem).getAssoc_id()))
@@ -416,35 +417,35 @@ public class BinaryAssociation_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1210
-		UseCaseAssociation_c relInst37939 = (UseCaseAssociation_c) baseRoot
+		UseCaseAssociation_c relInst38521 = (UseCaseAssociation_c) baseRoot
 				.getInstanceList(UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37939 == null) {
-			relInst37939 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
+		if (relInst38521 == null) {
+			relInst38521 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(UseCaseAssociation_c.class)
 					.get(new Object[]{m_assoc_id});
 		}
-		if (relInst37939 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38521 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37939 = (UseCaseAssociation_c) roots[i].getInstanceList(
+				relInst38521 = (UseCaseAssociation_c) roots[i].getInstanceList(
 						UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
-				if (relInst37939 != null)
+				if (relInst38521 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37939 != null) {
+		if (relInst38521 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37939) && !isProxy())) {
-				relInst37939.relateAcrossR1210To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38521) && !isProxy())) {
+				relInst38521.relateAcrossR1210To(this, notifyChanges);
 			}
 		}
 
@@ -714,44 +715,44 @@ public class BinaryAssociation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class BinaryAssociation_c_test37941_c implements ClassQueryInterface_c {
-			BinaryAssociation_c_test37941_c(java.util.UUID p37942) {
-				m_p37942 = p37942;
+		class BinaryAssociation_c_test38523_c implements ClassQueryInterface_c {
+			BinaryAssociation_c_test38523_c(java.util.UUID p38524) {
+				m_p38524 = p38524;
 			}
-			private java.util.UUID m_p37942;
+			private java.util.UUID m_p38524;
 			public boolean evaluate(Object candidate) {
 				BinaryAssociation_c selected = (BinaryAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37942));
+				retval = (selected.getAssoc_id().equals(m_p38524));
 				return retval;
 			}
 		}
 
-		BinaryAssociation_c[] objs37940 = BinaryAssociation_c
+		BinaryAssociation_c[] objs38522 = BinaryAssociation_c
 				.BinaryAssociationInstances(modelRoot,
-						new BinaryAssociation_c_test37941_c(getAssoc_id()));
+						new BinaryAssociation_c_test38523_c(getAssoc_id()));
 
-		if (((objs37940.length) == 0)) {
+		if (((objs38522.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Binary Association", //$NON-NLS-1$
 								"Consistency: Object: Binary Association: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37940.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38522.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Binary Association: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37940.length), e);
+										+ Integer.toString(objs38522.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37940.length) > 1)) {
+		if (((objs38522.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -759,7 +760,7 @@ public class BinaryAssociation_c extends NonRootModelElement
 								"Binary Association", //$NON-NLS-1$
 								"Consistency: Object: Binary Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37940.length)
+										+ Integer.toString(objs38522.length)
 										+ " Assoc_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -767,7 +768,7 @@ public class BinaryAssociation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Binary Association: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37940.length)
+										+ Integer.toString(objs38522.length)
 										+ " Assoc_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -776,38 +777,38 @@ public class BinaryAssociation_c extends NonRootModelElement
 
 		// Binary Association is a subtype in association: rel.Numb = 1210
 		// The supertype class is: Use Case Association
-		class UseCaseAssociation_c_test37946_c implements ClassQueryInterface_c {
-			UseCaseAssociation_c_test37946_c(java.util.UUID p37947) {
-				m_p37947 = p37947;
+		class UseCaseAssociation_c_test38528_c implements ClassQueryInterface_c {
+			UseCaseAssociation_c_test38528_c(java.util.UUID p38529) {
+				m_p38529 = p38529;
 			}
-			private java.util.UUID m_p37947;
+			private java.util.UUID m_p38529;
 			public boolean evaluate(Object candidate) {
 				UseCaseAssociation_c selected = (UseCaseAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37947));
+				retval = (selected.getAssoc_id().equals(m_p38529));
 				return retval;
 			}
 		}
 
-		UseCaseAssociation_c[] objs37945 = UseCaseAssociation_c
+		UseCaseAssociation_c[] objs38527 = UseCaseAssociation_c
 				.UseCaseAssociationInstances(modelRoot,
-						new UseCaseAssociation_c_test37946_c(getAssoc_id()));
+						new UseCaseAssociation_c_test38528_c(getAssoc_id()));
 
-		if (((objs37945.length) != 1)) {
+		if (((objs38527.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Binary Association", //$NON-NLS-1$
 								"Consistency: Object: Binary Association: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37945.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38527.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Binary Association: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37945.length), e);
+										+ Integer.toString(objs38527.length), e);
 			}
 			retval = false;
 

@@ -158,7 +158,8 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -174,9 +175,9 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ComponentPackageInPackage_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ComponentPackageInPackage_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ComponentPackageInPackage_c) elem).getId()))
@@ -689,18 +690,18 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 
 		if (MayBeNestedInComponentPackage == null) {
 			// R4600
-			ComponentPackage_c relInst55628 = (ComponentPackage_c) baseRoot
+			ComponentPackage_c relInst57177 = (ComponentPackage_c) baseRoot
 					.getInstanceList(ComponentPackage_c.class).get(
 							new Object[]{m_parent_package_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst55628 == null) {
-				relInst55628 = (ComponentPackage_c) Ooaofooa
+			if (relInst57177 == null) {
+				relInst57177 = (ComponentPackage_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ComponentPackage_c.class)
 						.get(new Object[]{m_parent_package_id});
 			}
-			if (relInst55628 == null && searchAllRoots
+			if (relInst57177 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -708,18 +709,18 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst55628 = (ComponentPackage_c) roots[i]
+					relInst57177 = (ComponentPackage_c) roots[i]
 							.getInstanceList(ComponentPackage_c.class).get(
 									new Object[]{m_parent_package_id});
-					if (relInst55628 != null)
+					if (relInst57177 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst55628 != null) {
+			if (relInst57177 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst55628) && !isProxy())) {
-					relInst55628.relateAcrossR4600To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57177) && !isProxy())) {
+					relInst57177.relateAcrossR4600To(this, notifyChanges);
 				}
 			}
 		}
@@ -1005,26 +1006,26 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ComponentPackageInPackage_c_test55630_c
+		class ComponentPackageInPackage_c_test57179_c
 				implements
 					ClassQueryInterface_c {
-			ComponentPackageInPackage_c_test55630_c(java.util.UUID p55631) {
-				m_p55631 = p55631;
+			ComponentPackageInPackage_c_test57179_c(java.util.UUID p57180) {
+				m_p57180 = p57180;
 			}
-			private java.util.UUID m_p55631;
+			private java.util.UUID m_p57180;
 			public boolean evaluate(Object candidate) {
 				ComponentPackageInPackage_c selected = (ComponentPackageInPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55631));
+				retval = (selected.getId().equals(m_p57180));
 				return retval;
 			}
 		}
 
-		ComponentPackageInPackage_c[] objs55629 = ComponentPackageInPackage_c
+		ComponentPackageInPackage_c[] objs57178 = ComponentPackageInPackage_c
 				.ComponentPackageInPackageInstances(modelRoot,
-						new ComponentPackageInPackage_c_test55630_c(getId()));
+						new ComponentPackageInPackage_c_test57179_c(getId()));
 
-		if (((objs55629.length) == 0)) {
+		if (((objs57178.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1032,20 +1033,20 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Component Package in Package", //$NON-NLS-1$
 								"Consistency: Object: Component Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55629.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57178.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Component Package in Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55629.length), e);
+										+ Integer.toString(objs57178.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55629.length) > 1)) {
+		if (((objs57178.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1054,7 +1055,7 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 								"Component Package in Package", //$NON-NLS-1$
 								"Consistency: Object: Component Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55629.length)
+										+ Integer.toString(objs57178.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1062,7 +1063,7 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component Package in Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55629.length)
+										+ Integer.toString(objs57178.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1071,27 +1072,27 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 
 		// Component Package in Package is a referring class in association: rel.Numb = 4600
 		// The participating class is: Component Package
-		class ComponentPackage_c_test55635_c implements ClassQueryInterface_c {
-			ComponentPackage_c_test55635_c(java.util.UUID p55636) {
-				m_p55636 = p55636;
+		class ComponentPackage_c_test57184_c implements ClassQueryInterface_c {
+			ComponentPackage_c_test57184_c(java.util.UUID p57185) {
+				m_p57185 = p57185;
 			}
-			private java.util.UUID m_p55636;
+			private java.util.UUID m_p57185;
 			public boolean evaluate(Object candidate) {
 				ComponentPackage_c selected = (ComponentPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p55636));
+				retval = (selected.getPackage_id().equals(m_p57185));
 				return retval;
 			}
 		}
 
-		ComponentPackage_c[] objs55634 = ComponentPackage_c
+		ComponentPackage_c[] objs57183 = ComponentPackage_c
 				.ComponentPackageInstances(modelRoot,
-						new ComponentPackage_c_test55635_c(
+						new ComponentPackage_c_test57184_c(
 								getParent_package_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs55634.length) != 1)) {
+		if (((objs57183.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1100,7 +1101,7 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 								"Component Package in Package", //$NON-NLS-1$
 								"Consistency: Object: Component Package in Package: Association: 4600: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55634.length)
+										+ Integer.toString(objs57183.length)
 										+ " Parent_Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1108,7 +1109,7 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Component Package in Package: Association: 4600: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55634.length)
+										+ Integer.toString(objs57183.length)
 										+ " Parent_Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1117,24 +1118,24 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 
 		// Component Package in Package is a participating class in association: rel.Numb = 4601
 		// Object: Component Package
-		class ComponentPackage_c_test55638_c implements ClassQueryInterface_c {
-			ComponentPackage_c_test55638_c(java.util.UUID p55639) {
-				m_p55639 = p55639;
+		class ComponentPackage_c_test57187_c implements ClassQueryInterface_c {
+			ComponentPackage_c_test57187_c(java.util.UUID p57188) {
+				m_p57188 = p57188;
 			}
-			private java.util.UUID m_p55639;
+			private java.util.UUID m_p57188;
 			public boolean evaluate(Object candidate) {
 				ComponentPackage_c selected = (ComponentPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getParentlink_id().equals(m_p55639));
+				retval = (selected.getParentlink_id().equals(m_p57188));
 				return retval;
 			}
 		}
 
-		ComponentPackage_c[] objs55637 = ComponentPackage_c
+		ComponentPackage_c[] objs57186 = ComponentPackage_c
 				.ComponentPackageInstances(modelRoot,
-						new ComponentPackage_c_test55638_c(getId()));
+						new ComponentPackage_c_test57187_c(getId()));
 
-		if (((objs55637.length) != 1)) {
+		if (((objs57186.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1142,14 +1143,14 @@ public class ComponentPackageInPackage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Component Package in Package", //$NON-NLS-1$
 								"Consistency: Object: Component Package in Package: Association: 4601: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55637.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57186.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Component Package in Package: Association: 4601: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55637.length), e);
+										+ Integer.toString(objs57186.length), e);
 			}
 			retval = false;
 

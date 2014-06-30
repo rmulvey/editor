@@ -147,7 +147,8 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((ParticipantInUseCase_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((ParticipantInUseCase_c) elem).getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -174,9 +175,9 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
-				.equals(((ParticipantInUseCase_c) elem).getPart_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
+						.equals(((ParticipantInUseCase_c) elem).getPart_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPart_id().equals(((ParticipantInUseCase_c) elem).getPart_id()))
@@ -703,67 +704,67 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1203
-		UseCaseDiagram_c relInst37901 = (UseCaseDiagram_c) baseRoot
+		UseCaseDiagram_c relInst38483 = (UseCaseDiagram_c) baseRoot
 				.getInstanceList(UseCaseDiagram_c.class).get(
 						new Object[]{m_package_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37901 == null) {
-			relInst37901 = (UseCaseDiagram_c) Ooaofooa.getDefaultInstance()
+		if (relInst38483 == null) {
+			relInst38483 = (UseCaseDiagram_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(UseCaseDiagram_c.class)
 					.get(new Object[]{m_package_id});
 		}
-		if (relInst37901 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38483 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37901 = (UseCaseDiagram_c) roots[i].getInstanceList(
+				relInst38483 = (UseCaseDiagram_c) roots[i].getInstanceList(
 						UseCaseDiagram_c.class).get(new Object[]{m_package_id});
-				if (relInst37901 != null)
+				if (relInst38483 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37901 != null) {
+		if (relInst38483 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37901) && !isProxy())) {
-				relInst37901.relateAcrossR1203To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38483) && !isProxy())) {
+				relInst38483.relateAcrossR1203To(this, notifyChanges);
 			}
 		}
 
-		InteractionParticipant_c relInst37902 = (InteractionParticipant_c) baseRoot
+		InteractionParticipant_c relInst38484 = (InteractionParticipant_c) baseRoot
 				.getInstanceList(InteractionParticipant_c.class).get(
 						new Object[]{m_part_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37902 == null) {
-			relInst37902 = (InteractionParticipant_c) Ooaofooa
+		if (relInst38484 == null) {
+			relInst38484 = (InteractionParticipant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(InteractionParticipant_c.class)
 					.get(new Object[]{m_part_id});
 		}
-		if (relInst37902 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38484 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37902 = (InteractionParticipant_c) roots[i]
+				relInst38484 = (InteractionParticipant_c) roots[i]
 						.getInstanceList(InteractionParticipant_c.class).get(
 								new Object[]{m_part_id});
-				if (relInst37902 != null)
+				if (relInst38484 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37902 != null) {
+		if (relInst38484 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37902) && !isProxy())) {
-				relInst37902.relateAcrossR1203To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38484) && !isProxy())) {
+				relInst38484.relateAcrossR1203To(this, notifyChanges);
 			}
 		}
 
@@ -1070,31 +1071,31 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ParticipantInUseCase_c_test37904_c
+		class ParticipantInUseCase_c_test38486_c
 				implements
 					ClassQueryInterface_c {
-			ParticipantInUseCase_c_test37904_c(java.util.UUID p37905,
-					java.util.UUID p37906) {
-				m_p37905 = p37905;
-				m_p37906 = p37906;
+			ParticipantInUseCase_c_test38486_c(java.util.UUID p38487,
+					java.util.UUID p38488) {
+				m_p38487 = p38487;
+				m_p38488 = p38488;
 			}
-			private java.util.UUID m_p37905;
-			private java.util.UUID m_p37906;
+			private java.util.UUID m_p38487;
+			private java.util.UUID m_p38488;
 			public boolean evaluate(Object candidate) {
 				ParticipantInUseCase_c selected = (ParticipantInUseCase_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p37905))
-						& (selected.getPart_id().equals(m_p37906));
+				retval = (selected.getPackage_id().equals(m_p38487))
+						& (selected.getPart_id().equals(m_p38488));
 				return retval;
 			}
 		}
 
-		ParticipantInUseCase_c[] objs37903 = ParticipantInUseCase_c
+		ParticipantInUseCase_c[] objs38485 = ParticipantInUseCase_c
 				.ParticipantInUseCaseInstances(modelRoot,
-						new ParticipantInUseCase_c_test37904_c(getPackage_id(),
+						new ParticipantInUseCase_c_test38486_c(getPackage_id(),
 								getPart_id()));
 
-		if (((objs37903.length) == 0)) {
+		if (((objs38485.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1102,20 +1103,20 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Participant in Use Case", //$NON-NLS-1$
 								"Consistency: Object: Participant in Use Case: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37903.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38485.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Participant in Use Case: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37903.length), e);
+										+ Integer.toString(objs38485.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37903.length) > 1)) {
+		if (((objs38485.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1124,7 +1125,7 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 								"Participant in Use Case", //$NON-NLS-1$
 								"Consistency: Object: Participant in Use Case: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37903.length)
+										+ Integer.toString(objs38485.length)
 										+ " Package_ID: " + "Not Printable" + " Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1132,7 +1133,7 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Participant in Use Case: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37903.length)
+										+ Integer.toString(objs38485.length)
 										+ " Package_ID: " + "Not Printable" + " Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1141,24 +1142,24 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 
 		// Participant in Use Case is a link class in association: rel.Numb = 1203
 		// The one side class in the association is: Use Case Diagram
-		class UseCaseDiagram_c_test37910_c implements ClassQueryInterface_c {
-			UseCaseDiagram_c_test37910_c(java.util.UUID p37911) {
-				m_p37911 = p37911;
+		class UseCaseDiagram_c_test38492_c implements ClassQueryInterface_c {
+			UseCaseDiagram_c_test38492_c(java.util.UUID p38493) {
+				m_p38493 = p38493;
 			}
-			private java.util.UUID m_p37911;
+			private java.util.UUID m_p38493;
 			public boolean evaluate(Object candidate) {
 				UseCaseDiagram_c selected = (UseCaseDiagram_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p37911));
+				retval = (selected.getPackage_id().equals(m_p38493));
 				return retval;
 			}
 		}
 
-		UseCaseDiagram_c[] objs37909 = UseCaseDiagram_c
+		UseCaseDiagram_c[] objs38491 = UseCaseDiagram_c
 				.UseCaseDiagramInstances(modelRoot,
-						new UseCaseDiagram_c_test37910_c(getPackage_id()));
+						new UseCaseDiagram_c_test38492_c(getPackage_id()));
 
-		if (((objs37909.length) > 1)) {
+		if (((objs38491.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1166,14 +1167,14 @@ public class ParticipantInUseCase_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Participant in Use Case", //$NON-NLS-1$
 								"Consistency: Object: Participant in Use Case: Association: 1203: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37909.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38491.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Participant in Use Case: Association: 1203: Cardinality of one side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37909.length), e);
+										+ Integer.toString(objs38491.length), e);
 			}
 			retval = false;
 

@@ -163,7 +163,8 @@ public class SpecificationPackage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -179,9 +180,9 @@ public class SpecificationPackage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
-				.equals(((SpecificationPackage_c) elem).getPackage_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID
+						.equals(((SpecificationPackage_c) elem).getPackage_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPackage_id().equals(
@@ -1720,16 +1721,16 @@ public class SpecificationPackage_c extends NonRootModelElement
 
 		if (Package == null) {
 			// R1400
-			Package_c relInst54652 = (Package_c) baseRoot.getInstanceList(
+			Package_c relInst56201 = (Package_c) baseRoot.getInstanceList(
 					Package_c.class).get(new Object[]{m_container_package_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54652 == null) {
-				relInst54652 = (Package_c) Ooaofooa.getDefaultInstance()
+			if (relInst56201 == null) {
+				relInst56201 = (Package_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Package_c.class)
 						.get(new Object[]{m_container_package_id});
 			}
-			if (relInst54652 == null && searchAllRoots
+			if (relInst56201 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1737,18 +1738,18 @@ public class SpecificationPackage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54652 = (Package_c) roots[i].getInstanceList(
+					relInst56201 = (Package_c) roots[i].getInstanceList(
 							Package_c.class).get(
 							new Object[]{m_container_package_id});
-					if (relInst54652 != null)
+					if (relInst56201 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54652 != null) {
+			if (relInst56201 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54652) && !isProxy())) {
-					relInst54652.relateAcrossR1400To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56201) && !isProxy())) {
+					relInst56201.relateAcrossR1400To(this, notifyChanges);
 				}
 			}
 		}
@@ -2073,46 +2074,46 @@ public class SpecificationPackage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SpecificationPackage_c_test54654_c
+		class SpecificationPackage_c_test56203_c
 				implements
 					ClassQueryInterface_c {
-			SpecificationPackage_c_test54654_c(java.util.UUID p54655) {
-				m_p54655 = p54655;
+			SpecificationPackage_c_test56203_c(java.util.UUID p56204) {
+				m_p56204 = p56204;
 			}
-			private java.util.UUID m_p54655;
+			private java.util.UUID m_p56204;
 			public boolean evaluate(Object candidate) {
 				SpecificationPackage_c selected = (SpecificationPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54655));
+				retval = (selected.getPackage_id().equals(m_p56204));
 				return retval;
 			}
 		}
 
-		SpecificationPackage_c[] objs54653 = SpecificationPackage_c
+		SpecificationPackage_c[] objs56202 = SpecificationPackage_c
 				.SpecificationPackageInstances(modelRoot,
-						new SpecificationPackage_c_test54654_c(getPackage_id()));
+						new SpecificationPackage_c_test56203_c(getPackage_id()));
 
-		if (((objs54653.length) == 0)) {
+		if (((objs56202.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Specification Package", //$NON-NLS-1$
 								"Consistency: Object: Specification Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54653.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56202.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Specification Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54653.length), e);
+										+ Integer.toString(objs56202.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54653.length) > 1)) {
+		if (((objs56202.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2120,7 +2121,7 @@ public class SpecificationPackage_c extends NonRootModelElement
 								"Specification Package", //$NON-NLS-1$
 								"Consistency: Object: Specification Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54653.length)
+										+ Integer.toString(objs56202.length)
 										+ " Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2128,7 +2129,7 @@ public class SpecificationPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Specification Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54653.length)
+										+ Integer.toString(objs56202.length)
 										+ " Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2137,23 +2138,23 @@ public class SpecificationPackage_c extends NonRootModelElement
 
 		// Specification Package is a referring class in association: rel.Numb = 1400
 		// The participating class is: Package
-		class Package_c_test54659_c implements ClassQueryInterface_c {
-			Package_c_test54659_c(java.util.UUID p54660) {
-				m_p54660 = p54660;
+		class Package_c_test56208_c implements ClassQueryInterface_c {
+			Package_c_test56208_c(java.util.UUID p56209) {
+				m_p56209 = p56209;
 			}
-			private java.util.UUID m_p54660;
+			private java.util.UUID m_p56209;
 			public boolean evaluate(Object candidate) {
 				Package_c selected = (Package_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54660));
+				retval = (selected.getPackage_id().equals(m_p56209));
 				return retval;
 			}
 		}
 
-		Package_c[] objs54658 = Package_c.PackageInstances(modelRoot,
-				new Package_c_test54659_c(getContainer_package_id()));
+		Package_c[] objs56207 = Package_c.PackageInstances(modelRoot,
+				new Package_c_test56208_c(getContainer_package_id()));
 
-		if (((objs54658.length) > 1)) {
+		if (((objs56207.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -2161,7 +2162,7 @@ public class SpecificationPackage_c extends NonRootModelElement
 								"Specification Package", //$NON-NLS-1$
 								"Consistency: Object: Specification Package: Association: 1400: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54658.length)
+										+ Integer.toString(objs56207.length)
 										+ " Container_Package_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -2169,7 +2170,7 @@ public class SpecificationPackage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Specification Package: Association: 1400: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54658.length)
+										+ Integer.toString(objs56207.length)
 										+ " Container_Package_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -2177,152 +2178,152 @@ public class SpecificationPackage_c extends NonRootModelElement
 		}
 
 		// Supertype: rel.Numb = 1402
-		int objs54661 = 0;
+		int objs56210 = 0;
 		// Subtype Object: Activity
-		class Activity_c_test54662_c implements ClassQueryInterface_c {
-			Activity_c_test54662_c(java.util.UUID p54663) {
-				m_p54663 = p54663;
+		class Activity_c_test56211_c implements ClassQueryInterface_c {
+			Activity_c_test56211_c(java.util.UUID p56212) {
+				m_p56212 = p56212;
 			}
-			private java.util.UUID m_p54663;
+			private java.util.UUID m_p56212;
 			public boolean evaluate(Object candidate) {
 				Activity_c selected = (Activity_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54663));
+				retval = (selected.getPackage_id().equals(m_p56212));
 				return retval;
 			}
 		}
 
-		Activity_c[] objs54664 = Activity_c.ActivityInstances(modelRoot,
-				new Activity_c_test54662_c(getPackage_id()));
+		Activity_c[] objs56213 = Activity_c.ActivityInstances(modelRoot,
+				new Activity_c_test56211_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54664.length;
+		objs56210 = objs56210 + objs56213.length;
 		// Subtype Object: Communication
-		class Communication_c_test54665_c implements ClassQueryInterface_c {
-			Communication_c_test54665_c(java.util.UUID p54666) {
-				m_p54666 = p54666;
+		class Communication_c_test56214_c implements ClassQueryInterface_c {
+			Communication_c_test56214_c(java.util.UUID p56215) {
+				m_p56215 = p56215;
 			}
-			private java.util.UUID m_p54666;
+			private java.util.UUID m_p56215;
 			public boolean evaluate(Object candidate) {
 				Communication_c selected = (Communication_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54666));
+				retval = (selected.getPackage_id().equals(m_p56215));
 				return retval;
 			}
 		}
 
-		Communication_c[] objs54667 = Communication_c.CommunicationInstances(
-				modelRoot, new Communication_c_test54665_c(getPackage_id()));
+		Communication_c[] objs56216 = Communication_c.CommunicationInstances(
+				modelRoot, new Communication_c_test56214_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54667.length;
+		objs56210 = objs56210 + objs56216.length;
 		// Subtype Object: Component Package
-		class ComponentPackage_c_test54668_c implements ClassQueryInterface_c {
-			ComponentPackage_c_test54668_c(java.util.UUID p54669) {
-				m_p54669 = p54669;
+		class ComponentPackage_c_test56217_c implements ClassQueryInterface_c {
+			ComponentPackage_c_test56217_c(java.util.UUID p56218) {
+				m_p56218 = p56218;
 			}
-			private java.util.UUID m_p54669;
+			private java.util.UUID m_p56218;
 			public boolean evaluate(Object candidate) {
 				ComponentPackage_c selected = (ComponentPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54669));
+				retval = (selected.getPackage_id().equals(m_p56218));
 				return retval;
 			}
 		}
 
-		ComponentPackage_c[] objs54670 = ComponentPackage_c
+		ComponentPackage_c[] objs56219 = ComponentPackage_c
 				.ComponentPackageInstances(modelRoot,
-						new ComponentPackage_c_test54668_c(getPackage_id()));
+						new ComponentPackage_c_test56217_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54670.length;
+		objs56210 = objs56210 + objs56219.length;
 		// Subtype Object: Data Type Package
-		class DataTypePackage_c_test54671_c implements ClassQueryInterface_c {
-			DataTypePackage_c_test54671_c(java.util.UUID p54672) {
-				m_p54672 = p54672;
+		class DataTypePackage_c_test56220_c implements ClassQueryInterface_c {
+			DataTypePackage_c_test56220_c(java.util.UUID p56221) {
+				m_p56221 = p56221;
 			}
-			private java.util.UUID m_p54672;
+			private java.util.UUID m_p56221;
 			public boolean evaluate(Object candidate) {
 				DataTypePackage_c selected = (DataTypePackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54672));
+				retval = (selected.getPackage_id().equals(m_p56221));
 				return retval;
 			}
 		}
 
-		DataTypePackage_c[] objs54673 = DataTypePackage_c
+		DataTypePackage_c[] objs56222 = DataTypePackage_c
 				.DataTypePackageInstances(modelRoot,
-						new DataTypePackage_c_test54671_c(getPackage_id()));
+						new DataTypePackage_c_test56220_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54673.length;
+		objs56210 = objs56210 + objs56222.length;
 		// Subtype Object: Interface Package
-		class InterfacePackage_c_test54674_c implements ClassQueryInterface_c {
-			InterfacePackage_c_test54674_c(java.util.UUID p54675) {
-				m_p54675 = p54675;
+		class InterfacePackage_c_test56223_c implements ClassQueryInterface_c {
+			InterfacePackage_c_test56223_c(java.util.UUID p56224) {
+				m_p56224 = p56224;
 			}
-			private java.util.UUID m_p54675;
+			private java.util.UUID m_p56224;
 			public boolean evaluate(Object candidate) {
 				InterfacePackage_c selected = (InterfacePackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54675));
+				retval = (selected.getPackage_id().equals(m_p56224));
 				return retval;
 			}
 		}
 
-		InterfacePackage_c[] objs54676 = InterfacePackage_c
+		InterfacePackage_c[] objs56225 = InterfacePackage_c
 				.InterfacePackageInstances(modelRoot,
-						new InterfacePackage_c_test54674_c(getPackage_id()));
+						new InterfacePackage_c_test56223_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54676.length;
+		objs56210 = objs56210 + objs56225.length;
 		// Subtype Object: Use Case Diagram
-		class UseCaseDiagram_c_test54677_c implements ClassQueryInterface_c {
-			UseCaseDiagram_c_test54677_c(java.util.UUID p54678) {
-				m_p54678 = p54678;
+		class UseCaseDiagram_c_test56226_c implements ClassQueryInterface_c {
+			UseCaseDiagram_c_test56226_c(java.util.UUID p56227) {
+				m_p56227 = p56227;
 			}
-			private java.util.UUID m_p54678;
+			private java.util.UUID m_p56227;
 			public boolean evaluate(Object candidate) {
 				UseCaseDiagram_c selected = (UseCaseDiagram_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54678));
+				retval = (selected.getPackage_id().equals(m_p56227));
 				return retval;
 			}
 		}
 
-		UseCaseDiagram_c[] objs54679 = UseCaseDiagram_c
+		UseCaseDiagram_c[] objs56228 = UseCaseDiagram_c
 				.UseCaseDiagramInstances(modelRoot,
-						new UseCaseDiagram_c_test54677_c(getPackage_id()));
+						new UseCaseDiagram_c_test56226_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54679.length;
+		objs56210 = objs56210 + objs56228.length;
 		// Subtype Object: Sequence
-		class Sequence_c_test54680_c implements ClassQueryInterface_c {
-			Sequence_c_test54680_c(java.util.UUID p54681) {
-				m_p54681 = p54681;
+		class Sequence_c_test56229_c implements ClassQueryInterface_c {
+			Sequence_c_test56229_c(java.util.UUID p56230) {
+				m_p56230 = p56230;
 			}
-			private java.util.UUID m_p54681;
+			private java.util.UUID m_p56230;
 			public boolean evaluate(Object candidate) {
 				Sequence_c selected = (Sequence_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPackage_id().equals(m_p54681));
+				retval = (selected.getPackage_id().equals(m_p56230));
 				return retval;
 			}
 		}
 
-		Sequence_c[] objs54682 = Sequence_c.SequenceInstances(modelRoot,
-				new Sequence_c_test54680_c(getPackage_id()));
+		Sequence_c[] objs56231 = Sequence_c.SequenceInstances(modelRoot,
+				new Sequence_c_test56229_c(getPackage_id()));
 
-		objs54661 = objs54661 + objs54682.length;
-		if (objs54661 != 1) {
+		objs56210 = objs56210 + objs56231.length;
+		if (objs56210 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Specification Package", //$NON-NLS-1$
 								"Consistency: Object: Specification Package: Association: 1402: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54661)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56210)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Specification Package: Association: 1402: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54661), e);
+										+ Integer.toString(objs56210), e);
 			}
 			retval = false;
 

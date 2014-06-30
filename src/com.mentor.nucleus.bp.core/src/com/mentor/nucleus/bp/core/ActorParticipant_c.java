@@ -157,7 +157,8 @@ public class ActorParticipant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -173,9 +174,9 @@ public class ActorParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
-				.equals(((ActorParticipant_c) elem).getPart_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
+						.equals(((ActorParticipant_c) elem).getPart_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPart_id().equals(((ActorParticipant_c) elem).getPart_id()))
@@ -641,51 +642,51 @@ public class ActorParticipant_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R930
-		InteractionParticipant_c relInst40090 = (InteractionParticipant_c) baseRoot
+		InteractionParticipant_c relInst40672 = (InteractionParticipant_c) baseRoot
 				.getInstanceList(InteractionParticipant_c.class).get(
 						new Object[]{m_part_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40090 == null) {
-			relInst40090 = (InteractionParticipant_c) Ooaofooa
+		if (relInst40672 == null) {
+			relInst40672 = (InteractionParticipant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(InteractionParticipant_c.class)
 					.get(new Object[]{m_part_id});
 		}
-		if (relInst40090 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40672 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40090 = (InteractionParticipant_c) roots[i]
+				relInst40672 = (InteractionParticipant_c) roots[i]
 						.getInstanceList(InteractionParticipant_c.class).get(
 								new Object[]{m_part_id});
-				if (relInst40090 != null)
+				if (relInst40672 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40090 != null) {
+		if (relInst40672 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40090) && !isProxy())) {
-				relInst40090.relateAcrossR930To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40672) && !isProxy())) {
+				relInst40672.relateAcrossR930To(this, notifyChanges);
 			}
 		}
 
 		if (LifeIsBoundedByLifespan == null) {
 			// R949
-			Lifespan_c relInst40091 = (Lifespan_c) baseRoot.getInstanceList(
+			Lifespan_c relInst40673 = (Lifespan_c) baseRoot.getInstanceList(
 					Lifespan_c.class).get(new Object[]{m_ls_part_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40091 == null) {
-				relInst40091 = (Lifespan_c) Ooaofooa.getDefaultInstance()
+			if (relInst40673 == null) {
+				relInst40673 = (Lifespan_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Lifespan_c.class)
 						.get(new Object[]{m_ls_part_id});
 			}
-			if (relInst40091 == null && searchAllRoots
+			if (relInst40673 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -693,17 +694,17 @@ public class ActorParticipant_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40091 = (Lifespan_c) roots[i].getInstanceList(
+					relInst40673 = (Lifespan_c) roots[i].getInstanceList(
 							Lifespan_c.class).get(new Object[]{m_ls_part_id});
-					if (relInst40091 != null)
+					if (relInst40673 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40091 != null) {
+			if (relInst40673 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40091) && !isProxy())) {
-					relInst40091.relateAcrossR949To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40673) && !isProxy())) {
+					relInst40673.relateAcrossR949To(this, notifyChanges);
 				}
 			}
 		}
@@ -1049,44 +1050,44 @@ public class ActorParticipant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActorParticipant_c_test40093_c implements ClassQueryInterface_c {
-			ActorParticipant_c_test40093_c(java.util.UUID p40094) {
-				m_p40094 = p40094;
+		class ActorParticipant_c_test40675_c implements ClassQueryInterface_c {
+			ActorParticipant_c_test40675_c(java.util.UUID p40676) {
+				m_p40676 = p40676;
 			}
-			private java.util.UUID m_p40094;
+			private java.util.UUID m_p40676;
 			public boolean evaluate(Object candidate) {
 				ActorParticipant_c selected = (ActorParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40094));
+				retval = (selected.getPart_id().equals(m_p40676));
 				return retval;
 			}
 		}
 
-		ActorParticipant_c[] objs40092 = ActorParticipant_c
+		ActorParticipant_c[] objs40674 = ActorParticipant_c
 				.ActorParticipantInstances(modelRoot,
-						new ActorParticipant_c_test40093_c(getPart_id()));
+						new ActorParticipant_c_test40675_c(getPart_id()));
 
-		if (((objs40092.length) == 0)) {
+		if (((objs40674.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Actor Participant", //$NON-NLS-1$
 								"Consistency: Object: Actor Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40092.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40674.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Actor Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40092.length), e);
+										+ Integer.toString(objs40674.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40092.length) > 1)) {
+		if (((objs40674.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1094,7 +1095,7 @@ public class ActorParticipant_c extends NonRootModelElement
 								"Actor Participant", //$NON-NLS-1$
 								"Consistency: Object: Actor Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40092.length)
+										+ Integer.toString(objs40674.length)
 										+ " Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1102,7 +1103,7 @@ public class ActorParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actor Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40092.length)
+										+ Integer.toString(objs40674.length)
 										+ " Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1111,40 +1112,40 @@ public class ActorParticipant_c extends NonRootModelElement
 
 		// Actor Participant is a subtype in association: rel.Numb = 930
 		// The supertype class is: Interaction Participant
-		class InteractionParticipant_c_test40098_c
+		class InteractionParticipant_c_test40680_c
 				implements
 					ClassQueryInterface_c {
-			InteractionParticipant_c_test40098_c(java.util.UUID p40099) {
-				m_p40099 = p40099;
+			InteractionParticipant_c_test40680_c(java.util.UUID p40681) {
+				m_p40681 = p40681;
 			}
-			private java.util.UUID m_p40099;
+			private java.util.UUID m_p40681;
 			public boolean evaluate(Object candidate) {
 				InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40099));
+				retval = (selected.getPart_id().equals(m_p40681));
 				return retval;
 			}
 		}
 
-		InteractionParticipant_c[] objs40097 = InteractionParticipant_c
+		InteractionParticipant_c[] objs40679 = InteractionParticipant_c
 				.InteractionParticipantInstances(modelRoot,
-						new InteractionParticipant_c_test40098_c(getPart_id()));
+						new InteractionParticipant_c_test40680_c(getPart_id()));
 
-		if (((objs40097.length) != 1)) {
+		if (((objs40679.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Actor Participant", //$NON-NLS-1$
 								"Consistency: Object: Actor Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40097.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40679.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Actor Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40097.length), e);
+										+ Integer.toString(objs40679.length), e);
 			}
 			retval = false;
 
@@ -1152,23 +1153,23 @@ public class ActorParticipant_c extends NonRootModelElement
 
 		// Actor Participant is a referring class in association: rel.Numb = 949
 		// The participating class is: Lifespan
-		class Lifespan_c_test40101_c implements ClassQueryInterface_c {
-			Lifespan_c_test40101_c(java.util.UUID p40102) {
-				m_p40102 = p40102;
+		class Lifespan_c_test40683_c implements ClassQueryInterface_c {
+			Lifespan_c_test40683_c(java.util.UUID p40684) {
+				m_p40684 = p40684;
 			}
-			private java.util.UUID m_p40102;
+			private java.util.UUID m_p40684;
 			public boolean evaluate(Object candidate) {
 				Lifespan_c selected = (Lifespan_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40102));
+				retval = (selected.getPart_id().equals(m_p40684));
 				return retval;
 			}
 		}
 
-		Lifespan_c[] objs40100 = Lifespan_c.LifespanInstances(modelRoot,
-				new Lifespan_c_test40101_c(getLs_part_id()));
+		Lifespan_c[] objs40682 = Lifespan_c.LifespanInstances(modelRoot,
+				new Lifespan_c_test40683_c(getLs_part_id()));
 
-		if (((objs40100.length) > 1)) {
+		if (((objs40682.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1176,7 +1177,7 @@ public class ActorParticipant_c extends NonRootModelElement
 								"Actor Participant", //$NON-NLS-1$
 								"Consistency: Object: Actor Participant: Association: 949: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40100.length)
+										+ Integer.toString(objs40682.length)
 										+ " LS_Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1184,7 +1185,7 @@ public class ActorParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actor Participant: Association: 949: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40100.length)
+										+ Integer.toString(objs40682.length)
 										+ " LS_Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -145,7 +145,8 @@ public class BridgeMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class BridgeMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((BridgeMessage_c) elem).getMsg_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((BridgeMessage_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((BridgeMessage_c) elem).getMsg_id()))
@@ -683,49 +685,49 @@ public class BridgeMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1020
-		SynchronousMessage_c relInst39660 = (SynchronousMessage_c) baseRoot
+		SynchronousMessage_c relInst40242 = (SynchronousMessage_c) baseRoot
 				.getInstanceList(SynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39660 == null) {
-			relInst39660 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
+		if (relInst40242 == null) {
+			relInst40242 = (SynchronousMessage_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39660 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40242 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39660 = (SynchronousMessage_c) roots[i].getInstanceList(
+				relInst40242 = (SynchronousMessage_c) roots[i].getInstanceList(
 						SynchronousMessage_c.class).get(new Object[]{m_msg_id});
-				if (relInst39660 != null)
+				if (relInst40242 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39660 != null) {
+		if (relInst40242 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39660) && !isProxy())) {
-				relInst39660.relateAcrossR1020To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40242) && !isProxy())) {
+				relInst40242.relateAcrossR1020To(this, notifyChanges);
 			}
 		}
 
 		if (IsInvocationOfBridge == null) {
 			// R1012
-			Bridge_c relInst39661 = (Bridge_c) baseRoot.getInstanceList(
+			Bridge_c relInst40243 = (Bridge_c) baseRoot.getInstanceList(
 					Bridge_c.class).get(new Object[]{m_brg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39661 == null) {
-				relInst39661 = (Bridge_c) Ooaofooa.getDefaultInstance()
+			if (relInst40243 == null) {
+				relInst40243 = (Bridge_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Bridge_c.class)
 						.get(new Object[]{m_brg_id});
 			}
-			if (relInst39661 == null && searchAllRoots
+			if (relInst40243 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -733,17 +735,17 @@ public class BridgeMessage_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39661 = (Bridge_c) roots[i].getInstanceList(
+					relInst40243 = (Bridge_c) roots[i].getInstanceList(
 							Bridge_c.class).get(new Object[]{m_brg_id});
-					if (relInst39661 != null)
+					if (relInst40243 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39661 != null) {
+			if (relInst40243 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39661) && !isProxy())) {
-					relInst39661.relateAcrossR1012To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40243) && !isProxy())) {
+					relInst40243.relateAcrossR1012To(this, notifyChanges);
 				}
 			}
 		}
@@ -1040,42 +1042,42 @@ public class BridgeMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class BridgeMessage_c_test39663_c implements ClassQueryInterface_c {
-			BridgeMessage_c_test39663_c(java.util.UUID p39664) {
-				m_p39664 = p39664;
+		class BridgeMessage_c_test40245_c implements ClassQueryInterface_c {
+			BridgeMessage_c_test40245_c(java.util.UUID p40246) {
+				m_p40246 = p40246;
 			}
-			private java.util.UUID m_p39664;
+			private java.util.UUID m_p40246;
 			public boolean evaluate(Object candidate) {
 				BridgeMessage_c selected = (BridgeMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39664));
+				retval = (selected.getMsg_id().equals(m_p40246));
 				return retval;
 			}
 		}
 
-		BridgeMessage_c[] objs39662 = BridgeMessage_c.BridgeMessageInstances(
-				modelRoot, new BridgeMessage_c_test39663_c(getMsg_id()));
+		BridgeMessage_c[] objs40244 = BridgeMessage_c.BridgeMessageInstances(
+				modelRoot, new BridgeMessage_c_test40245_c(getMsg_id()));
 
-		if (((objs39662.length) == 0)) {
+		if (((objs40244.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Bridge Message", //$NON-NLS-1$
 								"Consistency: Object: Bridge Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39662.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40244.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Bridge Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs39662.length), e);
+								+ Integer.toString(objs40244.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39662.length) > 1)) {
+		if (((objs40244.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1083,7 +1085,7 @@ public class BridgeMessage_c extends NonRootModelElement
 								"Bridge Message", //$NON-NLS-1$
 								"Consistency: Object: Bridge Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39662.length)
+										+ Integer.toString(objs40244.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1091,7 +1093,7 @@ public class BridgeMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Bridge Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39662.length)
+										+ Integer.toString(objs40244.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1100,23 +1102,23 @@ public class BridgeMessage_c extends NonRootModelElement
 
 		// Bridge Message is a referring class in association: rel.Numb = 1012
 		// The participating class is: Bridge
-		class Bridge_c_test39668_c implements ClassQueryInterface_c {
-			Bridge_c_test39668_c(java.util.UUID p39669) {
-				m_p39669 = p39669;
+		class Bridge_c_test40250_c implements ClassQueryInterface_c {
+			Bridge_c_test40250_c(java.util.UUID p40251) {
+				m_p40251 = p40251;
 			}
-			private java.util.UUID m_p39669;
+			private java.util.UUID m_p40251;
 			public boolean evaluate(Object candidate) {
 				Bridge_c selected = (Bridge_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBrg_id().equals(m_p39669));
+				retval = (selected.getBrg_id().equals(m_p40251));
 				return retval;
 			}
 		}
 
-		Bridge_c[] objs39667 = Bridge_c.BridgeInstances(modelRoot,
-				new Bridge_c_test39668_c(getBrg_id()));
+		Bridge_c[] objs40249 = Bridge_c.BridgeInstances(modelRoot,
+				new Bridge_c_test40250_c(getBrg_id()));
 
-		if (((objs39667.length) > 1)) {
+		if (((objs40249.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1124,7 +1126,7 @@ public class BridgeMessage_c extends NonRootModelElement
 								"Bridge Message", //$NON-NLS-1$
 								"Consistency: Object: Bridge Message: Association: 1012: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39667.length)
+										+ Integer.toString(objs40249.length)
 										+ " Brg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1132,7 +1134,7 @@ public class BridgeMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Bridge Message: Association: 1012: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39667.length)
+										+ Integer.toString(objs40249.length)
 										+ " Brg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1141,38 +1143,38 @@ public class BridgeMessage_c extends NonRootModelElement
 
 		// Bridge Message is a subtype in association: rel.Numb = 1020
 		// The supertype class is: Synchronous Message
-		class SynchronousMessage_c_test39671_c implements ClassQueryInterface_c {
-			SynchronousMessage_c_test39671_c(java.util.UUID p39672) {
-				m_p39672 = p39672;
+		class SynchronousMessage_c_test40253_c implements ClassQueryInterface_c {
+			SynchronousMessage_c_test40253_c(java.util.UUID p40254) {
+				m_p40254 = p40254;
 			}
-			private java.util.UUID m_p39672;
+			private java.util.UUID m_p40254;
 			public boolean evaluate(Object candidate) {
 				SynchronousMessage_c selected = (SynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39672));
+				retval = (selected.getMsg_id().equals(m_p40254));
 				return retval;
 			}
 		}
 
-		SynchronousMessage_c[] objs39670 = SynchronousMessage_c
+		SynchronousMessage_c[] objs40252 = SynchronousMessage_c
 				.SynchronousMessageInstances(modelRoot,
-						new SynchronousMessage_c_test39671_c(getMsg_id()));
+						new SynchronousMessage_c_test40253_c(getMsg_id()));
 
-		if (((objs39670.length) != 1)) {
+		if (((objs40252.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Bridge Message", //$NON-NLS-1$
 								"Consistency: Object: Bridge Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39670.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40252.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Bridge Message: Association: 1020: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39670.length), e);
+										+ Integer.toString(objs40252.length), e);
 			}
 			retval = false;
 
@@ -1209,8 +1211,8 @@ public class BridgeMessage_c extends NonRootModelElement
 								.getManyMSG_SMsOnR1020(this)));
 
 		MessageArgument_c v_argument = null;
-		for (int i36678 = 0; i36678 < v_arguments.length; i36678++) {
-			v_argument = v_arguments[i36678];
+		for (int i37260 = 0; i37260 < v_arguments.length; i37260++) {
+			v_argument = v_arguments[i37260];
 
 			if (v_argument != null) {
 				v_argument.Dispose();

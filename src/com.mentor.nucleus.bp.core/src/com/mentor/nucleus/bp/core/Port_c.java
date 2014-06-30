@@ -192,7 +192,7 @@ p_m_donotshowportoncanvas
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -208,7 +208,7 @@ p_m_donotshowportoncanvas
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Port_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Port_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((Port_c)elem).getId())) return false;
@@ -674,29 +674,29 @@ public static Port_c [] getManyC_POsOnR4016(InterfaceReference_c target, boolean
 
 	if (AppearsInComponent == null) {          
       // R4010
-      Component_c relInst55404 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      Component_c relInst56953 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55404 == null) {
-      			relInst55404 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      		if (relInst56953 == null) {
+      			relInst56953 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
       		}
-			if (relInst55404 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56953 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55404 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
-					if (relInst55404 != null)
+					relInst56953 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+					if (relInst56953 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55404 != null )
+      if ( relInst56953 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55404) && !isProxy())) {
-	      relInst55404.relateAcrossR4010To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56953) && !isProxy())) {
+	      relInst56953.relateAcrossR4010To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1030,56 +1030,56 @@ private static Port_c findPortInstance(ModelRoot modelRoot, ClassQueryInterface_
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Port_c_test55406_c implements ClassQueryInterface_c
+    class Port_c_test56955_c implements ClassQueryInterface_c
     {
-	  Port_c_test55406_c( java.util.UUID            p55407 ) {
-	  m_p55407 = p55407;
+	  Port_c_test56955_c( java.util.UUID            p56956 ) {
+	  m_p56956 = p56956;
 	  }
-	  private java.util.UUID             m_p55407; 
+	  private java.util.UUID             m_p56956; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Port_c selected = (Port_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55407));
+	      retval = (selected.getId().equals(m_p56956));
 	      return retval;
 	  }
     }
 
-    Port_c [] objs55405 = 
-    Port_c.PortInstances(modelRoot, new Port_c_test55406_c(getId())) ;
+    Port_c [] objs56954 = 
+    Port_c.PortInstances(modelRoot, new Port_c_test56955_c(getId())) ;
 
-    if ( (  (objs55405.length) == 0) )
+    if ( (  (objs56954.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Port", //$NON-NLS-1$
            "Consistency: Object: Port: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55405.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56954.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Port: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55405.length )  , e); 
+          + Integer.toString( objs56954.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55405.length) > 1) )
+    if ( (  (objs56954.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Port", //$NON-NLS-1$
            "Consistency: Object: Port: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55405.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56954.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Port: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55405.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56954.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1087,40 +1087,40 @@ private static Port_c findPortInstance(ModelRoot modelRoot, ClassQueryInterface_
 
           // Port is a referring class in association: rel.Numb = 4010
           // The participating class is: Component
-    class Component_c_test55411_c implements ClassQueryInterface_c
+    class Component_c_test56960_c implements ClassQueryInterface_c
     {
-	  Component_c_test55411_c( java.util.UUID            p55412 ) {
-	  m_p55412 = p55412;
+	  Component_c_test56960_c( java.util.UUID            p56961 ) {
+	  m_p56961 = p56961;
 	  }
-	  private java.util.UUID             m_p55412; 
+	  private java.util.UUID             m_p56961; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Component_c selected = (Component_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55412));
+	      retval = (selected.getId().equals(m_p56961));
 	      return retval;
 	  }
     }
 
-    Component_c [] objs55410 = 
-    Component_c.ComponentInstances(modelRoot, new Component_c_test55411_c(getComponent_id())) ;
+    Component_c [] objs56959 = 
+    Component_c.ComponentInstances(modelRoot, new Component_c_test56960_c(getComponent_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55410.length) != 1) )
+    if ( (  (objs56959.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Port", //$NON-NLS-1$
            "Consistency: Object: Port: Association: 4010: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55410.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56959.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Port: Association: 4010: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55410.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56959.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1141,9 +1141,9 @@ InterfaceReference_c [] v_irs = InterfaceReference_c.getManyC_IRsOnR4016(this);
 
 
 InterfaceReference_c  v_ir = null;
-for ( int i53656 = 0; i53656 < v_irs.length; i53656++)
+for ( int i55184 = 0; i55184 < v_irs.length; i55184++)
 {
-  v_ir = v_irs[i53656] ;
+  v_ir = v_irs[i55184] ;
 
 this.unrelateAcrossR4016From(v_ir);
 
@@ -1194,27 +1194,27 @@ int          v_count = 1 ;
 
 
 Port_c  v_port = null;
-for ( int i53657 = 0; i53657 < v_ports.length; i53657++)
+for ( int i55185 = 0; i55185 < v_ports.length; i55185++)
 {
-  v_port = v_ports[i53657] ;
+  v_port = v_ports[i55185] ;
 
 String       v_potentialName = "Port" + Gd_c.Int_to_string(			    
 v_count) ;
 
 
-  class Port_test54287_c implements ClassQueryInterface_c
+  class Port_test55836_c implements ClassQueryInterface_c
   {
-	Port_test54287_c( String       p54288 ) {
-		m_p54288 = p54288;
+	Port_test55836_c( String       p55837 ) {
+		m_p55837 = p55837;
 	}
-	private String       m_p54288;
+	private String       m_p55837;
 	public boolean evaluate (Object candidate)
 	{
 		Port_c selected = (Port_c)candidate;
-		return (selected.getName().equals(m_p54288)) ;
+		return (selected.getName().equals(m_p55837)) ;
 	}
   }
-Port_c v_otherPort = Port_c.getOneC_POOnR4010(Component_c.getManyC_CsOnR4010(this), new Port_test54287_c(v_potentialName));
+Port_c v_otherPort = Port_c.getOneC_POOnR4010(Component_c.getManyC_CsOnR4010(this), new Port_test55836_c(v_potentialName));
 
 
 if ( (  (v_otherPort == null)) )
@@ -1282,9 +1282,9 @@ InterfaceReference_c [] v_interfaceReferences = InterfaceReference_c.getManyC_IR
 
 
 InterfaceReference_c  v_interfaceReference = null;
-for ( int i53658 = 0; i53658 < v_interfaceReferences.length; i53658++)
+for ( int i55186 = 0; i55186 < v_interfaceReferences.length; i55186++)
 {
-  v_interfaceReference = v_interfaceReferences[i53658] ;
+  v_interfaceReference = v_interfaceReferences[i55186] ;
 
 if (v_interfaceReference != null) {
 v_interfaceReference.Collectreferencesforsynchronization(			    
@@ -1338,9 +1338,9 @@ Port_c [] v_ports = Port_c.getManyC_POsOnR4010(v_component);
 
 
 Port_c  v_port = null;
-for ( int i53659 = 0; i53659 < v_ports.length; i53659++)
+for ( int i55187 = 0; i55187 < v_ports.length; i55187++)
 {
-  v_port = v_ports[i53659] ;
+  v_port = v_ports[i55187] ;
 
 if ( (v_port != this && v_port.getName().equals(getName())) )
 {

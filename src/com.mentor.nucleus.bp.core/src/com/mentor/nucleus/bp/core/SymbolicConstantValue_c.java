@@ -155,7 +155,8 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -171,9 +172,9 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((SymbolicConstantValue_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((SymbolicConstantValue_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(
@@ -641,51 +642,51 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R801
-		Value_c relInst37429 = (Value_c) baseRoot
+		Value_c relInst38011 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37429 == null) {
-			relInst37429 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst38011 == null) {
+			relInst38011 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37429 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38011 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37429 = (Value_c) roots[i]
+				relInst38011 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37429 != null)
+				if (relInst38011 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37429 != null) {
+		if (relInst38011 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37429) && !isProxy())) {
-				relInst37429.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38011) && !isProxy())) {
+				relInst38011.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
 		if (SymbolicConstant == null) {
 			// R850
-			SymbolicConstant_c relInst37430 = (SymbolicConstant_c) baseRoot
+			SymbolicConstant_c relInst38012 = (SymbolicConstant_c) baseRoot
 					.getInstanceList(SymbolicConstant_c.class).get(
 							new Object[]{m_const_id, m_dt_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37430 == null) {
-				relInst37430 = (SymbolicConstant_c) Ooaofooa
+			if (relInst38012 == null) {
+				relInst38012 = (SymbolicConstant_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(SymbolicConstant_c.class)
 						.get(new Object[]{m_const_id, m_dt_id});
 			}
-			if (relInst37430 == null && searchAllRoots
+			if (relInst38012 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -693,18 +694,18 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37430 = (SymbolicConstant_c) roots[i]
+					relInst38012 = (SymbolicConstant_c) roots[i]
 							.getInstanceList(SymbolicConstant_c.class).get(
 									new Object[]{m_const_id, m_dt_id});
-					if (relInst37430 != null)
+					if (relInst38012 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37430 != null) {
+			if (relInst38012 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37430) && !isProxy())) {
-					relInst37430.relateAcrossR850To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38012) && !isProxy())) {
+					relInst38012.relateAcrossR850To(this, notifyChanges);
 				}
 			}
 		}
@@ -965,26 +966,26 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SymbolicConstantValue_c_test37432_c
+		class SymbolicConstantValue_c_test38014_c
 				implements
 					ClassQueryInterface_c {
-			SymbolicConstantValue_c_test37432_c(java.util.UUID p37433) {
-				m_p37433 = p37433;
+			SymbolicConstantValue_c_test38014_c(java.util.UUID p38015) {
+				m_p38015 = p38015;
 			}
-			private java.util.UUID m_p37433;
+			private java.util.UUID m_p38015;
 			public boolean evaluate(Object candidate) {
 				SymbolicConstantValue_c selected = (SymbolicConstantValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37433));
+				retval = (selected.getValue_id().equals(m_p38015));
 				return retval;
 			}
 		}
 
-		SymbolicConstantValue_c[] objs37431 = SymbolicConstantValue_c
+		SymbolicConstantValue_c[] objs38013 = SymbolicConstantValue_c
 				.SymbolicConstantValueInstances(modelRoot,
-						new SymbolicConstantValue_c_test37432_c(getValue_id()));
+						new SymbolicConstantValue_c_test38014_c(getValue_id()));
 
-		if (((objs37431.length) == 0)) {
+		if (((objs38013.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -992,20 +993,20 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Symbolic Constant Value", //$NON-NLS-1$
 								"Consistency: Object: Symbolic Constant Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37431.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38013.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Symbolic Constant Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37431.length), e);
+										+ Integer.toString(objs38013.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37431.length) > 1)) {
+		if (((objs38013.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1014,7 +1015,7 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 								"Symbolic Constant Value", //$NON-NLS-1$
 								"Consistency: Object: Symbolic Constant Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37431.length)
+										+ Integer.toString(objs38013.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1022,7 +1023,7 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Symbolic Constant Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37431.length)
+										+ Integer.toString(objs38013.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1031,23 +1032,23 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 
 		// Symbolic Constant Value is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37437_c implements ClassQueryInterface_c {
-			Value_c_test37437_c(java.util.UUID p37438) {
-				m_p37438 = p37438;
+		class Value_c_test38019_c implements ClassQueryInterface_c {
+			Value_c_test38019_c(java.util.UUID p38020) {
+				m_p38020 = p38020;
 			}
-			private java.util.UUID m_p37438;
+			private java.util.UUID m_p38020;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37438));
+				retval = (selected.getValue_id().equals(m_p38020));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37436 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37437_c(getValue_id()));
+		Value_c[] objs38018 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38019_c(getValue_id()));
 
-		if (((objs37436.length) != 1)) {
+		if (((objs38018.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1055,14 +1056,14 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Symbolic Constant Value", //$NON-NLS-1$
 								"Consistency: Object: Symbolic Constant Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37436.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38018.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Symbolic Constant Value: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37436.length), e);
+										+ Integer.toString(objs38018.length), e);
 			}
 			retval = false;
 
@@ -1070,31 +1071,31 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 
 		// Symbolic Constant Value is a referring class in association: rel.Numb = 850
 		// The participating class is: Symbolic Constant
-		class SymbolicConstant_c_test37440_c implements ClassQueryInterface_c {
-			SymbolicConstant_c_test37440_c(java.util.UUID p37441,
-					java.util.UUID p37442) {
-				m_p37441 = p37441;
-				m_p37442 = p37442;
+		class SymbolicConstant_c_test38022_c implements ClassQueryInterface_c {
+			SymbolicConstant_c_test38022_c(java.util.UUID p38023,
+					java.util.UUID p38024) {
+				m_p38023 = p38023;
+				m_p38024 = p38024;
 			}
-			private java.util.UUID m_p37441;
-			private java.util.UUID m_p37442;
+			private java.util.UUID m_p38023;
+			private java.util.UUID m_p38024;
 			public boolean evaluate(Object candidate) {
 				SymbolicConstant_c selected = (SymbolicConstant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getConst_id().equals(m_p37441))
-						& (selected.getDt_id().equals(m_p37442));
+				retval = (selected.getConst_id().equals(m_p38023))
+						& (selected.getDt_id().equals(m_p38024));
 				return retval;
 			}
 		}
 
-		SymbolicConstant_c[] objs37439 = SymbolicConstant_c
+		SymbolicConstant_c[] objs38021 = SymbolicConstant_c
 				.SymbolicConstantInstances(modelRoot,
-						new SymbolicConstant_c_test37440_c(getConst_id(),
+						new SymbolicConstant_c_test38022_c(getConst_id(),
 								getDt_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37439.length) != 1)) {
+		if (((objs38021.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1103,7 +1104,7 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 								"Symbolic Constant Value", //$NON-NLS-1$
 								"Consistency: Object: Symbolic Constant Value: Association: 850: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37439.length)
+										+ Integer.toString(objs38021.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1111,7 +1112,7 @@ public class SymbolicConstantValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Symbolic Constant Value: Association: 850: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37439.length)
+										+ Integer.toString(objs38021.length)
 										+ " Const_ID: " + "Not Printable" + " DT_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

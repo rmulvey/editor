@@ -167,7 +167,7 @@ p_m_descrip
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -183,7 +183,7 @@ p_m_descrip
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ImportedProvision_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ImportedProvision_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((ImportedProvision_c)elem).getId())) return false;
@@ -629,29 +629,29 @@ public static ImportedProvision_c getOneCL_IPOnR4705(Satisfaction_c target,
         ModelRoot baseRoot = modelRoot;
 
       // R4703
-      ImportedReference_c relInst55735 = (ImportedReference_c) baseRoot.getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
+      ImportedReference_c relInst57284 = (ImportedReference_c) baseRoot.getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55735 == null) {
-      			relInst55735 = (ImportedReference_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
+      		if (relInst57284 == null) {
+      			relInst57284 = (ImportedReference_c) Ooaofooa.getDefaultInstance().getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55735 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57284 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55735 = (ImportedReference_c) roots[i].getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
-					if (relInst55735 != null)
+					relInst57284 = (ImportedReference_c) roots[i].getInstanceList(ImportedReference_c.class).get(new Object[] {m_id});
+					if (relInst57284 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55735 != null )
+      if ( relInst57284 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55735) && !isProxy())) {
-	      relInst55735.relateAcrossR4703To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57284) && !isProxy())) {
+	      relInst57284.relateAcrossR4703To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -953,56 +953,56 @@ return v_name;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ImportedProvision_c_test55737_c implements ClassQueryInterface_c
+    class ImportedProvision_c_test57286_c implements ClassQueryInterface_c
     {
-	  ImportedProvision_c_test55737_c( java.util.UUID            p55738 ) {
-	  m_p55738 = p55738;
+	  ImportedProvision_c_test57286_c( java.util.UUID            p57287 ) {
+	  m_p57287 = p57287;
 	  }
-	  private java.util.UUID             m_p55738; 
+	  private java.util.UUID             m_p57287; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedProvision_c selected = (ImportedProvision_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55738));
+	      retval = (selected.getId().equals(m_p57287));
 	      return retval;
 	  }
     }
 
-    ImportedProvision_c [] objs55736 = 
-    ImportedProvision_c.ImportedProvisionInstances(modelRoot, new ImportedProvision_c_test55737_c(getId())) ;
+    ImportedProvision_c [] objs57285 = 
+    ImportedProvision_c.ImportedProvisionInstances(modelRoot, new ImportedProvision_c_test57286_c(getId())) ;
 
-    if ( (  (objs55736.length) == 0) )
+    if ( (  (objs57285.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Provision", //$NON-NLS-1$
            "Consistency: Object: Imported Provision: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55736.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57285.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Provision: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55736.length )  , e); 
+          + Integer.toString( objs57285.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55736.length) > 1) )
+    if ( (  (objs57285.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Provision", //$NON-NLS-1$
            "Consistency: Object: Imported Provision: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55736.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57285.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Provision: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55736.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57285.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1010,37 +1010,37 @@ return v_name;
 
           // Imported Provision is a subtype in association: rel.Numb = 4703
           // The supertype class is: Imported Reference
-    class ImportedReference_c_test55742_c implements ClassQueryInterface_c
+    class ImportedReference_c_test57291_c implements ClassQueryInterface_c
     {
-	  ImportedReference_c_test55742_c( java.util.UUID            p55743 ) {
-	  m_p55743 = p55743;
+	  ImportedReference_c_test57291_c( java.util.UUID            p57292 ) {
+	  m_p57292 = p57292;
 	  }
-	  private java.util.UUID             m_p55743; 
+	  private java.util.UUID             m_p57292; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ImportedReference_c selected = (ImportedReference_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55743));
+	      retval = (selected.getId().equals(m_p57292));
 	      return retval;
 	  }
     }
 
-    ImportedReference_c [] objs55741 = 
-    ImportedReference_c.ImportedReferenceInstances(modelRoot, new ImportedReference_c_test55742_c(getId())) ;
+    ImportedReference_c [] objs57290 = 
+    ImportedReference_c.ImportedReferenceInstances(modelRoot, new ImportedReference_c_test57291_c(getId())) ;
 
-    if ( (  (objs55741.length) != 1) )
+    if ( (  (objs57290.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Imported Provision", //$NON-NLS-1$
            "Consistency: Object: Imported Provision: Association: 4703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55741.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57290.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Imported Provision: Association: 4703: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55741.length )  , e); 
+          + Integer.toString( objs57290.length )  , e); 
       }
       retval = false;
 
@@ -1228,9 +1228,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4705(ImportedP
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53834 = 0; i53834 < v_satisfactions.length; i53834++)
+for ( int i55364 = 0; i55364 < v_satisfactions.length; i55364++)
 {
-  v_satisfaction = v_satisfactions[i53834] ;
+  v_satisfaction = v_satisfactions[i55364] ;
 
 ImportedProvisionInSatisfaction_c v_ipins = ImportedProvisionInSatisfaction_c.getOneCL_IPINSOnR4705(v_satisfaction);
 

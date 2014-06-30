@@ -154,7 +154,8 @@ public class WhileStmt_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,9 +171,9 @@ public class WhileStmt_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((WhileStmt_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((WhileStmt_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((WhileStmt_c) elem).getStatement_id()))
@@ -763,48 +764,48 @@ public class WhileStmt_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R603
-		Statement_c relInst56074 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst57623 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56074 == null) {
-			relInst56074 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst57623 == null) {
+			relInst57623 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst56074 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57623 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56074 = (Statement_c) roots[i].getInstanceList(
+				relInst57623 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst56074 != null)
+				if (relInst57623 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56074 != null) {
+		if (relInst57623 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56074) && !isProxy())) {
-				relInst56074.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57623) && !isProxy())) {
+				relInst57623.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
 		if (ControlsBlock == null) {
 			// R608
-			Block_c relInst56075 = (Block_c) baseRoot.getInstanceList(
+			Block_c relInst57624 = (Block_c) baseRoot.getInstanceList(
 					Block_c.class).get(new Object[]{m_block_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56075 == null) {
-				relInst56075 = (Block_c) Ooaofooa.getDefaultInstance()
+			if (relInst57624 == null) {
+				relInst57624 = (Block_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Block_c.class)
 						.get(new Object[]{m_block_id});
 			}
-			if (relInst56075 == null && searchAllRoots
+			if (relInst57624 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -812,33 +813,33 @@ public class WhileStmt_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56075 = (Block_c) roots[i].getInstanceList(
+					relInst57624 = (Block_c) roots[i].getInstanceList(
 							Block_c.class).get(new Object[]{m_block_id});
-					if (relInst56075 != null)
+					if (relInst57624 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56075 != null) {
+			if (relInst57624 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56075) && !isProxy())) {
-					relInst56075.relateAcrossR608To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57624) && !isProxy())) {
+					relInst57624.relateAcrossR608To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (ContinueResultValue == null) {
 			// R626
-			Value_c relInst56076 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst57625 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst56076 == null) {
-				relInst56076 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst57625 == null) {
+				relInst57625 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_value_id});
 			}
-			if (relInst56076 == null && searchAllRoots
+			if (relInst57625 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -846,17 +847,17 @@ public class WhileStmt_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst56076 = (Value_c) roots[i].getInstanceList(
+					relInst57625 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_value_id});
-					if (relInst56076 != null)
+					if (relInst57625 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst56076 != null) {
+			if (relInst57625 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst56076) && !isProxy())) {
-					relInst56076.relateAcrossR626To(this, notifyChanges);
+						|| (inSameComponent(this, relInst57625) && !isProxy())) {
+					relInst57625.relateAcrossR626To(this, notifyChanges);
 				}
 			}
 		}
@@ -1116,42 +1117,42 @@ public class WhileStmt_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class WhileStmt_c_test56078_c implements ClassQueryInterface_c {
-			WhileStmt_c_test56078_c(java.util.UUID p56079) {
-				m_p56079 = p56079;
+		class WhileStmt_c_test57627_c implements ClassQueryInterface_c {
+			WhileStmt_c_test57627_c(java.util.UUID p57628) {
+				m_p57628 = p57628;
 			}
-			private java.util.UUID m_p56079;
+			private java.util.UUID m_p57628;
 			public boolean evaluate(Object candidate) {
 				WhileStmt_c selected = (WhileStmt_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56079));
+				retval = (selected.getStatement_id().equals(m_p57628));
 				return retval;
 			}
 		}
 
-		WhileStmt_c[] objs56077 = WhileStmt_c.WhileStmtInstances(modelRoot,
-				new WhileStmt_c_test56078_c(getStatement_id()));
+		WhileStmt_c[] objs57626 = WhileStmt_c.WhileStmtInstances(modelRoot,
+				new WhileStmt_c_test57627_c(getStatement_id()));
 
-		if (((objs56077.length) == 0)) {
+		if (((objs57626.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"While Stmt", //$NON-NLS-1$
 								"Consistency: Object: While Stmt: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56077.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57626.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: While Stmt: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56077.length), e);
+								+ Integer.toString(objs57626.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56077.length) > 1)) {
+		if (((objs57626.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1159,7 +1160,7 @@ public class WhileStmt_c extends NonRootModelElement
 								"While Stmt", //$NON-NLS-1$
 								"Consistency: Object: While Stmt: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56077.length)
+										+ Integer.toString(objs57626.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1167,7 +1168,7 @@ public class WhileStmt_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: While Stmt: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56077.length)
+										+ Integer.toString(objs57626.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1176,37 +1177,37 @@ public class WhileStmt_c extends NonRootModelElement
 
 		// While Stmt is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test56083_c implements ClassQueryInterface_c {
-			Statement_c_test56083_c(java.util.UUID p56084) {
-				m_p56084 = p56084;
+		class Statement_c_test57632_c implements ClassQueryInterface_c {
+			Statement_c_test57632_c(java.util.UUID p57633) {
+				m_p57633 = p57633;
 			}
-			private java.util.UUID m_p56084;
+			private java.util.UUID m_p57633;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p56084));
+				retval = (selected.getStatement_id().equals(m_p57633));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs56082 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test56083_c(getStatement_id()));
+		Statement_c[] objs57631 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test57632_c(getStatement_id()));
 
-		if (((objs56082.length) != 1)) {
+		if (((objs57631.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"While Stmt", //$NON-NLS-1$
 								"Consistency: Object: While Stmt: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56082.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57631.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: While Stmt: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56082.length), e);
+										+ Integer.toString(objs57631.length), e);
 			}
 			retval = false;
 
@@ -1214,25 +1215,25 @@ public class WhileStmt_c extends NonRootModelElement
 
 		// While Stmt is a referring class in association: rel.Numb = 626
 		// The participating class is: Value
-		class Value_c_test56086_c implements ClassQueryInterface_c {
-			Value_c_test56086_c(java.util.UUID p56087) {
-				m_p56087 = p56087;
+		class Value_c_test57635_c implements ClassQueryInterface_c {
+			Value_c_test57635_c(java.util.UUID p57636) {
+				m_p57636 = p57636;
 			}
-			private java.util.UUID m_p56087;
+			private java.util.UUID m_p57636;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p56087));
+				retval = (selected.getValue_id().equals(m_p57636));
 				return retval;
 			}
 		}
 
-		Value_c[] objs56085 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test56086_c(getValue_id()));
+		Value_c[] objs57634 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test57635_c(getValue_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56085.length) != 1)) {
+		if (((objs57634.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1240,7 +1241,7 @@ public class WhileStmt_c extends NonRootModelElement
 								"While Stmt", //$NON-NLS-1$
 								"Consistency: Object: While Stmt: Association: 626: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56085.length)
+										+ Integer.toString(objs57634.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1248,7 +1249,7 @@ public class WhileStmt_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: While Stmt: Association: 626: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56085.length)
+										+ Integer.toString(objs57634.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1257,25 +1258,25 @@ public class WhileStmt_c extends NonRootModelElement
 
 		// While Stmt is a referring class in association: rel.Numb = 608
 		// The participating class is: Block
-		class Block_c_test56089_c implements ClassQueryInterface_c {
-			Block_c_test56089_c(java.util.UUID p56090) {
-				m_p56090 = p56090;
+		class Block_c_test57638_c implements ClassQueryInterface_c {
+			Block_c_test57638_c(java.util.UUID p57639) {
+				m_p57639 = p57639;
 			}
-			private java.util.UUID m_p56090;
+			private java.util.UUID m_p57639;
 			public boolean evaluate(Object candidate) {
 				Block_c selected = (Block_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBlock_id().equals(m_p56090));
+				retval = (selected.getBlock_id().equals(m_p57639));
 				return retval;
 			}
 		}
 
-		Block_c[] objs56088 = Block_c.BlockInstances(modelRoot,
-				new Block_c_test56089_c(getBlock_id()));
+		Block_c[] objs57637 = Block_c.BlockInstances(modelRoot,
+				new Block_c_test57638_c(getBlock_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs56088.length) != 1)) {
+		if (((objs57637.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1283,7 +1284,7 @@ public class WhileStmt_c extends NonRootModelElement
 								"While Stmt", //$NON-NLS-1$
 								"Consistency: Object: While Stmt: Association: 608: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56088.length)
+										+ Integer.toString(objs57637.length)
 										+ " Block_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1291,7 +1292,7 @@ public class WhileStmt_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: While Stmt: Association: 608: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56088.length)
+										+ Integer.toString(objs57637.length)
 										+ " Block_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

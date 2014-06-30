@@ -176,7 +176,7 @@ p_m_smspd_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -192,21 +192,21 @@ p_m_smspd_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSmevt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSmevt_id())) && this != elem)) {
       	return false;
       }
       if (!getSmevt_id().equals(((SemEvent_c)elem).getSmevt_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((SemEvent_c)elem).getSm_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSmspd_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID.equals(((SemEvent_c)elem).getSmspd_id())) && this != elem)) {
       	return false;
       }
       if (!getSmspd_id().equals(((SemEvent_c)elem).getSmspd_id())) return false;
@@ -1246,7 +1246,7 @@ public static SemEvent_c [] getManySM_SEVTsOnR526(LocalEvent_c target, boolean l
 
       // R525
 	  instances = baseRoot.getInstanceList(StateMachineEvent_c.class);
-      StateMachineEvent_c relInst38444 = null;
+      StateMachineEvent_c relInst39026 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -1255,16 +1255,16 @@ public static SemEvent_c [] getManySM_SEVTsOnR526(LocalEvent_c target, boolean l
            if (     source.getSm_idCachedValue().equals(m_sm_id) && 
      source.getSmevt_id().equals(m_smevt_id) && 
      source.getSmspd_idCachedValue().equals(m_smspd_id) 		){
-  		relInst38444 = source;
+  		relInst39026 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst38444 != null )
+      if ( relInst39026 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38444) && !isProxy())) {
-	      relInst38444.relateAcrossR525To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39026) && !isProxy())) {
+	      relInst39026.relateAcrossR525To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1639,58 +1639,58 @@ private static SemEvent_c findSemEventInstance(ModelRoot modelRoot, ClassQueryIn
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class SemEvent_c_test38446_c implements ClassQueryInterface_c
+    class SemEvent_c_test39028_c implements ClassQueryInterface_c
     {
-	  SemEvent_c_test38446_c( java.util.UUID            p38447, java.util.UUID            p38448, java.util.UUID            p38449 ) {
-	            m_p38447 = p38447; 
-m_p38448 = p38448; 
-m_p38449 = p38449;
+	  SemEvent_c_test39028_c( java.util.UUID            p39029, java.util.UUID            p39030, java.util.UUID            p39031 ) {
+	            m_p39029 = p39029; 
+m_p39030 = p39030; 
+m_p39031 = p39031;
 	  }
-	  private java.util.UUID             m_p38447; private java.util.UUID             m_p38448; private java.util.UUID             m_p38449; 
+	  private java.util.UUID             m_p39029; private java.util.UUID             m_p39030; private java.util.UUID             m_p39031; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SemEvent_c selected = (SemEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38447)) & (selected.getSm_id().equals(m_p38448)) & (selected.getSmspd_id().equals(m_p38449));
+	      retval = (selected.getSmevt_id().equals(m_p39029)) & (selected.getSm_id().equals(m_p39030)) & (selected.getSmspd_id().equals(m_p39031));
 	      return retval;
 	  }
     }
 
-    SemEvent_c [] objs38445 = 
-    SemEvent_c.SemEventInstances(modelRoot, new SemEvent_c_test38446_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    SemEvent_c [] objs39027 = 
+    SemEvent_c.SemEventInstances(modelRoot, new SemEvent_c_test39028_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
 
-    if ( (  (objs38445.length) == 0) )
+    if ( (  (objs39027.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SEM Event", //$NON-NLS-1$
            "Consistency: Object: SEM Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38445.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39027.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SEM Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38445.length )  , e); 
+          + Integer.toString( objs39027.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38445.length) > 1) )
+    if ( (  (objs39027.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SEM Event", //$NON-NLS-1$
            "Consistency: Object: SEM Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38445.length )  + " SMevt_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39027.length )  + " SMevt_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SEM Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38445.length )  + " SMevt_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39027.length )  + " SMevt_ID: " + "Not Printable"  + " SM_ID: " + "Not Printable"  + " SMspd_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1698,39 +1698,39 @@ m_p38449 = p38449;
 
           // SEM Event is a subtype in association: rel.Numb = 525
           // The supertype class is: State Machine Event
-    class StateMachineEvent_c_test38453_c implements ClassQueryInterface_c
+    class StateMachineEvent_c_test39035_c implements ClassQueryInterface_c
     {
-	  StateMachineEvent_c_test38453_c( java.util.UUID            p38454, java.util.UUID            p38455, java.util.UUID            p38456 ) {
-	            m_p38454 = p38454; 
-m_p38455 = p38455; 
-m_p38456 = p38456;
+	  StateMachineEvent_c_test39035_c( java.util.UUID            p39036, java.util.UUID            p39037, java.util.UUID            p39038 ) {
+	            m_p39036 = p39036; 
+m_p39037 = p39037; 
+m_p39038 = p39038;
 	  }
-	  private java.util.UUID             m_p38454; private java.util.UUID             m_p38455; private java.util.UUID             m_p38456; 
+	  private java.util.UUID             m_p39036; private java.util.UUID             m_p39037; private java.util.UUID             m_p39038; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38454)) & (selected.getSm_id().equals(m_p38455)) & (selected.getSmspd_id().equals(m_p38456));
+	      retval = (selected.getSmevt_id().equals(m_p39036)) & (selected.getSm_id().equals(m_p39037)) & (selected.getSmspd_id().equals(m_p39038));
 	      return retval;
 	  }
     }
 
-    StateMachineEvent_c [] objs38452 = 
-    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test38453_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    StateMachineEvent_c [] objs39034 = 
+    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test39035_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
 
-    if ( (  (objs38452.length) != 1) )
+    if ( (  (objs39034.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SEM Event", //$NON-NLS-1$
            "Consistency: Object: SEM Event: Association: 525: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38452.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39034.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SEM Event: Association: 525: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38452.length )  , e); 
+          + Integer.toString( objs39034.length )  , e); 
       }
       retval = false;
 
@@ -1739,86 +1739,86 @@ m_p38456 = p38456;
           // Associated Other Side: rel.Numb = 503
             // Link Object: State Event Matrix Entry
           // Supertype: rel.Numb = 526
-    int objs38457 = 0;
+    int objs39039 = 0;
             // Subtype Object: Signal Event
-    class SignalEvent_c_test38458_c implements ClassQueryInterface_c
+    class SignalEvent_c_test39040_c implements ClassQueryInterface_c
     {
-	  SignalEvent_c_test38458_c( java.util.UUID            p38459, java.util.UUID            p38460, java.util.UUID            p38461 ) {
-	            m_p38459 = p38459; 
-m_p38460 = p38460; 
-m_p38461 = p38461;
+	  SignalEvent_c_test39040_c( java.util.UUID            p39041, java.util.UUID            p39042, java.util.UUID            p39043 ) {
+	            m_p39041 = p39041; 
+m_p39042 = p39042; 
+m_p39043 = p39043;
 	  }
-	  private java.util.UUID             m_p38459; private java.util.UUID             m_p38460; private java.util.UUID             m_p38461; 
+	  private java.util.UUID             m_p39041; private java.util.UUID             m_p39042; private java.util.UUID             m_p39043; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SignalEvent_c selected = (SignalEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38459)) & (selected.getSm_id().equals(m_p38460)) & (selected.getSmspd_id().equals(m_p38461));
+	      retval = (selected.getSmevt_id().equals(m_p39041)) & (selected.getSm_id().equals(m_p39042)) & (selected.getSmspd_id().equals(m_p39043));
 	      return retval;
 	  }
     }
 
-    SignalEvent_c [] objs38462 = 
-    SignalEvent_c.SignalEventInstances(modelRoot, new SignalEvent_c_test38458_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    SignalEvent_c [] objs39044 = 
+    SignalEvent_c.SignalEventInstances(modelRoot, new SignalEvent_c_test39040_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
  
-    objs38457 = objs38457 + objs38462.length;
+    objs39039 = objs39039 + objs39044.length;
             // Subtype Object: Non Local Event
-    class NonLocalEvent_c_test38463_c implements ClassQueryInterface_c
+    class NonLocalEvent_c_test39045_c implements ClassQueryInterface_c
     {
-	  NonLocalEvent_c_test38463_c( java.util.UUID            p38464, java.util.UUID            p38465, java.util.UUID            p38466 ) {
-	            m_p38464 = p38464; 
-m_p38465 = p38465; 
-m_p38466 = p38466;
+	  NonLocalEvent_c_test39045_c( java.util.UUID            p39046, java.util.UUID            p39047, java.util.UUID            p39048 ) {
+	            m_p39046 = p39046; 
+m_p39047 = p39047; 
+m_p39048 = p39048;
 	  }
-	  private java.util.UUID             m_p38464; private java.util.UUID             m_p38465; private java.util.UUID             m_p38466; 
+	  private java.util.UUID             m_p39046; private java.util.UUID             m_p39047; private java.util.UUID             m_p39048; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      NonLocalEvent_c selected = (NonLocalEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38464)) & (selected.getSm_id().equals(m_p38465)) & (selected.getSmspd_id().equals(m_p38466));
+	      retval = (selected.getSmevt_id().equals(m_p39046)) & (selected.getSm_id().equals(m_p39047)) & (selected.getSmspd_id().equals(m_p39048));
 	      return retval;
 	  }
     }
 
-    NonLocalEvent_c [] objs38467 = 
-    NonLocalEvent_c.NonLocalEventInstances(modelRoot, new NonLocalEvent_c_test38463_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    NonLocalEvent_c [] objs39049 = 
+    NonLocalEvent_c.NonLocalEventInstances(modelRoot, new NonLocalEvent_c_test39045_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
  
-    objs38457 = objs38457 + objs38467.length;
+    objs39039 = objs39039 + objs39049.length;
             // Subtype Object: Local Event
-    class LocalEvent_c_test38468_c implements ClassQueryInterface_c
+    class LocalEvent_c_test39050_c implements ClassQueryInterface_c
     {
-	  LocalEvent_c_test38468_c( java.util.UUID            p38469, java.util.UUID            p38470, java.util.UUID            p38471 ) {
-	            m_p38469 = p38469; 
-m_p38470 = p38470; 
-m_p38471 = p38471;
+	  LocalEvent_c_test39050_c( java.util.UUID            p39051, java.util.UUID            p39052, java.util.UUID            p39053 ) {
+	            m_p39051 = p39051; 
+m_p39052 = p39052; 
+m_p39053 = p39053;
 	  }
-	  private java.util.UUID             m_p38469; private java.util.UUID             m_p38470; private java.util.UUID             m_p38471; 
+	  private java.util.UUID             m_p39051; private java.util.UUID             m_p39052; private java.util.UUID             m_p39053; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      LocalEvent_c selected = (LocalEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38469)) & (selected.getSm_id().equals(m_p38470)) & (selected.getSmspd_id().equals(m_p38471));
+	      retval = (selected.getSmevt_id().equals(m_p39051)) & (selected.getSm_id().equals(m_p39052)) & (selected.getSmspd_id().equals(m_p39053));
 	      return retval;
 	  }
     }
 
-    LocalEvent_c [] objs38472 = 
-    LocalEvent_c.LocalEventInstances(modelRoot, new LocalEvent_c_test38468_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    LocalEvent_c [] objs39054 = 
+    LocalEvent_c.LocalEventInstances(modelRoot, new LocalEvent_c_test39050_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
  
-    objs38457 = objs38457 + objs38472.length;
-    if ( objs38457 != 1 )
+    objs39039 = objs39039 + objs39054.length;
+    if ( objs39039 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "SEM Event", //$NON-NLS-1$
            "Consistency: Object: SEM Event: Association: 526: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38457 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39039 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: SEM Event: Association: 526: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38457 )  , e); 
+          + Integer.toString( objs39039 )  , e); 
       }
       retval = false;
 
@@ -1843,9 +1843,9 @@ StateEventMatrixEntry_c [] v_semes = StateEventMatrixEntry_c.getManySM_SEMEsOnR5
 
 
 StateEventMatrixEntry_c  v_seme = null;
-for ( int i36627 = 0; i36627 < v_semes.length; i36627++)
+for ( int i37209 = 0; i37209 < v_semes.length; i37209++)
 {
-  v_seme = v_semes[i36627] ;
+  v_seme = v_semes[i37209] ;
 
 if (v_seme != null) {
 v_seme.Dispose() ;
@@ -1932,9 +1932,9 @@ StateMachineState_c [] v_states = StateMachineState_c.getManySM_STATEsOnR501(Sta
 
 
 StateMachineState_c  v_state = null;
-for ( int i36628 = 0; i36628 < v_states.length; i36628++)
+for ( int i37210 = 0; i37210 < v_states.length; i37210++)
 {
-  v_state = v_states[i36628] ;
+  v_state = v_states[i37210] ;
 
 StateEventMatrixEntry_c v_entry = new StateEventMatrixEntry_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_entry));

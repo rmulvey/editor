@@ -1297,7 +1297,7 @@ p_m_realized_class_path
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -1313,7 +1313,7 @@ p_m_realized_class_path
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Component_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((Component_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((Component_c)elem).getId())) return false;
@@ -5824,58 +5824,58 @@ public static Component_c [] getManyC_CsOnR1115(Activity_c target, boolean loadC
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst55525 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      PackageableElement_c relInst57074 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55525 == null) {
-      			relInst55525 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+      		if (relInst57074 == null) {
+      			relInst57074 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55525 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57074 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55525 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
-					if (relInst55525 != null)
+					relInst57074 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_id});
+					if (relInst57074 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55525 != null )
+      if ( relInst57074 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55525) && !isProxy())) {
-	      relInst55525.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57074) && !isProxy())) {
+	      relInst57074.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (MayExistInComponentPackage == null) {          
       // R4604
-      ComponentPackage_c relInst55526 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
+      ComponentPackage_c relInst57075 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55526 == null) {
-      			relInst55526 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
+      		if (relInst57075 == null) {
+      			relInst57075 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst55526 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57075 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55526 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
-					if (relInst55526 != null)
+					relInst57075 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_package_id});
+					if (relInst57075 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55526 != null )
+      if ( relInst57075 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55526) && !isProxy())) {
-	      relInst55526.relateAcrossR4604To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57075) && !isProxy())) {
+	      relInst57075.relateAcrossR4604To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -5883,29 +5883,29 @@ public static Component_c [] getManyC_CsOnR1115(Activity_c target, boolean loadC
 
 	if (HasRootComponentPackage == null) {          
       // R4608
-      ComponentPackage_c relInst55527 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
+      ComponentPackage_c relInst57076 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55527 == null) {
-      			relInst55527 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
+      		if (relInst57076 == null) {
+      			relInst57076 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
       		}
-			if (relInst55527 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57076 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55527 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
-					if (relInst55527 != null)
+					relInst57076 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_root_package_id});
+					if (relInst57076 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55527 != null )
+      if ( relInst57076 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55527) && !isProxy())) {
-	      relInst55527.relateAcrossR4608To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57076) && !isProxy())) {
+	      relInst57076.relateAcrossR4608To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -5913,29 +5913,29 @@ public static Component_c [] getManyC_CsOnR1115(Activity_c target, boolean loadC
 
 	if (IsNestedThroughComponentInComponent == null) {          
       // R4203
-      ComponentInComponent_c relInst55528 = (ComponentInComponent_c) baseRoot.getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
+      ComponentInComponent_c relInst57077 = (ComponentInComponent_c) baseRoot.getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55528 == null) {
-      			relInst55528 = (ComponentInComponent_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
+      		if (relInst57077 == null) {
+      			relInst57077 = (ComponentInComponent_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
       		}
-			if (relInst55528 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57077 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55528 = (ComponentInComponent_c) roots[i].getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
-					if (relInst55528 != null)
+					relInst57077 = (ComponentInComponent_c) roots[i].getInstanceList(ComponentInComponent_c.class).get(new Object[] {m_nestedcomponent_id});
+					if (relInst57077 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55528 != null )
+      if ( relInst57077 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55528) && !isProxy())) {
-	      relInst55528.relateAcrossR4203To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57077) && !isProxy())) {
+	      relInst57077.relateAcrossR4203To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -6658,56 +6658,56 @@ return v_result;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Component_c_test55530_c implements ClassQueryInterface_c
+    class Component_c_test57079_c implements ClassQueryInterface_c
     {
-	  Component_c_test55530_c( java.util.UUID            p55531 ) {
-	  m_p55531 = p55531;
+	  Component_c_test57079_c( java.util.UUID            p57080 ) {
+	  m_p57080 = p57080;
 	  }
-	  private java.util.UUID             m_p55531; 
+	  private java.util.UUID             m_p57080; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Component_c selected = (Component_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55531));
+	      retval = (selected.getId().equals(m_p57080));
 	      return retval;
 	  }
     }
 
-    Component_c [] objs55529 = 
-    Component_c.ComponentInstances(modelRoot, new Component_c_test55530_c(getId())) ;
+    Component_c [] objs57078 = 
+    Component_c.ComponentInstances(modelRoot, new Component_c_test57079_c(getId())) ;
 
-    if ( (  (objs55529.length) == 0) )
+    if ( (  (objs57078.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component", //$NON-NLS-1$
            "Consistency: Object: Component: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55529.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57078.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55529.length )  , e); 
+          + Integer.toString( objs57078.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55529.length) > 1) )
+    if ( (  (objs57078.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component", //$NON-NLS-1$
            "Consistency: Object: Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55529.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57078.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55529.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57078.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6715,38 +6715,38 @@ return v_result;
 
           // Component is a referring class in association: rel.Numb = 4203
           // The participating class is: Component in Component
-    class ComponentInComponent_c_test55535_c implements ClassQueryInterface_c
+    class ComponentInComponent_c_test57084_c implements ClassQueryInterface_c
     {
-	  ComponentInComponent_c_test55535_c( java.util.UUID            p55536 ) {
-	  m_p55536 = p55536;
+	  ComponentInComponent_c_test57084_c( java.util.UUID            p57085 ) {
+	  m_p57085 = p57085;
 	  }
-	  private java.util.UUID             m_p55536; 
+	  private java.util.UUID             m_p57085; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInComponent_c selected = (ComponentInComponent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55536));
+	      retval = (selected.getId().equals(m_p57085));
 	      return retval;
 	  }
     }
 
-    ComponentInComponent_c [] objs55534 = 
-    ComponentInComponent_c.ComponentInComponentInstances(modelRoot, new ComponentInComponent_c_test55535_c(getNestedcomponent_id())) ;
+    ComponentInComponent_c [] objs57083 = 
+    ComponentInComponent_c.ComponentInComponentInstances(modelRoot, new ComponentInComponent_c_test57084_c(getNestedcomponent_id())) ;
 
-    if ( (  (objs55534.length) > 1) )
+    if ( (  (objs57083.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component", //$NON-NLS-1$
            "Consistency: Object: Component: Association: 4203: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55534.length )  + " NestedComponent_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57083.length )  + " NestedComponent_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component: Association: 4203: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55534.length )  + " NestedComponent_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57083.length )  + " NestedComponent_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6754,38 +6754,38 @@ return v_result;
                 
           // Component is a referring class in association: rel.Numb = 4604
           // The participating class is: Component Package
-    class ComponentPackage_c_test55538_c implements ClassQueryInterface_c
+    class ComponentPackage_c_test57087_c implements ClassQueryInterface_c
     {
-	  ComponentPackage_c_test55538_c( java.util.UUID            p55539 ) {
-	  m_p55539 = p55539;
+	  ComponentPackage_c_test57087_c( java.util.UUID            p57088 ) {
+	  m_p57088 = p57088;
 	  }
-	  private java.util.UUID             m_p55539; 
+	  private java.util.UUID             m_p57088; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentPackage_c selected = (ComponentPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55539));
+	      retval = (selected.getPackage_id().equals(m_p57088));
 	      return retval;
 	  }
     }
 
-    ComponentPackage_c [] objs55537 = 
-    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test55538_c(getPackage_id())) ;
+    ComponentPackage_c [] objs57086 = 
+    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test57087_c(getPackage_id())) ;
 
-    if ( (  (objs55537.length) > 1) )
+    if ( (  (objs57086.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component", //$NON-NLS-1$
            "Consistency: Object: Component: Association: 4604: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55537.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57086.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component: Association: 4604: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55537.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57086.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6793,38 +6793,38 @@ return v_result;
                 
           // Component is a referring class in association: rel.Numb = 4608
           // The participating class is: Component Package
-    class ComponentPackage_c_test55541_c implements ClassQueryInterface_c
+    class ComponentPackage_c_test57090_c implements ClassQueryInterface_c
     {
-	  ComponentPackage_c_test55541_c( java.util.UUID            p55542 ) {
-	  m_p55542 = p55542;
+	  ComponentPackage_c_test57090_c( java.util.UUID            p57091 ) {
+	  m_p57091 = p57091;
 	  }
-	  private java.util.UUID             m_p55542; 
+	  private java.util.UUID             m_p57091; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentPackage_c selected = (ComponentPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55542));
+	      retval = (selected.getPackage_id().equals(m_p57091));
 	      return retval;
 	  }
     }
 
-    ComponentPackage_c [] objs55540 = 
-    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test55541_c(getRoot_package_id())) ;
+    ComponentPackage_c [] objs57089 = 
+    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test57090_c(getRoot_package_id())) ;
 
-    if ( (  (objs55540.length) > 1) )
+    if ( (  (objs57089.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component", //$NON-NLS-1$
            "Consistency: Object: Component: Association: 4608: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55540.length )  + " Root_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57089.length )  + " Root_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component: Association: 4608: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55540.length )  + " Root_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57089.length )  + " Root_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -6934,9 +6934,9 @@ ComponentReference_c [] v_importedComponents = ComponentReference_c.getManyCL_IC
 
 
 ComponentReference_c  v_importedComponent = null;
-for ( int i53722 = 0; i53722 < v_importedComponents.length; i53722++)
+for ( int i55252 = 0; i55252 < v_importedComponents.length; i55252++)
 {
-  v_importedComponent = v_importedComponents[i53722] ;
+  v_importedComponent = v_importedComponents[i55252] ;
 
 if (v_importedComponent != null) {
 v_importedComponent.Dispose() ;
@@ -6955,9 +6955,9 @@ ComponentInComponent_c [] v_cics = ComponentInComponent_c.getManyCN_CICsOnR4202(
 
 
 ComponentInComponent_c  v_cic = null;
-for ( int i53723 = 0; i53723 < v_cics.length; i53723++)
+for ( int i55253 = 0; i55253 < v_cics.length; i55253++)
 {
-  v_cic = v_cics[i53723] ;
+  v_cic = v_cics[i55253] ;
 
 this.unrelateAcrossR4202From(v_cic);
 
@@ -7069,9 +7069,9 @@ Port_c [] v_ports = Port_c.getManyC_POsOnR4010(this);
 
 
 Port_c  v_port = null;
-for ( int i53724 = 0; i53724 < v_ports.length; i53724++)
+for ( int i55254 = 0; i55254 < v_ports.length; i55254++)
 {
-  v_port = v_ports[i53724] ;
+  v_port = v_ports[i55254] ;
 
 this.unrelateAcrossR4010From(v_port);
 
@@ -7093,9 +7093,9 @@ InterfacePackage_c [] v_interfacePackages = InterfacePackage_c.getManyIP_IPsOnR4
 
 
 InterfacePackage_c  v_interfacePackage = null;
-for ( int i53725 = 0; i53725 < v_interfacePackages.length; i53725++)
+for ( int i55255 = 0; i55255 < v_interfacePackages.length; i55255++)
 {
-  v_interfacePackage = v_interfacePackages[i53725] ;
+  v_interfacePackage = v_interfacePackages[i55255] ;
 
 this.unrelateAcrossR4206From(v_interfacePackage);
 
@@ -7129,9 +7129,9 @@ BodyInComponent_c [] v_bodyInComponents = BodyInComponent_c.getManyACT_BICsOnR69
 
 
 BodyInComponent_c  v_bic = null;
-for ( int i53726 = 0; i53726 < v_bodyInComponents.length; i53726++)
+for ( int i55256 = 0; i55256 < v_bodyInComponents.length; i55256++)
 {
-  v_bic = v_bodyInComponents[i53726] ;
+  v_bic = v_bodyInComponents[i55256] ;
 
 Body_c v_body = Body_c.getOneACT_ACTOnR694(v_bic);
 
@@ -7163,9 +7163,9 @@ DelegationInComponent_c [] v_dics = DelegationInComponent_c.getManyPA_DICsOnR900
 
 
 DelegationInComponent_c  v_dic = null;
-for ( int i53727 = 0; i53727 < v_dics.length; i53727++)
+for ( int i55257 = 0; i55257 < v_dics.length; i55257++)
 {
-  v_dic = v_dics[i53727] ;
+  v_dic = v_dics[i55257] ;
 
 Delegation_c v_delegation = Delegation_c.getOneC_DGOnR9002(v_dic);
 
@@ -7201,9 +7201,9 @@ SatisfactionInComponent_c [] v_sics = SatisfactionInComponent_c.getManyPA_SICsOn
 
 
 SatisfactionInComponent_c  v_sic = null;
-for ( int i53728 = 0; i53728 < v_sics.length; i53728++)
+for ( int i55258 = 0; i55258 < v_sics.length; i55258++)
 {
-  v_sic = v_sics[i53728] ;
+  v_sic = v_sics[i55258] ;
 
 Satisfaction_c v_satisfaction = Satisfaction_c.getOneC_SFOnR9000(v_sic);
 
@@ -7239,9 +7239,9 @@ ComponentInstance_c [] v_executionEngines = ComponentInstance_c.getManyI_EXEsOnR
 
 
 ComponentInstance_c  v_engine = null;
-for ( int i53729 = 0; i53729 < v_executionEngines.length; i53729++)
+for ( int i55259 = 0; i55259 < v_executionEngines.length; i55259++)
 {
-  v_engine = v_executionEngines[i53729] ;
+  v_engine = v_executionEngines[i55259] ;
 
 if (v_engine != null) {
 v_engine.unrelateAcrossR2955From(this);
@@ -7270,9 +7270,9 @@ Sequence_c [] v_sequences = Sequence_c.getManySQ_SsOnR952(this);
 
 
 Sequence_c  v_sequence = null;
-for ( int i53730 = 0; i53730 < v_sequences.length; i53730++)
+for ( int i55260 = 0; i55260 < v_sequences.length; i55260++)
 {
-  v_sequence = v_sequences[i53730] ;
+  v_sequence = v_sequences[i55260] ;
 
 this.unrelateAcrossR952From(v_sequence);
 
@@ -7294,9 +7294,9 @@ Activity_c [] v_activities = Activity_c.getManyA_AsOnR1115(this);
 
 
 Activity_c  v_activity = null;
-for ( int i53731 = 0; i53731 < v_activities.length; i53731++)
+for ( int i55261 = 0; i55261 < v_activities.length; i55261++)
 {
-  v_activity = v_activities[i53731] ;
+  v_activity = v_activities[i55261] ;
 
 this.unrelateAcrossR1115From(v_activity);
 
@@ -7318,9 +7318,9 @@ Communication_c [] v_comms = Communication_c.getManyCOMM_COMMsOnR1138(this);
 
 
 Communication_c  v_comm = null;
-for ( int i53732 = 0; i53732 < v_comms.length; i53732++)
+for ( int i55262 = 0; i55262 < v_comms.length; i55262++)
 {
-  v_comm = v_comms[i53732] ;
+  v_comm = v_comms[i55262] ;
 
 this.unrelateAcrossR1138From(v_comm);
 
@@ -7342,9 +7342,9 @@ UseCaseDiagram_c [] v_uccs = UseCaseDiagram_c.getManyUC_UCCsOnR1213(this);
 
 
 UseCaseDiagram_c  v_ucc = null;
-for ( int i53733 = 0; i53733 < v_uccs.length; i53733++)
+for ( int i55263 = 0; i55263 < v_uccs.length; i55263++)
 {
-  v_ucc = v_uccs[i53733] ;
+  v_ucc = v_uccs[i55263] ;
 
 this.unrelateAcrossR1213From(v_ucc);
 
@@ -7366,9 +7366,9 @@ ComponentParticipant_c [] v_compParts = ComponentParticipant_c.getManySQ_COPsOnR
 
 
 ComponentParticipant_c  v_compPart = null;
-for ( int i53734 = 0; i53734 < v_compParts.length; i53734++)
+for ( int i55264 = 0; i55264 < v_compParts.length; i55264++)
 {
-  v_compPart = v_compParts[i53734] ;
+  v_compPart = v_compParts[i55264] ;
 
 if (v_compPart != null) {
 v_compPart.Unformalize() ;
@@ -7390,9 +7390,9 @@ PackageableElement_c [] v_pes = PackageableElement_c.getManyPE_PEsOnR8003(this);
 
 
 PackageableElement_c  v_pe = null;
-for ( int i53735 = 0; i53735 < v_pes.length; i53735++)
+for ( int i55265 = 0; i55265 < v_pes.length; i55265++)
 {
-  v_pe = v_pes[i53735] ;
+  v_pe = v_pes[i55265] ;
 
 this.unrelateAcrossR8003From(v_pe);
 
@@ -7436,9 +7436,9 @@ ComponentVisibility_c [] v_comVis = ComponentVisibility_c.getManyPE_CVSsOnR8004(
 
 
 ComponentVisibility_c  v_comV = null;
-for ( int i53736 = 0; i53736 < v_comVis.length; i53736++)
+for ( int i55266 = 0; i55266 < v_comVis.length; i55266++)
 {
-  v_comV = v_comVis[i53736] ;
+  v_comV = v_comVis[i55266] ;
 
 v_pe = PackageableElement_c.getOnePE_PEOnR8004(v_comV);
 
@@ -7474,9 +7474,9 @@ ComponentResultSet_c [] v_comRSs = ComponentResultSet_c.getManyPE_CRSsOnR8007(th
 
 
 ComponentResultSet_c  v_comRS = null;
-for ( int i53737 = 0; i53737 < v_comRSs.length; i53737++)
+for ( int i55267 = 0; i55267 < v_comRSs.length; i55267++)
 {
-  v_comRS = v_comRSs[i53737] ;
+  v_comRS = v_comRSs[i55267] ;
 
 if (v_comRS != null) {
 v_comRS.Dispose() ;
@@ -8106,7 +8106,7 @@ SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4606(v_componentPackage);
 if ( (  (v_system != null)) )
 {
 
-  class Domain_test54337_c implements ClassQueryInterface_c
+  class Domain_test55886_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8114,7 +8114,7 @@ if ( (  (v_system != null)) )
 		return selected.getDom_id().equals(p_Domid) ;
 	}
   }
-Domain_c v_domain = Domain_c.getOneS_DOMOnR28(v_system, new Domain_test54337_c());
+Domain_c v_domain = Domain_c.getOneS_DOMOnR28(v_system, new Domain_test55886_c());
 
 
 if ( (  (v_domain != null)) )
@@ -8170,9 +8170,9 @@ DataType_c [] v_datatypes = DataType_c.getManyS_DTsOnR14(v_domain);
 
 
 DataType_c  v_datatype = null;
-for ( int i53738 = 0; i53738 < v_datatypes.length; i53738++)
+for ( int i55268 = 0; i55268 < v_datatypes.length; i55268++)
 {
-  v_datatype = v_datatypes[i53738] ;
+  v_datatype = v_datatypes[i55268] ;
 
 DataType_c v_coreDt = DataType_c.getOneS_DTOnR17(CoreDataType_c.getOneS_CDTOnR17(v_datatype));
 
@@ -8240,9 +8240,9 @@ else {
 
 }
 
-for ( int i53739 = 0; i53739 < v_datatypes.length; i53739++)
+for ( int i55269 = 0; i55269 < v_datatypes.length; i55269++)
 {
-  v_datatype = v_datatypes[i53739] ;
+  v_datatype = v_datatypes[i55269] ;
 
 UserDataType_c v_builtinDt = UserDataType_c.getOneS_UDTOnR17(v_datatype);
 
@@ -8382,7 +8382,7 @@ else {
 DatatypeInSuppression_c [] v_suppressions = DatatypeInSuppression_c.getManyS_DISsOnR47(v_domain);
 
 
-  class DataTypePackage_test54338_c implements ClassQueryInterface_c
+  class DataTypePackage_test55887_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8390,13 +8390,13 @@ DatatypeInSuppression_c [] v_suppressions = DatatypeInSuppression_c.getManyS_DIS
 		return selected.getParent_package_id().equals(Gd_c.Null_unique_id()) ;
 	}
   }
-DataTypePackage_c v_rootDtPkg = DataTypePackage_c.getOneS_DPKOnR40(v_domain, new DataTypePackage_test54338_c());
+DataTypePackage_c v_rootDtPkg = DataTypePackage_c.getOneS_DPKOnR40(v_domain, new DataTypePackage_test55887_c());
 
 
 DatatypeInSuppression_c  v_suppression = null;
-for ( int i53740 = 0; i53740 < v_suppressions.length; i53740++)
+for ( int i55270 = 0; i55270 < v_suppressions.length; i55270++)
 {
-  v_suppression = v_suppressions[i53740] ;
+  v_suppression = v_suppressions[i55270] ;
 
 DataType_c v_dt = DataType_c.getOneS_DTOnR47(v_suppression);
 
@@ -8778,7 +8778,7 @@ Component_c v_component = (Component_c) modelRoot.getInstanceList(Component_c.cl
 if ( v_isInGenericPackage )
 {
 
-  class Component_test54339_c implements ClassQueryInterface_c
+  class Component_test55888_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8786,7 +8786,7 @@ if ( v_isInGenericPackage )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test54339_c());
+v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test55888_c());
 
 
 
@@ -8795,7 +8795,7 @@ v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR
 else
 {
 
-  class Component_test54340_c implements ClassQueryInterface_c
+  class Component_test55889_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8803,7 +8803,7 @@ else
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test54340_c());
+v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test55889_c());
 
 
 
@@ -8884,7 +8884,7 @@ Component_c v_component = (Component_c) modelRoot.getInstanceList(Component_c.cl
 if ( v_isInGenericPackage )
 {
 
-  class Component_test54341_c implements ClassQueryInterface_c
+  class Component_test55890_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8892,7 +8892,7 @@ if ( v_isInGenericPackage )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test54341_c());
+v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test55890_c());
 
 
 
@@ -8901,7 +8901,7 @@ v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR
 else
 {
 
-  class Component_test54342_c implements ClassQueryInterface_c
+  class Component_test55891_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -8909,7 +8909,7 @@ else
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test54342_c());
+v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test55891_c());
 
 
 
@@ -9070,7 +9070,7 @@ Component_c v_component = (Component_c) modelRoot.getInstanceList(Component_c.cl
 if ( (v_isInGenericPackage) )
 {
 
-  class Component_test54343_c implements ClassQueryInterface_c
+  class Component_test55892_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9078,13 +9078,13 @@ if ( (v_isInGenericPackage) )
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test54343_c());
+v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test55892_c());
 
 
 if ( (  (v_component == null)) )
 {
 
-  class Component_test54344_c implements ClassQueryInterface_c
+  class Component_test55893_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9092,7 +9092,7 @@ if ( (  (v_component == null)) )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test54344_c());
+v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this), new Component_test55893_c());
 
 
 
@@ -9104,7 +9104,7 @@ v_component = Component_c.getOneC_COnR8001(PackageableElement_c.getManyPE_PEsOnR
 else
 {
 
-  class Component_test54345_c implements ClassQueryInterface_c
+  class Component_test55894_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9112,13 +9112,13 @@ else
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test54345_c());
+v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test55894_c());
 
 
 if ( (  (v_component == null)) )
 {
 
-  class Component_test54346_c implements ClassQueryInterface_c
+  class Component_test55895_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9126,7 +9126,7 @@ if ( (  (v_component == null)) )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test54346_c());
+v_component = Component_c.getOneC_COnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this), new Component_test55895_c());
 
 
 
@@ -9153,7 +9153,7 @@ InterfaceReference_c v_destReference = (InterfaceReference_c) modelRoot.getInsta
 if ( (v_isInGenericPackage) )
 {
 
-  class InterfaceReference_test54347_c implements ClassQueryInterface_c
+  class InterfaceReference_test55896_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9161,13 +9161,13 @@ if ( (v_isInGenericPackage) )
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this))), new InterfaceReference_test54347_c());
+v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this))), new InterfaceReference_test55896_c());
 
 
 if ( (  (v_destReference == null)) )
 {
 
-  class InterfaceReference_test54348_c implements ClassQueryInterface_c
+  class InterfaceReference_test55897_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9175,7 +9175,7 @@ if ( (  (v_destReference == null)) )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this))), new InterfaceReference_test54348_c());
+v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003(this))), new InterfaceReference_test55897_c());
 
 
 
@@ -9187,7 +9187,7 @@ v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4
 else
 {
 
-  class InterfaceReference_test54349_c implements ClassQueryInterface_c
+  class InterfaceReference_test55898_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9195,13 +9195,13 @@ else
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this))), new InterfaceReference_test54349_c());
+v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this))), new InterfaceReference_test55898_c());
 
 
 if ( (  (v_destReference == null)) )
 {
 
-  class InterfaceReference_test54350_c implements ClassQueryInterface_c
+  class InterfaceReference_test55899_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9209,7 +9209,7 @@ if ( (  (v_destReference == null)) )
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this))), new InterfaceReference_test54350_c());
+v_destReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this))), new InterfaceReference_test55899_c());
 
 
 
@@ -9227,7 +9227,7 @@ v_destReference = InterfaceReference_c.getOneC_IROnR4701(v_destImportRef);
 
 }
 
-  class InterfaceReference_test54351_c implements ClassQueryInterface_c
+  class InterfaceReference_test55900_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9235,13 +9235,13 @@ v_destReference = InterfaceReference_c.getOneC_IROnR4701(v_destImportRef);
 		return (selected.getId().equals(p_From)) ;
 	}
   }
-InterfaceReference_c v_srcReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(this), new InterfaceReference_test54351_c());
+InterfaceReference_c v_srcReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(this), new InterfaceReference_test55900_c());
 
 
 if ( (  (v_srcReference == null)) )
 {
 
-  class InterfaceReference_test54352_c implements ClassQueryInterface_c
+  class InterfaceReference_test55901_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -9249,7 +9249,7 @@ if ( (  (v_srcReference == null)) )
 		return (selected.getId().equals(p_To)) ;
 	}
   }
-v_srcReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(this), new InterfaceReference_test54352_c());
+v_srcReference = InterfaceReference_c.getOneC_IROnR4016(Port_c.getManyC_POsOnR4010(this), new InterfaceReference_test55901_c());
 
 
 
@@ -10126,7 +10126,7 @@ if ( (  (v_parentComponent != null)) )
 while ( (  (v_componentPackage == null)) )
 {
 
-  class InterfacePackage_test54353_c implements ClassQueryInterface_c
+  class InterfacePackage_test55902_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -10134,7 +10134,7 @@ while ( (  (v_componentPackage == null)) )
 		return (selected.getPackage_id().equals(p_Id)) ;
 	}
   }
-InterfacePackage_c v_interfacePackage = InterfacePackage_c.getOneIP_IPOnR4206(v_parentComponent, new InterfacePackage_test54353_c());
+InterfacePackage_c v_interfacePackage = InterfacePackage_c.getOneIP_IPOnR4206(v_parentComponent, new InterfacePackage_test55902_c());
 
 
 if ( (  (v_interfacePackage != null)) )
@@ -10153,9 +10153,9 @@ InterfacePackage_c [] v_interfacePkgs = InterfacePackage_c.getManyIP_IPsOnR4206(
 
 
 InterfacePackage_c  v_interfacePkg = null;
-for ( int i53741 = 0; i53741 < v_interfacePkgs.length; i53741++)
+for ( int i55271 = 0; i55271 < v_interfacePkgs.length; i55271++)
 {
-  v_interfacePkg = v_interfacePkgs[i53741] ;
+  v_interfacePkg = v_interfacePkgs[i55271] ;
 
 if ( (v_interfacePkg.Ischildpackageof(			    
 p_Id)) )
@@ -10265,9 +10265,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4002(v_require
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53742 = 0; i53742 < v_satisfactions.length; i53742++)
+for ( int i55272 = 0; i55272 < v_satisfactions.length; i55272++)
 {
-  v_satisfaction = v_satisfactions[i53742] ;
+  v_satisfaction = v_satisfactions[i55272] ;
 
 if ( (  !v_satisfaction.Satisfieswithimportedreq()) )
 {
@@ -10869,17 +10869,17 @@ Requirement_c [] v_reqs = Requirement_c.getManyC_RsOnR4009(InterfaceReference_c.
 
 
 Requirement_c  v_req = null;
-for ( int i53743 = 0; i53743 < v_reqs.length; i53743++)
+for ( int i55273 = 0; i55273 < v_reqs.length; i55273++)
 {
-  v_req = v_reqs[i53743] ;
+  v_req = v_reqs[i55273] ;
 
 Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4002(v_req);
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53744 = 0; i53744 < v_satisfactions.length; i53744++)
+for ( int i55274 = 0; i55274 < v_satisfactions.length; i55274++)
 {
-  v_satisfaction = v_satisfactions[i53744] ;
+  v_satisfaction = v_satisfactions[i55274] ;
 
 if ( (  !v_satisfaction.Satisfieswithimportedreq() &&   (v_importedRef == null)) )
 {
@@ -11031,9 +11031,9 @@ Satisfaction_c [] v_existingSats = Satisfaction_c.getManyC_SFsOnR4002(v_requirem
 
 
 Satisfaction_c  v_existingSat = null;
-for ( int i53745 = 0; i53745 < v_existingSats.length; i53745++)
+for ( int i55275 = 0; i55275 < v_existingSats.length; i55275++)
 {
-  v_existingSat = v_existingSats[i53745] ;
+  v_existingSat = v_existingSats[i55275] ;
 
 if ( (  !v_existingSat.Satisfieswithimportedreq()) )
 {
@@ -11368,7 +11368,7 @@ else {
 if ( (  (v_importedRef != null)) )
 {
 
-  class ImportedReference_test54354_c implements ClassQueryInterface_c
+  class ImportedReference_test55903_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -11376,7 +11376,7 @@ if ( (  (v_importedRef != null)) )
 		return (selected.getId().equals(p_Provision_id)) ;
 	}
   }
-v_importedRef = ImportedReference_c.getOneCL_IIROnR4701(InterfaceReference_c.getManyC_IRsOnR4009(v_provision), new ImportedReference_test54354_c());
+v_importedRef = ImportedReference_c.getOneCL_IIROnR4701(InterfaceReference_c.getManyC_IRsOnR4009(v_provision), new ImportedReference_test55903_c());
 
 
 if ( (  (v_importedRef != null)) )
@@ -11491,9 +11491,9 @@ InterfaceReference_c [] v_ireferences = InterfaceReference_c.getManyC_IRsOnR4016
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53746 = 0; i53746 < v_ireferences.length; i53746++)
+for ( int i55276 = 0; i55276 < v_ireferences.length; i55276++)
 {
-  v_ireference = v_ireferences[i53746] ;
+  v_ireference = v_ireferences[i55276] ;
 
 Provision_c v_provision = Provision_c.getOneC_POnR4009(v_ireference);
 
@@ -11550,9 +11550,9 @@ InterfaceReference_c [] v_ireferences = InterfaceReference_c.getManyC_IRsOnR4016
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53747 = 0; i53747 < v_ireferences.length; i53747++)
+for ( int i55277 = 0; i55277 < v_ireferences.length; i55277++)
 {
-  v_ireference = v_ireferences[i53747] ;
+  v_ireference = v_ireferences[i55277] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(v_ireference);
 
@@ -11612,9 +11612,9 @@ int          v_count = -1 ;
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53748 = 0; i53748 < v_ireferences.length; i53748++)
+for ( int i55278 = 0; i55278 < v_ireferences.length; i55278++)
 {
-  v_ireference = v_ireferences[i53748] ;
+  v_ireference = v_ireferences[i55278] ;
 
 Provision_c v_provision = Provision_c.getOneC_POnR4009(v_ireference);
 
@@ -11683,9 +11683,9 @@ int          v_count = -1 ;
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53749 = 0; i53749 < v_ireferences.length; i53749++)
+for ( int i55279 = 0; i55279 < v_ireferences.length; i55279++)
 {
-  v_ireference = v_ireferences[i53749] ;
+  v_ireference = v_ireferences[i55279] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(v_ireference);
 
@@ -11744,7 +11744,7 @@ return v_id;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Component", " Operation entered: Component::Hasrequirement") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Requirement_test54355_c implements ClassQueryInterface_c
+  class Requirement_test55904_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -11752,7 +11752,7 @@ return v_id;
 		return (selected.getRequirement_id().equals(p_Id)) ;
 	}
   }
-Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Requirement_test54355_c());
+Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Requirement_test55904_c());
 
 
 if ( (p_Considerdelegations) && (  (v_requirement != null)) )
@@ -11791,7 +11791,7 @@ return   (v_requirement != null);
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Component", " Operation entered: Component::Hasprovision") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Provision_test54356_c implements ClassQueryInterface_c
+  class Provision_test55905_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -11799,7 +11799,7 @@ return   (v_requirement != null);
 		return (selected.getProvision_id().equals(p_Id)) ;
 	}
   }
-Provision_c v_provision = Provision_c.getOneC_POnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Provision_test54356_c());
+Provision_c v_provision = Provision_c.getOneC_POnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Provision_test55905_c());
 
 
 if ( (p_Considerdelegations) && (  (v_provision != null)) )
@@ -11845,9 +11845,9 @@ int          v_count = -1 ;
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53750 = 0; i53750 < v_ireferences.length; i53750++)
+for ( int i55280 = 0; i55280 < v_ireferences.length; i55280++)
 {
-  v_ireference = v_ireferences[i53750] ;
+  v_ireference = v_ireferences[i55280] ;
 
 Provision_c v_provision = Provision_c.getOneC_POnR4009(v_ireference);
 
@@ -11916,9 +11916,9 @@ int          v_count = -1 ;
 
 
 InterfaceReference_c  v_ireference = null;
-for ( int i53751 = 0; i53751 < v_ireferences.length; i53751++)
+for ( int i55281 = 0; i55281 < v_ireferences.length; i55281++)
 {
-  v_ireference = v_ireferences[i53751] ;
+  v_ireference = v_ireferences[i55281] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(v_ireference);
 
@@ -11980,7 +11980,7 @@ return Gd_c.Null_unique_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Component", " Operation entered: Component::Parenthasprovision") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Provision_test54357_c implements ClassQueryInterface_c
+  class Provision_test55906_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -11988,7 +11988,7 @@ return Gd_c.Null_unique_id();
 		return (selected.getProvision_id().equals(p_Id)) ;
 	}
   }
-Provision_c v_provision = Provision_c.getOneC_POnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Provision_test54357_c());
+Provision_c v_provision = Provision_c.getOneC_POnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Provision_test55906_c());
 
 
 return   (v_provision != null);
@@ -12000,7 +12000,7 @@ return   (v_provision != null);
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Component", " Operation entered: Component::Parenthasrequirement") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class Requirement_test54358_c implements ClassQueryInterface_c
+  class Requirement_test55907_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -12008,7 +12008,7 @@ return   (v_provision != null);
 		return (selected.getRequirement_id().equals(p_Id)) ;
 	}
   }
-Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Requirement_test54358_c());
+Requirement_c v_requirement = Requirement_c.getOneC_ROnR4009(InterfaceReference_c.getManyC_IRsOnR4016(Port_c.getManyC_POsOnR4010(this)), new Requirement_test55907_c());
 
 
 return   (v_requirement != null);
@@ -12510,9 +12510,9 @@ Component_c [] v_children = Component_c.getManyC_CsOnR8001(PackageableElement_c.
 
 
 Component_c  v_child = null;
-for ( int i53752 = 0; i53752 < v_children.length; i53752++)
+for ( int i55282 = 0; i55282 < v_children.length; i55282++)
 {
-  v_child = v_children[i53752] ;
+  v_child = v_children[i55282] ;
 
 if ( (v_child.Isexecutingorischildexecuting()) )
 {
@@ -12548,9 +12548,9 @@ Component_c [] v_children = Component_c.getManyC_CsOnR4203(ComponentInComponent_
 
 
 Component_c  v_child = null;
-for ( int i53753 = 0; i53753 < v_children.length; i53753++)
+for ( int i55283 = 0; i55283 < v_children.length; i55283++)
 {
-  v_child = v_children[i53753] ;
+  v_child = v_children[i55283] ;
 
 if ( (v_child.Isexecutingorischildexecuting()) )
 {
@@ -12619,9 +12619,9 @@ int          v_count = -1 ;
 
 
 InterfacePackage_c  v_interfacePckg = null;
-for ( int i53754 = 0; i53754 < v_interfacePckgs.length; i53754++)
+for ( int i55284 = 0; i55284 < v_interfacePckgs.length; i55284++)
 {
-  v_interfacePckg = v_interfacePckgs[i53754] ;
+  v_interfacePckg = v_interfacePckgs[i55284] ;
 
 if ( (  (v_interfacePckg != null)) )
 {
@@ -12675,9 +12675,9 @@ int          v_count = -1 ;
 
 
 Sequence_c  v_sequence = null;
-for ( int i53755 = 0; i53755 < v_sequences.length; i53755++)
+for ( int i55285 = 0; i55285 < v_sequences.length; i55285++)
 {
-  v_sequence = v_sequences[i53755] ;
+  v_sequence = v_sequences[i55285] ;
 
 if ( (  (v_sequence != null)) )
 {
@@ -12731,9 +12731,9 @@ int          v_count = -1 ;
 
 
 Communication_c  v_communication = null;
-for ( int i53756 = 0; i53756 < v_communications.length; i53756++)
+for ( int i55286 = 0; i55286 < v_communications.length; i55286++)
 {
-  v_communication = v_communications[i53756] ;
+  v_communication = v_communications[i55286] ;
 
 if ( (  (v_communication != null)) )
 {
@@ -12787,9 +12787,9 @@ int          v_count = -1 ;
 
 
 UseCaseDiagram_c  v_usecase = null;
-for ( int i53757 = 0; i53757 < v_usecases.length; i53757++)
+for ( int i55287 = 0; i55287 < v_usecases.length; i55287++)
 {
-  v_usecase = v_usecases[i53757] ;
+  v_usecase = v_usecases[i55287] ;
 
 if ( (  (v_usecase != null)) )
 {
@@ -12843,9 +12843,9 @@ int          v_count = -1 ;
 
 
 Activity_c  v_activity = null;
-for ( int i53758 = 0; i53758 < v_activities.length; i53758++)
+for ( int i55288 = 0; i55288 < v_activities.length; i55288++)
 {
-  v_activity = v_activities[i53758] ;
+  v_activity = v_activities[i55288] ;
 
 if ( (  (v_activity != null)) )
 {
@@ -12951,9 +12951,9 @@ int          v_count = -1 ;
 
 
 Component_c  v_component = null;
-for ( int i53759 = 0; i53759 < v_components.length; i53759++)
+for ( int i55289 = 0; i55289 < v_components.length; i55289++)
 {
-  v_component = v_components[i53759] ;
+  v_component = v_components[i55289] ;
 
 if ( (  (v_component != null)) )
 {
@@ -13054,9 +13054,9 @@ int          v_count = -1 ;
 
 
 ComponentReference_c  v_impComponent = null;
-for ( int i53760 = 0; i53760 < v_impComponents.length; i53760++)
+for ( int i55290 = 0; i55290 < v_impComponents.length; i55290++)
 {
-  v_impComponent = v_impComponents[i53760] ;
+  v_impComponent = v_impComponents[i55290] ;
 
 if ( (  (v_impComponent != null)) )
 {
@@ -13170,7 +13170,7 @@ Component_c v_originatingComponent = (Component_c) modelRoot.getInstanceList(Com
 if ( this == v_originatingComponent )
 {
 
-  class ComponentResultSet_test54359_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55908_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -13178,7 +13178,7 @@ if ( this == v_originatingComponent )
 		return selected.getName().equals(p_Name) && selected.getType() == p_Type ;
 	}
   }
-ComponentResultSet_c v_resultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(this, new ComponentResultSet_test54359_c());
+ComponentResultSet_c v_resultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(this, new ComponentResultSet_test55908_c());
 
 
 if (   (v_resultSet != null) )
@@ -13227,9 +13227,9 @@ PackageableElement_c [] v_elements = PackageableElement_c.getManyPE_PEsOnR8003(t
 
 
 PackageableElement_c  v_element = null;
-for ( int i53761 = 0; i53761 < v_elements.length; i53761++)
+for ( int i55291 = 0; i55291 < v_elements.length; i55291++)
 {
-  v_element = v_elements[i53761] ;
+  v_element = v_elements[i55291] ;
 
 if (v_element != null) {
 v_element.Collectvisibleelementsforname(			    
@@ -13260,9 +13260,9 @@ PackageableElement_c [] v_elements = PackageableElement_c.getManyPE_PEsOnR8003(t
 
 
 PackageableElement_c  v_element = null;
-for ( int i53762 = 0; i53762 < v_elements.length; i53762++)
+for ( int i55292 = 0; i55292 < v_elements.length; i55292++)
 {
-  v_element = v_elements[i53762] ;
+  v_element = v_elements[i55292] ;
 
 if ( v_element.Getvisibilityvalue() == Visibility_c.Public )
 {
@@ -13296,9 +13296,9 @@ PackageableElement_c [] v_elements = PackageableElement_c.getManyPE_PEsOnR8003(t
 
 
 PackageableElement_c  v_element = null;
-for ( int i53763 = 0; i53763 < v_elements.length; i53763++)
+for ( int i55293 = 0; i55293 < v_elements.length; i55293++)
 {
-  v_element = v_elements[i53763] ;
+  v_element = v_elements[i55293] ;
 
 if ( v_element.getVisibility() == Visibility_c.Public )
 {
@@ -13748,9 +13748,9 @@ ComponentResultSet_c [] v_crs = ComponentResultSet_c.getManyPE_CRSsOnR8007(this)
 
 
 ComponentResultSet_c  v_sr = null;
-for ( int i53764 = 0; i53764 < v_crs.length; i53764++)
+for ( int i55294 = 0; i55294 < v_crs.length; i55294++)
 {
-  v_sr = v_crs[i53764] ;
+  v_sr = v_crs[i55294] ;
 
 if (v_sr != null) {
 v_sr.Dispose() ;
@@ -13784,9 +13784,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_childPkg = null;
-for ( int i53765 = 0; i53765 < v_packages.length; i53765++)
+for ( int i55295 = 0; i55295 < v_packages.length; i55295++)
 {
-  v_childPkg = v_packages[i53765] ;
+  v_childPkg = v_packages[i55295] ;
 
 if (v_childPkg != null) {
 v_childPkg.Initializeclasses(			    
@@ -14115,9 +14115,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR4203(ComponentInComponen
 
 
 Component_c  v_component = null;
-for ( int i53766 = 0; i53766 < v_components.length; i53766++)
+for ( int i55296 = 0; i55296 < v_components.length; i55296++)
 {
-  v_component = v_components[i53766] ;
+  v_component = v_components[i55296] ;
 
 if (v_component != null) {
   v_component.relateAcrossR4608To(v_cp);
@@ -14354,9 +14354,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53767 = 0; i53767 < v_packages.length; i53767++)
+for ( int i55297 = 0; i55297 < v_packages.length; i55297++)
 {
-  v_package = v_packages[i53767] ;
+  v_package = v_packages[i55297] ;
 
 if (v_package != null) {
   v_package.relateAcrossR1405To(v_system);
@@ -14386,9 +14386,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53768 = 0; i53768 < v_components.length; i53768++)
+for ( int i55298 = 0; i55298 < v_components.length; i55298++)
 {
-  v_component = v_components[i53768] ;
+  v_component = v_components[i55298] ;
 
 if (v_component != null) {
 v_component.Associatepackageswithsystem(			    
@@ -14429,9 +14429,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4002(v_provisi
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53769 = 0; i53769 < v_satisfactions.length; i53769++)
+for ( int i55299 = 0; i55299 < v_satisfactions.length; i55299++)
 {
-  v_satisfaction = v_satisfactions[i53769] ;
+  v_satisfaction = v_satisfactions[i55299] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4002(v_satisfaction);
 
@@ -14765,9 +14765,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53770 = 0; i53770 < v_packages.length; i53770++)
+for ( int i55300 = 0; i55300 < v_packages.length; i55300++)
 {
-  v_package = v_packages[i53770] ;
+  v_package = v_packages[i55300] ;
 
 if (v_package != null) {
 v_package.Removeincompletesignalevents() ;
@@ -14786,9 +14786,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53771 = 0; i53771 < v_components.length; i53771++)
+for ( int i55301 = 0; i55301 < v_components.length; i55301++)
 {
-  v_component = v_components[i53771] ;
+  v_component = v_components[i55301] ;
 
 if (v_component != null) {
 v_component.Removeincompletesignalevents() ;
@@ -14806,9 +14806,9 @@ else {
 v_components = Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this));
 
 
-for ( int i53772 = 0; i53772 < v_components.length; i53772++)
+for ( int i55302 = 0; i55302 < v_components.length; i55302++)
 {
-  v_component = v_components[i53772] ;
+  v_component = v_components[i55302] ;
 
 if (v_component != null) {
 v_component.Removeincompletesignalevents() ;
@@ -14833,9 +14833,9 @@ Subsystem_c [] v_subsystems = Subsystem_c.getManyS_SSsOnR1(v_domain);
 
 
 Subsystem_c  v_subsystem = null;
-for ( int i53773 = 0; i53773 < v_subsystems.length; i53773++)
+for ( int i55303 = 0; i55303 < v_subsystems.length; i55303++)
 {
-  v_subsystem = v_subsystems[i53773] ;
+  v_subsystem = v_subsystems[i55303] ;
 
 if (v_subsystem != null) {
 v_subsystem.Removeincompletesignalevents() ;
@@ -14869,9 +14869,9 @@ Satisfaction_c [] v_satisfactions = Satisfaction_c.getManyC_SFsOnR4705(ImportedP
 
 
 Satisfaction_c  v_satisfaction = null;
-for ( int i53774 = 0; i53774 < v_satisfactions.length; i53774++)
+for ( int i55304 = 0; i55304 < v_satisfactions.length; i55304++)
 {
-  v_satisfaction = v_satisfactions[i53774] ;
+  v_satisfaction = v_satisfactions[i55304] ;
 
 Requirement_c v_requirement = Requirement_c.getOneC_ROnR4002(v_satisfaction);
 
@@ -14943,9 +14943,9 @@ int          v_count = -1 ;
 
 
 Package_c  v_pkg = null;
-for ( int i53775 = 0; i53775 < v_packages.length; i53775++)
+for ( int i55305 = 0; i55305 < v_packages.length; i55305++)
 {
-  v_pkg = v_packages[i53775] ;
+  v_pkg = v_packages[i55305] ;
 
 if ( (  (v_pkg != null)) )
 {
@@ -14999,9 +14999,9 @@ int          v_count = -1 ;
 
 
 Interface_c  v_iface = null;
-for ( int i53776 = 0; i53776 < v_ifaces.length; i53776++)
+for ( int i55306 = 0; i55306 < v_ifaces.length; i55306++)
 {
-  v_iface = v_ifaces[i53776] ;
+  v_iface = v_ifaces[i55306] ;
 
 if ( (  (v_iface != null)) )
 {
@@ -15055,9 +15055,9 @@ int          v_count = -1 ;
 
 
 UserDataType_c  v_udt = null;
-for ( int i53777 = 0; i53777 < v_udts.length; i53777++)
+for ( int i55307 = 0; i55307 < v_udts.length; i55307++)
 {
-  v_udt = v_udts[i53777] ;
+  v_udt = v_udts[i55307] ;
 
 if ( (  (v_udt != null)) )
 {
@@ -15194,9 +15194,9 @@ ComponentReference_c [] v_componentRefs = ComponentReference_c.getManyCL_ICsOnR8
 
 
 ComponentReference_c  v_componentRef = null;
-for ( int i53778 = 0; i53778 < v_componentRefs.length; i53778++)
+for ( int i55308 = 0; i55308 < v_componentRefs.length; i55308++)
 {
-  v_componentRef = v_componentRefs[i53778] ;
+  v_componentRef = v_componentRefs[i55308] ;
 
 Util_c.Addelementtolist(			    
 v_componentRef.Converttoinstance()			    
@@ -15221,9 +15221,9 @@ else {
 v_componentRefs = ComponentReference_c.getManyCL_ICsOnR4205(this);
 
 
-for ( int i53779 = 0; i53779 < v_componentRefs.length; i53779++)
+for ( int i55309 = 0; i55309 < v_componentRefs.length; i55309++)
 {
-  v_componentRef = v_componentRefs[i53779] ;
+  v_componentRef = v_componentRefs[i55309] ;
 
 Util_c.Addelementtolist(			    
 v_componentRef.Converttoinstance()			    
@@ -15255,9 +15255,9 @@ ComponentReference_c [] v_componentRefs = ComponentReference_c.getManyCL_ICsOnR4
 
 
 ComponentReference_c  v_componentRef = null;
-for ( int i53780 = 0; i53780 < v_componentRefs.length; i53780++)
+for ( int i55310 = 0; i55310 < v_componentRefs.length; i55310++)
 {
-  v_componentRef = v_componentRefs[i53780] ;
+  v_componentRef = v_componentRefs[i55310] ;
 
 Util_c.Addelementtolist(			    
 v_componentRef.Converttoinstance()			    
@@ -15286,9 +15286,9 @@ Package_c [] v_pkgs = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.getMa
 
 
 Package_c  v_pkg = null;
-for ( int i53781 = 0; i53781 < v_pkgs.length; i53781++)
+for ( int i55311 = 0; i55311 < v_pkgs.length; i55311++)
 {
-  v_pkg = v_pkgs[i53781] ;
+  v_pkg = v_pkgs[i55311] ;
 
 if (v_pkg != null) {
 v_pkg.Collectreferencesforsynchronization(			    
@@ -15309,9 +15309,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53782 = 0; i53782 < v_components.length; i53782++)
+for ( int i55312 = 0; i55312 < v_components.length; i55312++)
 {
-  v_component = v_components[i53782] ;
+  v_component = v_components[i55312] ;
 
 if (v_component != null) {
 v_component.Collectreferencesforsynchronization(			    
@@ -15332,9 +15332,9 @@ Port_c [] v_ports = Port_c.getManyC_POsOnR4010(this);
 
 
 Port_c  v_port = null;
-for ( int i53783 = 0; i53783 < v_ports.length; i53783++)
+for ( int i55313 = 0; i55313 < v_ports.length; i55313++)
 {
-  v_port = v_ports[i53783] ;
+  v_port = v_ports[i55313] ;
 
 if (v_port != null) {
 v_port.Collectreferencesforsynchronization(			    
@@ -15355,9 +15355,9 @@ InterfacePackage_c [] v_interfacePackages = InterfacePackage_c.getManyIP_IPsOnR4
 
 
 InterfacePackage_c  v_interfacePackage = null;
-for ( int i53784 = 0; i53784 < v_interfacePackages.length; i53784++)
+for ( int i55314 = 0; i55314 < v_interfacePackages.length; i55314++)
 {
-  v_interfacePackage = v_interfacePackages[i53784] ;
+  v_interfacePackage = v_interfacePackages[i55314] ;
 
 if (v_interfacePackage != null) {
 v_interfacePackage.Collectreferencesforsynchronization(			    
@@ -15377,9 +15377,9 @@ else {
 v_components = Component_c.getManyC_CsOnR4203(ComponentInComponent_c.getManyCN_CICsOnR4202(this));
 
 
-for ( int i53785 = 0; i53785 < v_components.length; i53785++)
+for ( int i55315 = 0; i55315 < v_components.length; i55315++)
 {
-  v_component = v_components[i53785] ;
+  v_component = v_components[i55315] ;
 
 if (v_component != null) {
 v_component.Collectreferencesforsynchronization(			    
@@ -15421,9 +15421,9 @@ Package_c [] v_packages = Package_c.getManyEP_PKGsOnR8001(PackageableElement_c.g
 
 
 Package_c  v_package = null;
-for ( int i53786 = 0; i53786 < v_packages.length; i53786++)
+for ( int i55316 = 0; i55316 < v_packages.length; i55316++)
 {
-  v_package = v_packages[i53786] ;
+  v_package = v_packages[i55316] ;
 
 if ( v_package.Hasrealizedcomponents() == true )
 {
@@ -15444,9 +15444,9 @@ Component_c [] v_components = Component_c.getManyC_CsOnR8001(PackageableElement_
 
 
 Component_c  v_component = null;
-for ( int i53787 = 0; i53787 < v_components.length; i53787++)
+for ( int i55317 = 0; i55317 < v_components.length; i55317++)
 {
-  v_component = v_components[i53787] ;
+  v_component = v_components[i55317] ;
 
 if ( v_component.Hasrealizedcomponents() == true )
 {
@@ -15467,9 +15467,9 @@ ComponentReference_c [] v_compRefs = ComponentReference_c.getManyCL_ICsOnR8001(P
 
 
 ComponentReference_c  v_compRef = null;
-for ( int i53788 = 0; i53788 < v_compRefs.length; i53788++)
+for ( int i55318 = 0; i55318 < v_compRefs.length; i55318++)
 {
-  v_compRef = v_compRefs[i53788] ;
+  v_compRef = v_compRefs[i55318] ;
 
 v_component = Component_c.getOneC_COnR4201(v_compRef);
 

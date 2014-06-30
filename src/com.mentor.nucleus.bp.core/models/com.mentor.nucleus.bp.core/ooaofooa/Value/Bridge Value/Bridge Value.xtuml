@@ -44,7 +44,8 @@ INSERT INTO O_TFR
 	'Executes its bridge function and returns the result.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"d2b47707-97d9-4858-96b6-43d55c1e4154");
@@ -72,7 +73,7 @@ INSERT INTO O_TFR
 	"8e519c45-7dcf-400b-9d4e-954869dbb7e8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return true;',
+return false; ',
 	1,
 	'',
 	"cdfab58d-383c-4bb4-9487-4fef53a559c7");

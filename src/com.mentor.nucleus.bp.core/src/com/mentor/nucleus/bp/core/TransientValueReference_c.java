@@ -147,7 +147,8 @@ public class TransientValueReference_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,10 @@ public class TransientValueReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((TransientValueReference_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((TransientValueReference_c) elem)
+								.getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(
@@ -617,16 +619,16 @@ public class TransientValueReference_c extends NonRootModelElement
 
 		if (ReferencesVariable == null) {
 			// R805
-			Variable_c relInst37416 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst37998 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37416 == null) {
-				relInst37416 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst37998 == null) {
+				relInst37998 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst37416 == null && searchAllRoots
+			if (relInst37998 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -634,50 +636,50 @@ public class TransientValueReference_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37416 = (Variable_c) roots[i].getInstanceList(
+					relInst37998 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst37416 != null)
+					if (relInst37998 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37416 != null) {
+			if (relInst37998 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37416) && !isProxy())) {
-					relInst37416.relateAcrossR805To(this, notifyChanges);
+						|| (inSameComponent(this, relInst37998) && !isProxy())) {
+					relInst37998.relateAcrossR805To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R801
-		Value_c relInst37417 = (Value_c) baseRoot
+		Value_c relInst37999 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37417 == null) {
-			relInst37417 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst37999 == null) {
+			relInst37999 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37417 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst37999 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37417 = (Value_c) roots[i]
+				relInst37999 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37417 != null)
+				if (relInst37999 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37417 != null) {
+		if (relInst37999 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37417) && !isProxy())) {
-				relInst37417.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst37999) && !isProxy())) {
+				relInst37999.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
@@ -910,27 +912,27 @@ public class TransientValueReference_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class TransientValueReference_c_test37419_c
+		class TransientValueReference_c_test38001_c
 				implements
 					ClassQueryInterface_c {
-			TransientValueReference_c_test37419_c(java.util.UUID p37420) {
-				m_p37420 = p37420;
+			TransientValueReference_c_test38001_c(java.util.UUID p38002) {
+				m_p38002 = p38002;
 			}
-			private java.util.UUID m_p37420;
+			private java.util.UUID m_p38002;
 			public boolean evaluate(Object candidate) {
 				TransientValueReference_c selected = (TransientValueReference_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37420));
+				retval = (selected.getValue_id().equals(m_p38002));
 				return retval;
 			}
 		}
 
-		TransientValueReference_c[] objs37418 = TransientValueReference_c
+		TransientValueReference_c[] objs38000 = TransientValueReference_c
 				.TransientValueReferenceInstances(
 						modelRoot,
-						new TransientValueReference_c_test37419_c(getValue_id()));
+						new TransientValueReference_c_test38001_c(getValue_id()));
 
-		if (((objs37418.length) == 0)) {
+		if (((objs38000.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -938,20 +940,20 @@ public class TransientValueReference_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Transient Value Reference", //$NON-NLS-1$
 								"Consistency: Object: Transient Value Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37418.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38000.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Transient Value Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37418.length), e);
+										+ Integer.toString(objs38000.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37418.length) > 1)) {
+		if (((objs38000.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -960,7 +962,7 @@ public class TransientValueReference_c extends NonRootModelElement
 								"Transient Value Reference", //$NON-NLS-1$
 								"Consistency: Object: Transient Value Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37418.length)
+										+ Integer.toString(objs38000.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -968,7 +970,7 @@ public class TransientValueReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Transient Value Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37418.length)
+										+ Integer.toString(objs38000.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -977,23 +979,23 @@ public class TransientValueReference_c extends NonRootModelElement
 
 		// Transient Value Reference is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37424_c implements ClassQueryInterface_c {
-			Value_c_test37424_c(java.util.UUID p37425) {
-				m_p37425 = p37425;
+		class Value_c_test38006_c implements ClassQueryInterface_c {
+			Value_c_test38006_c(java.util.UUID p38007) {
+				m_p38007 = p38007;
 			}
-			private java.util.UUID m_p37425;
+			private java.util.UUID m_p38007;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37425));
+				retval = (selected.getValue_id().equals(m_p38007));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37423 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37424_c(getValue_id()));
+		Value_c[] objs38005 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38006_c(getValue_id()));
 
-		if (((objs37423.length) != 1)) {
+		if (((objs38005.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1001,14 +1003,14 @@ public class TransientValueReference_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Transient Value Reference", //$NON-NLS-1$
 								"Consistency: Object: Transient Value Reference: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37423.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38005.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Transient Value Reference: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37423.length), e);
+										+ Integer.toString(objs38005.length), e);
 			}
 			retval = false;
 
@@ -1016,25 +1018,25 @@ public class TransientValueReference_c extends NonRootModelElement
 
 		// Transient Value Reference is a referring class in association: rel.Numb = 805
 		// The participating class is: Variable
-		class Variable_c_test37427_c implements ClassQueryInterface_c {
-			Variable_c_test37427_c(java.util.UUID p37428) {
-				m_p37428 = p37428;
+		class Variable_c_test38009_c implements ClassQueryInterface_c {
+			Variable_c_test38009_c(java.util.UUID p38010) {
+				m_p38010 = p38010;
 			}
-			private java.util.UUID m_p37428;
+			private java.util.UUID m_p38010;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p37428));
+				retval = (selected.getVar_id().equals(m_p38010));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs37426 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test37427_c(getVar_id()));
+		Variable_c[] objs38008 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test38009_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37426.length) != 1)) {
+		if (((objs38008.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1043,7 +1045,7 @@ public class TransientValueReference_c extends NonRootModelElement
 								"Transient Value Reference", //$NON-NLS-1$
 								"Consistency: Object: Transient Value Reference: Association: 805: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37426.length)
+										+ Integer.toString(objs38008.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1051,7 +1053,7 @@ public class TransientValueReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Transient Value Reference: Association: 805: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37426.length)
+										+ Integer.toString(objs38008.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

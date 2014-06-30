@@ -154,7 +154,8 @@ public class SearchParticipant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,8 +171,9 @@ public class SearchParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((SearchParticipant_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((SearchParticipant_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((SearchParticipant_c) elem).getId()))
@@ -798,17 +800,17 @@ public class SearchParticipant_c extends NonRootModelElement
 
 		if (SearchedForBySearchEngine == null) {
 			// R9502
-			SearchEngine_c relInst39054 = (SearchEngine_c) baseRoot
+			SearchEngine_c relInst39636 = (SearchEngine_c) baseRoot
 					.getInstanceList(SearchEngine_c.class).get(
 							new Object[]{m_engine_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39054 == null) {
-				relInst39054 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
+			if (relInst39636 == null) {
+				relInst39636 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(SearchEngine_c.class)
 						.get(new Object[]{m_engine_id});
 			}
-			if (relInst39054 == null && searchAllRoots
+			if (relInst39636 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -816,18 +818,18 @@ public class SearchParticipant_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39054 = (SearchEngine_c) roots[i].getInstanceList(
+					relInst39636 = (SearchEngine_c) roots[i].getInstanceList(
 							SearchEngine_c.class)
 							.get(new Object[]{m_engine_id});
-					if (relInst39054 != null)
+					if (relInst39636 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39054 != null) {
+			if (relInst39636 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39054) && !isProxy())) {
-					relInst39054.relateAcrossR9502To(this, notifyChanges);
+						|| (inSameComponent(this, relInst39636) && !isProxy())) {
+					relInst39636.relateAcrossR9502To(this, notifyChanges);
 				}
 			}
 		}
@@ -1117,44 +1119,44 @@ public class SearchParticipant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SearchParticipant_c_test39056_c implements ClassQueryInterface_c {
-			SearchParticipant_c_test39056_c(java.util.UUID p39057) {
-				m_p39057 = p39057;
+		class SearchParticipant_c_test39638_c implements ClassQueryInterface_c {
+			SearchParticipant_c_test39638_c(java.util.UUID p39639) {
+				m_p39639 = p39639;
 			}
-			private java.util.UUID m_p39057;
+			private java.util.UUID m_p39639;
 			public boolean evaluate(Object candidate) {
 				SearchParticipant_c selected = (SearchParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39057));
+				retval = (selected.getId().equals(m_p39639));
 				return retval;
 			}
 		}
 
-		SearchParticipant_c[] objs39055 = SearchParticipant_c
+		SearchParticipant_c[] objs39637 = SearchParticipant_c
 				.SearchParticipantInstances(modelRoot,
-						new SearchParticipant_c_test39056_c(getId()));
+						new SearchParticipant_c_test39638_c(getId()));
 
-		if (((objs39055.length) == 0)) {
+		if (((objs39637.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Search Participant", //$NON-NLS-1$
 								"Consistency: Object: Search Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39055.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39637.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Search Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39055.length), e);
+										+ Integer.toString(objs39637.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39055.length) > 1)) {
+		if (((objs39637.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1162,7 +1164,7 @@ public class SearchParticipant_c extends NonRootModelElement
 								"Search Participant", //$NON-NLS-1$
 								"Consistency: Object: Search Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39055.length)
+										+ Integer.toString(objs39637.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1170,7 +1172,7 @@ public class SearchParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Search Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39055.length)
+										+ Integer.toString(objs39637.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1179,25 +1181,25 @@ public class SearchParticipant_c extends NonRootModelElement
 
 		// Search Participant is a referring class in association: rel.Numb = 9502
 		// The participating class is: Search Engine
-		class SearchEngine_c_test39061_c implements ClassQueryInterface_c {
-			SearchEngine_c_test39061_c(java.util.UUID p39062) {
-				m_p39062 = p39062;
+		class SearchEngine_c_test39643_c implements ClassQueryInterface_c {
+			SearchEngine_c_test39643_c(java.util.UUID p39644) {
+				m_p39644 = p39644;
 			}
-			private java.util.UUID m_p39062;
+			private java.util.UUID m_p39644;
 			public boolean evaluate(Object candidate) {
 				SearchEngine_c selected = (SearchEngine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39062));
+				retval = (selected.getId().equals(m_p39644));
 				return retval;
 			}
 		}
 
-		SearchEngine_c[] objs39060 = SearchEngine_c.SearchEngineInstances(
-				modelRoot, new SearchEngine_c_test39061_c(getEngine_id()));
+		SearchEngine_c[] objs39642 = SearchEngine_c.SearchEngineInstances(
+				modelRoot, new SearchEngine_c_test39643_c(getEngine_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs39060.length) != 1)) {
+		if (((objs39642.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1205,7 +1207,7 @@ public class SearchParticipant_c extends NonRootModelElement
 								"Search Participant", //$NON-NLS-1$
 								"Consistency: Object: Search Participant: Association: 9502: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39060.length)
+										+ Integer.toString(objs39642.length)
 										+ " Engine_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1213,7 +1215,7 @@ public class SearchParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Search Participant: Association: 9502: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39060.length)
+										+ Integer.toString(objs39642.length)
 										+ " Engine_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1222,37 +1224,37 @@ public class SearchParticipant_c extends NonRootModelElement
 
 		// Search Participant is a participating class in association: rel.Numb = 9802
 		// Object: Search Result
-		class SearchResult_c_test39064_c implements ClassQueryInterface_c {
-			SearchResult_c_test39064_c(java.util.UUID p39065) {
-				m_p39065 = p39065;
+		class SearchResult_c_test39646_c implements ClassQueryInterface_c {
+			SearchResult_c_test39646_c(java.util.UUID p39647) {
+				m_p39647 = p39647;
 			}
-			private java.util.UUID m_p39065;
+			private java.util.UUID m_p39647;
 			public boolean evaluate(Object candidate) {
 				SearchResult_c selected = (SearchResult_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMatchedparticipant_id().equals(m_p39065));
+				retval = (selected.getMatchedparticipant_id().equals(m_p39647));
 				return retval;
 			}
 		}
 
-		SearchResult_c[] objs39063 = SearchResult_c.SearchResultInstances(
-				modelRoot, new SearchResult_c_test39064_c(getId()));
+		SearchResult_c[] objs39645 = SearchResult_c.SearchResultInstances(
+				modelRoot, new SearchResult_c_test39646_c(getId()));
 
-		if (((objs39063.length) > 1)) {
+		if (((objs39645.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Search Participant", //$NON-NLS-1$
 								"Consistency: Object: Search Participant: Association: 9802: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39063.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39645.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Search Participant: Association: 9802: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39063.length), e);
+										+ Integer.toString(objs39645.length), e);
 			}
 			retval = false;
 
@@ -1260,38 +1262,38 @@ public class SearchParticipant_c extends NonRootModelElement
 
 		// Search Participant is a participating class in association: rel.Numb = 9700
 		// Object: Searchable Element
-		class SearchableElement_c_test39067_c implements ClassQueryInterface_c {
-			SearchableElement_c_test39067_c(java.util.UUID p39068) {
-				m_p39068 = p39068;
+		class SearchableElement_c_test39649_c implements ClassQueryInterface_c {
+			SearchableElement_c_test39649_c(java.util.UUID p39650) {
+				m_p39650 = p39650;
 			}
-			private java.util.UUID m_p39068;
+			private java.util.UUID m_p39650;
 			public boolean evaluate(Object candidate) {
 				SearchableElement_c selected = (SearchableElement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getParticipant_id().equals(m_p39068));
+				retval = (selected.getParticipant_id().equals(m_p39650));
 				return retval;
 			}
 		}
 
-		SearchableElement_c[] objs39066 = SearchableElement_c
+		SearchableElement_c[] objs39648 = SearchableElement_c
 				.SearchableElementInstances(modelRoot,
-						new SearchableElement_c_test39067_c(getId()));
+						new SearchableElement_c_test39649_c(getId()));
 
-		if (((objs39066.length) != 1)) {
+		if (((objs39648.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Search Participant", //$NON-NLS-1$
 								"Consistency: Object: Search Participant: Association: 9700: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39066.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39648.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Search Participant: Association: 9700: Cardinality of a formalizer is not equal to one. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39066.length), e);
+										+ Integer.toString(objs39648.length), e);
 			}
 			retval = false;
 

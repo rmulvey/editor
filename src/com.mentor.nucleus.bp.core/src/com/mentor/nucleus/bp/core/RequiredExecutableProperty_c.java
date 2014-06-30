@@ -179,7 +179,7 @@ p_m_requirement_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -195,7 +195,7 @@ p_m_requirement_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((RequiredExecutableProperty_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((RequiredExecutableProperty_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((RequiredExecutableProperty_c)elem).getId())) return false;
@@ -1310,55 +1310,55 @@ public static RequiredExecutableProperty_c [] getManySPR_REPsOnR845(MessageValue
         ModelRoot baseRoot = modelRoot;
 
       // R4500
-      Requirement_c relInst55573 = (Requirement_c) baseRoot.getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+      Requirement_c relInst57122 = (Requirement_c) baseRoot.getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55573 == null) {
-      			relInst55573 = (Requirement_c) Ooaofooa.getDefaultInstance().getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+      		if (relInst57122 == null) {
+      			relInst57122 = (Requirement_c) Ooaofooa.getDefaultInstance().getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
       		}
-			if (relInst55573 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57122 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55573 = (Requirement_c) roots[i].getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
-					if (relInst55573 != null)
+					relInst57122 = (Requirement_c) roots[i].getInstanceList(Requirement_c.class).get(new Object[] {m_requirement_id});
+					if (relInst57122 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55573 != null )
+      if ( relInst57122 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55573) && !isProxy())) {
-	      relInst55573.relateAcrossR4500To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57122) && !isProxy())) {
+	      relInst57122.relateAcrossR4500To(this, notifyChanges);
 	  }
 	  }
 	          
-      ExecutableProperty_c relInst55574 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
+      ExecutableProperty_c relInst57123 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55574 == null) {
-      			relInst55574 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
+      		if (relInst57123 == null) {
+      			relInst57123 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
       		}
-			if (relInst55574 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57123 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55574 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
-					if (relInst55574 != null)
+					relInst57123 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_executableproperty_id});
+					if (relInst57123 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55574 != null )
+      if ( relInst57123 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55574) && !isProxy())) {
-	      relInst55574.relateAcrossR4500To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57123) && !isProxy())) {
+	      relInst57123.relateAcrossR4500To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1710,56 +1710,56 @@ private static RequiredExecutableProperty_c findRequiredExecutablePropertyInstan
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class RequiredExecutableProperty_c_test55576_c implements ClassQueryInterface_c
+    class RequiredExecutableProperty_c_test57125_c implements ClassQueryInterface_c
     {
-	  RequiredExecutableProperty_c_test55576_c( java.util.UUID            p55577 ) {
-	  m_p55577 = p55577;
+	  RequiredExecutableProperty_c_test57125_c( java.util.UUID            p57126 ) {
+	  m_p57126 = p57126;
 	  }
-	  private java.util.UUID             m_p55577; 
+	  private java.util.UUID             m_p57126; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredExecutableProperty_c selected = (RequiredExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55577));
+	      retval = (selected.getId().equals(m_p57126));
 	      return retval;
 	  }
     }
 
-    RequiredExecutableProperty_c [] objs55575 = 
-    RequiredExecutableProperty_c.RequiredExecutablePropertyInstances(modelRoot, new RequiredExecutableProperty_c_test55576_c(getId())) ;
+    RequiredExecutableProperty_c [] objs57124 = 
+    RequiredExecutableProperty_c.RequiredExecutablePropertyInstances(modelRoot, new RequiredExecutableProperty_c_test57125_c(getId())) ;
 
-    if ( (  (objs55575.length) == 0) )
+    if ( (  (objs57124.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Required Executable Property", //$NON-NLS-1$
            "Consistency: Object: Required Executable Property: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55575.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57124.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Required Executable Property: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55575.length )  , e); 
+          + Integer.toString( objs57124.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55575.length) > 1) )
+    if ( (  (objs57124.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Required Executable Property", //$NON-NLS-1$
            "Consistency: Object: Required Executable Property: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55575.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57124.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Required Executable Property: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55575.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57124.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1768,60 +1768,60 @@ private static RequiredExecutableProperty_c findRequiredExecutablePropertyInstan
           // Required Executable Property is a link class in association: rel.Numb = 4500
             // Other side
           // Supertype: rel.Numb = 4502
-    int objs55580 = 0;
+    int objs57129 = 0;
             // Subtype Object: Required Signal
-    class RequiredSignal_c_test55581_c implements ClassQueryInterface_c
+    class RequiredSignal_c_test57130_c implements ClassQueryInterface_c
     {
-	  RequiredSignal_c_test55581_c( java.util.UUID            p55582 ) {
-	  m_p55582 = p55582;
+	  RequiredSignal_c_test57130_c( java.util.UUID            p57131 ) {
+	  m_p57131 = p57131;
 	  }
-	  private java.util.UUID             m_p55582; 
+	  private java.util.UUID             m_p57131; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredSignal_c selected = (RequiredSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55582));
+	      retval = (selected.getId().equals(m_p57131));
 	      return retval;
 	  }
     }
 
-    RequiredSignal_c [] objs55583 = 
-    RequiredSignal_c.RequiredSignalInstances(modelRoot, new RequiredSignal_c_test55581_c(getId())) ;
+    RequiredSignal_c [] objs57132 = 
+    RequiredSignal_c.RequiredSignalInstances(modelRoot, new RequiredSignal_c_test57130_c(getId())) ;
  
-    objs55580 = objs55580 + objs55583.length;
+    objs57129 = objs57129 + objs57132.length;
             // Subtype Object: Required Operation
-    class RequiredOperation_c_test55584_c implements ClassQueryInterface_c
+    class RequiredOperation_c_test57133_c implements ClassQueryInterface_c
     {
-	  RequiredOperation_c_test55584_c( java.util.UUID            p55585 ) {
-	  m_p55585 = p55585;
+	  RequiredOperation_c_test57133_c( java.util.UUID            p57134 ) {
+	  m_p57134 = p57134;
 	  }
-	  private java.util.UUID             m_p55585; 
+	  private java.util.UUID             m_p57134; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredOperation_c selected = (RequiredOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55585));
+	      retval = (selected.getId().equals(m_p57134));
 	      return retval;
 	  }
     }
 
-    RequiredOperation_c [] objs55586 = 
-    RequiredOperation_c.RequiredOperationInstances(modelRoot, new RequiredOperation_c_test55584_c(getId())) ;
+    RequiredOperation_c [] objs57135 = 
+    RequiredOperation_c.RequiredOperationInstances(modelRoot, new RequiredOperation_c_test57133_c(getId())) ;
  
-    objs55580 = objs55580 + objs55586.length;
-    if ( objs55580 != 1 )
+    objs57129 = objs57129 + objs57135.length;
+    if ( objs57129 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Required Executable Property", //$NON-NLS-1$
            "Consistency: Object: Required Executable Property: Association: 4502: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55580 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57129 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Required Executable Property: Association: 4502: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55580 )  , e); 
+          + Integer.toString( objs57129 )  , e); 
       }
       retval = false;
 
@@ -1901,9 +1901,9 @@ MessageValue_c [] v_messageVals = MessageValue_c.getManyV_MSVsOnR845(this);
 
 
 MessageValue_c  v_msv = null;
-for ( int i53792 = 0; i53792 < v_messageVals.length; i53792++)
+for ( int i55322 = 0; i55322 < v_messageVals.length; i55322++)
 {
-  v_msv = v_messageVals[i53792] ;
+  v_msv = v_messageVals[i55322] ;
 
 this.unrelateAcrossR845From(v_msv);
 
@@ -1991,25 +1991,25 @@ Interface_c v_interface = Interface_c.getOneC_IOnR4012(InterfaceReference_c.getO
 if ( (  (v_interface != null)) )
 {
 
-  class ExecutableProperty_test54360_c implements ClassQueryInterface_c
+  class ExecutableProperty_test55909_c implements ClassQueryInterface_c
   {
-	ExecutableProperty_test54360_c( String       p54361 ) {
-		m_p54361 = p54361;
+	ExecutableProperty_test55909_c( String       p55910 ) {
+		m_p55910 = p55910;
 	}
-	private String       m_p54361;
+	private String       m_p55910;
 	public boolean evaluate (Object candidate)
 	{
 		ExecutableProperty_c selected = (ExecutableProperty_c)candidate;
-		return (selected.getName().equals(m_p54361)) ;
+		return (selected.getName().equals(m_p55910)) ;
 	}
   }
-ExecutableProperty_c [] v_eps = ExecutableProperty_c.getManyC_EPsOnR4003(v_interface, new ExecutableProperty_test54360_c(v_epProxy.Getcachedname()));
+ExecutableProperty_c [] v_eps = ExecutableProperty_c.getManyC_EPsOnR4003(v_interface, new ExecutableProperty_test55909_c(v_epProxy.Getcachedname()));
 
 
 ExecutableProperty_c  v_ep = null;
-for ( int i53793 = 0; i53793 < v_eps.length; i53793++)
+for ( int i55323 = 0; i55323 < v_eps.length; i55323++)
 {
-  v_ep = v_eps[i53793] ;
+  v_ep = v_eps[i55323] ;
 
 if ( (v_isSig) )
 {

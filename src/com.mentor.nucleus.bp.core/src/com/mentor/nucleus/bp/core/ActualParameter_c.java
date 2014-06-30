@@ -188,7 +188,8 @@ public class ActualParameter_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -204,9 +205,9 @@ public class ActualParameter_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((ActualParameter_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((ActualParameter_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(((ActualParameter_c) elem).getValue_id()))
@@ -3160,16 +3161,16 @@ public class ActualParameter_c extends NonRootModelElement
 
 		if (HasValue == null) {
 			// R800
-			Value_c relInst37767 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst38349 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37767 == null) {
-				relInst37767 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst38349 == null) {
+				relInst38349 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_value_id});
 			}
-			if (relInst37767 == null && searchAllRoots
+			if (relInst38349 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3177,34 +3178,34 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37767 = (Value_c) roots[i].getInstanceList(
+					relInst38349 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_value_id});
-					if (relInst37767 != null)
+					if (relInst38349 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37767 != null) {
+			if (relInst38349 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37767) && !isProxy())) {
-					relInst37767.relateAcrossR800To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38349) && !isProxy())) {
+					relInst38349.relateAcrossR800To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OperationValue == null) {
 			// R811
-			OperationValue_c relInst37768 = (OperationValue_c) baseRoot
+			OperationValue_c relInst38350 = (OperationValue_c) baseRoot
 					.getInstanceList(OperationValue_c.class).get(
 							new Object[]{m_invocation_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37768 == null) {
-				relInst37768 = (OperationValue_c) Ooaofooa.getDefaultInstance()
+			if (relInst38350 == null) {
+				relInst38350 = (OperationValue_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(OperationValue_c.class)
 						.get(new Object[]{m_invocation_value_id});
 			}
-			if (relInst37768 == null && searchAllRoots
+			if (relInst38350 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3212,35 +3213,35 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37768 = (OperationValue_c) roots[i].getInstanceList(
+					relInst38350 = (OperationValue_c) roots[i].getInstanceList(
 							OperationValue_c.class).get(
 							new Object[]{m_invocation_value_id});
-					if (relInst37768 != null)
+					if (relInst38350 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37768 != null) {
+			if (relInst38350 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37768) && !isProxy())) {
-					relInst37768.relateAcrossR811To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38350) && !isProxy())) {
+					relInst38350.relateAcrossR811To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (MessageValue == null) {
 			// R842
-			MessageValue_c relInst37769 = (MessageValue_c) baseRoot
+			MessageValue_c relInst38351 = (MessageValue_c) baseRoot
 					.getInstanceList(MessageValue_c.class).get(
 							new Object[]{m_invocation_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37769 == null) {
-				relInst37769 = (MessageValue_c) Ooaofooa.getDefaultInstance()
+			if (relInst38351 == null) {
+				relInst38351 = (MessageValue_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(MessageValue_c.class)
 						.get(new Object[]{m_invocation_value_id});
 			}
-			if (relInst37769 == null && searchAllRoots
+			if (relInst38351 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3248,35 +3249,35 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37769 = (MessageValue_c) roots[i].getInstanceList(
+					relInst38351 = (MessageValue_c) roots[i].getInstanceList(
 							MessageValue_c.class).get(
 							new Object[]{m_invocation_value_id});
-					if (relInst37769 != null)
+					if (relInst38351 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37769 != null) {
+			if (relInst38351 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37769) && !isProxy())) {
-					relInst37769.relateAcrossR842To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38351) && !isProxy())) {
+					relInst38351.relateAcrossR842To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (FunctionValue == null) {
 			// R817
-			FunctionValue_c relInst37770 = (FunctionValue_c) baseRoot
+			FunctionValue_c relInst38352 = (FunctionValue_c) baseRoot
 					.getInstanceList(FunctionValue_c.class).get(
 							new Object[]{m_invocation_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37770 == null) {
-				relInst37770 = (FunctionValue_c) Ooaofooa.getDefaultInstance()
+			if (relInst38352 == null) {
+				relInst38352 = (FunctionValue_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(FunctionValue_c.class)
 						.get(new Object[]{m_invocation_value_id});
 			}
-			if (relInst37770 == null && searchAllRoots
+			if (relInst38352 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3284,35 +3285,35 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37770 = (FunctionValue_c) roots[i].getInstanceList(
+					relInst38352 = (FunctionValue_c) roots[i].getInstanceList(
 							FunctionValue_c.class).get(
 							new Object[]{m_invocation_value_id});
-					if (relInst37770 != null)
+					if (relInst38352 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37770 != null) {
+			if (relInst38352 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37770) && !isProxy())) {
-					relInst37770.relateAcrossR817To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38352) && !isProxy())) {
+					relInst38352.relateAcrossR817To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (BridgeValue == null) {
 			// R810
-			BridgeValue_c relInst37771 = (BridgeValue_c) baseRoot
+			BridgeValue_c relInst38353 = (BridgeValue_c) baseRoot
 					.getInstanceList(BridgeValue_c.class).get(
 							new Object[]{m_invocation_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37771 == null) {
-				relInst37771 = (BridgeValue_c) Ooaofooa.getDefaultInstance()
+			if (relInst38353 == null) {
+				relInst38353 = (BridgeValue_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(BridgeValue_c.class)
 						.get(new Object[]{m_invocation_value_id});
 			}
-			if (relInst37771 == null && searchAllRoots
+			if (relInst38353 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3320,36 +3321,36 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37771 = (BridgeValue_c) roots[i].getInstanceList(
+					relInst38353 = (BridgeValue_c) roots[i].getInstanceList(
 							BridgeValue_c.class).get(
 							new Object[]{m_invocation_value_id});
-					if (relInst37771 != null)
+					if (relInst38353 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37771 != null) {
+			if (relInst38353 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37771) && !isProxy())) {
-					relInst37771.relateAcrossR810To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38353) && !isProxy())) {
+					relInst38353.relateAcrossR810To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (PrecedesActualParameter == null) {
 			// R816
-			ActualParameter_c relInst37772 = (ActualParameter_c) baseRoot
+			ActualParameter_c relInst38354 = (ActualParameter_c) baseRoot
 					.getInstanceList(ActualParameter_c.class).get(
 							new Object[]{m_next_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37772 == null) {
-				relInst37772 = (ActualParameter_c) Ooaofooa
+			if (relInst38354 == null) {
+				relInst38354 = (ActualParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(ActualParameter_c.class)
 						.get(new Object[]{m_next_value_id});
 			}
-			if (relInst37772 == null && searchAllRoots
+			if (relInst38354 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3357,18 +3358,18 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37772 = (ActualParameter_c) roots[i]
+					relInst38354 = (ActualParameter_c) roots[i]
 							.getInstanceList(ActualParameter_c.class).get(
 									new Object[]{m_next_value_id});
-					if (relInst37772 != null)
+					if (relInst38354 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37772 != null) {
+			if (relInst38354 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37772) && !isProxy())) {
-					relInst37772
+						|| (inSameComponent(this, relInst38354) && !isProxy())) {
+					relInst38354
 							.relateAcrossR816ToSucceeds(this, notifyChanges);
 				}
 			}
@@ -3376,18 +3377,18 @@ public class ActualParameter_c extends NonRootModelElement
 
 		if (FunctionInvocation == null) {
 			// R669
-			FunctionInvocation_c relInst37773 = (FunctionInvocation_c) baseRoot
+			FunctionInvocation_c relInst38355 = (FunctionInvocation_c) baseRoot
 					.getInstanceList(FunctionInvocation_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37773 == null) {
-				relInst37773 = (FunctionInvocation_c) Ooaofooa
+			if (relInst38355 == null) {
+				relInst38355 = (FunctionInvocation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(FunctionInvocation_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37773 == null && searchAllRoots
+			if (relInst38355 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3395,36 +3396,36 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37773 = (FunctionInvocation_c) roots[i]
+					relInst38355 = (FunctionInvocation_c) roots[i]
 							.getInstanceList(FunctionInvocation_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37773 != null)
+					if (relInst38355 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37773 != null) {
+			if (relInst38355 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37773) && !isProxy())) {
-					relInst37773.relateAcrossR669To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38355) && !isProxy())) {
+					relInst38355.relateAcrossR669To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (BridgeInvocation == null) {
 			// R628
-			BridgeInvocation_c relInst37774 = (BridgeInvocation_c) baseRoot
+			BridgeInvocation_c relInst38356 = (BridgeInvocation_c) baseRoot
 					.getInstanceList(BridgeInvocation_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37774 == null) {
-				relInst37774 = (BridgeInvocation_c) Ooaofooa
+			if (relInst38356 == null) {
+				relInst38356 = (BridgeInvocation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(BridgeInvocation_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37774 == null && searchAllRoots
+			if (relInst38356 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3432,36 +3433,36 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37774 = (BridgeInvocation_c) roots[i]
+					relInst38356 = (BridgeInvocation_c) roots[i]
 							.getInstanceList(BridgeInvocation_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37774 != null)
+					if (relInst38356 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37774 != null) {
+			if (relInst38356 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37774) && !isProxy())) {
-					relInst37774.relateAcrossR628To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38356) && !isProxy())) {
+					relInst38356.relateAcrossR628To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (OperationInvocation == null) {
 			// R627
-			OperationInvocation_c relInst37775 = (OperationInvocation_c) baseRoot
+			OperationInvocation_c relInst38357 = (OperationInvocation_c) baseRoot
 					.getInstanceList(OperationInvocation_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37775 == null) {
-				relInst37775 = (OperationInvocation_c) Ooaofooa
+			if (relInst38357 == null) {
+				relInst38357 = (OperationInvocation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(OperationInvocation_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37775 == null && searchAllRoots
+			if (relInst38357 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3469,36 +3470,36 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37775 = (OperationInvocation_c) roots[i]
+					relInst38357 = (OperationInvocation_c) roots[i]
 							.getInstanceList(OperationInvocation_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37775 != null)
+					if (relInst38357 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37775 != null) {
+			if (relInst38357 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37775) && !isProxy())) {
-					relInst37775.relateAcrossR627To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38357) && !isProxy())) {
+					relInst38357.relateAcrossR627To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (TakenByInterfaceOperationInvocation == null) {
 			// R679
-			InterfaceOperationInvocation_c relInst37776 = (InterfaceOperationInvocation_c) baseRoot
+			InterfaceOperationInvocation_c relInst38358 = (InterfaceOperationInvocation_c) baseRoot
 					.getInstanceList(InterfaceOperationInvocation_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37776 == null) {
-				relInst37776 = (InterfaceOperationInvocation_c) Ooaofooa
+			if (relInst38358 == null) {
+				relInst38358 = (InterfaceOperationInvocation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(InterfaceOperationInvocation_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37776 == null && searchAllRoots
+			if (relInst38358 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3506,37 +3507,37 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37776 = (InterfaceOperationInvocation_c) roots[i]
+					relInst38358 = (InterfaceOperationInvocation_c) roots[i]
 							.getInstanceList(
 									InterfaceOperationInvocation_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37776 != null)
+					if (relInst38358 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37776 != null) {
+			if (relInst38358 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37776) && !isProxy())) {
-					relInst37776.relateAcrossR679To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38358) && !isProxy())) {
+					relInst38358.relateAcrossR679To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (TakenBySignalInvocation == null) {
 			// R662
-			SignalInvocation_c relInst37777 = (SignalInvocation_c) baseRoot
+			SignalInvocation_c relInst38359 = (SignalInvocation_c) baseRoot
 					.getInstanceList(SignalInvocation_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37777 == null) {
-				relInst37777 = (SignalInvocation_c) Ooaofooa
+			if (relInst38359 == null) {
+				relInst38359 = (SignalInvocation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(SignalInvocation_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37777 == null && searchAllRoots
+			if (relInst38359 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3544,36 +3545,36 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37777 = (SignalInvocation_c) roots[i]
+					relInst38359 = (SignalInvocation_c) roots[i]
 							.getInstanceList(SignalInvocation_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37777 != null)
+					if (relInst38359 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37777 != null) {
+			if (relInst38359 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37777) && !isProxy())) {
-					relInst37777.relateAcrossR662To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38359) && !isProxy())) {
+					relInst38359.relateAcrossR662To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (EventSpecificationStatement == null) {
 			// R700
-			EventSpecificationStatement_c relInst37778 = (EventSpecificationStatement_c) baseRoot
+			EventSpecificationStatement_c relInst38360 = (EventSpecificationStatement_c) baseRoot
 					.getInstanceList(EventSpecificationStatement_c.class).get(
 							new Object[]{m_statement_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37778 == null) {
-				relInst37778 = (EventSpecificationStatement_c) Ooaofooa
+			if (relInst38360 == null) {
+				relInst38360 = (EventSpecificationStatement_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(EventSpecificationStatement_c.class)
 						.get(new Object[]{m_statement_id});
 			}
-			if (relInst37778 == null && searchAllRoots
+			if (relInst38360 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -3581,19 +3582,19 @@ public class ActualParameter_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37778 = (EventSpecificationStatement_c) roots[i]
+					relInst38360 = (EventSpecificationStatement_c) roots[i]
 							.getInstanceList(
 									EventSpecificationStatement_c.class).get(
 									new Object[]{m_statement_id});
-					if (relInst37778 != null)
+					if (relInst38360 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37778 != null) {
+			if (relInst38360 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37778) && !isProxy())) {
-					relInst37778.relateAcrossR700To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38360) && !isProxy())) {
+					relInst38360.relateAcrossR700To(this, notifyChanges);
 				}
 			}
 		}
@@ -4081,43 +4082,43 @@ public class ActualParameter_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActualParameter_c_test37780_c implements ClassQueryInterface_c {
-			ActualParameter_c_test37780_c(java.util.UUID p37781) {
-				m_p37781 = p37781;
+		class ActualParameter_c_test38362_c implements ClassQueryInterface_c {
+			ActualParameter_c_test38362_c(java.util.UUID p38363) {
+				m_p38363 = p38363;
 			}
-			private java.util.UUID m_p37781;
+			private java.util.UUID m_p38363;
 			public boolean evaluate(Object candidate) {
 				ActualParameter_c selected = (ActualParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37781));
+				retval = (selected.getValue_id().equals(m_p38363));
 				return retval;
 			}
 		}
 
-		ActualParameter_c[] objs37779 = ActualParameter_c
+		ActualParameter_c[] objs38361 = ActualParameter_c
 				.ActualParameterInstances(modelRoot,
-						new ActualParameter_c_test37780_c(getValue_id()));
+						new ActualParameter_c_test38362_c(getValue_id()));
 
-		if (((objs37779.length) == 0)) {
+		if (((objs38361.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37779.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38361.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Actual Parameter: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37779.length), e);
+								+ Integer.toString(objs38361.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37779.length) > 1)) {
+		if (((objs38361.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4125,7 +4126,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37779.length)
+										+ Integer.toString(objs38361.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4133,7 +4134,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37779.length)
+										+ Integer.toString(objs38361.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4142,25 +4143,25 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 800
 		// The participating class is: Value
-		class Value_c_test37785_c implements ClassQueryInterface_c {
-			Value_c_test37785_c(java.util.UUID p37786) {
-				m_p37786 = p37786;
+		class Value_c_test38367_c implements ClassQueryInterface_c {
+			Value_c_test38367_c(java.util.UUID p38368) {
+				m_p38368 = p38368;
 			}
-			private java.util.UUID m_p37786;
+			private java.util.UUID m_p38368;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37786));
+				retval = (selected.getValue_id().equals(m_p38368));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37784 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37785_c(getValue_id()));
+		Value_c[] objs38366 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38367_c(getValue_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37784.length) != 1)) {
+		if (((objs38366.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4168,7 +4169,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 800: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37784.length)
+										+ Integer.toString(objs38366.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4176,7 +4177,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 800: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37784.length)
+										+ Integer.toString(objs38366.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4185,27 +4186,27 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 627
 		// The participating class is: Operation Invocation
-		class OperationInvocation_c_test37788_c
+		class OperationInvocation_c_test38370_c
 				implements
 					ClassQueryInterface_c {
-			OperationInvocation_c_test37788_c(java.util.UUID p37789) {
-				m_p37789 = p37789;
+			OperationInvocation_c_test38370_c(java.util.UUID p38371) {
+				m_p38371 = p38371;
 			}
-			private java.util.UUID m_p37789;
+			private java.util.UUID m_p38371;
 			public boolean evaluate(Object candidate) {
 				OperationInvocation_c selected = (OperationInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37789));
+				retval = (selected.getStatement_id().equals(m_p38371));
 				return retval;
 			}
 		}
 
-		OperationInvocation_c[] objs37787 = OperationInvocation_c
+		OperationInvocation_c[] objs38369 = OperationInvocation_c
 				.OperationInvocationInstances(
 						modelRoot,
-						new OperationInvocation_c_test37788_c(getStatement_id()));
+						new OperationInvocation_c_test38370_c(getStatement_id()));
 
-		if (((objs37787.length) > 1)) {
+		if (((objs38369.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4213,7 +4214,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 627: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37787.length)
+										+ Integer.toString(objs38369.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4221,7 +4222,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 627: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37787.length)
+										+ Integer.toString(objs38369.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4230,24 +4231,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 628
 		// The participating class is: Bridge Invocation
-		class BridgeInvocation_c_test37791_c implements ClassQueryInterface_c {
-			BridgeInvocation_c_test37791_c(java.util.UUID p37792) {
-				m_p37792 = p37792;
+		class BridgeInvocation_c_test38373_c implements ClassQueryInterface_c {
+			BridgeInvocation_c_test38373_c(java.util.UUID p38374) {
+				m_p38374 = p38374;
 			}
-			private java.util.UUID m_p37792;
+			private java.util.UUID m_p38374;
 			public boolean evaluate(Object candidate) {
 				BridgeInvocation_c selected = (BridgeInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37792));
+				retval = (selected.getStatement_id().equals(m_p38374));
 				return retval;
 			}
 		}
 
-		BridgeInvocation_c[] objs37790 = BridgeInvocation_c
+		BridgeInvocation_c[] objs38372 = BridgeInvocation_c
 				.BridgeInvocationInstances(modelRoot,
-						new BridgeInvocation_c_test37791_c(getStatement_id()));
+						new BridgeInvocation_c_test38373_c(getStatement_id()));
 
-		if (((objs37790.length) > 1)) {
+		if (((objs38372.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4255,7 +4256,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 628: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37790.length)
+										+ Integer.toString(objs38372.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4263,7 +4264,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 628: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37790.length)
+										+ Integer.toString(objs38372.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4272,24 +4273,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 669
 		// The participating class is: Function Invocation
-		class FunctionInvocation_c_test37794_c implements ClassQueryInterface_c {
-			FunctionInvocation_c_test37794_c(java.util.UUID p37795) {
-				m_p37795 = p37795;
+		class FunctionInvocation_c_test38376_c implements ClassQueryInterface_c {
+			FunctionInvocation_c_test38376_c(java.util.UUID p38377) {
+				m_p38377 = p38377;
 			}
-			private java.util.UUID m_p37795;
+			private java.util.UUID m_p38377;
 			public boolean evaluate(Object candidate) {
 				FunctionInvocation_c selected = (FunctionInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37795));
+				retval = (selected.getStatement_id().equals(m_p38377));
 				return retval;
 			}
 		}
 
-		FunctionInvocation_c[] objs37793 = FunctionInvocation_c
+		FunctionInvocation_c[] objs38375 = FunctionInvocation_c
 				.FunctionInvocationInstances(modelRoot,
-						new FunctionInvocation_c_test37794_c(getStatement_id()));
+						new FunctionInvocation_c_test38376_c(getStatement_id()));
 
-		if (((objs37793.length) > 1)) {
+		if (((objs38375.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4297,7 +4298,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 669: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37793.length)
+										+ Integer.toString(objs38375.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4305,7 +4306,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 669: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37793.length)
+										+ Integer.toString(objs38375.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4314,27 +4315,27 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 700
 		// The participating class is: Event Specification Statement
-		class EventSpecificationStatement_c_test37797_c
+		class EventSpecificationStatement_c_test38379_c
 				implements
 					ClassQueryInterface_c {
-			EventSpecificationStatement_c_test37797_c(java.util.UUID p37798) {
-				m_p37798 = p37798;
+			EventSpecificationStatement_c_test38379_c(java.util.UUID p38380) {
+				m_p38380 = p38380;
 			}
-			private java.util.UUID m_p37798;
+			private java.util.UUID m_p38380;
 			public boolean evaluate(Object candidate) {
 				EventSpecificationStatement_c selected = (EventSpecificationStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37798));
+				retval = (selected.getStatement_id().equals(m_p38380));
 				return retval;
 			}
 		}
 
-		EventSpecificationStatement_c[] objs37796 = EventSpecificationStatement_c
+		EventSpecificationStatement_c[] objs38378 = EventSpecificationStatement_c
 				.EventSpecificationStatementInstances(modelRoot,
-						new EventSpecificationStatement_c_test37797_c(
+						new EventSpecificationStatement_c_test38379_c(
 								getStatement_id()));
 
-		if (((objs37796.length) > 1)) {
+		if (((objs38378.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4342,7 +4343,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 700: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37796.length)
+										+ Integer.toString(objs38378.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4350,7 +4351,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 700: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37796.length)
+										+ Integer.toString(objs38378.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4359,27 +4360,27 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 679
 		// The participating class is: Interface Operation Invocation
-		class InterfaceOperationInvocation_c_test37800_c
+		class InterfaceOperationInvocation_c_test38382_c
 				implements
 					ClassQueryInterface_c {
-			InterfaceOperationInvocation_c_test37800_c(java.util.UUID p37801) {
-				m_p37801 = p37801;
+			InterfaceOperationInvocation_c_test38382_c(java.util.UUID p38383) {
+				m_p38383 = p38383;
 			}
-			private java.util.UUID m_p37801;
+			private java.util.UUID m_p38383;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperationInvocation_c selected = (InterfaceOperationInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37801));
+				retval = (selected.getStatement_id().equals(m_p38383));
 				return retval;
 			}
 		}
 
-		InterfaceOperationInvocation_c[] objs37799 = InterfaceOperationInvocation_c
+		InterfaceOperationInvocation_c[] objs38381 = InterfaceOperationInvocation_c
 				.InterfaceOperationInvocationInstances(modelRoot,
-						new InterfaceOperationInvocation_c_test37800_c(
+						new InterfaceOperationInvocation_c_test38382_c(
 								getStatement_id()));
 
-		if (((objs37799.length) > 1)) {
+		if (((objs38381.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4387,7 +4388,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 679: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37799.length)
+										+ Integer.toString(objs38381.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4395,7 +4396,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 679: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37799.length)
+										+ Integer.toString(objs38381.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4404,24 +4405,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 662
 		// The participating class is: Signal Invocation
-		class SignalInvocation_c_test37803_c implements ClassQueryInterface_c {
-			SignalInvocation_c_test37803_c(java.util.UUID p37804) {
-				m_p37804 = p37804;
+		class SignalInvocation_c_test38385_c implements ClassQueryInterface_c {
+			SignalInvocation_c_test38385_c(java.util.UUID p38386) {
+				m_p38386 = p38386;
 			}
-			private java.util.UUID m_p37804;
+			private java.util.UUID m_p38386;
 			public boolean evaluate(Object candidate) {
 				SignalInvocation_c selected = (SignalInvocation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p37804));
+				retval = (selected.getStatement_id().equals(m_p38386));
 				return retval;
 			}
 		}
 
-		SignalInvocation_c[] objs37802 = SignalInvocation_c
+		SignalInvocation_c[] objs38384 = SignalInvocation_c
 				.SignalInvocationInstances(modelRoot,
-						new SignalInvocation_c_test37803_c(getStatement_id()));
+						new SignalInvocation_c_test38385_c(getStatement_id()));
 
-		if (((objs37802.length) > 1)) {
+		if (((objs38384.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4429,7 +4430,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 662: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37802.length)
+										+ Integer.toString(objs38384.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4437,7 +4438,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 662: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37802.length)
+										+ Integer.toString(objs38384.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4446,24 +4447,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 816
 		// The participating class is: Actual Parameter
-		class ActualParameter_c_test37806_c implements ClassQueryInterface_c {
-			ActualParameter_c_test37806_c(java.util.UUID p37807) {
-				m_p37807 = p37807;
+		class ActualParameter_c_test38388_c implements ClassQueryInterface_c {
+			ActualParameter_c_test38388_c(java.util.UUID p38389) {
+				m_p38389 = p38389;
 			}
-			private java.util.UUID m_p37807;
+			private java.util.UUID m_p38389;
 			public boolean evaluate(Object candidate) {
 				ActualParameter_c selected = (ActualParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37807));
+				retval = (selected.getValue_id().equals(m_p38389));
 				return retval;
 			}
 		}
 
-		ActualParameter_c[] objs37805 = ActualParameter_c
+		ActualParameter_c[] objs38387 = ActualParameter_c
 				.ActualParameterInstances(modelRoot,
-						new ActualParameter_c_test37806_c(getNext_value_id()));
+						new ActualParameter_c_test38388_c(getNext_value_id()));
 
-		if (((objs37805.length) > 1)) {
+		if (((objs38387.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4471,7 +4472,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 816: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37805.length)
+										+ Integer.toString(objs38387.length)
 										+ " Next_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4479,7 +4480,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 816: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37805.length)
+										+ Integer.toString(objs38387.length)
 										+ " Next_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4488,25 +4489,25 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 811
 		// The participating class is: Operation Value
-		class OperationValue_c_test37809_c implements ClassQueryInterface_c {
-			OperationValue_c_test37809_c(java.util.UUID p37810) {
-				m_p37810 = p37810;
+		class OperationValue_c_test38391_c implements ClassQueryInterface_c {
+			OperationValue_c_test38391_c(java.util.UUID p38392) {
+				m_p38392 = p38392;
 			}
-			private java.util.UUID m_p37810;
+			private java.util.UUID m_p38392;
 			public boolean evaluate(Object candidate) {
 				OperationValue_c selected = (OperationValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37810));
+				retval = (selected.getValue_id().equals(m_p38392));
 				return retval;
 			}
 		}
 
-		OperationValue_c[] objs37808 = OperationValue_c
+		OperationValue_c[] objs38390 = OperationValue_c
 				.OperationValueInstances(modelRoot,
-						new OperationValue_c_test37809_c(
+						new OperationValue_c_test38391_c(
 								getInvocation_value_id()));
 
-		if (((objs37808.length) > 1)) {
+		if (((objs38390.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4514,7 +4515,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 811: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37808.length)
+										+ Integer.toString(objs38390.length)
 										+ " Invocation_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4522,7 +4523,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 811: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37808.length)
+										+ Integer.toString(objs38390.length)
 										+ " Invocation_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4531,24 +4532,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 842
 		// The participating class is: Message Value
-		class MessageValue_c_test37812_c implements ClassQueryInterface_c {
-			MessageValue_c_test37812_c(java.util.UUID p37813) {
-				m_p37813 = p37813;
+		class MessageValue_c_test38394_c implements ClassQueryInterface_c {
+			MessageValue_c_test38394_c(java.util.UUID p38395) {
+				m_p38395 = p38395;
 			}
-			private java.util.UUID m_p37813;
+			private java.util.UUID m_p38395;
 			public boolean evaluate(Object candidate) {
 				MessageValue_c selected = (MessageValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37813));
+				retval = (selected.getValue_id().equals(m_p38395));
 				return retval;
 			}
 		}
 
-		MessageValue_c[] objs37811 = MessageValue_c.MessageValueInstances(
-				modelRoot, new MessageValue_c_test37812_c(
+		MessageValue_c[] objs38393 = MessageValue_c.MessageValueInstances(
+				modelRoot, new MessageValue_c_test38394_c(
 						getInvocation_value_id()));
 
-		if (((objs37811.length) > 1)) {
+		if (((objs38393.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4556,7 +4557,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 842: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37811.length)
+										+ Integer.toString(objs38393.length)
 										+ " Invocation_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4564,7 +4565,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 842: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37811.length)
+										+ Integer.toString(objs38393.length)
 										+ " Invocation_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4573,24 +4574,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 817
 		// The participating class is: Function Value
-		class FunctionValue_c_test37815_c implements ClassQueryInterface_c {
-			FunctionValue_c_test37815_c(java.util.UUID p37816) {
-				m_p37816 = p37816;
+		class FunctionValue_c_test38397_c implements ClassQueryInterface_c {
+			FunctionValue_c_test38397_c(java.util.UUID p38398) {
+				m_p38398 = p38398;
 			}
-			private java.util.UUID m_p37816;
+			private java.util.UUID m_p38398;
 			public boolean evaluate(Object candidate) {
 				FunctionValue_c selected = (FunctionValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37816));
+				retval = (selected.getValue_id().equals(m_p38398));
 				return retval;
 			}
 		}
 
-		FunctionValue_c[] objs37814 = FunctionValue_c.FunctionValueInstances(
-				modelRoot, new FunctionValue_c_test37815_c(
+		FunctionValue_c[] objs38396 = FunctionValue_c.FunctionValueInstances(
+				modelRoot, new FunctionValue_c_test38397_c(
 						getInvocation_value_id()));
 
-		if (((objs37814.length) > 1)) {
+		if (((objs38396.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4598,7 +4599,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 817: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37814.length)
+										+ Integer.toString(objs38396.length)
 										+ " Invocation_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4606,7 +4607,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 817: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37814.length)
+										+ Integer.toString(objs38396.length)
 										+ " Invocation_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4615,24 +4616,24 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a referring class in association: rel.Numb = 810
 		// The participating class is: Bridge Value
-		class BridgeValue_c_test37818_c implements ClassQueryInterface_c {
-			BridgeValue_c_test37818_c(java.util.UUID p37819) {
-				m_p37819 = p37819;
+		class BridgeValue_c_test38400_c implements ClassQueryInterface_c {
+			BridgeValue_c_test38400_c(java.util.UUID p38401) {
+				m_p38401 = p38401;
 			}
-			private java.util.UUID m_p37819;
+			private java.util.UUID m_p38401;
 			public boolean evaluate(Object candidate) {
 				BridgeValue_c selected = (BridgeValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37819));
+				retval = (selected.getValue_id().equals(m_p38401));
 				return retval;
 			}
 		}
 
-		BridgeValue_c[] objs37817 = BridgeValue_c.BridgeValueInstances(
-				modelRoot, new BridgeValue_c_test37818_c(
+		BridgeValue_c[] objs38399 = BridgeValue_c.BridgeValueInstances(
+				modelRoot, new BridgeValue_c_test38400_c(
 						getInvocation_value_id()));
 
-		if (((objs37817.length) > 1)) {
+		if (((objs38399.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -4640,7 +4641,7 @@ public class ActualParameter_c extends NonRootModelElement
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 810: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37817.length)
+										+ Integer.toString(objs38399.length)
 										+ " Invocation_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -4648,7 +4649,7 @@ public class ActualParameter_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 810: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37817.length)
+										+ Integer.toString(objs38399.length)
 										+ " Invocation_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -4657,38 +4658,38 @@ public class ActualParameter_c extends NonRootModelElement
 
 		// Actual Parameter is a participating class in association: rel.Numb = 816
 		// Object: Actual Parameter
-		class ActualParameter_c_test37821_c implements ClassQueryInterface_c {
-			ActualParameter_c_test37821_c(java.util.UUID p37822) {
-				m_p37822 = p37822;
+		class ActualParameter_c_test38403_c implements ClassQueryInterface_c {
+			ActualParameter_c_test38403_c(java.util.UUID p38404) {
+				m_p38404 = p38404;
 			}
-			private java.util.UUID m_p37822;
+			private java.util.UUID m_p38404;
 			public boolean evaluate(Object candidate) {
 				ActualParameter_c selected = (ActualParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getNext_value_id().equals(m_p37822));
+				retval = (selected.getNext_value_id().equals(m_p38404));
 				return retval;
 			}
 		}
 
-		ActualParameter_c[] objs37820 = ActualParameter_c
+		ActualParameter_c[] objs38402 = ActualParameter_c
 				.ActualParameterInstances(modelRoot,
-						new ActualParameter_c_test37821_c(getValue_id()));
+						new ActualParameter_c_test38403_c(getValue_id()));
 
-		if (((objs37820.length) > 1)) {
+		if (((objs38402.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Actual Parameter", //$NON-NLS-1$
 								"Consistency: Object: Actual Parameter: Association: 816: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37820.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38402.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Actual Parameter: Association: 816: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37820.length), e);
+										+ Integer.toString(objs38402.length), e);
 			}
 			retval = false;
 

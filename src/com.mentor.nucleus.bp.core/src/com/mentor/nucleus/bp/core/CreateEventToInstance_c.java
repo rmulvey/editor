@@ -148,7 +148,8 @@ public class CreateEventToInstance_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -164,9 +165,10 @@ public class CreateEventToInstance_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((CreateEventToInstance_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((CreateEventToInstance_c) elem)
+								.getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -634,51 +636,51 @@ public class CreateEventToInstance_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R704
-		CreateSmEventStatement_c relInst54587 = (CreateSmEventStatement_c) baseRoot
+		CreateSmEventStatement_c relInst56136 = (CreateSmEventStatement_c) baseRoot
 				.getInstanceList(CreateSmEventStatement_c.class).get(
 						new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst54587 == null) {
-			relInst54587 = (CreateSmEventStatement_c) Ooaofooa
+		if (relInst56136 == null) {
+			relInst56136 = (CreateSmEventStatement_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(CreateSmEventStatement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst54587 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst56136 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst54587 = (CreateSmEventStatement_c) roots[i]
+				relInst56136 = (CreateSmEventStatement_c) roots[i]
 						.getInstanceList(CreateSmEventStatement_c.class).get(
 								new Object[]{m_statement_id});
-				if (relInst54587 != null)
+				if (relInst56136 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst54587 != null) {
+		if (relInst56136 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst54587) && !isProxy())) {
-				relInst54587.relateAcrossR704To(this, notifyChanges);
+					|| (inSameComponent(this, relInst56136) && !isProxy())) {
+				relInst56136.relateAcrossR704To(this, notifyChanges);
 			}
 		}
 
 		if (HasRecipientVariable == null) {
 			// R711
-			Variable_c relInst54588 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst56137 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst54588 == null) {
-				relInst54588 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst56137 == null) {
+				relInst56137 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst54588 == null && searchAllRoots
+			if (relInst56137 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -686,17 +688,17 @@ public class CreateEventToInstance_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst54588 = (Variable_c) roots[i].getInstanceList(
+					relInst56137 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst54588 != null)
+					if (relInst56137 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst54588 != null) {
+			if (relInst56137 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst54588) && !isProxy())) {
-					relInst54588.relateAcrossR711To(this, notifyChanges);
+						|| (inSameComponent(this, relInst56137) && !isProxy())) {
+					relInst56137.relateAcrossR711To(this, notifyChanges);
 				}
 			}
 		}
@@ -931,27 +933,27 @@ public class CreateEventToInstance_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CreateEventToInstance_c_test54590_c
+		class CreateEventToInstance_c_test56139_c
 				implements
 					ClassQueryInterface_c {
-			CreateEventToInstance_c_test54590_c(java.util.UUID p54591) {
-				m_p54591 = p54591;
+			CreateEventToInstance_c_test56139_c(java.util.UUID p56140) {
+				m_p56140 = p56140;
 			}
-			private java.util.UUID m_p54591;
+			private java.util.UUID m_p56140;
 			public boolean evaluate(Object candidate) {
 				CreateEventToInstance_c selected = (CreateEventToInstance_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54591));
+				retval = (selected.getStatement_id().equals(m_p56140));
 				return retval;
 			}
 		}
 
-		CreateEventToInstance_c[] objs54589 = CreateEventToInstance_c
+		CreateEventToInstance_c[] objs56138 = CreateEventToInstance_c
 				.CreateEventToInstanceInstances(modelRoot,
-						new CreateEventToInstance_c_test54590_c(
+						new CreateEventToInstance_c_test56139_c(
 								getStatement_id()));
 
-		if (((objs54589.length) == 0)) {
+		if (((objs56138.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -959,20 +961,20 @@ public class CreateEventToInstance_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Create Event to Instance", //$NON-NLS-1$
 								"Consistency: Object: Create Event to Instance: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54589.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56138.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create Event to Instance: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54589.length), e);
+										+ Integer.toString(objs56138.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs54589.length) > 1)) {
+		if (((objs56138.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -981,7 +983,7 @@ public class CreateEventToInstance_c extends NonRootModelElement
 								"Create Event to Instance", //$NON-NLS-1$
 								"Consistency: Object: Create Event to Instance: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54589.length)
+										+ Integer.toString(objs56138.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -989,7 +991,7 @@ public class CreateEventToInstance_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create Event to Instance: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54589.length)
+										+ Integer.toString(objs56138.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -998,27 +1000,27 @@ public class CreateEventToInstance_c extends NonRootModelElement
 
 		// Create Event to Instance is a subtype in association: rel.Numb = 704
 		// The supertype class is: Create SM Event Statement
-		class CreateSmEventStatement_c_test54595_c
+		class CreateSmEventStatement_c_test56144_c
 				implements
 					ClassQueryInterface_c {
-			CreateSmEventStatement_c_test54595_c(java.util.UUID p54596) {
-				m_p54596 = p54596;
+			CreateSmEventStatement_c_test56144_c(java.util.UUID p56145) {
+				m_p56145 = p56145;
 			}
-			private java.util.UUID m_p54596;
+			private java.util.UUID m_p56145;
 			public boolean evaluate(Object candidate) {
 				CreateSmEventStatement_c selected = (CreateSmEventStatement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p54596));
+				retval = (selected.getStatement_id().equals(m_p56145));
 				return retval;
 			}
 		}
 
-		CreateSmEventStatement_c[] objs54594 = CreateSmEventStatement_c
+		CreateSmEventStatement_c[] objs56143 = CreateSmEventStatement_c
 				.CreateSmEventStatementInstances(modelRoot,
-						new CreateSmEventStatement_c_test54595_c(
+						new CreateSmEventStatement_c_test56144_c(
 								getStatement_id()));
 
-		if (((objs54594.length) != 1)) {
+		if (((objs56143.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1026,14 +1028,14 @@ public class CreateEventToInstance_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Create Event to Instance", //$NON-NLS-1$
 								"Consistency: Object: Create Event to Instance: Association: 704: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs54594.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs56143.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Create Event to Instance: Association: 704: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54594.length), e);
+										+ Integer.toString(objs56143.length), e);
 			}
 			retval = false;
 
@@ -1041,25 +1043,25 @@ public class CreateEventToInstance_c extends NonRootModelElement
 
 		// Create Event to Instance is a referring class in association: rel.Numb = 711
 		// The participating class is: Variable
-		class Variable_c_test54598_c implements ClassQueryInterface_c {
-			Variable_c_test54598_c(java.util.UUID p54599) {
-				m_p54599 = p54599;
+		class Variable_c_test56147_c implements ClassQueryInterface_c {
+			Variable_c_test56147_c(java.util.UUID p56148) {
+				m_p56148 = p56148;
 			}
-			private java.util.UUID m_p54599;
+			private java.util.UUID m_p56148;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p54599));
+				retval = (selected.getVar_id().equals(m_p56148));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs54597 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test54598_c(getVar_id()));
+		Variable_c[] objs56146 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test56147_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs54597.length) != 1)) {
+		if (((objs56146.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1068,7 +1070,7 @@ public class CreateEventToInstance_c extends NonRootModelElement
 								"Create Event to Instance", //$NON-NLS-1$
 								"Consistency: Object: Create Event to Instance: Association: 711: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs54597.length)
+										+ Integer.toString(objs56146.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1076,7 +1078,7 @@ public class CreateEventToInstance_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Create Event to Instance: Association: 711: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs54597.length)
+										+ Integer.toString(objs56146.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

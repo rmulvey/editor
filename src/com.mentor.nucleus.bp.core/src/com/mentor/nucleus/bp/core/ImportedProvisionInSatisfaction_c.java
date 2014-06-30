@@ -154,7 +154,8 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -170,10 +171,10 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getImportedprovision_id()) || IdAssigner.NULL_UUID
-				.equals(((ImportedProvisionInSatisfaction_c) elem)
-						.getImportedprovision_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getImportedprovision_id()) || IdAssigner.NULL_UUID
+						.equals(((ImportedProvisionInSatisfaction_c) elem)
+								.getImportedprovision_id())) && this != elem)) {
 			return false;
 		}
 		if (!getImportedprovision_id().equals(
@@ -183,10 +184,10 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
-				.equals(((ImportedProvisionInSatisfaction_c) elem)
-						.getSatisfaction_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSatisfaction_id()) || IdAssigner.NULL_UUID
+						.equals(((ImportedProvisionInSatisfaction_c) elem)
+								.getSatisfaction_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSatisfaction_id()
@@ -792,67 +793,67 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R4705
-		Satisfaction_c relInst55724 = (Satisfaction_c) baseRoot
+		Satisfaction_c relInst57273 = (Satisfaction_c) baseRoot
 				.getInstanceList(Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55724 == null) {
-			relInst55724 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
+		if (relInst57273 == null) {
+			relInst57273 = (Satisfaction_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Satisfaction_c.class)
 					.get(new Object[]{m_satisfaction_id});
 		}
-		if (relInst55724 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57273 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55724 = (Satisfaction_c) roots[i].getInstanceList(
+				relInst57273 = (Satisfaction_c) roots[i].getInstanceList(
 						Satisfaction_c.class).get(
 						new Object[]{m_satisfaction_id});
-				if (relInst55724 != null)
+				if (relInst57273 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55724 != null) {
+		if (relInst57273 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55724) && !isProxy())) {
-				relInst55724.relateAcrossR4705To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57273) && !isProxy())) {
+				relInst57273.relateAcrossR4705To(this, notifyChanges);
 			}
 		}
 
-		ImportedProvision_c relInst55725 = (ImportedProvision_c) baseRoot
+		ImportedProvision_c relInst57274 = (ImportedProvision_c) baseRoot
 				.getInstanceList(ImportedProvision_c.class).get(
 						new Object[]{m_importedprovision_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst55725 == null) {
-			relInst55725 = (ImportedProvision_c) Ooaofooa.getDefaultInstance()
+		if (relInst57274 == null) {
+			relInst57274 = (ImportedProvision_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ImportedProvision_c.class)
 					.get(new Object[]{m_importedprovision_id});
 		}
-		if (relInst55725 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst57274 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst55725 = (ImportedProvision_c) roots[i].getInstanceList(
+				relInst57274 = (ImportedProvision_c) roots[i].getInstanceList(
 						ImportedProvision_c.class).get(
 						new Object[]{m_importedprovision_id});
-				if (relInst55725 != null)
+				if (relInst57274 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst55725 != null) {
+		if (relInst57274 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst55725) && !isProxy())) {
-				relInst55725.relateAcrossR4705To(this, notifyChanges);
+					|| (inSameComponent(this, relInst57274) && !isProxy())) {
+				relInst57274.relateAcrossR4705To(this, notifyChanges);
 			}
 		}
 
@@ -1164,32 +1165,32 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ImportedProvisionInSatisfaction_c_test55727_c
+		class ImportedProvisionInSatisfaction_c_test57276_c
 				implements
 					ClassQueryInterface_c {
-			ImportedProvisionInSatisfaction_c_test55727_c(
-					java.util.UUID p55728, java.util.UUID p55729) {
-				m_p55728 = p55728;
-				m_p55729 = p55729;
+			ImportedProvisionInSatisfaction_c_test57276_c(
+					java.util.UUID p57277, java.util.UUID p57278) {
+				m_p57277 = p57277;
+				m_p57278 = p57278;
 			}
-			private java.util.UUID m_p55728;
-			private java.util.UUID m_p55729;
+			private java.util.UUID m_p57277;
+			private java.util.UUID m_p57278;
 			public boolean evaluate(Object candidate) {
 				ImportedProvisionInSatisfaction_c selected = (ImportedProvisionInSatisfaction_c) candidate;
 				boolean retval = false;
-				retval = (selected.getImportedprovision_id().equals(m_p55728))
-						& (selected.getSatisfaction_id().equals(m_p55729));
+				retval = (selected.getImportedprovision_id().equals(m_p57277))
+						& (selected.getSatisfaction_id().equals(m_p57278));
 				return retval;
 			}
 		}
 
-		ImportedProvisionInSatisfaction_c[] objs55726 = ImportedProvisionInSatisfaction_c
+		ImportedProvisionInSatisfaction_c[] objs57275 = ImportedProvisionInSatisfaction_c
 				.ImportedProvisionInSatisfactionInstances(
 						modelRoot,
-						new ImportedProvisionInSatisfaction_c_test55727_c(
+						new ImportedProvisionInSatisfaction_c_test57276_c(
 								getImportedprovision_id(), getSatisfaction_id()));
 
-		if (((objs55726.length) == 0)) {
+		if (((objs57275.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1197,20 +1198,20 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Imported Provision In Satisfaction", //$NON-NLS-1$
 								"Consistency: Object: Imported Provision In Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55726.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57275.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Imported Provision In Satisfaction: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55726.length), e);
+										+ Integer.toString(objs57275.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs55726.length) > 1)) {
+		if (((objs57275.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1219,7 +1220,7 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 								"Imported Provision In Satisfaction", //$NON-NLS-1$
 								"Consistency: Object: Imported Provision In Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs55726.length)
+										+ Integer.toString(objs57275.length)
 										+ " ImportedProvision_Id: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1227,7 +1228,7 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Imported Provision In Satisfaction: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55726.length)
+										+ Integer.toString(objs57275.length)
 										+ " ImportedProvision_Id: " + "Not Printable" + " Satisfaction_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1237,25 +1238,25 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 		// Imported Provision In Satisfaction is a link class in association: rel.Numb = 4705
 		// Other side
 		// The other side class in the association is: Imported Provision
-		class ImportedProvision_c_test55733_c implements ClassQueryInterface_c {
-			ImportedProvision_c_test55733_c(java.util.UUID p55734) {
-				m_p55734 = p55734;
+		class ImportedProvision_c_test57282_c implements ClassQueryInterface_c {
+			ImportedProvision_c_test57282_c(java.util.UUID p57283) {
+				m_p57283 = p57283;
 			}
-			private java.util.UUID m_p55734;
+			private java.util.UUID m_p57283;
 			public boolean evaluate(Object candidate) {
 				ImportedProvision_c selected = (ImportedProvision_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p55734));
+				retval = (selected.getId().equals(m_p57283));
 				return retval;
 			}
 		}
 
-		ImportedProvision_c[] objs55732 = ImportedProvision_c
+		ImportedProvision_c[] objs57281 = ImportedProvision_c
 				.ImportedProvisionInstances(modelRoot,
-						new ImportedProvision_c_test55733_c(
+						new ImportedProvision_c_test57282_c(
 								getImportedprovision_id()));
 
-		if (((objs55732.length) > 1)) {
+		if (((objs57281.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1263,14 +1264,14 @@ public class ImportedProvisionInSatisfaction_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Imported Provision In Satisfaction", //$NON-NLS-1$
 								"Consistency: Object: Imported Provision In Satisfaction: Association: 4705: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs55732.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs57281.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Imported Provision In Satisfaction: Association: 4705: Cardinality of other side of link is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs55732.length), e);
+										+ Integer.toString(objs57281.length), e);
 			}
 			retval = false;
 

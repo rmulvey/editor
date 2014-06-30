@@ -170,7 +170,8 @@ public class AssignToMember_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -186,9 +187,9 @@ public class AssignToMember_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((AssignToMember_c) elem).getStatement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((AssignToMember_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(
@@ -787,16 +788,16 @@ public class AssignToMember_c extends NonRootModelElement
 
 		if (ReadsValue == null) {
 			// R609
-			Value_c relInst40146 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst40728 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_r_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40146 == null) {
-				relInst40146 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst40728 == null) {
+				relInst40728 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_r_value_id});
 			}
-			if (relInst40146 == null && searchAllRoots
+			if (relInst40728 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -804,33 +805,33 @@ public class AssignToMember_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40146 = (Value_c) roots[i].getInstanceList(
+					relInst40728 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_r_value_id});
-					if (relInst40146 != null)
+					if (relInst40728 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40146 != null) {
+			if (relInst40728 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40146) && !isProxy())) {
-					relInst40146.relateAcrossR609To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40728) && !isProxy())) {
+					relInst40728.relateAcrossR609To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (WritesValue == null) {
 			// R689
-			Value_c relInst40147 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst40729 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_l_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40147 == null) {
-				relInst40147 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst40729 == null) {
+				relInst40729 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_l_value_id});
 			}
-			if (relInst40147 == null && searchAllRoots
+			if (relInst40729 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -838,49 +839,49 @@ public class AssignToMember_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40147 = (Value_c) roots[i].getInstanceList(
+					relInst40729 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_l_value_id});
-					if (relInst40147 != null)
+					if (relInst40729 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40147 != null) {
+			if (relInst40729 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40147) && !isProxy())) {
-					relInst40147.relateAcrossR689To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40729) && !isProxy())) {
+					relInst40729.relateAcrossR689To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst40148 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst40730 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40148 == null) {
-			relInst40148 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst40730 == null) {
+			relInst40730 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst40148 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40730 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40148 = (Statement_c) roots[i].getInstanceList(
+				relInst40730 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst40148 != null)
+				if (relInst40730 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40148 != null) {
+		if (relInst40730 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40148) && !isProxy())) {
-				relInst40148.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40730) && !isProxy())) {
+				relInst40730.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -1160,43 +1161,43 @@ public class AssignToMember_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class AssignToMember_c_test40150_c implements ClassQueryInterface_c {
-			AssignToMember_c_test40150_c(java.util.UUID p40151) {
-				m_p40151 = p40151;
+		class AssignToMember_c_test40732_c implements ClassQueryInterface_c {
+			AssignToMember_c_test40732_c(java.util.UUID p40733) {
+				m_p40733 = p40733;
 			}
-			private java.util.UUID m_p40151;
+			private java.util.UUID m_p40733;
 			public boolean evaluate(Object candidate) {
 				AssignToMember_c selected = (AssignToMember_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40151));
+				retval = (selected.getStatement_id().equals(m_p40733));
 				return retval;
 			}
 		}
 
-		AssignToMember_c[] objs40149 = AssignToMember_c
+		AssignToMember_c[] objs40731 = AssignToMember_c
 				.AssignToMemberInstances(modelRoot,
-						new AssignToMember_c_test40150_c(getStatement_id()));
+						new AssignToMember_c_test40732_c(getStatement_id()));
 
-		if (((objs40149.length) == 0)) {
+		if (((objs40731.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Assign to Member", //$NON-NLS-1$
 								"Consistency: Object: Assign to Member: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40149.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40731.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Assign to Member: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40149.length), e);
+								+ Integer.toString(objs40731.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40149.length) > 1)) {
+		if (((objs40731.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1204,7 +1205,7 @@ public class AssignToMember_c extends NonRootModelElement
 								"Assign to Member", //$NON-NLS-1$
 								"Consistency: Object: Assign to Member: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40149.length)
+										+ Integer.toString(objs40731.length)
 										+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1212,7 +1213,7 @@ public class AssignToMember_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Assign to Member: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40149.length)
+										+ Integer.toString(objs40731.length)
 										+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1221,37 +1222,37 @@ public class AssignToMember_c extends NonRootModelElement
 
 		// Assign to Member is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test40155_c implements ClassQueryInterface_c {
-			Statement_c_test40155_c(java.util.UUID p40156) {
-				m_p40156 = p40156;
+		class Statement_c_test40737_c implements ClassQueryInterface_c {
+			Statement_c_test40737_c(java.util.UUID p40738) {
+				m_p40738 = p40738;
 			}
-			private java.util.UUID m_p40156;
+			private java.util.UUID m_p40738;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40156));
+				retval = (selected.getStatement_id().equals(m_p40738));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs40154 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test40155_c(getStatement_id()));
+		Statement_c[] objs40736 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test40737_c(getStatement_id()));
 
-		if (((objs40154.length) != 1)) {
+		if (((objs40736.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Assign to Member", //$NON-NLS-1$
 								"Consistency: Object: Assign to Member: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40154.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40736.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Assign to Member: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40154.length), e);
+										+ Integer.toString(objs40736.length), e);
 			}
 			retval = false;
 
@@ -1259,25 +1260,25 @@ public class AssignToMember_c extends NonRootModelElement
 
 		// Assign to Member is a referring class in association: rel.Numb = 609
 		// The participating class is: Value
-		class Value_c_test40158_c implements ClassQueryInterface_c {
-			Value_c_test40158_c(java.util.UUID p40159) {
-				m_p40159 = p40159;
+		class Value_c_test40740_c implements ClassQueryInterface_c {
+			Value_c_test40740_c(java.util.UUID p40741) {
+				m_p40741 = p40741;
 			}
-			private java.util.UUID m_p40159;
+			private java.util.UUID m_p40741;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p40159));
+				retval = (selected.getValue_id().equals(m_p40741));
 				return retval;
 			}
 		}
 
-		Value_c[] objs40157 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test40158_c(getR_value_id()));
+		Value_c[] objs40739 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test40740_c(getR_value_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40157.length) != 1)) {
+		if (((objs40739.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1285,7 +1286,7 @@ public class AssignToMember_c extends NonRootModelElement
 								"Assign to Member", //$NON-NLS-1$
 								"Consistency: Object: Assign to Member: Association: 609: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40157.length)
+										+ Integer.toString(objs40739.length)
 										+ " r_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1293,7 +1294,7 @@ public class AssignToMember_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Assign to Member: Association: 609: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40157.length)
+										+ Integer.toString(objs40739.length)
 										+ " r_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1302,25 +1303,25 @@ public class AssignToMember_c extends NonRootModelElement
 
 		// Assign to Member is a referring class in association: rel.Numb = 689
 		// The participating class is: Value
-		class Value_c_test40161_c implements ClassQueryInterface_c {
-			Value_c_test40161_c(java.util.UUID p40162) {
-				m_p40162 = p40162;
+		class Value_c_test40743_c implements ClassQueryInterface_c {
+			Value_c_test40743_c(java.util.UUID p40744) {
+				m_p40744 = p40744;
 			}
-			private java.util.UUID m_p40162;
+			private java.util.UUID m_p40744;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p40162));
+				retval = (selected.getValue_id().equals(m_p40744));
 				return retval;
 			}
 		}
 
-		Value_c[] objs40160 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test40161_c(getL_value_id()));
+		Value_c[] objs40742 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test40743_c(getL_value_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40160.length) != 1)) {
+		if (((objs40742.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1328,7 +1329,7 @@ public class AssignToMember_c extends NonRootModelElement
 								"Assign to Member", //$NON-NLS-1$
 								"Consistency: Object: Assign to Member: Association: 689: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40160.length)
+										+ Integer.toString(objs40742.length)
 										+ " l_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1336,7 +1337,7 @@ public class AssignToMember_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Assign to Member: Association: 689: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40160.length)
+										+ Integer.toString(objs40742.length)
 										+ " l_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

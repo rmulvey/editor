@@ -146,7 +146,8 @@ public class InstanceSetReference_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -162,9 +163,9 @@ public class InstanceSetReference_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((InstanceSetReference_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((InstanceSetReference_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id()
@@ -611,16 +612,16 @@ public class InstanceSetReference_c extends NonRootModelElement
 
 		if (RefersToVariable == null) {
 			// R809
-			Variable_c relInst37594 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst38176 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37594 == null) {
-				relInst37594 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst38176 == null) {
+				relInst38176 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst37594 == null && searchAllRoots
+			if (relInst38176 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -628,50 +629,50 @@ public class InstanceSetReference_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37594 = (Variable_c) roots[i].getInstanceList(
+					relInst38176 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst37594 != null)
+					if (relInst38176 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37594 != null) {
+			if (relInst38176 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37594) && !isProxy())) {
-					relInst37594.relateAcrossR809To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38176) && !isProxy())) {
+					relInst38176.relateAcrossR809To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R801
-		Value_c relInst37595 = (Value_c) baseRoot
+		Value_c relInst38177 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37595 == null) {
-			relInst37595 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst38177 == null) {
+			relInst38177 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37595 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38177 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37595 = (Value_c) roots[i]
+				relInst38177 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37595 != null)
+				if (relInst38177 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37595 != null) {
+		if (relInst38177 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37595) && !isProxy())) {
-				relInst37595.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38177) && !isProxy())) {
+				relInst38177.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
@@ -903,46 +904,46 @@ public class InstanceSetReference_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InstanceSetReference_c_test37597_c
+		class InstanceSetReference_c_test38179_c
 				implements
 					ClassQueryInterface_c {
-			InstanceSetReference_c_test37597_c(java.util.UUID p37598) {
-				m_p37598 = p37598;
+			InstanceSetReference_c_test38179_c(java.util.UUID p38180) {
+				m_p38180 = p38180;
 			}
-			private java.util.UUID m_p37598;
+			private java.util.UUID m_p38180;
 			public boolean evaluate(Object candidate) {
 				InstanceSetReference_c selected = (InstanceSetReference_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37598));
+				retval = (selected.getValue_id().equals(m_p38180));
 				return retval;
 			}
 		}
 
-		InstanceSetReference_c[] objs37596 = InstanceSetReference_c
+		InstanceSetReference_c[] objs38178 = InstanceSetReference_c
 				.InstanceSetReferenceInstances(modelRoot,
-						new InstanceSetReference_c_test37597_c(getValue_id()));
+						new InstanceSetReference_c_test38179_c(getValue_id()));
 
-		if (((objs37596.length) == 0)) {
+		if (((objs38178.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Instance Set Reference", //$NON-NLS-1$
 								"Consistency: Object: Instance Set Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37596.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38178.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Set Reference: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37596.length), e);
+										+ Integer.toString(objs38178.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37596.length) > 1)) {
+		if (((objs38178.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -950,7 +951,7 @@ public class InstanceSetReference_c extends NonRootModelElement
 								"Instance Set Reference", //$NON-NLS-1$
 								"Consistency: Object: Instance Set Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37596.length)
+										+ Integer.toString(objs38178.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -958,7 +959,7 @@ public class InstanceSetReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Set Reference: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37596.length)
+										+ Integer.toString(objs38178.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -967,37 +968,37 @@ public class InstanceSetReference_c extends NonRootModelElement
 
 		// Instance Set Reference is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37602_c implements ClassQueryInterface_c {
-			Value_c_test37602_c(java.util.UUID p37603) {
-				m_p37603 = p37603;
+		class Value_c_test38184_c implements ClassQueryInterface_c {
+			Value_c_test38184_c(java.util.UUID p38185) {
+				m_p38185 = p38185;
 			}
-			private java.util.UUID m_p37603;
+			private java.util.UUID m_p38185;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37603));
+				retval = (selected.getValue_id().equals(m_p38185));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37601 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37602_c(getValue_id()));
+		Value_c[] objs38183 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38184_c(getValue_id()));
 
-		if (((objs37601.length) != 1)) {
+		if (((objs38183.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Instance Set Reference", //$NON-NLS-1$
 								"Consistency: Object: Instance Set Reference: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37601.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38183.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Instance Set Reference: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37601.length), e);
+										+ Integer.toString(objs38183.length), e);
 			}
 			retval = false;
 
@@ -1005,25 +1006,25 @@ public class InstanceSetReference_c extends NonRootModelElement
 
 		// Instance Set Reference is a referring class in association: rel.Numb = 809
 		// The participating class is: Variable
-		class Variable_c_test37605_c implements ClassQueryInterface_c {
-			Variable_c_test37605_c(java.util.UUID p37606) {
-				m_p37606 = p37606;
+		class Variable_c_test38187_c implements ClassQueryInterface_c {
+			Variable_c_test38187_c(java.util.UUID p38188) {
+				m_p38188 = p38188;
 			}
-			private java.util.UUID m_p37606;
+			private java.util.UUID m_p38188;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p37606));
+				retval = (selected.getVar_id().equals(m_p38188));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs37604 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test37605_c(getVar_id()));
+		Variable_c[] objs38186 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test38187_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37604.length) != 1)) {
+		if (((objs38186.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1031,7 +1032,7 @@ public class InstanceSetReference_c extends NonRootModelElement
 								"Instance Set Reference", //$NON-NLS-1$
 								"Consistency: Object: Instance Set Reference: Association: 809: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37604.length)
+										+ Integer.toString(objs38186.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1039,7 +1040,7 @@ public class InstanceSetReference_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Instance Set Reference: Association: 809: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37604.length)
+										+ Integer.toString(objs38186.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

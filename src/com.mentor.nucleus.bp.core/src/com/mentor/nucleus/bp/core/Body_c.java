@@ -228,7 +228,7 @@ p_m_parsed_block_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -244,7 +244,7 @@ p_m_parsed_block_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID.equals(((Body_c)elem).getAction_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getAction_id()) || IdAssigner.NULL_UUID.equals(((Body_c)elem).getAction_id())) && this != elem)) {
       	return false;
       }
       if (!getAction_id().equals(((Body_c)elem).getAction_id())) return false;
@@ -3454,29 +3454,29 @@ public static Body_c [] getManyACT_ACTsOnR612(Block_c target, boolean loadCompon
 
 	if (HasCommittedOuterBlock == null) {          
       // R666
-      Block_c relInst56473 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      Block_c relInst58022 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_block_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56473 == null) {
-      			relInst56473 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+      		if (relInst58022 == null) {
+      			relInst58022 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_block_id});
       		}
-			if (relInst56473 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58022 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56473 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
-					if (relInst56473 != null)
+					relInst58022 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_block_id});
+					if (relInst58022 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56473 != null )
+      if ( relInst58022 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56473) && !isProxy())) {
-	      relInst56473.relateAcrossR666To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58022) && !isProxy())) {
+	      relInst58022.relateAcrossR666To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3484,29 +3484,29 @@ public static Body_c [] getManyACT_ACTsOnR612(Block_c target, boolean loadCompon
 
 	if (HasCurrentScopeBlock == null) {          
       // R699
-      Block_c relInst56474 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
+      Block_c relInst58023 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56474 == null) {
-      			relInst56474 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
+      		if (relInst58023 == null) {
+      			relInst58023 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
       		}
-			if (relInst56474 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58023 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56474 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
-					if (relInst56474 != null)
+					relInst58023 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_currentscope_id});
+					if (relInst58023 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56474 != null )
+      if ( relInst58023 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56474) && !isProxy())) {
-	      relInst56474.relateAcrossR699To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58023) && !isProxy())) {
+	      relInst58023.relateAcrossR699To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3514,29 +3514,29 @@ public static Body_c [] getManyACT_ACTsOnR612(Block_c target, boolean loadCompon
 
 	if (HasParsedOuterBlock == null) {          
       // R650
-      Block_c relInst56475 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
+      Block_c relInst58024 = (Block_c) baseRoot.getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56475 == null) {
-      			relInst56475 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
+      		if (relInst58024 == null) {
+      			relInst58024 = (Block_c) Ooaofooa.getDefaultInstance().getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
       		}
-			if (relInst56475 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58024 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56475 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
-					if (relInst56475 != null)
+					relInst58024 = (Block_c) roots[i].getInstanceList(Block_c.class).get(new Object[] {m_parsed_block_id});
+					if (relInst58024 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56475 != null )
+      if ( relInst58024 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56475) && !isProxy())) {
-	      relInst56475.relateAcrossR650To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58024) && !isProxy())) {
+	      relInst58024.relateAcrossR650To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -4218,56 +4218,56 @@ return "Error: Unknown Action type.";
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Body_c_test56477_c implements ClassQueryInterface_c
+    class Body_c_test58026_c implements ClassQueryInterface_c
     {
-	  Body_c_test56477_c( java.util.UUID            p56478 ) {
-	  m_p56478 = p56478;
+	  Body_c_test58026_c( java.util.UUID            p58027 ) {
+	  m_p58027 = p58027;
 	  }
-	  private java.util.UUID             m_p56478; 
+	  private java.util.UUID             m_p58027; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56478));
+	      retval = (selected.getAction_id().equals(m_p58027));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56476 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56477_c(getAction_id())) ;
+    Body_c [] objs58025 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58026_c(getAction_id())) ;
 
-    if ( (  (objs56476.length) == 0) )
+    if ( (  (objs58025.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56476.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58025.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56476.length )  , e); 
+          + Integer.toString( objs58025.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56476.length) > 1) )
+    if ( (  (objs58025.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56476.length )  + " Action_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58025.length )  + " Action_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56476.length )  + " Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58025.length )  + " Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4275,38 +4275,38 @@ return "Error: Unknown Action type.";
 
           // Body is a referring class in association: rel.Numb = 666
           // The participating class is: Block
-    class Block_c_test56482_c implements ClassQueryInterface_c
+    class Block_c_test58031_c implements ClassQueryInterface_c
     {
-	  Block_c_test56482_c( java.util.UUID            p56483 ) {
-	  m_p56483 = p56483;
+	  Block_c_test58031_c( java.util.UUID            p58032 ) {
+	  m_p58032 = p58032;
 	  }
-	  private java.util.UUID             m_p56483; 
+	  private java.util.UUID             m_p58032; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Block_c selected = (Block_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56483));
+	      retval = (selected.getBlock_id().equals(m_p58032));
 	      return retval;
 	  }
     }
 
-    Block_c [] objs56481 = 
-    Block_c.BlockInstances(modelRoot, new Block_c_test56482_c(getBlock_id())) ;
+    Block_c [] objs58030 = 
+    Block_c.BlockInstances(modelRoot, new Block_c_test58031_c(getBlock_id())) ;
 
-    if ( (  (objs56481.length) > 1) )
+    if ( (  (objs58030.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Association: 666: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56481.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58030.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Association: 666: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56481.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58030.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4314,38 +4314,38 @@ return "Error: Unknown Action type.";
                 
           // Body is a referring class in association: rel.Numb = 699
           // The participating class is: Block
-    class Block_c_test56485_c implements ClassQueryInterface_c
+    class Block_c_test58034_c implements ClassQueryInterface_c
     {
-	  Block_c_test56485_c( java.util.UUID            p56486 ) {
-	  m_p56486 = p56486;
+	  Block_c_test58034_c( java.util.UUID            p58035 ) {
+	  m_p58035 = p58035;
 	  }
-	  private java.util.UUID             m_p56486; 
+	  private java.util.UUID             m_p58035; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Block_c selected = (Block_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56486));
+	      retval = (selected.getBlock_id().equals(m_p58035));
 	      return retval;
 	  }
     }
 
-    Block_c [] objs56484 = 
-    Block_c.BlockInstances(modelRoot, new Block_c_test56485_c(getCurrentscope_id())) ;
+    Block_c [] objs58033 = 
+    Block_c.BlockInstances(modelRoot, new Block_c_test58034_c(getCurrentscope_id())) ;
 
-    if ( (  (objs56484.length) > 1) )
+    if ( (  (objs58033.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Association: 699: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56484.length )  + " CurrentScope_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58033.length )  + " CurrentScope_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Association: 699: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56484.length )  + " CurrentScope_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58033.length )  + " CurrentScope_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4353,38 +4353,38 @@ return "Error: Unknown Action type.";
                 
           // Body is a referring class in association: rel.Numb = 650
           // The participating class is: Block
-    class Block_c_test56488_c implements ClassQueryInterface_c
+    class Block_c_test58037_c implements ClassQueryInterface_c
     {
-	  Block_c_test56488_c( java.util.UUID            p56489 ) {
-	  m_p56489 = p56489;
+	  Block_c_test58037_c( java.util.UUID            p58038 ) {
+	  m_p58038 = p58038;
 	  }
-	  private java.util.UUID             m_p56489; 
+	  private java.util.UUID             m_p58038; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Block_c selected = (Block_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56489));
+	      retval = (selected.getBlock_id().equals(m_p58038));
 	      return retval;
 	  }
     }
 
-    Block_c [] objs56487 = 
-    Block_c.BlockInstances(modelRoot, new Block_c_test56488_c(getParsed_block_id())) ;
+    Block_c [] objs58036 = 
+    Block_c.BlockInstances(modelRoot, new Block_c_test58037_c(getParsed_block_id())) ;
 
-    if ( (  (objs56487.length) > 1) )
+    if ( (  (objs58036.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Association: 650: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56487.length )  + " Parsed_Block_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58036.length )  + " Parsed_Block_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Association: 650: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56487.length )  + " Parsed_Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58036.length )  + " Parsed_Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4393,220 +4393,220 @@ return "Error: Unknown Action type.";
           // Associated Other Side: rel.Numb = 694
             // Link Object: Body in Component
           // Supertype: rel.Numb = 698
-    int objs56490 = 0;
+    int objs58039 = 0;
             // Subtype Object: Transition Action Body
-    class TransitionActionBody_c_test56491_c implements ClassQueryInterface_c
+    class TransitionActionBody_c_test58040_c implements ClassQueryInterface_c
     {
-	  TransitionActionBody_c_test56491_c( java.util.UUID            p56492 ) {
-	  m_p56492 = p56492;
+	  TransitionActionBody_c_test58040_c( java.util.UUID            p58041 ) {
+	  m_p58041 = p58041;
 	  }
-	  private java.util.UUID             m_p56492; 
+	  private java.util.UUID             m_p58041; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      TransitionActionBody_c selected = (TransitionActionBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56492));
+	      retval = (selected.getAction_id().equals(m_p58041));
 	      return retval;
 	  }
     }
 
-    TransitionActionBody_c [] objs56493 = 
-    TransitionActionBody_c.TransitionActionBodyInstances(modelRoot, new TransitionActionBody_c_test56491_c(getAction_id())) ;
+    TransitionActionBody_c [] objs58042 = 
+    TransitionActionBody_c.TransitionActionBodyInstances(modelRoot, new TransitionActionBody_c_test58040_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56493.length;
+    objs58039 = objs58039 + objs58042.length;
             // Subtype Object: State Action Body
-    class StateActionBody_c_test56494_c implements ClassQueryInterface_c
+    class StateActionBody_c_test58043_c implements ClassQueryInterface_c
     {
-	  StateActionBody_c_test56494_c( java.util.UUID            p56495 ) {
-	  m_p56495 = p56495;
+	  StateActionBody_c_test58043_c( java.util.UUID            p58044 ) {
+	  m_p58044 = p58044;
 	  }
-	  private java.util.UUID             m_p56495; 
+	  private java.util.UUID             m_p58044; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateActionBody_c selected = (StateActionBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56495));
+	      retval = (selected.getAction_id().equals(m_p58044));
 	      return retval;
 	  }
     }
 
-    StateActionBody_c [] objs56496 = 
-    StateActionBody_c.StateActionBodyInstances(modelRoot, new StateActionBody_c_test56494_c(getAction_id())) ;
+    StateActionBody_c [] objs58045 = 
+    StateActionBody_c.StateActionBodyInstances(modelRoot, new StateActionBody_c_test58043_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56496.length;
+    objs58039 = objs58039 + objs58045.length;
             // Subtype Object: Derived Attribute Body
-    class DerivedAttributeBody_c_test56497_c implements ClassQueryInterface_c
+    class DerivedAttributeBody_c_test58046_c implements ClassQueryInterface_c
     {
-	  DerivedAttributeBody_c_test56497_c( java.util.UUID            p56498 ) {
-	  m_p56498 = p56498;
+	  DerivedAttributeBody_c_test58046_c( java.util.UUID            p58047 ) {
+	  m_p58047 = p58047;
 	  }
-	  private java.util.UUID             m_p56498; 
+	  private java.util.UUID             m_p58047; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DerivedAttributeBody_c selected = (DerivedAttributeBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56498));
+	      retval = (selected.getAction_id().equals(m_p58047));
 	      return retval;
 	  }
     }
 
-    DerivedAttributeBody_c [] objs56499 = 
-    DerivedAttributeBody_c.DerivedAttributeBodyInstances(modelRoot, new DerivedAttributeBody_c_test56497_c(getAction_id())) ;
+    DerivedAttributeBody_c [] objs58048 = 
+    DerivedAttributeBody_c.DerivedAttributeBodyInstances(modelRoot, new DerivedAttributeBody_c_test58046_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56499.length;
+    objs58039 = objs58039 + objs58048.length;
             // Subtype Object: Function Body
-    class FunctionBody_c_test56500_c implements ClassQueryInterface_c
+    class FunctionBody_c_test58049_c implements ClassQueryInterface_c
     {
-	  FunctionBody_c_test56500_c( java.util.UUID            p56501 ) {
-	  m_p56501 = p56501;
+	  FunctionBody_c_test58049_c( java.util.UUID            p58050 ) {
+	  m_p58050 = p58050;
 	  }
-	  private java.util.UUID             m_p56501; 
+	  private java.util.UUID             m_p58050; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionBody_c selected = (FunctionBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56501));
+	      retval = (selected.getAction_id().equals(m_p58050));
 	      return retval;
 	  }
     }
 
-    FunctionBody_c [] objs56502 = 
-    FunctionBody_c.FunctionBodyInstances(modelRoot, new FunctionBody_c_test56500_c(getAction_id())) ;
+    FunctionBody_c [] objs58051 = 
+    FunctionBody_c.FunctionBodyInstances(modelRoot, new FunctionBody_c_test58049_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56502.length;
+    objs58039 = objs58039 + objs58051.length;
             // Subtype Object: Operation Body
-    class OperationBody_c_test56503_c implements ClassQueryInterface_c
+    class OperationBody_c_test58052_c implements ClassQueryInterface_c
     {
-	  OperationBody_c_test56503_c( java.util.UUID            p56504 ) {
-	  m_p56504 = p56504;
+	  OperationBody_c_test58052_c( java.util.UUID            p58053 ) {
+	  m_p58053 = p58053;
 	  }
-	  private java.util.UUID             m_p56504; 
+	  private java.util.UUID             m_p58053; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      OperationBody_c selected = (OperationBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56504));
+	      retval = (selected.getAction_id().equals(m_p58053));
 	      return retval;
 	  }
     }
 
-    OperationBody_c [] objs56505 = 
-    OperationBody_c.OperationBodyInstances(modelRoot, new OperationBody_c_test56503_c(getAction_id())) ;
+    OperationBody_c [] objs58054 = 
+    OperationBody_c.OperationBodyInstances(modelRoot, new OperationBody_c_test58052_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56505.length;
+    objs58039 = objs58039 + objs58054.length;
             // Subtype Object: Bridge Body
-    class BridgeBody_c_test56506_c implements ClassQueryInterface_c
+    class BridgeBody_c_test58055_c implements ClassQueryInterface_c
     {
-	  BridgeBody_c_test56506_c( java.util.UUID            p56507 ) {
-	  m_p56507 = p56507;
+	  BridgeBody_c_test58055_c( java.util.UUID            p58056 ) {
+	  m_p58056 = p58056;
 	  }
-	  private java.util.UUID             m_p56507; 
+	  private java.util.UUID             m_p58056; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      BridgeBody_c selected = (BridgeBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56507));
+	      retval = (selected.getAction_id().equals(m_p58056));
 	      return retval;
 	  }
     }
 
-    BridgeBody_c [] objs56508 = 
-    BridgeBody_c.BridgeBodyInstances(modelRoot, new BridgeBody_c_test56506_c(getAction_id())) ;
+    BridgeBody_c [] objs58057 = 
+    BridgeBody_c.BridgeBodyInstances(modelRoot, new BridgeBody_c_test58055_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56508.length;
+    objs58039 = objs58039 + objs58057.length;
             // Subtype Object: Provided Operation Body
-    class ProvidedOperationBody_c_test56509_c implements ClassQueryInterface_c
+    class ProvidedOperationBody_c_test58058_c implements ClassQueryInterface_c
     {
-	  ProvidedOperationBody_c_test56509_c( java.util.UUID            p56510 ) {
-	  m_p56510 = p56510;
+	  ProvidedOperationBody_c_test58058_c( java.util.UUID            p58059 ) {
+	  m_p58059 = p58059;
 	  }
-	  private java.util.UUID             m_p56510; 
+	  private java.util.UUID             m_p58059; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedOperationBody_c selected = (ProvidedOperationBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56510));
+	      retval = (selected.getAction_id().equals(m_p58059));
 	      return retval;
 	  }
     }
 
-    ProvidedOperationBody_c [] objs56511 = 
-    ProvidedOperationBody_c.ProvidedOperationBodyInstances(modelRoot, new ProvidedOperationBody_c_test56509_c(getAction_id())) ;
+    ProvidedOperationBody_c [] objs58060 = 
+    ProvidedOperationBody_c.ProvidedOperationBodyInstances(modelRoot, new ProvidedOperationBody_c_test58058_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56511.length;
+    objs58039 = objs58039 + objs58060.length;
             // Subtype Object: Provided Signal Body
-    class ProvidedSignalBody_c_test56512_c implements ClassQueryInterface_c
+    class ProvidedSignalBody_c_test58061_c implements ClassQueryInterface_c
     {
-	  ProvidedSignalBody_c_test56512_c( java.util.UUID            p56513 ) {
-	  m_p56513 = p56513;
+	  ProvidedSignalBody_c_test58061_c( java.util.UUID            p58062 ) {
+	  m_p58062 = p58062;
 	  }
-	  private java.util.UUID             m_p56513; 
+	  private java.util.UUID             m_p58062; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedSignalBody_c selected = (ProvidedSignalBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56513));
+	      retval = (selected.getAction_id().equals(m_p58062));
 	      return retval;
 	  }
     }
 
-    ProvidedSignalBody_c [] objs56514 = 
-    ProvidedSignalBody_c.ProvidedSignalBodyInstances(modelRoot, new ProvidedSignalBody_c_test56512_c(getAction_id())) ;
+    ProvidedSignalBody_c [] objs58063 = 
+    ProvidedSignalBody_c.ProvidedSignalBodyInstances(modelRoot, new ProvidedSignalBody_c_test58061_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56514.length;
+    objs58039 = objs58039 + objs58063.length;
             // Subtype Object: Required Operation Body
-    class RequiredOperationBody_c_test56515_c implements ClassQueryInterface_c
+    class RequiredOperationBody_c_test58064_c implements ClassQueryInterface_c
     {
-	  RequiredOperationBody_c_test56515_c( java.util.UUID            p56516 ) {
-	  m_p56516 = p56516;
+	  RequiredOperationBody_c_test58064_c( java.util.UUID            p58065 ) {
+	  m_p58065 = p58065;
 	  }
-	  private java.util.UUID             m_p56516; 
+	  private java.util.UUID             m_p58065; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredOperationBody_c selected = (RequiredOperationBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56516));
+	      retval = (selected.getAction_id().equals(m_p58065));
 	      return retval;
 	  }
     }
 
-    RequiredOperationBody_c [] objs56517 = 
-    RequiredOperationBody_c.RequiredOperationBodyInstances(modelRoot, new RequiredOperationBody_c_test56515_c(getAction_id())) ;
+    RequiredOperationBody_c [] objs58066 = 
+    RequiredOperationBody_c.RequiredOperationBodyInstances(modelRoot, new RequiredOperationBody_c_test58064_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56517.length;
+    objs58039 = objs58039 + objs58066.length;
             // Subtype Object: Required Signal Body
-    class RequiredSignalBody_c_test56518_c implements ClassQueryInterface_c
+    class RequiredSignalBody_c_test58067_c implements ClassQueryInterface_c
     {
-	  RequiredSignalBody_c_test56518_c( java.util.UUID            p56519 ) {
-	  m_p56519 = p56519;
+	  RequiredSignalBody_c_test58067_c( java.util.UUID            p58068 ) {
+	  m_p58068 = p58068;
 	  }
-	  private java.util.UUID             m_p56519; 
+	  private java.util.UUID             m_p58068; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredSignalBody_c selected = (RequiredSignalBody_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56519));
+	      retval = (selected.getAction_id().equals(m_p58068));
 	      return retval;
 	  }
     }
 
-    RequiredSignalBody_c [] objs56520 = 
-    RequiredSignalBody_c.RequiredSignalBodyInstances(modelRoot, new RequiredSignalBody_c_test56518_c(getAction_id())) ;
+    RequiredSignalBody_c [] objs58069 = 
+    RequiredSignalBody_c.RequiredSignalBodyInstances(modelRoot, new RequiredSignalBody_c_test58067_c(getAction_id())) ;
  
-    objs56490 = objs56490 + objs56520.length;
-    if ( objs56490 != 1 )
+    objs58039 = objs58039 + objs58069.length;
+    if ( objs58039 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Body", //$NON-NLS-1$
            "Consistency: Object: Body: Association: 698: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56490 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58039 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Body: Association: 698: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56490 )  , e); 
+          + Integer.toString( objs58039 )  , e); 
       }
       retval = false;
 
@@ -5066,9 +5066,9 @@ Block_c [] v_block_set = Block_c.getManyACT_BLKsOnR612(this);
 
 
 Block_c  v_block = null;
-for ( int i53885 = 0; i53885 < v_block_set.length; i53885++)
+for ( int i55415 = 0; i55415 < v_block_set.length; i55415++)
 {
-  v_block = v_block_set[i53885] ;
+  v_block = v_block_set[i55415] ;
 
 this.unrelateAcrossR612From(v_block);
 
@@ -5290,9 +5290,9 @@ this.unrelateAcrossR666From(v_block);
 Block_c [] v_blocks = Block_c.getManyACT_BLKsOnR601(this);
 
 
-for ( int i53886 = 0; i53886 < v_blocks.length; i53886++)
+for ( int i55416 = 0; i55416 < v_blocks.length; i55416++)
 {
-  v_block = v_blocks[i53886] ;
+  v_block = v_blocks[i55416] ;
 
 this.unrelateAcrossR601From(v_block);
 
@@ -5328,9 +5328,9 @@ this.unrelateAcrossR650From(v_block);
 v_blocks = Block_c.getManyACT_BLKsOnR612(this);
 
 
-for ( int i53887 = 0; i53887 < v_blocks.length; i53887++)
+for ( int i55417 = 0; i55417 < v_blocks.length; i55417++)
 {
-  v_block = v_blocks[i53887] ;
+  v_block = v_blocks[i55417] ;
 
 this.unrelateAcrossR612From(v_block);
 
@@ -5376,9 +5376,9 @@ Block_c [] v_block_set = Block_c.getManyACT_BLKsOnR601(this);
 
 
 Block_c  v_block = null;
-for ( int i53888 = 0; i53888 < v_block_set.length; i53888++)
+for ( int i55418 = 0; i55418 < v_block_set.length; i55418++)
 {
-  v_block = v_block_set[i53888] ;
+  v_block = v_block_set[i55418] ;
 
 this.unrelateAcrossR601From(v_block);
 

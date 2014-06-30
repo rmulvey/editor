@@ -241,7 +241,7 @@ p_m_component_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -257,7 +257,7 @@ p_m_component_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((Sequence_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((Sequence_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((Sequence_c)elem).getPackage_id())) return false;
@@ -2629,58 +2629,58 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
         ModelRoot baseRoot = modelRoot;
 
       // R1402
-      SpecificationPackage_c relInst38764 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      SpecificationPackage_c relInst39346 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38764 == null) {
-      			relInst38764 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      		if (relInst39346 == null) {
+      			relInst39346 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst38764 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39346 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38764 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
-					if (relInst38764 != null)
+					relInst39346 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+					if (relInst39346 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38764 != null )
+      if ( relInst39346 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38764) && !isProxy())) {
-	      relInst38764.relateAcrossR1402To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39346) && !isProxy())) {
+	      relInst39346.relateAcrossR1402To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (IsDisplayedInSequenceInSequence == null) {          
       // R928
-      SequenceInSequence_c relInst38765 = (SequenceInSequence_c) baseRoot.getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
+      SequenceInSequence_c relInst39347 = (SequenceInSequence_c) baseRoot.getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38765 == null) {
-      			relInst38765 = (SequenceInSequence_c) Ooaofooa.getDefaultInstance().getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
+      		if (relInst39347 == null) {
+      			relInst39347 = (SequenceInSequence_c) Ooaofooa.getDefaultInstance().getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
       		}
-			if (relInst38765 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39347 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38765 = (SequenceInSequence_c) roots[i].getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
-					if (relInst38765 != null)
+					relInst39347 = (SequenceInSequence_c) roots[i].getInstanceList(SequenceInSequence_c.class).get(new Object[] {m_prev_package_id});
+					if (relInst39347 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38765 != null )
+      if ( relInst39347 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38765) && !isProxy())) {
-	      relInst38765.relateAcrossR928To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39347) && !isProxy())) {
+	      relInst39347.relateAcrossR928To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2688,29 +2688,29 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
 
 	if (IsShownInDomain == null) {          
       // R913
-      Domain_c relInst38766 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      Domain_c relInst39348 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38766 == null) {
-      			relInst38766 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      		if (relInst39348 == null) {
+      			relInst39348 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
       		}
-			if (relInst38766 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39348 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38766 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
-					if (relInst38766 != null)
+					relInst39348 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+					if (relInst39348 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38766 != null )
+      if ( relInst39348 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38766) && !isProxy())) {
-	      relInst38766.relateAcrossR913To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39348) && !isProxy())) {
+	      relInst39348.relateAcrossR913To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2718,29 +2718,29 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
 
 	if (IsShownInSubsystem == null) {          
       // R914
-      Subsystem_c relInst38767 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      Subsystem_c relInst39349 = (Subsystem_c) baseRoot.getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38767 == null) {
-      			relInst38767 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+      		if (relInst39349 == null) {
+      			relInst39349 = (Subsystem_c) Ooaofooa.getDefaultInstance().getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
       		}
-			if (relInst38767 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39349 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38767 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
-					if (relInst38767 != null)
+					relInst39349 = (Subsystem_c) roots[i].getInstanceList(Subsystem_c.class).get(new Object[] {m_ss_id});
+					if (relInst39349 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38767 != null )
+      if ( relInst39349 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38767) && !isProxy())) {
-	      relInst38767.relateAcrossR914To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39349) && !isProxy())) {
+	      relInst39349.relateAcrossR914To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2752,33 +2752,33 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
       if(baseRoot != modelRoot && modelRoot.isCompareRoot()) {
         baseRoot = modelRoot; 
       }
-      SystemModel_c relInst38768 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      SystemModel_c relInst39350 = (SystemModel_c) baseRoot.getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38768 == null) {
-      			relInst38768 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+      		if (relInst39350 == null) {
+      			relInst39350 = (SystemModel_c) Ooaofooa.getDefaultInstance().getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
       		}
-			if (relInst38768 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39350 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38768 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
-					if (relInst38768 != null)
+					relInst39350 = (SystemModel_c) roots[i].getInstanceList(SystemModel_c.class).get(new Object[] {m_sys_id});
+					if (relInst39350 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38768 != null )
+      if ( relInst39350 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38768) && !isProxy())) {
-	      relInst38768.relateAcrossR950To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39350) && !isProxy())) {
+	      relInst39350.relateAcrossR950To(this, notifyChanges);
 	  }
 	      // set the root in the Domain's model root, not the System Model's
 	      // modelRoot is the SystemModel's root when we are loading a Domain proxy
-	      ((Ooaofooa)getModelRoot()).setRoot(relInst38768);
+	      ((Ooaofooa)getModelRoot()).setRoot(relInst39350);
 	  }
           baseRoot = modelRoot;
 	}
@@ -2786,29 +2786,29 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
 
 	if (ComponentPackage == null) {          
       // R951
-      ComponentPackage_c relInst38769 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+      ComponentPackage_c relInst39351 = (ComponentPackage_c) baseRoot.getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38769 == null) {
-      			relInst38769 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+      		if (relInst39351 == null) {
+      			relInst39351 = (ComponentPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
       		}
-			if (relInst38769 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39351 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38769 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
-					if (relInst38769 != null)
+					relInst39351 = (ComponentPackage_c) roots[i].getInstanceList(ComponentPackage_c.class).get(new Object[] {m_component_package_id});
+					if (relInst39351 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38769 != null )
+      if ( relInst39351 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38769) && !isProxy())) {
-	      relInst38769.relateAcrossR951To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39351) && !isProxy())) {
+	      relInst39351.relateAcrossR951To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2816,29 +2816,29 @@ public static Sequence_c [] getManySQ_SsOnR953(MessageInSequence_c target, boole
 
 	if (Component == null) {          
       // R952
-      Component_c relInst38770 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      Component_c relInst39352 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_component_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst38770 == null) {
-      			relInst38770 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+      		if (relInst39352 == null) {
+      			relInst39352 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_component_id});
       		}
-			if (relInst38770 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39352 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst38770 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
-					if (relInst38770 != null)
+					relInst39352 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_component_id});
+					if (relInst39352 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst38770 != null )
+      if ( relInst39352 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38770) && !isProxy())) {
-	      relInst38770.relateAcrossR952To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39352) && !isProxy())) {
+	      relInst39352.relateAcrossR952To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3510,56 +3510,56 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Sequence_c_test38772_c implements ClassQueryInterface_c
+    class Sequence_c_test39354_c implements ClassQueryInterface_c
     {
-	  Sequence_c_test38772_c( java.util.UUID            p38773 ) {
-	  m_p38773 = p38773;
+	  Sequence_c_test39354_c( java.util.UUID            p39355 ) {
+	  m_p39355 = p39355;
 	  }
-	  private java.util.UUID             m_p38773; 
+	  private java.util.UUID             m_p39355; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Sequence_c selected = (Sequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38773));
+	      retval = (selected.getPackage_id().equals(m_p39355));
 	      return retval;
 	  }
     }
 
-    Sequence_c [] objs38771 = 
-    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test38772_c(getPackage_id())) ;
+    Sequence_c [] objs39353 = 
+    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test39354_c(getPackage_id())) ;
 
-    if ( (  (objs38771.length) == 0) )
+    if ( (  (objs39353.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38771.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39353.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38771.length )  , e); 
+          + Integer.toString( objs39353.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38771.length) > 1) )
+    if ( (  (objs39353.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38771.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39353.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38771.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39353.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3567,38 +3567,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Sequence is a referring class in association: rel.Numb = 913
           // The participating class is: Domain
-    class Domain_c_test38777_c implements ClassQueryInterface_c
+    class Domain_c_test39359_c implements ClassQueryInterface_c
     {
-	  Domain_c_test38777_c( java.util.UUID            p38778 ) {
-	  m_p38778 = p38778;
+	  Domain_c_test39359_c( java.util.UUID            p39360 ) {
+	  m_p39360 = p39360;
 	  }
-	  private java.util.UUID             m_p38778; 
+	  private java.util.UUID             m_p39360; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Domain_c selected = (Domain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p38778));
+	      retval = (selected.getDom_id().equals(m_p39360));
 	      return retval;
 	  }
     }
 
-    Domain_c [] objs38776 = 
-    Domain_c.DomainInstances(modelRoot, new Domain_c_test38777_c(getDom_id())) ;
+    Domain_c [] objs39358 = 
+    Domain_c.DomainInstances(modelRoot, new Domain_c_test39359_c(getDom_id())) ;
 
-    if ( (  (objs38776.length) > 1) )
+    if ( (  (objs39358.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 913: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38776.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39358.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 913: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38776.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39358.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3606,38 +3606,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a referring class in association: rel.Numb = 914
           // The participating class is: Subsystem
-    class Subsystem_c_test38780_c implements ClassQueryInterface_c
+    class Subsystem_c_test39362_c implements ClassQueryInterface_c
     {
-	  Subsystem_c_test38780_c( java.util.UUID            p38781 ) {
-	  m_p38781 = p38781;
+	  Subsystem_c_test39362_c( java.util.UUID            p39363 ) {
+	  m_p39363 = p39363;
 	  }
-	  private java.util.UUID             m_p38781; 
+	  private java.util.UUID             m_p39363; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Subsystem_c selected = (Subsystem_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSs_id().equals(m_p38781));
+	      retval = (selected.getSs_id().equals(m_p39363));
 	      return retval;
 	  }
     }
 
-    Subsystem_c [] objs38779 = 
-    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test38780_c(getSs_id())) ;
+    Subsystem_c [] objs39361 = 
+    Subsystem_c.SubsystemInstances(modelRoot, new Subsystem_c_test39362_c(getSs_id())) ;
 
-    if ( (  (objs38779.length) > 1) )
+    if ( (  (objs39361.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 914: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38779.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39361.length )  + " SS_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 914: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38779.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39361.length )  + " SS_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3645,38 +3645,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a referring class in association: rel.Numb = 950
           // The participating class is: System Model
-    class SystemModel_c_test38783_c implements ClassQueryInterface_c
+    class SystemModel_c_test39365_c implements ClassQueryInterface_c
     {
-	  SystemModel_c_test38783_c( java.util.UUID            p38784 ) {
-	  m_p38784 = p38784;
+	  SystemModel_c_test39365_c( java.util.UUID            p39366 ) {
+	  m_p39366 = p39366;
 	  }
-	  private java.util.UUID             m_p38784; 
+	  private java.util.UUID             m_p39366; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SystemModel_c selected = (SystemModel_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSys_id().equals(m_p38784));
+	      retval = (selected.getSys_id().equals(m_p39366));
 	      return retval;
 	  }
     }
 
-    SystemModel_c [] objs38782 = 
-    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test38783_c(getSys_id())) ;
+    SystemModel_c [] objs39364 = 
+    SystemModel_c.SystemModelInstances(Ooaofooa.getDefaultInstance(), new SystemModel_c_test39365_c(getSys_id())) ;
 
-    if ( (  (objs38782.length) > 1) )
+    if ( (  (objs39364.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 950: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38782.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39364.length )  + " Sys_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 950: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38782.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39364.length )  + " Sys_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3684,37 +3684,37 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a subtype in association: rel.Numb = 1402
           // The supertype class is: Specification Package
-    class SpecificationPackage_c_test38786_c implements ClassQueryInterface_c
+    class SpecificationPackage_c_test39368_c implements ClassQueryInterface_c
     {
-	  SpecificationPackage_c_test38786_c( java.util.UUID            p38787 ) {
-	  m_p38787 = p38787;
+	  SpecificationPackage_c_test39368_c( java.util.UUID            p39369 ) {
+	  m_p39369 = p39369;
 	  }
-	  private java.util.UUID             m_p38787; 
+	  private java.util.UUID             m_p39369; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SpecificationPackage_c selected = (SpecificationPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38787));
+	      retval = (selected.getPackage_id().equals(m_p39369));
 	      return retval;
 	  }
     }
 
-    SpecificationPackage_c [] objs38785 = 
-    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test38786_c(getPackage_id())) ;
+    SpecificationPackage_c [] objs39367 = 
+    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test39368_c(getPackage_id())) ;
 
-    if ( (  (objs38785.length) != 1) )
+    if ( (  (objs39367.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38785.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39367.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38785.length )  , e); 
+          + Integer.toString( objs39367.length )  , e); 
       }
       retval = false;
 
@@ -3722,38 +3722,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
 
           // Sequence is a referring class in association: rel.Numb = 951
           // The participating class is: Component Package
-    class ComponentPackage_c_test38789_c implements ClassQueryInterface_c
+    class ComponentPackage_c_test39371_c implements ClassQueryInterface_c
     {
-	  ComponentPackage_c_test38789_c( java.util.UUID            p38790 ) {
-	  m_p38790 = p38790;
+	  ComponentPackage_c_test39371_c( java.util.UUID            p39372 ) {
+	  m_p39372 = p39372;
 	  }
-	  private java.util.UUID             m_p38790; 
+	  private java.util.UUID             m_p39372; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentPackage_c selected = (ComponentPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38790));
+	      retval = (selected.getPackage_id().equals(m_p39372));
 	      return retval;
 	  }
     }
 
-    ComponentPackage_c [] objs38788 = 
-    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test38789_c(getComponent_package_id())) ;
+    ComponentPackage_c [] objs39370 = 
+    ComponentPackage_c.ComponentPackageInstances(modelRoot, new ComponentPackage_c_test39371_c(getComponent_package_id())) ;
 
-    if ( (  (objs38788.length) > 1) )
+    if ( (  (objs39370.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 951: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38788.length )  + " Component_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39370.length )  + " Component_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 951: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38788.length )  + " Component_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39370.length )  + " Component_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3761,38 +3761,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a referring class in association: rel.Numb = 928
           // The participating class is: Sequence in Sequence
-    class SequenceInSequence_c_test38792_c implements ClassQueryInterface_c
+    class SequenceInSequence_c_test39374_c implements ClassQueryInterface_c
     {
-	  SequenceInSequence_c_test38792_c( java.util.UUID            p38793 ) {
-	  m_p38793 = p38793;
+	  SequenceInSequence_c_test39374_c( java.util.UUID            p39375 ) {
+	  m_p39375 = p39375;
 	  }
-	  private java.util.UUID             m_p38793; 
+	  private java.util.UUID             m_p39375; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SequenceInSequence_c selected = (SequenceInSequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38793));
+	      retval = (selected.getPackage_id().equals(m_p39375));
 	      return retval;
 	  }
     }
 
-    SequenceInSequence_c [] objs38791 = 
-    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test38792_c(getPrev_package_id())) ;
+    SequenceInSequence_c [] objs39373 = 
+    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test39374_c(getPrev_package_id())) ;
 
-    if ( (  (objs38791.length) > 1) )
+    if ( (  (objs39373.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 928: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38791.length )  + " Prev_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39373.length )  + " Prev_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 928: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38791.length )  + " Prev_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39373.length )  + " Prev_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3800,38 +3800,38 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a referring class in association: rel.Numb = 952
           // The participating class is: Component
-    class Component_c_test38795_c implements ClassQueryInterface_c
+    class Component_c_test39377_c implements ClassQueryInterface_c
     {
-	  Component_c_test38795_c( java.util.UUID            p38796 ) {
-	  m_p38796 = p38796;
+	  Component_c_test39377_c( java.util.UUID            p39378 ) {
+	  m_p39378 = p39378;
 	  }
-	  private java.util.UUID             m_p38796; 
+	  private java.util.UUID             m_p39378; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Component_c selected = (Component_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p38796));
+	      retval = (selected.getId().equals(m_p39378));
 	      return retval;
 	  }
     }
 
-    Component_c [] objs38794 = 
-    Component_c.ComponentInstances(modelRoot, new Component_c_test38795_c(getComponent_id())) ;
+    Component_c [] objs39376 = 
+    Component_c.ComponentInstances(modelRoot, new Component_c_test39377_c(getComponent_id())) ;
 
-    if ( (  (objs38794.length) > 1) )
+    if ( (  (objs39376.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 952: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38794.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39376.length )  + " Component_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 952: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38794.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39376.length )  + " Component_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3839,37 +3839,37 @@ private static Sequence_c findSequenceInstance(ModelRoot modelRoot, ClassQueryIn
                 
           // Sequence is a participating class in association: rel.Numb = 911
              // Object: Sequence in Sequence
-    class SequenceInSequence_c_test38798_c implements ClassQueryInterface_c
+    class SequenceInSequence_c_test39380_c implements ClassQueryInterface_c
     {
-	  SequenceInSequence_c_test38798_c( java.util.UUID            p38799 ) {
-	  m_p38799 = p38799;
+	  SequenceInSequence_c_test39380_c( java.util.UUID            p39381 ) {
+	  m_p39381 = p39381;
 	  }
-	  private java.util.UUID             m_p38799; 
+	  private java.util.UUID             m_p39381; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SequenceInSequence_c selected = (SequenceInSequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p38799));
+	      retval = (selected.getPackage_id().equals(m_p39381));
 	      return retval;
 	  }
     }
 
-    SequenceInSequence_c [] objs38797 = 
-    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test38798_c(getPackage_id())) ;
+    SequenceInSequence_c [] objs39379 = 
+    SequenceInSequence_c.SequenceInSequenceInstances(modelRoot, new SequenceInSequence_c_test39380_c(getPackage_id())) ;
 
-    if ( (  (objs38797.length) > 1) )
+    if ( (  (objs39379.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Sequence", //$NON-NLS-1$
            "Consistency: Object: Sequence: Association: 911: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38797.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39379.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Sequence: Association: 911: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38797.length )  , e); 
+          + Integer.toString( objs39379.length )  , e); 
       }
       retval = false;
 
@@ -4418,9 +4418,9 @@ Sequence_c [] v_sequences = Sequence_c.getManySQ_SsOnR928(v_sis);
 
 
 Sequence_c  v_sequence = null;
-for ( int i36644 = 0; i36644 < v_sequences.length; i36644++)
+for ( int i37226 = 0; i37226 < v_sequences.length; i37226++)
 {
-  v_sequence = v_sequences[i36644] ;
+  v_sequence = v_sequences[i37226] ;
 
 if (v_sequence != null) {
 v_sequence.Dispose() ;
@@ -4439,9 +4439,9 @@ InteractionParticipant_c [] v_participants = InteractionParticipant_c.getManySQ_
 
 
 InteractionParticipant_c  v_participant = null;
-for ( int i36645 = 0; i36645 < v_participants.length; i36645++)
+for ( int i37227 = 0; i37227 < v_participants.length; i37227++)
 {
-  v_participant = v_participants[i36645] ;
+  v_participant = v_participants[i37227] ;
 
 this.unrelateAcrossR929From(v_participant);
 
@@ -4485,9 +4485,9 @@ MessageInSequence_c [] v_miss = MessageInSequence_c.getManySQ_MISsOnR953(this);
 
 
 MessageInSequence_c  v_mis = null;
-for ( int i36646 = 0; i36646 < v_miss.length; i36646++)
+for ( int i37228 = 0; i37228 < v_miss.length; i37228++)
 {
-  v_mis = v_miss[i36646] ;
+  v_mis = v_miss[i37228] ;
 
 Message_c v_message = Message_c.getOneMSG_MOnR954(v_mis);
 
@@ -5520,9 +5520,9 @@ int          v_count = -1 ;
 
 
 Sequence_c  v_sequence = null;
-for ( int i36647 = 0; i36647 < v_sequences.length; i36647++)
+for ( int i37229 = 0; i37229 < v_sequences.length; i37229++)
 {
-  v_sequence = v_sequences[i36647] ;
+  v_sequence = v_sequences[i37229] ;
 
 if ( (  (v_sequence != null)) )
 {
@@ -5576,9 +5576,9 @@ int          v_count = -1 ;
 
 
 ComponentParticipant_c  v_component = null;
-for ( int i36648 = 0; i36648 < v_components.length; i36648++)
+for ( int i37230 = 0; i37230 < v_components.length; i37230++)
 {
-  v_component = v_components[i36648] ;
+  v_component = v_components[i37230] ;
 
 if ( (  (v_component != null)) )
 {
@@ -5632,9 +5632,9 @@ int          v_count = -1 ;
 
 
 ClassInstanceParticipant_c  v_classInstance = null;
-for ( int i36649 = 0; i36649 < v_classInstances.length; i36649++)
+for ( int i37231 = 0; i37231 < v_classInstances.length; i37231++)
 {
-  v_classInstance = v_classInstances[i36649] ;
+  v_classInstance = v_classInstances[i37231] ;
 
 if ( (  (v_classInstance != null)) )
 {
@@ -5688,9 +5688,9 @@ int          v_count = -1 ;
 
 
 ActorParticipant_c  v_actor = null;
-for ( int i36650 = 0; i36650 < v_actors.length; i36650++)
+for ( int i37232 = 0; i37232 < v_actors.length; i37232++)
 {
-  v_actor = v_actors[i36650] ;
+  v_actor = v_actors[i37232] ;
 
 if ( (  (v_actor != null)) )
 {
@@ -5744,9 +5744,9 @@ int          v_count = -1 ;
 
 
 ExternalEntityParticipant_c  v_externalEntity = null;
-for ( int i36651 = 0; i36651 < v_externalEntities.length; i36651++)
+for ( int i37233 = 0; i37233 < v_externalEntities.length; i37233++)
 {
-  v_externalEntity = v_externalEntities[i36651] ;
+  v_externalEntity = v_externalEntities[i37233] ;
 
 if ( (  (v_externalEntity != null)) )
 {
@@ -5800,9 +5800,9 @@ int          v_count = -1 ;
 
 
 ClassParticipant_c  v_classParticipant = null;
-for ( int i36652 = 0; i36652 < v_classes.length; i36652++)
+for ( int i37234 = 0; i37234 < v_classes.length; i37234++)
 {
-  v_classParticipant = v_classes[i36652] ;
+  v_classParticipant = v_classes[i37234] ;
 
 if ( (  (v_classParticipant != null)) )
 {
@@ -5856,9 +5856,9 @@ int          v_count = -1 ;
 
 
 FunctionPackageParticipant_c  v_functionPckg = null;
-for ( int i36653 = 0; i36653 < v_functionPckgs.length; i36653++)
+for ( int i37235 = 0; i37235 < v_functionPckgs.length; i37235++)
 {
-  v_functionPckg = v_functionPckgs[i36653] ;
+  v_functionPckg = v_functionPckgs[i37235] ;
 
 if ( (  (v_functionPckg != null)) )
 {

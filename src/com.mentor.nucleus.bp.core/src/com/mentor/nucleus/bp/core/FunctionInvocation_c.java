@@ -176,7 +176,7 @@ p_m_functionnamecolumn
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -192,7 +192,7 @@ p_m_functionnamecolumn
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((FunctionInvocation_c)elem).getStatement_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((FunctionInvocation_c)elem).getStatement_id())) && this != elem)) {
       	return false;
       }
       if (!getStatement_id().equals(((FunctionInvocation_c)elem).getStatement_id())) return false;
@@ -835,58 +835,58 @@ public static FunctionInvocation_c [] getManyACT_FNCsOnR669(ActualParameter_c ta
         ModelRoot baseRoot = modelRoot;
 
       // R603
-      Statement_c relInst39777 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      Statement_c relInst40359 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39777 == null) {
-      			relInst39777 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      		if (relInst40359 == null) {
+      			relInst40359 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
       		}
-			if (relInst39777 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40359 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39777 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
-					if (relInst39777 != null)
+					relInst40359 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+					if (relInst40359 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39777 != null )
+      if ( relInst40359 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39777) && !isProxy())) {
-	      relInst39777.relateAcrossR603To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40359) && !isProxy())) {
+	      relInst40359.relateAcrossR603To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (IsAnInvocationOfFunction == null) {          
       // R675
-      Function_c relInst39778 = (Function_c) baseRoot.getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+      Function_c relInst40360 = (Function_c) baseRoot.getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39778 == null) {
-      			relInst39778 = (Function_c) Ooaofooa.getDefaultInstance().getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+      		if (relInst40360 == null) {
+      			relInst40360 = (Function_c) Ooaofooa.getDefaultInstance().getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
       		}
-			if (relInst39778 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40360 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39778 = (Function_c) roots[i].getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
-					if (relInst39778 != null)
+					relInst40360 = (Function_c) roots[i].getInstanceList(Function_c.class).get(new Object[] {m_sync_id});
+					if (relInst40360 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39778 != null )
+      if ( relInst40360 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39778) && !isProxy())) {
-	      relInst39778.relateAcrossR675To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40360) && !isProxy())) {
+	      relInst40360.relateAcrossR675To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1154,56 +1154,56 @@ private static FunctionInvocation_c findFunctionInvocationInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class FunctionInvocation_c_test39780_c implements ClassQueryInterface_c
+    class FunctionInvocation_c_test40362_c implements ClassQueryInterface_c
     {
-	  FunctionInvocation_c_test39780_c( java.util.UUID            p39781 ) {
-	  m_p39781 = p39781;
+	  FunctionInvocation_c_test40362_c( java.util.UUID            p40363 ) {
+	  m_p40363 = p40363;
 	  }
-	  private java.util.UUID             m_p39781; 
+	  private java.util.UUID             m_p40363; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionInvocation_c selected = (FunctionInvocation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p39781));
+	      retval = (selected.getStatement_id().equals(m_p40363));
 	      return retval;
 	  }
     }
 
-    FunctionInvocation_c [] objs39779 = 
-    FunctionInvocation_c.FunctionInvocationInstances(modelRoot, new FunctionInvocation_c_test39780_c(getStatement_id())) ;
+    FunctionInvocation_c [] objs40361 = 
+    FunctionInvocation_c.FunctionInvocationInstances(modelRoot, new FunctionInvocation_c_test40362_c(getStatement_id())) ;
 
-    if ( (  (objs39779.length) == 0) )
+    if ( (  (objs40361.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Invocation", //$NON-NLS-1$
            "Consistency: Object: Function Invocation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39779.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40361.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Invocation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39779.length )  , e); 
+          + Integer.toString( objs40361.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39779.length) > 1) )
+    if ( (  (objs40361.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Invocation", //$NON-NLS-1$
            "Consistency: Object: Function Invocation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39779.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40361.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Invocation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39779.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40361.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1211,37 +1211,37 @@ private static FunctionInvocation_c findFunctionInvocationInstance(ModelRoot mod
 
           // Function Invocation is a subtype in association: rel.Numb = 603
           // The supertype class is: Statement
-    class Statement_c_test39785_c implements ClassQueryInterface_c
+    class Statement_c_test40367_c implements ClassQueryInterface_c
     {
-	  Statement_c_test39785_c( java.util.UUID            p39786 ) {
-	  m_p39786 = p39786;
+	  Statement_c_test40367_c( java.util.UUID            p40368 ) {
+	  m_p40368 = p40368;
 	  }
-	  private java.util.UUID             m_p39786; 
+	  private java.util.UUID             m_p40368; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Statement_c selected = (Statement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p39786));
+	      retval = (selected.getStatement_id().equals(m_p40368));
 	      return retval;
 	  }
     }
 
-    Statement_c [] objs39784 = 
-    Statement_c.StatementInstances(modelRoot, new Statement_c_test39785_c(getStatement_id())) ;
+    Statement_c [] objs40366 = 
+    Statement_c.StatementInstances(modelRoot, new Statement_c_test40367_c(getStatement_id())) ;
 
-    if ( (  (objs39784.length) != 1) )
+    if ( (  (objs40366.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Invocation", //$NON-NLS-1$
            "Consistency: Object: Function Invocation: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39784.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40366.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Invocation: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39784.length )  , e); 
+          + Integer.toString( objs40366.length )  , e); 
       }
       retval = false;
 
@@ -1249,38 +1249,38 @@ private static FunctionInvocation_c findFunctionInvocationInstance(ModelRoot mod
 
           // Function Invocation is a referring class in association: rel.Numb = 675
           // The participating class is: Function
-    class Function_c_test39788_c implements ClassQueryInterface_c
+    class Function_c_test40370_c implements ClassQueryInterface_c
     {
-	  Function_c_test39788_c( java.util.UUID            p39789 ) {
-	  m_p39789 = p39789;
+	  Function_c_test40370_c( java.util.UUID            p40371 ) {
+	  m_p40371 = p40371;
 	  }
-	  private java.util.UUID             m_p39789; 
+	  private java.util.UUID             m_p40371; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Function_c selected = (Function_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSync_id().equals(m_p39789));
+	      retval = (selected.getSync_id().equals(m_p40371));
 	      return retval;
 	  }
     }
 
-    Function_c [] objs39787 = 
-    Function_c.FunctionInstances(modelRoot, new Function_c_test39788_c(getSync_id())) ;
+    Function_c [] objs40369 = 
+    Function_c.FunctionInstances(modelRoot, new Function_c_test40370_c(getSync_id())) ;
 
-    if ( (  (objs39787.length) > 1) )
+    if ( (  (objs40369.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Function Invocation", //$NON-NLS-1$
            "Consistency: Object: Function Invocation: Association: 675: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39787.length )  + " Sync_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40369.length )  + " Sync_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Function Invocation: Association: 675: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39787.length )  + " Sync_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40369.length )  + " Sync_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1313,9 +1313,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR669(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36685 = 0; i36685 < v_parm_set.length; i36685++)
+for ( int i37267 = 0; i37267 < v_parm_set.length; i37267++)
 {
-  v_parm = v_parm_set[i36685] ;
+  v_parm = v_parm_set[i37267] ;
 
 this.unrelateAcrossR669From(v_parm);
 
@@ -1364,7 +1364,7 @@ p_Stack_frame_id) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Function Invocation", " Operation entered: FunctionInvocation::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

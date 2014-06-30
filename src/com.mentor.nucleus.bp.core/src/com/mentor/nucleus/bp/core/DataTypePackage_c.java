@@ -184,7 +184,7 @@ p_m_parent_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -200,7 +200,7 @@ p_m_parent_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((DataTypePackage_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((DataTypePackage_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((DataTypePackage_c)elem).getPackage_id())) return false;
@@ -2220,58 +2220,58 @@ public static DataTypePackage_c getOneS_DPKOnR1506(ConstantSpecification_c targe
         ModelRoot baseRoot = modelRoot;
 
       // R1402
-      SpecificationPackage_c relInst55137 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      SpecificationPackage_c relInst56686 = (SpecificationPackage_c) baseRoot.getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55137 == null) {
-      			relInst55137 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+      		if (relInst56686 == null) {
+      			relInst56686 = (SpecificationPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst55137 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56686 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55137 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
-					if (relInst55137 != null)
+					relInst56686 = (SpecificationPackage_c) roots[i].getInstanceList(SpecificationPackage_c.class).get(new Object[] {m_package_id});
+					if (relInst56686 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55137 != null )
+      if ( relInst56686 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55137) && !isProxy())) {
-	      relInst55137.relateAcrossR1402To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56686) && !isProxy())) {
+	      relInst56686.relateAcrossR1402To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (IsContainedInDomain == null) {          
       // R40
-      Domain_c relInst55138 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      Domain_c relInst56687 = (Domain_c) baseRoot.getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55138 == null) {
-      			relInst55138 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+      		if (relInst56687 == null) {
+      			relInst56687 = (Domain_c) Ooaofooa.getDefaultInstance().getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
       		}
-			if (relInst55138 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56687 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55138 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
-					if (relInst55138 != null)
+					relInst56687 = (Domain_c) roots[i].getInstanceList(Domain_c.class).get(new Object[] {m_dom_id});
+					if (relInst56687 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55138 != null )
+      if ( relInst56687 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55138) && !isProxy())) {
-	      relInst55138.relateAcrossR40To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56687) && !isProxy())) {
+	      relInst56687.relateAcrossR40To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2279,29 +2279,29 @@ public static DataTypePackage_c getOneS_DPKOnR1506(ConstantSpecification_c targe
 
 	if (IsChildViaDataTypePackageInPackage == null) {          
       // R38
-      DataTypePackageInPackage_c relInst55139 = (DataTypePackageInPackage_c) baseRoot.getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
+      DataTypePackageInPackage_c relInst56688 = (DataTypePackageInPackage_c) baseRoot.getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55139 == null) {
-      			relInst55139 = (DataTypePackageInPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
+      		if (relInst56688 == null) {
+      			relInst56688 = (DataTypePackageInPackage_c) Ooaofooa.getDefaultInstance().getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
       		}
-			if (relInst55139 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56688 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55139 = (DataTypePackageInPackage_c) roots[i].getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
-					if (relInst55139 != null)
+					relInst56688 = (DataTypePackageInPackage_c) roots[i].getInstanceList(DataTypePackageInPackage_c.class).get(new Object[] {m_parent_package_id});
+					if (relInst56688 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55139 != null )
+      if ( relInst56688 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55139) && !isProxy())) {
-	      relInst55139.relateAcrossR38To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56688) && !isProxy())) {
+	      relInst56688.relateAcrossR38To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2731,56 +2731,56 @@ private static DataTypePackage_c findDataTypePackageInstance(ModelRoot modelRoot
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class DataTypePackage_c_test55141_c implements ClassQueryInterface_c
+    class DataTypePackage_c_test56690_c implements ClassQueryInterface_c
     {
-	  DataTypePackage_c_test55141_c( java.util.UUID            p55142 ) {
-	  m_p55142 = p55142;
+	  DataTypePackage_c_test56690_c( java.util.UUID            p56691 ) {
+	  m_p56691 = p56691;
 	  }
-	  private java.util.UUID             m_p55142; 
+	  private java.util.UUID             m_p56691; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataTypePackage_c selected = (DataTypePackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55142));
+	      retval = (selected.getPackage_id().equals(m_p56691));
 	      return retval;
 	  }
     }
 
-    DataTypePackage_c [] objs55140 = 
-    DataTypePackage_c.DataTypePackageInstances(modelRoot, new DataTypePackage_c_test55141_c(getPackage_id())) ;
+    DataTypePackage_c [] objs56689 = 
+    DataTypePackage_c.DataTypePackageInstances(modelRoot, new DataTypePackage_c_test56690_c(getPackage_id())) ;
 
-    if ( (  (objs55140.length) == 0) )
+    if ( (  (objs56689.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55140.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56689.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55140.length )  , e); 
+          + Integer.toString( objs56689.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55140.length) > 1) )
+    if ( (  (objs56689.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55140.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56689.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55140.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56689.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2788,38 +2788,38 @@ private static DataTypePackage_c findDataTypePackageInstance(ModelRoot modelRoot
 
           // Data Type Package is a referring class in association: rel.Numb = 40
           // The participating class is: Domain
-    class Domain_c_test55146_c implements ClassQueryInterface_c
+    class Domain_c_test56695_c implements ClassQueryInterface_c
     {
-	  Domain_c_test55146_c( java.util.UUID            p55147 ) {
-	  m_p55147 = p55147;
+	  Domain_c_test56695_c( java.util.UUID            p56696 ) {
+	  m_p56696 = p56696;
 	  }
-	  private java.util.UUID             m_p55147; 
+	  private java.util.UUID             m_p56696; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Domain_c selected = (Domain_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDom_id().equals(m_p55147));
+	      retval = (selected.getDom_id().equals(m_p56696));
 	      return retval;
 	  }
     }
 
-    Domain_c [] objs55145 = 
-    Domain_c.DomainInstances(modelRoot, new Domain_c_test55146_c(getDom_id())) ;
+    Domain_c [] objs56694 = 
+    Domain_c.DomainInstances(modelRoot, new Domain_c_test56695_c(getDom_id())) ;
 
-    if ( (  (objs55145.length) > 1) )
+    if ( (  (objs56694.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Association: 40: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55145.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56694.length )  + " Dom_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Association: 40: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55145.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56694.length )  + " Dom_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2827,37 +2827,37 @@ private static DataTypePackage_c findDataTypePackageInstance(ModelRoot modelRoot
                 
           // Data Type Package is a subtype in association: rel.Numb = 1402
           // The supertype class is: Specification Package
-    class SpecificationPackage_c_test55149_c implements ClassQueryInterface_c
+    class SpecificationPackage_c_test56698_c implements ClassQueryInterface_c
     {
-	  SpecificationPackage_c_test55149_c( java.util.UUID            p55150 ) {
-	  m_p55150 = p55150;
+	  SpecificationPackage_c_test56698_c( java.util.UUID            p56699 ) {
+	  m_p56699 = p56699;
 	  }
-	  private java.util.UUID             m_p55150; 
+	  private java.util.UUID             m_p56699; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      SpecificationPackage_c selected = (SpecificationPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55150));
+	      retval = (selected.getPackage_id().equals(m_p56699));
 	      return retval;
 	  }
     }
 
-    SpecificationPackage_c [] objs55148 = 
-    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test55149_c(getPackage_id())) ;
+    SpecificationPackage_c [] objs56697 = 
+    SpecificationPackage_c.SpecificationPackageInstances(modelRoot, new SpecificationPackage_c_test56698_c(getPackage_id())) ;
 
-    if ( (  (objs55148.length) != 1) )
+    if ( (  (objs56697.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55148.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56697.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Association: 1402: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55148.length )  , e); 
+          + Integer.toString( objs56697.length )  , e); 
       }
       retval = false;
 
@@ -2865,38 +2865,38 @@ private static DataTypePackage_c findDataTypePackageInstance(ModelRoot modelRoot
 
           // Data Type Package is a referring class in association: rel.Numb = 38
           // The participating class is: Data Type Package in Package
-    class DataTypePackageInPackage_c_test55152_c implements ClassQueryInterface_c
+    class DataTypePackageInPackage_c_test56701_c implements ClassQueryInterface_c
     {
-	  DataTypePackageInPackage_c_test55152_c( java.util.UUID            p55153 ) {
-	  m_p55153 = p55153;
+	  DataTypePackageInPackage_c_test56701_c( java.util.UUID            p56702 ) {
+	  m_p56702 = p56702;
 	  }
-	  private java.util.UUID             m_p55153; 
+	  private java.util.UUID             m_p56702; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataTypePackageInPackage_c selected = (DataTypePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55153));
+	      retval = (selected.getPackage_id().equals(m_p56702));
 	      return retval;
 	  }
     }
 
-    DataTypePackageInPackage_c [] objs55151 = 
-    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test55152_c(getParent_package_id())) ;
+    DataTypePackageInPackage_c [] objs56700 = 
+    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test56701_c(getParent_package_id())) ;
 
-    if ( (  (objs55151.length) > 1) )
+    if ( (  (objs56700.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Association: 38: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55151.length )  + " Parent_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56700.length )  + " Parent_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Association: 38: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55151.length )  + " Parent_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56700.length )  + " Parent_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2906,37 +2906,37 @@ private static DataTypePackage_c findDataTypePackageInstance(ModelRoot modelRoot
             // Link Object: System Datatype Package
           // Data Type Package is a participating class in association: rel.Numb = 37
              // Object: Data Type Package in Package
-    class DataTypePackageInPackage_c_test55155_c implements ClassQueryInterface_c
+    class DataTypePackageInPackage_c_test56704_c implements ClassQueryInterface_c
     {
-	  DataTypePackageInPackage_c_test55155_c( java.util.UUID            p55156 ) {
-	  m_p55156 = p55156;
+	  DataTypePackageInPackage_c_test56704_c( java.util.UUID            p56705 ) {
+	  m_p56705 = p56705;
 	  }
-	  private java.util.UUID             m_p55156; 
+	  private java.util.UUID             m_p56705; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataTypePackageInPackage_c selected = (DataTypePackageInPackage_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p55156));
+	      retval = (selected.getPackage_id().equals(m_p56705));
 	      return retval;
 	  }
     }
 
-    DataTypePackageInPackage_c [] objs55154 = 
-    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test55155_c(getPackage_id())) ;
+    DataTypePackageInPackage_c [] objs56703 = 
+    DataTypePackageInPackage_c.DataTypePackageInPackageInstances(modelRoot, new DataTypePackageInPackage_c_test56704_c(getPackage_id())) ;
 
-    if ( (  (objs55154.length) > 1) )
+    if ( (  (objs56703.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Data Type Package", //$NON-NLS-1$
            "Consistency: Object: Data Type Package: Association: 37: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55154.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56703.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Data Type Package: Association: 37: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55154.length )  , e); 
+          + Integer.toString( objs56703.length )  , e); 
       }
       retval = false;
 
@@ -3092,7 +3092,7 @@ if ( (  !v_isSystemLevel) )
 Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 
 
-  class DataType_test54193_c implements ClassQueryInterface_c
+  class DataType_test55740_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3100,7 +3100,7 @@ Domain_c v_dom = Domain_c.DomainInstance(modelRoot) ;
 		return selected.getName().equals("integer") ;
 	}
   }
-v_int_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test54193_c());
+v_int_dt = DataType_c.getOneS_DTOnR14(v_dom, new DataType_test55740_c());
 
 
 if ( (  (v_int_dt == null)) )
@@ -3258,9 +3258,9 @@ ConstantSpecification_c [] v_csps = ConstantSpecification_c.getManyCNST_CSPsOnR1
 
 
 ConstantSpecification_c  v_csp = null;
-for ( int i53602 = 0; i53602 < v_csps.length; i53602++)
+for ( int i55102 = 0; i55102 < v_csps.length; i55102++)
 {
-  v_csp = v_csps[i53602] ;
+  v_csp = v_csps[i55102] ;
 
 if (v_csp != null) {
 v_csp.Dispose() ;
@@ -3275,7 +3275,7 @@ else {
 
 }
 
-  class DataType_test54194_c implements ClassQueryInterface_c
+  class DataType_test55741_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3283,13 +3283,13 @@ else {
 		return (! selected.getName().equals("integer") && ! selected.getName().equals("void")) ;
 	}
   }
-DataType_c [] v_dts = DataType_c.getManyS_DTsOnR39(this, new DataType_test54194_c());
+DataType_c [] v_dts = DataType_c.getManyS_DTsOnR39(this, new DataType_test55741_c());
 
 
 DataType_c  v_dt = null;
-for ( int i53603 = 0; i53603 < v_dts.length; i53603++)
+for ( int i55103 = 0; i55103 < v_dts.length; i55103++)
 {
-  v_dt = v_dts[i53603] ;
+  v_dt = v_dts[i55103] ;
 
 if (v_dt != null) {
 v_dt.Dispose() ;
@@ -3304,7 +3304,7 @@ else {
 
 }
 
-  class DataType_test54195_c implements ClassQueryInterface_c
+  class DataType_test55742_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3312,7 +3312,7 @@ else {
 		return (selected.getName().equals("integer")) ;
 	}
   }
-DataType_c v_intDt = DataType_c.getOneS_DTOnR39(this, new DataType_test54195_c());
+DataType_c v_intDt = DataType_c.getOneS_DTOnR39(this, new DataType_test55742_c());
 
 
 if ( (  (v_intDt != null)) )
@@ -3331,7 +3331,7 @@ else {
 
 }
 
-  class DataType_test54196_c implements ClassQueryInterface_c
+  class DataType_test55743_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3339,7 +3339,7 @@ else {
 		return (selected.getName().equals("void")) ;
 	}
   }
-DataType_c v_voidDt = DataType_c.getOneS_DTOnR39(this, new DataType_test54196_c());
+DataType_c v_voidDt = DataType_c.getOneS_DTOnR39(this, new DataType_test55743_c());
 
 
 if ( (  (v_voidDt != null)) )
@@ -3423,9 +3423,9 @@ DataTypePackage_c [] v_pkgs = DataTypePackage_c.getManyS_DPKsOnR38(v_dpip);
 
 
 DataTypePackage_c  v_pkg = null;
-for ( int i53604 = 0; i53604 < v_pkgs.length; i53604++)
+for ( int i55104 = 0; i55104 < v_pkgs.length; i55104++)
 {
-  v_pkg = v_pkgs[i53604] ;
+  v_pkg = v_pkgs[i55104] ;
 
 if (v_pkg != null) {
 v_pkg.Internal_dispose() ;
@@ -3534,9 +3534,9 @@ SystemDatatypeInPackage_c [] v_sdips = SystemDatatypeInPackage_c.getManySLD_SDIN
 
 
 SystemDatatypeInPackage_c  v_sdip = null;
-for ( int i53605 = 0; i53605 < v_sdips.length; i53605++)
+for ( int i55105 = 0; i55105 < v_sdips.length; i55105++)
 {
-  v_sdip = v_sdips[i53605] ;
+  v_sdip = v_sdips[i55105] ;
 
 v_dt = DataType_c.getOneS_DTOnR4401(v_sdip);
 
@@ -3680,9 +3680,9 @@ if ( (  (v_dps.length != 0)) )
 {
 
 DataTypePackage_c  v_dp = null;
-for ( int i53606 = 0; i53606 < v_dps.length; i53606++)
+for ( int i55106 = 0; i55106 < v_dps.length; i55106++)
 {
-  v_dp = v_dps[i53606] ;
+  v_dp = v_dps[i55106] ;
 
 if ( (  !v_dp.Candelete()) )
 {
@@ -3721,9 +3721,9 @@ if ( (  (v_userdts.length != 0)) )
 {
 
 UserDataType_c  v_udt = null;
-for ( int i53607 = 0; i53607 < v_userdts.length; i53607++)
+for ( int i55107 = 0; i55107 < v_userdts.length; i55107++)
 {
-  v_udt = v_userdts[i53607] ;
+  v_udt = v_userdts[i55107] ;
 
 if ( (  !v_udt.Candelete()) )
 {
@@ -3807,9 +3807,9 @@ DataTypePackage_c [] v_childPKGs = DataTypePackage_c.getManyS_DPKsOnR38(DataType
 
 
 DataTypePackage_c  v_childPKG = null;
-for ( int i53608 = 0; i53608 < v_childPKGs.length; i53608++)
+for ( int i55108 = 0; i55108 < v_childPKGs.length; i55108++)
 {
-  v_childPKG = v_childPKGs[i53608] ;
+  v_childPKG = v_childPKGs[i55108] ;
 
 if (v_childPKG != null) {
 v_childPKG.Associatedtswithsystem(			    
@@ -3829,9 +3829,9 @@ DataType_c [] v_dts = DataType_c.getManyS_DTsOnR39(DataTypeInPackage_c.getManyS_
 
 
 DataType_c  v_dt = null;
-for ( int i53609 = 0; i53609 < v_dts.length; i53609++)
+for ( int i55109 = 0; i55109 < v_dts.length; i55109++)
 {
-  v_dt = v_dts[i53609] ;
+  v_dt = v_dts[i55109] ;
 
 if (v_dt != null) {
 v_dt.Associatedtwithsystem(			    
@@ -3866,9 +3866,9 @@ DataTypePackage_c [] v_childPKGs = DataTypePackage_c.getManyS_DPKsOnR38(DataType
 
 
 DataTypePackage_c  v_childPKG = null;
-for ( int i53610 = 0; i53610 < v_childPKGs.length; i53610++)
+for ( int i55110 = 0; i55110 < v_childPKGs.length; i55110++)
 {
-  v_childPKG = v_childPKGs[i53610] ;
+  v_childPKG = v_childPKGs[i55110] ;
 
 if (v_childPKG != null) {
 v_childPKG.Associatedtswithdomain(			    
@@ -3888,9 +3888,9 @@ DataType_c [] v_dts = DataType_c.getManyS_DTsOnR39(DataTypeInPackage_c.getManyS_
 
 
 DataType_c  v_dt = null;
-for ( int i53611 = 0; i53611 < v_dts.length; i53611++)
+for ( int i55111 = 0; i55111 < v_dts.length; i55111++)
 {
-  v_dt = v_dts[i53611] ;
+  v_dt = v_dts[i55111] ;
 
 if (v_dt != null) {
 v_dt.Associatedtwithdomain(			    
@@ -4195,9 +4195,9 @@ UserDataType_c [] v_udts = UserDataType_c.getManyS_UDTsOnR17(DataType_c.getManyS
 
 
 UserDataType_c  v_udt = null;
-for ( int i53612 = 0; i53612 < v_udts.length; i53612++)
+for ( int i55112 = 0; i55112 < v_udts.length; i55112++)
 {
-  v_udt = v_udts[i53612] ;
+  v_udt = v_udts[i55112] ;
 
 if ( (v_udt.getGen_type() == 0) )
 {
@@ -4222,9 +4222,9 @@ DataTypePackage_c [] v_childPkgs = DataTypePackage_c.getManyS_DPKsOnR38(DataType
 
 
 DataTypePackage_c  v_childPkg = null;
-for ( int i53613 = 0; i53613 < v_childPkgs.length; i53613++)
+for ( int i55113 = 0; i55113 < v_childPkgs.length; i55113++)
 {
-  v_childPkg = v_childPkgs[i53613] ;
+  v_childPkg = v_childPkgs[i55113] ;
 
 if (v_childPkg != null) {
 v_childPkg.Handleuserdatatyperesolution() ;
@@ -4472,7 +4472,7 @@ v_dt.getDt_id() ) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Data Type Package", " Operation entered: DataTypePackage::Associatepasteddtwithdomainorsystem") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class DataType_test54197_c implements ClassQueryInterface_c
+  class DataType_test55744_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4480,7 +4480,7 @@ v_dt.getDt_id() ) ;
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR39(DataTypeInPackage_c.getManyS_DIPsOnR39(this), new DataType_test54197_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR39(DataTypeInPackage_c.getManyS_DIPsOnR39(this), new DataType_test55744_c());
 
 
 java.util.UUID         v_domId = Getdomainid() ;
@@ -4553,7 +4553,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Data Type Package", " Operation entered: DataTypePackage::Associatenewdtwithdomainorsystem") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class DataType_test54198_c implements ClassQueryInterface_c
+  class DataType_test55745_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4561,7 +4561,7 @@ else {
 		return (selected.getDt_id().equals(p_Dt_id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR39(DataTypeInPackage_c.getManyS_DIPsOnR39(this), new DataType_test54198_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR39(DataTypeInPackage_c.getManyS_DIPsOnR39(this), new DataType_test55745_c());
 
 
 if ( (  (v_dt != null)) )
@@ -4968,7 +4968,7 @@ v_csp.getConstant_spec_id() ) ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Data Type Package", " Operation entered: DataTypePackage::Associatenewcspwithdomainorsystem") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ConstantSpecification_test54199_c implements ClassQueryInterface_c
+  class ConstantSpecification_test55746_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -4976,7 +4976,7 @@ v_csp.getConstant_spec_id() ) ;
 		return (selected.getConstant_spec_id().equals(p_Csp_id)) ;
 	}
   }
-ConstantSpecification_c v_csp = ConstantSpecification_c.getOneCNST_CSPOnR1506(ConstantInPackage_c.getManyCNST_CIPsOnR1506(this), new ConstantSpecification_test54199_c());
+ConstantSpecification_c v_csp = ConstantSpecification_c.getOneCNST_CSPOnR1506(ConstantInPackage_c.getManyCNST_CIPsOnR1506(this), new ConstantSpecification_test55746_c());
 
 
 if ( (  (v_csp != null)) )
@@ -5030,7 +5030,7 @@ else
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Data Type Package", " Operation entered: DataTypePackage::Associatepastedcspwithdomainorsystem") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ConstantSpecification_test54200_c implements ClassQueryInterface_c
+  class ConstantSpecification_test55747_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -5038,7 +5038,7 @@ else
 		return (selected.getConstant_spec_id().equals(p_Csp_id)) ;
 	}
   }
-ConstantSpecification_c v_csp = ConstantSpecification_c.getOneCNST_CSPOnR1506(ConstantInPackage_c.getManyCNST_CIPsOnR1506(this), new ConstantSpecification_test54200_c());
+ConstantSpecification_c v_csp = ConstantSpecification_c.getOneCNST_CSPOnR1506(ConstantInPackage_c.getManyCNST_CIPsOnR1506(this), new ConstantSpecification_test55747_c());
 
 
 java.util.UUID         v_sysId = Getsystemid() ;
@@ -5168,9 +5168,9 @@ DataTypePackage_c [] v_childPKGs = DataTypePackage_c.getManyS_DPKsOnR38(DataType
 
 
 DataTypePackage_c  v_childPKG = null;
-for ( int i53614 = 0; i53614 < v_childPKGs.length; i53614++)
+for ( int i55114 = 0; i55114 < v_childPKGs.length; i55114++)
 {
-  v_childPKG = v_childPKGs[i53614] ;
+  v_childPKG = v_childPKGs[i55114] ;
 
 if (v_childPKG != null) {
 v_childPKG.Associatecspswithsystem(			    
@@ -5190,9 +5190,9 @@ ConstantSpecification_c [] v_csps = ConstantSpecification_c.getManyCNST_CSPsOnR1
 
 
 ConstantSpecification_c  v_csp = null;
-for ( int i53615 = 0; i53615 < v_csps.length; i53615++)
+for ( int i55115 = 0; i55115 < v_csps.length; i55115++)
 {
-  v_csp = v_csps[i53615] ;
+  v_csp = v_csps[i55115] ;
 
 if (v_csp != null) {
 v_csp.Associatewithsystem(			    
@@ -5239,9 +5239,9 @@ int          v_count = -1 ;
 
 
 UserDataType_c  v_userDatatypePckg = null;
-for ( int i53616 = 0; i53616 < v_userDatatypePckgs.length; i53616++)
+for ( int i55116 = 0; i55116 < v_userDatatypePckgs.length; i55116++)
 {
-  v_userDatatypePckg = v_userDatatypePckgs[i53616] ;
+  v_userDatatypePckg = v_userDatatypePckgs[i55116] ;
 
 if ( (  (v_userDatatypePckg != null)) )
 {
@@ -5295,9 +5295,9 @@ int          v_count = -1 ;
 
 
 StructuredDataType_c  v_structuredDatatypePckg = null;
-for ( int i53617 = 0; i53617 < v_structuredDatatypePckgs.length; i53617++)
+for ( int i55117 = 0; i55117 < v_structuredDatatypePckgs.length; i55117++)
 {
-  v_structuredDatatypePckg = v_structuredDatatypePckgs[i53617] ;
+  v_structuredDatatypePckg = v_structuredDatatypePckgs[i55117] ;
 
 if ( (  (v_structuredDatatypePckg != null)) )
 {
@@ -5351,9 +5351,9 @@ int          v_count = -1 ;
 
 
 EnumerationDataType_c  v_enumDatatypePckg = null;
-for ( int i53618 = 0; i53618 < v_enumDatatypePckgs.length; i53618++)
+for ( int i55118 = 0; i55118 < v_enumDatatypePckgs.length; i55118++)
 {
-  v_enumDatatypePckg = v_enumDatatypePckgs[i53618] ;
+  v_enumDatatypePckg = v_enumDatatypePckgs[i55118] ;
 
 if ( (  (v_enumDatatypePckg != null)) )
 {
@@ -5407,9 +5407,9 @@ int          v_count = -1 ;
 
 
 ConstantSpecification_c  v_constantSpec = null;
-for ( int i53619 = 0; i53619 < v_constantSpecs.length; i53619++)
+for ( int i55119 = 0; i55119 < v_constantSpecs.length; i55119++)
 {
-  v_constantSpec = v_constantSpecs[i53619] ;
+  v_constantSpec = v_constantSpecs[i55119] ;
 
 if ( (  (v_constantSpec != null)) )
 {
@@ -5463,9 +5463,9 @@ int          v_count = -1 ;
 
 
 DataTypePackage_c  v_dataTypePckg = null;
-for ( int i53620 = 0; i53620 < v_dataTypePckgs.length; i53620++)
+for ( int i55120 = 0; i55120 < v_dataTypePckgs.length; i55120++)
 {
-  v_dataTypePckg = v_dataTypePckgs[i53620] ;
+  v_dataTypePckg = v_dataTypePckgs[i55120] ;
 
 if ( (  (v_dataTypePckg != null)) )
 {

@@ -147,7 +147,8 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,10 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
-				.equals(((GlobalElementInSystem_c) elem).getElement_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getElement_id()) || IdAssigner.NULL_UUID
+						.equals(((GlobalElementInSystem_c) elem)
+								.getElement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getElement_id().equals(
@@ -174,9 +176,9 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID
-				.equals(((GlobalElementInSystem_c) elem).getSys_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSys_id()) || IdAssigner.NULL_UUID
+						.equals(((GlobalElementInSystem_c) elem).getSys_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSys_id().equals(((GlobalElementInSystem_c) elem).getSys_id()))
@@ -705,35 +707,35 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9100
-		PackageableElement_c relInst40357 = (PackageableElement_c) baseRoot
+		PackageableElement_c relInst40939 = (PackageableElement_c) baseRoot
 				.getInstanceList(PackageableElement_c.class).get(
 						new Object[]{m_element_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40357 == null) {
-			relInst40357 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
+		if (relInst40939 == null) {
+			relInst40939 = (PackageableElement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(PackageableElement_c.class)
 					.get(new Object[]{m_element_id});
 		}
-		if (relInst40357 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40939 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40357 = (PackageableElement_c) roots[i].getInstanceList(
+				relInst40939 = (PackageableElement_c) roots[i].getInstanceList(
 						PackageableElement_c.class).get(
 						new Object[]{m_element_id});
-				if (relInst40357 != null)
+				if (relInst40939 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40357 != null) {
+		if (relInst40939 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40357) && !isProxy())) {
-				relInst40357.relateAcrossR9100To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40939) && !isProxy())) {
+				relInst40939.relateAcrossR9100To(this, notifyChanges);
 			}
 		}
 
@@ -741,37 +743,37 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 		if (baseRoot != modelRoot && modelRoot.isCompareRoot()) {
 			baseRoot = modelRoot;
 		}
-		SystemModel_c relInst40358 = (SystemModel_c) baseRoot.getInstanceList(
+		SystemModel_c relInst40940 = (SystemModel_c) baseRoot.getInstanceList(
 				SystemModel_c.class).get(new Object[]{m_sys_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40358 == null) {
-			relInst40358 = (SystemModel_c) Ooaofooa.getDefaultInstance()
+		if (relInst40940 == null) {
+			relInst40940 = (SystemModel_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SystemModel_c.class)
 					.get(new Object[]{m_sys_id});
 		}
-		if (relInst40358 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40940 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40358 = (SystemModel_c) roots[i].getInstanceList(
+				relInst40940 = (SystemModel_c) roots[i].getInstanceList(
 						SystemModel_c.class).get(new Object[]{m_sys_id});
-				if (relInst40358 != null)
+				if (relInst40940 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40358 != null) {
+		if (relInst40940 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40358) && !isProxy())) {
-				relInst40358.relateAcrossR9100To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40940) && !isProxy())) {
+				relInst40940.relateAcrossR9100To(this, notifyChanges);
 			}
 			// set the root in the Domain's model root, not the System Model's
 			// modelRoot is the SystemModel's root when we are loading a Domain proxy
-			((Ooaofooa) getModelRoot()).setRoot(relInst40358);
+			((Ooaofooa) getModelRoot()).setRoot(relInst40940);
 		}
 		baseRoot = modelRoot;
 
@@ -1031,31 +1033,31 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class GlobalElementInSystem_c_test40360_c
+		class GlobalElementInSystem_c_test40942_c
 				implements
 					ClassQueryInterface_c {
-			GlobalElementInSystem_c_test40360_c(java.util.UUID p40361,
-					java.util.UUID p40362) {
-				m_p40361 = p40361;
-				m_p40362 = p40362;
+			GlobalElementInSystem_c_test40942_c(java.util.UUID p40943,
+					java.util.UUID p40944) {
+				m_p40943 = p40943;
+				m_p40944 = p40944;
 			}
-			private java.util.UUID m_p40361;
-			private java.util.UUID m_p40362;
+			private java.util.UUID m_p40943;
+			private java.util.UUID m_p40944;
 			public boolean evaluate(Object candidate) {
 				GlobalElementInSystem_c selected = (GlobalElementInSystem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getElement_id().equals(m_p40361))
-						& (selected.getSys_id().equals(m_p40362));
+				retval = (selected.getElement_id().equals(m_p40943))
+						& (selected.getSys_id().equals(m_p40944));
 				return retval;
 			}
 		}
 
-		GlobalElementInSystem_c[] objs40359 = GlobalElementInSystem_c
+		GlobalElementInSystem_c[] objs40941 = GlobalElementInSystem_c
 				.GlobalElementInSystemInstances(modelRoot,
-						new GlobalElementInSystem_c_test40360_c(
+						new GlobalElementInSystem_c_test40942_c(
 								getElement_id(), getSys_id()));
 
-		if (((objs40359.length) == 0)) {
+		if (((objs40941.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1063,20 +1065,20 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Global Element in System", //$NON-NLS-1$
 								"Consistency: Object: Global Element in System: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40359.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40941.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Global Element in System: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40359.length), e);
+										+ Integer.toString(objs40941.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40359.length) > 1)) {
+		if (((objs40941.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1085,7 +1087,7 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 								"Global Element in System", //$NON-NLS-1$
 								"Consistency: Object: Global Element in System: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40359.length)
+										+ Integer.toString(objs40941.length)
 										+ " Element_ID: " + "Not Printable" + " Sys_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1093,7 +1095,7 @@ public class GlobalElementInSystem_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Global Element in System: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40359.length)
+										+ Integer.toString(objs40941.length)
 										+ " Element_ID: " + "Not Printable" + " Sys_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -201,7 +201,7 @@ p_m_localeventmning
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -217,14 +217,14 @@ p_m_localeventmning
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((PolymorphicEvent_c)elem).getSm_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID.equals(((PolymorphicEvent_c)elem).getSm_id())) && this != elem)) {
       	return false;
       }
       if (!getSm_id().equals(((PolymorphicEvent_c)elem).getSm_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID.equals(((PolymorphicEvent_c)elem).getSmevt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID.equals(((PolymorphicEvent_c)elem).getSmevt_id())) && this != elem)) {
       	return false;
       }
       if (!getSmevt_id().equals(((PolymorphicEvent_c)elem).getSmevt_id())) return false;
@@ -687,7 +687,7 @@ public static PolymorphicEvent_c [] getManySM_PEVTsOnR527(NonLocalEvent_c target
 
       // R525
 	  instances = baseRoot.getInstanceList(StateMachineEvent_c.class);
-      StateMachineEvent_c relInst38473 = null;
+      StateMachineEvent_c relInst39055 = null;
       synchronized(instances) {
         Iterator<NonRootModelElement> cursor = instances.iterator() ;
         while (cursor.hasNext())
@@ -696,16 +696,16 @@ public static PolymorphicEvent_c [] getManySM_PEVTsOnR527(NonLocalEvent_c target
            if (     source.getSm_idCachedValue().equals(m_sm_id) && 
      source.getSmevt_id().equals(m_smevt_id) && 
      source.getSmspd_idCachedValue().equals(m_smspd_id) 		){
-  		relInst38473 = source;
+  		relInst39055 = source;
 			break;
 		  }
 	  }
      }//synchronized
 			//synchronized
-      if ( relInst38473 != null )
+      if ( relInst39055 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38473) && !isProxy())) {
-	      relInst38473.relateAcrossR525To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39055) && !isProxy())) {
+	      relInst39055.relateAcrossR525To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -1167,57 +1167,57 @@ return Getcachedlocaleventmning();
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class PolymorphicEvent_c_test38475_c implements ClassQueryInterface_c
+    class PolymorphicEvent_c_test39057_c implements ClassQueryInterface_c
     {
-	  PolymorphicEvent_c_test38475_c( java.util.UUID            p38476, java.util.UUID            p38477 ) {
-	       m_p38476 = p38476; 
-m_p38477 = p38477;
+	  PolymorphicEvent_c_test39057_c( java.util.UUID            p39058, java.util.UUID            p39059 ) {
+	       m_p39058 = p39058; 
+m_p39059 = p39059;
 	  }
-	  private java.util.UUID             m_p38476; private java.util.UUID             m_p38477; 
+	  private java.util.UUID             m_p39058; private java.util.UUID             m_p39059; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PolymorphicEvent_c selected = (PolymorphicEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p38476)) & (selected.getSmevt_id().equals(m_p38477));
+	      retval = (selected.getSm_id().equals(m_p39058)) & (selected.getSmevt_id().equals(m_p39059));
 	      return retval;
 	  }
     }
 
-    PolymorphicEvent_c [] objs38474 = 
-    PolymorphicEvent_c.PolymorphicEventInstances(modelRoot, new PolymorphicEvent_c_test38475_c(getSm_id(), getSmevt_id())) ;
+    PolymorphicEvent_c [] objs39056 = 
+    PolymorphicEvent_c.PolymorphicEventInstances(modelRoot, new PolymorphicEvent_c_test39057_c(getSm_id(), getSmevt_id())) ;
 
-    if ( (  (objs38474.length) == 0) )
+    if ( (  (objs39056.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Polymorphic Event", //$NON-NLS-1$
            "Consistency: Object: Polymorphic Event: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38474.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39056.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Polymorphic Event: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38474.length )  , e); 
+          + Integer.toString( objs39056.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38474.length) > 1) )
+    if ( (  (objs39056.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Polymorphic Event", //$NON-NLS-1$
            "Consistency: Object: Polymorphic Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38474.length )  + " SM_ID: " + "Not Printable"  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39056.length )  + " SM_ID: " + "Not Printable"  + " SMevt_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Polymorphic Event: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38474.length )  + " SM_ID: " + "Not Printable"  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39056.length )  + " SM_ID: " + "Not Printable"  + " SMevt_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1225,39 +1225,39 @@ m_p38477 = p38477;
 
           // Polymorphic Event is a subtype in association: rel.Numb = 525
           // The supertype class is: State Machine Event
-    class StateMachineEvent_c_test38481_c implements ClassQueryInterface_c
+    class StateMachineEvent_c_test39063_c implements ClassQueryInterface_c
     {
-	  StateMachineEvent_c_test38481_c( java.util.UUID            p38482, java.util.UUID            p38483, java.util.UUID            p38484 ) {
-	            m_p38482 = p38482; 
-m_p38483 = p38483; 
-m_p38484 = p38484;
+	  StateMachineEvent_c_test39063_c( java.util.UUID            p39064, java.util.UUID            p39065, java.util.UUID            p39066 ) {
+	            m_p39064 = p39064; 
+m_p39065 = p39065; 
+m_p39066 = p39066;
 	  }
-	  private java.util.UUID             m_p38482; private java.util.UUID             m_p38483; private java.util.UUID             m_p38484; 
+	  private java.util.UUID             m_p39064; private java.util.UUID             m_p39065; private java.util.UUID             m_p39066; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineEvent_c selected = (StateMachineEvent_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSmevt_id().equals(m_p38482)) & (selected.getSm_id().equals(m_p38483)) & (selected.getSmspd_id().equals(m_p38484));
+	      retval = (selected.getSmevt_id().equals(m_p39064)) & (selected.getSm_id().equals(m_p39065)) & (selected.getSmspd_id().equals(m_p39066));
 	      return retval;
 	  }
     }
 
-    StateMachineEvent_c [] objs38480 = 
-    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test38481_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
+    StateMachineEvent_c [] objs39062 = 
+    StateMachineEvent_c.StateMachineEventInstances(modelRoot, new StateMachineEvent_c_test39063_c(getSmevt_id(), getSm_id(), getSmspd_id())) ;
 
-    if ( (  (objs38480.length) != 1) )
+    if ( (  (objs39062.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Polymorphic Event", //$NON-NLS-1$
            "Consistency: Object: Polymorphic Event: Association: 525: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38480.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39062.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Polymorphic Event: Association: 525: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38480.length )  , e); 
+          + Integer.toString( objs39062.length )  , e); 
       }
       retval = false;
 
@@ -1284,9 +1284,9 @@ NonLocalEvent_c [] v_nlevts = NonLocalEvent_c.getManySM_NLEVTsOnR527(this);
 
 
 NonLocalEvent_c  v_nlevt = null;
-for ( int i36629 = 0; i36629 < v_nlevts.length; i36629++)
+for ( int i37211 = 0; i37211 < v_nlevts.length; i37211++)
 {
-  v_nlevt = v_nlevts[i36629] ;
+  v_nlevt = v_nlevts[i37211] ;
 
 this.unrelateAcrossR527From(v_nlevt);
 

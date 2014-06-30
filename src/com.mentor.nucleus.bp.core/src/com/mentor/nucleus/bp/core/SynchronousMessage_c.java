@@ -184,7 +184,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -200,9 +201,9 @@ public class SynchronousMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((SynchronousMessage_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((SynchronousMessage_c) elem).getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(((SynchronousMessage_c) elem).getMsg_id()))
@@ -1327,33 +1328,33 @@ public class SynchronousMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1018
-		Message_c relInst39419 = (Message_c) baseRoot.getInstanceList(
+		Message_c relInst40001 = (Message_c) baseRoot.getInstanceList(
 				Message_c.class).get(new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39419 == null) {
-			relInst39419 = (Message_c) Ooaofooa.getDefaultInstance()
+		if (relInst40001 == null) {
+			relInst40001 = (Message_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Message_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39419 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40001 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39419 = (Message_c) roots[i].getInstanceList(
+				relInst40001 = (Message_c) roots[i].getInstanceList(
 						Message_c.class).get(new Object[]{m_msg_id});
-				if (relInst39419 != null)
+				if (relInst40001 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39419 != null) {
+		if (relInst40001 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39419) && !isProxy())) {
-				relInst39419.relateAcrossR1018To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40001) && !isProxy())) {
+				relInst40001.relateAcrossR1018To(this, notifyChanges);
 			}
 		}
 
@@ -1844,44 +1845,44 @@ public class SynchronousMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class SynchronousMessage_c_test39421_c implements ClassQueryInterface_c {
-			SynchronousMessage_c_test39421_c(java.util.UUID p39422) {
-				m_p39422 = p39422;
+		class SynchronousMessage_c_test40003_c implements ClassQueryInterface_c {
+			SynchronousMessage_c_test40003_c(java.util.UUID p40004) {
+				m_p40004 = p40004;
 			}
-			private java.util.UUID m_p39422;
+			private java.util.UUID m_p40004;
 			public boolean evaluate(Object candidate) {
 				SynchronousMessage_c selected = (SynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39422));
+				retval = (selected.getMsg_id().equals(m_p40004));
 				return retval;
 			}
 		}
 
-		SynchronousMessage_c[] objs39420 = SynchronousMessage_c
+		SynchronousMessage_c[] objs40002 = SynchronousMessage_c
 				.SynchronousMessageInstances(modelRoot,
-						new SynchronousMessage_c_test39421_c(getMsg_id()));
+						new SynchronousMessage_c_test40003_c(getMsg_id()));
 
-		if (((objs39420.length) == 0)) {
+		if (((objs40002.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Synchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39420.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40002.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Synchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39420.length), e);
+										+ Integer.toString(objs40002.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39420.length) > 1)) {
+		if (((objs40002.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1889,7 +1890,7 @@ public class SynchronousMessage_c extends NonRootModelElement
 								"Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Synchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39420.length)
+										+ Integer.toString(objs40002.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1897,7 +1898,7 @@ public class SynchronousMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Synchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39420.length)
+										+ Integer.toString(objs40002.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1906,159 +1907,159 @@ public class SynchronousMessage_c extends NonRootModelElement
 
 		// Synchronous Message is a subtype in association: rel.Numb = 1018
 		// The supertype class is: Message
-		class Message_c_test39426_c implements ClassQueryInterface_c {
-			Message_c_test39426_c(java.util.UUID p39427) {
-				m_p39427 = p39427;
+		class Message_c_test40008_c implements ClassQueryInterface_c {
+			Message_c_test40008_c(java.util.UUID p40009) {
+				m_p40009 = p40009;
 			}
-			private java.util.UUID m_p39427;
+			private java.util.UUID m_p40009;
 			public boolean evaluate(Object candidate) {
 				Message_c selected = (Message_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39427));
+				retval = (selected.getMsg_id().equals(m_p40009));
 				return retval;
 			}
 		}
 
-		Message_c[] objs39425 = Message_c.MessageInstances(modelRoot,
-				new Message_c_test39426_c(getMsg_id()));
+		Message_c[] objs40007 = Message_c.MessageInstances(modelRoot,
+				new Message_c_test40008_c(getMsg_id()));
 
-		if (((objs39425.length) != 1)) {
+		if (((objs40007.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Synchronous Message: Association: 1018: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39425.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40007.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Synchronous Message: Association: 1018: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39425.length), e);
+										+ Integer.toString(objs40007.length), e);
 			}
 			retval = false;
 
 		}
 
 		// Supertype: rel.Numb = 1020
-		int objs39428 = 0;
+		int objs40010 = 0;
 		// Subtype Object: Function Message
-		class FunctionMessage_c_test39429_c implements ClassQueryInterface_c {
-			FunctionMessage_c_test39429_c(java.util.UUID p39430) {
-				m_p39430 = p39430;
+		class FunctionMessage_c_test40011_c implements ClassQueryInterface_c {
+			FunctionMessage_c_test40011_c(java.util.UUID p40012) {
+				m_p40012 = p40012;
 			}
-			private java.util.UUID m_p39430;
+			private java.util.UUID m_p40012;
 			public boolean evaluate(Object candidate) {
 				FunctionMessage_c selected = (FunctionMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39430));
+				retval = (selected.getMsg_id().equals(m_p40012));
 				return retval;
 			}
 		}
 
-		FunctionMessage_c[] objs39431 = FunctionMessage_c
+		FunctionMessage_c[] objs40013 = FunctionMessage_c
 				.FunctionMessageInstances(modelRoot,
-						new FunctionMessage_c_test39429_c(getMsg_id()));
+						new FunctionMessage_c_test40011_c(getMsg_id()));
 
-		objs39428 = objs39428 + objs39431.length;
+		objs40010 = objs40010 + objs40013.length;
 		// Subtype Object: Operation Message
-		class OperationMessage_c_test39432_c implements ClassQueryInterface_c {
-			OperationMessage_c_test39432_c(java.util.UUID p39433) {
-				m_p39433 = p39433;
+		class OperationMessage_c_test40014_c implements ClassQueryInterface_c {
+			OperationMessage_c_test40014_c(java.util.UUID p40015) {
+				m_p40015 = p40015;
 			}
-			private java.util.UUID m_p39433;
+			private java.util.UUID m_p40015;
 			public boolean evaluate(Object candidate) {
 				OperationMessage_c selected = (OperationMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39433));
+				retval = (selected.getMsg_id().equals(m_p40015));
 				return retval;
 			}
 		}
 
-		OperationMessage_c[] objs39434 = OperationMessage_c
+		OperationMessage_c[] objs40016 = OperationMessage_c
 				.OperationMessageInstances(modelRoot,
-						new OperationMessage_c_test39432_c(getMsg_id()));
+						new OperationMessage_c_test40014_c(getMsg_id()));
 
-		objs39428 = objs39428 + objs39434.length;
+		objs40010 = objs40010 + objs40016.length;
 		// Subtype Object: Bridge Message
-		class BridgeMessage_c_test39435_c implements ClassQueryInterface_c {
-			BridgeMessage_c_test39435_c(java.util.UUID p39436) {
-				m_p39436 = p39436;
+		class BridgeMessage_c_test40017_c implements ClassQueryInterface_c {
+			BridgeMessage_c_test40017_c(java.util.UUID p40018) {
+				m_p40018 = p40018;
 			}
-			private java.util.UUID m_p39436;
+			private java.util.UUID m_p40018;
 			public boolean evaluate(Object candidate) {
 				BridgeMessage_c selected = (BridgeMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39436));
+				retval = (selected.getMsg_id().equals(m_p40018));
 				return retval;
 			}
 		}
 
-		BridgeMessage_c[] objs39437 = BridgeMessage_c.BridgeMessageInstances(
-				modelRoot, new BridgeMessage_c_test39435_c(getMsg_id()));
+		BridgeMessage_c[] objs40019 = BridgeMessage_c.BridgeMessageInstances(
+				modelRoot, new BridgeMessage_c_test40017_c(getMsg_id()));
 
-		objs39428 = objs39428 + objs39437.length;
+		objs40010 = objs40010 + objs40019.length;
 		// Subtype Object: Informal Synchronous Message
-		class InformalSynchronousMessage_c_test39438_c
+		class InformalSynchronousMessage_c_test40020_c
 				implements
 					ClassQueryInterface_c {
-			InformalSynchronousMessage_c_test39438_c(java.util.UUID p39439) {
-				m_p39439 = p39439;
+			InformalSynchronousMessage_c_test40020_c(java.util.UUID p40021) {
+				m_p40021 = p40021;
 			}
-			private java.util.UUID m_p39439;
+			private java.util.UUID m_p40021;
 			public boolean evaluate(Object candidate) {
 				InformalSynchronousMessage_c selected = (InformalSynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39439));
+				retval = (selected.getMsg_id().equals(m_p40021));
 				return retval;
 			}
 		}
 
-		InformalSynchronousMessage_c[] objs39440 = InformalSynchronousMessage_c
+		InformalSynchronousMessage_c[] objs40022 = InformalSynchronousMessage_c
 				.InformalSynchronousMessageInstances(modelRoot,
-						new InformalSynchronousMessage_c_test39438_c(
+						new InformalSynchronousMessage_c_test40020_c(
 								getMsg_id()));
 
-		objs39428 = objs39428 + objs39440.length;
+		objs40010 = objs40010 + objs40022.length;
 		// Subtype Object: Interface Operation Message
-		class InterfaceOperationMessage_c_test39441_c
+		class InterfaceOperationMessage_c_test40023_c
 				implements
 					ClassQueryInterface_c {
-			InterfaceOperationMessage_c_test39441_c(java.util.UUID p39442) {
-				m_p39442 = p39442;
+			InterfaceOperationMessage_c_test40023_c(java.util.UUID p40024) {
+				m_p40024 = p40024;
 			}
-			private java.util.UUID m_p39442;
+			private java.util.UUID m_p40024;
 			public boolean evaluate(Object candidate) {
 				InterfaceOperationMessage_c selected = (InterfaceOperationMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39442));
+				retval = (selected.getMsg_id().equals(m_p40024));
 				return retval;
 			}
 		}
 
-		InterfaceOperationMessage_c[] objs39443 = InterfaceOperationMessage_c
+		InterfaceOperationMessage_c[] objs40025 = InterfaceOperationMessage_c
 				.InterfaceOperationMessageInstances(
 						modelRoot,
-						new InterfaceOperationMessage_c_test39441_c(getMsg_id()));
+						new InterfaceOperationMessage_c_test40023_c(getMsg_id()));
 
-		objs39428 = objs39428 + objs39443.length;
-		if (objs39428 != 1) {
+		objs40010 = objs40010 + objs40025.length;
+		if (objs40010 != 1) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Synchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Synchronous Message: Association: 1020: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39428)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40010)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Synchronous Message: Association: 1020: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39428), e);
+										+ Integer.toString(objs40010), e);
 			}
 			retval = false;
 
@@ -2426,8 +2427,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 				int v_count = 0;
 
 				MessageArgument_c v_arg = null;
-				for (int i36666 = 0; i36666 < v_args.length; i36666++) {
-					v_arg = v_args[i36666];
+				for (int i37248 = 0; i37248 < v_args.length; i37248++) {
+					v_arg = v_args[i37248];
 
 					v_count = v_count + 1;
 
@@ -3172,8 +3173,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 				.getManyO_TPARMsOnR117(v_operation);
 
 		OperationParameter_c v_oparm = null;
-		for (int i36667 = 0; i36667 < v_oparms.length; i36667++) {
-			v_oparm = v_oparms[i36667];
+		for (int i37249 = 0; i37249 < v_oparms.length; i37249++) {
+			v_oparm = v_oparms[i37249];
 
 			MessageArgument_c v_arg = new MessageArgument_c(modelRoot);
 			Ooaofooa.getDefaultInstance().fireModelElementCreated(
@@ -3446,8 +3447,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 				.getManyS_BPARMsOnR21(v_brg);
 
 		BridgeParameter_c v_bparm = null;
-		for (int i36668 = 0; i36668 < v_bparms.length; i36668++) {
-			v_bparm = v_bparms[i36668];
+		for (int i37250 = 0; i37250 < v_bparms.length; i37250++) {
+			v_bparm = v_bparms[i37250];
 
 			MessageArgument_c v_arg = new MessageArgument_c(modelRoot);
 			Ooaofooa.getDefaultInstance().fireModelElementCreated(
@@ -3536,8 +3537,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 				.getManyS_SPARMsOnR24(v_function);
 
 		FunctionParameter_c v_fparm = null;
-		for (int i36669 = 0; i36669 < v_fparms.length; i36669++) {
-			v_fparm = v_fparms[i36669];
+		for (int i37251 = 0; i37251 < v_fparms.length; i37251++) {
+			v_fparm = v_fparms[i37251];
 
 			MessageArgument_c v_arg = new MessageArgument_c(modelRoot);
 			Ooaofooa.getDefaultInstance().fireModelElementCreated(
@@ -3636,8 +3637,8 @@ public class SynchronousMessage_c extends NonRootModelElement
 						.getManyC_PPsOnR4006(v_iOpProp);
 
 				PropertyParameter_c v_parm = null;
-				for (int i36670 = 0; i36670 < v_parms.length; i36670++) {
-					v_parm = v_parms[i36670];
+				for (int i37252 = 0; i37252 < v_parms.length; i37252++) {
+					v_parm = v_parms[i37252];
 
 					MessageArgument_c v_arg = new MessageArgument_c(modelRoot);
 					Ooaofooa.getDefaultInstance().fireModelElementCreated(

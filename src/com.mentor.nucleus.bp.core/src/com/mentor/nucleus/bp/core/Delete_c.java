@@ -145,7 +145,8 @@ public class Delete_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -161,8 +162,9 @@ public class Delete_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
-				.equals(((Delete_c) elem).getStatement_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID
+						.equals(((Delete_c) elem).getStatement_id())) && this != elem)) {
 			return false;
 		}
 		if (!getStatement_id().equals(((Delete_c) elem).getStatement_id()))
@@ -599,16 +601,16 @@ public class Delete_c extends NonRootModelElement
 
 		if (DestroysVariable == null) {
 			// R634
-			Variable_c relInst40103 = (Variable_c) baseRoot.getInstanceList(
+			Variable_c relInst40685 = (Variable_c) baseRoot.getInstanceList(
 					Variable_c.class).get(new Object[]{m_var_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40103 == null) {
-				relInst40103 = (Variable_c) Ooaofooa.getDefaultInstance()
+			if (relInst40685 == null) {
+				relInst40685 = (Variable_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Variable_c.class)
 						.get(new Object[]{m_var_id});
 			}
-			if (relInst40103 == null && searchAllRoots
+			if (relInst40685 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -616,49 +618,49 @@ public class Delete_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40103 = (Variable_c) roots[i].getInstanceList(
+					relInst40685 = (Variable_c) roots[i].getInstanceList(
 							Variable_c.class).get(new Object[]{m_var_id});
-					if (relInst40103 != null)
+					if (relInst40685 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40103 != null) {
+			if (relInst40685 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40103) && !isProxy())) {
-					relInst40103.relateAcrossR634To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40685) && !isProxy())) {
+					relInst40685.relateAcrossR634To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R603
-		Statement_c relInst40104 = (Statement_c) baseRoot.getInstanceList(
+		Statement_c relInst40686 = (Statement_c) baseRoot.getInstanceList(
 				Statement_c.class).get(new Object[]{m_statement_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40104 == null) {
-			relInst40104 = (Statement_c) Ooaofooa.getDefaultInstance()
+		if (relInst40686 == null) {
+			relInst40686 = (Statement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Statement_c.class)
 					.get(new Object[]{m_statement_id});
 		}
-		if (relInst40104 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40686 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40104 = (Statement_c) roots[i].getInstanceList(
+				relInst40686 = (Statement_c) roots[i].getInstanceList(
 						Statement_c.class).get(new Object[]{m_statement_id});
-				if (relInst40104 != null)
+				if (relInst40686 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40104 != null) {
+		if (relInst40686 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40104) && !isProxy())) {
-				relInst40104.relateAcrossR603To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40686) && !isProxy())) {
+				relInst40686.relateAcrossR603To(this, notifyChanges);
 			}
 		}
 
@@ -876,55 +878,55 @@ public class Delete_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Delete_c_test40106_c implements ClassQueryInterface_c {
-			Delete_c_test40106_c(java.util.UUID p40107) {
-				m_p40107 = p40107;
+		class Delete_c_test40688_c implements ClassQueryInterface_c {
+			Delete_c_test40688_c(java.util.UUID p40689) {
+				m_p40689 = p40689;
 			}
-			private java.util.UUID m_p40107;
+			private java.util.UUID m_p40689;
 			public boolean evaluate(Object candidate) {
 				Delete_c selected = (Delete_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40107));
+				retval = (selected.getStatement_id().equals(m_p40689));
 				return retval;
 			}
 		}
 
-		Delete_c[] objs40105 = Delete_c.DeleteInstances(modelRoot,
-				new Delete_c_test40106_c(getStatement_id()));
+		Delete_c[] objs40687 = Delete_c.DeleteInstances(modelRoot,
+				new Delete_c_test40688_c(getStatement_id()));
 
-		if (((objs40105.length) == 0)) {
+		if (((objs40687.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Delete", //$NON-NLS-1$
 								"Consistency: Object: Delete: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40105.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40687.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Delete: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40105.length), e);
+								+ Integer.toString(objs40687.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40105.length) > 1)) {
+		if (((objs40687.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Delete", //$NON-NLS-1$
 						"Consistency: Object: Delete: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs40105.length)
+								+ Integer.toString(objs40687.length)
 								+ " Statement_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Delete: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40105.length)
+								+ Integer.toString(objs40687.length)
 								+ " Statement_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -933,37 +935,37 @@ public class Delete_c extends NonRootModelElement
 
 		// Delete is a subtype in association: rel.Numb = 603
 		// The supertype class is: Statement
-		class Statement_c_test40111_c implements ClassQueryInterface_c {
-			Statement_c_test40111_c(java.util.UUID p40112) {
-				m_p40112 = p40112;
+		class Statement_c_test40693_c implements ClassQueryInterface_c {
+			Statement_c_test40693_c(java.util.UUID p40694) {
+				m_p40694 = p40694;
 			}
-			private java.util.UUID m_p40112;
+			private java.util.UUID m_p40694;
 			public boolean evaluate(Object candidate) {
 				Statement_c selected = (Statement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getStatement_id().equals(m_p40112));
+				retval = (selected.getStatement_id().equals(m_p40694));
 				return retval;
 			}
 		}
 
-		Statement_c[] objs40110 = Statement_c.StatementInstances(modelRoot,
-				new Statement_c_test40111_c(getStatement_id()));
+		Statement_c[] objs40692 = Statement_c.StatementInstances(modelRoot,
+				new Statement_c_test40693_c(getStatement_id()));
 
-		if (((objs40110.length) != 1)) {
+		if (((objs40692.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Delete", //$NON-NLS-1$
 								"Consistency: Object: Delete: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40110.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40692.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Delete: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40110.length), e);
+										+ Integer.toString(objs40692.length), e);
 			}
 			retval = false;
 
@@ -971,25 +973,25 @@ public class Delete_c extends NonRootModelElement
 
 		// Delete is a referring class in association: rel.Numb = 634
 		// The participating class is: Variable
-		class Variable_c_test40114_c implements ClassQueryInterface_c {
-			Variable_c_test40114_c(java.util.UUID p40115) {
-				m_p40115 = p40115;
+		class Variable_c_test40696_c implements ClassQueryInterface_c {
+			Variable_c_test40696_c(java.util.UUID p40697) {
+				m_p40697 = p40697;
 			}
-			private java.util.UUID m_p40115;
+			private java.util.UUID m_p40697;
 			public boolean evaluate(Object candidate) {
 				Variable_c selected = (Variable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getVar_id().equals(m_p40115));
+				retval = (selected.getVar_id().equals(m_p40697));
 				return retval;
 			}
 		}
 
-		Variable_c[] objs40113 = Variable_c.VariableInstances(modelRoot,
-				new Variable_c_test40114_c(getVar_id()));
+		Variable_c[] objs40695 = Variable_c.VariableInstances(modelRoot,
+				new Variable_c_test40696_c(getVar_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40113.length) != 1)) {
+		if (((objs40695.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -997,7 +999,7 @@ public class Delete_c extends NonRootModelElement
 								"Delete", //$NON-NLS-1$
 								"Consistency: Object: Delete: Association: 634: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40113.length)
+										+ Integer.toString(objs40695.length)
 										+ " Var_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1005,7 +1007,7 @@ public class Delete_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Delete: Association: 634: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40113.length)
+										+ Integer.toString(objs40695.length)
 										+ " Var_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

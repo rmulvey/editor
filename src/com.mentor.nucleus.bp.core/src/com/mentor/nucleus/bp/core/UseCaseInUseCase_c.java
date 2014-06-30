@@ -148,7 +148,7 @@ p_m_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((UseCaseInUseCase_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((UseCaseInUseCase_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((UseCaseInUseCase_c)elem).getPackage_id())) return false;
@@ -633,29 +633,29 @@ public static UseCaseInUseCase_c [] getManyUC_UIUsOnR1209(UseCaseDiagram_c targe
 
 	if (IsShownInUseCaseDiagram == null) {          
       // R1208
-      UseCaseDiagram_c relInst37823 = (UseCaseDiagram_c) baseRoot.getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
+      UseCaseDiagram_c relInst38405 = (UseCaseDiagram_c) baseRoot.getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst37823 == null) {
-      			relInst37823 = (UseCaseDiagram_c) Ooaofooa.getDefaultInstance().getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
+      		if (relInst38405 == null) {
+      			relInst38405 = (UseCaseDiagram_c) Ooaofooa.getDefaultInstance().getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst37823 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst38405 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst37823 = (UseCaseDiagram_c) roots[i].getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
-					if (relInst37823 != null)
+					relInst38405 = (UseCaseDiagram_c) roots[i].getInstanceList(UseCaseDiagram_c.class).get(new Object[] {m_package_id});
+					if (relInst38405 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst37823 != null )
+      if ( relInst38405 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst37823) && !isProxy())) {
-	      relInst37823.relateAcrossR1208To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst38405) && !isProxy())) {
+	      relInst38405.relateAcrossR1208To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -902,56 +902,56 @@ private static UseCaseInUseCase_c findUseCaseInUseCaseInstance(ModelRoot modelRo
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class UseCaseInUseCase_c_test37825_c implements ClassQueryInterface_c
+    class UseCaseInUseCase_c_test38407_c implements ClassQueryInterface_c
     {
-	  UseCaseInUseCase_c_test37825_c( java.util.UUID            p37826 ) {
-	  m_p37826 = p37826;
+	  UseCaseInUseCase_c_test38407_c( java.util.UUID            p38408 ) {
+	  m_p38408 = p38408;
 	  }
-	  private java.util.UUID             m_p37826; 
+	  private java.util.UUID             m_p38408; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      UseCaseInUseCase_c selected = (UseCaseInUseCase_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p37826));
+	      retval = (selected.getPackage_id().equals(m_p38408));
 	      return retval;
 	  }
     }
 
-    UseCaseInUseCase_c [] objs37824 = 
-    UseCaseInUseCase_c.UseCaseInUseCaseInstances(modelRoot, new UseCaseInUseCase_c_test37825_c(getPackage_id())) ;
+    UseCaseInUseCase_c [] objs38406 = 
+    UseCaseInUseCase_c.UseCaseInUseCaseInstances(modelRoot, new UseCaseInUseCase_c_test38407_c(getPackage_id())) ;
 
-    if ( (  (objs37824.length) == 0) )
+    if ( (  (objs38406.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Use Case in Use Case", //$NON-NLS-1$
            "Consistency: Object: Use Case in Use Case: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs37824.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38406.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Use Case in Use Case: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37824.length )  , e); 
+          + Integer.toString( objs38406.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs37824.length) > 1) )
+    if ( (  (objs38406.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Use Case in Use Case", //$NON-NLS-1$
            "Consistency: Object: Use Case in Use Case: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37824.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38406.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Use Case in Use Case: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37824.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38406.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -959,40 +959,40 @@ private static UseCaseInUseCase_c findUseCaseInUseCaseInstance(ModelRoot modelRo
 
           // Use Case in Use Case is a referring class in association: rel.Numb = 1208
           // The participating class is: Use Case Diagram
-    class UseCaseDiagram_c_test37830_c implements ClassQueryInterface_c
+    class UseCaseDiagram_c_test38412_c implements ClassQueryInterface_c
     {
-	  UseCaseDiagram_c_test37830_c( java.util.UUID            p37831 ) {
-	  m_p37831 = p37831;
+	  UseCaseDiagram_c_test38412_c( java.util.UUID            p38413 ) {
+	  m_p38413 = p38413;
 	  }
-	  private java.util.UUID             m_p37831; 
+	  private java.util.UUID             m_p38413; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      UseCaseDiagram_c selected = (UseCaseDiagram_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p37831));
+	      retval = (selected.getPackage_id().equals(m_p38413));
 	      return retval;
 	  }
     }
 
-    UseCaseDiagram_c [] objs37829 = 
-    UseCaseDiagram_c.UseCaseDiagramInstances(modelRoot, new UseCaseDiagram_c_test37830_c(getPackage_id())) ;
+    UseCaseDiagram_c [] objs38411 = 
+    UseCaseDiagram_c.UseCaseDiagramInstances(modelRoot, new UseCaseDiagram_c_test38412_c(getPackage_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs37829.length) != 1) )
+    if ( (  (objs38411.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Use Case in Use Case", //$NON-NLS-1$
            "Consistency: Object: Use Case in Use Case: Association: 1208: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs37829.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38411.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Use Case in Use Case: Association: 1208: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs37829.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38411.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

@@ -136,7 +136,8 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,9 +153,9 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ActionLanguageQuery_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ActionLanguageQuery_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ActionLanguageQuery_c) elem).getId()))
@@ -390,32 +391,32 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9600
-		Query_c relInst39026 = (Query_c) baseRoot
+		Query_c relInst39608 = (Query_c) baseRoot
 				.getInstanceList(Query_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39026 == null) {
-			relInst39026 = (Query_c) Ooaofooa.getDefaultInstance()
+		if (relInst39608 == null) {
+			relInst39608 = (Query_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Query_c.class).get(new Object[]{m_id});
 		}
-		if (relInst39026 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39608 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39026 = (Query_c) roots[i]
+				relInst39608 = (Query_c) roots[i]
 						.getInstanceList(Query_c.class).get(new Object[]{m_id});
-				if (relInst39026 != null)
+				if (relInst39608 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39026 != null) {
+		if (relInst39608 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39026) && !isProxy())) {
-				relInst39026.relateAcrossR9600To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39608) && !isProxy())) {
+				relInst39608.relateAcrossR9600To(this, notifyChanges);
 			}
 		}
 
@@ -664,46 +665,46 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActionLanguageQuery_c_test39028_c
+		class ActionLanguageQuery_c_test39610_c
 				implements
 					ClassQueryInterface_c {
-			ActionLanguageQuery_c_test39028_c(java.util.UUID p39029) {
-				m_p39029 = p39029;
+			ActionLanguageQuery_c_test39610_c(java.util.UUID p39611) {
+				m_p39611 = p39611;
 			}
-			private java.util.UUID m_p39029;
+			private java.util.UUID m_p39611;
 			public boolean evaluate(Object candidate) {
 				ActionLanguageQuery_c selected = (ActionLanguageQuery_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39029));
+				retval = (selected.getId().equals(m_p39611));
 				return retval;
 			}
 		}
 
-		ActionLanguageQuery_c[] objs39027 = ActionLanguageQuery_c
+		ActionLanguageQuery_c[] objs39609 = ActionLanguageQuery_c
 				.ActionLanguageQueryInstances(modelRoot,
-						new ActionLanguageQuery_c_test39028_c(getId()));
+						new ActionLanguageQuery_c_test39610_c(getId()));
 
-		if (((objs39027.length) == 0)) {
+		if (((objs39609.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Language Query", //$NON-NLS-1$
 								"Consistency: Object: Action Language Query: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39027.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39609.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Query: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39027.length), e);
+										+ Integer.toString(objs39609.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39027.length) > 1)) {
+		if (((objs39609.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -711,7 +712,7 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 								"Action Language Query", //$NON-NLS-1$
 								"Consistency: Object: Action Language Query: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39027.length)
+										+ Integer.toString(objs39609.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -719,7 +720,7 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Action Language Query: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39027.length)
+										+ Integer.toString(objs39609.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -728,37 +729,37 @@ public class ActionLanguageQuery_c extends NonRootModelElement
 
 		// Action Language Query is a subtype in association: rel.Numb = 9600
 		// The supertype class is: Query
-		class Query_c_test39033_c implements ClassQueryInterface_c {
-			Query_c_test39033_c(java.util.UUID p39034) {
-				m_p39034 = p39034;
+		class Query_c_test39615_c implements ClassQueryInterface_c {
+			Query_c_test39615_c(java.util.UUID p39616) {
+				m_p39616 = p39616;
 			}
-			private java.util.UUID m_p39034;
+			private java.util.UUID m_p39616;
 			public boolean evaluate(Object candidate) {
 				Query_c selected = (Query_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39034));
+				retval = (selected.getId().equals(m_p39616));
 				return retval;
 			}
 		}
 
-		Query_c[] objs39032 = Query_c.QueryInstances(modelRoot,
-				new Query_c_test39033_c(getId()));
+		Query_c[] objs39614 = Query_c.QueryInstances(modelRoot,
+				new Query_c_test39615_c(getId()));
 
-		if (((objs39032.length) != 1)) {
+		if (((objs39614.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Action Language Query", //$NON-NLS-1$
 								"Consistency: Object: Action Language Query: Association: 9600: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39032.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39614.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Action Language Query: Association: 9600: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39032.length), e);
+										+ Integer.toString(objs39614.length), e);
 			}
 			retval = false;
 

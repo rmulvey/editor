@@ -151,7 +151,8 @@ public class Point_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -167,8 +168,9 @@ public class Point_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPointid()) || IdAssigner.NULL_UUID
-				.equals(((Point_c) elem).getPointid())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPointid()) || IdAssigner.NULL_UUID
+						.equals(((Point_c) elem).getPointid())) && this != elem)) {
 			return false;
 		}
 		if (!getPointid().equals(((Point_c) elem).getPointid()))

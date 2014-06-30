@@ -165,7 +165,8 @@ public class BinaryOperation_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -181,9 +182,9 @@ public class BinaryOperation_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
-				.equals(((BinaryOperation_c) elem).getValue_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getValue_id()) || IdAssigner.NULL_UUID
+						.equals(((BinaryOperation_c) elem).getValue_id())) && this != elem)) {
 			return false;
 		}
 		if (!getValue_id().equals(((BinaryOperation_c) elem).getValue_id()))
@@ -778,16 +779,16 @@ public class BinaryOperation_c extends NonRootModelElement
 
 		if (HasRightValue == null) {
 			// R803
-			Value_c relInst37702 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst38284 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_right_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37702 == null) {
-				relInst37702 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst38284 == null) {
+				relInst38284 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_right_value_id});
 			}
-			if (relInst37702 == null && searchAllRoots
+			if (relInst38284 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -795,33 +796,33 @@ public class BinaryOperation_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37702 = (Value_c) roots[i].getInstanceList(
+					relInst38284 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_right_value_id});
-					if (relInst37702 != null)
+					if (relInst38284 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37702 != null) {
+			if (relInst38284 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37702) && !isProxy())) {
-					relInst37702.relateAcrossR803To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38284) && !isProxy())) {
+					relInst38284.relateAcrossR803To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (HasLeftValue == null) {
 			// R802
-			Value_c relInst37703 = (Value_c) baseRoot.getInstanceList(
+			Value_c relInst38285 = (Value_c) baseRoot.getInstanceList(
 					Value_c.class).get(new Object[]{m_left_value_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37703 == null) {
-				relInst37703 = (Value_c) Ooaofooa.getDefaultInstance()
+			if (relInst38285 == null) {
+				relInst38285 = (Value_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Value_c.class)
 						.get(new Object[]{m_left_value_id});
 			}
-			if (relInst37703 == null && searchAllRoots
+			if (relInst38285 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -829,50 +830,50 @@ public class BinaryOperation_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37703 = (Value_c) roots[i].getInstanceList(
+					relInst38285 = (Value_c) roots[i].getInstanceList(
 							Value_c.class).get(new Object[]{m_left_value_id});
-					if (relInst37703 != null)
+					if (relInst38285 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37703 != null) {
+			if (relInst38285 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37703) && !isProxy())) {
-					relInst37703.relateAcrossR802To(this, notifyChanges);
+						|| (inSameComponent(this, relInst38285) && !isProxy())) {
+					relInst38285.relateAcrossR802To(this, notifyChanges);
 				}
 			}
 		}
 
 		// R801
-		Value_c relInst37704 = (Value_c) baseRoot
+		Value_c relInst38286 = (Value_c) baseRoot
 				.getInstanceList(Value_c.class).get(new Object[]{m_value_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37704 == null) {
-			relInst37704 = (Value_c) Ooaofooa.getDefaultInstance()
+		if (relInst38286 == null) {
+			relInst38286 = (Value_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(Value_c.class)
 					.get(new Object[]{m_value_id});
 		}
-		if (relInst37704 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38286 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37704 = (Value_c) roots[i]
+				relInst38286 = (Value_c) roots[i]
 						.getInstanceList(Value_c.class).get(
 								new Object[]{m_value_id});
-				if (relInst37704 != null)
+				if (relInst38286 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37704 != null) {
+		if (relInst38286 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37704) && !isProxy())) {
-				relInst37704.relateAcrossR801To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38286) && !isProxy())) {
+				relInst38286.relateAcrossR801To(this, notifyChanges);
 			}
 		}
 
@@ -1146,43 +1147,43 @@ public class BinaryOperation_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class BinaryOperation_c_test37706_c implements ClassQueryInterface_c {
-			BinaryOperation_c_test37706_c(java.util.UUID p37707) {
-				m_p37707 = p37707;
+		class BinaryOperation_c_test38288_c implements ClassQueryInterface_c {
+			BinaryOperation_c_test38288_c(java.util.UUID p38289) {
+				m_p38289 = p38289;
 			}
-			private java.util.UUID m_p37707;
+			private java.util.UUID m_p38289;
 			public boolean evaluate(Object candidate) {
 				BinaryOperation_c selected = (BinaryOperation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37707));
+				retval = (selected.getValue_id().equals(m_p38289));
 				return retval;
 			}
 		}
 
-		BinaryOperation_c[] objs37705 = BinaryOperation_c
+		BinaryOperation_c[] objs38287 = BinaryOperation_c
 				.BinaryOperationInstances(modelRoot,
-						new BinaryOperation_c_test37706_c(getValue_id()));
+						new BinaryOperation_c_test38288_c(getValue_id()));
 
-		if (((objs37705.length) == 0)) {
+		if (((objs38287.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Binary Operation", //$NON-NLS-1$
 								"Consistency: Object: Binary Operation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37705.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38287.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Binary Operation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37705.length), e);
+								+ Integer.toString(objs38287.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37705.length) > 1)) {
+		if (((objs38287.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1190,7 +1191,7 @@ public class BinaryOperation_c extends NonRootModelElement
 								"Binary Operation", //$NON-NLS-1$
 								"Consistency: Object: Binary Operation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37705.length)
+										+ Integer.toString(objs38287.length)
 										+ " Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1198,7 +1199,7 @@ public class BinaryOperation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Binary Operation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37705.length)
+										+ Integer.toString(objs38287.length)
 										+ " Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1207,37 +1208,37 @@ public class BinaryOperation_c extends NonRootModelElement
 
 		// Binary Operation is a subtype in association: rel.Numb = 801
 		// The supertype class is: Value
-		class Value_c_test37711_c implements ClassQueryInterface_c {
-			Value_c_test37711_c(java.util.UUID p37712) {
-				m_p37712 = p37712;
+		class Value_c_test38293_c implements ClassQueryInterface_c {
+			Value_c_test38293_c(java.util.UUID p38294) {
+				m_p38294 = p38294;
 			}
-			private java.util.UUID m_p37712;
+			private java.util.UUID m_p38294;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37712));
+				retval = (selected.getValue_id().equals(m_p38294));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37710 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37711_c(getValue_id()));
+		Value_c[] objs38292 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38293_c(getValue_id()));
 
-		if (((objs37710.length) != 1)) {
+		if (((objs38292.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Binary Operation", //$NON-NLS-1$
 								"Consistency: Object: Binary Operation: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37710.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38292.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Binary Operation: Association: 801: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37710.length), e);
+										+ Integer.toString(objs38292.length), e);
 			}
 			retval = false;
 
@@ -1245,25 +1246,25 @@ public class BinaryOperation_c extends NonRootModelElement
 
 		// Binary Operation is a referring class in association: rel.Numb = 803
 		// The participating class is: Value
-		class Value_c_test37714_c implements ClassQueryInterface_c {
-			Value_c_test37714_c(java.util.UUID p37715) {
-				m_p37715 = p37715;
+		class Value_c_test38296_c implements ClassQueryInterface_c {
+			Value_c_test38296_c(java.util.UUID p38297) {
+				m_p38297 = p38297;
 			}
-			private java.util.UUID m_p37715;
+			private java.util.UUID m_p38297;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37715));
+				retval = (selected.getValue_id().equals(m_p38297));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37713 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37714_c(getRight_value_id()));
+		Value_c[] objs38295 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38296_c(getRight_value_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37713.length) != 1)) {
+		if (((objs38295.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1271,7 +1272,7 @@ public class BinaryOperation_c extends NonRootModelElement
 								"Binary Operation", //$NON-NLS-1$
 								"Consistency: Object: Binary Operation: Association: 803: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37713.length)
+										+ Integer.toString(objs38295.length)
 										+ " Right_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1279,7 +1280,7 @@ public class BinaryOperation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Binary Operation: Association: 803: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37713.length)
+										+ Integer.toString(objs38295.length)
 										+ " Right_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1288,25 +1289,25 @@ public class BinaryOperation_c extends NonRootModelElement
 
 		// Binary Operation is a referring class in association: rel.Numb = 802
 		// The participating class is: Value
-		class Value_c_test37717_c implements ClassQueryInterface_c {
-			Value_c_test37717_c(java.util.UUID p37718) {
-				m_p37718 = p37718;
+		class Value_c_test38299_c implements ClassQueryInterface_c {
+			Value_c_test38299_c(java.util.UUID p38300) {
+				m_p38300 = p38300;
 			}
-			private java.util.UUID m_p37718;
+			private java.util.UUID m_p38300;
 			public boolean evaluate(Object candidate) {
 				Value_c selected = (Value_c) candidate;
 				boolean retval = false;
-				retval = (selected.getValue_id().equals(m_p37718));
+				retval = (selected.getValue_id().equals(m_p38300));
 				return retval;
 			}
 		}
 
-		Value_c[] objs37716 = Value_c.ValueInstances(modelRoot,
-				new Value_c_test37717_c(getLeft_value_id()));
+		Value_c[] objs38298 = Value_c.ValueInstances(modelRoot,
+				new Value_c_test38299_c(getLeft_value_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37716.length) != 1)) {
+		if (((objs38298.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1314,7 +1315,7 @@ public class BinaryOperation_c extends NonRootModelElement
 								"Binary Operation", //$NON-NLS-1$
 								"Consistency: Object: Binary Operation: Association: 802: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37716.length)
+										+ Integer.toString(objs38298.length)
 										+ " Left_Value_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1322,7 +1323,7 @@ public class BinaryOperation_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Binary Operation: Association: 802: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37716.length)
+										+ Integer.toString(objs38298.length)
 										+ " Left_Value_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1466,7 +1467,7 @@ public class BinaryOperation_c extends NonRootModelElement
 		Ooaofooa.log.println(ILogger.OPERATION, "Binary Operation",
 				" Operation entered: BinaryOperation::Getreal");
 		final ModelRoot modelRoot = getModelRoot();
-		return 0;
+		return 0.0f;
 
 	} // End getReal
 	public boolean Compareinstrefsets(final java.util.UUID p_Lrtval,
@@ -1474,7 +1475,7 @@ public class BinaryOperation_c extends NonRootModelElement
 		Ooaofooa.log.println(ILogger.OPERATION, "Binary Operation",
 				" Operation entered: BinaryOperation::Compareinstrefsets");
 		// Mentor Graphics Verifier-specific Implementation
-		return true;
+		return false;
 	} // End compareInstRefSets
 
 	// end transform functions

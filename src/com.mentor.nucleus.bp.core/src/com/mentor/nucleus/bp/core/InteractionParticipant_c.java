@@ -162,7 +162,7 @@ p_m_sequence_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -178,7 +178,7 @@ p_m_sequence_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID.equals(((InteractionParticipant_c)elem).getPart_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID.equals(((InteractionParticipant_c)elem).getPart_id())) && this != elem)) {
       	return false;
       }
       if (!getPart_id().equals(((InteractionParticipant_c)elem).getPart_id())) return false;
@@ -4055,58 +4055,58 @@ public static InteractionParticipant_c [] getManySQ_PsOnR1134(CommunicationLink_
         ModelRoot baseRoot = modelRoot;
 
       // R8001
-      PackageableElement_c relInst39904 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
+      PackageableElement_c relInst40486 = (PackageableElement_c) baseRoot.getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39904 == null) {
-      			relInst39904 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
+      		if (relInst40486 == null) {
+      			relInst40486 = (PackageableElement_c) Ooaofooa.getDefaultInstance().getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
       		}
-			if (relInst39904 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40486 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39904 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
-					if (relInst39904 != null)
+					relInst40486 = (PackageableElement_c) roots[i].getInstanceList(PackageableElement_c.class).get(new Object[] {m_part_id});
+					if (relInst40486 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39904 != null )
+      if ( relInst40486 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39904) && !isProxy())) {
-	      relInst39904.relateAcrossR8001To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40486) && !isProxy())) {
+	      relInst40486.relateAcrossR8001To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (ParticipatesInSequence == null) {          
       // R929
-      Sequence_c relInst39905 = (Sequence_c) baseRoot.getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
+      Sequence_c relInst40487 = (Sequence_c) baseRoot.getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39905 == null) {
-      			relInst39905 = (Sequence_c) Ooaofooa.getDefaultInstance().getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
+      		if (relInst40487 == null) {
+      			relInst40487 = (Sequence_c) Ooaofooa.getDefaultInstance().getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
       		}
-			if (relInst39905 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40487 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39905 = (Sequence_c) roots[i].getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
-					if (relInst39905 != null)
+					relInst40487 = (Sequence_c) roots[i].getInstanceList(Sequence_c.class).get(new Object[] {m_sequence_package_id});
+					if (relInst40487 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39905 != null )
+      if ( relInst40487 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39905) && !isProxy())) {
-	      relInst39905.relateAcrossR929To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40487) && !isProxy())) {
+	      relInst40487.relateAcrossR929To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -4537,56 +4537,56 @@ private static InteractionParticipant_c findInteractionParticipantInstance(Model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InteractionParticipant_c_test39907_c implements ClassQueryInterface_c
+    class InteractionParticipant_c_test40489_c implements ClassQueryInterface_c
     {
-	  InteractionParticipant_c_test39907_c( java.util.UUID            p39908 ) {
-	  m_p39908 = p39908;
+	  InteractionParticipant_c_test40489_c( java.util.UUID            p40490 ) {
+	  m_p40490 = p40490;
 	  }
-	  private java.util.UUID             m_p39908; 
+	  private java.util.UUID             m_p40490; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39908));
+	      retval = (selected.getPart_id().equals(m_p40490));
 	      return retval;
 	  }
     }
 
-    InteractionParticipant_c [] objs39906 = 
-    InteractionParticipant_c.InteractionParticipantInstances(modelRoot, new InteractionParticipant_c_test39907_c(getPart_id())) ;
+    InteractionParticipant_c [] objs40488 = 
+    InteractionParticipant_c.InteractionParticipantInstances(modelRoot, new InteractionParticipant_c_test40489_c(getPart_id())) ;
 
-    if ( (  (objs39906.length) == 0) )
+    if ( (  (objs40488.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interaction Participant", //$NON-NLS-1$
            "Consistency: Object: Interaction Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39906.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40488.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interaction Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39906.length )  , e); 
+          + Integer.toString( objs40488.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39906.length) > 1) )
+    if ( (  (objs40488.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interaction Participant", //$NON-NLS-1$
            "Consistency: Object: Interaction Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39906.length )  + " Part_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40488.length )  + " Part_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interaction Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39906.length )  + " Part_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40488.length )  + " Part_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4594,38 +4594,38 @@ private static InteractionParticipant_c findInteractionParticipantInstance(Model
 
           // Interaction Participant is a referring class in association: rel.Numb = 929
           // The participating class is: Sequence
-    class Sequence_c_test39912_c implements ClassQueryInterface_c
+    class Sequence_c_test40494_c implements ClassQueryInterface_c
     {
-	  Sequence_c_test39912_c( java.util.UUID            p39913 ) {
-	  m_p39913 = p39913;
+	  Sequence_c_test40494_c( java.util.UUID            p40495 ) {
+	  m_p40495 = p40495;
 	  }
-	  private java.util.UUID             m_p39913; 
+	  private java.util.UUID             m_p40495; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Sequence_c selected = (Sequence_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p39913));
+	      retval = (selected.getPackage_id().equals(m_p40495));
 	      return retval;
 	  }
     }
 
-    Sequence_c [] objs39911 = 
-    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test39912_c(getSequence_package_id())) ;
+    Sequence_c [] objs40493 = 
+    Sequence_c.SequenceInstances(modelRoot, new Sequence_c_test40494_c(getSequence_package_id())) ;
 
-    if ( (  (objs39911.length) > 1) )
+    if ( (  (objs40493.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interaction Participant", //$NON-NLS-1$
            "Consistency: Object: Interaction Participant: Association: 929: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39911.length )  + " Sequence_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40493.length )  + " Sequence_Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interaction Participant: Association: 929: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39911.length )  + " Sequence_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40493.length )  + " Sequence_Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -4646,200 +4646,200 @@ private static InteractionParticipant_c findInteractionParticipantInstance(Model
           // Interaction Participant is a participating class in association: rel.Numb = 1008
              // Object: Message
           // Supertype: rel.Numb = 930
-    int objs39917 = 0;
+    int objs40499 = 0;
             // Subtype Object: Use Case Participant
-    class UseCaseParticipant_c_test39918_c implements ClassQueryInterface_c
+    class UseCaseParticipant_c_test40500_c implements ClassQueryInterface_c
     {
-	  UseCaseParticipant_c_test39918_c( java.util.UUID            p39919 ) {
-	  m_p39919 = p39919;
+	  UseCaseParticipant_c_test40500_c( java.util.UUID            p40501 ) {
+	  m_p40501 = p40501;
 	  }
-	  private java.util.UUID             m_p39919; 
+	  private java.util.UUID             m_p40501; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      UseCaseParticipant_c selected = (UseCaseParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39919));
+	      retval = (selected.getPart_id().equals(m_p40501));
 	      return retval;
 	  }
     }
 
-    UseCaseParticipant_c [] objs39920 = 
-    UseCaseParticipant_c.UseCaseParticipantInstances(modelRoot, new UseCaseParticipant_c_test39918_c(getPart_id())) ;
+    UseCaseParticipant_c [] objs40502 = 
+    UseCaseParticipant_c.UseCaseParticipantInstances(modelRoot, new UseCaseParticipant_c_test40500_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39920.length;
+    objs40499 = objs40499 + objs40502.length;
             // Subtype Object: Class Instance Participant
-    class ClassInstanceParticipant_c_test39921_c implements ClassQueryInterface_c
+    class ClassInstanceParticipant_c_test40503_c implements ClassQueryInterface_c
     {
-	  ClassInstanceParticipant_c_test39921_c( java.util.UUID            p39922 ) {
-	  m_p39922 = p39922;
+	  ClassInstanceParticipant_c_test40503_c( java.util.UUID            p40504 ) {
+	  m_p40504 = p40504;
 	  }
-	  private java.util.UUID             m_p39922; 
+	  private java.util.UUID             m_p40504; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassInstanceParticipant_c selected = (ClassInstanceParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39922));
+	      retval = (selected.getPart_id().equals(m_p40504));
 	      return retval;
 	  }
     }
 
-    ClassInstanceParticipant_c [] objs39923 = 
-    ClassInstanceParticipant_c.ClassInstanceParticipantInstances(modelRoot, new ClassInstanceParticipant_c_test39921_c(getPart_id())) ;
+    ClassInstanceParticipant_c [] objs40505 = 
+    ClassInstanceParticipant_c.ClassInstanceParticipantInstances(modelRoot, new ClassInstanceParticipant_c_test40503_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39923.length;
+    objs40499 = objs40499 + objs40505.length;
             // Subtype Object: External Entity Participant
-    class ExternalEntityParticipant_c_test39924_c implements ClassQueryInterface_c
+    class ExternalEntityParticipant_c_test40506_c implements ClassQueryInterface_c
     {
-	  ExternalEntityParticipant_c_test39924_c( java.util.UUID            p39925 ) {
-	  m_p39925 = p39925;
+	  ExternalEntityParticipant_c_test40506_c( java.util.UUID            p40507 ) {
+	  m_p40507 = p40507;
 	  }
-	  private java.util.UUID             m_p39925; 
+	  private java.util.UUID             m_p40507; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExternalEntityParticipant_c selected = (ExternalEntityParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39925));
+	      retval = (selected.getPart_id().equals(m_p40507));
 	      return retval;
 	  }
     }
 
-    ExternalEntityParticipant_c [] objs39926 = 
-    ExternalEntityParticipant_c.ExternalEntityParticipantInstances(modelRoot, new ExternalEntityParticipant_c_test39924_c(getPart_id())) ;
+    ExternalEntityParticipant_c [] objs40508 = 
+    ExternalEntityParticipant_c.ExternalEntityParticipantInstances(modelRoot, new ExternalEntityParticipant_c_test40506_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39926.length;
+    objs40499 = objs40499 + objs40508.length;
             // Subtype Object: Function Package Participant
-    class FunctionPackageParticipant_c_test39927_c implements ClassQueryInterface_c
+    class FunctionPackageParticipant_c_test40509_c implements ClassQueryInterface_c
     {
-	  FunctionPackageParticipant_c_test39927_c( java.util.UUID            p39928 ) {
-	  m_p39928 = p39928;
+	  FunctionPackageParticipant_c_test40509_c( java.util.UUID            p40510 ) {
+	  m_p40510 = p40510;
 	  }
-	  private java.util.UUID             m_p39928; 
+	  private java.util.UUID             m_p40510; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      FunctionPackageParticipant_c selected = (FunctionPackageParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39928));
+	      retval = (selected.getPart_id().equals(m_p40510));
 	      return retval;
 	  }
     }
 
-    FunctionPackageParticipant_c [] objs39929 = 
-    FunctionPackageParticipant_c.FunctionPackageParticipantInstances(modelRoot, new FunctionPackageParticipant_c_test39927_c(getPart_id())) ;
+    FunctionPackageParticipant_c [] objs40511 = 
+    FunctionPackageParticipant_c.FunctionPackageParticipantInstances(modelRoot, new FunctionPackageParticipant_c_test40509_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39929.length;
+    objs40499 = objs40499 + objs40511.length;
             // Subtype Object: Class Participant
-    class ClassParticipant_c_test39930_c implements ClassQueryInterface_c
+    class ClassParticipant_c_test40512_c implements ClassQueryInterface_c
     {
-	  ClassParticipant_c_test39930_c( java.util.UUID            p39931 ) {
-	  m_p39931 = p39931;
+	  ClassParticipant_c_test40512_c( java.util.UUID            p40513 ) {
+	  m_p40513 = p40513;
 	  }
-	  private java.util.UUID             m_p39931; 
+	  private java.util.UUID             m_p40513; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassParticipant_c selected = (ClassParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39931));
+	      retval = (selected.getPart_id().equals(m_p40513));
 	      return retval;
 	  }
     }
 
-    ClassParticipant_c [] objs39932 = 
-    ClassParticipant_c.ClassParticipantInstances(modelRoot, new ClassParticipant_c_test39930_c(getPart_id())) ;
+    ClassParticipant_c [] objs40514 = 
+    ClassParticipant_c.ClassParticipantInstances(modelRoot, new ClassParticipant_c_test40512_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39932.length;
+    objs40499 = objs40499 + objs40514.length;
             // Subtype Object: Actor Participant
-    class ActorParticipant_c_test39933_c implements ClassQueryInterface_c
+    class ActorParticipant_c_test40515_c implements ClassQueryInterface_c
     {
-	  ActorParticipant_c_test39933_c( java.util.UUID            p39934 ) {
-	  m_p39934 = p39934;
+	  ActorParticipant_c_test40515_c( java.util.UUID            p40516 ) {
+	  m_p40516 = p40516;
 	  }
-	  private java.util.UUID             m_p39934; 
+	  private java.util.UUID             m_p40516; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ActorParticipant_c selected = (ActorParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39934));
+	      retval = (selected.getPart_id().equals(m_p40516));
 	      return retval;
 	  }
     }
 
-    ActorParticipant_c [] objs39935 = 
-    ActorParticipant_c.ActorParticipantInstances(modelRoot, new ActorParticipant_c_test39933_c(getPart_id())) ;
+    ActorParticipant_c [] objs40517 = 
+    ActorParticipant_c.ActorParticipantInstances(modelRoot, new ActorParticipant_c_test40515_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39935.length;
+    objs40499 = objs40499 + objs40517.length;
             // Subtype Object: Lifespan
-    class Lifespan_c_test39936_c implements ClassQueryInterface_c
+    class Lifespan_c_test40518_c implements ClassQueryInterface_c
     {
-	  Lifespan_c_test39936_c( java.util.UUID            p39937 ) {
-	  m_p39937 = p39937;
+	  Lifespan_c_test40518_c( java.util.UUID            p40519 ) {
+	  m_p40519 = p40519;
 	  }
-	  private java.util.UUID             m_p39937; 
+	  private java.util.UUID             m_p40519; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Lifespan_c selected = (Lifespan_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39937));
+	      retval = (selected.getPart_id().equals(m_p40519));
 	      return retval;
 	  }
     }
 
-    Lifespan_c [] objs39938 = 
-    Lifespan_c.LifespanInstances(modelRoot, new Lifespan_c_test39936_c(getPart_id())) ;
+    Lifespan_c [] objs40520 = 
+    Lifespan_c.LifespanInstances(modelRoot, new Lifespan_c_test40518_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39938.length;
+    objs40499 = objs40499 + objs40520.length;
             // Subtype Object: Component Participant
-    class ComponentParticipant_c_test39939_c implements ClassQueryInterface_c
+    class ComponentParticipant_c_test40521_c implements ClassQueryInterface_c
     {
-	  ComponentParticipant_c_test39939_c( java.util.UUID            p39940 ) {
-	  m_p39940 = p39940;
+	  ComponentParticipant_c_test40521_c( java.util.UUID            p40522 ) {
+	  m_p40522 = p40522;
 	  }
-	  private java.util.UUID             m_p39940; 
+	  private java.util.UUID             m_p40522; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentParticipant_c selected = (ComponentParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39940));
+	      retval = (selected.getPart_id().equals(m_p40522));
 	      return retval;
 	  }
     }
 
-    ComponentParticipant_c [] objs39941 = 
-    ComponentParticipant_c.ComponentParticipantInstances(modelRoot, new ComponentParticipant_c_test39939_c(getPart_id())) ;
+    ComponentParticipant_c [] objs40523 = 
+    ComponentParticipant_c.ComponentParticipantInstances(modelRoot, new ComponentParticipant_c_test40521_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39941.length;
+    objs40499 = objs40499 + objs40523.length;
             // Subtype Object: Package Participant
-    class PackageParticipant_c_test39942_c implements ClassQueryInterface_c
+    class PackageParticipant_c_test40524_c implements ClassQueryInterface_c
     {
-	  PackageParticipant_c_test39942_c( java.util.UUID            p39943 ) {
-	  m_p39943 = p39943;
+	  PackageParticipant_c_test40524_c( java.util.UUID            p40525 ) {
+	  m_p40525 = p40525;
 	  }
-	  private java.util.UUID             m_p39943; 
+	  private java.util.UUID             m_p40525; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      PackageParticipant_c selected = (PackageParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPart_id().equals(m_p39943));
+	      retval = (selected.getPart_id().equals(m_p40525));
 	      return retval;
 	  }
     }
 
-    PackageParticipant_c [] objs39944 = 
-    PackageParticipant_c.PackageParticipantInstances(modelRoot, new PackageParticipant_c_test39942_c(getPart_id())) ;
+    PackageParticipant_c [] objs40526 = 
+    PackageParticipant_c.PackageParticipantInstances(modelRoot, new PackageParticipant_c_test40524_c(getPart_id())) ;
  
-    objs39917 = objs39917 + objs39944.length;
-    if ( objs39917 != 1 )
+    objs40499 = objs40499 + objs40526.length;
+    if ( objs40499 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interaction Participant", //$NON-NLS-1$
            "Consistency: Object: Interaction Participant: Association: 930: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39917 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40499 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interaction Participant: Association: 930: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39917 )  , e); 
+          + Integer.toString( objs40499 )  , e); 
       }
       retval = false;
 
@@ -4847,37 +4847,37 @@ private static InteractionParticipant_c findInteractionParticipantInstance(Model
 
           // Interaction Participant is a participating class in association: rel.Numb = 940
              // Object: Lifespan
-    class Lifespan_c_test39946_c implements ClassQueryInterface_c
+    class Lifespan_c_test40528_c implements ClassQueryInterface_c
     {
-	  Lifespan_c_test39946_c( java.util.UUID            p39947 ) {
-	  m_p39947 = p39947;
+	  Lifespan_c_test40528_c( java.util.UUID            p40529 ) {
+	  m_p40529 = p40529;
 	  }
-	  private java.util.UUID             m_p39947; 
+	  private java.util.UUID             m_p40529; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Lifespan_c selected = (Lifespan_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSource_part_id().equals(m_p39947));
+	      retval = (selected.getSource_part_id().equals(m_p40529));
 	      return retval;
 	  }
     }
 
-    Lifespan_c [] objs39945 = 
-    Lifespan_c.LifespanInstances(modelRoot, new Lifespan_c_test39946_c(getPart_id())) ;
+    Lifespan_c [] objs40527 = 
+    Lifespan_c.LifespanInstances(modelRoot, new Lifespan_c_test40528_c(getPart_id())) ;
 
-    if ( (  (objs39945.length) > 1) )
+    if ( (  (objs40527.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interaction Participant", //$NON-NLS-1$
            "Consistency: Object: Interaction Participant: Association: 940: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39945.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40527.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interaction Participant: Association: 940: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39945.length )  , e); 
+          + Integer.toString( objs40527.length )  , e); 
       }
       retval = false;
 
@@ -5100,9 +5100,9 @@ Message_c [] v_messages = Message_c.getManyMSG_MsOnR1007(this);
 
 
 Message_c  v_message = null;
-for ( int i36702 = 0; i36702 < v_messages.length; i36702++)
+for ( int i37284 = 0; i37284 < v_messages.length; i37284++)
 {
-  v_message = v_messages[i36702] ;
+  v_message = v_messages[i37284] ;
 
 if (v_message != null) {
 v_message.Dispose() ;
@@ -5120,9 +5120,9 @@ else {
 v_messages = Message_c.getManyMSG_MsOnR1008(this);
 
 
-for ( int i36703 = 0; i36703 < v_messages.length; i36703++)
+for ( int i37285 = 0; i37285 < v_messages.length; i37285++)
 {
-  v_message = v_messages[i36703] ;
+  v_message = v_messages[i37285] ;
 
 if (v_message != null) {
 v_message.Dispose() ;
@@ -5195,9 +5195,9 @@ CommunicationLink_c [] v_comAssocs = CommunicationLink_c.getManyCOMM_LNKsOnR1133
 
 
 CommunicationLink_c  v_comAssoc = null;
-for ( int i36704 = 0; i36704 < v_comAssocs.length; i36704++)
+for ( int i37286 = 0; i37286 < v_comAssocs.length; i37286++)
 {
-  v_comAssoc = v_comAssocs[i36704] ;
+  v_comAssoc = v_comAssocs[i37286] ;
 
 if (v_comAssoc != null) {
 v_comAssoc.Dispose() ;
@@ -5215,9 +5215,9 @@ else {
 v_comAssocs = CommunicationLink_c.getManyCOMM_LNKsOnR1134(this);
 
 
-for ( int i36705 = 0; i36705 < v_comAssocs.length; i36705++)
+for ( int i37287 = 0; i37287 < v_comAssocs.length; i37287++)
 {
-  v_comAssoc = v_comAssocs[i36705] ;
+  v_comAssoc = v_comAssocs[i37287] ;
 
 if (v_comAssoc != null) {
 v_comAssoc.Dispose() ;
@@ -5278,9 +5278,9 @@ UseCaseAssociation_c [] v_startUcas = UseCaseAssociation_c.getManyUC_UCAsOnR1206
 
 
 UseCaseAssociation_c  v_uca = null;
-for ( int i36706 = 0; i36706 < v_startUcas.length; i36706++)
+for ( int i37288 = 0; i37288 < v_startUcas.length; i37288++)
 {
-  v_uca = v_startUcas[i36706] ;
+  v_uca = v_startUcas[i37288] ;
 
 this.unrelateAcrossR1206From(v_uca);
 
@@ -5301,9 +5301,9 @@ else {
 UseCaseAssociation_c [] v_endUcas = UseCaseAssociation_c.getManyUC_UCAsOnR1207(this);
 
 
-for ( int i36707 = 0; i36707 < v_endUcas.length; i36707++)
+for ( int i37289 = 0; i37289 < v_endUcas.length; i37289++)
 {
-  v_uca = v_endUcas[i36707] ;
+  v_uca = v_endUcas[i37289] ;
 
 this.unrelateAcrossR1207From(v_uca);
 
@@ -5383,9 +5383,9 @@ String       v_result = "" ;
 
 
 Message_c  v_msg = null;
-for ( int i36708 = 0; i36708 < v_msgs.length; i36708++)
+for ( int i37290 = 0; i37290 < v_msgs.length; i37290++)
 {
-  v_msg = v_msgs[i36708] ;
+  v_msg = v_msgs[i37290] ;
 
 ReturnMessage_c v_returnMessage = ReturnMessage_c.getOneMSG_ROnR1018(v_msg);
 
@@ -5412,9 +5412,9 @@ int          v_count = 0 ;
 
 
 MessageArgument_c  v_arg = null;
-for ( int i36709 = 0; i36709 < v_args.length; i36709++)
+for ( int i37291 = 0; i37291 < v_args.length; i37291++)
 {
-  v_arg = v_args[i36709] ;
+  v_arg = v_args[i37291] ;
 
 v_count = v_count + 1 ;
 

@@ -305,5 +305,14 @@ public class Util_c {
 		return "'";
 	} // End getTic
 
+	public static java.util.UUID Getuniquestatemachineid(
+			final java.util.UUID p_Classid, final String p_Type) {
+		IdAssigner assigner = new IdAssigner();
+		int hashCode = p_Classid.hashCode() + p_Type.hashCode();
+		assigner.setSeed(hashCode);
+		UUID stateId = assigner.createUUID();
+		return stateId;
+	} // End getUniqueStateMachineId
+
 } // End Util_c
 

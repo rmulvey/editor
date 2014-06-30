@@ -193,7 +193,8 @@ public class Link_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -209,8 +210,9 @@ public class Link_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
-				.equals(((Link_c) elem).getLink_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getLink_id()) || IdAssigner.NULL_UUID
+						.equals(((Link_c) elem).getLink_id())) && this != elem)) {
 			return false;
 		}
 		if (!getLink_id().equals(((Link_c) elem).getLink_id()))
@@ -1132,18 +1134,18 @@ public class Link_c extends NonRootModelElement
 
 		if (HasParticipantLinkParticipation == null) {
 			// R2901
-			LinkParticipation_c relInst40244 = (LinkParticipation_c) baseRoot
+			LinkParticipation_c relInst40826 = (LinkParticipation_c) baseRoot
 					.getInstanceList(LinkParticipation_c.class).get(
 							new Object[]{m_rel_id, m_participation_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40244 == null) {
-				relInst40244 = (LinkParticipation_c) Ooaofooa
+			if (relInst40826 == null) {
+				relInst40826 = (LinkParticipation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(LinkParticipation_c.class)
 						.get(new Object[]{m_rel_id, m_participation_id});
 			}
-			if (relInst40244 == null && searchAllRoots
+			if (relInst40826 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1151,38 +1153,38 @@ public class Link_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40244 = (LinkParticipation_c) roots[i]
+					relInst40826 = (LinkParticipation_c) roots[i]
 							.getInstanceList(LinkParticipation_c.class).get(
 									new Object[]{m_rel_id, m_participation_id});
-					if (relInst40244 != null)
+					if (relInst40826 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40244 != null) {
+			if (relInst40826 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40244) && !isProxy())) {
-					relInst40244.relateAcrossR2901To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40826) && !isProxy())) {
+					relInst40826.relateAcrossR2901To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (HasFormalizingParticipantLinkParticipation == null) {
 			// R2902
-			LinkParticipation_c relInst40245 = (LinkParticipation_c) baseRoot
+			LinkParticipation_c relInst40827 = (LinkParticipation_c) baseRoot
 					.getInstanceList(LinkParticipation_c.class).get(
 							new Object[]{m_rel_id,
 									m_formalizing_participation_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40245 == null) {
-				relInst40245 = (LinkParticipation_c) Ooaofooa
+			if (relInst40827 == null) {
+				relInst40827 = (LinkParticipation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(LinkParticipation_c.class)
 						.get(new Object[]{m_rel_id,
 								m_formalizing_participation_id});
 			}
-			if (relInst40245 == null && searchAllRoots
+			if (relInst40827 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1190,39 +1192,39 @@ public class Link_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40245 = (LinkParticipation_c) roots[i]
+					relInst40827 = (LinkParticipation_c) roots[i]
 							.getInstanceList(LinkParticipation_c.class).get(
 									new Object[]{m_rel_id,
 											m_formalizing_participation_id});
-					if (relInst40245 != null)
+					if (relInst40827 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40245 != null) {
+			if (relInst40827 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40245) && !isProxy())) {
-					relInst40245.relateAcrossR2902To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40827) && !isProxy())) {
+					relInst40827.relateAcrossR2902To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (HasAssociatorLinkParticipation == null) {
 			// R2903
-			LinkParticipation_c relInst40246 = (LinkParticipation_c) baseRoot
+			LinkParticipation_c relInst40828 = (LinkParticipation_c) baseRoot
 					.getInstanceList(LinkParticipation_c.class).get(
 							new Object[]{m_rel_id,
 									m_associator_participation_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40246 == null) {
-				relInst40246 = (LinkParticipation_c) Ooaofooa
+			if (relInst40828 == null) {
+				relInst40828 = (LinkParticipation_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(LinkParticipation_c.class)
 						.get(new Object[]{m_rel_id,
 								m_associator_participation_id});
 			}
-			if (relInst40246 == null && searchAllRoots
+			if (relInst40828 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1230,36 +1232,36 @@ public class Link_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40246 = (LinkParticipation_c) roots[i]
+					relInst40828 = (LinkParticipation_c) roots[i]
 							.getInstanceList(LinkParticipation_c.class).get(
 									new Object[]{m_rel_id,
 											m_associator_participation_id});
-					if (relInst40246 != null)
+					if (relInst40828 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40246 != null) {
+			if (relInst40828 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40246) && !isProxy())) {
-					relInst40246.relateAcrossR2903To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40828) && !isProxy())) {
+					relInst40828.relateAcrossR2903To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (IsInstanceOfAssociation == null) {
 			// R2904
-			Association_c relInst40247 = (Association_c) baseRoot
+			Association_c relInst40829 = (Association_c) baseRoot
 					.getInstanceList(Association_c.class).get(
 							new Object[]{m_rel_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40247 == null) {
-				relInst40247 = (Association_c) Ooaofooa.getDefaultInstance()
+			if (relInst40829 == null) {
+				relInst40829 = (Association_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Association_c.class)
 						.get(new Object[]{m_rel_id});
 			}
-			if (relInst40247 == null && searchAllRoots
+			if (relInst40829 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1267,17 +1269,17 @@ public class Link_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40247 = (Association_c) roots[i].getInstanceList(
+					relInst40829 = (Association_c) roots[i].getInstanceList(
 							Association_c.class).get(new Object[]{m_rel_id});
-					if (relInst40247 != null)
+					if (relInst40829 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40247 != null) {
+			if (relInst40829 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40247) && !isProxy())) {
-					relInst40247.relateAcrossR2904To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40829) && !isProxy())) {
+					relInst40829.relateAcrossR2904To(this, notifyChanges);
 				}
 			}
 		}
@@ -1674,55 +1676,55 @@ public class Link_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Link_c_test40249_c implements ClassQueryInterface_c {
-			Link_c_test40249_c(java.util.UUID p40250) {
-				m_p40250 = p40250;
+		class Link_c_test40831_c implements ClassQueryInterface_c {
+			Link_c_test40831_c(java.util.UUID p40832) {
+				m_p40832 = p40832;
 			}
-			private java.util.UUID m_p40250;
+			private java.util.UUID m_p40832;
 			public boolean evaluate(Object candidate) {
 				Link_c selected = (Link_c) candidate;
 				boolean retval = false;
-				retval = (selected.getLink_id().equals(m_p40250));
+				retval = (selected.getLink_id().equals(m_p40832));
 				return retval;
 			}
 		}
 
-		Link_c[] objs40248 = Link_c.LinkInstances(modelRoot,
-				new Link_c_test40249_c(getLink_id()));
+		Link_c[] objs40830 = Link_c.LinkInstances(modelRoot,
+				new Link_c_test40831_c(getLink_id()));
 
-		if (((objs40248.length) == 0)) {
+		if (((objs40830.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Link", //$NON-NLS-1$
 								"Consistency: Object: Link: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40248.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40830.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Link: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40248.length), e);
+								+ Integer.toString(objs40830.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40248.length) > 1)) {
+		if (((objs40830.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log.println(ILogger.CONSISTENCY, "Link", //$NON-NLS-1$
 						"Consistency: Object: Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 								+ "Actual Value: " //$NON-NLS-1$ 
-								+ Integer.toString(objs40248.length)
+								+ Integer.toString(objs40830.length)
 								+ " Link_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Link: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40248.length)
+								+ Integer.toString(objs40830.length)
 								+ " Link_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1731,31 +1733,31 @@ public class Link_c extends NonRootModelElement
 
 		// Link is a referring class in association: rel.Numb = 2901
 		// The participating class is: Link Participation
-		class LinkParticipation_c_test40254_c implements ClassQueryInterface_c {
-			LinkParticipation_c_test40254_c(java.util.UUID p40255,
-					java.util.UUID p40256) {
-				m_p40255 = p40255;
-				m_p40256 = p40256;
+		class LinkParticipation_c_test40836_c implements ClassQueryInterface_c {
+			LinkParticipation_c_test40836_c(java.util.UUID p40837,
+					java.util.UUID p40838) {
+				m_p40837 = p40837;
+				m_p40838 = p40838;
 			}
-			private java.util.UUID m_p40255;
-			private java.util.UUID m_p40256;
+			private java.util.UUID m_p40837;
+			private java.util.UUID m_p40838;
 			public boolean evaluate(Object candidate) {
 				LinkParticipation_c selected = (LinkParticipation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p40255))
-						& (selected.getParticipation_id().equals(m_p40256));
+				retval = (selected.getRel_id().equals(m_p40837))
+						& (selected.getParticipation_id().equals(m_p40838));
 				return retval;
 			}
 		}
 
-		LinkParticipation_c[] objs40253 = LinkParticipation_c
+		LinkParticipation_c[] objs40835 = LinkParticipation_c
 				.LinkParticipationInstances(modelRoot,
-						new LinkParticipation_c_test40254_c(getRel_id(),
+						new LinkParticipation_c_test40836_c(getRel_id(),
 								getParticipation_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40253.length) != 1)) {
+		if (((objs40835.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1763,7 +1765,7 @@ public class Link_c extends NonRootModelElement
 								"Link", //$NON-NLS-1$
 								"Consistency: Object: Link: Association: 2901: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40253.length)
+										+ Integer.toString(objs40835.length)
 										+ " Rel_ID: " + "Not Printable" + " Participation_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1771,7 +1773,7 @@ public class Link_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Link: Association: 2901: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40253.length)
+										+ Integer.toString(objs40835.length)
 										+ " Rel_ID: " + "Not Printable" + " Participation_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1780,25 +1782,25 @@ public class Link_c extends NonRootModelElement
 
 		// Link is a referring class in association: rel.Numb = 2904
 		// The participating class is: Association
-		class Association_c_test40258_c implements ClassQueryInterface_c {
-			Association_c_test40258_c(java.util.UUID p40259) {
-				m_p40259 = p40259;
+		class Association_c_test40840_c implements ClassQueryInterface_c {
+			Association_c_test40840_c(java.util.UUID p40841) {
+				m_p40841 = p40841;
 			}
-			private java.util.UUID m_p40259;
+			private java.util.UUID m_p40841;
 			public boolean evaluate(Object candidate) {
 				Association_c selected = (Association_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p40259));
+				retval = (selected.getRel_id().equals(m_p40841));
 				return retval;
 			}
 		}
 
-		Association_c[] objs40257 = Association_c.AssociationInstances(
-				modelRoot, new Association_c_test40258_c(getRel_id()));
+		Association_c[] objs40839 = Association_c.AssociationInstances(
+				modelRoot, new Association_c_test40840_c(getRel_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40257.length) != 1)) {
+		if (((objs40839.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1806,7 +1808,7 @@ public class Link_c extends NonRootModelElement
 								"Link", //$NON-NLS-1$
 								"Consistency: Object: Link: Association: 2904: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40257.length)
+										+ Integer.toString(objs40839.length)
 										+ " Rel_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1814,7 +1816,7 @@ public class Link_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Link: Association: 2904: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40257.length)
+										+ Integer.toString(objs40839.length)
 										+ " Rel_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1823,31 +1825,31 @@ public class Link_c extends NonRootModelElement
 
 		// Link is a referring class in association: rel.Numb = 2902
 		// The participating class is: Link Participation
-		class LinkParticipation_c_test40261_c implements ClassQueryInterface_c {
-			LinkParticipation_c_test40261_c(java.util.UUID p40262,
-					java.util.UUID p40263) {
-				m_p40262 = p40262;
-				m_p40263 = p40263;
+		class LinkParticipation_c_test40843_c implements ClassQueryInterface_c {
+			LinkParticipation_c_test40843_c(java.util.UUID p40844,
+					java.util.UUID p40845) {
+				m_p40844 = p40844;
+				m_p40845 = p40845;
 			}
-			private java.util.UUID m_p40262;
-			private java.util.UUID m_p40263;
+			private java.util.UUID m_p40844;
+			private java.util.UUID m_p40845;
 			public boolean evaluate(Object candidate) {
 				LinkParticipation_c selected = (LinkParticipation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p40262))
-						& (selected.getParticipation_id().equals(m_p40263));
+				retval = (selected.getRel_id().equals(m_p40844))
+						& (selected.getParticipation_id().equals(m_p40845));
 				return retval;
 			}
 		}
 
-		LinkParticipation_c[] objs40260 = LinkParticipation_c
+		LinkParticipation_c[] objs40842 = LinkParticipation_c
 				.LinkParticipationInstances(modelRoot,
-						new LinkParticipation_c_test40261_c(getRel_id(),
+						new LinkParticipation_c_test40843_c(getRel_id(),
 								getFormalizing_participation_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40260.length) != 1)) {
+		if (((objs40842.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1855,7 +1857,7 @@ public class Link_c extends NonRootModelElement
 								"Link", //$NON-NLS-1$
 								"Consistency: Object: Link: Association: 2902: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40260.length)
+										+ Integer.toString(objs40842.length)
 										+ " Rel_ID: " + "Not Printable" + " Formalizing_Participation_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1863,7 +1865,7 @@ public class Link_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Link: Association: 2902: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40260.length)
+										+ Integer.toString(objs40842.length)
 										+ " Rel_ID: " + "Not Printable" + " Formalizing_Participation_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1872,29 +1874,29 @@ public class Link_c extends NonRootModelElement
 
 		// Link is a referring class in association: rel.Numb = 2903
 		// The participating class is: Link Participation
-		class LinkParticipation_c_test40265_c implements ClassQueryInterface_c {
-			LinkParticipation_c_test40265_c(java.util.UUID p40266,
-					java.util.UUID p40267) {
-				m_p40266 = p40266;
-				m_p40267 = p40267;
+		class LinkParticipation_c_test40847_c implements ClassQueryInterface_c {
+			LinkParticipation_c_test40847_c(java.util.UUID p40848,
+					java.util.UUID p40849) {
+				m_p40848 = p40848;
+				m_p40849 = p40849;
 			}
-			private java.util.UUID m_p40266;
-			private java.util.UUID m_p40267;
+			private java.util.UUID m_p40848;
+			private java.util.UUID m_p40849;
 			public boolean evaluate(Object candidate) {
 				LinkParticipation_c selected = (LinkParticipation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getRel_id().equals(m_p40266))
-						& (selected.getParticipation_id().equals(m_p40267));
+				retval = (selected.getRel_id().equals(m_p40848))
+						& (selected.getParticipation_id().equals(m_p40849));
 				return retval;
 			}
 		}
 
-		LinkParticipation_c[] objs40264 = LinkParticipation_c
+		LinkParticipation_c[] objs40846 = LinkParticipation_c
 				.LinkParticipationInstances(modelRoot,
-						new LinkParticipation_c_test40265_c(getRel_id(),
+						new LinkParticipation_c_test40847_c(getRel_id(),
 								getAssociator_participation_id()));
 
-		if (((objs40264.length) > 1)) {
+		if (((objs40846.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1902,7 +1904,7 @@ public class Link_c extends NonRootModelElement
 								"Link", //$NON-NLS-1$
 								"Consistency: Object: Link: Association: 2903: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40264.length)
+										+ Integer.toString(objs40846.length)
 										+ " Rel_ID: " + "Not Printable" + " Associator_Participation_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1910,7 +1912,7 @@ public class Link_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Link: Association: 2903: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40264.length)
+										+ Integer.toString(objs40846.length)
 										+ " Rel_ID: " + "Not Printable" + " Associator_Participation_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

@@ -147,7 +147,8 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,9 +164,9 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ActivityDiagramAction_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ActivityDiagramAction_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ActivityDiagramAction_c) elem).getId()))
@@ -417,33 +418,33 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1107
-		ActionNode_c relInst57066 = (ActionNode_c) baseRoot.getInstanceList(
+		ActionNode_c relInst58615 = (ActionNode_c) baseRoot.getInstanceList(
 				ActionNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst57066 == null) {
-			relInst57066 = (ActionNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58615 == null) {
+			relInst58615 = (ActionNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ActionNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst57066 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58615 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst57066 = (ActionNode_c) roots[i].getInstanceList(
+				relInst58615 = (ActionNode_c) roots[i].getInstanceList(
 						ActionNode_c.class).get(new Object[]{m_id});
-				if (relInst57066 != null)
+				if (relInst58615 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst57066 != null) {
+		if (relInst58615 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst57066) && !isProxy())) {
-				relInst57066.relateAcrossR1107To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58615) && !isProxy())) {
+				relInst58615.relateAcrossR1107To(this, notifyChanges);
 			}
 		}
 
@@ -738,26 +739,26 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ActivityDiagramAction_c_test57068_c
+		class ActivityDiagramAction_c_test58617_c
 				implements
 					ClassQueryInterface_c {
-			ActivityDiagramAction_c_test57068_c(java.util.UUID p57069) {
-				m_p57069 = p57069;
+			ActivityDiagramAction_c_test58617_c(java.util.UUID p58618) {
+				m_p58618 = p58618;
 			}
-			private java.util.UUID m_p57069;
+			private java.util.UUID m_p58618;
 			public boolean evaluate(Object candidate) {
 				ActivityDiagramAction_c selected = (ActivityDiagramAction_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57069));
+				retval = (selected.getId().equals(m_p58618));
 				return retval;
 			}
 		}
 
-		ActivityDiagramAction_c[] objs57067 = ActivityDiagramAction_c
+		ActivityDiagramAction_c[] objs58616 = ActivityDiagramAction_c
 				.ActivityDiagramActionInstances(modelRoot,
-						new ActivityDiagramAction_c_test57068_c(getId()));
+						new ActivityDiagramAction_c_test58617_c(getId()));
 
-		if (((objs57067.length) == 0)) {
+		if (((objs58616.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -765,20 +766,20 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Activity Diagram Action", //$NON-NLS-1$
 								"Consistency: Object: Activity Diagram Action: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57067.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58616.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Activity Diagram Action: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57067.length), e);
+										+ Integer.toString(objs58616.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs57067.length) > 1)) {
+		if (((objs58616.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -787,7 +788,7 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 								"Activity Diagram Action", //$NON-NLS-1$
 								"Consistency: Object: Activity Diagram Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs57067.length)
+										+ Integer.toString(objs58616.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -795,7 +796,7 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Activity Diagram Action: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57067.length)
+										+ Integer.toString(objs58616.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -804,23 +805,23 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 
 		// Activity Diagram Action is a subtype in association: rel.Numb = 1107
 		// The supertype class is: Action Node
-		class ActionNode_c_test57073_c implements ClassQueryInterface_c {
-			ActionNode_c_test57073_c(java.util.UUID p57074) {
-				m_p57074 = p57074;
+		class ActionNode_c_test58622_c implements ClassQueryInterface_c {
+			ActionNode_c_test58622_c(java.util.UUID p58623) {
+				m_p58623 = p58623;
 			}
-			private java.util.UUID m_p57074;
+			private java.util.UUID m_p58623;
 			public boolean evaluate(Object candidate) {
 				ActionNode_c selected = (ActionNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p57074));
+				retval = (selected.getId().equals(m_p58623));
 				return retval;
 			}
 		}
 
-		ActionNode_c[] objs57072 = ActionNode_c.ActionNodeInstances(modelRoot,
-				new ActionNode_c_test57073_c(getId()));
+		ActionNode_c[] objs58621 = ActionNode_c.ActionNodeInstances(modelRoot,
+				new ActionNode_c_test58622_c(getId()));
 
-		if (((objs57072.length) != 1)) {
+		if (((objs58621.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -828,14 +829,14 @@ public class ActivityDiagramAction_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Activity Diagram Action", //$NON-NLS-1$
 								"Consistency: Object: Activity Diagram Action: Association: 1107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs57072.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58621.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Activity Diagram Action: Association: 1107: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs57072.length), e);
+										+ Integer.toString(objs58621.length), e);
 			}
 			retval = false;
 

@@ -14,7 +14,40 @@ INSERT INTO O_TFR
 	'The dispose operation for this class.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Function Parameter.dispose()
+//
+// Domain Subsystem
+select one func related by self->S_SYNC[R24];
+unrelate self from func across R24;
+select one dt related by self->S_DT[R26];
+unrelate self from dt across R26;
+//
+select one successor related by self->S_SPARM[R54.''precedes''];
+select one predecessor related by self->S_SPARM[R54.''succeeds''];
+if (not empty successor)
+  unrelate self from successor across R54.''precedes'';
+end if;
+if (not empty predecessor)
+  unrelate self from predecessor across R54.''succeeds'';
+end if;
+if (not_empty successor and not_empty predecessor)
+  relate successor to predecessor across R54.''succeeds'';
+end if;
+//
+// Value Subsystem
+select many pvs related by self->V_PVL[R832];
+for each pv in pvs
+  unrelate self from pv across R832;
+end for;
+//
+select many dims related by self->S_DIM[R52];
+for each dim in dims
+  unrelate self from dim across R52;
+  delete object instance dim;
+end for;
+//
+// Finally, delete self
+delete object instance self;',
 	1,
 	'',
 	"4d582152-f5fb-4470-837e-b22c2645f69e");
@@ -189,7 +222,7 @@ INSERT INTO O_TFR
 	"bc3722c8-5188-4529-8519-cf9eb9816b17",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return GD::NULL_INSTANCE();',
+return GD::NULL_INSTANCE(); ',
 	1,
 	'',
 	"b3414095-d774-44e5-ae0f-a01583672e30");

@@ -83,7 +83,7 @@ new executing stack frame.',
 	"8e519c45-7dcf-400b-9d4e-954869dbb7e8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return true;',
+return false;',
 	1,
 	'',
 	"eb1e109c-7305-48c3-b6af-b5f26bd4df65");

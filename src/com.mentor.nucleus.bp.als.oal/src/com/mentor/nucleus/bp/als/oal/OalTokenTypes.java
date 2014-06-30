@@ -1,10 +1,10 @@
-// $ANTLR 2.7.2: "oal.g" -> "OalParser.java"$
+// $ANTLR : "oal.g" -> "OalParser.java"$
 
-package com.mentor.nucleus.bp.als.oal;
-import antlr.CharScanner;
+  package com.mentor.nucleus.bp.als.oal;  import antlr.CharScanner;  
 import java.util.UUID;
 import com.mentor.nucleus.bp.core.Ooaofooa;
 import com.mentor.nucleus.bp.core.common.IdAssigner;
+
 
 public interface OalTokenTypes {
 	int EOF = 1;

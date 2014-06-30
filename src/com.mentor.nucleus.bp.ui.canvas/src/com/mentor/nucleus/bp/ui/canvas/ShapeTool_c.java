@@ -235,7 +235,7 @@ p_m_current_transaction
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -251,7 +251,7 @@ p_m_current_transaction
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getTool_id()) || IdAssigner.NULL_UUID.equals(((ShapeTool_c)elem).getTool_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getTool_id()) || IdAssigner.NULL_UUID.equals(((ShapeTool_c)elem).getTool_id())) && this != elem)) {
       	return false;
       }
       if (!getTool_id().equals(((ShapeTool_c)elem).getTool_id())) return false;

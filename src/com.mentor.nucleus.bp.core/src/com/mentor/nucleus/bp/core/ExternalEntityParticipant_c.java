@@ -169,7 +169,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -185,9 +186,10 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
-				.equals(((ExternalEntityParticipant_c) elem).getPart_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
+						.equals(((ExternalEntityParticipant_c) elem)
+								.getPart_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPart_id().equals(
@@ -739,52 +741,52 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R930
-		InteractionParticipant_c relInst40022 = (InteractionParticipant_c) baseRoot
+		InteractionParticipant_c relInst40604 = (InteractionParticipant_c) baseRoot
 				.getInstanceList(InteractionParticipant_c.class).get(
 						new Object[]{m_part_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst40022 == null) {
-			relInst40022 = (InteractionParticipant_c) Ooaofooa
+		if (relInst40604 == null) {
+			relInst40604 = (InteractionParticipant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(InteractionParticipant_c.class)
 					.get(new Object[]{m_part_id});
 		}
-		if (relInst40022 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40604 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst40022 = (InteractionParticipant_c) roots[i]
+				relInst40604 = (InteractionParticipant_c) roots[i]
 						.getInstanceList(InteractionParticipant_c.class).get(
 								new Object[]{m_part_id});
-				if (relInst40022 != null)
+				if (relInst40604 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst40022 != null) {
+		if (relInst40604 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst40022) && !isProxy())) {
-				relInst40022.relateAcrossR930To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40604) && !isProxy())) {
+				relInst40604.relateAcrossR930To(this, notifyChanges);
 			}
 		}
 
 		if (RepresentsExternalEntity == null) {
 			// R933
-			ExternalEntity_c relInst40023 = (ExternalEntity_c) baseRoot
+			ExternalEntity_c relInst40605 = (ExternalEntity_c) baseRoot
 					.getInstanceList(ExternalEntity_c.class).get(
 							new Object[]{m_ee_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40023 == null) {
-				relInst40023 = (ExternalEntity_c) Ooaofooa.getDefaultInstance()
+			if (relInst40605 == null) {
+				relInst40605 = (ExternalEntity_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(ExternalEntity_c.class)
 						.get(new Object[]{m_ee_id});
 			}
-			if (relInst40023 == null && searchAllRoots
+			if (relInst40605 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -792,17 +794,17 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40023 = (ExternalEntity_c) roots[i].getInstanceList(
+					relInst40605 = (ExternalEntity_c) roots[i].getInstanceList(
 							ExternalEntity_c.class).get(new Object[]{m_ee_id});
-					if (relInst40023 != null)
+					if (relInst40605 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40023 != null) {
+			if (relInst40605 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40023) && !isProxy())) {
-					relInst40023.relateAcrossR933To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40605) && !isProxy())) {
+					relInst40605.relateAcrossR933To(this, notifyChanges);
 				}
 			}
 		}
@@ -1179,27 +1181,27 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ExternalEntityParticipant_c_test40025_c
+		class ExternalEntityParticipant_c_test40607_c
 				implements
 					ClassQueryInterface_c {
-			ExternalEntityParticipant_c_test40025_c(java.util.UUID p40026) {
-				m_p40026 = p40026;
+			ExternalEntityParticipant_c_test40607_c(java.util.UUID p40608) {
+				m_p40608 = p40608;
 			}
-			private java.util.UUID m_p40026;
+			private java.util.UUID m_p40608;
 			public boolean evaluate(Object candidate) {
 				ExternalEntityParticipant_c selected = (ExternalEntityParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40026));
+				retval = (selected.getPart_id().equals(m_p40608));
 				return retval;
 			}
 		}
 
-		ExternalEntityParticipant_c[] objs40024 = ExternalEntityParticipant_c
+		ExternalEntityParticipant_c[] objs40606 = ExternalEntityParticipant_c
 				.ExternalEntityParticipantInstances(modelRoot,
-						new ExternalEntityParticipant_c_test40025_c(
+						new ExternalEntityParticipant_c_test40607_c(
 								getPart_id()));
 
-		if (((objs40024.length) == 0)) {
+		if (((objs40606.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1207,20 +1209,20 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"External Entity Participant", //$NON-NLS-1$
 								"Consistency: Object: External Entity Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40024.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40606.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: External Entity Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40024.length), e);
+										+ Integer.toString(objs40606.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40024.length) > 1)) {
+		if (((objs40606.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1229,7 +1231,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 								"External Entity Participant", //$NON-NLS-1$
 								"Consistency: Object: External Entity Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40024.length)
+										+ Integer.toString(objs40606.length)
 										+ " Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1237,7 +1239,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: External Entity Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40024.length)
+										+ Integer.toString(objs40606.length)
 										+ " Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1246,26 +1248,26 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 
 		// External Entity Participant is a subtype in association: rel.Numb = 930
 		// The supertype class is: Interaction Participant
-		class InteractionParticipant_c_test40030_c
+		class InteractionParticipant_c_test40612_c
 				implements
 					ClassQueryInterface_c {
-			InteractionParticipant_c_test40030_c(java.util.UUID p40031) {
-				m_p40031 = p40031;
+			InteractionParticipant_c_test40612_c(java.util.UUID p40613) {
+				m_p40613 = p40613;
 			}
-			private java.util.UUID m_p40031;
+			private java.util.UUID m_p40613;
 			public boolean evaluate(Object candidate) {
 				InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40031));
+				retval = (selected.getPart_id().equals(m_p40613));
 				return retval;
 			}
 		}
 
-		InteractionParticipant_c[] objs40029 = InteractionParticipant_c
+		InteractionParticipant_c[] objs40611 = InteractionParticipant_c
 				.InteractionParticipantInstances(modelRoot,
-						new InteractionParticipant_c_test40030_c(getPart_id()));
+						new InteractionParticipant_c_test40612_c(getPart_id()));
 
-		if (((objs40029.length) != 1)) {
+		if (((objs40611.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1273,14 +1275,14 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"External Entity Participant", //$NON-NLS-1$
 								"Consistency: Object: External Entity Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40029.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40611.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: External Entity Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40029.length), e);
+										+ Integer.toString(objs40611.length), e);
 			}
 			retval = false;
 
@@ -1288,24 +1290,24 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 
 		// External Entity Participant is a referring class in association: rel.Numb = 933
 		// The participating class is: External Entity
-		class ExternalEntity_c_test40033_c implements ClassQueryInterface_c {
-			ExternalEntity_c_test40033_c(java.util.UUID p40034) {
-				m_p40034 = p40034;
+		class ExternalEntity_c_test40615_c implements ClassQueryInterface_c {
+			ExternalEntity_c_test40615_c(java.util.UUID p40616) {
+				m_p40616 = p40616;
 			}
-			private java.util.UUID m_p40034;
+			private java.util.UUID m_p40616;
 			public boolean evaluate(Object candidate) {
 				ExternalEntity_c selected = (ExternalEntity_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEe_id().equals(m_p40034));
+				retval = (selected.getEe_id().equals(m_p40616));
 				return retval;
 			}
 		}
 
-		ExternalEntity_c[] objs40032 = ExternalEntity_c
+		ExternalEntity_c[] objs40614 = ExternalEntity_c
 				.ExternalEntityInstances(modelRoot,
-						new ExternalEntity_c_test40033_c(getEe_id()));
+						new ExternalEntity_c_test40615_c(getEe_id()));
 
-		if (((objs40032.length) > 1)) {
+		if (((objs40614.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1314,7 +1316,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 								"External Entity Participant", //$NON-NLS-1$
 								"Consistency: Object: External Entity Participant: Association: 933: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40032.length)
+										+ Integer.toString(objs40614.length)
 										+ " EE_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1322,7 +1324,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: External Entity Participant: Association: 933: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40032.length)
+										+ Integer.toString(objs40614.length)
 										+ " EE_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1689,8 +1691,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 		Message_c[] v_messages = Message_c.getManyMSG_MsOnR1007(v_part);
 
 		Message_c v_message = null;
-		for (int i36714 = 0; i36714 < v_messages.length; i36714++) {
-			v_message = v_messages[i36714];
+		for (int i37296 = 0; i37296 < v_messages.length; i37296++) {
+			v_message = v_messages[i37296];
 
 			if (v_message != null) {
 				v_message.Unformalize();
@@ -1709,8 +1711,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 				.getManyCOMM_LNKsOnR1133(v_part);
 
 		CommunicationLink_c v_link = null;
-		for (int i36715 = 0; i36715 < v_links.length; i36715++) {
-			v_link = v_links[i36715];
+		for (int i37297 = 0; i37297 < v_links.length; i37297++) {
+			v_link = v_links[i37297];
 
 			if (v_link != null) {
 				v_link.Unformalize();
@@ -1887,7 +1889,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 									t);
 				}
 
-				class ComponentResultSet_test37131_c
+				class ComponentResultSet_test37713_c
 						implements
 							ClassQueryInterface_c {
 					public boolean evaluate(Object candidate) {
@@ -1897,7 +1899,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 				}
 				ComponentResultSet_c v_resultSet = ComponentResultSet_c
 						.getOnePE_CRSOnR8007(v_component,
-								new ComponentResultSet_test37131_c());
+								new ComponentResultSet_test37713_c());
 
 				PackageableElement_c[] v_results = PackageableElement_c
 						.getManyPE_PEsOnR8004(ComponentVisibility_c
@@ -1905,7 +1907,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 
 				if ((v_package != null)) {
 
-					class SearchResultSet_test37132_c
+					class SearchResultSet_test37714_c
 							implements
 								ClassQueryInterface_c {
 						public boolean evaluate(Object candidate) {
@@ -1915,7 +1917,7 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 					}
 					SearchResultSet_c v_pkgResultSet = SearchResultSet_c
 							.getOnePE_SRSOnR8005(v_package,
-									new SearchResultSet_test37132_c());
+									new SearchResultSet_test37714_c());
 
 					v_results = PackageableElement_c
 							.getManyPE_PEsOnR8002(ElementVisibility_c
@@ -1931,8 +1933,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 								null, Gd_c.Null_unique_id());
 
 				ExternalEntity_c v_ee = null;
-				for (int i36716 = 0; i36716 < v_ees.length; i36716++) {
-					v_ee = v_ees[i36716];
+				for (int i37298 = 0; i37298 < v_ees.length; i37298++) {
+					v_ee = v_ees[i37298];
 
 					if ((v_ee.getKey_lett().equals(v_proxyEE.getKey_lett()) && v_ee
 							.getName().equals(v_proxyEE.getName()))) {
@@ -1999,58 +2001,58 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 
 				Domain_c v_domain = Domain_c.DomainInstance(modelRoot);
 
-				class ExternalEntity_test37133_c
+				class ExternalEntity_test37715_c
 						implements
 							ClassQueryInterface_c {
-					ExternalEntity_test37133_c(String p37134, String p37135) {
-						m_p37134 = p37134;
-						m_p37135 = p37135;
+					ExternalEntity_test37715_c(String p37716, String p37717) {
+						m_p37716 = p37716;
+						m_p37717 = p37717;
 					}
-					private String m_p37134;
-					private String m_p37135;
+					private String m_p37716;
+					private String m_p37717;
 					public boolean evaluate(Object candidate) {
 						ExternalEntity_c selected = (ExternalEntity_c) candidate;
-						return (selected.getKey_lett().equals(m_p37134) && selected
-								.getName().equals(m_p37135));
+						return (selected.getKey_lett().equals(m_p37716) && selected
+								.getName().equals(m_p37717));
 					}
 				}
 				ExternalEntity_c v_ee = ExternalEntity_c.getOneS_EEOnR8(
-						v_domain, new ExternalEntity_test37133_c(v_key_letters,
+						v_domain, new ExternalEntity_test37715_c(v_key_letters,
 								v_name));
 
 				if (((v_ee == null))) {
 
-					class ExternalEntity_test37136_c
+					class ExternalEntity_test37718_c
 							implements
 								ClassQueryInterface_c {
-						ExternalEntity_test37136_c(String p37137) {
-							m_p37137 = p37137;
+						ExternalEntity_test37718_c(String p37719) {
+							m_p37719 = p37719;
 						}
-						private String m_p37137;
+						private String m_p37719;
 						public boolean evaluate(Object candidate) {
 							ExternalEntity_c selected = (ExternalEntity_c) candidate;
-							return (selected.getKey_lett().equals(m_p37137));
+							return (selected.getKey_lett().equals(m_p37719));
 						}
 					}
 					v_ee = ExternalEntity_c.getOneS_EEOnR8(v_domain,
-							new ExternalEntity_test37136_c(v_key_letters));
+							new ExternalEntity_test37718_c(v_key_letters));
 
 					if (((v_ee == null))) {
 
-						class ExternalEntity_test37138_c
+						class ExternalEntity_test37720_c
 								implements
 									ClassQueryInterface_c {
-							ExternalEntity_test37138_c(String p37139) {
-								m_p37139 = p37139;
+							ExternalEntity_test37720_c(String p37721) {
+								m_p37721 = p37721;
 							}
-							private String m_p37139;
+							private String m_p37721;
 							public boolean evaluate(Object candidate) {
 								ExternalEntity_c selected = (ExternalEntity_c) candidate;
-								return (selected.getName().equals(m_p37139));
+								return (selected.getName().equals(m_p37721));
 							}
 						}
 						v_ee = ExternalEntity_c.getOneS_EEOnR8(v_domain,
-								new ExternalEntity_test37138_c(v_name));
+								new ExternalEntity_test37720_c(v_name));
 
 					}
 
@@ -2087,8 +2089,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 						.getManySQ_PsOnR930(this));
 
 		Message_c v_message = null;
-		for (int i36717 = 0; i36717 < v_messages.length; i36717++) {
-			v_message = v_messages[i36717];
+		for (int i37299 = 0; i37299 < v_messages.length; i37299++) {
+			v_message = v_messages[i37299];
 
 			SynchronousMessage_c v_syncMessage = SynchronousMessage_c
 					.getOneMSG_SMOnR1018(v_message);
@@ -2109,19 +2111,19 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 
 				Bridge_c v_opProxy = Bridge_c.getOneS_BRGOnR1012(v_bridgeMsg);
 
-				class Bridge_test37140_c implements ClassQueryInterface_c {
-					Bridge_test37140_c(String p37141) {
-						m_p37141 = p37141;
+				class Bridge_test37722_c implements ClassQueryInterface_c {
+					Bridge_test37722_c(String p37723) {
+						m_p37723 = p37723;
 					}
-					private String m_p37141;
+					private String m_p37723;
 					public boolean evaluate(Object candidate) {
 						Bridge_c selected = (Bridge_c) candidate;
-						return (selected.getName().equals(m_p37141));
+						return (selected.getName().equals(m_p37723));
 					}
 				}
 				Bridge_c v_operation = Bridge_c.getOneS_BRGOnR19(
 						ExternalEntity_c.getManyS_EEsOnR933(this),
-						new Bridge_test37140_c(v_opProxy.getName()));
+						new Bridge_test37722_c(v_opProxy.getName()));
 
 				if (((v_operation != null))) {
 
@@ -2167,8 +2169,8 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 					.getManyMSG_MsOnR1007(InteractionParticipant_c
 							.getManySQ_PsOnR930(v_ls));
 
-			for (int i36718 = 0; i36718 < v_messages.length; i36718++) {
-				v_message = v_messages[i36718];
+			for (int i37300 = 0; i37300 < v_messages.length; i37300++) {
+				v_message = v_messages[i37300];
 
 				SynchronousMessage_c v_syncMessage = SynchronousMessage_c
 						.getOneMSG_SMOnR1018(v_message);
@@ -2190,19 +2192,19 @@ public class ExternalEntityParticipant_c extends NonRootModelElement
 					Bridge_c v_opProxy = Bridge_c
 							.getOneS_BRGOnR1012(v_bridgeMsg);
 
-					class Bridge_test37142_c implements ClassQueryInterface_c {
-						Bridge_test37142_c(String p37143) {
-							m_p37143 = p37143;
+					class Bridge_test37724_c implements ClassQueryInterface_c {
+						Bridge_test37724_c(String p37725) {
+							m_p37725 = p37725;
 						}
-						private String m_p37143;
+						private String m_p37725;
 						public boolean evaluate(Object candidate) {
 							Bridge_c selected = (Bridge_c) candidate;
-							return (selected.getName().equals(m_p37143));
+							return (selected.getName().equals(m_p37725));
 						}
 					}
 					Bridge_c v_operation = Bridge_c.getOneS_BRGOnR19(
 							ExternalEntity_c.getManyS_EEsOnR933(this),
-							new Bridge_test37142_c(v_opProxy.getName()));
+							new Bridge_test37724_c(v_opProxy.getName()));
 
 					if (((v_operation != null))) {
 

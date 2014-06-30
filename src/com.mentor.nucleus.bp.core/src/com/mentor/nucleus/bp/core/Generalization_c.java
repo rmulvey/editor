@@ -143,7 +143,8 @@ public class Generalization_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -159,9 +160,9 @@ public class Generalization_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
-				.equals(((Generalization_c) elem).getAssoc_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getAssoc_id()) || IdAssigner.NULL_UUID
+						.equals(((Generalization_c) elem).getAssoc_id())) && this != elem)) {
 			return false;
 		}
 		if (!getAssoc_id().equals(((Generalization_c) elem).getAssoc_id()))
@@ -413,35 +414,35 @@ public class Generalization_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1210
-		UseCaseAssociation_c relInst37921 = (UseCaseAssociation_c) baseRoot
+		UseCaseAssociation_c relInst38503 = (UseCaseAssociation_c) baseRoot
 				.getInstanceList(UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst37921 == null) {
-			relInst37921 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
+		if (relInst38503 == null) {
+			relInst38503 = (UseCaseAssociation_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(UseCaseAssociation_c.class)
 					.get(new Object[]{m_assoc_id});
 		}
-		if (relInst37921 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst38503 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst37921 = (UseCaseAssociation_c) roots[i].getInstanceList(
+				relInst38503 = (UseCaseAssociation_c) roots[i].getInstanceList(
 						UseCaseAssociation_c.class).get(
 						new Object[]{m_assoc_id});
-				if (relInst37921 != null)
+				if (relInst38503 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst37921 != null) {
+		if (relInst38503 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst37921) && !isProxy())) {
-				relInst37921.relateAcrossR1210To(this, notifyChanges);
+					|| (inSameComponent(this, relInst38503) && !isProxy())) {
+				relInst38503.relateAcrossR1210To(this, notifyChanges);
 			}
 		}
 
@@ -707,43 +708,43 @@ public class Generalization_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class Generalization_c_test37923_c implements ClassQueryInterface_c {
-			Generalization_c_test37923_c(java.util.UUID p37924) {
-				m_p37924 = p37924;
+		class Generalization_c_test38505_c implements ClassQueryInterface_c {
+			Generalization_c_test38505_c(java.util.UUID p38506) {
+				m_p38506 = p38506;
 			}
-			private java.util.UUID m_p37924;
+			private java.util.UUID m_p38506;
 			public boolean evaluate(Object candidate) {
 				Generalization_c selected = (Generalization_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37924));
+				retval = (selected.getAssoc_id().equals(m_p38506));
 				return retval;
 			}
 		}
 
-		Generalization_c[] objs37922 = Generalization_c
+		Generalization_c[] objs38504 = Generalization_c
 				.GeneralizationInstances(modelRoot,
-						new Generalization_c_test37923_c(getAssoc_id()));
+						new Generalization_c_test38505_c(getAssoc_id()));
 
-		if (((objs37922.length) == 0)) {
+		if (((objs38504.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Generalization", //$NON-NLS-1$
 								"Consistency: Object: Generalization: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37922.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38504.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Generalization: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs37922.length), e);
+								+ Integer.toString(objs38504.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs37922.length) > 1)) {
+		if (((objs38504.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -751,7 +752,7 @@ public class Generalization_c extends NonRootModelElement
 								"Generalization", //$NON-NLS-1$
 								"Consistency: Object: Generalization: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37922.length)
+										+ Integer.toString(objs38504.length)
 										+ " Assoc_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -759,7 +760,7 @@ public class Generalization_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Generalization: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37922.length)
+										+ Integer.toString(objs38504.length)
 										+ " Assoc_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -768,38 +769,38 @@ public class Generalization_c extends NonRootModelElement
 
 		// Generalization is a subtype in association: rel.Numb = 1210
 		// The supertype class is: Use Case Association
-		class UseCaseAssociation_c_test37928_c implements ClassQueryInterface_c {
-			UseCaseAssociation_c_test37928_c(java.util.UUID p37929) {
-				m_p37929 = p37929;
+		class UseCaseAssociation_c_test38510_c implements ClassQueryInterface_c {
+			UseCaseAssociation_c_test38510_c(java.util.UUID p38511) {
+				m_p38511 = p38511;
 			}
-			private java.util.UUID m_p37929;
+			private java.util.UUID m_p38511;
 			public boolean evaluate(Object candidate) {
 				UseCaseAssociation_c selected = (UseCaseAssociation_c) candidate;
 				boolean retval = false;
-				retval = (selected.getAssoc_id().equals(m_p37929));
+				retval = (selected.getAssoc_id().equals(m_p38511));
 				return retval;
 			}
 		}
 
-		UseCaseAssociation_c[] objs37927 = UseCaseAssociation_c
+		UseCaseAssociation_c[] objs38509 = UseCaseAssociation_c
 				.UseCaseAssociationInstances(modelRoot,
-						new UseCaseAssociation_c_test37928_c(getAssoc_id()));
+						new UseCaseAssociation_c_test38510_c(getAssoc_id()));
 
-		if (((objs37927.length) != 1)) {
+		if (((objs38509.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Generalization", //$NON-NLS-1$
 								"Consistency: Object: Generalization: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs37927.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs38509.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Generalization: Association: 1210: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37927.length), e);
+										+ Integer.toString(objs38509.length), e);
 			}
 			retval = false;
 

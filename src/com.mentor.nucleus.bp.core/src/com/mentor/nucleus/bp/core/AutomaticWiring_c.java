@@ -118,7 +118,8 @@ public class AutomaticWiring_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -601,16 +602,16 @@ public class AutomaticWiring_c extends NonRootModelElement
 
 		if (ConnectsBridgeExecutionToFunction == null) {
 			// R3201
-			Function_c relInst37207 = (Function_c) baseRoot.getInstanceList(
+			Function_c relInst37789 = (Function_c) baseRoot.getInstanceList(
 					Function_c.class).get(new Object[]{m_sync_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37207 == null) {
-				relInst37207 = (Function_c) Ooaofooa.getDefaultInstance()
+			if (relInst37789 == null) {
+				relInst37789 = (Function_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Function_c.class)
 						.get(new Object[]{m_sync_id});
 			}
-			if (relInst37207 == null && searchAllRoots
+			if (relInst37789 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -618,33 +619,33 @@ public class AutomaticWiring_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37207 = (Function_c) roots[i].getInstanceList(
+					relInst37789 = (Function_c) roots[i].getInstanceList(
 							Function_c.class).get(new Object[]{m_sync_id});
-					if (relInst37207 != null)
+					if (relInst37789 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37207 != null) {
+			if (relInst37789 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37207) && !isProxy())) {
-					relInst37207.relateAcrossR3201To(this, notifyChanges);
+						|| (inSameComponent(this, relInst37789) && !isProxy())) {
+					relInst37789.relateAcrossR3201To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (ForBridgeExecutionBridge == null) {
 			// R3200
-			Bridge_c relInst37208 = (Bridge_c) baseRoot.getInstanceList(
+			Bridge_c relInst37790 = (Bridge_c) baseRoot.getInstanceList(
 					Bridge_c.class).get(new Object[]{m_brg_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst37208 == null) {
-				relInst37208 = (Bridge_c) Ooaofooa.getDefaultInstance()
+			if (relInst37790 == null) {
+				relInst37790 = (Bridge_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(Bridge_c.class)
 						.get(new Object[]{m_brg_id});
 			}
-			if (relInst37208 == null && searchAllRoots
+			if (relInst37790 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -652,17 +653,17 @@ public class AutomaticWiring_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst37208 = (Bridge_c) roots[i].getInstanceList(
+					relInst37790 = (Bridge_c) roots[i].getInstanceList(
 							Bridge_c.class).get(new Object[]{m_brg_id});
-					if (relInst37208 != null)
+					if (relInst37790 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst37208 != null) {
+			if (relInst37790 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst37208) && !isProxy())) {
-					relInst37208.relateAcrossR3200To(this, notifyChanges);
+						|| (inSameComponent(this, relInst37790) && !isProxy())) {
+					relInst37790.relateAcrossR3200To(this, notifyChanges);
 				}
 			}
 		}
@@ -919,25 +920,25 @@ public class AutomaticWiring_c extends NonRootModelElement
 		boolean retval = true;
 		// Automatic Wiring is a referring class in association: rel.Numb = 3200
 		// The participating class is: Bridge
-		class Bridge_c_test37213_c implements ClassQueryInterface_c {
-			Bridge_c_test37213_c(java.util.UUID p37214) {
-				m_p37214 = p37214;
+		class Bridge_c_test37795_c implements ClassQueryInterface_c {
+			Bridge_c_test37795_c(java.util.UUID p37796) {
+				m_p37796 = p37796;
 			}
-			private java.util.UUID m_p37214;
+			private java.util.UUID m_p37796;
 			public boolean evaluate(Object candidate) {
 				Bridge_c selected = (Bridge_c) candidate;
 				boolean retval = false;
-				retval = (selected.getBrg_id().equals(m_p37214));
+				retval = (selected.getBrg_id().equals(m_p37796));
 				return retval;
 			}
 		}
 
-		Bridge_c[] objs37212 = Bridge_c.BridgeInstances(modelRoot,
-				new Bridge_c_test37213_c(getBrg_id()));
+		Bridge_c[] objs37794 = Bridge_c.BridgeInstances(modelRoot,
+				new Bridge_c_test37795_c(getBrg_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs37212.length) != 1)) {
+		if (((objs37794.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -945,7 +946,7 @@ public class AutomaticWiring_c extends NonRootModelElement
 								"Automatic Wiring", //$NON-NLS-1$
 								"Consistency: Object: Automatic Wiring: Association: 3200: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37212.length)
+										+ Integer.toString(objs37794.length)
 										+ " Brg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -953,7 +954,7 @@ public class AutomaticWiring_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Automatic Wiring: Association: 3200: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37212.length)
+										+ Integer.toString(objs37794.length)
 										+ " Brg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -962,23 +963,23 @@ public class AutomaticWiring_c extends NonRootModelElement
 
 		// Automatic Wiring is a referring class in association: rel.Numb = 3201
 		// The participating class is: Function
-		class Function_c_test37216_c implements ClassQueryInterface_c {
-			Function_c_test37216_c(java.util.UUID p37217) {
-				m_p37217 = p37217;
+		class Function_c_test37798_c implements ClassQueryInterface_c {
+			Function_c_test37798_c(java.util.UUID p37799) {
+				m_p37799 = p37799;
 			}
-			private java.util.UUID m_p37217;
+			private java.util.UUID m_p37799;
 			public boolean evaluate(Object candidate) {
 				Function_c selected = (Function_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSync_id().equals(m_p37217));
+				retval = (selected.getSync_id().equals(m_p37799));
 				return retval;
 			}
 		}
 
-		Function_c[] objs37215 = Function_c.FunctionInstances(modelRoot,
-				new Function_c_test37216_c(getSync_id()));
+		Function_c[] objs37797 = Function_c.FunctionInstances(modelRoot,
+				new Function_c_test37798_c(getSync_id()));
 
-		if (((objs37215.length) > 1)) {
+		if (((objs37797.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -986,7 +987,7 @@ public class AutomaticWiring_c extends NonRootModelElement
 								"Automatic Wiring", //$NON-NLS-1$
 								"Consistency: Object: Automatic Wiring: Association: 3201: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs37215.length)
+										+ Integer.toString(objs37797.length)
 										+ " Sync_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -994,7 +995,7 @@ public class AutomaticWiring_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Automatic Wiring: Association: 3201: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs37215.length)
+										+ Integer.toString(objs37797.length)
 										+ " Sync_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

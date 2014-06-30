@@ -143,7 +143,8 @@ public class DescriptionSearchable_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -159,9 +160,9 @@ public class DescriptionSearchable_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((DescriptionSearchable_c) elem).getId()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((DescriptionSearchable_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((DescriptionSearchable_c) elem).getId()))
@@ -408,34 +409,34 @@ public class DescriptionSearchable_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9702
-		SearchableElement_c relInst39078 = (SearchableElement_c) baseRoot
+		SearchableElement_c relInst39660 = (SearchableElement_c) baseRoot
 				.getInstanceList(SearchableElement_c.class).get(
 						new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39078 == null) {
-			relInst39078 = (SearchableElement_c) Ooaofooa.getDefaultInstance()
+		if (relInst39660 == null) {
+			relInst39660 = (SearchableElement_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SearchableElement_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst39078 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39660 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39078 = (SearchableElement_c) roots[i].getInstanceList(
+				relInst39660 = (SearchableElement_c) roots[i].getInstanceList(
 						SearchableElement_c.class).get(new Object[]{m_id});
-				if (relInst39078 != null)
+				if (relInst39660 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39078 != null) {
+		if (relInst39660 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39078) && !isProxy())) {
-				relInst39078.relateAcrossR9702To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39660) && !isProxy())) {
+				relInst39660.relateAcrossR9702To(this, notifyChanges);
 			}
 		}
 
@@ -707,46 +708,46 @@ public class DescriptionSearchable_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DescriptionSearchable_c_test39080_c
+		class DescriptionSearchable_c_test39662_c
 				implements
 					ClassQueryInterface_c {
-			DescriptionSearchable_c_test39080_c(java.util.UUID p39081) {
-				m_p39081 = p39081;
+			DescriptionSearchable_c_test39662_c(java.util.UUID p39663) {
+				m_p39663 = p39663;
 			}
-			private java.util.UUID m_p39081;
+			private java.util.UUID m_p39663;
 			public boolean evaluate(Object candidate) {
 				DescriptionSearchable_c selected = (DescriptionSearchable_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39081));
+				retval = (selected.getId().equals(m_p39663));
 				return retval;
 			}
 		}
 
-		DescriptionSearchable_c[] objs39079 = DescriptionSearchable_c
+		DescriptionSearchable_c[] objs39661 = DescriptionSearchable_c
 				.DescriptionSearchableInstances(modelRoot,
-						new DescriptionSearchable_c_test39080_c(getId()));
+						new DescriptionSearchable_c_test39662_c(getId()));
 
-		if (((objs39079.length) == 0)) {
+		if (((objs39661.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Description Searchable", //$NON-NLS-1$
 								"Consistency: Object: Description Searchable: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39079.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39661.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Description Searchable: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39079.length), e);
+										+ Integer.toString(objs39661.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39079.length) > 1)) {
+		if (((objs39661.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -754,7 +755,7 @@ public class DescriptionSearchable_c extends NonRootModelElement
 								"Description Searchable", //$NON-NLS-1$
 								"Consistency: Object: Description Searchable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39079.length)
+										+ Integer.toString(objs39661.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -762,7 +763,7 @@ public class DescriptionSearchable_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Description Searchable: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39079.length)
+										+ Integer.toString(objs39661.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -771,38 +772,38 @@ public class DescriptionSearchable_c extends NonRootModelElement
 
 		// Description Searchable is a subtype in association: rel.Numb = 9702
 		// The supertype class is: Searchable Element
-		class SearchableElement_c_test39085_c implements ClassQueryInterface_c {
-			SearchableElement_c_test39085_c(java.util.UUID p39086) {
-				m_p39086 = p39086;
+		class SearchableElement_c_test39667_c implements ClassQueryInterface_c {
+			SearchableElement_c_test39667_c(java.util.UUID p39668) {
+				m_p39668 = p39668;
 			}
-			private java.util.UUID m_p39086;
+			private java.util.UUID m_p39668;
 			public boolean evaluate(Object candidate) {
 				SearchableElement_c selected = (SearchableElement_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39086));
+				retval = (selected.getId().equals(m_p39668));
 				return retval;
 			}
 		}
 
-		SearchableElement_c[] objs39084 = SearchableElement_c
+		SearchableElement_c[] objs39666 = SearchableElement_c
 				.SearchableElementInstances(modelRoot,
-						new SearchableElement_c_test39085_c(getId()));
+						new SearchableElement_c_test39667_c(getId()));
 
-		if (((objs39084.length) != 1)) {
+		if (((objs39666.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Description Searchable", //$NON-NLS-1$
 								"Consistency: Object: Description Searchable: Association: 9702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39084.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39666.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Description Searchable: Association: 9702: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39084.length), e);
+										+ Integer.toString(objs39666.length), e);
 			}
 			retval = false;
 

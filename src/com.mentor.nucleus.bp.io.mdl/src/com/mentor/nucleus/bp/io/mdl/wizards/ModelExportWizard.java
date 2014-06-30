@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.IDialogSettings;
+
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -39,6 +40,7 @@ import com.mentor.nucleus.bp.io.core.CoreExport;
 import com.mentor.nucleus.bp.io.core.CorePlugin;
 import com.mentor.nucleus.bp.ui.canvas.GraphicalElement_c;
 import com.mentor.nucleus.bp.ui.canvas.Ooaofgraphics;
+import com.mentor.nucleus.bp.ui.text.activity.AllActivityModifier;
 
 /**
  * This wizard exports model elements selected to a file.
@@ -67,7 +69,8 @@ public class ModelExportWizard extends Wizard implements IImportWizard {
 	
 	/**
 	 * 
-	 * @return false
+	 * @return true is the export was created with the prefernece to enable
+	 *              export of executable oal instance and false if not.
 	 *              
 	 * @throws FileNotFoundException
 	 * @throws InterruptedException
@@ -111,10 +114,6 @@ public class ModelExportWizard extends Wizard implements IImportWizard {
 						outStream,
 						elements.toArray(new NonRootModelElement[elements.size()]), 
 						true, true);
-		if (exporter instanceof CoreExport) {
-			
-			((CoreExport)exporter).setExportGraphics(CoreExport.USER_PREFERENCE);
-		}
 		return false;
 	}
 	
@@ -145,6 +144,8 @@ public class ModelExportWizard extends Wizard implements IImportWizard {
 		boolean successfulExport = false;
 		String errorMsg = "Unable to export to destination file.";  
 		FileOutputStream fos;
+		boolean userSelectedToExportOALInstances = false;
+		boolean oalExportIsLicensed = false;
 		try {
 			m_outputFile = new File(fExportPage.getDestinationFilePath());
 			if (!m_outputFile.exists()) {

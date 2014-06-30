@@ -181,7 +181,8 @@ public class DataItemValue_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -197,8 +198,9 @@ public class DataItemValue_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getDiv_id()) || IdAssigner.NULL_UUID
-				.equals(((DataItemValue_c) elem).getDiv_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getDiv_id()) || IdAssigner.NULL_UUID
+						.equals(((DataItemValue_c) elem).getDiv_id())) && this != elem)) {
 			return false;
 		}
 		if (!getDiv_id().equals(((DataItemValue_c) elem).getDiv_id()))
@@ -963,18 +965,18 @@ public class DataItemValue_c extends NonRootModelElement
 
 		if (StateMachineEventDataItem == null) {
 			// R2934
-			StateMachineEventDataItem_c relInst40287 = (StateMachineEventDataItem_c) baseRoot
+			StateMachineEventDataItem_c relInst40869 = (StateMachineEventDataItem_c) baseRoot
 					.getInstanceList(StateMachineEventDataItem_c.class).get(
 							new Object[]{m_sm_id, m_smedi_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40287 == null) {
-				relInst40287 = (StateMachineEventDataItem_c) Ooaofooa
+			if (relInst40869 == null) {
+				relInst40869 = (StateMachineEventDataItem_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(StateMachineEventDataItem_c.class)
 						.get(new Object[]{m_sm_id, m_smedi_id});
 			}
-			if (relInst40287 == null && searchAllRoots
+			if (relInst40869 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -982,35 +984,35 @@ public class DataItemValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40287 = (StateMachineEventDataItem_c) roots[i]
+					relInst40869 = (StateMachineEventDataItem_c) roots[i]
 							.getInstanceList(StateMachineEventDataItem_c.class)
 							.get(new Object[]{m_sm_id, m_smedi_id});
-					if (relInst40287 != null)
+					if (relInst40869 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40287 != null) {
+			if (relInst40869 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40287) && !isProxy())) {
-					relInst40287.relateAcrossR2934To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40869) && !isProxy())) {
+					relInst40869.relateAcrossR2934To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (PendingEvent == null) {
 			// R2933
-			PendingEvent_c relInst40288 = (PendingEvent_c) baseRoot
+			PendingEvent_c relInst40870 = (PendingEvent_c) baseRoot
 					.getInstanceList(PendingEvent_c.class).get(
 							new Object[]{m_event_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40288 == null) {
-				relInst40288 = (PendingEvent_c) Ooaofooa.getDefaultInstance()
+			if (relInst40870 == null) {
+				relInst40870 = (PendingEvent_c) Ooaofooa.getDefaultInstance()
 						.getInstanceList(PendingEvent_c.class)
 						.get(new Object[]{m_event_id});
 			}
-			if (relInst40288 == null && searchAllRoots
+			if (relInst40870 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1018,35 +1020,35 @@ public class DataItemValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40288 = (PendingEvent_c) roots[i].getInstanceList(
+					relInst40870 = (PendingEvent_c) roots[i].getInstanceList(
 							PendingEvent_c.class).get(new Object[]{m_event_id});
-					if (relInst40288 != null)
+					if (relInst40870 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40288 != null) {
+			if (relInst40870 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40288) && !isProxy())) {
-					relInst40288.relateAcrossR2933To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40870) && !isProxy())) {
+					relInst40870.relateAcrossR2933To(this, notifyChanges);
 				}
 			}
 		}
 
 		if (PropertyParameter == null) {
 			// R2956
-			PropertyParameter_c relInst40289 = (PropertyParameter_c) baseRoot
+			PropertyParameter_c relInst40871 = (PropertyParameter_c) baseRoot
 					.getInstanceList(PropertyParameter_c.class).get(
 							new Object[]{m_pp_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst40289 == null) {
-				relInst40289 = (PropertyParameter_c) Ooaofooa
+			if (relInst40871 == null) {
+				relInst40871 = (PropertyParameter_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(PropertyParameter_c.class)
 						.get(new Object[]{m_pp_id});
 			}
-			if (relInst40289 == null && searchAllRoots
+			if (relInst40871 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -1054,18 +1056,18 @@ public class DataItemValue_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst40289 = (PropertyParameter_c) roots[i]
+					relInst40871 = (PropertyParameter_c) roots[i]
 							.getInstanceList(PropertyParameter_c.class).get(
 									new Object[]{m_pp_id});
-					if (relInst40289 != null)
+					if (relInst40871 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst40289 != null) {
+			if (relInst40871 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst40289) && !isProxy())) {
-					relInst40289.relateAcrossR2956To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40871) && !isProxy())) {
+					relInst40871.relateAcrossR2956To(this, notifyChanges);
 				}
 			}
 		}
@@ -1447,42 +1449,42 @@ public class DataItemValue_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DataItemValue_c_test40291_c implements ClassQueryInterface_c {
-			DataItemValue_c_test40291_c(java.util.UUID p40292) {
-				m_p40292 = p40292;
+		class DataItemValue_c_test40873_c implements ClassQueryInterface_c {
+			DataItemValue_c_test40873_c(java.util.UUID p40874) {
+				m_p40874 = p40874;
 			}
-			private java.util.UUID m_p40292;
+			private java.util.UUID m_p40874;
 			public boolean evaluate(Object candidate) {
 				DataItemValue_c selected = (DataItemValue_c) candidate;
 				boolean retval = false;
-				retval = (selected.getDiv_id().equals(m_p40292));
+				retval = (selected.getDiv_id().equals(m_p40874));
 				return retval;
 			}
 		}
 
-		DataItemValue_c[] objs40290 = DataItemValue_c.DataItemValueInstances(
-				modelRoot, new DataItemValue_c_test40291_c(getDiv_id()));
+		DataItemValue_c[] objs40872 = DataItemValue_c.DataItemValueInstances(
+				modelRoot, new DataItemValue_c_test40873_c(getDiv_id()));
 
-		if (((objs40290.length) == 0)) {
+		if (((objs40872.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Data Item Value", //$NON-NLS-1$
 								"Consistency: Object: Data Item Value: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40290.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40872.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Data Item Value: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs40290.length), e);
+								+ Integer.toString(objs40872.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs40290.length) > 1)) {
+		if (((objs40872.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1490,7 +1492,7 @@ public class DataItemValue_c extends NonRootModelElement
 								"Data Item Value", //$NON-NLS-1$
 								"Consistency: Object: Data Item Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40290.length)
+										+ Integer.toString(objs40872.length)
 										+ " DIV_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1498,7 +1500,7 @@ public class DataItemValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Data Item Value: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40290.length)
+										+ Integer.toString(objs40872.length)
 										+ " DIV_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1507,25 +1509,25 @@ public class DataItemValue_c extends NonRootModelElement
 
 		// Data Item Value is a referring class in association: rel.Numb = 2933
 		// The participating class is: Pending Event
-		class PendingEvent_c_test40296_c implements ClassQueryInterface_c {
-			PendingEvent_c_test40296_c(java.util.UUID p40297) {
-				m_p40297 = p40297;
+		class PendingEvent_c_test40878_c implements ClassQueryInterface_c {
+			PendingEvent_c_test40878_c(java.util.UUID p40879) {
+				m_p40879 = p40879;
 			}
-			private java.util.UUID m_p40297;
+			private java.util.UUID m_p40879;
 			public boolean evaluate(Object candidate) {
 				PendingEvent_c selected = (PendingEvent_c) candidate;
 				boolean retval = false;
-				retval = (selected.getEvent_id().equals(m_p40297));
+				retval = (selected.getEvent_id().equals(m_p40879));
 				return retval;
 			}
 		}
 
-		PendingEvent_c[] objs40295 = PendingEvent_c.PendingEventInstances(
-				modelRoot, new PendingEvent_c_test40296_c(getEvent_id()));
+		PendingEvent_c[] objs40877 = PendingEvent_c.PendingEventInstances(
+				modelRoot, new PendingEvent_c_test40878_c(getEvent_id()));
 
 		// The participant is unconditional
 		// The multiplicity of the participant is one
-		if (((objs40295.length) != 1)) {
+		if (((objs40877.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1533,7 +1535,7 @@ public class DataItemValue_c extends NonRootModelElement
 								"Data Item Value", //$NON-NLS-1$
 								"Consistency: Object: Data Item Value: Association: 2933: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40295.length)
+										+ Integer.toString(objs40877.length)
 										+ " Event_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1541,7 +1543,7 @@ public class DataItemValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Data Item Value: Association: 2933: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40295.length)
+										+ Integer.toString(objs40877.length)
 										+ " Event_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1550,31 +1552,31 @@ public class DataItemValue_c extends NonRootModelElement
 
 		// Data Item Value is a referring class in association: rel.Numb = 2934
 		// The participating class is: State Machine Event Data Item
-		class StateMachineEventDataItem_c_test40299_c
+		class StateMachineEventDataItem_c_test40881_c
 				implements
 					ClassQueryInterface_c {
-			StateMachineEventDataItem_c_test40299_c(java.util.UUID p40300,
-					java.util.UUID p40301) {
-				m_p40300 = p40300;
-				m_p40301 = p40301;
+			StateMachineEventDataItem_c_test40881_c(java.util.UUID p40882,
+					java.util.UUID p40883) {
+				m_p40882 = p40882;
+				m_p40883 = p40883;
 			}
-			private java.util.UUID m_p40300;
-			private java.util.UUID m_p40301;
+			private java.util.UUID m_p40882;
+			private java.util.UUID m_p40883;
 			public boolean evaluate(Object candidate) {
 				StateMachineEventDataItem_c selected = (StateMachineEventDataItem_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSm_id().equals(m_p40300))
-						& (selected.getSmedi_id().equals(m_p40301));
+				retval = (selected.getSm_id().equals(m_p40882))
+						& (selected.getSmedi_id().equals(m_p40883));
 				return retval;
 			}
 		}
 
-		StateMachineEventDataItem_c[] objs40298 = StateMachineEventDataItem_c
+		StateMachineEventDataItem_c[] objs40880 = StateMachineEventDataItem_c
 				.StateMachineEventDataItemInstances(modelRoot,
-						new StateMachineEventDataItem_c_test40299_c(getSm_id(),
+						new StateMachineEventDataItem_c_test40881_c(getSm_id(),
 								getSmedi_id()));
 
-		if (((objs40298.length) > 1)) {
+		if (((objs40880.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1582,7 +1584,7 @@ public class DataItemValue_c extends NonRootModelElement
 								"Data Item Value", //$NON-NLS-1$
 								"Consistency: Object: Data Item Value: Association: 2934: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40298.length)
+										+ Integer.toString(objs40880.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1590,7 +1592,7 @@ public class DataItemValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Data Item Value: Association: 2934: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40298.length)
+										+ Integer.toString(objs40880.length)
 										+ " SM_ID: " + "Not Printable" + " SMedi_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1599,24 +1601,24 @@ public class DataItemValue_c extends NonRootModelElement
 
 		// Data Item Value is a referring class in association: rel.Numb = 2956
 		// The participating class is: Property Parameter
-		class PropertyParameter_c_test40303_c implements ClassQueryInterface_c {
-			PropertyParameter_c_test40303_c(java.util.UUID p40304) {
-				m_p40304 = p40304;
+		class PropertyParameter_c_test40885_c implements ClassQueryInterface_c {
+			PropertyParameter_c_test40885_c(java.util.UUID p40886) {
+				m_p40886 = p40886;
 			}
-			private java.util.UUID m_p40304;
+			private java.util.UUID m_p40886;
 			public boolean evaluate(Object candidate) {
 				PropertyParameter_c selected = (PropertyParameter_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPp_id().equals(m_p40304));
+				retval = (selected.getPp_id().equals(m_p40886));
 				return retval;
 			}
 		}
 
-		PropertyParameter_c[] objs40302 = PropertyParameter_c
+		PropertyParameter_c[] objs40884 = PropertyParameter_c
 				.PropertyParameterInstances(modelRoot,
-						new PropertyParameter_c_test40303_c(getPp_id()));
+						new PropertyParameter_c_test40885_c(getPp_id()));
 
-		if (((objs40302.length) > 1)) {
+		if (((objs40884.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1624,7 +1626,7 @@ public class DataItemValue_c extends NonRootModelElement
 								"Data Item Value", //$NON-NLS-1$
 								"Consistency: Object: Data Item Value: Association: 2956: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs40302.length)
+										+ Integer.toString(objs40884.length)
 										+ " PP_Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1632,7 +1634,7 @@ public class DataItemValue_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Data Item Value: Association: 2956: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40302.length)
+										+ Integer.toString(objs40884.length)
 										+ " PP_Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;

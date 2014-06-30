@@ -170,7 +170,8 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -186,9 +187,10 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
-				.equals(((FunctionPackageParticipant_c) elem).getPart_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getPart_id()) || IdAssigner.NULL_UUID
+						.equals(((FunctionPackageParticipant_c) elem)
+								.getPart_id())) && this != elem)) {
 			return false;
 		}
 		if (!getPart_id().equals(
@@ -732,53 +734,53 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R930
-		InteractionParticipant_c relInst39991 = (InteractionParticipant_c) baseRoot
+		InteractionParticipant_c relInst40573 = (InteractionParticipant_c) baseRoot
 				.getInstanceList(InteractionParticipant_c.class).get(
 						new Object[]{m_part_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39991 == null) {
-			relInst39991 = (InteractionParticipant_c) Ooaofooa
+		if (relInst40573 == null) {
+			relInst40573 = (InteractionParticipant_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(InteractionParticipant_c.class)
 					.get(new Object[]{m_part_id});
 		}
-		if (relInst39991 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40573 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39991 = (InteractionParticipant_c) roots[i]
+				relInst40573 = (InteractionParticipant_c) roots[i]
 						.getInstanceList(InteractionParticipant_c.class).get(
 								new Object[]{m_part_id});
-				if (relInst39991 != null)
+				if (relInst40573 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39991 != null) {
+		if (relInst40573 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39991) && !isProxy())) {
-				relInst39991.relateAcrossR930To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40573) && !isProxy())) {
+				relInst40573.relateAcrossR930To(this, notifyChanges);
 			}
 		}
 
 		if (RepresentsFunctionPackage == null) {
 			// R932
-			FunctionPackage_c relInst39992 = (FunctionPackage_c) baseRoot
+			FunctionPackage_c relInst40574 = (FunctionPackage_c) baseRoot
 					.getInstanceList(FunctionPackage_c.class).get(
 							new Object[]{m_funpack_id});
 			// if there was no local element, check for any global elements
 			// failing that proceed to check other model roots
-			if (relInst39992 == null) {
-				relInst39992 = (FunctionPackage_c) Ooaofooa
+			if (relInst40574 == null) {
+				relInst40574 = (FunctionPackage_c) Ooaofooa
 						.getDefaultInstance()
 						.getInstanceList(FunctionPackage_c.class)
 						.get(new Object[]{m_funpack_id});
 			}
-			if (relInst39992 == null && searchAllRoots
+			if (relInst40574 == null && searchAllRoots
 					&& !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
@@ -786,18 +788,18 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 						// never use elements from any compare root
 						continue;
 					}
-					relInst39992 = (FunctionPackage_c) roots[i]
+					relInst40574 = (FunctionPackage_c) roots[i]
 							.getInstanceList(FunctionPackage_c.class).get(
 									new Object[]{m_funpack_id});
-					if (relInst39992 != null)
+					if (relInst40574 != null)
 						break;
 				}
 			}
 			//synchronized
-			if (relInst39992 != null) {
+			if (relInst40574 != null) {
 				if (relateProxies || !isProxy()
-						|| (inSameComponent(this, relInst39992) && !isProxy())) {
-					relInst39992.relateAcrossR932To(this, notifyChanges);
+						|| (inSameComponent(this, relInst40574) && !isProxy())) {
+					relInst40574.relateAcrossR932To(this, notifyChanges);
 				}
 			}
 		}
@@ -1218,27 +1220,27 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class FunctionPackageParticipant_c_test39994_c
+		class FunctionPackageParticipant_c_test40576_c
 				implements
 					ClassQueryInterface_c {
-			FunctionPackageParticipant_c_test39994_c(java.util.UUID p39995) {
-				m_p39995 = p39995;
+			FunctionPackageParticipant_c_test40576_c(java.util.UUID p40577) {
+				m_p40577 = p40577;
 			}
-			private java.util.UUID m_p39995;
+			private java.util.UUID m_p40577;
 			public boolean evaluate(Object candidate) {
 				FunctionPackageParticipant_c selected = (FunctionPackageParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p39995));
+				retval = (selected.getPart_id().equals(m_p40577));
 				return retval;
 			}
 		}
 
-		FunctionPackageParticipant_c[] objs39993 = FunctionPackageParticipant_c
+		FunctionPackageParticipant_c[] objs40575 = FunctionPackageParticipant_c
 				.FunctionPackageParticipantInstances(modelRoot,
-						new FunctionPackageParticipant_c_test39994_c(
+						new FunctionPackageParticipant_c_test40576_c(
 								getPart_id()));
 
-		if (((objs39993.length) == 0)) {
+		if (((objs40575.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1246,20 +1248,20 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Function Package Participant", //$NON-NLS-1$
 								"Consistency: Object: Function Package Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39993.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40575.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Package Participant: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39993.length), e);
+										+ Integer.toString(objs40575.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39993.length) > 1)) {
+		if (((objs40575.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1268,7 +1270,7 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 								"Function Package Participant", //$NON-NLS-1$
 								"Consistency: Object: Function Package Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39993.length)
+										+ Integer.toString(objs40575.length)
 										+ " Part_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1276,7 +1278,7 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Package Participant: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39993.length)
+										+ Integer.toString(objs40575.length)
 										+ " Part_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1285,24 +1287,24 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 
 		// Function Package Participant is a referring class in association: rel.Numb = 932
 		// The participating class is: Function Package
-		class FunctionPackage_c_test39999_c implements ClassQueryInterface_c {
-			FunctionPackage_c_test39999_c(java.util.UUID p40000) {
-				m_p40000 = p40000;
+		class FunctionPackage_c_test40581_c implements ClassQueryInterface_c {
+			FunctionPackage_c_test40581_c(java.util.UUID p40582) {
+				m_p40582 = p40582;
 			}
-			private java.util.UUID m_p40000;
+			private java.util.UUID m_p40582;
 			public boolean evaluate(Object candidate) {
 				FunctionPackage_c selected = (FunctionPackage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getFunpack_id().equals(m_p40000));
+				retval = (selected.getFunpack_id().equals(m_p40582));
 				return retval;
 			}
 		}
 
-		FunctionPackage_c[] objs39998 = FunctionPackage_c
+		FunctionPackage_c[] objs40580 = FunctionPackage_c
 				.FunctionPackageInstances(modelRoot,
-						new FunctionPackage_c_test39999_c(getFunpack_id()));
+						new FunctionPackage_c_test40581_c(getFunpack_id()));
 
-		if (((objs39998.length) > 1)) {
+		if (((objs40580.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1311,7 +1313,7 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 								"Function Package Participant", //$NON-NLS-1$
 								"Consistency: Object: Function Package Participant: Association: 932: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39998.length)
+										+ Integer.toString(objs40580.length)
 										+ " FunPack_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1319,7 +1321,7 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Function Package Participant: Association: 932: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39998.length)
+										+ Integer.toString(objs40580.length)
 										+ " FunPack_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1328,26 +1330,26 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 
 		// Function Package Participant is a subtype in association: rel.Numb = 930
 		// The supertype class is: Interaction Participant
-		class InteractionParticipant_c_test40002_c
+		class InteractionParticipant_c_test40584_c
 				implements
 					ClassQueryInterface_c {
-			InteractionParticipant_c_test40002_c(java.util.UUID p40003) {
-				m_p40003 = p40003;
+			InteractionParticipant_c_test40584_c(java.util.UUID p40585) {
+				m_p40585 = p40585;
 			}
-			private java.util.UUID m_p40003;
+			private java.util.UUID m_p40585;
 			public boolean evaluate(Object candidate) {
 				InteractionParticipant_c selected = (InteractionParticipant_c) candidate;
 				boolean retval = false;
-				retval = (selected.getPart_id().equals(m_p40003));
+				retval = (selected.getPart_id().equals(m_p40585));
 				return retval;
 			}
 		}
 
-		InteractionParticipant_c[] objs40001 = InteractionParticipant_c
+		InteractionParticipant_c[] objs40583 = InteractionParticipant_c
 				.InteractionParticipantInstances(modelRoot,
-						new InteractionParticipant_c_test40002_c(getPart_id()));
+						new InteractionParticipant_c_test40584_c(getPart_id()));
 
-		if (((objs40001.length) != 1)) {
+		if (((objs40583.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -1355,14 +1357,14 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Function Package Participant", //$NON-NLS-1$
 								"Consistency: Object: Function Package Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs40001.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40583.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Function Package Participant: Association: 930: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs40001.length), e);
+										+ Integer.toString(objs40583.length), e);
 			}
 			retval = false;
 
@@ -1561,8 +1563,8 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 		Message_c[] v_messages = Message_c.getManyMSG_MsOnR1007(v_part);
 
 		Message_c v_message = null;
-		for (int i36710 = 0; i36710 < v_messages.length; i36710++) {
-			v_message = v_messages[i36710];
+		for (int i37292 = 0; i37292 < v_messages.length; i37292++) {
+			v_message = v_messages[i37292];
 
 			if (v_message != null) {
 				v_message.Unformalize();
@@ -1581,8 +1583,8 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 				.getManyCOMM_LNKsOnR1133(v_part);
 
 		CommunicationLink_c v_link = null;
-		for (int i36711 = 0; i36711 < v_links.length; i36711++) {
-			v_link = v_links[i36711];
+		for (int i37293 = 0; i37293 < v_links.length; i37293++) {
+			v_link = v_links[i37293];
 
 			if (v_link != null) {
 				v_link.Unformalize();
@@ -1716,18 +1718,18 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 
 			FunctionPackage_c v_pkg = v_proxyPkg;
 
-			class FunctionPackage_test36819_c implements ClassQueryInterface_c {
-				FunctionPackage_test36819_c(String p36820) {
-					m_p36820 = p36820;
+			class FunctionPackage_test37401_c implements ClassQueryInterface_c {
+				FunctionPackage_test37401_c(String p37402) {
+					m_p37402 = p37402;
 				}
-				private String m_p36820;
+				private String m_p37402;
 				public boolean evaluate(Object candidate) {
 					FunctionPackage_c selected = (FunctionPackage_c) candidate;
-					return (selected.getName().equals(m_p36820));
+					return (selected.getName().equals(m_p37402));
 				}
 			}
 			v_pkg = FunctionPackage_c.FunctionPackageInstance(modelRoot,
-					new FunctionPackage_test36819_c(v_proxyPkg.getName()));
+					new FunctionPackage_test37401_c(v_proxyPkg.getName()));
 
 			boolean v_pkgResolved = (v_pkg != null);
 
@@ -1764,8 +1766,8 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 						.getManySQ_PsOnR930(this));
 
 		Message_c v_message = null;
-		for (int i36712 = 0; i36712 < v_messages.length; i36712++) {
-			v_message = v_messages[i36712];
+		for (int i37294 = 0; i37294 < v_messages.length; i37294++) {
+			v_message = v_messages[i37294];
 
 			SynchronousMessage_c v_syncMessage = SynchronousMessage_c
 					.getOneMSG_SMOnR1018(v_message);
@@ -1784,21 +1786,21 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 				Function_c v_funcProxy = Function_c
 						.getOneS_SYNCOnR1010(v_funcMsg);
 
-				class Function_test37127_c implements ClassQueryInterface_c {
-					Function_test37127_c(String p37128) {
-						m_p37128 = p37128;
+				class Function_test37709_c implements ClassQueryInterface_c {
+					Function_test37709_c(String p37710) {
+						m_p37710 = p37710;
 					}
-					private String m_p37128;
+					private String m_p37710;
 					public boolean evaluate(Object candidate) {
 						Function_c selected = (Function_c) candidate;
-						return (selected.getName().equals(m_p37128));
+						return (selected.getName().equals(m_p37710));
 					}
 				}
 				Function_c v_function = Function_c.getOneS_SYNCOnR31(
 						FunctionInPackage_c
 								.getManyS_FIPsOnR31(FunctionPackage_c
 										.getManyS_FPKsOnR932(this)),
-						new Function_test37127_c(v_funcProxy.getName()));
+						new Function_test37709_c(v_funcProxy.getName()));
 
 				if (((v_function != null))) {
 
@@ -1844,8 +1846,8 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 					.getManyMSG_MsOnR1007(InteractionParticipant_c
 							.getManySQ_PsOnR930(v_ls));
 
-			for (int i36713 = 0; i36713 < v_messages.length; i36713++) {
-				v_message = v_messages[i36713];
+			for (int i37295 = 0; i37295 < v_messages.length; i37295++) {
+				v_message = v_messages[i37295];
 
 				SynchronousMessage_c v_syncMessage = SynchronousMessage_c
 						.getOneMSG_SMOnR1018(v_message);
@@ -1864,21 +1866,21 @@ public class FunctionPackageParticipant_c extends NonRootModelElement
 					Function_c v_funcProxy = Function_c
 							.getOneS_SYNCOnR1010(v_funcMsg);
 
-					class Function_test37129_c implements ClassQueryInterface_c {
-						Function_test37129_c(String p37130) {
-							m_p37130 = p37130;
+					class Function_test37711_c implements ClassQueryInterface_c {
+						Function_test37711_c(String p37712) {
+							m_p37712 = p37712;
 						}
-						private String m_p37130;
+						private String m_p37712;
 						public boolean evaluate(Object candidate) {
 							Function_c selected = (Function_c) candidate;
-							return (selected.getName().equals(m_p37130));
+							return (selected.getName().equals(m_p37712));
 						}
 					}
 					Function_c v_function = Function_c.getOneS_SYNCOnR31(
 							FunctionInPackage_c
 									.getManyS_FIPsOnR31(FunctionPackage_c
 											.getManyS_FPKsOnR932(this)),
-							new Function_test37129_c(v_funcProxy.getName()));
+							new Function_test37711_c(v_funcProxy.getName()));
 
 					if (((v_function != null))) {
 

@@ -185,8 +185,8 @@ public class SqlLexer extends antlr.CharScanner
 		int _saveIndex;
 
 		{
-			int _cnt253 = 0;
-			_loop253 : do {
+			int _cnt330 = 0;
+			_loop330 : do {
 				switch (LA(1)) {
 					case 'a' :
 					case 'b' :
@@ -222,15 +222,15 @@ public class SqlLexer extends antlr.CharScanner
 						break;
 					}
 					default : {
-						if (_cnt253 >= 1) {
-							break _loop253;
+						if (_cnt330 >= 1) {
+							break _loop330;
 						} else {
 							throw new NoViableAltForCharException((char) LA(1),
 									getFilename(), getLine(), getColumn());
 						}
 					}
 				}
-				_cnt253++;
+				_cnt330++;
 			} while (true);
 		}
 		if (_createToken && _token == null && _ttype != Token.SKIP) {
@@ -276,8 +276,8 @@ public class SqlLexer extends antlr.CharScanner
 			}
 		}
 		{
-			int _cnt257 = 0;
-			_loop257 : do {
+			int _cnt334 = 0;
+			_loop334 : do {
 				switch (LA(1)) {
 					case '0' :
 					case '1' :
@@ -297,15 +297,15 @@ public class SqlLexer extends antlr.CharScanner
 						break;
 					}
 					default : {
-						if (_cnt257 >= 1) {
-							break _loop257;
+						if (_cnt334 >= 1) {
+							break _loop334;
 						} else {
 							throw new NoViableAltForCharException((char) LA(1),
 									getFilename(), getLine(), getColumn());
 						}
 					}
 				}
-				_cnt257++;
+				_cnt334++;
 			} while (true);
 		}
 		if (_createToken && _token == null && _ttype != Token.SKIP) {
@@ -327,7 +327,7 @@ public class SqlLexer extends antlr.CharScanner
 
 		match('\'');
 		{
-			_loop261 : do {
+			_loop338 : do {
 				switch (LA(1)) {
 					case '\r' : {
 						_saveIndex = text.length();
@@ -350,7 +350,7 @@ public class SqlLexer extends antlr.CharScanner
 								match(_tokenSet_1);
 							}
 						} else {
-							break _loop261;
+							break _loop338;
 						}
 				}
 			} while (true);
@@ -377,7 +377,7 @@ public class SqlLexer extends antlr.CharScanner
 		match('"');
 		text.setLength(_saveIndex);
 		{
-			_loop264 : do {
+			_loop341 : do {
 				switch (LA(1)) {
 					case '0' :
 					case '1' :
@@ -406,7 +406,7 @@ public class SqlLexer extends antlr.CharScanner
 						break;
 					}
 					default : {
-						break _loop264;
+						break _loop341;
 					}
 				}
 			} while (true);
@@ -433,11 +433,11 @@ public class SqlLexer extends antlr.CharScanner
 
 		match("--");
 		{
-			_loop267 : do {
+			_loop344 : do {
 				if ((_tokenSet_2.member(LA(1)))) {
 					matchNot('\n');
 				} else {
-					break _loop267;
+					break _loop344;
 				}
 
 			} while (true);
@@ -470,15 +470,15 @@ public class SqlLexer extends antlr.CharScanner
 
 		match("<<<<<<<");
 		{
-			_loop271 : do {
+			_loop348 : do {
 				// nongreedy exit test
 				if ((LA(1) == '\n') && (true))
-					break _loop271;
+					break _loop348;
 				if (((LA(1) >= '\u0000' && LA(1) <= '\ufffe'))
 						&& ((LA(2) >= '\u0000' && LA(2) <= '\ufffe'))) {
 					matchNot(EOF_CHAR);
 				} else {
-					break _loop271;
+					break _loop348;
 				}
 
 			} while (true);
@@ -511,30 +511,30 @@ public class SqlLexer extends antlr.CharScanner
 
 		match("=======");
 		{
-			_loop275 : do {
+			_loop352 : do {
 				// nongreedy exit test
 				if ((LA(1) == '>') && (LA(2) == '>'))
-					break _loop275;
+					break _loop352;
 				if (((LA(1) >= '\u0000' && LA(1) <= '\ufffe'))
 						&& ((LA(2) >= '\u0000' && LA(2) <= '\ufffe'))) {
 					matchNot(EOF_CHAR);
 				} else {
-					break _loop275;
+					break _loop352;
 				}
 
 			} while (true);
 		}
 		match(">>>>>>>");
 		{
-			_loop277 : do {
+			_loop354 : do {
 				// nongreedy exit test
 				if ((LA(1) == '\n') && (true))
-					break _loop277;
+					break _loop354;
 				if (((LA(1) >= '\u0000' && LA(1) <= '\ufffe'))
 						&& ((LA(2) >= '\u0000' && LA(2) <= '\ufffe'))) {
 					matchNot(EOF_CHAR);
 				} else {
-					break _loop277;
+					break _loop354;
 				}
 
 			} while (true);
@@ -565,8 +565,8 @@ public class SqlLexer extends antlr.CharScanner
 		int _saveIndex;
 
 		{
-			int _cnt281 = 0;
-			_loop281 : do {
+			int _cnt358 = 0;
+			_loop358 : do {
 				switch (LA(1)) {
 					case '\t' :
 					case ' ' : {
@@ -579,15 +579,15 @@ public class SqlLexer extends antlr.CharScanner
 						break;
 					}
 					default : {
-						if (_cnt281 >= 1) {
-							break _loop281;
+						if (_cnt358 >= 1) {
+							break _loop358;
 						} else {
 							throw new NoViableAltForCharException((char) LA(1),
 									getFilename(), getLine(), getColumn());
 						}
 					}
 				}
-				_cnt281++;
+				_cnt358++;
 			} while (true);
 		}
 		if (inputState.guessing == 0) {
@@ -644,22 +644,22 @@ public class SqlLexer extends antlr.CharScanner
 		int _saveIndex;
 
 		{
-			boolean synPredMatched287 = false;
+			boolean synPredMatched364 = false;
 			if (((LA(1) == '\r') && (LA(2) == '\n'))) {
-				int _m287 = mark();
-				synPredMatched287 = true;
+				int _m364 = mark();
+				synPredMatched364 = true;
 				inputState.guessing++;
 				try {
 					{
 						match("\r\n");
 					}
 				} catch (RecognitionException pe) {
-					synPredMatched287 = false;
+					synPredMatched364 = false;
 				}
-				rewind(_m287);
+				rewind(_m364);
 				inputState.guessing--;
 			}
-			if (synPredMatched287) {
+			if (synPredMatched364) {
 				match("\r\n");
 			} else if ((LA(1) == '\n')) {
 				match('\n');

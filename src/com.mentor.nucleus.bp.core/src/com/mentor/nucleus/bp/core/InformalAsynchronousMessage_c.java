@@ -138,7 +138,8 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -154,9 +155,10 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
-				.equals(((InformalAsynchronousMessage_c) elem).getMsg_id()))
-				&& this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getMsg_id()) || IdAssigner.NULL_UUID
+						.equals(((InformalAsynchronousMessage_c) elem)
+								.getMsg_id())) && this != elem)) {
 			return false;
 		}
 		if (!getMsg_id().equals(
@@ -412,36 +414,36 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1019
-		AsynchronousMessage_c relInst39576 = (AsynchronousMessage_c) baseRoot
+		AsynchronousMessage_c relInst40158 = (AsynchronousMessage_c) baseRoot
 				.getInstanceList(AsynchronousMessage_c.class).get(
 						new Object[]{m_msg_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39576 == null) {
-			relInst39576 = (AsynchronousMessage_c) Ooaofooa
+		if (relInst40158 == null) {
+			relInst40158 = (AsynchronousMessage_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(AsynchronousMessage_c.class)
 					.get(new Object[]{m_msg_id});
 		}
-		if (relInst39576 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst40158 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39576 = (AsynchronousMessage_c) roots[i]
+				relInst40158 = (AsynchronousMessage_c) roots[i]
 						.getInstanceList(AsynchronousMessage_c.class).get(
 								new Object[]{m_msg_id});
-				if (relInst39576 != null)
+				if (relInst40158 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39576 != null) {
+		if (relInst40158 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39576) && !isProxy())) {
-				relInst39576.relateAcrossR1019To(this, notifyChanges);
+					|| (inSameComponent(this, relInst40158) && !isProxy())) {
+				relInst40158.relateAcrossR1019To(this, notifyChanges);
 			}
 		}
 
@@ -692,27 +694,27 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class InformalAsynchronousMessage_c_test39578_c
+		class InformalAsynchronousMessage_c_test40160_c
 				implements
 					ClassQueryInterface_c {
-			InformalAsynchronousMessage_c_test39578_c(java.util.UUID p39579) {
-				m_p39579 = p39579;
+			InformalAsynchronousMessage_c_test40160_c(java.util.UUID p40161) {
+				m_p40161 = p40161;
 			}
-			private java.util.UUID m_p39579;
+			private java.util.UUID m_p40161;
 			public boolean evaluate(Object candidate) {
 				InformalAsynchronousMessage_c selected = (InformalAsynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39579));
+				retval = (selected.getMsg_id().equals(m_p40161));
 				return retval;
 			}
 		}
 
-		InformalAsynchronousMessage_c[] objs39577 = InformalAsynchronousMessage_c
+		InformalAsynchronousMessage_c[] objs40159 = InformalAsynchronousMessage_c
 				.InformalAsynchronousMessageInstances(modelRoot,
-						new InformalAsynchronousMessage_c_test39578_c(
+						new InformalAsynchronousMessage_c_test40160_c(
 								getMsg_id()));
 
-		if (((objs39577.length) == 0)) {
+		if (((objs40159.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -720,20 +722,20 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Informal Asynchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Asynchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39577.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40159.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Asynchronous Message: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39577.length), e);
+										+ Integer.toString(objs40159.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39577.length) > 1)) {
+		if (((objs40159.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -742,7 +744,7 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 								"Informal Asynchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Asynchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39577.length)
+										+ Integer.toString(objs40159.length)
 										+ " Msg_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -750,7 +752,7 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Informal Asynchronous Message: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39577.length)
+										+ Integer.toString(objs40159.length)
 										+ " Msg_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -759,26 +761,26 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 
 		// Informal Asynchronous Message is a subtype in association: rel.Numb = 1019
 		// The supertype class is: Asynchronous Message
-		class AsynchronousMessage_c_test39583_c
+		class AsynchronousMessage_c_test40165_c
 				implements
 					ClassQueryInterface_c {
-			AsynchronousMessage_c_test39583_c(java.util.UUID p39584) {
-				m_p39584 = p39584;
+			AsynchronousMessage_c_test40165_c(java.util.UUID p40166) {
+				m_p40166 = p40166;
 			}
-			private java.util.UUID m_p39584;
+			private java.util.UUID m_p40166;
 			public boolean evaluate(Object candidate) {
 				AsynchronousMessage_c selected = (AsynchronousMessage_c) candidate;
 				boolean retval = false;
-				retval = (selected.getMsg_id().equals(m_p39584));
+				retval = (selected.getMsg_id().equals(m_p40166));
 				return retval;
 			}
 		}
 
-		AsynchronousMessage_c[] objs39582 = AsynchronousMessage_c
+		AsynchronousMessage_c[] objs40164 = AsynchronousMessage_c
 				.AsynchronousMessageInstances(modelRoot,
-						new AsynchronousMessage_c_test39583_c(getMsg_id()));
+						new AsynchronousMessage_c_test40165_c(getMsg_id()));
 
-		if (((objs39582.length) != 1)) {
+		if (((objs40164.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -786,14 +788,14 @@ public class InformalAsynchronousMessage_c extends NonRootModelElement
 								ILogger.CONSISTENCY,
 								"Informal Asynchronous Message", //$NON-NLS-1$
 								"Consistency: Object: Informal Asynchronous Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39582.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs40164.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Informal Asynchronous Message: Association: 1019: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39582.length), e);
+										+ Integer.toString(objs40164.length), e);
 			}
 			retval = false;
 

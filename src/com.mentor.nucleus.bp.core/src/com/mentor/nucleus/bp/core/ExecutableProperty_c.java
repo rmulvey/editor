@@ -489,7 +489,7 @@ p_m_descrip
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -505,7 +505,7 @@ p_m_descrip
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ExecutableProperty_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ExecutableProperty_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((ExecutableProperty_c)elem).getId())) return false;
@@ -1790,29 +1790,29 @@ public static ExecutableProperty_c [] getManyC_EPsOnR4004(InterfaceOperation_c t
 
 	if (ProvidesSignatureOfInterface == null) {          
       // R4003
-      Interface_c relInst55494 = (Interface_c) baseRoot.getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
+      Interface_c relInst57043 = (Interface_c) baseRoot.getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55494 == null) {
-      			relInst55494 = (Interface_c) Ooaofooa.getDefaultInstance().getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
+      		if (relInst57043 == null) {
+      			relInst57043 = (Interface_c) Ooaofooa.getDefaultInstance().getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
       		}
-			if (relInst55494 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57043 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55494 = (Interface_c) roots[i].getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
-					if (relInst55494 != null)
+					relInst57043 = (Interface_c) roots[i].getInstanceList(Interface_c.class).get(new Object[] {m_interface_id});
+					if (relInst57043 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55494 != null )
+      if ( relInst57043 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55494) && !isProxy())) {
-	      relInst55494.relateAcrossR4003To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57043) && !isProxy())) {
+	      relInst57043.relateAcrossR4003To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2247,56 +2247,56 @@ return v_result;
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ExecutableProperty_c_test55496_c implements ClassQueryInterface_c
+    class ExecutableProperty_c_test57045_c implements ClassQueryInterface_c
     {
-	  ExecutableProperty_c_test55496_c( java.util.UUID            p55497 ) {
-	  m_p55497 = p55497;
+	  ExecutableProperty_c_test57045_c( java.util.UUID            p57046 ) {
+	  m_p57046 = p57046;
 	  }
-	  private java.util.UUID             m_p55497; 
+	  private java.util.UUID             m_p57046; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExecutableProperty_c selected = (ExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55497));
+	      retval = (selected.getId().equals(m_p57046));
 	      return retval;
 	  }
     }
 
-    ExecutableProperty_c [] objs55495 = 
-    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test55496_c(getId())) ;
+    ExecutableProperty_c [] objs57044 = 
+    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test57045_c(getId())) ;
 
-    if ( (  (objs55495.length) == 0) )
+    if ( (  (objs57044.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Executable Property", //$NON-NLS-1$
            "Consistency: Object: Executable Property: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55495.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57044.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Executable Property: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55495.length )  , e); 
+          + Integer.toString( objs57044.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55495.length) > 1) )
+    if ( (  (objs57044.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Executable Property", //$NON-NLS-1$
            "Consistency: Object: Executable Property: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55495.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57044.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Executable Property: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55495.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57044.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2304,40 +2304,40 @@ return v_result;
 
           // Executable Property is a referring class in association: rel.Numb = 4003
           // The participating class is: Interface
-    class Interface_c_test55501_c implements ClassQueryInterface_c
+    class Interface_c_test57050_c implements ClassQueryInterface_c
     {
-	  Interface_c_test55501_c( java.util.UUID            p55502 ) {
-	  m_p55502 = p55502;
+	  Interface_c_test57050_c( java.util.UUID            p57051 ) {
+	  m_p57051 = p57051;
 	  }
-	  private java.util.UUID             m_p55502; 
+	  private java.util.UUID             m_p57051; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Interface_c selected = (Interface_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55502));
+	      retval = (selected.getId().equals(m_p57051));
 	      return retval;
 	  }
     }
 
-    Interface_c [] objs55500 = 
-    Interface_c.InterfaceInstances(modelRoot, new Interface_c_test55501_c(getInterface_id())) ;
+    Interface_c [] objs57049 = 
+    Interface_c.InterfaceInstances(modelRoot, new Interface_c_test57050_c(getInterface_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55500.length) != 1) )
+    if ( (  (objs57049.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Executable Property", //$NON-NLS-1$
            "Consistency: Object: Executable Property: Association: 4003: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55500.length )  + " Interface_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57049.length )  + " Interface_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Executable Property: Association: 4003: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55500.length )  + " Interface_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57049.length )  + " Interface_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2346,60 +2346,60 @@ return v_result;
           // Executable Property is a participating class in association: rel.Numb = 4006
              // Object: Property Parameter
           // Supertype: rel.Numb = 4004
-    int objs55503 = 0;
+    int objs57052 = 0;
             // Subtype Object: Interface Signal
-    class InterfaceSignal_c_test55504_c implements ClassQueryInterface_c
+    class InterfaceSignal_c_test57053_c implements ClassQueryInterface_c
     {
-	  InterfaceSignal_c_test55504_c( java.util.UUID            p55505 ) {
-	  m_p55505 = p55505;
+	  InterfaceSignal_c_test57053_c( java.util.UUID            p57054 ) {
+	  m_p57054 = p57054;
 	  }
-	  private java.util.UUID             m_p55505; 
+	  private java.util.UUID             m_p57054; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceSignal_c selected = (InterfaceSignal_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55505));
+	      retval = (selected.getId().equals(m_p57054));
 	      return retval;
 	  }
     }
 
-    InterfaceSignal_c [] objs55506 = 
-    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test55504_c(getId())) ;
+    InterfaceSignal_c [] objs57055 = 
+    InterfaceSignal_c.InterfaceSignalInstances(modelRoot, new InterfaceSignal_c_test57053_c(getId())) ;
  
-    objs55503 = objs55503 + objs55506.length;
+    objs57052 = objs57052 + objs57055.length;
             // Subtype Object: Interface Operation
-    class InterfaceOperation_c_test55507_c implements ClassQueryInterface_c
+    class InterfaceOperation_c_test57056_c implements ClassQueryInterface_c
     {
-	  InterfaceOperation_c_test55507_c( java.util.UUID            p55508 ) {
-	  m_p55508 = p55508;
+	  InterfaceOperation_c_test57056_c( java.util.UUID            p57057 ) {
+	  m_p57057 = p57057;
 	  }
-	  private java.util.UUID             m_p55508; 
+	  private java.util.UUID             m_p57057; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55508));
+	      retval = (selected.getId().equals(m_p57057));
 	      return retval;
 	  }
     }
 
-    InterfaceOperation_c [] objs55509 = 
-    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test55507_c(getId())) ;
+    InterfaceOperation_c [] objs57058 = 
+    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test57056_c(getId())) ;
  
-    objs55503 = objs55503 + objs55509.length;
-    if ( objs55503 != 1 )
+    objs57052 = objs57052 + objs57058.length;
+    if ( objs57052 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Executable Property", //$NON-NLS-1$
            "Consistency: Object: Executable Property: Association: 4004: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55503 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57052 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Executable Property: Association: 4004: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55503 )  , e); 
+          + Integer.toString( objs57052 )  , e); 
       }
       retval = false;
 
@@ -2468,9 +2468,9 @@ PropertyParameter_c [] v_parms = PropertyParameter_c.getManyC_PPsOnR4006(this);
 
 
 PropertyParameter_c  v_parm = null;
-for ( int i53718 = 0; i53718 < v_parms.length; i53718++)
+for ( int i55246 = 0; i55246 < v_parms.length; i55246++)
 {
-  v_parm = v_parms[i53718] ;
+  v_parm = v_parms[i55246] ;
 
 this.unrelateAcrossR4006From(v_parm);
 
@@ -2520,7 +2520,7 @@ if ( (  (v_peers.length) > 1) )
 boolean      v_initialOrderingCheckPerformed = false ;
 
 
-  class PropertyParameter_test54336_c implements ClassQueryInterface_c
+  class PropertyParameter_test55885_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2528,7 +2528,7 @@ boolean      v_initialOrderingCheckPerformed = false ;
 		return (selected.getPp_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-PropertyParameter_c v_head = PropertyParameter_c.getOneC_PPOnR4006(this, new PropertyParameter_test54336_c());
+PropertyParameter_c v_head = PropertyParameter_c.getOneC_PPOnR4006(this, new PropertyParameter_test55885_c());
 
 
 PropertyParameter_c v_endOfList = v_head ;
@@ -2538,9 +2538,9 @@ int          v_loopCnt = 0 ;
 
 
 PropertyParameter_c  v_peer = null;
-for ( int i53719 = 0; i53719 < v_peers.length; i53719++)
+for ( int i55247 = 0; i55247 < v_peers.length; i55247++)
 {
-  v_peer = v_peers[i53719] ;
+  v_peer = v_peers[i55247] ;
 
 if ( (  !v_initialOrderingCheckPerformed) )
 {
@@ -2831,9 +2831,9 @@ PropertyParameter_c [] v_peers = PropertyParameter_c.getManyC_PPsOnR4006(this);
 
 
 PropertyParameter_c  v_peer = null;
-for ( int i53720 = 0; i53720 < v_peers.length; i53720++)
+for ( int i55248 = 0; i55248 < v_peers.length; i55248++)
 {
-  v_peer = v_peers[i53720] ;
+  v_peer = v_peers[i55248] ;
 
 if ( (v_peer != v_parameter) )
 {
@@ -2892,9 +2892,9 @@ v_messages = Message_c.getManyMSG_MsOnR1018(SynchronousMessage_c.getManyMSG_SMsO
 }
 
 Message_c  v_message = null;
-for ( int i53721 = 0; i53721 < v_messages.length; i53721++)
+for ( int i55249 = 0; i55249 < v_messages.length; i55249++)
 {
-  v_message = v_messages[i53721] ;
+  v_message = v_messages[i55249] ;
 
 MessageArgument_c v_arg = new MessageArgument_c(modelRoot) ;
 Ooaofooa.getDefaultInstance().fireModelElementCreated(new BaseModelDelta(Modeleventnotification_c.DELTA_NEW, v_arg));

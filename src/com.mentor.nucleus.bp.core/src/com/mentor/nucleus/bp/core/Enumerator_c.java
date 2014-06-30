@@ -198,7 +198,7 @@ p_m_previous_enum_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -214,7 +214,7 @@ p_m_previous_enum_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getEnum_id()) || IdAssigner.NULL_UUID.equals(((Enumerator_c)elem).getEnum_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getEnum_id()) || IdAssigner.NULL_UUID.equals(((Enumerator_c)elem).getEnum_id())) && this != elem)) {
       	return false;
       }
       if (!getEnum_id().equals(((Enumerator_c)elem).getEnum_id())) return false;
@@ -1061,29 +1061,29 @@ public static Enumerator_c [] getManyS_ENUMsOnR56Succeeds(Enumerator_c target, b
 
 	if (IsDefinedByEnumerationDataType == null) {          
       // R27
-      EnumerationDataType_c relInst55014 = (EnumerationDataType_c) baseRoot.getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
+      EnumerationDataType_c relInst56563 = (EnumerationDataType_c) baseRoot.getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55014 == null) {
-      			relInst55014 = (EnumerationDataType_c) Ooaofooa.getDefaultInstance().getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
+      		if (relInst56563 == null) {
+      			relInst56563 = (EnumerationDataType_c) Ooaofooa.getDefaultInstance().getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
       		}
-			if (relInst55014 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56563 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55014 = (EnumerationDataType_c) roots[i].getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
-					if (relInst55014 != null)
+					relInst56563 = (EnumerationDataType_c) roots[i].getInstanceList(EnumerationDataType_c.class).get(new Object[] {m_edt_dt_id});
+					if (relInst56563 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55014 != null )
+      if ( relInst56563 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55014) && !isProxy())) {
-	      relInst55014.relateAcrossR27To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56563) && !isProxy())) {
+	      relInst56563.relateAcrossR27To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1091,29 +1091,29 @@ public static Enumerator_c [] getManyS_ENUMsOnR56Succeeds(Enumerator_c target, b
 
 	if (SucceedsEnumerator == null) {          
       // R56
-      Enumerator_c relInst55015 = (Enumerator_c) baseRoot.getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
+      Enumerator_c relInst56564 = (Enumerator_c) baseRoot.getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55015 == null) {
-      			relInst55015 = (Enumerator_c) Ooaofooa.getDefaultInstance().getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
+      		if (relInst56564 == null) {
+      			relInst56564 = (Enumerator_c) Ooaofooa.getDefaultInstance().getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
       		}
-			if (relInst55015 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56564 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55015 = (Enumerator_c) roots[i].getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
-					if (relInst55015 != null)
+					relInst56564 = (Enumerator_c) roots[i].getInstanceList(Enumerator_c.class).get(new Object[] {m_previous_enum_id});
+					if (relInst56564 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55015 != null )
+      if ( relInst56564 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55015) && !isProxy())) {
-	      relInst55015.relateAcrossR56ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56564) && !isProxy())) {
+	      relInst56564.relateAcrossR56ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1505,56 +1505,56 @@ private static Enumerator_c findEnumeratorInstance(ModelRoot modelRoot, ClassQue
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Enumerator_c_test55017_c implements ClassQueryInterface_c
+    class Enumerator_c_test56566_c implements ClassQueryInterface_c
     {
-	  Enumerator_c_test55017_c( java.util.UUID            p55018 ) {
-	  m_p55018 = p55018;
+	  Enumerator_c_test56566_c( java.util.UUID            p56567 ) {
+	  m_p56567 = p56567;
 	  }
-	  private java.util.UUID             m_p55018; 
+	  private java.util.UUID             m_p56567; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Enumerator_c selected = (Enumerator_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEnum_id().equals(m_p55018));
+	      retval = (selected.getEnum_id().equals(m_p56567));
 	      return retval;
 	  }
     }
 
-    Enumerator_c [] objs55016 = 
-    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test55017_c(getEnum_id())) ;
+    Enumerator_c [] objs56565 = 
+    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test56566_c(getEnum_id())) ;
 
-    if ( (  (objs55016.length) == 0) )
+    if ( (  (objs56565.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumerator", //$NON-NLS-1$
            "Consistency: Object: Enumerator: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55016.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56565.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumerator: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55016.length )  , e); 
+          + Integer.toString( objs56565.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55016.length) > 1) )
+    if ( (  (objs56565.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumerator", //$NON-NLS-1$
            "Consistency: Object: Enumerator: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55016.length )  + " Enum_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56565.length )  + " Enum_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumerator: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55016.length )  + " Enum_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56565.length )  + " Enum_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1562,38 +1562,38 @@ private static Enumerator_c findEnumeratorInstance(ModelRoot modelRoot, ClassQue
 
           // Enumerator is a referring class in association: rel.Numb = 56
           // The participating class is: Enumerator
-    class Enumerator_c_test55022_c implements ClassQueryInterface_c
+    class Enumerator_c_test56571_c implements ClassQueryInterface_c
     {
-	  Enumerator_c_test55022_c( java.util.UUID            p55023 ) {
-	  m_p55023 = p55023;
+	  Enumerator_c_test56571_c( java.util.UUID            p56572 ) {
+	  m_p56572 = p56572;
 	  }
-	  private java.util.UUID             m_p55023; 
+	  private java.util.UUID             m_p56572; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Enumerator_c selected = (Enumerator_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getEnum_id().equals(m_p55023));
+	      retval = (selected.getEnum_id().equals(m_p56572));
 	      return retval;
 	  }
     }
 
-    Enumerator_c [] objs55021 = 
-    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test55022_c(getPrevious_enum_id())) ;
+    Enumerator_c [] objs56570 = 
+    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test56571_c(getPrevious_enum_id())) ;
 
-    if ( (  (objs55021.length) > 1) )
+    if ( (  (objs56570.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumerator", //$NON-NLS-1$
            "Consistency: Object: Enumerator: Association: 56: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55021.length )  + " Previous_Enum_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56570.length )  + " Previous_Enum_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumerator: Association: 56: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55021.length )  + " Previous_Enum_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56570.length )  + " Previous_Enum_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1601,40 +1601,40 @@ private static Enumerator_c findEnumeratorInstance(ModelRoot modelRoot, ClassQue
                 
           // Enumerator is a referring class in association: rel.Numb = 27
           // The participating class is: Enumeration Data Type
-    class EnumerationDataType_c_test55025_c implements ClassQueryInterface_c
+    class EnumerationDataType_c_test56574_c implements ClassQueryInterface_c
     {
-	  EnumerationDataType_c_test55025_c( java.util.UUID            p55026 ) {
-	  m_p55026 = p55026;
+	  EnumerationDataType_c_test56574_c( java.util.UUID            p56575 ) {
+	  m_p56575 = p56575;
 	  }
-	  private java.util.UUID             m_p55026; 
+	  private java.util.UUID             m_p56575; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EnumerationDataType_c selected = (EnumerationDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55026));
+	      retval = (selected.getDt_id().equals(m_p56575));
 	      return retval;
 	  }
     }
 
-    EnumerationDataType_c [] objs55024 = 
-    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test55025_c(getEdt_dt_id())) ;
+    EnumerationDataType_c [] objs56573 = 
+    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test56574_c(getEdt_dt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55024.length) != 1) )
+    if ( (  (objs56573.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumerator", //$NON-NLS-1$
            "Consistency: Object: Enumerator: Association: 27: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55024.length )  + " EDT_DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56573.length )  + " EDT_DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumerator: Association: 27: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55024.length )  + " EDT_DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56573.length )  + " EDT_DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1642,37 +1642,37 @@ private static Enumerator_c findEnumeratorInstance(ModelRoot modelRoot, ClassQue
 
           // Enumerator is a participating class in association: rel.Numb = 56
              // Object: Enumerator
-    class Enumerator_c_test55028_c implements ClassQueryInterface_c
+    class Enumerator_c_test56577_c implements ClassQueryInterface_c
     {
-	  Enumerator_c_test55028_c( java.util.UUID            p55029 ) {
-	  m_p55029 = p55029;
+	  Enumerator_c_test56577_c( java.util.UUID            p56578 ) {
+	  m_p56578 = p56578;
 	  }
-	  private java.util.UUID             m_p55029; 
+	  private java.util.UUID             m_p56578; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Enumerator_c selected = (Enumerator_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPrevious_enum_id().equals(m_p55029));
+	      retval = (selected.getPrevious_enum_id().equals(m_p56578));
 	      return retval;
 	  }
     }
 
-    Enumerator_c [] objs55027 = 
-    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test55028_c(getEnum_id())) ;
+    Enumerator_c [] objs56576 = 
+    Enumerator_c.EnumeratorInstances(modelRoot, new Enumerator_c_test56577_c(getEnum_id())) ;
 
-    if ( (  (objs55027.length) > 1) )
+    if ( (  (objs56576.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumerator", //$NON-NLS-1$
            "Consistency: Object: Enumerator: Association: 56: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55027.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56576.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumerator: Association: 56: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55027.length )  , e); 
+          + Integer.toString( objs56576.length )  , e); 
       }
       retval = false;
 
@@ -1739,9 +1739,9 @@ LiteralEnumerator_c [] v_litEnums = LiteralEnumerator_c.getManyV_LENsOnR824(this
 
 
 LiteralEnumerator_c  v_litEnum = null;
-for ( int i53568 = 0; i53568 < v_litEnums.length; i53568++)
+for ( int i55024 = 0; i55024 < v_litEnums.length; i55024++)
 {
-  v_litEnum = v_litEnums[i53568] ;
+  v_litEnum = v_litEnums[i55024] ;
 
 this.unrelateAcrossR824From(v_litEnum);
 
@@ -2103,9 +2103,9 @@ Enumerator_c [] v_enumerators = Enumerator_c.getManyS_ENUMsOnR27(v_edt);
 
 
 Enumerator_c  v_enumerator = null;
-for ( int i53569 = 0; i53569 < v_enumerators.length; i53569++)
+for ( int i55025 = 0; i55025 < v_enumerators.length; i55025++)
 {
-  v_enumerator = v_enumerators[i53569] ;
+  v_enumerator = v_enumerators[i55025] ;
 
 if ( (v_enumerator != this && v_enumerator.getName().equals(getName())) )
 {

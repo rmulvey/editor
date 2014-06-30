@@ -25,4 +25,5 @@ public interface IModelClassInspector{
 	ObjectElement[] getAttributes(Object arg);
 	Object[] getReferentialDetails(Class<?> referentialClass, Object arg);
 	Image getImage(Object arg);
+	int getTreeDifferenceSlot(Object element);
 }

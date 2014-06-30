@@ -148,7 +148,7 @@ p_m_package_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -164,7 +164,7 @@ p_m_package_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((ActivityInActivity_c)elem).getPackage_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getPackage_id()) || IdAssigner.NULL_UUID.equals(((ActivityInActivity_c)elem).getPackage_id())) && this != elem)) {
       	return false;
       }
       if (!getPackage_id().equals(((ActivityInActivity_c)elem).getPackage_id())) return false;
@@ -607,29 +607,29 @@ public static ActivityInActivity_c [] getManyA_AIAsOnR1110(Activity_c target, bo
 
 	if (Activity == null) {          
       // R1109
-      Activity_c relInst57027 = (Activity_c) baseRoot.getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+      Activity_c relInst58576 = (Activity_c) baseRoot.getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst57027 == null) {
-      			relInst57027 = (Activity_c) Ooaofooa.getDefaultInstance().getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+      		if (relInst58576 == null) {
+      			relInst58576 = (Activity_c) Ooaofooa.getDefaultInstance().getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
       		}
-			if (relInst57027 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58576 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst57027 = (Activity_c) roots[i].getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
-					if (relInst57027 != null)
+					relInst58576 = (Activity_c) roots[i].getInstanceList(Activity_c.class).get(new Object[] {m_package_id});
+					if (relInst58576 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst57027 != null )
+      if ( relInst58576 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57027) && !isProxy())) {
-	      relInst57027.relateAcrossR1109To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58576) && !isProxy())) {
+	      relInst58576.relateAcrossR1109To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -876,56 +876,56 @@ private static ActivityInActivity_c findActivityInActivityInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ActivityInActivity_c_test57029_c implements ClassQueryInterface_c
+    class ActivityInActivity_c_test58578_c implements ClassQueryInterface_c
     {
-	  ActivityInActivity_c_test57029_c( java.util.UUID            p57030 ) {
-	  m_p57030 = p57030;
+	  ActivityInActivity_c_test58578_c( java.util.UUID            p58579 ) {
+	  m_p58579 = p58579;
 	  }
-	  private java.util.UUID             m_p57030; 
+	  private java.util.UUID             m_p58579; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ActivityInActivity_c selected = (ActivityInActivity_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p57030));
+	      retval = (selected.getPackage_id().equals(m_p58579));
 	      return retval;
 	  }
     }
 
-    ActivityInActivity_c [] objs57028 = 
-    ActivityInActivity_c.ActivityInActivityInstances(modelRoot, new ActivityInActivity_c_test57029_c(getPackage_id())) ;
+    ActivityInActivity_c [] objs58577 = 
+    ActivityInActivity_c.ActivityInActivityInstances(modelRoot, new ActivityInActivity_c_test58578_c(getPackage_id())) ;
 
-    if ( (  (objs57028.length) == 0) )
+    if ( (  (objs58577.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity In Activity", //$NON-NLS-1$
            "Consistency: Object: Activity In Activity: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs57028.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58577.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity In Activity: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57028.length )  , e); 
+          + Integer.toString( objs58577.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs57028.length) > 1) )
+    if ( (  (objs58577.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity In Activity", //$NON-NLS-1$
            "Consistency: Object: Activity In Activity: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs57028.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58577.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity In Activity: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57028.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58577.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -933,40 +933,40 @@ private static ActivityInActivity_c findActivityInActivityInstance(ModelRoot mod
 
           // Activity In Activity is a referring class in association: rel.Numb = 1109
           // The participating class is: Activity
-    class Activity_c_test57034_c implements ClassQueryInterface_c
+    class Activity_c_test58583_c implements ClassQueryInterface_c
     {
-	  Activity_c_test57034_c( java.util.UUID            p57035 ) {
-	  m_p57035 = p57035;
+	  Activity_c_test58583_c( java.util.UUID            p58584 ) {
+	  m_p58584 = p58584;
 	  }
-	  private java.util.UUID             m_p57035; 
+	  private java.util.UUID             m_p58584; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Activity_c selected = (Activity_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPackage_id().equals(m_p57035));
+	      retval = (selected.getPackage_id().equals(m_p58584));
 	      return retval;
 	  }
     }
 
-    Activity_c [] objs57033 = 
-    Activity_c.ActivityInstances(modelRoot, new Activity_c_test57034_c(getPackage_id())) ;
+    Activity_c [] objs58582 = 
+    Activity_c.ActivityInstances(modelRoot, new Activity_c_test58583_c(getPackage_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs57033.length) != 1) )
+    if ( (  (objs58582.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Activity In Activity", //$NON-NLS-1$
            "Consistency: Object: Activity In Activity: Association: 1109: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs57033.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58582.length )  + " Package_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Activity In Activity: Association: 1109: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs57033.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58582.length )  + " Package_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 

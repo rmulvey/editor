@@ -180,7 +180,7 @@ p_m_type
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -198,7 +198,7 @@ p_m_type
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ComponentResultSet_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((ComponentResultSet_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((ComponentResultSet_c)elem).getId())) return false;
@@ -658,29 +658,29 @@ public static ComponentResultSet_c [] getManyPE_CRSsOnR8008(ComponentVisibility_
 
 	if (HeldByComponent == null) {          
       // R8007
-      Component_c relInst39390 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_id});
+      Component_c relInst39972 = (Component_c) baseRoot.getInstanceList(Component_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39390 == null) {
-      			relInst39390 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_id});
+      		if (relInst39972 == null) {
+      			relInst39972 = (Component_c) Ooaofooa.getDefaultInstance().getInstanceList(Component_c.class).get(new Object[] {m_id});
       		}
-			if (relInst39390 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst39972 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39390 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_id});
-					if (relInst39390 != null)
+					relInst39972 = (Component_c) roots[i].getInstanceList(Component_c.class).get(new Object[] {m_id});
+					if (relInst39972 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39390 != null )
+      if ( relInst39972 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39390) && !isProxy())) {
-	      relInst39390.relateAcrossR8007To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39972) && !isProxy())) {
+	      relInst39972.relateAcrossR8007To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -929,58 +929,58 @@ private static ComponentResultSet_c findComponentResultSetInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ComponentResultSet_c_test39392_c implements ClassQueryInterface_c
+    class ComponentResultSet_c_test39974_c implements ClassQueryInterface_c
     {
-	  ComponentResultSet_c_test39392_c( String          p39393, int     p39394, java.util.UUID            p39395 ) {
-	            m_p39393 = p39393; 
-m_p39394 = p39394; 
-m_p39395 = p39395;
+	  ComponentResultSet_c_test39974_c( String          p39975, int     p39976, java.util.UUID            p39977 ) {
+	            m_p39975 = p39975; 
+m_p39976 = p39976; 
+m_p39977 = p39977;
 	  }
-	  private String           m_p39393; private int      m_p39394; private java.util.UUID             m_p39395; 
+	  private String           m_p39975; private int      m_p39976; private java.util.UUID             m_p39977; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentResultSet_c selected = (ComponentResultSet_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getName().equals(m_p39393)) & (selected.getType() == (m_p39394)) & (selected.getId().equals(m_p39395));
+	      retval = (selected.getName().equals(m_p39975)) & (selected.getType() == (m_p39976)) & (selected.getId().equals(m_p39977));
 	      return retval;
 	  }
     }
 
-    ComponentResultSet_c [] objs39391 = 
-    ComponentResultSet_c.ComponentResultSetInstances(modelRoot, new ComponentResultSet_c_test39392_c(getName(), getType(), getId())) ;
+    ComponentResultSet_c [] objs39973 = 
+    ComponentResultSet_c.ComponentResultSetInstances(modelRoot, new ComponentResultSet_c_test39974_c(getName(), getType(), getId())) ;
 
-    if ( (  (objs39391.length) == 0) )
+    if ( (  (objs39973.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component Result Set", //$NON-NLS-1$
            "Consistency: Object: Component Result Set: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39391.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs39973.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component Result Set: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39391.length )  , e); 
+          + Integer.toString( objs39973.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39391.length) > 1) )
+    if ( (  (objs39973.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component Result Set", //$NON-NLS-1$
            "Consistency: Object: Component Result Set: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39391.length )  + " Name: " + getName()  + " Type: " + Integer.toString(getType())  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39973.length )  + " Name: " + getName()  + " Type: " + Integer.toString(getType())  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component Result Set: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39391.length )  + " Name: " + getName()  + " Type: " + Integer.toString(getType())  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39973.length )  + " Name: " + getName()  + " Type: " + Integer.toString(getType())  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -988,40 +988,40 @@ m_p39395 = p39395;
 
           // Component Result Set is a referring class in association: rel.Numb = 8007
           // The participating class is: Component
-    class Component_c_test39399_c implements ClassQueryInterface_c
+    class Component_c_test39981_c implements ClassQueryInterface_c
     {
-	  Component_c_test39399_c( java.util.UUID            p39400 ) {
-	  m_p39400 = p39400;
+	  Component_c_test39981_c( java.util.UUID            p39982 ) {
+	  m_p39982 = p39982;
 	  }
-	  private java.util.UUID             m_p39400; 
+	  private java.util.UUID             m_p39982; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Component_c selected = (Component_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39400));
+	      retval = (selected.getId().equals(m_p39982));
 	      return retval;
 	  }
     }
 
-    Component_c [] objs39398 = 
-    Component_c.ComponentInstances(modelRoot, new Component_c_test39399_c(getId())) ;
+    Component_c [] objs39980 = 
+    Component_c.ComponentInstances(modelRoot, new Component_c_test39981_c(getId())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs39398.length) != 1) )
+    if ( (  (objs39980.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Component Result Set", //$NON-NLS-1$
            "Consistency: Object: Component Result Set: Association: 8007: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39398.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs39980.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Component Result Set: Association: 8007: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39398.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs39980.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1045,9 +1045,9 @@ ComponentVisibility_c [] v_elemVis = ComponentVisibility_c.getManyPE_CVSsOnR8008
 
 
 ComponentVisibility_c  v_elemV = null;
-for ( int i36665 = 0; i36665 < v_elemVis.length; i36665++)
+for ( int i37247 = 0; i37247 < v_elemVis.length; i37247++)
 {
-  v_elemV = v_elemVis[i36665] ;
+  v_elemV = v_elemVis[i37247] ;
 
 PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR8004(v_elemV);
 

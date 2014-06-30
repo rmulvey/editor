@@ -166,7 +166,8 @@ public class CantHappen_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -182,8 +183,9 @@ public class CantHappen_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
-				.equals(((CantHappen_c) elem).getSmspd_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmspd_id()) || IdAssigner.NULL_UUID
+						.equals(((CantHappen_c) elem).getSmspd_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmspd_id().equals(((CantHappen_c) elem).getSmspd_id()))
@@ -191,8 +193,9 @@ public class CantHappen_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
-				.equals(((CantHappen_c) elem).getSmevt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmevt_id()) || IdAssigner.NULL_UUID
+						.equals(((CantHappen_c) elem).getSmevt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmevt_id().equals(((CantHappen_c) elem).getSmevt_id()))
@@ -200,8 +203,9 @@ public class CantHappen_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
-				.equals(((CantHappen_c) elem).getSm_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSm_id()) || IdAssigner.NULL_UUID
+						.equals(((CantHappen_c) elem).getSm_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSm_id().equals(((CantHappen_c) elem).getSm_id()))
@@ -209,8 +213,9 @@ public class CantHappen_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
-				.equals(((CantHappen_c) elem).getSmstt_id())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getSmstt_id()) || IdAssigner.NULL_UUID
+						.equals(((CantHappen_c) elem).getSmstt_id())) && this != elem)) {
 			return false;
 		}
 		if (!getSmstt_id().equals(((CantHappen_c) elem).getSmstt_id()))
@@ -506,39 +511,39 @@ public class CantHappen_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R504
-		StateEventMatrixEntry_c relInst38694 = (StateEventMatrixEntry_c) baseRoot
+		StateEventMatrixEntry_c relInst39276 = (StateEventMatrixEntry_c) baseRoot
 				.getInstanceList(StateEventMatrixEntry_c.class).get(
 						new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 								m_smstt_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst38694 == null) {
-			relInst38694 = (StateEventMatrixEntry_c) Ooaofooa
+		if (relInst39276 == null) {
+			relInst39276 = (StateEventMatrixEntry_c) Ooaofooa
 					.getDefaultInstance()
 					.getInstanceList(StateEventMatrixEntry_c.class)
 					.get(new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 							m_smstt_id});
 		}
-		if (relInst38694 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39276 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst38694 = (StateEventMatrixEntry_c) roots[i]
+				relInst39276 = (StateEventMatrixEntry_c) roots[i]
 						.getInstanceList(StateEventMatrixEntry_c.class).get(
 								new Object[]{m_smspd_id, m_smevt_id, m_sm_id,
 										m_smstt_id});
-				if (relInst38694 != null)
+				if (relInst39276 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst38694 != null) {
+		if (relInst39276 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst38694) && !isProxy())) {
-				relInst38694.relateAcrossR504To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39276) && !isProxy())) {
+				relInst39276.relateAcrossR504To(this, notifyChanges);
 			}
 		}
 
@@ -938,54 +943,54 @@ public class CantHappen_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class CantHappen_c_test38696_c implements ClassQueryInterface_c {
-			CantHappen_c_test38696_c(java.util.UUID p38697,
-					java.util.UUID p38698, java.util.UUID p38699,
-					java.util.UUID p38700) {
-				m_p38697 = p38697;
-				m_p38698 = p38698;
-				m_p38699 = p38699;
-				m_p38700 = p38700;
+		class CantHappen_c_test39278_c implements ClassQueryInterface_c {
+			CantHappen_c_test39278_c(java.util.UUID p39279,
+					java.util.UUID p39280, java.util.UUID p39281,
+					java.util.UUID p39282) {
+				m_p39279 = p39279;
+				m_p39280 = p39280;
+				m_p39281 = p39281;
+				m_p39282 = p39282;
 			}
-			private java.util.UUID m_p38697;
-			private java.util.UUID m_p38698;
-			private java.util.UUID m_p38699;
-			private java.util.UUID m_p38700;
+			private java.util.UUID m_p39279;
+			private java.util.UUID m_p39280;
+			private java.util.UUID m_p39281;
+			private java.util.UUID m_p39282;
 			public boolean evaluate(Object candidate) {
 				CantHappen_c selected = (CantHappen_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmspd_id().equals(m_p38697))
-						& (selected.getSmevt_id().equals(m_p38698))
-						& (selected.getSm_id().equals(m_p38699))
-						& (selected.getSmstt_id().equals(m_p38700));
+				retval = (selected.getSmspd_id().equals(m_p39279))
+						& (selected.getSmevt_id().equals(m_p39280))
+						& (selected.getSm_id().equals(m_p39281))
+						& (selected.getSmstt_id().equals(m_p39282));
 				return retval;
 			}
 		}
 
-		CantHappen_c[] objs38695 = CantHappen_c.CantHappenInstances(modelRoot,
-				new CantHappen_c_test38696_c(getSmspd_id(), getSmevt_id(),
+		CantHappen_c[] objs39277 = CantHappen_c.CantHappenInstances(modelRoot,
+				new CantHappen_c_test39278_c(getSmspd_id(), getSmevt_id(),
 						getSm_id(), getSmstt_id()));
 
-		if (((objs38695.length) == 0)) {
+		if (((objs39277.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Cant Happen", //$NON-NLS-1$
 								"Consistency: Object: Cant Happen: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38695.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39277.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Cant Happen: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs38695.length), e);
+								+ Integer.toString(objs39277.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs38695.length) > 1)) {
+		if (((objs39277.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -993,7 +998,7 @@ public class CantHappen_c extends NonRootModelElement
 								"Cant Happen", //$NON-NLS-1$
 								"Consistency: Object: Cant Happen: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs38695.length)
+										+ Integer.toString(objs39277.length)
 										+ " SMspd_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -1001,7 +1006,7 @@ public class CantHappen_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Cant Happen: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38695.length)
+										+ Integer.toString(objs39277.length)
 										+ " SMspd_ID: " + "Not Printable" + " SMevt_ID: " + "Not Printable" + " SM_ID: " + "Not Printable" + " SMstt_ID: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -1010,52 +1015,52 @@ public class CantHappen_c extends NonRootModelElement
 
 		// Cant Happen is a subtype in association: rel.Numb = 504
 		// The supertype class is: State Event Matrix Entry
-		class StateEventMatrixEntry_c_test38704_c
+		class StateEventMatrixEntry_c_test39286_c
 				implements
 					ClassQueryInterface_c {
-			StateEventMatrixEntry_c_test38704_c(java.util.UUID p38705,
-					java.util.UUID p38706, java.util.UUID p38707,
-					java.util.UUID p38708) {
-				m_p38705 = p38705;
-				m_p38706 = p38706;
-				m_p38707 = p38707;
-				m_p38708 = p38708;
+			StateEventMatrixEntry_c_test39286_c(java.util.UUID p39287,
+					java.util.UUID p39288, java.util.UUID p39289,
+					java.util.UUID p39290) {
+				m_p39287 = p39287;
+				m_p39288 = p39288;
+				m_p39289 = p39289;
+				m_p39290 = p39290;
 			}
-			private java.util.UUID m_p38705;
-			private java.util.UUID m_p38706;
-			private java.util.UUID m_p38707;
-			private java.util.UUID m_p38708;
+			private java.util.UUID m_p39287;
+			private java.util.UUID m_p39288;
+			private java.util.UUID m_p39289;
+			private java.util.UUID m_p39290;
 			public boolean evaluate(Object candidate) {
 				StateEventMatrixEntry_c selected = (StateEventMatrixEntry_c) candidate;
 				boolean retval = false;
-				retval = (selected.getSmstt_id().equals(m_p38705))
-						& (selected.getSmevt_id().equals(m_p38706))
-						& (selected.getSm_id().equals(m_p38707))
-						& (selected.getSmspd_id().equals(m_p38708));
+				retval = (selected.getSmstt_id().equals(m_p39287))
+						& (selected.getSmevt_id().equals(m_p39288))
+						& (selected.getSm_id().equals(m_p39289))
+						& (selected.getSmspd_id().equals(m_p39290));
 				return retval;
 			}
 		}
 
-		StateEventMatrixEntry_c[] objs38703 = StateEventMatrixEntry_c
+		StateEventMatrixEntry_c[] objs39285 = StateEventMatrixEntry_c
 				.StateEventMatrixEntryInstances(modelRoot,
-						new StateEventMatrixEntry_c_test38704_c(getSmstt_id(),
+						new StateEventMatrixEntry_c_test39286_c(getSmstt_id(),
 								getSmevt_id(), getSm_id(), getSmspd_id()));
 
-		if (((objs38703.length) != 1)) {
+		if (((objs39285.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Cant Happen", //$NON-NLS-1$
 								"Consistency: Object: Cant Happen: Association: 504: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs38703.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39285.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Cant Happen: Association: 504: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs38703.length), e);
+										+ Integer.toString(objs39285.length), e);
 			}
 			retval = false;
 

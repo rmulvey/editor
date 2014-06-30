@@ -14,7 +14,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"c79d0fdb-d777-4b01-bcf4-ee07c49de40b");
@@ -73,7 +74,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"c56fd14b-afcf-4100-bacc-d2de93b68765");
@@ -87,7 +89,8 @@ unique identifiers, populate their values, and if an instance state machine
 exists it will relate the states to this instance.',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"6e61b267-acef-4a39-b06f-39cf07ed0439");
@@ -107,7 +110,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"32894210-4f53-4e1e-9a5e-d4569a26b598");
@@ -118,7 +122,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"3955a35c-8b93-41d2-bbe6-e9ea328a318d");
@@ -129,7 +134,8 @@ INSERT INTO O_TFR
 	'',
 	"6142a25c-8db7-41c4-af6f-84ef810dc1dd",
 	1,
-	'// Mentor Graphics Verifier-specific Implementation',
+	'// Mentor Graphics Verifier-specific Implementation
+',
 	1,
 	'',
 	"66729cd1-616e-42a8-8039-22ff5d794e39");
@@ -170,8 +176,7 @@ INSERT INTO O_TFR
 	"8e519c45-7dcf-400b-9d4e-954869dbb7e8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-foundTarget = false;
-return foundTarget;',
+return false;',
 	1,
 	'',
 	"00000000-0000-0000-0000-000000000000");
@@ -399,7 +404,7 @@ INSERT INTO O_DBATTR
 	VALUES ("6038e7a8-00d6-4750-81fe-68b90748fced",
 	"c50d7849-51aa-4f4f-a7aa-431b4b07a5e3",
 	'// Mentor Graphics Verifier-specific Implementation
-self.Label = "";',
+self.Label="";',
 	1);
 INSERT INTO O_BATTR
 	VALUES ("6038e7a8-00d6-4750-81fe-68b90748fced",

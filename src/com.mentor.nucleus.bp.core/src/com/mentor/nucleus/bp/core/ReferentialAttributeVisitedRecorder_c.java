@@ -46,7 +46,7 @@ public class ReferentialAttributeVisitedRecorder_c extends NonRootModelElement i
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -62,7 +62,7 @@ public class ReferentialAttributeVisitedRecorder_c extends NonRootModelElement i
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRecorderid()) || IdAssigner.NULL_UUID.equals(((ReferentialAttributeVisitedRecorder_c)elem).getRecorderid())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRecorderid()) || IdAssigner.NULL_UUID.equals(((ReferentialAttributeVisitedRecorder_c)elem).getRecorderid())) && this != elem)) {
       	return false;
       }
       if (!getRecorderid().equals(((ReferentialAttributeVisitedRecorder_c)elem).getRecorderid())) return false;
@@ -448,56 +448,56 @@ private static ReferentialAttributeVisitedRecorder_c findReferentialAttributeVis
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ReferentialAttributeVisitedRecorder_c_test38011_c implements ClassQueryInterface_c
+    class ReferentialAttributeVisitedRecorder_c_test38593_c implements ClassQueryInterface_c
     {
-	  ReferentialAttributeVisitedRecorder_c_test38011_c( java.util.UUID            p38012 ) {
-	  m_p38012 = p38012;
+	  ReferentialAttributeVisitedRecorder_c_test38593_c( java.util.UUID            p38594 ) {
+	  m_p38594 = p38594;
 	  }
-	  private java.util.UUID             m_p38012; 
+	  private java.util.UUID             m_p38594; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ReferentialAttributeVisitedRecorder_c selected = (ReferentialAttributeVisitedRecorder_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getRecorderid().equals(m_p38012));
+	      retval = (selected.getRecorderid().equals(m_p38594));
 	      return retval;
 	  }
     }
 
-    ReferentialAttributeVisitedRecorder_c [] objs38010 = 
-    ReferentialAttributeVisitedRecorder_c.ReferentialAttributeVisitedRecorderInstances(modelRoot, new ReferentialAttributeVisitedRecorder_c_test38011_c(getRecorderid())) ;
+    ReferentialAttributeVisitedRecorder_c [] objs38592 = 
+    ReferentialAttributeVisitedRecorder_c.ReferentialAttributeVisitedRecorderInstances(modelRoot, new ReferentialAttributeVisitedRecorder_c_test38593_c(getRecorderid())) ;
 
-    if ( (  (objs38010.length) == 0) )
+    if ( (  (objs38592.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referential Attribute Visited Recorder", //$NON-NLS-1$
            "Consistency: Object: Referential Attribute Visited Recorder: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs38010.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs38592.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referential Attribute Visited Recorder: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38010.length )  , e); 
+          + Integer.toString( objs38592.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs38010.length) > 1) )
+    if ( (  (objs38592.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referential Attribute Visited Recorder", //$NON-NLS-1$
            "Consistency: Object: Referential Attribute Visited Recorder: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs38010.length )  + " recorderId: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs38592.length )  + " recorderId: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referential Attribute Visited Recorder: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs38010.length )  + " recorderId: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs38592.length )  + " recorderId: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -518,9 +518,9 @@ ReferentialAttribute_c [] v_attributes = ReferentialAttribute_c.getManyO_RATTRsO
 
 
 ReferentialAttribute_c  v_attribute = null;
-for ( int i36510 = 0; i36510 < v_attributes.length; i36510++)
+for ( int i37058 = 0; i37058 < v_attributes.length; i37058++)
 {
-  v_attribute = v_attributes[i36510] ;
+  v_attribute = v_attributes[i37058] ;
 
 if (v_attribute != null) {
 v_attribute.unrelateAcrossR119From(this);

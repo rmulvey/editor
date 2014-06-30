@@ -83,7 +83,6 @@ public class UIUtil
 {
 	private static boolean displayYesNoQuestion_isYes = true;
     private static volatile boolean booleanDialogResult = false;
-    public static boolean IsRunningHeadless = false;
     
 	
     /**
@@ -328,10 +327,13 @@ public class UIUtil
      */
     public static void dispatchAll()
     {
-    	if (Display.getCurrent() != null) {
-          while (Display.getCurrent().readAndDispatch());
+    	if (PlatformUI.isWorkbenchRunning()) {   // If we are running in "truly headless" more there is no workbench 
+	    	if (Display.getCurrent() != null) {
+	          while (Display.getCurrent().readAndDispatch());
+	    	}
     	}
     }
+    
     
     /**
      * Returns the tree control displayed for the currently active properties
@@ -361,7 +363,7 @@ public class UIUtil
 			boolean allowCancel, String title, String textContents,
 			String message, String optionalText, String preferenceKey,
 			boolean defaultReturn) {
-		if (IsRunningHeadless) {
+		if (CoreUtil.IsRunningHeadless) {
 			outputTextForheadlessRun(BPMessageTypes.QUESTION, title, message, String.valueOf(defaultReturn));
 		} else {
     		ScrolledTextDialog dialog = new ScrolledTextDialog(parentShell, allowCancel, title, textContents, message, optionalText, preferenceKey);
@@ -380,8 +382,11 @@ public class UIUtil
      */
     public static void showErrorDialog(String title, String message)
     {
-    	IWorkbenchWindow activeWindow = CorePlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
+    	IWorkbenchWindow activeWindow = null;
     	Shell parentShell = null;
+    	if (!CoreUtil.IsRunningHeadless) {
+    		activeWindow = CorePlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
+    	}
     	if (activeWindow != null) {
     		parentShell = activeWindow.getShell();
     	}
@@ -478,14 +483,14 @@ public class UIUtil
 		} else if ((dialogType == BPMessageTypes.INFORMATION)) {
 			standardDialogType = MessageDialog.INFORMATION;
 		}
-		MessageDialog dialog = new MessageDialog(parentShell, dialogTitle,
-				dialogTitleImage, dialogMessage, standardDialogType,
-				dialogButtonLabels, defaultIndex);
-		dialog.setBlockOnOpen(true);
 		boolean  result = (defaultIndex == MessageDialog.OK);
-		if (IsRunningHeadless) {
+		if (CoreUtil.IsRunningHeadless) {
 			outputTextForheadlessRun(dialogType, dialogTitle, dialogMessage, "");
 		} else {
+			MessageDialog dialog = new MessageDialog(parentShell, dialogTitle,
+					dialogTitleImage, dialogMessage, standardDialogType,
+					dialogButtonLabels, defaultIndex);
+			dialog.setBlockOnOpen(true);
 			int actualResult = dialog.open();				
 			result = MessageDialog.OK == actualResult;			
 		} 
@@ -512,14 +517,20 @@ public class UIUtil
             	logTheMessage = true;        		
         	}
         	
-        	if (m_parent == null) {
+        	if (m_parent == null && !CoreUtil.IsRunningHeadless) {
         		IWorkbenchWindow activeWBWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
         		Shell parentShell = null;
         		if (activeWBWindow != null) {
         			m_parent = activeWBWindow.getShell();
         		}
         	}
-        	if (m_parent != null && !IsRunningHeadless) {
+        	
+        	if (CoreUtil.IsRunningHeadless) {
+        		// if headless there shouldn't be a parent shell, but this is just to be sure
+        		m_parent = null;
+        	}
+        	
+        	if (m_parent != null && !CoreUtil.IsRunningHeadless) {
 	            if ( m_type == BPMessageTypes.INFORMATION ) {
 	                org.eclipse.jface.dialogs.MessageDialog.openInformation(
 	                	m_parent,
@@ -555,7 +566,7 @@ public class UIUtil
 	                        m_msg
 	                        );                	
 	            }
-        	} else if (IsRunningHeadless) {
+        	} else if (CoreUtil.IsRunningHeadless) {
     			outputTextForheadlessRun(m_type, m_title, m_msg, "");
         	} else{
         		// No Active shell is available for a UI dialog.
@@ -573,13 +584,17 @@ public class UIUtil
 			boolean p_showTechSupportContact) {
     	
     	booleanDialogResult = false;
-    	p_title = (p_title == null) ? "BridgePoint UML Suite" : p_title;
+    	p_title = (p_title == null) ? "xtUML Editor" : p_title;
         if (p_showTechSupportContact) {
         	p_msg = p_msg + "\n\n" + UIUtil.getTechSupportMessage();
         }
-
+        
+        if (CoreUtil.IsRunningHeadless) {
+        	p_parent = null;
+        }
+        
     	Runnable dialog = new BPMessageDialog(p_parent, p_title, p_msg, p_type);
-    	if (p_parent!= null) {
+    	if (p_parent!= null || CoreUtil.IsRunningHeadless) {
     		dialog.run();
     	} else {
     		PlatformUI.getWorkbench().getDisplay().syncExec(dialog);
@@ -589,18 +604,7 @@ public class UIUtil
     
     public static String getTechSupportMessage() {
     	String msg =
-          "Please contact BridgePoint Technical Support:\n\n"
-        + "Mentor Graphics Corporation\n"
-        + "8005 SW Boeckman Drive\n"
-        + "Wilsonville, OR 97070\n\n"
-        + "\t800-592-2210\n"
-        + "\t503-685-7000\n"
-        + "\t251-208-3603 (fax)\n"
-        + "\tsupport@mentor.com\n"
-        + "\thttp://www.mentor.com\n\n"
-        + "Or take advantage of SupportNet for a searchable knowledgebase of technical issues,"
-        + "the ability to open a service request online, and many other useful tools for customers:\n\n"
-        + "\thttp://www.mentor.com/supportnet\n";
+    	        "Please visit http://www.xtuml.org for technical support.\n\n";
     	return msg;
 	}
     
@@ -611,20 +615,28 @@ public class UIUtil
      */
     public static boolean displayYesNoQuestion(final String msg) {
     	displayYesNoQuestion_isYes = true;
-        PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+    
+    	if (CoreUtil.IsRunningHeadless) {
+    		displayYesNoQuestion_isYes = UIUtil.openMessageDialog(null,
+				"BridgePoint UML Suite", null, msg,
+				UIUtil.BPMessageTypes.QUESTION,
+				new String[] { "Yes", "No" }, 0);  // yes is he default
+    	} else {
+            PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
-            public void run() {
-                org.eclipse.swt.widgets.Shell sh = PlatformUI.getWorkbench()
-                        .getDisplay().getActiveShell();
-                MessageDialog dialog = new MessageDialog(
-                        sh, "BridgePoint UML Suite", null,
-                        msg,
-                        MessageDialog.QUESTION,
-                        new String[] {"Yes", "No"},
-                        0); // yes is the default
-                displayYesNoQuestion_isYes = (dialog.open() == 0);
-            }
-        });
+                public void run() {
+                    org.eclipse.swt.widgets.Shell sh = PlatformUI.getWorkbench()
+                            .getDisplay().getActiveShell();
+                    MessageDialog dialog = new MessageDialog(
+                            sh, "xtUML Editor", null,
+                            msg,
+                            MessageDialog.QUESTION,
+                            new String[] {"Yes", "No"},
+                            0); // yes is the default
+                    displayYesNoQuestion_isYes = (dialog.open() == 0);
+                }
+            });
+    	}
         return displayYesNoQuestion_isYes;
     }
 
@@ -638,7 +650,7 @@ public class UIUtil
     public static boolean inputDialog(Shell parentShell, String dialogTitle,
             String dialogMessage, String initialValue, IInputValidator validator) {
     	inputDialogResult = "";
-    	if(IsRunningHeadless) {
+    	if(CoreUtil.IsRunningHeadless) {
     		outputTextForheadlessRun(BPMessageTypes.INPUT, dialogTitle, dialogMessage, initialValue);
     	} else {
 	    	InputDialog id = new InputDialog(parentShell, dialogTitle,
@@ -702,7 +714,7 @@ public class UIUtil
 	}
 
 	public static Object[] openSelectionDialog(Object[] objects, String message, String title) {
-		if(IsRunningHeadless) {
+		if(CoreUtil.IsRunningHeadless) {
 			return new Object[0];
 		}
 		UIUtil ui = new UIUtil();

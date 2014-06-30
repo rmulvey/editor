@@ -136,7 +136,8 @@ public class DescriptionEngine_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -152,8 +153,9 @@ public class DescriptionEngine_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((DescriptionEngine_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((DescriptionEngine_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((DescriptionEngine_c) elem).getId()))
@@ -396,33 +398,33 @@ public class DescriptionEngine_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R9501
-		SearchEngine_c relInst39126 = (SearchEngine_c) baseRoot
+		SearchEngine_c relInst39708 = (SearchEngine_c) baseRoot
 				.getInstanceList(SearchEngine_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst39126 == null) {
-			relInst39126 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
+		if (relInst39708 == null) {
+			relInst39708 = (SearchEngine_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(SearchEngine_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst39126 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst39708 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst39126 = (SearchEngine_c) roots[i].getInstanceList(
+				relInst39708 = (SearchEngine_c) roots[i].getInstanceList(
 						SearchEngine_c.class).get(new Object[]{m_id});
-				if (relInst39126 != null)
+				if (relInst39708 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst39126 != null) {
+		if (relInst39708 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst39126) && !isProxy())) {
-				relInst39126.relateAcrossR9501To(this, notifyChanges);
+					|| (inSameComponent(this, relInst39708) && !isProxy())) {
+				relInst39708.relateAcrossR9501To(this, notifyChanges);
 			}
 		}
 
@@ -670,44 +672,44 @@ public class DescriptionEngine_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class DescriptionEngine_c_test39128_c implements ClassQueryInterface_c {
-			DescriptionEngine_c_test39128_c(java.util.UUID p39129) {
-				m_p39129 = p39129;
+		class DescriptionEngine_c_test39710_c implements ClassQueryInterface_c {
+			DescriptionEngine_c_test39710_c(java.util.UUID p39711) {
+				m_p39711 = p39711;
 			}
-			private java.util.UUID m_p39129;
+			private java.util.UUID m_p39711;
 			public boolean evaluate(Object candidate) {
 				DescriptionEngine_c selected = (DescriptionEngine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39129));
+				retval = (selected.getId().equals(m_p39711));
 				return retval;
 			}
 		}
 
-		DescriptionEngine_c[] objs39127 = DescriptionEngine_c
+		DescriptionEngine_c[] objs39709 = DescriptionEngine_c
 				.DescriptionEngineInstances(modelRoot,
-						new DescriptionEngine_c_test39128_c(getId()));
+						new DescriptionEngine_c_test39710_c(getId()));
 
-		if (((objs39127.length) == 0)) {
+		if (((objs39709.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Description Engine", //$NON-NLS-1$
 								"Consistency: Object: Description Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39127.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39709.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Description Engine: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39127.length), e);
+										+ Integer.toString(objs39709.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs39127.length) > 1)) {
+		if (((objs39709.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -715,7 +717,7 @@ public class DescriptionEngine_c extends NonRootModelElement
 								"Description Engine", //$NON-NLS-1$
 								"Consistency: Object: Description Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs39127.length)
+										+ Integer.toString(objs39709.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -723,7 +725,7 @@ public class DescriptionEngine_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Description Engine: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39127.length)
+										+ Integer.toString(objs39709.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -732,37 +734,37 @@ public class DescriptionEngine_c extends NonRootModelElement
 
 		// Description Engine is a subtype in association: rel.Numb = 9501
 		// The supertype class is: Search Engine
-		class SearchEngine_c_test39133_c implements ClassQueryInterface_c {
-			SearchEngine_c_test39133_c(java.util.UUID p39134) {
-				m_p39134 = p39134;
+		class SearchEngine_c_test39715_c implements ClassQueryInterface_c {
+			SearchEngine_c_test39715_c(java.util.UUID p39716) {
+				m_p39716 = p39716;
 			}
-			private java.util.UUID m_p39134;
+			private java.util.UUID m_p39716;
 			public boolean evaluate(Object candidate) {
 				SearchEngine_c selected = (SearchEngine_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p39134));
+				retval = (selected.getId().equals(m_p39716));
 				return retval;
 			}
 		}
 
-		SearchEngine_c[] objs39132 = SearchEngine_c.SearchEngineInstances(
-				modelRoot, new SearchEngine_c_test39133_c(getId()));
+		SearchEngine_c[] objs39714 = SearchEngine_c.SearchEngineInstances(
+				modelRoot, new SearchEngine_c_test39715_c(getId()));
 
-		if (((objs39132.length) != 1)) {
+		if (((objs39714.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Description Engine", //$NON-NLS-1$
 								"Consistency: Object: Description Engine: Association: 9501: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs39132.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs39714.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Description Engine: Association: 9501: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs39132.length), e);
+										+ Integer.toString(objs39714.length), e);
 			}
 			retval = false;
 
@@ -786,8 +788,8 @@ public class DescriptionEngine_c extends NonRootModelElement
 				.getManySP_SPsOnR9502(v_engine);
 
 		SearchParticipant_c v_participant = null;
-		for (int i36657 = 0; i36657 < v_participants.length; i36657++) {
-			v_participant = v_participants[i36657];
+		for (int i37239 = 0; i37239 < v_participants.length; i37239++) {
+			v_participant = v_participants[i37239];
 
 			DescriptionSearchable_c v_descriptionParticipant = DescriptionSearchable_c
 					.getOneSP_DSOnR9702(SearchableElement_c

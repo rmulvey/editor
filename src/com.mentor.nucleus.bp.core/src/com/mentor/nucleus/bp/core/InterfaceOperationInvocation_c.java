@@ -216,7 +216,7 @@ p_m_value_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -232,7 +232,7 @@ p_m_value_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((InterfaceOperationInvocation_c)elem).getStatement_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getStatement_id()) || IdAssigner.NULL_UUID.equals(((InterfaceOperationInvocation_c)elem).getStatement_id())) && this != elem)) {
       	return false;
       }
       if (!getStatement_id().equals(((InterfaceOperationInvocation_c)elem).getStatement_id())) return false;
@@ -1324,87 +1324,87 @@ public static InterfaceOperationInvocation_c [] getManyACT_IOPsOnR679(ActualPara
 
 	if (HasTargetValue == null) {          
       // R629
-      Value_c relInst39756 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      Value_c relInst40338 = (Value_c) baseRoot.getInstanceList(Value_c.class).get(new Object[] {m_value_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39756 == null) {
-      			relInst39756 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+      		if (relInst40338 == null) {
+      			relInst40338 = (Value_c) Ooaofooa.getDefaultInstance().getInstanceList(Value_c.class).get(new Object[] {m_value_id});
       		}
-			if (relInst39756 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40338 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39756 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
-					if (relInst39756 != null)
+					relInst40338 = (Value_c) roots[i].getInstanceList(Value_c.class).get(new Object[] {m_value_id});
+					if (relInst40338 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39756 != null )
+      if ( relInst40338 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39756) && !isProxy())) {
-	      relInst39756.relateAcrossR629To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40338) && !isProxy())) {
+	      relInst40338.relateAcrossR629To(this, notifyChanges);
 	  }
 	  }
 	}
 	          
 
       // R603
-      Statement_c relInst39757 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      Statement_c relInst40339 = (Statement_c) baseRoot.getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39757 == null) {
-      			relInst39757 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+      		if (relInst40339 == null) {
+      			relInst40339 = (Statement_c) Ooaofooa.getDefaultInstance().getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
       		}
-			if (relInst39757 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40339 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39757 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
-					if (relInst39757 != null)
+					relInst40339 = (Statement_c) roots[i].getInstanceList(Statement_c.class).get(new Object[] {m_statement_id});
+					if (relInst40339 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39757 != null )
+      if ( relInst40339 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39757) && !isProxy())) {
-	      relInst39757.relateAcrossR603To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40339) && !isProxy())) {
+	      relInst40339.relateAcrossR603To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (IsInvocationOfProvidedOperation == null) {          
       // R680
-      ProvidedOperation_c relInst39758 = (ProvidedOperation_c) baseRoot.getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
+      ProvidedOperation_c relInst40340 = (ProvidedOperation_c) baseRoot.getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39758 == null) {
-      			relInst39758 = (ProvidedOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
+      		if (relInst40340 == null) {
+      			relInst40340 = (ProvidedOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
       		}
-			if (relInst39758 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40340 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39758 = (ProvidedOperation_c) roots[i].getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
-					if (relInst39758 != null)
+					relInst40340 = (ProvidedOperation_c) roots[i].getInstanceList(ProvidedOperation_c.class).get(new Object[] {m_providedop_id});
+					if (relInst40340 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39758 != null )
+      if ( relInst40340 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39758) && !isProxy())) {
-	      relInst39758.relateAcrossR680To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40340) && !isProxy())) {
+	      relInst40340.relateAcrossR680To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1412,29 +1412,29 @@ public static InterfaceOperationInvocation_c [] getManyACT_IOPsOnR679(ActualPara
 
 	if (IsInvocationOfRequiredOperation == null) {          
       // R657
-      RequiredOperation_c relInst39759 = (RequiredOperation_c) baseRoot.getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
+      RequiredOperation_c relInst40341 = (RequiredOperation_c) baseRoot.getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst39759 == null) {
-      			relInst39759 = (RequiredOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
+      		if (relInst40341 == null) {
+      			relInst40341 = (RequiredOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
       		}
-			if (relInst39759 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40341 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst39759 = (RequiredOperation_c) roots[i].getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
-					if (relInst39759 != null)
+					relInst40341 = (RequiredOperation_c) roots[i].getInstanceList(RequiredOperation_c.class).get(new Object[] {m_requiredop_id});
+					if (relInst40341 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst39759 != null )
+      if ( relInst40341 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst39759) && !isProxy())) {
-	      relInst39759.relateAcrossR657To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40341) && !isProxy())) {
+	      relInst40341.relateAcrossR657To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1816,56 +1816,56 @@ private static InterfaceOperationInvocation_c findInterfaceOperationInvocationIn
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InterfaceOperationInvocation_c_test39761_c implements ClassQueryInterface_c
+    class InterfaceOperationInvocation_c_test40343_c implements ClassQueryInterface_c
     {
-	  InterfaceOperationInvocation_c_test39761_c( java.util.UUID            p39762 ) {
-	  m_p39762 = p39762;
+	  InterfaceOperationInvocation_c_test40343_c( java.util.UUID            p40344 ) {
+	  m_p40344 = p40344;
 	  }
-	  private java.util.UUID             m_p39762; 
+	  private java.util.UUID             m_p40344; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceOperationInvocation_c selected = (InterfaceOperationInvocation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p39762));
+	      retval = (selected.getStatement_id().equals(m_p40344));
 	      return retval;
 	  }
     }
 
-    InterfaceOperationInvocation_c [] objs39760 = 
-    InterfaceOperationInvocation_c.InterfaceOperationInvocationInstances(modelRoot, new InterfaceOperationInvocation_c_test39761_c(getStatement_id())) ;
+    InterfaceOperationInvocation_c [] objs40342 = 
+    InterfaceOperationInvocation_c.InterfaceOperationInvocationInstances(modelRoot, new InterfaceOperationInvocation_c_test40343_c(getStatement_id())) ;
 
-    if ( (  (objs39760.length) == 0) )
+    if ( (  (objs40342.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39760.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40342.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39760.length )  , e); 
+          + Integer.toString( objs40342.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs39760.length) > 1) )
+    if ( (  (objs40342.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39760.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40342.length )  + " Statement_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39760.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40342.length )  + " Statement_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1873,37 +1873,37 @@ private static InterfaceOperationInvocation_c findInterfaceOperationInvocationIn
 
           // Interface Operation Invocation is a subtype in association: rel.Numb = 603
           // The supertype class is: Statement
-    class Statement_c_test39766_c implements ClassQueryInterface_c
+    class Statement_c_test40348_c implements ClassQueryInterface_c
     {
-	  Statement_c_test39766_c( java.util.UUID            p39767 ) {
-	  m_p39767 = p39767;
+	  Statement_c_test40348_c( java.util.UUID            p40349 ) {
+	  m_p40349 = p40349;
 	  }
-	  private java.util.UUID             m_p39767; 
+	  private java.util.UUID             m_p40349; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Statement_c selected = (Statement_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getStatement_id().equals(m_p39767));
+	      retval = (selected.getStatement_id().equals(m_p40349));
 	      return retval;
 	  }
     }
 
-    Statement_c [] objs39765 = 
-    Statement_c.StatementInstances(modelRoot, new Statement_c_test39766_c(getStatement_id())) ;
+    Statement_c [] objs40347 = 
+    Statement_c.StatementInstances(modelRoot, new Statement_c_test40348_c(getStatement_id())) ;
 
-    if ( (  (objs39765.length) != 1) )
+    if ( (  (objs40347.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs39765.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40347.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Association: 603: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39765.length )  , e); 
+          + Integer.toString( objs40347.length )  , e); 
       }
       retval = false;
 
@@ -1911,38 +1911,38 @@ private static InterfaceOperationInvocation_c findInterfaceOperationInvocationIn
 
           // Interface Operation Invocation is a referring class in association: rel.Numb = 680
           // The participating class is: Provided Operation
-    class ProvidedOperation_c_test39769_c implements ClassQueryInterface_c
+    class ProvidedOperation_c_test40351_c implements ClassQueryInterface_c
     {
-	  ProvidedOperation_c_test39769_c( java.util.UUID            p39770 ) {
-	  m_p39770 = p39770;
+	  ProvidedOperation_c_test40351_c( java.util.UUID            p40352 ) {
+	  m_p40352 = p40352;
 	  }
-	  private java.util.UUID             m_p39770; 
+	  private java.util.UUID             m_p40352; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ProvidedOperation_c selected = (ProvidedOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39770));
+	      retval = (selected.getId().equals(m_p40352));
 	      return retval;
 	  }
     }
 
-    ProvidedOperation_c [] objs39768 = 
-    ProvidedOperation_c.ProvidedOperationInstances(modelRoot, new ProvidedOperation_c_test39769_c(getProvidedop_id())) ;
+    ProvidedOperation_c [] objs40350 = 
+    ProvidedOperation_c.ProvidedOperationInstances(modelRoot, new ProvidedOperation_c_test40351_c(getProvidedop_id())) ;
 
-    if ( (  (objs39768.length) > 1) )
+    if ( (  (objs40350.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Association: 680: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39768.length )  + " ProvidedOp_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40350.length )  + " ProvidedOp_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Association: 680: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39768.length )  + " ProvidedOp_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40350.length )  + " ProvidedOp_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1950,38 +1950,38 @@ private static InterfaceOperationInvocation_c findInterfaceOperationInvocationIn
                 
           // Interface Operation Invocation is a referring class in association: rel.Numb = 657
           // The participating class is: Required Operation
-    class RequiredOperation_c_test39772_c implements ClassQueryInterface_c
+    class RequiredOperation_c_test40354_c implements ClassQueryInterface_c
     {
-	  RequiredOperation_c_test39772_c( java.util.UUID            p39773 ) {
-	  m_p39773 = p39773;
+	  RequiredOperation_c_test40354_c( java.util.UUID            p40355 ) {
+	  m_p40355 = p40355;
 	  }
-	  private java.util.UUID             m_p39773; 
+	  private java.util.UUID             m_p40355; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      RequiredOperation_c selected = (RequiredOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p39773));
+	      retval = (selected.getId().equals(m_p40355));
 	      return retval;
 	  }
     }
 
-    RequiredOperation_c [] objs39771 = 
-    RequiredOperation_c.RequiredOperationInstances(modelRoot, new RequiredOperation_c_test39772_c(getRequiredop_id())) ;
+    RequiredOperation_c [] objs40353 = 
+    RequiredOperation_c.RequiredOperationInstances(modelRoot, new RequiredOperation_c_test40354_c(getRequiredop_id())) ;
 
-    if ( (  (objs39771.length) > 1) )
+    if ( (  (objs40353.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Association: 657: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39771.length )  + " RequiredOp_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40353.length )  + " RequiredOp_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Association: 657: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39771.length )  + " RequiredOp_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40353.length )  + " RequiredOp_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -1989,38 +1989,38 @@ private static InterfaceOperationInvocation_c findInterfaceOperationInvocationIn
                 
           // Interface Operation Invocation is a referring class in association: rel.Numb = 629
           // The participating class is: Value
-    class Value_c_test39775_c implements ClassQueryInterface_c
+    class Value_c_test40357_c implements ClassQueryInterface_c
     {
-	  Value_c_test39775_c( java.util.UUID            p39776 ) {
-	  m_p39776 = p39776;
+	  Value_c_test40357_c( java.util.UUID            p40358 ) {
+	  m_p40358 = p40358;
 	  }
-	  private java.util.UUID             m_p39776; 
+	  private java.util.UUID             m_p40358; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Value_c selected = (Value_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getValue_id().equals(m_p39776));
+	      retval = (selected.getValue_id().equals(m_p40358));
 	      return retval;
 	  }
     }
 
-    Value_c [] objs39774 = 
-    Value_c.ValueInstances(modelRoot, new Value_c_test39775_c(getValue_id())) ;
+    Value_c [] objs40356 = 
+    Value_c.ValueInstances(modelRoot, new Value_c_test40357_c(getValue_id())) ;
 
-    if ( (  (objs39774.length) > 1) )
+    if ( (  (objs40356.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation Invocation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation Invocation: Association: 629: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs39774.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40356.length )  + " Value_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation Invocation: Association: 629: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs39774.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40356.length )  + " Value_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2065,9 +2065,9 @@ ActualParameter_c [] v_parm_set = ActualParameter_c.getManyV_PARsOnR679(this);
 
 
 ActualParameter_c  v_parm = null;
-for ( int i36684 = 0; i36684 < v_parm_set.length; i36684++)
+for ( int i37266 = 0; i37266 < v_parm_set.length; i37266++)
 {
-  v_parm = v_parm_set[i36684] ;
+  v_parm = v_parm_set[i37266] ;
 
 this.unrelateAcrossR679From(v_parm);
 
@@ -2122,7 +2122,7 @@ delete() ;
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Interface Operation Invocation", " Operation entered: InterfaceOperationInvocation::Setupparametervalues") ; 
                final ModelRoot modelRoot = getModelRoot();
-return true;
+return false;
 
 
 

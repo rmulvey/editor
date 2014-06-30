@@ -334,7 +334,7 @@ p_m_parsed_action_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -350,7 +350,7 @@ p_m_parsed_action_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getBlock_id()) || IdAssigner.NULL_UUID.equals(((Block_c)elem).getBlock_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getBlock_id()) || IdAssigner.NULL_UUID.equals(((Block_c)elem).getBlock_id())) && this != elem)) {
       	return false;
       }
       if (!getBlock_id().equals(((Block_c)elem).getBlock_id())) return false;
@@ -2831,29 +2831,29 @@ public static Block_c [] getManyACT_BLKsOnR826(Value_c target, boolean loadCompo
 
 	if (IsCommittedFromBody == null) {          
       // R601
-      Body_c relInst56521 = (Body_c) baseRoot.getInstanceList(Body_c.class).get(new Object[] {m_action_id});
+      Body_c relInst58070 = (Body_c) baseRoot.getInstanceList(Body_c.class).get(new Object[] {m_action_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56521 == null) {
-      			relInst56521 = (Body_c) Ooaofooa.getDefaultInstance().getInstanceList(Body_c.class).get(new Object[] {m_action_id});
+      		if (relInst58070 == null) {
+      			relInst58070 = (Body_c) Ooaofooa.getDefaultInstance().getInstanceList(Body_c.class).get(new Object[] {m_action_id});
       		}
-			if (relInst56521 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58070 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56521 = (Body_c) roots[i].getInstanceList(Body_c.class).get(new Object[] {m_action_id});
-					if (relInst56521 != null)
+					relInst58070 = (Body_c) roots[i].getInstanceList(Body_c.class).get(new Object[] {m_action_id});
+					if (relInst58070 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56521 != null )
+      if ( relInst58070 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56521) && !isProxy())) {
-	      relInst56521.relateAcrossR601To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58070) && !isProxy())) {
+	      relInst58070.relateAcrossR601To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2861,29 +2861,29 @@ public static Block_c [] getManyACT_BLKsOnR826(Value_c target, boolean loadCompo
 
 	if (IsParsedFromBody == null) {          
       // R612
-      Body_c relInst56522 = (Body_c) baseRoot.getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
+      Body_c relInst58071 = (Body_c) baseRoot.getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56522 == null) {
-      			relInst56522 = (Body_c) Ooaofooa.getDefaultInstance().getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
+      		if (relInst58071 == null) {
+      			relInst58071 = (Body_c) Ooaofooa.getDefaultInstance().getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
       		}
-			if (relInst56522 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58071 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56522 = (Body_c) roots[i].getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
-					if (relInst56522 != null)
+					relInst58071 = (Body_c) roots[i].getInstanceList(Body_c.class).get(new Object[] {m_parsed_action_id});
+					if (relInst58071 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56522 != null )
+      if ( relInst58071 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56522) && !isProxy())) {
-	      relInst56522.relateAcrossR612To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58071) && !isProxy())) {
+	      relInst58071.relateAcrossR612To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -3421,56 +3421,56 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Block_c_test56524_c implements ClassQueryInterface_c
+    class Block_c_test58073_c implements ClassQueryInterface_c
     {
-	  Block_c_test56524_c( java.util.UUID            p56525 ) {
-	  m_p56525 = p56525;
+	  Block_c_test58073_c( java.util.UUID            p58074 ) {
+	  m_p58074 = p58074;
 	  }
-	  private java.util.UUID             m_p56525; 
+	  private java.util.UUID             m_p58074; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Block_c selected = (Block_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56525));
+	      retval = (selected.getBlock_id().equals(m_p58074));
 	      return retval;
 	  }
     }
 
-    Block_c [] objs56523 = 
-    Block_c.BlockInstances(modelRoot, new Block_c_test56524_c(getBlock_id())) ;
+    Block_c [] objs58072 = 
+    Block_c.BlockInstances(modelRoot, new Block_c_test58073_c(getBlock_id())) ;
 
-    if ( (  (objs56523.length) == 0) )
+    if ( (  (objs58072.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56523.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58072.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56523.length )  , e); 
+          + Integer.toString( objs58072.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56523.length) > 1) )
+    if ( (  (objs58072.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56523.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58072.length )  + " Block_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56523.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58072.length )  + " Block_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3478,40 +3478,40 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a referring class in association: rel.Numb = 601
           // The participating class is: Body
-    class Body_c_test56529_c implements ClassQueryInterface_c
+    class Body_c_test58078_c implements ClassQueryInterface_c
     {
-	  Body_c_test56529_c( java.util.UUID            p56530 ) {
-	  m_p56530 = p56530;
+	  Body_c_test58078_c( java.util.UUID            p58079 ) {
+	  m_p58079 = p58079;
 	  }
-	  private java.util.UUID             m_p56530; 
+	  private java.util.UUID             m_p58079; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56530));
+	      retval = (selected.getAction_id().equals(m_p58079));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56528 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56529_c(getAction_id())) ;
+    Body_c [] objs58077 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58078_c(getAction_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs56528.length) != 1) )
+    if ( (  (objs58077.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 601: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56528.length )  + " Action_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58077.length )  + " Action_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 601: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56528.length )  + " Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58077.length )  + " Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3519,40 +3519,40 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a referring class in association: rel.Numb = 612
           // The participating class is: Body
-    class Body_c_test56532_c implements ClassQueryInterface_c
+    class Body_c_test58081_c implements ClassQueryInterface_c
     {
-	  Body_c_test56532_c( java.util.UUID            p56533 ) {
-	  m_p56533 = p56533;
+	  Body_c_test58081_c( java.util.UUID            p58082 ) {
+	  m_p58082 = p58082;
 	  }
-	  private java.util.UUID             m_p56533; 
+	  private java.util.UUID             m_p58082; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getAction_id().equals(m_p56533));
+	      retval = (selected.getAction_id().equals(m_p58082));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56531 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56532_c(getParsed_action_id())) ;
+    Body_c [] objs58080 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58081_c(getParsed_action_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs56531.length) != 1) )
+    if ( (  (objs58080.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 612: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56531.length )  + " Parsed_Action_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58080.length )  + " Parsed_Action_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 612: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56531.length )  + " Parsed_Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58080.length )  + " Parsed_Action_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -3560,37 +3560,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 608
              // Object: While Stmt
-    class WhileStmt_c_test56535_c implements ClassQueryInterface_c
+    class WhileStmt_c_test58084_c implements ClassQueryInterface_c
     {
-	  WhileStmt_c_test56535_c( java.util.UUID            p56536 ) {
-	  m_p56536 = p56536;
+	  WhileStmt_c_test58084_c( java.util.UUID            p58085 ) {
+	  m_p58085 = p58085;
 	  }
-	  private java.util.UUID             m_p56536; 
+	  private java.util.UUID             m_p58085; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      WhileStmt_c selected = (WhileStmt_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56536));
+	      retval = (selected.getBlock_id().equals(m_p58085));
 	      return retval;
 	  }
     }
 
-    WhileStmt_c [] objs56534 = 
-    WhileStmt_c.WhileStmtInstances(modelRoot, new WhileStmt_c_test56535_c(getBlock_id())) ;
+    WhileStmt_c [] objs58083 = 
+    WhileStmt_c.WhileStmtInstances(modelRoot, new WhileStmt_c_test58084_c(getBlock_id())) ;
 
-    if ( (  (objs56534.length) > 1) )
+    if ( (  (objs58083.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 608: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56534.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58083.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 608: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56534.length )  , e); 
+          + Integer.toString( objs58083.length )  , e); 
       }
       retval = false;
 
@@ -3600,37 +3600,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
              // Object: Statement
           // Block is a participating class in association: rel.Numb = 607
              // Object: If Stmt
-    class IfStmt_c_test56538_c implements ClassQueryInterface_c
+    class IfStmt_c_test58087_c implements ClassQueryInterface_c
     {
-	  IfStmt_c_test56538_c( java.util.UUID            p56539 ) {
-	  m_p56539 = p56539;
+	  IfStmt_c_test58087_c( java.util.UUID            p58088 ) {
+	  m_p58088 = p58088;
 	  }
-	  private java.util.UUID             m_p56539; 
+	  private java.util.UUID             m_p58088; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      IfStmt_c selected = (IfStmt_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56539));
+	      retval = (selected.getBlock_id().equals(m_p58088));
 	      return retval;
 	  }
     }
 
-    IfStmt_c [] objs56537 = 
-    IfStmt_c.IfStmtInstances(modelRoot, new IfStmt_c_test56538_c(getBlock_id())) ;
+    IfStmt_c [] objs58086 = 
+    IfStmt_c.IfStmtInstances(modelRoot, new IfStmt_c_test58087_c(getBlock_id())) ;
 
-    if ( (  (objs56537.length) > 1) )
+    if ( (  (objs58086.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 607: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56537.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58086.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 607: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56537.length )  , e); 
+          + Integer.toString( objs58086.length )  , e); 
       }
       retval = false;
 
@@ -3638,37 +3638,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 605
              // Object: For Stmt
-    class ForStmt_c_test56541_c implements ClassQueryInterface_c
+    class ForStmt_c_test58090_c implements ClassQueryInterface_c
     {
-	  ForStmt_c_test56541_c( java.util.UUID            p56542 ) {
-	  m_p56542 = p56542;
+	  ForStmt_c_test58090_c( java.util.UUID            p58091 ) {
+	  m_p58091 = p58091;
 	  }
-	  private java.util.UUID             m_p56542; 
+	  private java.util.UUID             m_p58091; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ForStmt_c selected = (ForStmt_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56542));
+	      retval = (selected.getBlock_id().equals(m_p58091));
 	      return retval;
 	  }
     }
 
-    ForStmt_c [] objs56540 = 
-    ForStmt_c.ForStmtInstances(modelRoot, new ForStmt_c_test56541_c(getBlock_id())) ;
+    ForStmt_c [] objs58089 = 
+    ForStmt_c.ForStmtInstances(modelRoot, new ForStmt_c_test58090_c(getBlock_id())) ;
 
-    if ( (  (objs56540.length) > 1) )
+    if ( (  (objs58089.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 605: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56540.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58089.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 605: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56540.length )  , e); 
+          + Integer.toString( objs58089.length )  , e); 
       }
       retval = false;
 
@@ -3676,37 +3676,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 658
              // Object: ElseIf Stmt
-    class ElseifStmt_c_test56544_c implements ClassQueryInterface_c
+    class ElseifStmt_c_test58093_c implements ClassQueryInterface_c
     {
-	  ElseifStmt_c_test56544_c( java.util.UUID            p56545 ) {
-	  m_p56545 = p56545;
+	  ElseifStmt_c_test58093_c( java.util.UUID            p58094 ) {
+	  m_p58094 = p58094;
 	  }
-	  private java.util.UUID             m_p56545; 
+	  private java.util.UUID             m_p58094; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ElseifStmt_c selected = (ElseifStmt_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56545));
+	      retval = (selected.getBlock_id().equals(m_p58094));
 	      return retval;
 	  }
     }
 
-    ElseifStmt_c [] objs56543 = 
-    ElseifStmt_c.ElseifStmtInstances(modelRoot, new ElseifStmt_c_test56544_c(getBlock_id())) ;
+    ElseifStmt_c [] objs58092 = 
+    ElseifStmt_c.ElseifStmtInstances(modelRoot, new ElseifStmt_c_test58093_c(getBlock_id())) ;
 
-    if ( (  (objs56543.length) > 1) )
+    if ( (  (objs58092.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 658: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56543.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58092.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 658: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56543.length )  , e); 
+          + Integer.toString( objs58092.length )  , e); 
       }
       retval = false;
 
@@ -3714,37 +3714,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 606
              // Object: Else Stmt
-    class ElseStmt_c_test56547_c implements ClassQueryInterface_c
+    class ElseStmt_c_test58096_c implements ClassQueryInterface_c
     {
-	  ElseStmt_c_test56547_c( java.util.UUID            p56548 ) {
-	  m_p56548 = p56548;
+	  ElseStmt_c_test58096_c( java.util.UUID            p58097 ) {
+	  m_p58097 = p58097;
 	  }
-	  private java.util.UUID             m_p56548; 
+	  private java.util.UUID             m_p58097; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ElseStmt_c selected = (ElseStmt_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56548));
+	      retval = (selected.getBlock_id().equals(m_p58097));
 	      return retval;
 	  }
     }
 
-    ElseStmt_c [] objs56546 = 
-    ElseStmt_c.ElseStmtInstances(modelRoot, new ElseStmt_c_test56547_c(getBlock_id())) ;
+    ElseStmt_c [] objs58095 = 
+    ElseStmt_c.ElseStmtInstances(modelRoot, new ElseStmt_c_test58096_c(getBlock_id())) ;
 
-    if ( (  (objs56546.length) > 1) )
+    if ( (  (objs58095.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 606: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56546.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58095.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 606: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56546.length )  , e); 
+          + Integer.toString( objs58095.length )  , e); 
       }
       retval = false;
 
@@ -3752,37 +3752,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 666
              // Object: Body
-    class Body_c_test56550_c implements ClassQueryInterface_c
+    class Body_c_test58099_c implements ClassQueryInterface_c
     {
-	  Body_c_test56550_c( java.util.UUID            p56551 ) {
-	  m_p56551 = p56551;
+	  Body_c_test58099_c( java.util.UUID            p58100 ) {
+	  m_p58100 = p58100;
 	  }
-	  private java.util.UUID             m_p56551; 
+	  private java.util.UUID             m_p58100; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getBlock_id().equals(m_p56551));
+	      retval = (selected.getBlock_id().equals(m_p58100));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56549 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56550_c(getBlock_id())) ;
+    Body_c [] objs58098 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58099_c(getBlock_id())) ;
 
-    if ( (  (objs56549.length) > 1) )
+    if ( (  (objs58098.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 666: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56549.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58098.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 666: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56549.length )  , e); 
+          + Integer.toString( objs58098.length )  , e); 
       }
       retval = false;
 
@@ -3790,37 +3790,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 699
              // Object: Body
-    class Body_c_test56553_c implements ClassQueryInterface_c
+    class Body_c_test58102_c implements ClassQueryInterface_c
     {
-	  Body_c_test56553_c( java.util.UUID            p56554 ) {
-	  m_p56554 = p56554;
+	  Body_c_test58102_c( java.util.UUID            p58103 ) {
+	  m_p58103 = p58103;
 	  }
-	  private java.util.UUID             m_p56554; 
+	  private java.util.UUID             m_p58103; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getCurrentscope_id().equals(m_p56554));
+	      retval = (selected.getCurrentscope_id().equals(m_p58103));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56552 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56553_c(getBlock_id())) ;
+    Body_c [] objs58101 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58102_c(getBlock_id())) ;
 
-    if ( (  (objs56552.length) > 1) )
+    if ( (  (objs58101.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 699: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56552.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58101.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 699: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56552.length )  , e); 
+          + Integer.toString( objs58101.length )  , e); 
       }
       retval = false;
 
@@ -3828,37 +3828,37 @@ private static Block_c findBlockInstance(ModelRoot modelRoot, ClassQueryInterfac
 
           // Block is a participating class in association: rel.Numb = 650
              // Object: Body
-    class Body_c_test56556_c implements ClassQueryInterface_c
+    class Body_c_test58105_c implements ClassQueryInterface_c
     {
-	  Body_c_test56556_c( java.util.UUID            p56557 ) {
-	  m_p56557 = p56557;
+	  Body_c_test58105_c( java.util.UUID            p58106 ) {
+	  m_p58106 = p58106;
 	  }
-	  private java.util.UUID             m_p56557; 
+	  private java.util.UUID             m_p58106; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Body_c selected = (Body_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getParsed_block_id().equals(m_p56557));
+	      retval = (selected.getParsed_block_id().equals(m_p58106));
 	      return retval;
 	  }
     }
 
-    Body_c [] objs56555 = 
-    Body_c.BodyInstances(modelRoot, new Body_c_test56556_c(getBlock_id())) ;
+    Body_c [] objs58104 = 
+    Body_c.BodyInstances(modelRoot, new Body_c_test58105_c(getBlock_id())) ;
 
-    if ( (  (objs56555.length) > 1) )
+    if ( (  (objs58104.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Block", //$NON-NLS-1$
            "Consistency: Object: Block: Association: 650: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56555.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58104.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Block: Association: 650: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56555.length )  , e); 
+          + Integer.toString( objs58104.length )  , e); 
       }
       retval = false;
 
@@ -3972,9 +3972,9 @@ Statement_c v_prevStmt = (Statement_c) modelRoot.getInstanceList(Statement_c.cla
 
 
 Statement_c  v_statement = null;
-for ( int i53889 = 0; i53889 < v_statements.length; i53889++)
+for ( int i55419 = 0; i55419 < v_statements.length; i55419++)
 {
-  v_statement = v_statements[i53889] ;
+  v_statement = v_statements[i55419] ;
 
 ElseStmt_c v_elseStmt = ElseStmt_c.getOneACT_EOnR603(v_statement);
 

@@ -209,7 +209,7 @@ p_m_previous_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -225,7 +225,7 @@ p_m_previous_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceOperation_c)elem).getId())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID.equals(((InterfaceOperation_c)elem).getId())) && this != elem)) {
       	return false;
       }
       if (!getId().equals(((InterfaceOperation_c)elem).getId())) return false;
@@ -1514,87 +1514,87 @@ public static InterfaceOperation_c [] getManyC_IOsOnR4019Succeeds(InterfaceOpera
 
 	if (HasReturnDefinedByDataType == null) {          
       // R4008
-      DataType_c relInst55461 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst57010 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55461 == null) {
-      			relInst55461 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst57010 == null) {
+      			relInst57010 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst55461 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57010 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55461 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst55461 != null)
+					relInst57010 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst57010 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55461 != null )
+      if ( relInst57010 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55461) && !isProxy())) {
-	      relInst55461.relateAcrossR4008To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57010) && !isProxy())) {
+	      relInst57010.relateAcrossR4008To(this, notifyChanges);
 	  }
 	  }
 	}
 	          
 
       // R4004
-      ExecutableProperty_c relInst55462 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+      ExecutableProperty_c relInst57011 = (ExecutableProperty_c) baseRoot.getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55462 == null) {
-      			relInst55462 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+      		if (relInst57011 == null) {
+      			relInst57011 = (ExecutableProperty_c) Ooaofooa.getDefaultInstance().getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
       		}
-			if (relInst55462 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57011 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55462 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
-					if (relInst55462 != null)
+					relInst57011 = (ExecutableProperty_c) roots[i].getInstanceList(ExecutableProperty_c.class).get(new Object[] {m_id});
+					if (relInst57011 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55462 != null )
+      if ( relInst57011 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55462) && !isProxy())) {
-	      relInst55462.relateAcrossR4004To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57011) && !isProxy())) {
+	      relInst57011.relateAcrossR4004To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (SucceedsInterfaceOperation == null) {          
       // R4019
-      InterfaceOperation_c relInst55463 = (InterfaceOperation_c) baseRoot.getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
+      InterfaceOperation_c relInst57012 = (InterfaceOperation_c) baseRoot.getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55463 == null) {
-      			relInst55463 = (InterfaceOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
+      		if (relInst57012 == null) {
+      			relInst57012 = (InterfaceOperation_c) Ooaofooa.getDefaultInstance().getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
       		}
-			if (relInst55463 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst57012 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55463 = (InterfaceOperation_c) roots[i].getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
-					if (relInst55463 != null)
+					relInst57012 = (InterfaceOperation_c) roots[i].getInstanceList(InterfaceOperation_c.class).get(new Object[] {m_previous_id});
+					if (relInst57012 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55463 != null )
+      if ( relInst57012 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55463) && !isProxy())) {
-	      relInst55463.relateAcrossR4019ToPrecedes(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst57012) && !isProxy())) {
+	      relInst57012.relateAcrossR4019ToPrecedes(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2064,56 +2064,56 @@ private static InterfaceOperation_c findInterfaceOperationInstance(ModelRoot mod
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class InterfaceOperation_c_test55465_c implements ClassQueryInterface_c
+    class InterfaceOperation_c_test57014_c implements ClassQueryInterface_c
     {
-	  InterfaceOperation_c_test55465_c( java.util.UUID            p55466 ) {
-	  m_p55466 = p55466;
+	  InterfaceOperation_c_test57014_c( java.util.UUID            p57015 ) {
+	  m_p57015 = p57015;
 	  }
-	  private java.util.UUID             m_p55466; 
+	  private java.util.UUID             m_p57015; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55466));
+	      retval = (selected.getId().equals(m_p57015));
 	      return retval;
 	  }
     }
 
-    InterfaceOperation_c [] objs55464 = 
-    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test55465_c(getId())) ;
+    InterfaceOperation_c [] objs57013 = 
+    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test57014_c(getId())) ;
 
-    if ( (  (objs55464.length) == 0) )
+    if ( (  (objs57013.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55464.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57013.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55464.length )  , e); 
+          + Integer.toString( objs57013.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55464.length) > 1) )
+    if ( (  (objs57013.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55464.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57013.length )  + " Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55464.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57013.length )  + " Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2121,37 +2121,37 @@ private static InterfaceOperation_c findInterfaceOperationInstance(ModelRoot mod
 
           // Interface Operation is a subtype in association: rel.Numb = 4004
           // The supertype class is: Executable Property
-    class ExecutableProperty_c_test55470_c implements ClassQueryInterface_c
+    class ExecutableProperty_c_test57019_c implements ClassQueryInterface_c
     {
-	  ExecutableProperty_c_test55470_c( java.util.UUID            p55471 ) {
-	  m_p55471 = p55471;
+	  ExecutableProperty_c_test57019_c( java.util.UUID            p57020 ) {
+	  m_p57020 = p57020;
 	  }
-	  private java.util.UUID             m_p55471; 
+	  private java.util.UUID             m_p57020; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ExecutableProperty_c selected = (ExecutableProperty_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55471));
+	      retval = (selected.getId().equals(m_p57020));
 	      return retval;
 	  }
     }
 
-    ExecutableProperty_c [] objs55469 = 
-    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test55470_c(getId())) ;
+    ExecutableProperty_c [] objs57018 = 
+    ExecutableProperty_c.ExecutablePropertyInstances(modelRoot, new ExecutableProperty_c_test57019_c(getId())) ;
 
-    if ( (  (objs55469.length) != 1) )
+    if ( (  (objs57018.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Association: 4004: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55469.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57018.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Association: 4004: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55469.length )  , e); 
+          + Integer.toString( objs57018.length )  , e); 
       }
       retval = false;
 
@@ -2159,38 +2159,38 @@ private static InterfaceOperation_c findInterfaceOperationInstance(ModelRoot mod
 
           // Interface Operation is a referring class in association: rel.Numb = 4019
           // The participating class is: Interface Operation
-    class InterfaceOperation_c_test55473_c implements ClassQueryInterface_c
+    class InterfaceOperation_c_test57022_c implements ClassQueryInterface_c
     {
-	  InterfaceOperation_c_test55473_c( java.util.UUID            p55474 ) {
-	  m_p55474 = p55474;
+	  InterfaceOperation_c_test57022_c( java.util.UUID            p57023 ) {
+	  m_p57023 = p57023;
 	  }
-	  private java.util.UUID             m_p55474; 
+	  private java.util.UUID             m_p57023; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getId().equals(m_p55474));
+	      retval = (selected.getId().equals(m_p57023));
 	      return retval;
 	  }
     }
 
-    InterfaceOperation_c [] objs55472 = 
-    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test55473_c(getPrevious_id())) ;
+    InterfaceOperation_c [] objs57021 = 
+    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test57022_c(getPrevious_id())) ;
 
-    if ( (  (objs55472.length) > 1) )
+    if ( (  (objs57021.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Association: 4019: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55472.length )  + " Previous_Id: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57021.length )  + " Previous_Id: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Association: 4019: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55472.length )  + " Previous_Id: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57021.length )  + " Previous_Id: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2198,40 +2198,40 @@ private static InterfaceOperation_c findInterfaceOperationInstance(ModelRoot mod
                 
           // Interface Operation is a referring class in association: rel.Numb = 4008
           // The participating class is: Data Type
-    class DataType_c_test55476_c implements ClassQueryInterface_c
+    class DataType_c_test57025_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55476_c( java.util.UUID            p55477 ) {
-	  m_p55477 = p55477;
+	  DataType_c_test57025_c( java.util.UUID            p57026 ) {
+	  m_p57026 = p57026;
 	  }
-	  private java.util.UUID             m_p55477; 
+	  private java.util.UUID             m_p57026; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55477));
+	      retval = (selected.getDt_id().equals(m_p57026));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55475 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55476_c(getDt_id())) ;
+    DataType_c [] objs57024 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test57025_c(getDt_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs55475.length) != 1) )
+    if ( (  (objs57024.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Association: 4008: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55475.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs57024.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Association: 4008: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55475.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs57024.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2241,37 +2241,37 @@ private static InterfaceOperation_c findInterfaceOperationInstance(ModelRoot mod
              // Object: Dimensions
           // Interface Operation is a participating class in association: rel.Numb = 4019
              // Object: Interface Operation
-    class InterfaceOperation_c_test55479_c implements ClassQueryInterface_c
+    class InterfaceOperation_c_test57028_c implements ClassQueryInterface_c
     {
-	  InterfaceOperation_c_test55479_c( java.util.UUID            p55480 ) {
-	  m_p55480 = p55480;
+	  InterfaceOperation_c_test57028_c( java.util.UUID            p57029 ) {
+	  m_p57029 = p57029;
 	  }
-	  private java.util.UUID             m_p55480; 
+	  private java.util.UUID             m_p57029; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      InterfaceOperation_c selected = (InterfaceOperation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getPrevious_id().equals(m_p55480));
+	      retval = (selected.getPrevious_id().equals(m_p57029));
 	      return retval;
 	  }
     }
 
-    InterfaceOperation_c [] objs55478 = 
-    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test55479_c(getId())) ;
+    InterfaceOperation_c [] objs57027 = 
+    InterfaceOperation_c.InterfaceOperationInstances(modelRoot, new InterfaceOperation_c_test57028_c(getId())) ;
 
-    if ( (  (objs55478.length) > 1) )
+    if ( (  (objs57027.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Interface Operation", //$NON-NLS-1$
            "Consistency: Object: Interface Operation: Association: 4019: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55478.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs57027.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Interface Operation: Association: 4019: Cardinality of a formalizer is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55478.length )  , e); 
+          + Integer.toString( objs57027.length )  , e); 
       }
       retval = false;
 
@@ -2363,9 +2363,9 @@ Message_c [] v_msgs = Message_c.getManyMSG_MsOnR1018(SynchronousMessage_c.getMan
 
 
 Message_c  v_msg = null;
-for ( int i53708 = 0; i53708 < v_msgs.length; i53708++)
+for ( int i55236 = 0; i55236 < v_msgs.length; i55236++)
 {
-  v_msg = v_msgs[i53708] ;
+  v_msg = v_msgs[i55236] ;
 
 if (v_msg != null) {
 v_msg.Dispose() ;
@@ -2384,9 +2384,9 @@ Dimensions_c [] v_dims = Dimensions_c.getManyS_DIMsOnR4018(this);
 
 
 Dimensions_c  v_dim = null;
-for ( int i53709 = 0; i53709 < v_dims.length; i53709++)
+for ( int i55237 = 0; i55237 < v_dims.length; i55237++)
 {
-  v_dim = v_dims[i53709] ;
+  v_dim = v_dims[i55237] ;
 
 this.unrelateAcrossR4018From(v_dim);
 
@@ -2509,7 +2509,7 @@ DataType_c v_def_dt = DataType_c.getOneS_DTOnR8001(v_pe);
 else
 {
 
-  class DataType_test54312_c implements ClassQueryInterface_c
+  class DataType_test55861_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2517,7 +2517,7 @@ else
 		return (selected.getName().equals("void")) ;
 	}
   }
-DataType_c v_def_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4401(DataTypePackage_c.getManyS_DPKsOnR4400(SystemDatatypePackage_c.getManySLD_SDPsOnR4400(v_system))), new DataType_test54312_c());
+DataType_c v_def_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4401(DataTypePackage_c.getManyS_DPKsOnR4400(SystemDatatypePackage_c.getManySLD_SDPsOnR4400(v_system))), new DataType_test55861_c());
 
 
   this.relateAcrossR4008To(v_def_dt);
@@ -2821,37 +2821,37 @@ java.util.UUID         v_id = v_packageableElem.Resolvedatatyperelativetoself(
 ,v_name) ;
 
 
-  class DataType_test54313_c implements ClassQueryInterface_c
+  class DataType_test55862_c implements ClassQueryInterface_c
   {
-	DataType_test54313_c( java.util.UUID         p54314 ) {
-		m_p54314 = p54314;
+	DataType_test55862_c( java.util.UUID         p55863 ) {
+		m_p55863 = p55863;
 	}
-	private java.util.UUID         m_p54314;
+	private java.util.UUID         m_p55863;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54314) ;
+		return selected.getDt_id().equals(m_p55863) ;
 	}
   }
-DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test54313_c(v_id));
+DataType_c v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8002(v_package)), new DataType_test55862_c(v_id));
 
 
 if ( (  (v_resolvedDt == null)) )
 {
 
-  class DataType_test54315_c implements ClassQueryInterface_c
+  class DataType_test55864_c implements ClassQueryInterface_c
   {
-	DataType_test54315_c( java.util.UUID         p54316 ) {
-		m_p54316 = p54316;
+	DataType_test55864_c( java.util.UUID         p55865 ) {
+		m_p55865 = p55865;
 	}
-	private java.util.UUID         m_p54316;
+	private java.util.UUID         m_p55865;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return selected.getDt_id().equals(m_p54316) ;
+		return selected.getDt_id().equals(m_p55865) ;
 	}
   }
-v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test54315_c(v_id));
+v_resolvedDt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8004(v_component)), new DataType_test55864_c(v_id));
 
 
 
@@ -2882,19 +2882,19 @@ else
 SystemModel_c v_system = SystemModel_c.getOneS_SYSOnR4304(InterfacePackage_c.getOneIP_IPOnR4303(Interface_c.getOneC_IOnR4003(ExecutableProperty_c.getOneC_EPOnR4004(this))));
 
 
-  class DataType_test54317_c implements ClassQueryInterface_c
+  class DataType_test55866_c implements ClassQueryInterface_c
   {
-	DataType_test54317_c( String       p54318 ) {
-		m_p54318 = p54318;
+	DataType_test55866_c( String       p55867 ) {
+		m_p55867 = p55867;
 	}
-	private String       m_p54318;
+	private String       m_p55867;
 	public boolean evaluate (Object candidate)
 	{
 		DataType_c selected = (DataType_c)candidate;
-		return (selected.getName().equals(m_p54318)) ;
+		return (selected.getName().equals(m_p55867)) ;
 	}
   }
-DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test54317_c(v_name));
+DataType_c v_resolvedDT = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test55866_c(v_name));
 
 
 java.util.UUID         v_r_dt_id = Gd_c.Null_unique_id() ;
@@ -3017,19 +3017,19 @@ else {
 while ( (p_Numdimensions < Getreturndimensionscnt()) )
 {
 
-  class Dimensions_test54319_c implements ClassQueryInterface_c
+  class Dimensions_test55868_c implements ClassQueryInterface_c
   {
-	Dimensions_test54319_c( int          p54320 ) {
-		m_p54320 = p54320;
+	Dimensions_test55868_c( int          p55869 ) {
+		m_p55869 = p55869;
 	}
-	private int          m_p54320;
+	private int          m_p55869;
 	public boolean evaluate (Object candidate)
 	{
 		Dimensions_c selected = (Dimensions_c)candidate;
-		return (selected.getDimensioncount() == (m_p54320 - 1)) ;
+		return (selected.getDimensioncount() == (m_p55869 - 1)) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR4018(this, new Dimensions_test54319_c(Getreturndimensionscnt()));
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR4018(this, new Dimensions_test55868_c(Getreturndimensionscnt()));
 
 
 if (v_dim != null) {
@@ -3062,7 +3062,7 @@ else {
 if ( (p_Numdimensions > 0) )
 {
 
-  class Dimensions_test54321_c implements ClassQueryInterface_c
+  class Dimensions_test55870_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3070,7 +3070,7 @@ if ( (p_Numdimensions > 0) )
 		return (selected.getDimensioncount() == p_Dimension) ;
 	}
   }
-Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR4018(this, new Dimensions_test54321_c());
+Dimensions_c v_dim = Dimensions_c.getOneS_DIMOnR4018(this, new Dimensions_test55870_c());
 
 
 if ( (v_dim.getElementcount() != p_Elementcount) )
@@ -3471,7 +3471,7 @@ boolean      v_isInGenericPackage =   (v_package != null) ||   (v_component != n
 if ( v_isInGenericPackage )
 {
 
-  class SearchResultSet_test54322_c implements ClassQueryInterface_c
+  class SearchResultSet_test55871_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3479,10 +3479,10 @@ if ( v_isInGenericPackage )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test54322_c());
+SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package, new SearchResultSet_test55871_c());
 
 
-  class DataType_test54323_c implements ClassQueryInterface_c
+  class DataType_test55872_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3490,13 +3490,13 @@ SearchResultSet_c v_resultSet = SearchResultSet_c.getOnePE_SRSOnR8005(v_package,
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test54323_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8002(ElementVisibility_c.getManyPE_VISsOnR8006(v_resultSet)), new DataType_test55872_c());
 
 
 if (   (v_component != null) )
 {
 
-  class ComponentResultSet_test54324_c implements ClassQueryInterface_c
+  class ComponentResultSet_test55873_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3504,10 +3504,10 @@ if (   (v_component != null) )
 		return selected.getName().equals("") && selected.getType() == Elementtypeconstants_c.DATATYPE ;
 	}
   }
-ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test54324_c());
+ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(v_component, new ComponentResultSet_test55873_c());
 
 
-  class DataType_test54325_c implements ClassQueryInterface_c
+  class DataType_test55874_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3515,7 +3515,7 @@ ComponentResultSet_c v_compResultSet = ComponentResultSet_c.getOnePE_CRSOnR8007(
 		return selected.getDt_id().equals(p_Id) ;
 	}
   }
-v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test54325_c());
+v_dt = DataType_c.getOneS_DTOnR8001(PackageableElement_c.getManyPE_PEsOnR8004(ComponentVisibility_c.getManyPE_CVSsOnR8008(v_compResultSet)), new DataType_test55874_c());
 
 
 
@@ -3561,7 +3561,7 @@ v_system = SystemModel_c.getOneS_SYSOnR1405(Package_c.getOneEP_PKGOnR8000(Packag
 
 }
 
-  class DataType_test54326_c implements ClassQueryInterface_c
+  class DataType_test55875_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3569,13 +3569,13 @@ v_system = SystemModel_c.getOneS_SYSOnR1405(Package_c.getOneEP_PKGOnR8000(Packag
 		return (selected.getDt_id().equals(p_Id)) ;
 	}
   }
-DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test54326_c());
+DataType_c v_dt = DataType_c.getOneS_DTOnR4401(SystemDatatypeInPackage_c.getManySLD_SDINPsOnR4402(v_system), new DataType_test55875_c());
 
 
 if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 {
 
-  class PackageableElement_test54327_c implements ClassQueryInterface_c
+  class PackageableElement_test55876_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -3583,7 +3583,7 @@ if (   (v_dt == null) &&   (v_system != null) && v_system.getUseglobals() )
 		return selected.getElement_id().equals(p_Id) ;
 	}
   }
-PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system), new PackageableElement_test54327_c());
+PackageableElement_c v_pe = PackageableElement_c.getOnePE_PEOnR9100(GlobalElementInSystem_c.getManyG_EISsOnR9100(v_system), new PackageableElement_test55876_c());
 
 
 v_dt = DataType_c.getOneS_DTOnR8001(v_pe);
@@ -3689,9 +3689,9 @@ v_sys_id = v_system.getSys_id() ;
 }
 
 InterfaceOperation_c  v_operation = null;
-for ( int i53710 = 0; i53710 < v_operations.length; i53710++)
+for ( int i55238 = 0; i55238 < v_operations.length; i55238++)
 {
-  v_operation = v_operations[i53710] ;
+  v_operation = v_operations[i55238] ;
 
 if ( (v_operation != this && v_operation.Getsignature().equals(Getsignature())) )
 {
@@ -3742,9 +3742,9 @@ v_signature = v_signature + "(" ;
 }
 
 PropertyParameter_c  v_parameter = null;
-for ( int i53711 = 0; i53711 < v_parameters.length; i53711++)
+for ( int i55239 = 0; i55239 < v_parameters.length; i55239++)
 {
-  v_parameter = v_parameters[i53711] ;
+  v_parameter = v_parameters[i55239] ;
 
 DataType_c v_type = DataType_c.getOneS_DTOnR4007(v_parameter);
 

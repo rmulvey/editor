@@ -147,7 +147,8 @@ public class ForkJoinNode_c extends NonRootModelElement
 			return false;
 		}
 		// check that the model-roots are the same
-		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()) {
+		if (((NonRootModelElement) elem).getModelRoot() != getModelRoot()
+				&& !getModelRoot().isCompareRoot()) {
 			return false;
 		}
 
@@ -163,8 +164,9 @@ public class ForkJoinNode_c extends NonRootModelElement
 		// don't allow an empty id-value to produce a false positive result;
 		// in this case, use whether the two instances are actually the same 
 		// one in memory, instead
-		if ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
-				.equals(((ForkJoinNode_c) elem).getId())) && this != elem) {
+		if (!getModelRoot().isCompareRoot()
+				&& ((IdAssigner.NULL_UUID.equals(getId()) || IdAssigner.NULL_UUID
+						.equals(((ForkJoinNode_c) elem).getId())) && this != elem)) {
 			return false;
 		}
 		if (!getId().equals(((ForkJoinNode_c) elem).getId()))
@@ -411,33 +413,33 @@ public class ForkJoinNode_c extends NonRootModelElement
 		ModelRoot baseRoot = modelRoot;
 
 		// R1106
-		ControlNode_c relInst56939 = (ControlNode_c) baseRoot.getInstanceList(
+		ControlNode_c relInst58488 = (ControlNode_c) baseRoot.getInstanceList(
 				ControlNode_c.class).get(new Object[]{m_id});
 		// if there was no local element, check for any global elements
 		// failing that proceed to check other model roots
-		if (relInst56939 == null) {
-			relInst56939 = (ControlNode_c) Ooaofooa.getDefaultInstance()
+		if (relInst58488 == null) {
+			relInst58488 = (ControlNode_c) Ooaofooa.getDefaultInstance()
 					.getInstanceList(ControlNode_c.class)
 					.get(new Object[]{m_id});
 		}
-		if (relInst56939 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+		if (relInst58488 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 			Ooaofooa[] roots = Ooaofooa.getInstances();
 			for (int i = 0; i < roots.length; i++) {
 				if (roots[i].isCompareRoot()) {
 					// never use elements from any compare root
 					continue;
 				}
-				relInst56939 = (ControlNode_c) roots[i].getInstanceList(
+				relInst58488 = (ControlNode_c) roots[i].getInstanceList(
 						ControlNode_c.class).get(new Object[]{m_id});
-				if (relInst56939 != null)
+				if (relInst58488 != null)
 					break;
 			}
 		}
 		//synchronized
-		if (relInst56939 != null) {
+		if (relInst58488 != null) {
 			if (relateProxies || !isProxy()
-					|| (inSameComponent(this, relInst56939) && !isProxy())) {
-				relInst56939.relateAcrossR1106To(this, notifyChanges);
+					|| (inSameComponent(this, relInst58488) && !isProxy())) {
+				relInst58488.relateAcrossR1106To(this, notifyChanges);
 			}
 		}
 
@@ -722,42 +724,42 @@ public class ForkJoinNode_c extends NonRootModelElement
 		}
 		ModelRoot modelRoot = getModelRoot();
 		boolean retval = true;
-		class ForkJoinNode_c_test56941_c implements ClassQueryInterface_c {
-			ForkJoinNode_c_test56941_c(java.util.UUID p56942) {
-				m_p56942 = p56942;
+		class ForkJoinNode_c_test58490_c implements ClassQueryInterface_c {
+			ForkJoinNode_c_test58490_c(java.util.UUID p58491) {
+				m_p58491 = p58491;
 			}
-			private java.util.UUID m_p56942;
+			private java.util.UUID m_p58491;
 			public boolean evaluate(Object candidate) {
 				ForkJoinNode_c selected = (ForkJoinNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56942));
+				retval = (selected.getId().equals(m_p58491));
 				return retval;
 			}
 		}
 
-		ForkJoinNode_c[] objs56940 = ForkJoinNode_c.ForkJoinNodeInstances(
-				modelRoot, new ForkJoinNode_c_test56941_c(getId()));
+		ForkJoinNode_c[] objs58489 = ForkJoinNode_c.ForkJoinNodeInstances(
+				modelRoot, new ForkJoinNode_c_test58490_c(getId()));
 
-		if (((objs56940.length) == 0)) {
+		if (((objs58489.length) == 0)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Fork Join Node", //$NON-NLS-1$
 								"Consistency: Object: Fork Join Node: Cardinality of an identifier is zero. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56940.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58489.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin.logError(
 						"Consistency: Object: Fork Join Node: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
 								+ "Actual Value: " //$NON-NLS-1$
-								+ Integer.toString(objs56940.length), e);
+								+ Integer.toString(objs58489.length), e);
 			}
 			retval = false;
 
 		}
 
-		if (((objs56940.length) > 1)) {
+		if (((objs58489.length) > 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
@@ -765,7 +767,7 @@ public class ForkJoinNode_c extends NonRootModelElement
 								"Fork Join Node", //$NON-NLS-1$
 								"Consistency: Object: Fork Join Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
 										+ "Actual Value: " //$NON-NLS-1$ 
-										+ Integer.toString(objs56940.length)
+										+ Integer.toString(objs58489.length)
 										+ " Id: " + "Not Printable"); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
@@ -773,7 +775,7 @@ public class ForkJoinNode_c extends NonRootModelElement
 						.logError(
 								"Consistency: Object: Fork Join Node: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56940.length)
+										+ Integer.toString(objs58489.length)
 										+ " Id: " + "Not Printable", e); //$NON-NLS-1$
 			}
 			retval = false;
@@ -782,37 +784,37 @@ public class ForkJoinNode_c extends NonRootModelElement
 
 		// Fork Join Node is a subtype in association: rel.Numb = 1106
 		// The supertype class is: Control Node
-		class ControlNode_c_test56946_c implements ClassQueryInterface_c {
-			ControlNode_c_test56946_c(java.util.UUID p56947) {
-				m_p56947 = p56947;
+		class ControlNode_c_test58495_c implements ClassQueryInterface_c {
+			ControlNode_c_test58495_c(java.util.UUID p58496) {
+				m_p58496 = p58496;
 			}
-			private java.util.UUID m_p56947;
+			private java.util.UUID m_p58496;
 			public boolean evaluate(Object candidate) {
 				ControlNode_c selected = (ControlNode_c) candidate;
 				boolean retval = false;
-				retval = (selected.getId().equals(m_p56947));
+				retval = (selected.getId().equals(m_p58496));
 				return retval;
 			}
 		}
 
-		ControlNode_c[] objs56945 = ControlNode_c.ControlNodeInstances(
-				modelRoot, new ControlNode_c_test56946_c(getId()));
+		ControlNode_c[] objs58494 = ControlNode_c.ControlNodeInstances(
+				modelRoot, new ControlNode_c_test58495_c(getId()));
 
-		if (((objs56945.length) != 1)) {
+		if (((objs58494.length) != 1)) {
 
 			if (CorePlugin.getDefault().isDebugging()) {
 				Ooaofooa.log
 						.println(ILogger.CONSISTENCY,
 								"Fork Join Node", //$NON-NLS-1$
 								"Consistency: Object: Fork Join Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-										+ "Actual Value: " + Integer.toString(objs56945.length)); //$NON-NLS-1$
+										+ "Actual Value: " + Integer.toString(objs58494.length)); //$NON-NLS-1$
 			} else {
 				Exception e = new Exception();
 				CorePlugin
 						.logError(
 								"Consistency: Object: Fork Join Node: Association: 1106: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
 										+ "Actual Value: " //$NON-NLS-1$
-										+ Integer.toString(objs56945.length), e);
+										+ Integer.toString(objs58494.length), e);
 			}
 			retval = false;
 

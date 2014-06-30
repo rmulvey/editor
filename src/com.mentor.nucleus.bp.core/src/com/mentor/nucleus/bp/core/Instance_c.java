@@ -231,7 +231,7 @@ p_m_default_name
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -247,7 +247,7 @@ p_m_default_name
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getInst_id()) || IdAssigner.NULL_UUID.equals(((Instance_c)elem).getInst_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getInst_id()) || IdAssigner.NULL_UUID.equals(((Instance_c)elem).getInst_id())) && this != elem)) {
       	return false;
       }
       if (!getInst_id().equals(((Instance_c)elem).getInst_id())) return false;
@@ -1903,29 +1903,29 @@ public static Instance_c [] getManyI_INSsOnR2909(AttributeValue_c target, boolea
 
 	if (EnteredLastStateViaTransition == null) {          
       // R2953
-      Transition_c relInst40268 = (Transition_c) baseRoot.getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
+      Transition_c relInst40850 = (Transition_c) baseRoot.getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40268 == null) {
-      			relInst40268 = (Transition_c) Ooaofooa.getDefaultInstance().getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
+      		if (relInst40850 == null) {
+      			relInst40850 = (Transition_c) Ooaofooa.getDefaultInstance().getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
       		}
-			if (relInst40268 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40850 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40268 = (Transition_c) roots[i].getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
-					if (relInst40268 != null)
+					relInst40850 = (Transition_c) roots[i].getInstanceList(Transition_c.class).get(new Object[] {m_trans_id,m_sm_id});
+					if (relInst40850 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40268 != null )
+      if ( relInst40850 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40268) && !isProxy())) {
-	      relInst40268.relateAcrossR2953To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40850) && !isProxy())) {
+	      relInst40850.relateAcrossR2953To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1933,29 +1933,29 @@ public static Instance_c [] getManyI_INSsOnR2909(AttributeValue_c target, boolea
 
 	if (OccupiesStateMachineState == null) {          
       // R2915
-      StateMachineState_c relInst40269 = (StateMachineState_c) baseRoot.getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
+      StateMachineState_c relInst40851 = (StateMachineState_c) baseRoot.getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40269 == null) {
-      			relInst40269 = (StateMachineState_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
+      		if (relInst40851 == null) {
+      			relInst40851 = (StateMachineState_c) Ooaofooa.getDefaultInstance().getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
       		}
-			if (relInst40269 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40851 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40269 = (StateMachineState_c) roots[i].getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
-					if (relInst40269 != null)
+					relInst40851 = (StateMachineState_c) roots[i].getInstanceList(StateMachineState_c.class).get(new Object[] {m_sm_id,m_smstt_id});
+					if (relInst40851 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40269 != null )
+      if ( relInst40851 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40269) && !isProxy())) {
-	      relInst40269.relateAcrossR2915To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40851) && !isProxy())) {
+	      relInst40851.relateAcrossR2915To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -1963,29 +1963,29 @@ public static Instance_c [] getManyI_INSsOnR2909(AttributeValue_c target, boolea
 
 	if (CreatedByComponentInstance == null) {          
       // R2957
-      ComponentInstance_c relInst40270 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+      ComponentInstance_c relInst40852 = (ComponentInstance_c) baseRoot.getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst40270 == null) {
-      			relInst40270 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+      		if (relInst40852 == null) {
+      			relInst40852 = (ComponentInstance_c) Ooaofooa.getDefaultInstance().getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
       		}
-			if (relInst40270 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst40852 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst40270 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
-					if (relInst40270 != null)
+					relInst40852 = (ComponentInstance_c) roots[i].getInstanceList(ComponentInstance_c.class).get(new Object[] {m_execution_engine_id});
+					if (relInst40852 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst40270 != null )
+      if ( relInst40852 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40270) && !isProxy())) {
-	      relInst40270.relateAcrossR2957To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst40852) && !isProxy())) {
+	      relInst40852.relateAcrossR2957To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2470,56 +2470,56 @@ return "";
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class Instance_c_test40272_c implements ClassQueryInterface_c
+    class Instance_c_test40854_c implements ClassQueryInterface_c
     {
-	  Instance_c_test40272_c( java.util.UUID            p40273 ) {
-	  m_p40273 = p40273;
+	  Instance_c_test40854_c( java.util.UUID            p40855 ) {
+	  m_p40855 = p40855;
 	  }
-	  private java.util.UUID             m_p40273; 
+	  private java.util.UUID             m_p40855; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Instance_c selected = (Instance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getInst_id().equals(m_p40273));
+	      retval = (selected.getInst_id().equals(m_p40855));
 	      return retval;
 	  }
     }
 
-    Instance_c [] objs40271 = 
-    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40272_c(getInst_id())) ;
+    Instance_c [] objs40853 = 
+    Instance_c.InstanceInstances(modelRoot, new Instance_c_test40854_c(getInst_id())) ;
 
-    if ( (  (objs40271.length) == 0) )
+    if ( (  (objs40853.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Instance", //$NON-NLS-1$
            "Consistency: Object: Instance: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs40271.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs40853.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Instance: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40271.length )  , e); 
+          + Integer.toString( objs40853.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs40271.length) > 1) )
+    if ( (  (objs40853.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Instance", //$NON-NLS-1$
            "Consistency: Object: Instance: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40271.length )  + " Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40853.length )  + " Inst_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Instance: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40271.length )  + " Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40853.length )  + " Inst_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2527,41 +2527,41 @@ return "";
 
           // Instance is a referring class in association: rel.Numb = 2953
           // The participating class is: Transition
-    class Transition_c_test40277_c implements ClassQueryInterface_c
+    class Transition_c_test40859_c implements ClassQueryInterface_c
     {
-	  Transition_c_test40277_c( java.util.UUID            p40278, java.util.UUID            p40279 ) {
-	       m_p40278 = p40278; 
-m_p40279 = p40279;
+	  Transition_c_test40859_c( java.util.UUID            p40860, java.util.UUID            p40861 ) {
+	       m_p40860 = p40860; 
+m_p40861 = p40861;
 	  }
-	  private java.util.UUID             m_p40278; private java.util.UUID             m_p40279; 
+	  private java.util.UUID             m_p40860; private java.util.UUID             m_p40861; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      Transition_c selected = (Transition_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p40278)) & (selected.getTrans_id().equals(m_p40279));
+	      retval = (selected.getSm_id().equals(m_p40860)) & (selected.getTrans_id().equals(m_p40861));
 	      return retval;
 	  }
     }
 
-    Transition_c [] objs40276 = 
-    Transition_c.TransitionInstances(modelRoot, new Transition_c_test40277_c(getSm_id(), getTrans_id())) ;
+    Transition_c [] objs40858 = 
+    Transition_c.TransitionInstances(modelRoot, new Transition_c_test40859_c(getSm_id(), getTrans_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs40276.length) != 1) )
+    if ( (  (objs40858.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Instance", //$NON-NLS-1$
            "Consistency: Object: Instance: Association: 2953: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40276.length )  + " SM_ID: " + "Not Printable"  + " Trans_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40858.length )  + " SM_ID: " + "Not Printable"  + " Trans_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Instance: Association: 2953: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40276.length )  + " SM_ID: " + "Not Printable"  + " Trans_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40858.length )  + " SM_ID: " + "Not Printable"  + " Trans_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2569,39 +2569,39 @@ m_p40279 = p40279;
 
           // Instance is a referring class in association: rel.Numb = 2915
           // The participating class is: State Machine State
-    class StateMachineState_c_test40281_c implements ClassQueryInterface_c
+    class StateMachineState_c_test40863_c implements ClassQueryInterface_c
     {
-	  StateMachineState_c_test40281_c( java.util.UUID            p40282, java.util.UUID            p40283 ) {
-	       m_p40282 = p40282; 
-m_p40283 = p40283;
+	  StateMachineState_c_test40863_c( java.util.UUID            p40864, java.util.UUID            p40865 ) {
+	       m_p40864 = p40864; 
+m_p40865 = p40865;
 	  }
-	  private java.util.UUID             m_p40282; private java.util.UUID             m_p40283; 
+	  private java.util.UUID             m_p40864; private java.util.UUID             m_p40865; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      StateMachineState_c selected = (StateMachineState_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getSm_id().equals(m_p40282)) & (selected.getSmstt_id().equals(m_p40283));
+	      retval = (selected.getSm_id().equals(m_p40864)) & (selected.getSmstt_id().equals(m_p40865));
 	      return retval;
 	  }
     }
 
-    StateMachineState_c [] objs40280 = 
-    StateMachineState_c.StateMachineStateInstances(modelRoot, new StateMachineState_c_test40281_c(getSm_id(), getSmstt_id())) ;
+    StateMachineState_c [] objs40862 = 
+    StateMachineState_c.StateMachineStateInstances(modelRoot, new StateMachineState_c_test40863_c(getSm_id(), getSmstt_id())) ;
 
-    if ( (  (objs40280.length) > 1) )
+    if ( (  (objs40862.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Instance", //$NON-NLS-1$
            "Consistency: Object: Instance: Association: 2915: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40280.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40862.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Instance: Association: 2915: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40280.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40862.length )  + " SM_ID: " + "Not Printable"  + " SMstt_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2609,40 +2609,40 @@ m_p40283 = p40283;
                 
           // Instance is a referring class in association: rel.Numb = 2957
           // The participating class is: Component Instance
-    class ComponentInstance_c_test40285_c implements ClassQueryInterface_c
+    class ComponentInstance_c_test40867_c implements ClassQueryInterface_c
     {
-	  ComponentInstance_c_test40285_c( java.util.UUID            p40286 ) {
-	  m_p40286 = p40286;
+	  ComponentInstance_c_test40867_c( java.util.UUID            p40868 ) {
+	  m_p40868 = p40868;
 	  }
-	  private java.util.UUID             m_p40286; 
+	  private java.util.UUID             m_p40868; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ComponentInstance_c selected = (ComponentInstance_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getExecution_engine_id().equals(m_p40286));
+	      retval = (selected.getExecution_engine_id().equals(m_p40868));
 	      return retval;
 	  }
     }
 
-    ComponentInstance_c [] objs40284 = 
-    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40285_c(getExecution_engine_id())) ;
+    ComponentInstance_c [] objs40866 = 
+    ComponentInstance_c.ComponentInstanceInstances(modelRoot, new ComponentInstance_c_test40867_c(getExecution_engine_id())) ;
 
           // The participant is unconditional
           // The multiplicity of the participant is one
-    if ( (  (objs40284.length) != 1) )
+    if ( (  (objs40866.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Instance", //$NON-NLS-1$
            "Consistency: Object: Instance: Association: 2957: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs40284.length )  + " Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs40866.length )  + " Execution_Engine_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Instance: Association: 2957: Cardinality of a participant is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs40284.length )  + " Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs40866.length )  + " Execution_Engine_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2712,10 +2712,7 @@ return getInst_id();
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Instance", " Operation entered: Instance::Delivereventtosubtypeinstance") ; 
                final ModelRoot modelRoot = getModelRoot();
-boolean      v_foundTarget = false ;
-
-
-return v_foundTarget;
+return false;
 
 
 

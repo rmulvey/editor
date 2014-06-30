@@ -64,19 +64,19 @@ public class SqlParser extends antlr.LLkParser implements SqlTokenTypes {
 
 		try { // for error handling
 			{
-				int _cnt244 = 0;
-				_loop244 : do {
+				int _cnt321 = 0;
+				_loop321 : do {
 					if ((LA(1) == LITERAL_insert)) {
 						insert_statement(pm);
 					} else {
-						if (_cnt244 >= 1) {
-							break _loop244;
+						if (_cnt321 >= 1) {
+							break _loop321;
 						} else {
 							throw new NoViableAltException(LT(1), getFilename());
 						}
 					}
 
-					_cnt244++;
+					_cnt321++;
 				} while (true);
 			}
 			match(Token.EOF_TYPE);
@@ -109,7 +109,7 @@ public class SqlParser extends antlr.LLkParser implements SqlTokenTypes {
 			col_num += 1;
 
 			{
-				_loop247 : do {
+				_loop324 : do {
 					if ((LA(1) == TOK_COMMA)) {
 						match(TOK_COMMA);
 						val = data_value();
@@ -119,7 +119,7 @@ public class SqlParser extends antlr.LLkParser implements SqlTokenTypes {
 						col_num += 1;
 
 					} else {
-						break _loop247;
+						break _loop324;
 					}
 
 				} while (true);

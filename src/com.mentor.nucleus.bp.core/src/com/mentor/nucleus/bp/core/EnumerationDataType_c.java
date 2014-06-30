@@ -149,7 +149,7 @@ p_m_dt_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -165,7 +165,7 @@ p_m_dt_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((EnumerationDataType_c)elem).getDt_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getDt_id()) || IdAssigner.NULL_UUID.equals(((EnumerationDataType_c)elem).getDt_id())) && this != elem)) {
       	return false;
       }
       if (!getDt_id().equals(((EnumerationDataType_c)elem).getDt_id())) return false;
@@ -601,29 +601,29 @@ public static EnumerationDataType_c [] getManyS_EDTsOnR27(Enumerator_c target, b
         ModelRoot baseRoot = modelRoot;
 
       // R17
-      DataType_c relInst55030 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      DataType_c relInst56579 = (DataType_c) baseRoot.getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst55030 == null) {
-      			relInst55030 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+      		if (relInst56579 == null) {
+      			relInst56579 = (DataType_c) Ooaofooa.getDefaultInstance().getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
       		}
-			if (relInst55030 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst56579 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst55030 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
-					if (relInst55030 != null)
+					relInst56579 = (DataType_c) roots[i].getInstanceList(DataType_c.class).get(new Object[] {m_dt_id});
+					if (relInst56579 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst55030 != null )
+      if ( relInst56579 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst55030) && !isProxy())) {
-	      relInst55030.relateAcrossR17To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56579) && !isProxy())) {
+	      relInst56579.relateAcrossR17To(this, notifyChanges);
 	  }
 	  }
 	          
@@ -873,56 +873,56 @@ private static EnumerationDataType_c findEnumerationDataTypeInstance(ModelRoot m
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class EnumerationDataType_c_test55032_c implements ClassQueryInterface_c
+    class EnumerationDataType_c_test56581_c implements ClassQueryInterface_c
     {
-	  EnumerationDataType_c_test55032_c( java.util.UUID            p55033 ) {
-	  m_p55033 = p55033;
+	  EnumerationDataType_c_test56581_c( java.util.UUID            p56582 ) {
+	  m_p56582 = p56582;
 	  }
-	  private java.util.UUID             m_p55033; 
+	  private java.util.UUID             m_p56582; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      EnumerationDataType_c selected = (EnumerationDataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55033));
+	      retval = (selected.getDt_id().equals(m_p56582));
 	      return retval;
 	  }
     }
 
-    EnumerationDataType_c [] objs55031 = 
-    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test55032_c(getDt_id())) ;
+    EnumerationDataType_c [] objs56580 = 
+    EnumerationDataType_c.EnumerationDataTypeInstances(modelRoot, new EnumerationDataType_c_test56581_c(getDt_id())) ;
 
-    if ( (  (objs55031.length) == 0) )
+    if ( (  (objs56580.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumeration Data Type", //$NON-NLS-1$
            "Consistency: Object: Enumeration Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55031.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56580.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumeration Data Type: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55031.length )  , e); 
+          + Integer.toString( objs56580.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs55031.length) > 1) )
+    if ( (  (objs56580.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumeration Data Type", //$NON-NLS-1$
            "Consistency: Object: Enumeration Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs55031.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs56580.length )  + " DT_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumeration Data Type: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55031.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs56580.length )  + " DT_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -930,37 +930,37 @@ private static EnumerationDataType_c findEnumerationDataTypeInstance(ModelRoot m
 
           // Enumeration Data Type is a subtype in association: rel.Numb = 17
           // The supertype class is: Data Type
-    class DataType_c_test55037_c implements ClassQueryInterface_c
+    class DataType_c_test56586_c implements ClassQueryInterface_c
     {
-	  DataType_c_test55037_c( java.util.UUID            p55038 ) {
-	  m_p55038 = p55038;
+	  DataType_c_test56586_c( java.util.UUID            p56587 ) {
+	  m_p56587 = p56587;
 	  }
-	  private java.util.UUID             m_p55038; 
+	  private java.util.UUID             m_p56587; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      DataType_c selected = (DataType_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getDt_id().equals(m_p55038));
+	      retval = (selected.getDt_id().equals(m_p56587));
 	      return retval;
 	  }
     }
 
-    DataType_c [] objs55036 = 
-    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test55037_c(getDt_id())) ;
+    DataType_c [] objs56585 = 
+    DataType_c.DataTypeInstances(modelRoot, new DataType_c_test56586_c(getDt_id())) ;
 
-    if ( (  (objs55036.length) != 1) )
+    if ( (  (objs56585.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Enumeration Data Type", //$NON-NLS-1$
            "Consistency: Object: Enumeration Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs55036.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs56585.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Enumeration Data Type: Association: 17: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs55036.length )  , e); 
+          + Integer.toString( objs56585.length )  , e); 
       }
       retval = false;
 
@@ -981,9 +981,9 @@ Enumerator_c [] v_enums = Enumerator_c.getManyS_ENUMsOnR27(this);
 
 
 Enumerator_c  v_enum = null;
-for ( int i53570 = 0; i53570 < v_enums.length; i53570++)
+for ( int i55026 = 0; i55026 < v_enums.length; i55026++)
 {
-  v_enum = v_enums[i53570] ;
+  v_enum = v_enums[i55026] ;
 
 if (v_enum != null) {
 v_enum.Dispose() ;
@@ -1153,7 +1153,7 @@ else
 if ( (p_At == Justification_c.Left) )
 {
 
-  class Enumerator_test54184_c implements ClassQueryInterface_c
+  class Enumerator_test55720_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1161,7 +1161,7 @@ if ( (p_At == Justification_c.Left) )
 		return (selected.getPrevious_enum_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-Enumerator_c v_enum = Enumerator_c.getOneS_ENUMOnR27(this, new Enumerator_test54184_c());
+Enumerator_c v_enum = Enumerator_c.getOneS_ENUMOnR27(this, new Enumerator_test55720_c());
 
 
 int          v_cursor = p_Ent_num ;
@@ -1275,7 +1275,7 @@ if ( (  (v_peers.length) > 1) )
 boolean      v_initialOrderingCheckPerformed = false ;
 
 
-  class Enumerator_test54185_c implements ClassQueryInterface_c
+  class Enumerator_test55721_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -1283,7 +1283,7 @@ boolean      v_initialOrderingCheckPerformed = false ;
 		return (selected.getEnum_id().equals(Gd_c.Null_unique_id())) ;
 	}
   }
-Enumerator_c v_head = Enumerator_c.getOneS_ENUMOnR27(this, new Enumerator_test54185_c());
+Enumerator_c v_head = Enumerator_c.getOneS_ENUMOnR27(this, new Enumerator_test55721_c());
 
 
 Enumerator_c v_endOfList = v_head ;
@@ -1293,9 +1293,9 @@ int          v_loopCnt = 0 ;
 
 
 Enumerator_c  v_peer = null;
-for ( int i53571 = 0; i53571 < v_peers.length; i53571++)
+for ( int i55027 = 0; i55027 < v_peers.length; i55027++)
 {
-  v_peer = v_peers[i53571] ;
+  v_peer = v_peers[i55027] ;
 
 if ( (  !v_initialOrderingCheckPerformed) )
 {
@@ -1676,9 +1676,9 @@ Enumerator_c [] v_peers = Enumerator_c.getManyS_ENUMsOnR27(this);
 
 
 Enumerator_c  v_peer = null;
-for ( int i53572 = 0; i53572 < v_peers.length; i53572++)
+for ( int i55028 = 0; i55028 < v_peers.length; i55028++)
 {
-  v_peer = v_peers[i53572] ;
+  v_peer = v_peers[i55028] ;
 
 if ( (v_peer != v_enumerator) )
 {
@@ -1775,9 +1775,9 @@ v_dts = DataType_c.getManyS_DTsOnR8001(PackageableElement_c.getManyPE_PEsOnR8003
 }
 
 DataType_c  v_otherDt = null;
-for ( int i53573 = 0; i53573 < v_dts.length; i53573++)
+for ( int i55029 = 0; i55029 < v_dts.length; i55029++)
 {
-  v_otherDt = v_dts[i53573] ;
+  v_otherDt = v_dts[i55029] ;
 
 if ( (v_otherDt != v_dt && v_otherDt.getName().equals(v_dt.getName())) )
 {
@@ -1802,6 +1802,18 @@ true
 
 
    } // End checkIntegrity
+  public  String       Getdescription()
+  {
+      Ooaofooa.log.println(ILogger.OPERATION, "Enumeration Data Type", " Operation entered: EnumerationDataType::Getdescription") ; 
+               final ModelRoot modelRoot = getModelRoot();
+DataType_c v_dt = DataType_c.getOneS_DTOnR17(this);
+
+
+return v_dt.getDescrip();
+
+
+
+   } // End getDescription
 
   // end transform functions
 

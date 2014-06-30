@@ -185,7 +185,7 @@ p_m_oid_id
          return false;
      }
 	    // check that the model-roots are the same
-    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot()) {
+    	if (((NonRootModelElement)elem).getModelRoot() != getModelRoot() && !getModelRoot().isCompareRoot()) {
     		return false;
     	}
     	
@@ -201,21 +201,21 @@ p_m_oid_id
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getOir_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getOir_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getOir_id())) && this != elem)) {
       	return false;
       }
       if (!getOir_id().equals(((ReferredToClassInAssoc_c)elem).getOir_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getObj_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getObj_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getObj_id())) && this != elem)) {
       	return false;
       }
       if (!getObj_id().equals(((ReferredToClassInAssoc_c)elem).getObj_id())) return false;
       // don't allow an empty id-value to produce a false positive result;
       // in this case, use whether the two instances are actually the same 
       // one in memory, instead
-      if ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getRel_id())) && this != elem) {
+      if (!getModelRoot().isCompareRoot() && ((IdAssigner.NULL_UUID.equals(getRel_id()) || IdAssigner.NULL_UUID.equals(((ReferredToClassInAssoc_c)elem).getRel_id())) && this != elem)) {
       	return false;
       }
       if (!getRel_id().equals(((ReferredToClassInAssoc_c)elem).getRel_id())) return false;
@@ -1714,58 +1714,58 @@ public static ReferredToClassInAssoc_c [] getManyR_RTOsOnR204(ClassAsAssociatedO
         ModelRoot baseRoot = modelRoot;
 
       // R203
-      ClassInAssociation_c relInst56614 = (ClassInAssociation_c) baseRoot.getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
+      ClassInAssociation_c relInst58163 = (ClassInAssociation_c) baseRoot.getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56614 == null) {
-      			relInst56614 = (ClassInAssociation_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
+      		if (relInst58163 == null) {
+      			relInst58163 = (ClassInAssociation_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
       		}
-			if (relInst56614 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58163 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56614 = (ClassInAssociation_c) roots[i].getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
-					if (relInst56614 != null)
+					relInst58163 = (ClassInAssociation_c) roots[i].getInstanceList(ClassInAssociation_c.class).get(new Object[] {m_oir_id,m_obj_id,m_rel_id});
+					if (relInst58163 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56614 != null )
+      if ( relInst58163 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56614) && !isProxy())) {
-	      relInst56614.relateAcrossR203To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58163) && !isProxy())) {
+	      relInst58163.relateAcrossR203To(this, notifyChanges);
 	  }
 	  }
 	          
 
 	if (IsIdentifiedInThisAssociationByClassIdentifier == null) {          
       // R109
-      ClassIdentifier_c relInst56615 = (ClassIdentifier_c) baseRoot.getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
+      ClassIdentifier_c relInst58164 = (ClassIdentifier_c) baseRoot.getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
             // if there was no local element, check for any global elements
             // failing that proceed to check other model roots
-      		if (relInst56615 == null) {
-      			relInst56615 = (ClassIdentifier_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
+      		if (relInst58164 == null) {
+      			relInst58164 = (ClassIdentifier_c) Ooaofooa.getDefaultInstance().getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
       		}
-			if (relInst56615 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
+			if (relInst58164 == null && searchAllRoots && !baseRoot.isCompareRoot()) {
 				Ooaofooa[] roots = Ooaofooa.getInstances();
 				for (int i = 0; i < roots.length; i++) {
 				    if(roots[i].isCompareRoot()) {
 				         // never use elements from any compare root
 				         continue;
 				    }
-					relInst56615 = (ClassIdentifier_c) roots[i].getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
-					if (relInst56615 != null)
+					relInst58164 = (ClassIdentifier_c) roots[i].getInstanceList(ClassIdentifier_c.class).get(new Object[] {new UUID(0, new Long(m_oid_id)),m_obj_id});
+					if (relInst58164 != null)
 						break;
 				}
 			}
 			//synchronized
-      if ( relInst56615 != null )
+      if ( relInst58164 != null )
       {
-          if (relateProxies || !isProxy() || (inSameComponent(this, relInst56615) && !isProxy())) {
-	      relInst56615.relateAcrossR109To(this, notifyChanges);
+          if (relateProxies || !isProxy() || (inSameComponent(this, relInst58164) && !isProxy())) {
+	      relInst58164.relateAcrossR109To(this, notifyChanges);
 	  }
 	  }
 	}
@@ -2181,116 +2181,116 @@ private static ReferredToClassInAssoc_c findReferredToClassInAssocInstance(Model
     }
 	ModelRoot modelRoot = getModelRoot();
     boolean      retval = true;
-    class ReferredToClassInAssoc_c_test56617_c implements ClassQueryInterface_c
+    class ReferredToClassInAssoc_c_test58166_c implements ClassQueryInterface_c
     {
-	  ReferredToClassInAssoc_c_test56617_c( java.util.UUID            p56618, java.util.UUID            p56619, java.util.UUID            p56620 ) {
-	            m_p56618 = p56618; 
-m_p56619 = p56619; 
-m_p56620 = p56620;
+	  ReferredToClassInAssoc_c_test58166_c( java.util.UUID            p58167, java.util.UUID            p58168, java.util.UUID            p58169 ) {
+	            m_p58167 = p58167; 
+m_p58168 = p58168; 
+m_p58169 = p58169;
 	  }
-	  private java.util.UUID             m_p56618; private java.util.UUID             m_p56619; private java.util.UUID             m_p56620; 
+	  private java.util.UUID             m_p58167; private java.util.UUID             m_p58168; private java.util.UUID             m_p58169; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ReferredToClassInAssoc_c selected = (ReferredToClassInAssoc_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56618)) & (selected.getObj_id().equals(m_p56619)) & (selected.getRel_id().equals(m_p56620));
+	      retval = (selected.getOir_id().equals(m_p58167)) & (selected.getObj_id().equals(m_p58168)) & (selected.getRel_id().equals(m_p58169));
 	      return retval;
 	  }
     }
 
-    ReferredToClassInAssoc_c [] objs56616 = 
-    ReferredToClassInAssoc_c.ReferredToClassInAssocInstances(modelRoot, new ReferredToClassInAssoc_c_test56617_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ReferredToClassInAssoc_c [] objs58165 = 
+    ReferredToClassInAssoc_c.ReferredToClassInAssocInstances(modelRoot, new ReferredToClassInAssoc_c_test58166_c(getOir_id(), getObj_id(), getRel_id())) ;
 
-    if ( (  (objs56616.length) == 0) )
+    if ( (  (objs58165.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56616.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58165.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56616.length )  , e); 
+          + Integer.toString( objs58165.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56616.length) > 1) )
+    if ( (  (objs58165.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56616.length )  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58165.length )  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56616.length )  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58165.length )  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
 
-    class ReferredToClassInAssoc_c_test56622_c implements ClassQueryInterface_c
+    class ReferredToClassInAssoc_c_test58171_c implements ClassQueryInterface_c
     {
-	  ReferredToClassInAssoc_c_test56622_c( int             p56623, java.util.UUID            p56624, java.util.UUID            p56625, java.util.UUID            p56626 ) {
-	                 m_p56623 = p56623; 
-m_p56624 = p56624; 
-m_p56625 = p56625; 
-m_p56626 = p56626;
+	  ReferredToClassInAssoc_c_test58171_c( int             p58172, java.util.UUID            p58173, java.util.UUID            p58174, java.util.UUID            p58175 ) {
+	                 m_p58172 = p58172; 
+m_p58173 = p58173; 
+m_p58174 = p58174; 
+m_p58175 = p58175;
 	  }
-	  private int              m_p56623; private java.util.UUID             m_p56624; private java.util.UUID             m_p56625; private java.util.UUID             m_p56626; 
+	  private int              m_p58172; private java.util.UUID             m_p58173; private java.util.UUID             m_p58174; private java.util.UUID             m_p58175; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ReferredToClassInAssoc_c selected = (ReferredToClassInAssoc_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOid_id() == (m_p56623)) & (selected.getOir_id().equals(m_p56624)) & (selected.getObj_id().equals(m_p56625)) & (selected.getRel_id().equals(m_p56626));
+	      retval = (selected.getOid_id() == (m_p58172)) & (selected.getOir_id().equals(m_p58173)) & (selected.getObj_id().equals(m_p58174)) & (selected.getRel_id().equals(m_p58175));
 	      return retval;
 	  }
     }
 
-    ReferredToClassInAssoc_c [] objs56621 = 
-    ReferredToClassInAssoc_c.ReferredToClassInAssocInstances(modelRoot, new ReferredToClassInAssoc_c_test56622_c(getOid_id(), getOir_id(), getObj_id(), getRel_id())) ;
+    ReferredToClassInAssoc_c [] objs58170 = 
+    ReferredToClassInAssoc_c.ReferredToClassInAssocInstances(modelRoot, new ReferredToClassInAssoc_c_test58171_c(getOid_id(), getOir_id(), getObj_id(), getRel_id())) ;
 
-    if ( (  (objs56621.length) == 0) )
+    if ( (  (objs58170.length) == 0) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is zero. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56621.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58170.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is zero. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56621.length )  , e); 
+          + Integer.toString( objs58170.length )  , e); 
       }
       retval = false;
 
     }
 
-    if ( (  (objs56621.length) > 1) )
+    if ( (  (objs58170.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56621.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
+           + Integer.toString( objs58170.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Cardinality of an identifier is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56621.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
+          + Integer.toString( objs58170.length )  + " Oid_ID: " + Integer.toString(getOid_id())  + " OIR_ID: " + "Not Printable"  + " Obj_ID: " + "Not Printable"  + " Rel_ID: " + "Not Printable" , e); //$NON-NLS-1$
       }
       retval = false;
 
@@ -2298,39 +2298,39 @@ m_p56626 = p56626;
 
           // Referred To Class in Assoc is a subtype in association: rel.Numb = 203
           // The supertype class is: Class In Association
-    class ClassInAssociation_c_test56629_c implements ClassQueryInterface_c
+    class ClassInAssociation_c_test58178_c implements ClassQueryInterface_c
     {
-	  ClassInAssociation_c_test56629_c( java.util.UUID            p56630, java.util.UUID            p56631, java.util.UUID            p56632 ) {
-	            m_p56630 = p56630; 
-m_p56631 = p56631; 
-m_p56632 = p56632;
+	  ClassInAssociation_c_test58178_c( java.util.UUID            p58179, java.util.UUID            p58180, java.util.UUID            p58181 ) {
+	            m_p58179 = p58179; 
+m_p58180 = p58180; 
+m_p58181 = p58181;
 	  }
-	  private java.util.UUID             m_p56630; private java.util.UUID             m_p56631; private java.util.UUID             m_p56632; 
+	  private java.util.UUID             m_p58179; private java.util.UUID             m_p58180; private java.util.UUID             m_p58181; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassInAssociation_c selected = (ClassInAssociation_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56630)) & (selected.getObj_id().equals(m_p56631)) & (selected.getRel_id().equals(m_p56632));
+	      retval = (selected.getOir_id().equals(m_p58179)) & (selected.getObj_id().equals(m_p58180)) & (selected.getRel_id().equals(m_p58181));
 	      return retval;
 	  }
     }
 
-    ClassInAssociation_c [] objs56628 = 
-    ClassInAssociation_c.ClassInAssociationInstances(modelRoot, new ClassInAssociation_c_test56629_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ClassInAssociation_c [] objs58177 = 
+    ClassInAssociation_c.ClassInAssociationInstances(modelRoot, new ClassInAssociation_c_test58178_c(getOir_id(), getObj_id(), getRel_id())) ;
 
-    if ( (  (objs56628.length) != 1) )
+    if ( (  (objs58177.length) != 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Association: 203: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56628.length ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58177.length ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Association: 203: Cardinality of a supertype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56628.length )  , e); 
+          + Integer.toString( objs58177.length )  , e); 
       }
       retval = false;
 
@@ -2338,147 +2338,147 @@ m_p56632 = p56632;
 
           // Referred To Class in Assoc is a referring class in association: rel.Numb = 109
           // The participating class is: Class Identifier
-    class ClassIdentifier_c_test56634_c implements ClassQueryInterface_c
+    class ClassIdentifier_c_test58183_c implements ClassQueryInterface_c
     {
-	  ClassIdentifier_c_test56634_c( java.util.UUID            p56635, int             p56636 ) {
-	       m_p56635 = p56635; 
-m_p56636 = p56636;
+	  ClassIdentifier_c_test58183_c( java.util.UUID            p58184, int             p58185 ) {
+	       m_p58184 = p58184; 
+m_p58185 = p58185;
 	  }
-	  private java.util.UUID             m_p56635; private int              m_p56636; 
+	  private java.util.UUID             m_p58184; private int              m_p58185; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassIdentifier_c selected = (ClassIdentifier_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getObj_id().equals(m_p56635)) & (selected.getOid_id() == (m_p56636));
+	      retval = (selected.getObj_id().equals(m_p58184)) & (selected.getOid_id() == (m_p58185));
 	      return retval;
 	  }
     }
 
-    ClassIdentifier_c [] objs56633 = 
-    ClassIdentifier_c.ClassIdentifierInstances(modelRoot, new ClassIdentifier_c_test56634_c(getObj_id(), getOid_id())) ;
+    ClassIdentifier_c [] objs58182 = 
+    ClassIdentifier_c.ClassIdentifierInstances(modelRoot, new ClassIdentifier_c_test58183_c(getObj_id(), getOid_id())) ;
 
-    if ( (  (objs56633.length) > 1) )
+    if ( (  (objs58182.length) > 1) )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Association: 109: Cardinality of a participant is greater than 1. " //$NON-NLS-1$
            + "Actual Value: " //$NON-NLS-1$ 
-           + Integer.toString( objs56633.length )  + " Obj_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id()) ); //$NON-NLS-1$
+           + Integer.toString( objs58182.length )  + " Obj_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id()) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Association: 109: Cardinality of a participant is greater than 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56633.length )  + " Obj_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id()) , e); //$NON-NLS-1$
+          + Integer.toString( objs58182.length )  + " Obj_ID: " + "Not Printable"  + " Oid_ID: " + Integer.toString(getOid_id()) , e); //$NON-NLS-1$
       }
       retval = false;
 
     }
                 
           // Supertype: rel.Numb = 204
-    int objs56637 = 0;
+    int objs58186 = 0;
             // Subtype Object: Class As Supertype
-    class ClassAsSupertype_c_test56638_c implements ClassQueryInterface_c
+    class ClassAsSupertype_c_test58187_c implements ClassQueryInterface_c
     {
-	  ClassAsSupertype_c_test56638_c( java.util.UUID            p56639, java.util.UUID            p56640, java.util.UUID            p56641 ) {
-	            m_p56639 = p56639; 
-m_p56640 = p56640; 
-m_p56641 = p56641;
+	  ClassAsSupertype_c_test58187_c( java.util.UUID            p58188, java.util.UUID            p58189, java.util.UUID            p58190 ) {
+	            m_p58188 = p58188; 
+m_p58189 = p58189; 
+m_p58190 = p58190;
 	  }
-	  private java.util.UUID             m_p56639; private java.util.UUID             m_p56640; private java.util.UUID             m_p56641; 
+	  private java.util.UUID             m_p58188; private java.util.UUID             m_p58189; private java.util.UUID             m_p58190; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsSupertype_c selected = (ClassAsSupertype_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56639)) & (selected.getObj_id().equals(m_p56640)) & (selected.getRel_id().equals(m_p56641));
+	      retval = (selected.getOir_id().equals(m_p58188)) & (selected.getObj_id().equals(m_p58189)) & (selected.getRel_id().equals(m_p58190));
 	      return retval;
 	  }
     }
 
-    ClassAsSupertype_c [] objs56642 = 
-    ClassAsSupertype_c.ClassAsSupertypeInstances(modelRoot, new ClassAsSupertype_c_test56638_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ClassAsSupertype_c [] objs58191 = 
+    ClassAsSupertype_c.ClassAsSupertypeInstances(modelRoot, new ClassAsSupertype_c_test58187_c(getOir_id(), getObj_id(), getRel_id())) ;
  
-    objs56637 = objs56637 + objs56642.length;
+    objs58186 = objs58186 + objs58191.length;
             // Subtype Object: Class As Simple Participant
-    class ClassAsSimpleParticipant_c_test56643_c implements ClassQueryInterface_c
+    class ClassAsSimpleParticipant_c_test58192_c implements ClassQueryInterface_c
     {
-	  ClassAsSimpleParticipant_c_test56643_c( java.util.UUID            p56644, java.util.UUID            p56645, java.util.UUID            p56646 ) {
-	            m_p56644 = p56644; 
-m_p56645 = p56645; 
-m_p56646 = p56646;
+	  ClassAsSimpleParticipant_c_test58192_c( java.util.UUID            p58193, java.util.UUID            p58194, java.util.UUID            p58195 ) {
+	            m_p58193 = p58193; 
+m_p58194 = p58194; 
+m_p58195 = p58195;
 	  }
-	  private java.util.UUID             m_p56644; private java.util.UUID             m_p56645; private java.util.UUID             m_p56646; 
+	  private java.util.UUID             m_p58193; private java.util.UUID             m_p58194; private java.util.UUID             m_p58195; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsSimpleParticipant_c selected = (ClassAsSimpleParticipant_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56644)) & (selected.getObj_id().equals(m_p56645)) & (selected.getRel_id().equals(m_p56646));
+	      retval = (selected.getOir_id().equals(m_p58193)) & (selected.getObj_id().equals(m_p58194)) & (selected.getRel_id().equals(m_p58195));
 	      return retval;
 	  }
     }
 
-    ClassAsSimpleParticipant_c [] objs56647 = 
-    ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstances(modelRoot, new ClassAsSimpleParticipant_c_test56643_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ClassAsSimpleParticipant_c [] objs58196 = 
+    ClassAsSimpleParticipant_c.ClassAsSimpleParticipantInstances(modelRoot, new ClassAsSimpleParticipant_c_test58192_c(getOir_id(), getObj_id(), getRel_id())) ;
  
-    objs56637 = objs56637 + objs56647.length;
+    objs58186 = objs58186 + objs58196.length;
             // Subtype Object: Class As Associated One Side
-    class ClassAsAssociatedOneSide_c_test56648_c implements ClassQueryInterface_c
+    class ClassAsAssociatedOneSide_c_test58197_c implements ClassQueryInterface_c
     {
-	  ClassAsAssociatedOneSide_c_test56648_c( java.util.UUID            p56649, java.util.UUID            p56650, java.util.UUID            p56651 ) {
-	            m_p56649 = p56649; 
-m_p56650 = p56650; 
-m_p56651 = p56651;
+	  ClassAsAssociatedOneSide_c_test58197_c( java.util.UUID            p58198, java.util.UUID            p58199, java.util.UUID            p58200 ) {
+	            m_p58198 = p58198; 
+m_p58199 = p58199; 
+m_p58200 = p58200;
 	  }
-	  private java.util.UUID             m_p56649; private java.util.UUID             m_p56650; private java.util.UUID             m_p56651; 
+	  private java.util.UUID             m_p58198; private java.util.UUID             m_p58199; private java.util.UUID             m_p58200; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsAssociatedOneSide_c selected = (ClassAsAssociatedOneSide_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56649)) & (selected.getObj_id().equals(m_p56650)) & (selected.getRel_id().equals(m_p56651));
+	      retval = (selected.getOir_id().equals(m_p58198)) & (selected.getObj_id().equals(m_p58199)) & (selected.getRel_id().equals(m_p58200));
 	      return retval;
 	  }
     }
 
-    ClassAsAssociatedOneSide_c [] objs56652 = 
-    ClassAsAssociatedOneSide_c.ClassAsAssociatedOneSideInstances(modelRoot, new ClassAsAssociatedOneSide_c_test56648_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ClassAsAssociatedOneSide_c [] objs58201 = 
+    ClassAsAssociatedOneSide_c.ClassAsAssociatedOneSideInstances(modelRoot, new ClassAsAssociatedOneSide_c_test58197_c(getOir_id(), getObj_id(), getRel_id())) ;
  
-    objs56637 = objs56637 + objs56652.length;
+    objs58186 = objs58186 + objs58201.length;
             // Subtype Object: Class As Associated Other Side
-    class ClassAsAssociatedOtherSide_c_test56653_c implements ClassQueryInterface_c
+    class ClassAsAssociatedOtherSide_c_test58202_c implements ClassQueryInterface_c
     {
-	  ClassAsAssociatedOtherSide_c_test56653_c( java.util.UUID            p56654, java.util.UUID            p56655, java.util.UUID            p56656 ) {
-	            m_p56654 = p56654; 
-m_p56655 = p56655; 
-m_p56656 = p56656;
+	  ClassAsAssociatedOtherSide_c_test58202_c( java.util.UUID            p58203, java.util.UUID            p58204, java.util.UUID            p58205 ) {
+	            m_p58203 = p58203; 
+m_p58204 = p58204; 
+m_p58205 = p58205;
 	  }
-	  private java.util.UUID             m_p56654; private java.util.UUID             m_p56655; private java.util.UUID             m_p56656; 
+	  private java.util.UUID             m_p58203; private java.util.UUID             m_p58204; private java.util.UUID             m_p58205; 
 	  public boolean evaluate (Object candidate)
 	  {
 	      ClassAsAssociatedOtherSide_c selected = (ClassAsAssociatedOtherSide_c) candidate;
 	      boolean retval = false;
-	      retval = (selected.getOir_id().equals(m_p56654)) & (selected.getObj_id().equals(m_p56655)) & (selected.getRel_id().equals(m_p56656));
+	      retval = (selected.getOir_id().equals(m_p58203)) & (selected.getObj_id().equals(m_p58204)) & (selected.getRel_id().equals(m_p58205));
 	      return retval;
 	  }
     }
 
-    ClassAsAssociatedOtherSide_c [] objs56657 = 
-    ClassAsAssociatedOtherSide_c.ClassAsAssociatedOtherSideInstances(modelRoot, new ClassAsAssociatedOtherSide_c_test56653_c(getOir_id(), getObj_id(), getRel_id())) ;
+    ClassAsAssociatedOtherSide_c [] objs58206 = 
+    ClassAsAssociatedOtherSide_c.ClassAsAssociatedOtherSideInstances(modelRoot, new ClassAsAssociatedOtherSide_c_test58202_c(getOir_id(), getObj_id(), getRel_id())) ;
  
-    objs56637 = objs56637 + objs56657.length;
-    if ( objs56637 != 1 )
+    objs58186 = objs58186 + objs58206.length;
+    if ( objs58186 != 1 )
     {
 
       if (CorePlugin.getDefault().isDebugging()){
           Ooaofooa.log.println(ILogger.CONSISTENCY, "Referred To Class in Assoc", //$NON-NLS-1$
            "Consistency: Object: Referred To Class in Assoc: Association: 204: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$
-           + "Actual Value: " + Integer.toString( objs56637 ) ); //$NON-NLS-1$
+           + "Actual Value: " + Integer.toString( objs58186 ) ); //$NON-NLS-1$
       }
       else {
           Exception e = new Exception();
           CorePlugin.logError("Consistency: Object: Referred To Class in Assoc: Association: 204: Cardinality of subtype is not equal to 1. " //$NON-NLS-1$ 
           + "Actual Value: " //$NON-NLS-1$
-          + Integer.toString( objs56637 )  , e); 
+          + Integer.toString( objs58186 )  , e); 
       }
       retval = false;
 
@@ -2600,9 +2600,9 @@ ReferredToIdentifierAttribute_c [] v_rtidas = ReferredToIdentifierAttribute_c.ge
 
 
 ReferredToIdentifierAttribute_c  v_rtida = null;
-for ( int i53897 = 0; i53897 < v_rtidas.length; i53897++)
+for ( int i55427 = 0; i55427 < v_rtidas.length; i55427++)
 {
-  v_rtida = v_rtidas[i53897] ;
+  v_rtida = v_rtidas[i55427] ;
 
 if (v_rtida != null) {
 v_rtida.Dispose() ;
@@ -2632,17 +2632,17 @@ ReferredToIdentifierAttribute_c [] v_rtida_set = ReferredToIdentifierAttribute_c
 
 
 ReferredToIdentifierAttribute_c  v_rtida = null;
-for ( int i53898 = 0; i53898 < v_rtida_set.length; i53898++)
+for ( int i55428 = 0; i55428 < v_rtida_set.length; i55428++)
 {
-  v_rtida = v_rtida_set[i53898] ;
+  v_rtida = v_rtida_set[i55428] ;
 
 AttributeReferenceInClass_c [] v_ref_set = AttributeReferenceInClass_c.getManyO_REFsOnR111(v_rtida);
 
 
 AttributeReferenceInClass_c  v_ref = null;
-for ( int i53899 = 0; i53899 < v_ref_set.length; i53899++)
+for ( int i55429 = 0; i55429 < v_ref_set.length; i55429++)
 {
-  v_ref = v_ref_set[i53899] ;
+  v_ref = v_ref_set[i55429] ;
 
 if (v_ref != null) {
 v_ref.Migraterefattrordispose() ;
@@ -2706,7 +2706,7 @@ else {
   {
       Ooaofooa.log.println(ILogger.OPERATION, "Referred To Class in Assoc", " Operation entered: ReferredToClassInAssoc::Addattributetoidentifier") ; 
                final ModelRoot modelRoot = getModelRoot();
-  class ClassIdentifierAttribute_test54437_c implements ClassQueryInterface_c
+  class ClassIdentifierAttribute_test55986_c implements ClassQueryInterface_c
   {
 	public boolean evaluate (Object candidate)
 	{
@@ -2714,33 +2714,33 @@ else {
 		return selected.getAttr_id().equals(p_Attr_id) ;
 	}
   }
-ClassIdentifierAttribute_c v_oida = ClassIdentifierAttribute_c.getOneO_OIDAOnR105(ClassIdentifier_c.getManyO_IDsOnR109(this), new ClassIdentifierAttribute_test54437_c());
+ClassIdentifierAttribute_c v_oida = ClassIdentifierAttribute_c.getOneO_OIDAOnR105(ClassIdentifier_c.getManyO_IDsOnR109(this), new ClassIdentifierAttribute_test55986_c());
 
 
 if ( (  (v_oida != null)) )
 {
 
-  class ReferringClassInAssoc_test54438_c implements ClassQueryInterface_c
+  class ReferringClassInAssoc_test55987_c implements ClassQueryInterface_c
   {
-	ReferringClassInAssoc_test54438_c( java.util.UUID         p54439, java.util.UUID         p54440 ) {
-		m_p54439 = p54439;
-				m_p54440 = p54440;
+	ReferringClassInAssoc_test55987_c( java.util.UUID         p55988, java.util.UUID         p55989 ) {
+		m_p55988 = p55988;
+				m_p55989 = p55989;
 	}
-	private java.util.UUID         m_p54439;
-		private java.util.UUID         m_p54440;
+	private java.util.UUID         m_p55988;
+		private java.util.UUID         m_p55989;
 	public boolean evaluate (Object candidate)
 	{
 		ReferringClassInAssoc_c selected = (ReferringClassInAssoc_c)candidate;
-		return (! selected.getOir_id().equals(m_p54439) && selected.getRel_id().equals(m_p54440)) ;
+		return (! selected.getOir_id().equals(m_p55988) && selected.getRel_id().equals(m_p55989)) ;
 	}
   }
-ReferringClassInAssoc_c [] v_rgo_set = ReferringClassInAssoc_c.getManyR_RGOsOnR203(ClassInAssociation_c.getManyR_OIRsOnR201(Association_c.getManyR_RELsOnR201(ClassInAssociation_c.getManyR_OIRsOnR203(this))), new ReferringClassInAssoc_test54438_c(getOir_id(), getRel_id()));
+ReferringClassInAssoc_c [] v_rgo_set = ReferringClassInAssoc_c.getManyR_RGOsOnR203(ClassInAssociation_c.getManyR_OIRsOnR201(Association_c.getManyR_RELsOnR201(ClassInAssociation_c.getManyR_OIRsOnR203(this))), new ReferringClassInAssoc_test55987_c(getOir_id(), getRel_id()));
 
 
 ReferringClassInAssoc_c  v_rgo = null;
-for ( int i53900 = 0; i53900 < v_rgo_set.length; i53900++)
+for ( int i55430 = 0; i55430 < v_rgo_set.length; i55430++)
 {
-  v_rgo = v_rgo_set[i53900] ;
+  v_rgo = v_rgo_set[i55430] ;
 
 ClassIdentifierAttribute_c v_ref_attr_id = ClassIdentifierAttribute_c.getOneO_OIDAOnR105(Attribute_c.getManyO_ATTRsOnR106(ReferentialAttribute_c.getManyO_RATTRsOnR108(AttributeReferenceInClass_c.getManyO_REFsOnR111(v_rgo))));
 
@@ -2785,9 +2785,9 @@ ReferredToClassInAssoc_c [] v_rto_set = ReferredToClassInAssoc_c.getManyR_RTOsOn
 
 
 ReferredToClassInAssoc_c  v_rto = null;
-for ( int i53901 = 0; i53901 < v_rto_set.length; i53901++)
+for ( int i55431 = 0; i55431 < v_rto_set.length; i55431++)
 {
-  v_rto = v_rto_set[i53901] ;
+  v_rto = v_rto_set[i55431] ;
 
 if (v_rto != null) {
 v_rto.Addattributetoidentifier(			    

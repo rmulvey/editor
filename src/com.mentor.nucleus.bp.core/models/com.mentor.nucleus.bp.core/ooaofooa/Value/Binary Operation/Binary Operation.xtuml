@@ -125,8 +125,7 @@ INSERT INTO O_TFR
 	"528ced7e-5308-4195-8093-ca0c55401f58",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return "";
-',
+return "";',
 	1,
 	'',
 	"4b480d20-5645-4b2d-9c69-43c6379ebca5");
@@ -154,9 +153,7 @@ INSERT INTO O_TFR
 	"79904a6c-8631-4ce7-a3ee-faf5eaa46dd8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return 0;
-
-',
+return 0;',
 	1,
 	'',
 	"ce8a596d-7205-4f9a-90e2-817850e8b3e4");
@@ -184,7 +181,7 @@ INSERT INTO O_TFR
 	"f07598c3-1cca-4c8c-8603-381ab44c6d81",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return 0;',
+return 0.0;',
 	1,
 	'',
 	"5a9a5d5b-8712-48a8-a01c-dbe411799c86");
@@ -212,7 +209,7 @@ INSERT INTO O_TFR
 	"8e519c45-7dcf-400b-9d4e-954869dbb7e8",
 	1,
 	'// Mentor Graphics Verifier-specific Implementation
-return true;',
+return false;',
 	0,
 	'',
 	"dffe2eb3-3c17-4ddd-a272-1cf1a7184589");
